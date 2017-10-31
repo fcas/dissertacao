@@ -1,0 +1,2811 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.9.2 laurocesar
+%% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+% Modelo adaptado especificamente para o contexto do PPgSI-EACH-USP por 
+% Marcelo Fantinato, com auxílio dos Professores Norton T. Roman, Helton
+% H. Bíscaro e Sarajane M. Peres, em 2015, com muitos agradecimentos aos 
+% criadores da classe e do modelo base.
+%
+% 20/06/2017: inclusão de "lista de quadros" com base no especificado em:
+% https://github.com/abntex/abntex2/wiki/HowToCriarNovoAmbienteListing,
+% de autoria de "Eduardo de Santana Medeiros Alexandre".
+%
+%-------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	% openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão apenas no anverso (apenas frente). Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2ppgsi}
+
+% ---
+% Pacotes básicos 
+% ---
+% \usepackage{lmodern}			% Usa a fonte Latin Modern			
+% \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{array,booktabs}
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{pdfpages}     %para incluir pdf
+\usepackage{algorithm}			%para ilustrações do tipo algoritmo
+\usepackage{mdwlist}			%para itens com espaço padrão da abnt
+\usepackage[noend]{algpseudocode}			%para ilustrações do tipo algoritmo
+\usepackage{amsmath}
+\usepackage[flushleft]{threeparttable}
+
+\usepackage{bera}% optional: just to have a nice mono-spaced font
+\usepackage{listings}
+\lstset{%
+        inputencoding=utf8,
+        extendedchars=true,
+        literate=%
+        {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ù}{{\`{u}}}1
+        {ú}{{\'{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+}
+\usepackage{xcolor}
+\usepackage{gensymb}
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1}
+      {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ù}{{\`{u}}}1
+        {ú}{{\'{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+        {º}{{\degree}}1
+}
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage{longtable}
+\usepackage[splitrule]{footmisc} %% The splitrule option draws a full width rule above the continued part of the footnote as a visual cue to readers.
+
+\interfootnotelinepenalty=10000 %% Completely prevent breaking of footnotes
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``instituicao'':
+%
+% Não mexer. Deixar exatamente como está.
+%
+%-------------------------------------------------------------------------
+\instituicao{
+	UNIVERSIDADE DE SÃO PAULO
+	\par
+	ESCOLA DE ARTES, CIÊNCIAS E HUMANIDADES
+	\par
+	PROGRAMA DE PÓS-GRADUAÇÃO EM SISTEMAS DE INFORMAÇÃO}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``título'':
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou 
+% siglas, os quais podem ter letras em maiúscula também.
+%
+% O subtítulo do trabalho é opcional.
+% Sem ponto final.
+%
+% Atenção: o título da Dissertação na versão corrigida não pode mudar. 
+% Ele deve ser idêntico ao da versão original.
+%
+%-------------------------------------------------------------------------
+\titulo{Caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``autor'':
+%
+% Todas as letras em maiúsculas.
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\autor{\uppercase{Felipe Cordeiro Alves Dias}}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``local'':
+%
+% Não incluir o ``estado''.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\local{São Paulo}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``data'':
+%
+% Colocar o ano do depósito (ou seja, o ano da entrega) da respectiva 
+% versão, seja ela a versão original (para a defesa) seja ela a versão 
+% corrigida (depois da aprovação na defesa). 
+%
+% Atenção: Se a versão original for depositada no final do ano e a versão 
+% corrigida for entregue no ano seguinte, o ano precisa ser atualizado no 
+% caso da versão corrigida. 
+% Cuidado, pois o ano da ``capa externa'' também precisa ser atualizado 
+% nesse caso.
+%
+% Não incluir o dia, nem o mês.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\data{2017}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Orientador'':
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\orientador{Prof. Dr. Daniel de  Angelis Cordeiro}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Coorientador'':
+%
+% Opcional. Incluir apenas se houver co-orientador formal, de acordo com o 
+% Regulamento do Programa.
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+%\coorientador{Prof. Dr. Fulano de Tal}
+
+\tipotrabalho{Qualificação (Mestrado)}
+
+\preambulo{
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto ``Versão 
+% original'':
+%
+% Não usar para Qualificação.
+% Não usar para versão corrigida de Dissertação.
+%
+%-------------------------------------------------------------------------
+Versão original \newline \newline \newline 
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``texto principal do
+% preambulo'':
+%
+Texto de Exame de Qualificação apresentado à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo como parte dos requisitos para obtenção do título de Mestre em Ciências pelo Programa de Pós-graduação em Sistemas de Informação.
+%
+%-------------------------------------------------------------------------
+%Dissertação apresentada à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo para obtenção do título de Mestre em Ciências pelo Programa de Pós-graduação em Sistemas de Informação. 
+%
+\newline \newline Área de concentração: Metodologia e Técnicas da Computação
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto da ``Versão 
+% corrigida'':
+%
+% Não usar para Qualificação.
+% Não usar para versão original de Dissertação.
+% 
+% Substituir ``xx de xxxxxxxxxxxxxxx de xxxx'' pela ``data da defesa''.
+%
+%-------------------------------------------------------------------------
+%\newline \newline \newline Versão corrigida contendo as alterações solicitadas pela comissão julgadora em xx de xxxxxxxxxxxxxxx de xxxx. A versão original encontra-se em acervo reservado na Biblioteca da EACH-USP e na Biblioteca Digital de Teses e Dissertações da USP (BDTD), de acordo com a Resolução CoPGr 6018, de 13 de outubro de 2011.
+}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX com abnTeX2 adaptado para o PPgSI-EACH-USP},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{qualificação de mestrado}{dissertação de mestrado}{ppgsi}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        		% color of links to bibliography
+    	filecolor=black,      		% color of file links
+		urlcolor=black,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.25cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0cm}  % tente também \onelineskip
+\renewcommand{\baselinestretch}{1.5}
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+	% Controlar linhas orfas e viuvas
+  \clubpenalty10000
+  \widowpenalty10000
+  \displaywidowpenalty10000
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``capa'':
+%
+% Esta é a ``capa'' principal/oficial do trabalho, a ser impressa apenas 
+% para os casos de encadernação simples (ou seja, em ``espiral'' com 
+% plástico na frente).
+% 
+% Não imprimir esta ``capa'' quando houver ``capa dura'' ou ``capa brochura'' 
+% em que estas mesmas informações já estão presentes nela.
+%
+%-------------------------------------------------------------------------
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a autorização para reprodução e ficha bibliografica
+% ---
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto da 
+% ``autorização para reprodução e ficha bibliografica'':
+%
+% Página a ser usada apenas para Dissertação (tanto na versão original 
+% quanto na versão corrigida).
+%
+% Solicitar a ficha catalográfica na Biblioteca da EACH. 
+% Duas versões devem ser solicitadas, em dois momentos distintos: uma vez 
+% para a versão original, e depois outra atualizada para a versão 
+% corrigida.
+%
+% Atenção: esta página de ``autorização para reprodução e ficha 
+% catalográfica'' deve ser impressa obrigatoriamente no verso da folha de 
+% rosto.
+%
+% Não usar esta página para Qualificação.
+%
+% Substitua o arquivo ``fig_ficha_catalografica.pdf'' abaixo referenciado 
+% pelo PDF elaborado pela Biblioteca
+%
+%-------------------------------------------------------------------------
+%\begin{fichacatalografica}
+%    \includepdf{fig_ficha_catalografica.pdf}
+%\end{fichacatalografica}
+
+% ---
+% Inserir errata
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Errata'':
+%
+% Usar esta página de errata apenas em casos de excepcionais, e apenas 
+% para a versão corrigida da Dissertação. Por exemplo, quando depois de
+% já depositada e publicada a versão corrigida, ainda assim verifica-se
+% a necessidade de alguma correção adicional.
+%
+% Se precisar usar esta página, busque a forma correta (o modelo correto) 
+% para fazê-lo, de acordo com a norma ABNT.
+%
+% Não usar esta página para versão original de Dissertação.
+% Não usar esta página para Qualificação.
+%
+%-------------------------------------------------------------------------
+%\begin{errata}
+%Elemento opcional para versão corrigida, depois de depositada.
+%\end{errata}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+%\begin{folhadeaprovacao}
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Folha da aprovação'':
+%
+% Página a ser usada apenas para Dissertação.
+%
+% Não usar esta página para Qualificação.
+%
+% Substituir ``Fulano de Tal'' pelo nome completo do autor do trabalho, com 
+% apenas as iniciais em maiúsculo.
+%
+% Substituir ``___ de ______________ de ______'' por: 
+%     - Para versão original de Dissertação: deixar em branco, pois a data 
+%       pode mudar, mesmo que ela já esteja prevista.
+%     - Para versão corrigida de Dissertação: usar a data em que a defesa 
+%       efetivamente ocorreu.
+%
+%-------------------------------------------------------------------------
+%\noindent Dissertação de autoria de Fulano de Tal, sob o título \textbf{``\imprimirtitulo''}, apresentada à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo, para obtenção do título de Mestre em Ciências pelo Programa de Pós-graduação em Sistemas de Informação, na área de concentração Metodologia e Técnicas da Computação, aprovada em \_\_\_\_\_\_\_ de \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ de \_\_\_\_\_\_\_\_\_\_ pela comissão julgadora constituída pelos doutores:
+
+%\vspace*{3cm}
+
+%\begin{center}
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``assinaturas'':
+%
+% Para versão original de Dissertação: deixar em 
+% branco (ou seja, assim como está abaixo), pois os membros da banca podem
+% mudar, mesmo que eles já estejam previstos.
+% 
+% Para versão corrigida de Dissertação: usar os dados dos examinadores que 
+% efetivamente participaram da defesa. 
+% 
+% Para versão corrigida de Dissertação: em caso de ``professora'', trocar 
+% por ``Profa. Dra.'' 
+% 
+% Para versão corrigida de Dissertação: ao colocar os nomes dos 
+% examinadores, remover o sublinhado
+% 
+% Para versão corrigida de Dissertação: ao colocar os nomes dos 
+% examinadores, usar seus nomes completos, exatamente conforme constam em 
+% seus Currículos Lattes
+% 
+% Para versão corrigida de Dissertação: ao colocar os nomes das 
+% instituições, remover o sublinhado e remover a palavra ``Instituição:''
+%
+% Não abreviar os nomes das instituições.
+%
+%-------------------------------------------------------------------------
+%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+%\vspace*{0.2cm} 
+%\\ \textbf{Prof. Dr. %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+%\\ \vspace*{0.2cm} 
+%Instituição: %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 
+%\\ \vspace*{0.2cm}
+%Presidente 
+
+%\vspace*{2cm}
+
+%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+%\vspace*{0.2cm} 
+%\\ \textbf{Prof. Dr. %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+%\\ \vspace*{0.2cm} 
+%Instituição: %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+%\vspace*{2cm}
+
+%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+%\vspace*{0.2cm} 
+%\\ \textbf{Prof. Dr. %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+%\\ \vspace*{0.2cm} 
+%Instituição: %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+%\vspace*{2cm}
+
+%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+%\vspace*{0.2cm} 
+%\\ \textbf{Prof. Dr. %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+%\\ \vspace*{0.2cm} 
+%Instituição: %\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+%\end{center}
+  
+%\end{folhadeaprovacao}
+% ---
+
+% ---
+% Dedicatória
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Dedicatória'': 
+%
+% Opcional para Dissertação.
+% Não sugerido para Qualificação.
+% 
+%-------------------------------------------------------------------------
+%\begin{dedicatoria}
+%   \vspace*{\fill}
+%   \centering
+%   \noindent
+%   \textit{Escreva aqui sua dedicatória, se desejar, ou remova esta página...} 
+%	 \vspace*{\fill}
+%\end{dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Agradecimentos'': 
+%
+% Opcional para Dissertação.
+% Não sugerido para Qualificação.
+% 
+% Lembrar de agradecer agências de fomento e outras instituições similares.
+%
+%-------------------------------------------------------------------------
+%\begin{agradecimentos}
+%\end{agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Epígrafe'': 
+%
+% Opcional para Dissertação.
+% Não sugerido para Qualificação.
+% 
+%-------------------------------------------------------------------------
+%\begin{epigrafe}
+%    \vspace*{\fill}
+%	\begin{flushright}
+%		\textit{``Escreva aqui uma epígrafe, se desejar, ou remova esta página...''\\
+%		(Autor da epígrafe)}
+%	\end{flushright}
+%\end{epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``referência'':
+% 
+% Troque os seguintes campos pelos dados de sua Dissertação (mantendo a 
+% formatação e pontuação):
+%   - SOBRENOME
+%   - Nome1
+%   - Nome2
+%   - Nome3
+%   - Título do trabalho: subtítulo do trabalho
+%   - AnoDeDefesa
+%
+% Mantenha todas as demais informações exatamente como estão.
+% 
+% [Não usar essas informações de ``referência'' para Qualificação]
+%
+%-------------------------------------------------------------------------
+\begin{flushleft}
+DIAS, Felipe Cordeiro Alves. \textbf{Caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo}. \imprimirdata. \pageref{LastPage} f. Dissertação (Mestrado em Ciências) – Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, 2018.
+\end{flushleft}
+
+A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações existentes para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas existentes, como a do desfasado Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM as Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção e dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município. A hipótese é de que é possível identificar e localizar eventos de exceção nos \textit{tweets} por meio de Processamento de Linguagem Natural e Expressão Regular, e correlacionar esses eventos com os dados históricos do SIM.
+
+Palavras-chaves: Cidades Inteligentes. Transporte Público. Sistemas de Transporte Inteligentes. Eventos de exceção.
+\end{resumo}
+
+% resumo em inglês
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``resumo em inglês''
+% 
+% Caso a Qualificação ou a Dissertação inteira seja elaborada no idioma inglês, 
+% então o ``Abstract'' vem antes do ``Resumo''.
+% 
+%-------------------------------------------------------------------------
+%\begin{resumo}[Abstract]
+%\begin{otherlanguage*}{english}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``referência em inglês''
+% 
+% Troque os seguintes campos pelos dados de sua Dissertação (mantendo a 
+% formatação e pontuação):
+%     - SURNAME
+%     - FirstName1
+%     - MiddleName1
+%     - MiddleName2
+%     - Work title: work subtitle
+%     - DefenseYear (Ano de Defesa)
+%
+% Mantenha todas as demais informações exatamente como estão.
+%
+% [Não usar essas informações de ``referência'' para Qualificação]
+%
+%-------------------------------------------------------------------------
+%\begin{flushleft}
+%SURNAME, FirstName MiddleName1 MiddleName2. \textbf{Work title}: work subtitle. \imprimirdata. \pageref{LastPage} p. Dissertation (Master of Science) – School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, DefenseYear. 
+%\end{flushleft}
+
+%Write here the English version of your ``Resumo''. Example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text, example text.
+
+%Keywords: Keyword1. Keyword2. Keyword3. etc.
+%\end{otherlanguage*}
+%\end{resumo}
+
+% ---
+% ---
+% inserir lista de figuras
+% ---
+%\pdfbookmark[0]{\listfigurename}{lof}
+%\listoffigures*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de algoritmos
+% ---
+%\pdfbookmark[0]{\listalgorithmname}{loa}
+%\listofalgorithms
+%\cleardoublepage
+
+% ---
+% inserir lista de quadros
+% ---
+%\pdfbookmark[0]{\listofquadrosname}{loq}
+%\listofquadros*
+%\cleardoublepage
+
+
+% ---
+% inserir lista de tabelas
+% ---
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Lista de abreviaturas 
+% e siglas'': 
+%
+% Opcional.
+% Uma vez que se deseja usar, é necessário manter padrão e consistência no
+% trabalho inteiro.
+% Se usar: inserir em ordem alfabética.
+%
+%-------------------------------------------------------------------------
+
+% Definicao da lista de abreviaturas e siglas
+% \abrv[entrada na lista de simbolos]{abreviatura}:
+% Escreve a sigla/abreviatura no texto e uma entrada na lista de abreviaturas e siglas.
+% Se o parametro opcional e omitido, usa-se o parametro obrigatorio.
+\newcommand{\abrv}[2][]
+{%
+	\ifthenelse{\equal{#1}{}}
+	{\addcontentsline{loab}{abreviatura}{#2}}
+	{\addcontentsline{loab}{abreviatura}{#1}}#2
+}
+% Para aceitar comandos com @ (at) no nome
+\makeatletter 
+% \listadeabreviaturas: comando que imprime a lista de abreviaturas e siglas
+\newcommand{\listadeabreviaturas}
+{
+	\pretextualchapter{Lista de abreviaturas e siglas}
+	{\setlength{\parindent}{0cm}
+	\@starttoc{loab}}
+}
+% Como a entrada sera impressa
+\newcommand\l@abreviatura[2]{\par #1}
+\makeatother
+
+
+%\listadeabreviaturas
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Lista de símbolos'': 
+%
+% Opcional.
+% Uma vez que se deseja usar, é necessário manter padrão e consistência no
+% trabalho inteiro.
+% Se usar: inserir na ordem em que aparece no texto.
+% 
+%-------------------------------------------------------------------------
+%\begin{simbolos}
+%  \item[$ \Gamma $] Letra grega Gama
+%  \item[$ \Lambda $] Lambda
+%  \item[$ \zeta $] Letra grega minúscula zeta
+%  \item[$ \in $] Pertence
+%\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``títulos de seções''
+% 
+% Para todos os títulos (seções, subseções, tabelas, ilustrações, etc.):
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou
+% siglas, os quais podem ter letras em maiúscula também.
+%
+%-------------------------------------------------------------------------
+\chapter{Introdução}
+\label{introducao}
+
+Neste capítulo, são apresentadas as seções
+referentes a motivação da proposta de pesquisa; sobre a definição do problema que pretendemos abordar; a respeito dos objetivos gerais e específicos; sobre as hipóteses inferidas e sobre a organização dos capítulos desse documento.
+
+\section{Motivação}
+\label{motivation}
+
+A cidade de São Paulo é o município mais populoso do Brasil, que passou por um rápido processo de urbanização e tem população atual estimada em 12.106.920 milhões de habitantes (com data de referência em 1º de julho de 2017)\footnote{\url{https://agenciadenoticias.ibge.gov.br/media/com\_mediaibge/arquivos/9bc1a0065c49fd6f81dc785b2b8d8c35.xlsx}. Acesso em Outubro, 29 de 2017.}.
+Desse total de habitantes, 10\% vivem na área do Centro Expandido (CE) e 90\% no Cinturão Periférico (CP) \cite{SA201722}, o que caracteriza uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. 
+
+Um desses problemas é conhecido como o movimento pendular, no qual longas distâncias são percorridas diariamente pelos moradores do CP para acessar os locais de emprego, educação e serviços localizados em maioria no CE. Além disso, o movimento pendular torna o CP em uma região dormitória, com parte de seus respectivos moradores dependentes do Sistema de Transporte Público para acessar o CE.
+
+Devido aos problemas de mobilidade urbana existentes no Brasil, como os da cidade de São Paulo, a Lei Federal 12.587/2012\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2012/lei/l12587.htm}. Acesso em Outubro, 29 de 2017.}, relacionada ao Programa de Aceleração do Crescimento  (PAC)\footnote{\url{http://www.pac.gov.br}. Acesso em Outubro, 29 de 2017.}, obrigou os municípios a enviarem seus respectivos planos de mobilidade urbana até o final do ano de 2015, visando promover o desenvolvimento sustentável com a mitigação dos custos ambientais e socioeconômicos dos deslocamentos de pessoas. Considerando essa lei, o Plano de Mobilidade de São Paulo (PlanMob/SP 2015) foi instituído pelo Decreto 56.834\footnote{\label{planmob}\url{http://www.prefeitura.sp.gov.br/cidade/secretarias/transportes/planmob}. Acesso em Outubro, 29 de 2017.}, como instrumento de planejamento e gestão do Sistema Municipal de Mobilidade Urbana para os próximos 15 anos.
+
+No PlanMob/SP 2015, a Secretaria Municipal de Transportes (SMT) propõe criar uma central de monitoramento conhecida como Central Integrada de Mobilidade Urbana (CIMU), que tem como objetivo integrar as áreas de trânsito e transporte subordinadas à SMT. Nessa proposta, observam-se os seguintes problemas que poderiam ser resolvidos em paralelo ao desenvolvimento do CIMU: (I) o CIMU não processa conteúdo de Redes Sociais, (II) não aborda melhoria dos sistemas já existentes e (III) será integrado com o desfasado Sistema Integrado de Monitoramento e Transporte (SIM), da São Paulo Transportes (SPTrans), responsável pelo monitoramento da infraestrutura de ônibus. 
+
+O SIM utiliza a tecnologia \textit{Automatic Vehicle Location} (AVL) para localizar e rastrear os ônibus, fornecer informações em tempo real aos passageiros (RTPI --- \textit{Real Time Passenger Information}), monitorar 1.353 rotas de ônibus\footnote{\label{gtfsSptrans}\url{http://www.sptrans.com.br/desenvolvedores}. Acesso em Outubro, 29 de 2017.}, 10 corredores de ônibus\footnote{\url{http://www.sptrans.com.br/terminais/corredores.aspx}. Acesso em Outubro, 29 de 2017.}, 28 terminais de ônibus\footnote{\url{http://www.sptrans.com.br/terminais}. Acesso em Outubro, 29 de 2017.} e 19.933 mil paradas de ônibus\footref{gtfsSptrans} que serviram em 2016 a aproximadamente 8 milhões de passageiros por dia\footnote{\url{http://www.sptrans.com.br/indicadores}. Acesso em Outubro, 29 de 2017.}. Apesar da importância do SIM, há inúmeras defasagens tecnológicas (que causam discrepância nas informações recebidas pelos usuários, dentre outros problemas) \cite{consulo2016evaluation}, que precisariam ser resolvidas antes de integrá-lo ao CIMU.
+ 
+Sistemas como o SIM são classificados como Sistemas de Transporte Inteligente (ITS --- \textit{Intelligent Transport System}), e normalmente estão presentes nas Cidades Inteligentes (SC --- \textit{Smart Cities}). Por definição, ITS utilizam Tecnologias da Informação e Comunicação (TIC) para explorar dados capazes de contribuir com a melhoria da segurança, do gerenciamento, eficiência dos transportes e redução do impacto ambiental \cite{Anttiroiko2013}. Com isso, nota-se que ITS são essenciais para os objetivos mencionados na Lei Federal 12.587/2012 e no PlanMob/SP 2015.  
+
+No entanto, a lei da mobilidade (12.587/2012) e o PlanMob/SP 2015 não mencionam explicitamente ITS e TIC. O conteúdo de ambos os documentos tem um viés político-urbano, com pouco aprofundamento em questões tecnológicas e melhorias dos sistemas já existentes. Esse cenário é diferente em alguns países, nos quais existem planejamentos para o transporte e mobilidade urbana que estão explicitamente relacionados ao desenvolvimento e uso de novas tecnologias.
+
+Por exemplo, os EUA têm o plano estratégico para 2015-2019 em ITS, abordando temas como veículos conectados, automação, uso de tecnologias emergentes (para apoiar decisões em tempo real), intregação de dados corporativos, interoperabilidade (comunicação entre diferentes sistemas) e entrega acelerada de projetos \cite{itsdot}. Enquanto que a União Européia e o Japão, estão centrados em padronizações de tecnologias em ITS, com o obtjetivo de serem referências nesse setor \cite{consulo2016evaluation}.
+
+O contraste entre os dois parágrafos anteriores talvez seja devido ao fato de a legislação brasileira e os planos para mobilidade urbana terem sido estabelecidos como consequência do crescimento urbano acelerado e sem planejamento. Ou seja, como solução paliativa para um problema urbano, o que difere dos planos em ITS mencionados, que têm como foco otimizar o transporte e criar padrões tecnológicos. 
+
+Apesar dessas diferenças políticas e sociais, o transporte público pode se beneficiar ao explorar ITS \cite{Nelson2013}, e ao integrar as Redes Sociais com o planejamento, gestão e as atividades operacionais dos transportes públicos, abordando seus respectivos fatores sócio-técnicos \cite{kuflik2017automating}. Por exemplo, um dos benefícios possíveis é o de se conseguir analisar o impacto dos eventos de exceção na operação do sistema de transporte público por ônibus na cidade de São Paulo, usando dados do SIM (AVL) e de Redes Sociais.
+
+\section{Definição do problema}
+\label{problemDef}
+
+Eventos de exceção tais como acidentes, greves, falhas na operação do metrô, manifestações, enchentes, eventos sociais, dentre outras, podem  comprometer muitos trechos do sistema de transporte público e, dependendo da proporção do impacto causado pela exceção, inúmeras pessoas podem ser afetadas. Tais eventos de exceção e seus respectivos impactos possuem características que podem ser identificadas visando melhor gestão dessas  ocorrências. 
+
+Com a identificação dessas características, é possível conhecer previamente quais seriam os impactos decorrentes de um determinado evento de exceção no funcionamento normal do transporte público. Tais características podem ser obtidas analisando o histórico do funcionamento do sistema de transportes, e utilizadas posteriormente em simulações de como o sistema responderia a determinados eventos de exceção.
+
+Os dados históricos existentes para essa análise são os do SIM, obtidos utilizando AVL. No entanto, analisá-los envolve problemas como o (I) grande volume de dados, em virtude da frequência com que são enviados (II) e os referentes ao comprometimento da qualidade dos dados enviados, como consequência dos problemas e limitações do \textit{hardware} responsável pela transmissão. 
+
+O uso de conteúdo de Redes Sociais pode ajudar a abordar os problemas anteriormente mencionados, o qual delimitaria o escopo da análise histórica para a identificação das características dos eventos de exceção e dos seus respectivos impactos. Usar o conteúdo de Redes Sociais envolve alguns desafios como o de (I) identificar eventos de exceção nas publicações, (II) geolocalizá-los, (III) determinar seus \textit{timestamps} (IV) correlacioná-las com a base histórica.  
+
+\section{Objetivos}
+\label{objetivos}
+O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Visando alcançar esse objetivo, serão coletados \textit{tweets} das contas oficiais das instituições responsáveis por reportar eventos de exceção na
+cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na Tab. \ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos da SPTrans transmitidos com o uso da tecnologia AVL. 
+
+Além disso, temos como objetivos específicos:
+
+\begin{itemize}
+    \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados.
+     \item Extrair os endereços dos eventos de exceção identificados e geolocalizá-los.
+		\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente. Com isso, a necessidade de entrega dos dados a sociedade, apontada por \cite{kuflik2017automating}, será atendida.
+\item Criação de plataforma para exploração e visualização dos dados coletados e processados das fontes citadas na Tab. \ref{tab:oficialProfiles} e da SPTrans.
+\end{itemize}
+
+\begin{table}[!htb]
+\centering
+\caption{Descrição e nome dos profiles selecionados do Twitter}
+	\label{tab:oficialProfiles}
+\begin{threeparttable}
+\begin{tabular}{c|c}
+\hline
+\textbf{Descrição do \textit{profile} no \textit{Twitter}} & \textbf {Profile no \textit{Twitter}} \\ 
+\hline
+Comando do Corpo de Bombeiros da PMESP \tnote{a} & \textit{@BombeirosPMESP} \\ 
+\hline
+Companhia de Engenharia de Tráfego de SP & \textit{@CETSP\_} \\ 
+\hline
+Companhia Paulista de Trens Metropolitanos & \textit{@CPTM\_oficial} \\ 
+\hline
+Defesa Civil do Estado de São Paulo & \textit{@SPCEDEC} \\
+\hline
+Governo do Estado de São Paulo & \textit{@governosp} \\
+\hline
+Metrô de São Paulo & \textit{@metrosp\_oficial} \\
+\hline
+Polícia Cívil do Estado de São Paulo & \textit{@Policia\_Civil} \\  
+\hline
+Polícia Militar do Estado de São Paulo & \textit{@PMESP} \\ 
+\hline
+São Paulo Agora --- CCOI \tnote{b} & \textit{@saopaulo\_agora} \\
+\hline
+São Paulo Transporte & \textit{@sptrans\_} \\
+\hline
+São Paulo Turismo & \textit{@TurismoSaoPaulo} \\ 
+\hline
+Secretaria de Transportes de São Paulo & \textit{@smtsp\_} \\ 
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Polícia Militar do Estado de São Paulo.
+            \item[b] Centro de Controle Integrado 24 Horas da Cidade de São Paulo
+        \end{tablenotes}
+\end{threeparttable}
+\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\end{table}
+
+\section{Hipótese}
+\label{hipoteses}
+
+Com base na Revisão Sistemática do Cap. \ref{revisao}, os eventos de exceção presentes nos \textit{tweets} podem ser caracterizados, não exaustivamente, em:
+
+\begin{enumerate}
+\item \textbf{Acidentes}.
+\begin{enumerate}
+\item Acidentes nas estações de transporte \cite{Itoh2016}.
+\item Incêndio \cite{Itoh2016}.
+\end{enumerate}
+
+\item \textbf{Espaço-temporais}.
+\begin{enumerate}
+\item Dia da semana \cite{Chen2016}.
+\item Hora do dia \cite{Chen2016}.
+\end{enumerate}
+
+\item \textbf{Eventos sociais}.
+\begin{enumerate}
+\item Feiras de rua \cite{Chen2016}.
+\item Festivais \cite{Chen2016}, \cite{Lecue2014}.
+\item Jogos esportivos \cite{Chen2016}, \cite{Gal-Tzur2014}.
+\item Passeatas e maratonas \cite{Chen2016}, \cite{Itoh2016}.
+\end{enumerate}
+
+\item \textbf{Eventos urbanos}.
+\begin{enumerate}
+\item Relacionados ao tráfego \cite{Chen2016}; \cite{Lecue2014}.
+\end{enumerate}
+
+\item \textbf{Desastres naturais}.
+\begin{enumerate}
+\item Tempestades \cite{Itoh2016}.
+\item Terremoto \cite{Itoh2016}.
+\item Tufões \cite{Itoh2016}.
+\end{enumerate}
+
+\item \textbf{Metereológicas}.
+\begin{enumerate}
+\item Dia claro, nublado, chuvoso, nevando, com neblina \cite{Chen2016}.
+\item Temperatura do ar \cite{Chen2016}.
+\end{enumerate}
+
+\end{enumerate}
+
+Dito isso, espera-se que seja possível identificar tais características utilizando Processamento de Linguagem Natural (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
+
+Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Pois em uma análise preliminar observamos que o conteúdo das contas selecionadas, citadas na Tab. \ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
+
+\section{Organização do documento}
+\label{docOrg}
+
+Neste documento, é apresentado o Cap. \ref{introducao} sobre a introdução do trabalho; o Cap. \ref{fundamentacao} a respeito da fundamentação teórica;  Cap. o \ref{revisao} sobre a revisão sistemática realizada; o Cap. \ref{proposta} referente a proposta de pesquisa e o Cap. \ref{conclusion} contendo a conclusão da proposta apresentada.
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``figura''
+% 
+% Caption(Título) de tabelas e ilustração (tais como figura, gráfico, 
+% algoritmo, fotografia, quadro, etc.) sempre acima da própria.
+%
+% Para todos os captions/(títulos) (de seções, subseções, tabelas, 
+% ilustrações, etc):
+%     - em maiúscula apenas a primeira letra da sentença (do título), 
+%       exceto nomes próprios, geográficos, institucionais ou Programas ou
+%       Projetos ou siglas, os quais podem ter letras em maiúscula também.
+%
+% Fonte de ilustração (tais como figura, gráfico, algoritmo, fotografia, 
+% quadro, etc.) sempre abaixo da própria.
+%      - se a fonte for o próprio autor, colocar o nome dele. 
+%      - se a fonte for outro autor, citar sua referência.
+%
+% Todas  as tabelas, ilustrações (figuras, quadros, gráficos, etc. ), 
+% anexos, apêndices devem obrigatoriamente ser citados no texto.
+%      - a citação deve vir sempre antes da primeira vez em que a tabela, 
+%        ilustração, etc., aparecer pela primeira vez.
+%
+%-------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``algoritmo''
+% 
+% Caption(Título) de tabelas e ilustração (tais como figura, gráfico, 
+% algoritmo, fotografia, quadro, etc.) sempre acima da própria.
+%
+% Para todos os captions/(títulos) (de seções, subseções, tabelas, 
+% ilustrações, etc):
+%     - em maiúscula apenas a primeira letra da sentença (do título), 
+%       exceto nomes próprios, geográficos, institucionais ou Programas ou
+%       Projetos ou siglas, os quais podem ter letras em maiúscula também.
+%
+% Fonte de ilustração (tais como figura, gráfico, algoritmo, fotografia, 
+% quadro, etc.) sempre abaixo da própria.
+%      - se a fonte for o próprio autor, colocar o nome dele. 
+%      - se a fonte for outro autor, citar sua referência.
+%
+% Todas  as tabelas, ilustrações (figuras, quadros, gráficos, etc. ), 
+% anexos, apêndices devem obrigatoriamente ser citados no texto.
+%      - a citação deve vir sempre antes da primeira vez em que a tabela, 
+%        ilustração, etc., aparecer pela primeira vez.
+%
+%-------------------------------------------------------------------------
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+
+\chapter{Fundamentação Teórica}
+\label{fundamentacao}
+Neste capítulo, são apresentados fundamentos teóricos sobre os conceitos Cidades Inteligentes; Sistemas de Transporte Inteligentes; relacionados ao transporte público; \textit{General Transit Feed Specification}; Redes Sociais; Processamento de Linguagem Natural; \textit{Feature Engineering} e Aprendizado de Máquina.
+
+\section{Cidades Inteligentes}
+\label{smartCities}
+
+Embora não haja concenso, o conceito de Cidades Inteligentes (SC --- \textit{Smart Cities}) tem sido definido pela literatura principalmente como cidades sustentáveis e socialmente inclusivas \cite{Wang2017}, que utilizam Tecnologias da Informação e Comunicação (TICs) para gerir eficientemente seus respectivos recursos naturais, de energia, transporte, lixo, dentre outros \cite{Ahvenniemi2017}. As SC podem ter viés tecnológico (\textit{TDM --- Technology Driven Method; top-down}; de fornecimento), ou, humano (\textit{HDM --- Human Driven Method; bottom-up}; de demanda) \cite{Kummitha2017}. 
+
+O aspecto humano das Cidades Inteligentes começou a ser explorado recentemente, após críticas referentes aos poucos indicadores humanos existentes para SC \cite{Ahvenniemi2017} \cite{Finger2017}. A abordagem humana das SC foca questões sociais e qualidade de vida, tais como governança participativa, segurança, cultura, lazer, sustentabilidade, desenvolvimento de capital humano, dentre outras  \cite{Ahvenniemi2017}. Na perspectiva tecnológica de SC, argumenta-se que apenas o uso de TICs seja capaz viabilizar o desenvolvimento de capital humano e de soluções para os problemas da cidade \cite{Kummitha2017}.
+
+Independentemente dos vieses humano e tecnológico, a cidade pode ser conceituada como um complexo e dinâmico sistema sócio-técnico. Ou seja, uma cidade (região metropolitana) é composta por sistemas urbanos, com espaços físicos para a vida cotidiana e com sistemas de infraestrutura (para transporte, energia, água e tratamento de água, moradia, telecomunicações e áreas verdes). Os sistemas urbanos por natureza nunca estão em equilíbrio, possuem subsistemas imprevisíveis \cite{Finger2017}.
+
+Apesar disso, as TICs permeiam os sistemas urbanos e espaços físicos, o que tem sido acentuado com o crescente número de sensores e dispositivos conectados à Internet (\textit{IoT --- Internet of Things}), de dados voluntários enviados por pessoas via dispositivos móveis e, de conteúdo existente em Redes Sociais sobre os acontecimentos da cidade. Tais fontes heterogêneas geram grandes volumes de dados, utilizados para desenvolver serviços de Cidades Inteligentes \cite{Finger2017} \cite{Ang2017}.
+
+O desenvolvimento de serviços de SC envolve desafios relacionados a conectividade (infraestrutura de rede, interoperabilidade e padrões, consumo de energia e escalabilidade) e aos dados (capacidade e local de armazenamento, extração, tratamento, processamento, análise, integração e agregação dos dados) \cite{Ang2017}, \cite{Xiao2017}. Além disso, a análise de dados pode tanger problemas referentes a correlação e inferência de dados de diferentes domínios, aprendizado de máquina, processamento em tempo real e propostas de novo uso para dados provenientes de infraestruturas já existentes \cite{Ang2017}.
+
+Por fim, a seguir estão elencadas algumas frentes de estudo e de desenvolvimento de serviços de SC que ilustram iniciativas em Cidades Inteligentes:
+
+\begin{itemize}
+\item \textit{\textbf{Smart buildings}} \cite{Talari2017}, \cite{Moreno2017}, \cite{Ang2017}, \cite{Finger2017}, \cite{Santos2017}, \cite{Kummitha2017}.
+\item \textit{\textit{\textbf{Smart citizen / community / people}}} \cite{Talari2017}, \cite{Santos2017}, \cite{Kummitha2017}, \cite{Barth2017}, \cite{Ahvenniemi2017}.
+\item \textit{\textbf{Smart economy}} \cite{Santos2017}, \cite{Kummitha2017}, \cite{Barth2017}, \cite{Xiao2017}, \cite{Ahvenniemi2017}.
+\item \textit{\textbf{Smart environment}} (\textit{electricity}, \textit{waste}, \textit{water}, \textit{green space}) \cite{Santos2017}, \cite{Finger2017}, \cite{Talari2017}, \cite{Ang2017}, \cite{Kummitha2017}, \cite{Barth2017}, \cite{Ahvenniemi2017}.
+\item \textit{\textbf{Smart governance}} \cite{Talari2017}, \cite{Santos2017}, \cite{Kummitha2017}, \cite{Barth2017}, \cite{Ahvenniemi2017}.
+\item \textit{\textbf{Smart living}} (\textit{education}, \textit{health}, \textit{safety}, \textit{cultural}) \cite{Santos2017}, \cite{Talari2017}, \cite{Kummitha2017}, \cite{Barth2017}, \cite{Xiao2017}, \cite{Ahvenniemi2017}.
+\item \textit{\textbf{Smart transportation / mobility}} \cite{Talari2017}, \cite{Moreno2017}, \cite{Ang2017}, \cite{Finger2017}, \cite{Santos2017}, \cite{Kummitha2017}, \cite{Barth2017}, \cite{Ahvenniemi2017}.
+\end{itemize}
+
+\section{Sistemas de Transporte Inteligentes}
+\label{its}
+
+Sistemas de Transporte Inteligentes (ITS --- \textit{Intelligent Transportation Systems}) é uma das mais antigas tecnologias presentes em Cidades Inteligentes \cite{menouar2017uav}, que tem como fim utilizar TICs para resolver problemas relacionados ao transporte, tais como congestionamento, segurança, eficiência e conservação ambiental \cite{figueiredo2001towards}. 
+
+É importante notar a diferença entre o termo \textit{Intelligent} e \textit{Smart} de \textit{Smart transportation / mobility}, o primeiro, respectivamente, refere-se apenas ao uso de tecnologias, enquanto que o segundo ao uso de TICs para transformar de forma significativa a vida cotidiana das pessoas \cite{albino2015smart}. No demais, algumas das categorias de ITS estão enumeradas a seguir:
+
+\begin{enumerate}
+\item \textbf{\textit{Advanced Traffic Management System} (ATMS)} --- são sistemas utilizados para melhorar a qualidade do serviço de tráfego e redução de atrasos \cite{figueiredo2001towards}, por meio de:
+\begin{enumerate}
+\item \textit{Collection data team}: equipe de pessoas responsáveis por monitorar e coletar dados das condições de tráfego.
+\item \textit{Support systems}: conjunto de câmeras, semáforos, sensores, dentre outros dispositivos auxiliares para gerenciar e controlar o tráfego em tempo real.
+\item \textit{Real time traffic control systems}: sistemas utilizados para com base nos dados coletados controlar acesso a avenidas, semáforos, envio de mensagens para os dispositivos de monitoramento.
+\end{enumerate}
+\item \textbf{\textit{Advanced Travellers Information Systems} (ATIS)} --- são sistemas utilizados para fornecer informação em tempo real aos viajantes \cite{figueiredo2001towards}.
+\item \textbf{\textit{Commercial Vehicles Operation} (CVO)} --- são sistemas utilizados para a segurança de veículos comerciais e frotas, por meio de tecnologias relacionadas a gerenciamento de tráfego, controle e gerenciamento de veículos e informações aos viajantes \cite{figueiredo2001towards}, tais como:
+\begin{enumerate}
+\item \textit{Automatic Vehicles Identification}.
+\item \textit{Automatic Vehicles Classification}.
+\item \textit{Automatic Vehicles Location}.
+\item \textit{Pedestrian Movement Detection}.
+\item \textit{Board Computers}.
+\item \textit{Real Time Traffic Transmissions}.
+\end{enumerate}
+\item  \textbf{\textit{Advanced Public Transportations Systems} (APTS)} --- são sitemas que utilizam ATMS e ATIS para melhorar a eficiência e operação do transporte público coletivo \cite{figueiredo2001towards}. É importante observar que APTS também podem utilizar CVO.
+\item \textbf{\textit{Advanced Vehicles Control Systems} (AVCS)} --- são sistemas compostos por sensores, computadores e sistemas de controle para auxiliar e alertar motoristas, com o objetivo de melhorar a segurança e reduzir congestionamentos \cite{figueiredo2001towards}.
+\end{enumerate}
+
+As categorias mencionadas anteriormente representam parte da primeira geração de tecnologias em ITS, a próxima geração tem como foco veículos autônomos e conectados, capazes de trocarem informações entre si em tempo real para melhorar a segurança dos condutores \cite{menouar2017uav}. 
+
+\section{Conceitos relacionados ao transporte público}
+\label{mobility}
+
+Esta seção define os conceitos relacionados ao transporte público, de acordo com a perspectiva do Plano de Mobilidade Urbana do Município de São Paulo --- PlanMob SP 2015\footref{planmob}.
+
+\subsection{Acessibilidade}
+A acessibilidade pode ser considerada como um atributo do espaço urbano, o qual é diretamente proporcional a abrangência e adequação das infraestruturas de acesso ao espaço urbano. As regiões da cidade têm diferentes padrões de infraestrutura de transporte e deslocamento, portanto, são diferenciadas no aspecto de acessibilidade. Além disso, a acessibilidade atua como instrumento de acesso as oportunidades socioeconômicas da cidade. Observa-se que a acessibilidade não é entendida como um atributo econômico relacionado ao valor das tarifas do transporte, ou, as condições de uso (como o congestionamento viário).
+
+Uma qualidade específica do espaço urbano é a acessibilidade universal, que o caracteriza como acessível a pessoas portadoras de necessidades especiais (PNEs). A acessibilidade universal é garantida ao eliminar as barreiras físicas que impedem a participação plena e efetiva das pessoas PNEs ao espaço urbano.
+
+\subsection{Mobilidade}
+
+A mobilidade por ser entendida como um atributo do indivíduo, o qual está relacionado a sua capacidade de se deslocar pelo território da cidade e a sua respectiva renda (dimensão econômica); ou seja, pessoas ou famílias de maior renda tendem a ter maior número de viagens. Além disso, observa-se que a restrição da mobilidade devido a má qualidade das infraestruturas urbanas é considerada como falta de acessibilidade ao espaço e não como perda de mobilidade do indivíduo.
+
+A condição de mobilidade pode ser calculada pelo indicador conhecido como taxa ou índice de mobilidade, determinado pelo quociente entre o total de viagens realizadas e o total da população residente em uma região. Tal indicador pode ser especializado de acordo o tipo de mobilidade, por exemplo, ao considerar apenas as viagens motorizadas, obtém-se o índice de mobilidade motorizada.
+
+Além da mobilidade como atributo do indivíduo, existe a mobilidade como atributo da cidade, conhecida como mobilidade urbana. A mobilidade urbana considera um conjunto de fatores de uma aglomeração urbana que tornam a mobilidade mais qualificada e eficiente, tais como: \begin{enumerate}
+\item Transporte público coletivo;
+\item  transporte de alta capacidade;
+\item  acessibilidade universal nos passeios e edificações;
+\item prioridade ao transporte coletivo no sistema viário;
+\item terminais de transporte intermodais;
+\item rede de transporte coletivo por ônibus (com acessibilidade universal);
+\item rede cicloviária;
+\item bicicletários e paraciclos;
+\item  legibilidade dos sistemas de orientação;
+\item comunicação eficaz com os usuários;
+\item modicidade tarifária;
+\item  logística eficiente no transporte de carga, dentre outros itens.
+\end{enumerate} 
+
+\subsection{Viagem e modais de transporte}
+
+O conceito de viagem no setor de transportes é definido como o deslocamento de uma pessoa entre dois pontos de interesse (origem e destino), com um motivo definido e por meio de um modal de transporte.  A saber, os modais de transporte considerados no \textit{PlanMob/SP 2015} estão enumerados a seguir:
+
+\begin{enumerate}
+\item A pé.
+\begin{enumerate}
+\item Independentemente do deslocamento percorrido caso o motivo seja escola ou trabalho;
+\item  Superior a 500 metros de deslocamento.
+\end{enumerate}
+\item Coletivos.
+\begin{enumerate}
+\item Metrô;
+\item ônibus;
+\item ônibus fretado;
+\item ônibus escolar e lotação;
+\item trem.
+\end{enumerate}
+\item Individuais.
+\begin{enumerate}
+\item Automóveis (bicicleta, carro particular, caminhão, moto e táxi).
+\end{enumerate}
+\end{enumerate}
+
+
+\section{\textit{General Transit Feed Specification}}
+\label{gtfs}
+
+A \textit{GTFS --- General Transit Feed Specification}\footnote{\label{googleTransit}\url{https://developers.google.com/transit}. Acesso em Outubro, 29 de 2017.}, como o próprio nome sugere, é uma especificação de um formato comum (o que permite interoperabilidade) para troca de informações estáticas sobre transporte público.  Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto (que seguem determinados requisitos semelhantes aos do formato \textit{CSV}\footref{googleTransit})  compactados no formato \textit{Zip}\footnote{\url{https://support.pkware.com/display/PKZIP/APPNOTE}. Acesso em Outubro, 29 de 2017.}, e detalhados na Tab. \ref{tab:gtfsFiles}. Cada arquivo modela diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário.
+
+\begin{table}[!htb]
+  \centering
+  \caption{Detalhamento dos arquivos da GTFS}
+      \label{tab:gtfsFiles}
+\begin{threeparttable}
+\begin{tabular}{>{\centering\arraybackslash}m{3.5cm} | >{\centering}m{3cm} | >{\centering\arraybackslash}m{8cm}}
+\hline
+    \textbf{Nome do arquivo} & \textbf{Condicional} & \textbf{Contéudo} \tnote{a} \\
+\hline
+\textit{agency.txt} & Obrigatório & Contém uma ou mais agências de transporte público como fonte dos dados. \\
+\hline
+\textit{stops.txt} & Obrigatório & Contém os locais individuais em que os veículos pegam ou deixam passageiros. \\
+\hline
+\textit{routes.txt} & Obrigatório & Contém os trajetos de um grupo de viagens exibidas aos passageiros como um único serviço. \\
+\hline
+\textit{trips.txt} & Obrigatório & Contém as viagens de cada trajeto. Uma viagem é uma sequência de duas ou mais paradas que ocorrem em um horário específico. \\
+\hline
+\textit{stop\_times.txt} & Obrigatório & Contém os horários de partida e chegada dos veículos em paradas específicas em cada viagem. \\
+\hline
+\textit{calendar.txt} & Obrigatório & Contém datas para IDs de serviço que usam uma programação semanal. Especificam quando o serviço começa e termina, bem como os dias da semana em que o serviço está disponível. \\
+\hline
+\textit{calendar\_dates.txt} & Opcional & Contém as exceções para IDs de serviço definidos no arquivo \textit{calendar.txt }. Se o arquivo \textit{calendar\_dates.txt} inclui \textit{todas} as datas de serviço, ele pode ser especificado no lugar do \textit{calendar.txt}. \\
+\hline
+fare\_attributes.txt & Opcional & Contém informações sobre tarifas dos trajetos de uma empresa de transporte público. \\
+\hline
+\textit{fare\_rules.txt} & Opcional & Contém regras para implementação das informações de tarifa dos trajetos de uma empresa de transporte público. \\
+\hline
+\textit{shapes.txt} & Opcional & Contém regras para desenhar linhas em um mapa para representar os trajetos de uma empresa de transporte público. \\
+\hline
+\textit{frequencies.txt} & Opcional & Contém os intervalos entre as viagens nos trajetos. \\
+\hline
+\textit{transfers.txt }& Opcional & Contém regras para conexões em pontos de baldeação entre os trajetos. \\
+\hline
+\textit{feed\_info.txt} & Opcional & Contém informações adicionais sobre o \textit{feed}, incluindo editor, versão e informações sobre validade. \\
+\hline
+  \end{tabular}
+  \begin{tablenotes}
+            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice \ref{apendiceC}, nas Tab. \ref{tab:gtfsAgency} - \ref{tab:gtfsFeedInfo}.
+        \end{tablenotes}
+\end{threeparttable}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{googleTransit}
+\end{table}
+
+Além da GTFS estática existe a GTFS-\textit{realtime}\footref{googleTransit}, que é uma extensão da GTFS estática, assim, para usar \textit{feeds} em tempo real é necessário definir os arquivos estáticos da GTFS, que são utilizados na GTFS-\textit{realtime} para obter as informações do sistema de transporte público. A GTFS-\textit{realtime} é utilizada para transmissões em tempo real de três tipos de \textit{feeds}\footref{googleTransit}, enumerados e detalhados a seguir:
+
+\begin{enumerate}
+\item Atualizações dos horários de parada.
+\begin{enumerate}
+\item Descritor de viagem: viagem programada (de acordo ou próxima a uma programação GTFS), adicionada (não programada e adicionada, por exemplo, para atender à demanda ou substituir um veículo quebrado), desprogramada (que está sendo feita e não está associada a uma programação, por exemplo, quando não há uma programação, e os ônibus rodam em um serviço de translado), cancelada (viagem programada, mas removida), substituição (substitui uma parte da programação estática).
+\item Indefinição: especifica o erro esperado no atraso real como um número inteiro, em segundos.
+\end{enumerate}
+\item Alertas de serviço.
+\begin{enumerate}
+\item Intervalo de tempo: o alerta será exibido eventualmente, no intervalo de tempo especificado.
+\item Seletor de entidade: agência (afeta toda a rede de transporte público), trajeto (afeta todo o trajeto), tipo de trajeto (afeta qualquer trajeto desse tipo, por exemplo, todos os ônibus), viagem (afeta uma viagem específica) e  parada (afeta uma parada específica).
+\item Causa: desconhecida, outra causa (não representada por nenhuma destas opções), problema técnico, greve, manifestação, acidente, feriado, tempo, manutenção, construção, atividade policial, emergência médica.
+\item Efeito: sem serviço, serviço reduzido, atrasos significativos (atrasos não significativos só devem ser fornecidos por Atualizações de viagem), desvio, serviço adicional, serviço modificado, parada deslocada, outro efeito (não representado por qualquer uma dessas opções), efeito desconhecido.
+\end{enumerate}
+\item Posições de veículos.
+\begin{enumerate}
+\item Posição: a posição contém os dados de localização na posição do veículo, com os campos obrigatórios latitude e longitude, e com os campos opcionais rumo (direção que o veículo está seguindo), odômetro (distância que o veículo percorreu) e velocidade (velocidade no momento medida pelo veículo, em metros por segundo).
+\item Nível de congestionamento: congestionamento desconhecido, fluxo estável, paradas frequentes, congestionamento e congestionamento grave.
+\item Status de parada do veículo: chegando em (o veículo está prestes a chegar na parada em questão), parado em (o veículo está parado na parada em questão), em direção a (a parada em questão é a próxima parada do veículo --- padrão). 
+\item Descritor do veículo: id único (sistema de identificação interna do veículo), etiqueta de identificação (visível ao usuário) e placa real do veículo.
+\end{enumerate}
+\end{enumerate}
+
+No demais, os \textit{feeds} da GTFS-\textit{realtime} são atualizados frequentemente, serializados em \textit{Protocol Buffers}\footnote{\url{https://developers.google.com/protocol-buffers}. Acesso em Outubro, 29 de 2017.} e transmitidos via protocolo HTTP\footnote{\url{https://tools.ietf.org/html/rfc2616}. Acesso em Outubro, 29 de 2017.}. A estrutura dos dados é definida em um arquivo \textit{gtfs-realtime.proto}\footref{googleTransit}, usado para gerar o modelo de dados dos \textit{feeds} em diferentes linguagens de programação, tais como \textit{Java}, \textit{C++} ou \textit{Python}.
+
+\clearpage
+
+\section{Redes Sociais}
+\label{sns}
+
+As Redes Sociais podem ser definidas como redes que possuem muitos relacionamentos, com grandes componentes conectados, altos coeficientes de agrupamento e grau de reciprocidade. Tais características, por exemplo, podem ser encontradas na rede social \textit{Facebook}\footnote{\url{https://www.facebook.com}. Acesso em Outubro, 29 de 2017.}. O \textit{Twitter}\footnote{\url{https://twitter.com}. Acesso em Outubro, 29 de 2017.} além de possuir as características de rede social mencionadas anteriormente, pode ser caracterizado também como uma Rede de Informações. Nesse tipo de rede a interação dominante é a disseminação de informações entre os relacionamentos, com baixo baixo índice de reciprocidade \cite{myers2014information}.
+
+No \textit{Twitter} as informações (\textit{tweets}) são publicadas contendo no máximo 140 caracteres; cada publicação pode receber \textit{retweets} (ser compartilhada por outros usuários), comentários (diretamente no \textit{tweet} --- \textit{replies} ---  ou de forma privada via caixa de mensagens) e \textit{likes} (indicador de quantos usuários gostaram da publicação). Além dessas funcionalidades, os \textit{tweets} podem conter menções a outros usuários (@nome do \textit{profile}) e rótulos (\#\textit{hashtag}) indicando assuntos, categorias, etc.
+
+Devido as características citadas nos parágrafos anteriores, o \textit{Twitter} tem sido uma rede social importante para compartilhamento de informações e acontecimentos do cotidiano. Tais acontecimentos podem ser classificados como eventos sociais, capazes de descrever desde eventos rotineiros (\textit{shows}, jogos esportivos, etc.) a situações de crise (eventos de exceção --- desastres naturais, mobilizações sociais, dentre outros) \cite{zhou2014event}, \cite{atefeh2015survey}.
+
+
+
+\section{Processamento de Linguagem Natural}
+\label{nlp}
+
+O processamento automático de \textit{tweets} envolve o Processamento de Linguagem Natural (NLP --- \textit{Natural Language Processing}), que explora como computadores podem ser utilizados para entender e manipular texto ou fala em linguagem natural \cite{liu2017roadmap}, o que envolve conhecimento interdisciplinar principalmente entre as áreas de ciência da computação, linguística e estatística. A seguir são detalhados alguns dos problemas relacionadas a NLP, divididos em baixo e alto nível \cite{nadkarni2011natural}:
+
+\begin{enumerate}
+\item Baixo nível (problemas comuns a NLP) \cite{nadkarni2011natural}. 
+\begin{enumerate}
+\item \textbf{\textit{Sentence boundary disambiguation} (SBD)}: processamento para identificação do início e fim de uma sentença \cite{nadkarni2011natural}. 
+\item \textit{\textbf{Tokenization}}: processamento realizado para obtenção das palavras  (\textit{tokens}) que compõem uma sentença, inclui a remoção de números, pontuações e caracteres que não pertencem ao alfabeto \cite{Setiawan2017}.
+\item \textbf{\textit{Part-of-speech tagging}}: processamento para identificação das classificações gramaticais (verbo, sujeito, adjetivo, etc.) das palavras em uma  sentença, considerando seus respectivos significados e contexto no qual estão inseridas \cite{roy2017understanding}.
+\item \textbf{\textit{Decomposição morfológica}}: processamento para decomposição morfológica de uma determinada palavra para a sua forma inflexionada, usando \textit{lemmatization} (identificação do lema da palavra) ou \textit{stemming} (identificação da raiz da palavra usando heurísticas para determinar a localização de sua respectiva flexão) \cite{Setiawan2017}, \cite{nadkarni2011natural}, \cite{Korenius}.
+\item \textbf{\textit{Shallow parsing} (\textit{chunking})}: processamento para identificação de segmentos de uma sentença, tais como frases verbais, nominais, etc., com base nos \textit{tokens} que constituem a \textit{part-of-speech} \cite{collobert2011natural}, \cite{nadkarni2011natural}. 
+\end{enumerate}
+\item Alto nível (aplicação de NLP a problemas específicos, com base nos problema de baixo nível) \cite{nadkarni2011natural}.
+\begin{enumerate}
+\item \textbf{\textit{Spelling / grammatical error identification and recovery}}: processamento iterativo para identificação e correção de erros gramaticais e de digitação. \cite{nadkarni2011natural}.
+\item\textbf{ \textit{Named Entity Recognition} (NER)}: processamento para identificação e categorização de palavras ou frases específicas (entidades) \cite{nadkarni2011natural}.
+\item \textbf{\textit{Word Sense Disambiguation} (WSD)}: processamento para identificação do sentido de uma palavra numa sentença \cite{nadkarni2011natural}. 
+\item \textbf{\textit{Negation and uncertainty identification}}: processamento para inferir se uma entidade está presente ou não numa sentença, assim como quantificar a quantidade de incerteza da inferência realizada \cite{nadkarni2011natural}.
+\item \textbf{\textit{Extração de relacionamentos}}: processamento para identificar relacionamentos entre entidades e eventos \cite{nadkarni2011natural}.
+\item \textbf{Extração de relacionamento / inferência temporal}: processamento para inferência de expressões e relacionamentos temporais \cite{nadkarni2011natural}.
+\item \textbf{Extração de informação}: processamento para extração e transformação para uma forma estruturada de informações específicas a um problema \cite{nadkarni2011natural}.
+\end{enumerate}
+\end{enumerate}
+
+\section{\textit{Feature Engineering}}
+\label{featuresEng}
+
+Neste projeto, inicialmente pretendemos utilizar \textit{feature extraction} e \textit{selection}, duas das fases do processo de \textit{feature engineering}. Dito isso, explicamos nos parágrafos seguintes o que são \textit{features} e as fases do processo de \textit{feature engineering}.  
+
+Um conjunto de dados pode ser representado por um número fixo de características (\textit{features}) binárias, categóricas ou contínuas \cite{guyon2006introduction}. O processo de construção dessas \textit{features} é conhecido como \textit{feature engineering}, o qual depende estritamente do conhecimento de domínio dos dados e de suas respectivas métricas \cite{guyon2006introduction}.
+
+O processo de \textit{feature engineering} é iterativo entre as fases de \textit{feature extraction}, \textit{feature construction} e \textit{feature selection} \cite{motoda2002feature}. Antes da fase de \textit{feature extraction} os dados podem ser pré-processados utilizando técnicas de padronização, normalização, remoção de ruídos, redução de dimensionalidade, discretização, expansão, dentre outras; observa-se que informações podem ser perdidas ao realizar essas transformações  \cite{guyon2006introduction}.
+
+Na fase de \textit{feature construction} é realizado um processo para descobrir informações ausentes a respeito dos relacionamentos entre as \textit{features} e aumentar o espaço de \textit{features} inferindo ou criando novas \textit{features}, com o objetivo de melhorar a acurácia dos algoritmos de classificação, compreensão dos dados, obtenção de dados ocultos, etc \cite{motoda2002feature}. Nessa fase, a partir de um conjunto de \textit{n features} $A_1, A_2, ..., A_n$ é possível construir \textit{m} \textit{features} adicionais $A_{n+1}, A_{n+2}, ..., A_{n+m}$, por meio de heurísticas, operadores lógicos, algorítmos (\textit{greedy search} aplicada em árvores de decisão, genéticos, etc.), dentro outros \cite{motoda2002feature}.
+
+O processo de \textit{feature extraction}, por sua vez, utiliza uma função de mapeamento para extrair um conjunto mínimo de novas \textit{features} com base nas \textit{features} originais e em métricas de desempenho (o que pode ser realizado também usando \textit{feedforward neural network}), diferentemente da análise dos relacionamentos entre as \textit{features} realizada na fase de \textit{feature construction} \cite{motoda2002feature}. Assim, com um conjunto inicial de \textit{n features} $A_1, A_2, ..., A_n$ é possível extrair novas \textit{features} $B_1, B_2, ..., B_m (m < n), B_i = F_i(A_1, A_2, ..., A_n)$, onde $F_i$ é a função de mapeamento \cite{motoda2002feature}. 
+
+Por fim, tem-se como objetivo no processo de \textit{feature selection} a redução ótima do espaço das \textit{features} com base em critérios de seleção, ou seja, obter \textit{m features} a partir de um conjunto de \textit{n features}, onde \textit{m} $\le$ \textit{n} (o que pode ser alncançado por algorítmos de busca seguindo critérios de avaliação). Dessa forma, com um subcojunto menor de \textit{features}, é possível reduzir a dimensionalidade do espaço das \textit{features} (evitando sobre-ajuste), otimizar algorítimos de Aprendizado de Máquina e compreender melhor seus respectivos resultados, melhorar a acurácia dos algorítimos de classificação, dentre outros benefícios \cite{motoda2002feature}.
+
+\section{Algorítimos de Aprendizado de Máquina}
+\label{classification}
+
+Os algorítimos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
+
+No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Assim, elencamos a seguir alguns dos principais algoritmos de aprendizado de máquina supervisionado para classificação textual:
+
+\begin{enumerate}
+\item \textit{Artificial Neural Network} \cite{khan2010review}.
+\item \textit{Decision Tree} \cite{khan2010review}.
+\item \textit{Decision Rules Classification}  \cite{khan2010review}.
+\item \textit{K-nearest neighbor (k-NN)} \cite{khan2010review}.
+\item \textit{Fuzzy correlation} \cite{khan2010review}.
+\item \textit{Gentic Algorithm} \cite{khan2010review}.
+\item \textit{Naïve Bayes Algorithm} \cite{khan2010review}.
+\item \textit{Rocchio's Algorithm} \cite{khan2010review}.
+\item \textit{Support Vector Machine} \cite{khan2010review}.
+\end{enumerate}
+
+
+\chapter{Revisão Sistemática}
+\label{revisao}
+Este capítulo apresenta uma Revisão Sistemática (RS) com o objetivo de encontrar o estado da arte de trabalhos que visam melhorar sistemas de transporte público por meio do processamento de \textit{tweets}. Além disso, de uma forma mais ampla, busca-se também entender como os \textit{tweets} têm sido utilizados na caracterização de problemas urbanos. Sendo assim, o capítulo é iniciado com a seção sobre o planejamento da Revisão Sistemática; seguida das questões de pesquisa utilizadas na formulação do problema da RS; do processo de coleta dos estudos primários; da avaliação dos dados coletados; da análise e interpretação dos estudos selecionados, concluindo com as considerações finais.
+
+% \begin{CCSXML}
+% <ccs2012>
+% <concept>
+% <concept_id>10003120.10003130.10003134.10003293</concept_id>
+% <concept_desc>Human-centered computing~Social network analysis</concept_desc>
+% <concept_significance>500</concept_significance>
+% </concept>
+% <concept>
+% <concept_id>10011007.10011074.10011081.10011082.10011083</concept_id>
+% <concept_desc>Software and its engineering~Agile software development</concept_desc>
+% <concept_significance>500</concept_significance>
+% </concept>
+% </ccs2012>
+% \end{CCSXML}
+
+% \ccsdesc[500]{Human-centered computing~Social network analysis}
+% \ccsdesc[500]{Software and its engineering~Agile software development}
+
+\section{Planejamento da Revisão Sistemática}
+\label{planejamento}
+A presente Revisão Sistemática utiliza a metodologia proposta por, composta por cinco etapas.
+A primeira etapa está relacionada à formulação do problema, na qual é levantada uma questão central se referindo ao tipo de evidência que deverá  estar contida na revisão. Em seguida, são construídas definições que permitem estabelecer uma distinção entre os estudos relevantes e irrelevantes para o propósito específico do que se está investigando \cite{biolchini2005techincal}.
+
+A segunda etapa da condução está relacionada à Coleta de Dados, na qual são definidos os procedimentos que serão utilizados para encontrar a evidência relevante que foi definida na etapa anterior. Nesta fase é extremamente importante determinar as fontes que podem fornecer estudos relevantes a serem incluídos na pesquisa \cite{biolchini2005techincal}.
+
+Na terceira etapa a Avaliação de Dados é definida, na qual são selecionadas as fontes primárias que deverão ser incluídas na revisão. Em seguida,  são aplicados os critérios de qualidade para separar estudos que podem ser considerados válidos, e determinadas as diretrizes para o tipo de informação que deve ser extraída dos relatórios de pesquisas primárias \cite{biolchini2005techincal}.
+
+A quarta etapa da revisão é o processo de Análise e Interpretação, na qual os dados dos estudos primários válidos são sintetizados. E, na quinta etapa são realizados os processos de Conclusão e Apresentação \cite{biolchini2005techincal}.
+
+\subsection{Justificativa da Revisão Sistemática}
+\label{justificativa}
+Esta Revisão Sistemática se justifica por não terem sido encontradas revisões sistemáticas com o foco em questões urbanas e de transporte público, abordando unicamente o processamento de \textit{tweets}. Em \cite{Chaniotakis2016}, por exemplo, foi realizado um mapeamento de forma não sistemática dos trabalhos sobre o uso das mídias sociais em problemas relacionados ao transporte público; \cite{steiger2015advanced}, por outro lado, desenvolveram uma revisão sistemática sobre o uso do Twitter para questões espaço-temporais; e \cite{jungherr2016twitter} no contexto político.%
+
+Devido a isso, a presente revisão sistemática se diferencia por ter como objetivo encontrar o estado da arte de trabalhos que visam melhorar sistemas de transporte público por meio do processamento de \textit{tweets}. Além disso, de uma forma mais ampla, busca-se também entender como os \textit{tweets} têm sido utilizados na caracterização  de problemas urbanos.
+
+\section{Questões de Pesquisa}
+\label{questoes}
+Nesta seção, são apresentadas as questões de pesquisa utilizadas para a formulação dos problemas abordados por essa Revisão Sistemática. Por meio das quais, busca-se atender os objetivos já mencionados na seção \ref{justificativa}.
+
+\begin{enumerate}
+
+\item Quais os tipos de problemas urbanos abordados utilizando processamentos de \textit{tweets}?
+\label{item:1} \newline \newline
+O propósito da QP1 é identificar quais são as contribuições do processamento de \textit{tweets} para a mitigação de problemas urbanos. A resposta a essa questão de pesquisa ajudará especialistas das áreas multidisciplinares relacionadas ao Urbanismo (como a de Análise de Redes Sociais e Políticas Públicas) a terem um panorama de como \textit{tweets} podem ser utilizados para ajudar na solução de problemas urbanos. \newline
+
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP1): alguns dos problemas urbanos abordados estão relacionados ao transporte, mobilidade urbana, turismo e desastres naturais. \newline
+
+\item Como \textit{tweets} têm sido utilizados para abordar problemas relacionados ao transporte público? \newline \newline
+\label{item:2}
+O propósito da QP2 é identificar se \textit{tweets} têm sido utilizados para solucionar problemas relacionados ao transporte público. A resposta a essa questão de pesquisa ajudará especialistas das áreas multidisciplinares relacionadas ao Urbanismo (como a de Análise de Redes Sociais e Políticas Públicas) a terem um panorama de como \textit{tweets} podem ser utilizados para ajudar na solução de problemas referentes a mobilidade urbana. \newline
+
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP2): \textit{tweets} têm sido utilizados principalmente para questões relacionadas ao congestionamento, não tendo como foco o transporte público.\newline
+
+\item Quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}?
+\label{item:3} \newline \newline
+O propósito da QP3 é identificar quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}, principalmente no que se refere a garantia da confiabilidade dos dados processados. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama de como garantir a confiabilidade ao utilizar dados oriundos de \textit{tweets}, dentre outros aspectos relacionados a testes estatísticos. \newline
+
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): \textit{${F_1}$ score} é a principal técnica estatística utilizada para garantir confiabilidade dos dados.\newline
+
+\item Quais os paradigmas de processamento têm sido utilizados ao lidar com \textit{tweets}?
+\label{item:4} \newline \newline
+O propósito da QP4 é identificar os paradigmas utilizados para processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das técnicas de processamento utilizadas na análise de \textit{tweets}. \newline
+
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP4): o principal paradigma utilizado tem sido o processamento de \textit{tweets} em \textit{batch} (\textit{offline}), após um processo de armazenamento. Poucos são os estudos que constroem uma plataforma para processamento de dados em tempo real. \newline
+
+\item Quais são os eventos de exceção relacionados ao transporte público?
+\label{item:5} \newline \newline
+O propósito da QP5 é identificar os eventos de exceção relacionados ao transporte público. A resposta a essa questão de pesquisa ajudará especialistas no levantamento de eventos de exceção relacionados ao transporte público, os quais podem ser utilizados em algoritmos de classificação.\newline
+
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP5): há poucos ou nenhum estudo que ao tratar de problemáticas relacionadas ao transporte público, realizam um levantamento dos eventos de exceção desse contexto.\newline
+
+\item Quais as técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}?
+\label{item:6} \newline \newline
+O propósito da QP6 é identificar as técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das principais técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}. \newline
+
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP6): a técnica \textit{Support Vector Machine} tem sido utilizada na maioria dos estudos que aplicam aos \textit{tweets} algum algorítimo de Aprendizado de Máquina.\newline
+\end{enumerate}
+
+\section{Coleta de dados}
+\label{coleta}
+Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em Outubro, 29 de 2017.}. Constam na Tab. \ref{tab:tableNumberOfArticles} as bases pesquisadas, quantidades de artigos coletados, descartados no processo de filtragem (Fig. \ref{fig:filter}, descrito na seção \ref{avaliacao}) e selecionados. Com base na QP1, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline 
+
+\textbf{\textit{String} de busca:} twitter urban planning city (analytics OR patterns OR tweets OR social OR media) AND (public transport) \newline
+
+\textbf{Palavras-chave:} twitter, urban, planning, city, analytics, patterns, tweets, social, media e public transport.
+
+\begin{table}[!htb]
+\centering
+\caption{Quantidades de artigos coletados e fontes de busca}
+	\label{tab:tableNumberOfArticles}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Fonte} & \textbf {Artigos coletados} & \textbf{Filtragem} & \textbf{Selecionados}\\ 
+\hline
+ACM & 44 & 34 & 10 \\ 
+\hline
+IEEE & 82 & 74 & 8 \\ 
+\hline
+Elsevier & 81 & 72 & 9\\ 
+\hline
+Springer & 22 & 20 & 2\\ 
+\hline
+{-} & 229 & 200 & 29\\ 
+\hline
+\end{tabular}
+\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\end{table}
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Processo de Filtragem}
+		\includegraphics[width=0.5\linewidth]{images/metodologia_metodologia.png}
+	\label{fig:filter}
+  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\section{Avaliação de Dados}
+\label{avaliacao}
+
+Visando selecionar os artigos relevantes para esta Revisão Sistemática, os seguintes critérios foram utilizados no processo de filtragem:
+
+\begin{itemize}
+\item Trabalho publicado (critério de qualidade).
+\item Trabalhos que utilizam \textit{tweets} para abordar questões urbanas e de transporte público.
+\item Trabalhos duplicados.
+\item Trabalhos que estão fora do escopo da questão de pesquisa.
+\end{itemize}
+
+O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \cite{fcas}, assim como seu respectivo protocolo. Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados. 
+
+Sendo assim, a Fig. \ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} sintetizando as palavras chaves dos estudos primários selecionados; e a Fig. \ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Fig. \ref{fig:porcentagem}.
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Quantidade de artigos publicados por ano}
+		\includegraphics[width=0.8\linewidth]{images/g1.png}
+	\label{fig:qtd}
+  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Porcentagem dos artigos publicados por ano}
+		\includegraphics[width=0.8\linewidth]{images/g2.png}
+	\label{fig:porcentagem}
+  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Nuvem de palavras das \textit{keywords} dos artigos selecionados}
+		\includegraphics[width=0.8\linewidth]{images/world_cloud_metodologia.png}
+	\label{fig:w_cloud}
+  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\section{Análise e Interpretação}
+\label{analise}
+Nesta seção é realizada a análise e interpretação dos estudos primários selecionados pela Revisão Sistemática, sendo as subseções divididas de acordo com as questões de pesquisa.
+\subsection{Tipos de problemas urbanos abordados utilizando o processamento \textit{tweets} (QP1)}
+
+Os tipos de problemas urbanos abordados utilizando o processamento de \textit{tweets} foram divididos nas seguintes categorias: 
+
+\begin{enumerate}
+\item \textit{\textbf{e-Participation}} (Interação entre  cidadãos  e órgãos civis) \cite{Mukherjee2015}, \cite{Soomro2016}.
+\item \textbf{Detecção de zoneamento urbano} \cite{Frias-Martinez2014}.
+\item \textbf{Identificação de pontos de interesse} \cite{Farseev2015}, \cite{Gutev2016}, \cite{Bendler2014}, \cite{Abbasi2015}, \cite{Gkiotsalitis2015}, \cite{Gkiotsalitis2016}, \cite{Hasan2014}, \cite{Maghrebi2015}, \cite{DiLorenzo2013}.
+\item \textbf{Mobilidade} \cite{Gutev2016}, \cite{Chen2016}, \cite{Yousaf2014}.
+\item \textbf{Padrões demográficos} \cite{Farseev2015}, \cite{Gutev2016}, \cite{Steiger2015Census}, \cite{Guo2016}.
+\item \textbf{Poluição} \cite{Zagal2016}.
+\item \textbf{Segurança Pública} \cite{Wen2016}, \cite{Mata2015}.
+\item \textbf{Turismo} \cite{Thomaz2016}, \cite{Abbasi2015}, \cite{Chua2016}, \cite{Sobolevsky2015}.
+\item \textbf{Tráfego} \cite{Anantharam2015}, \cite{Lecue2014}.
+\end{enumerate}
+
+Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que \textit{tweets} podem ser utilizados para auxiliar na mitigação de inúmeros problemas urbanos. Apesar disso, \cite{Chaniotakis2015} observa que os \textit{tweets} contendo informações sobre geolocalização são normalmente publicados em áreas relacionadas ao lazer, além de haver correlação entre regiões urbanas com maior renda \textit{per capita} e o número de \textit{tweets} postados. Tal evidência pode conduzir viés nas análises por representar somente algumas classes econômicas da população. 
+
+Considerando a observação anterior, um dos estudos analisados foi o realizado por \cite{Zagal2016}, na Cidade do México. Nesse estudo, foram mapeados os pontos da cidade referenciados em publicações relacionadas a doenças respiratórias e poluição; orientando tomadas de decisão no aspecto ambiental. 
+
+Além disso, há também exemplos de trabalhos relacionados a Segurança Pública, como o estudo de caso realizado por \cite{Wen2016}, no qual foi enriquecido um conjunto de dados com \textit{tweets} geolocalizados, visando analisar o impacto dos ataques terroristas (em Paris, em novembro de 2015) nos padrões de atividades urbanas (relacionadas ao uso de transporte público, serviços, realização de compras, e atividade noturna). Em um outro caso de aplicação, estimou-se por meio de \textit{tweets}, a probabilidade de ocorrência de crimes e ameaças nas ruas da Cidade do México, sugerindo rotas seguras aos pedestres \cite{Mata2015}.
+
+A parte dos estudos relacionados a Segurança Pública, há exemplos dos \textit{tweets} sendo utilizados para inferir padrões demográficos. Por exemplo, em \cite{Farseev2015}; \cite{Gkiotsalitis2015}; \cite{Gkiotsalitis2016}, \textit{tweets} foram processados para analisar a distribuição etária e de gênero da população, assim como seus respectivos pontos de interesse \cite{Hasan2014} e \cite{Maghrebi2015} (como locais para entretenimento, residência, trabalho, recriação, compras, educação e serviços sociais). 
+
+Tais pontos de interesse, podem ser utilizados em problemas relacionados ao transporte público \cite{Gutev2016} e também ao Turismo, como no estudo realizado por \cite{Abbasi2015} para identificar a locomoção de visitantes e residentes em pontos turísticos de Sydney; por \cite{Chua2016}, ao caracterizar aspectos espaciais, temporais e demográficos, dos turistas da cidade de Cilento, Itália; e por \cite{Thomaz2016} na cidade de Curitiba (Brasil), no contexto da Copa do Mundo de 2014.
+
+Nesse mesmo contexto, \cite{Guo2016} estudou algumas questões demográficas via análise de sentimento, encontrando correlação positiva entre oportunidades de emprego e sentimentos positivos, e negativa entre felicidade e número de crianças na população da Grande Londres. Outro caso de uso, foi o desenvolvido em \cite{Steiger2015Census}, no qual processou \textit{tweets} para identificar diferentes tipos de atividades em Londres, correlacionando-as com informações censitárias; e em \cite{Sobolevsky2015} ao estudar a atratividade da Espanha a turistas.
+
+Um dos problemas relacionados a identificação de pontos de interesse se refere as incertezas espaço-temporais e de determinação de tópicos, o qual foi abordado pelo trabalho realizado por \cite{Bendler2014}. Nele, os autores contribuíram com uma técnica para minimizar o problema ao processar \textit{tweets}; analisando a causalidade entre o tempo e local das postagens realizadas, reduzindo assim os índices de incerteza, no contexto da cidade de São Francisco, EUA. Outro problema, relaciona-se com a questão da privacidade, pois as localizações dos usuários podem ser inferidas mesmo quando não disponibilizadas. Nesse cenário, \cite{Wang2017} propõem um Sistema de Calibração de Trajetórias Privadas (PTCS), usando os mecanismos de Privacidade Diferencial e de \textit{k-anonymity}, com isso é possível extrair informações sobre trajetórias sem exposição de informações sensíveis, testado na extração de localizações por meio de \textit{tweets}. 
+
+Outro contexto na literatura revisada está relacionado ao processamento dos eventos que acontecem na cidade (idealmente em tempo real, como sugerem \cite{Soomro2016}). Um dos estudos encontrados sobre esse assunto, foi o realizado por \cite{Anantharam2015}, no qual foi desenvolvida uma técnica para identificar os diferentes tipos de eventos do cotidiano urbano, rotulando-os sequencialmente, por meio da anotação de \textit{tweets} e extração de eventos, considerando aspectos espaciais, temporais e temáticos. Para isso, utilizou conhecimentos de domínio, tais como informações sobre os locais em uma cidade e possíveis termos para os eventos, identificando assim os relacionados ao tráfego da região da Baia de São Francisco, EUA. 
+
+Sobre a mesma temática, \cite{DiLorenzo2013} desenvolveram uma ferramenta inteligente e interativa para exploração visual da dinâmica de eventos sociais ao longo das dimensões espacial, temporal e organizacional. O tráfego também foi objeto de estudo em \cite{Chen2016}, ao relacionar eventos do trânsito com a demanda por bicicletas; e em \cite{Lecue2014}, ao demonstrar uma plataforma para análise inteligente do tráfego (em tempo real), com base em fontes heterogêneas de dados (incluindo tweets de agências oficiais de trânsito).
+
+Em uma abordagem mais genérica, \cite{Mukherjee2015} propuseram uma plataforma para processar (em \textit{near real time}) questões urgentes da cidade, oriundas de diversas fontes (incluindo o \textit{Twitter}), atuando como intermediadora entre cidadãos e agências civis. No que se refere a mobilidade urbana, mas não utilizando informações sobre pontos de interesse, \cite{Yousaf2014} inferiram a afinidade entre usuários por meio da análise de \textit{retweets}, possibilitando que rotas de corridas sejam compartilhadas entre pessoas com interesses em comum, tornando a viagem mais agradável.
+
+De forma inusitada, \cite{Frias-Martinez2014} utilizaram apenas \textit{tweets} geolocalizados para analisar suas respectivas distribuições no espaço urbano, visando identificar a caracterização do uso da terra; considerando os zoneamentos urbanos industriais, residenciais, comerciais e de lazer. O trabalho foi realizado no contexto da cidade de Manhattan (EUA), Londres (Reino Unido) e Madrid (Espanha).
+
+\subsection{Casos de uso relacionados ao transporte público (QP2)}
+Nesta seção, são identificados os estudos primários que utilizam processamento de \textit{tweets} tendo como foco a mitigação dos problemas relacionados ao transporte público; enumerados a seguir:
+\begin{enumerate}
+\item \textbf{Impacto de eventos no transporte público}.
+\begin{enumerate}
+\item Impacto dos ataques terroristas em Paris no uso do transporte público \cite{Wen2016}.
+\item Impacto de eventos relacionados ao tráfego na demanda por bicicletas, em Nova Iorque e Washington D.C, EUA \cite{Chen2016}.
+\item Impacto dos pontos de interesse na demanda por transporte público \cite{Maghrebi2015}.
+\item Impacto dos eventos anormais nas tomadas de decisão dos passageiros do Metrô de Tokyo \cite{Itoh2016}.
+\item Predição de fluxo de passageiros no Metrô de Nova Iorque \cite{Ni2016}.
+\end{enumerate}
+
+\item \textbf{Planejamento e gestão do transporte público}.
+\begin{enumerate}
+\item Análise de sentimento relacionada ao acesso ao transporte público \cite{Guo2016}.
+\item Coleta de informações relacionadas ao transporte público \cite{Gal-Tzur2014}.
+\item Identificação de locais para estações de bicicletas, em St. Petersburg, Rússia \cite{Gutev2016}.
+\item Identificação da disposição dos usuários para realizar viagens de lazer \cite{Gkiotsalitis2016}.
+\item Plataforma para notificação de problemas relacionados ao transporte público de Bangalore, Índia \cite{Mukherjee2015}.
+\end{enumerate} 
+\end{enumerate}
+
+Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que os estudos estão classificados em análise de impacto de eventos, planejamento e gestão do transporte público. Por exemplo, \cite{Wen2016} utilizaram \textit{tweets} para analisar o impacto dos ataques terroristas em Paris (2015) nos padrões de mobilidade referentes ao uso de transporte público. Semelhantemente, \cite{Itoh2016} desenvolveram uma ferramenta para analisar e explorar visualmente, com base em \textit{tweets}, as tomadas de decisão dos passageiros do Metrô de Tokyo, ante a eventos anormais, tais como Tufões, Incêndios, Terremotos, dentre outros. Nesse mesmo contexto, \cite{Ni2016} propuseram uma técnica de predição de fluxo de passageiros no Metrô de Nova Iorque, identificando eventos com base nas \textit{hashtags} dos \textit{tweets}. Enquanto que em \cite{Chen2016}, analisaram a relação entre eventos do tráfego com a demanda por bicicletas.
+
+No que se refere aos estudos focados no planejamento e gestão do transporte público, \cite{Mukherjee2015} apresentam uma plataforma desenvolvida e utilizada pela Agência de Transporte Público de Bangalore, na Índia, a qual permite que usuários reportem questões relacionadas ao transporte  público, possibilitando a melhoria do planejamento de suas respectivas operações, assim como o serviço prestado para a população. Nessa mesma linha de estudo, em \cite{Gutev2016}, \textit{tweets} são utilizados para identificar a popularidade de determinados locais, pontos de interesse e distribuição etária, com o objetivo de determinar os melhores pontos para estações de bicicletas, incentivamento assim o uso desse modal de transporte. Também relacionado aos pontos de interesse, \cite{Maghrebi2015} utilizaram \textit{tweets} para identificar padrões das atividades humanadas (em diferentes horários do dia) e seus respectivos impactos na demanda por transporte público. 
+
+Em \cite{Gal-Tzur2014}, por sua vez, utilizaram uma abordagem hierárquica para classificar \textit{tweets} relacionados ao transporte. Com isso, demonstraram que é possível usar essas informações para fins de planejamento e gerenciamento do transporte. Tal técnica, foi aplicada em um estudo de caso associado a eventos esportivos, ocorridos no Reino Unido. A hierarquia é composta por três níveis, no primeiro, os \textit{tweets} são classificados entre os que expressam a necessidade de serviços de transporte, opiniões e incidentes; o segundo, identifica a categoria do transporte; e último, relaciona \textit{tweets} a tópicos. 
+
+Outro estudo que contribui com o planejamento do transporte público, é o realizado em (\citeauthor{Gkiotsalitis2015}, \citeyear{Gkiotsalitis2015}, \citeyear{Gkiotsalitis2016}), no qual \textit{tweets} foram processados para identificar a disposição dos usuários para realizar viagens relacionadas ao lazer (pontos de interesse), sugerindo a eles atividades com menor tempo de percurso e probabilidade de atrasos. Além do tempo de percurso, outro ponto relevante considerado foi o de bom nível de acesso ao transporte público, o qual quando existente impacta positivamente na felicidade das pessoas e se correlaciona com sentimentos positivos, segundo a análise de sentimentos realizada por \cite{Guo2016}, utilizando \textit{tweets} publicados na Grande Londres.
+
+\subsection{Técnicas estatísticas utilizadas no processamento de \textit{tweets} (QP3)}
+Nesta seção, são apresentadas as técnicas estatísticas utilizadas pelos estudos primários, no processamento de \textit{tweets}, enumeradas a seguir:
+
+\begin{enumerate}
+\item \textbf{Análise de métricas relacionadas a performance} (erro de reconstrução relativo, qualidade dos componentes descritivos recuperados e qualidade dos componentes comuns recuperados) \cite{Wen2016}.
+\item \textit{\textbf{Cosine similarity}} \cite{Yousaf2014}, \cite{Frias-Martinez2014}.
+\item \textbf{\textit{${F_1}$ score}} \cite{Anantharam2015}, \cite{Chen2016}.
+\item \textit{\textbf{Term frequency–inverse document frequency}} (TF-IDF) \cite{Mukherjee2015}.
+\item \textit{\textbf{Inverse coefficient of variation}} \cite{Bendler2014}.
+\item \textit{\textbf{Jackknife resampling}} \cite{Bendler2014}.
+\item \textit{\textbf{Linear Regression}} \cite{Gutev2016}, \cite{Bendler2014}, \cite{Ni2016}, \cite{Guo2016}.
+\item \textit{\textbf{Local Indicators of Spatial Association}} (LISA) \cite{Steiger2015Census}.
+\item \textit{\textbf{Local Moran's}} \cite{Steiger2015Census}.
+\item \textit{\textbf{Maximum likelihood estimation}} \cite{Mukherjee2015}.
+\item \textit{\textbf{Seasonal Autoregressive Integrated Moving Average}} (SARIMA) \cite{Ni2016}.
+\item \textit{\textbf{Optimization and Prediction with hybrid loss function}} \cite{Ni2016}.
+\end{enumerate}
+ 
+Em \cite{Gutev2016}, os autores utilizaram Regressão Linear (RL) para analisar a demanda por bicicletas de acordo com as localizações extraídas dos \textit{tweets}. Enquanto que \cite{Bendler2014} usaram RL para fornecer evidências de que as categorias dos pontos de interesse se relacionam com as variáveis referentes ao espectro espaço-temporal; e \cite{Guo2016} para analisar a correlação entre sentimentos positivos com as oportunidades de trabalho, com a quantidade de crianças, e com o acesso a transporte. \cite{Ni2016}, por outro lado, uniram Regressão Linear com a técnica \textit{Seasonal Autoregressive Integrated Moving Average}, propondo uma abordagem baseada em otimização paramétrica e convexa, chamada \textit{Optimization and Prediction with hybrid loss function} e adequada para modelagem utilizando séries temporais.  
+
+Devido aos problemas relacionados a ambiguidade e identificação de contextos, \cite{Anantharam2015}; \cite{Chen2016} e \cite{Gal-Tzur2014} aplicaram a técnica \textit{${F_1}$ score} para analisar a acurácia do processamento de \textit{tweets}. Por outro lado, em \cite{Mukherjee2015}, utilizaram a técnica \textit{Maximum likelihood estimation} para determinar a probabilidade de ocorrência de um evento, assim como a confiabilidade da informação.
+
+No que se refere a agrupamento, \cite{Yousaf2014} agruparam usuários de acordo com a \textit{Cosine similarity}, unindo pessoas com interesses em comum nos mesmos grupos. \cite{Frias-Martinez2014}, por outro lado, usou a mesma técnica para agrupar \textit{tweets} de acordo com suas semelhanças quanto aos tipos de zoneamento urbano.
+
+De forma isolada, no trabalho realizado por \cite{Mukherjee2015}, utilizaram a técnica TF-IDF na fase de classificação para o definir o \textit{score} de categorias de eventos, escolhendo a mais relevante a ser buscada em um dicionário de categorias. Também isoladamente, \cite{Steiger2015Census} usaram a técnica LISA na identificação de \textit{clusters} espaciais e valores esporádicos espaciais, obtendo assim os locais com atividades sociais. Além disso, também utilizaram a técnica \textit{Local Moran's} para detectar diferentes padrões de atividade de acordo com o espaço geográfico.
+
+Por último, \cite{Bendler2014} inovaram ao utilizar a técnica \textit{Jackknife resampling} como inspiração para o desenvolvimento de uma abordagem que visa analisar a estabilidade estatística de um conjunto de categorias. Além disso, usaram também a análise \textit{Iverse Coefficient of variation} para verificar a dispersão negativa da distribuição de um conjunto de variáveis. 
+
+\subsection{Paradigmas de processamento (QP4)}
+Nesta seção, encontram-se a seguir apenas os paradigmas de processamento extraídos dos estudos primários analisados: 
+\begin{enumerate}
+\item \textit{\textbf{Batch processing}} (offline) \cite{Anantharam2015}, \cite{Wen2016}, \cite{Farseev2015}, \cite{Gutev2016}, \cite{Mata2015}, \cite{Chen2016}, \cite{Abbasi2015}, \cite{Bendler2014}, \cite{Bendler2014}, \cite{Yousaf2014}, \cite{Frias-Martinez2014}, \cite{Steiger2015Census}, \cite{Gal-Tzur2014}, \cite{Gkiotsalitis2016}, \cite{DiLorenzo2013}, \cite{Itoh2016}, \cite{Chaniotakis2015}.
+\item \textit{\textbf{Near Real Time}} \cite{Mukherjee2015}.
+\item \textit{\textbf{Real Time}} \cite{Soomro2016}, \cite{Lecue2014}.
+\end{enumerate}
+
+\subsection{Eventos de exceção relacionados ao transporte público (QP5)}
+\label{qp5}
+
+Nesta seção, encontram-se a seguir os eventos de exceção relacionados ao transporte público, extraídos dos estudos primários:
+
+\begin{enumerate}
+\item \textbf{Acidentes}.
+\begin{enumerate}
+\item Acidentes nas estações transporte \cite{Itoh2016}.
+\item Incêndio \cite{Itoh2016}.
+\end{enumerate}
+
+\item \textbf{Espaço-temporais}.
+\begin{enumerate}
+\item Dia da semana \cite{Chen2016}.
+\item Hora do dia \cite{Chen2016}.
+\end{enumerate}
+
+\item \textbf{Eventos sociais}.
+\begin{enumerate}
+\item Feiras de rua \cite{Chen2016}.
+\item Festivais \cite{Chen2016}, \cite{Lecue2014}.
+\item Jogos esportivos \cite{Chen2016}, \cite{Gal-Tzur2014}.
+\item Passeatas e maratonas \cite{Chen2016}, \cite{Itoh2016}.
+\end{enumerate}
+
+\item \textbf{Eventos urbanos}.
+\begin{enumerate}
+\item Relacionados ao tráfego \cite{Chen2016}, \cite{Lecue2014}.
+\end{enumerate}
+
+\item \textbf{Desastres naturais}.
+\begin{enumerate}
+\item Tempestades \cite{Itoh2016}.
+\item Terremoto \cite{Itoh2016}.
+\item Tufões \cite{Itoh2016}.
+\end{enumerate}
+
+\item \textbf{Metereológicas}.
+\begin{enumerate}
+\item Dia claro, nublado, chuvoso, nevando, com neblina \cite{Chen2016}.
+\item Temperatura do ar \cite{Chen2016}.
+\end{enumerate}
+
+\end{enumerate}
+
+\subsection{Técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets} (QP6)}
+\label{iaClassification}
+Nesta seção, são apresentadas as técnicas de Aprendizado de Máquina utilizadas para processamento de \textit{tweets}, extraídas dos estudos primários e enumeradas a seguir:
+
+\begin{enumerate}
+\item \textit{\textbf{Bayes classificatio}n} \cite{Mata2015}.
+\item \textit{\textbf{C5.0 algorithm}} \cite{Zagal2016}.
+\item \textit{\textbf{Conditional Random Field (CRF) with Logistic Regression}} \cite{Anantharam2015}.
+\item \textit{\textbf{Event extraction based on tweet hashtags}} \cite{Ni2016}.
+\item \textbf{\textit{Latent Dirichlet Allocation} (LDA)} \cite{Farseev2015}, \cite{Abbasi2015}, \cite{Hasan2014}, \cite{DiLorenzo2013}.
+\item \textit{\textbf{Monte Carlo simulation}} \cite{Chen2016};
+\item \textbf{\textit{PairFac}} (técnica inovadora que utiliza \textit{Tensor Factorization}) \cite{Wen2016}.
+\item \textit{\textbf{Random Forest classification}} \cite{Farseev2015}.
+\item \textit{\textbf{Support Vector Machine}} \cite{Mukherjee2015}, \cite{Gal-Tzur2014}.
+\item \textit{\textbf{Self-Organizing Maps}} \cite{Frias-Martinez2014}.
+\end{enumerate}
+
+No contexto urbano, inúmeros eventos podem acontecer e impactar a população. O trabalho realizado por \cite{Wen2016}, desenvolveu uma técnica que utiliza a análise de tensores discriminantes para aprender e de forma automatizada descobrir os impactos de um determinado evento no cotidiano da cidade. Numa abordagem mais simples, \cite{Chen2016} utilizou \textit{Monte Carlo simulation} para treinar um modelo para predição de demanda por bicicletas, devido a dificuldade de encontrar exemplos suficientes para usar outras abordagens de treinamento. 
+
+Especificamente sobre as técnicas de classificação, \cite{Mukherjee2015} utilizaram \textit{Support Vector Machine} para classificar os eventos recebidos de diversas fontes. Referente a essa abordagem, \cite{Gal-Tzur2014} analisaram inúmeras técnicas de Aprendizado de Máquina, obtendo a melhor performance com o SVM, além disso, observaram como principal vantagem a sua capacidade de adaptação ao gênero e tarefas subjacentes. 
+
+Apesar disso, \cite{Guo2016} utilizaram Processamento de Linguagem Natural (baseado em palavras chaves) para rotular sentimentos de \textit{tweets}, devido a facilidade de escalar essa técnica (para processamento de milhões de \textit{tweets}), em comparação a SVM. Outro caso de divergência é o do estudo realizado por \cite{Farseev2015}, no qual foi escolhido o modelo de classificação \textit{Random Forest}, devido ao fato de ser mais adequado para classificação em espaço dimensional elevado, em vez das técnicas SVM e \textit{Naive Bayes}, no que se refere a predição de idade e gênero usando \textit{tweets}.
+
+Em \cite{Mata2015}, por sua vez, aplicou-se a técnica \textit{Bayes Classification} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{C5.0 algorithm} devido a melhor desempenho em relação a \textit{Bayes}, dependendo do tópico que está sendo classificado. 
+
+Para anotação de eventos, \cite{Anantharam2015} treinaram um modelo CRF (usando anotações baseadas em dicionários) para determinar os locais da cidade e os termos relacionas aos eventos expressos em \textit{tweets}. E, isoladamente \cite{Frias-Martinez2014} utilizaram a técnica \textit{Self-Organizing Maps}, tendo como entrada os valores de latitude e longitude de \textit{tweets}. Com isso, construíram um mapa segmentado em áreas urbanas, baseando-se nas regiões com diferentes concentrações de \textit{tweets}.
+
+Segundo \cite{Farseev2015}, a técnica LDA tem sido muito utilizada para identificação de pontos de interesses mencionados em \textit{tweets}, sendo adequada para grandes bases de dados e agrupamento de \textit{tweets} com tópicos similares, de acordo com \cite{Steiger2015Census}. \cite{Abbasi2015} exemplificou isso ao aplicar LDA para identificação de \textit{tweets} relacionados ao Turismo; \cite{Hasan2014}, para identificação de padrões de atividades humanas; e \cite{DiLorenzo2013}, para identificação de eventos sociais.
+
+No entanto, \cite{Ni2016} em vez de usarem LDA, extraíram \textit{hashtags} de \textit{tweets} para um vetor, utilizando-o para medir as atividades sociais e identificar seus respectivos contextos. Segundo \cite{Ni2016}, isso se justifica devido ao fato de que há uma grande chance do alto volume de \textit{tweets} não indicar necessariamente eventos e atendimentos a eles. Além disso, afirmam que o método baseado em \textit{hashtag} é capaz de indicar sobre o que é o evento, mesmo não utilizando o Inglês formal.
+
+\section{Considerações finais sobre a revisão sistemática}
+\label{conclusao}
+Em uma análise quantitativa dos estudos primários selecionados, podemos concluir que a quantidade de artigos publicados sobre o uso de \textit{tweets} na caracterização de problemas urbanos e relacionados ao transporte público tem crescido consideravelmente, entre 2011 e 2016. Provavelmente, devido ao fato da popularização das Redes Sociais e grande quantidade de dados disponíveis para processamento.
+
+Tais estudos estão concentrados em maioria na identificação de pontos de interesse, utilizando-os em diferentes contextos, tais como o de turismo,mobilidade. Além disso, abordam também problemas relacionados ao transporte e desastres naturais, confirmando a primeira hipótese (HP1) dessa Revisão Sistemática. As temáticas não abordadas pela HP1 foram as relacionadas a \textit{e-Participation}, detecção de zoneamento urbano, padrões demográficos e segurança pública, demonstrando a variedade de problemas urbanos explorados com o processamento de \textit{tweets}.
+
+Referente a segunda hipótese, os estudos exploraram principalmente o impacto de eventos no transporte público, confirmando-a parcialmente. Isso, devido ao fato de um dos trabalhos explorar como os eventos relacionados ao tráfego impactam na demanda por bicicletas; não havendo nenhum outro sobre processamento de \textit{tweets} para mitigação dos problemas envolvendo Tráfego. Outra temática não mencionada pela HP2 e sobre a qual há uma quantidade considerável de estudos, foi a do uso de \textit{tweets} para o planejamento e gerenciamento do transporte público.
+
+Independentemente dos problemas abordados por meio do processamento de \textit{tweets}, \textit{${F_1}$ score} tem sido a principal técnica estatística utilizada para garantir a confiabilidade do dados, confirmando a terceira hipótese (HP3). Apesar disso, a HP3 não considerou outras técnicas importantes, como a \textit{Linear Regression}, amplamente utilizada nos estudos analisados. Referente as técnicas de Aprendizado de Máquina, a mais utilizada foi a \textit{Latent Dirichlet Allocation} (LDA), seguida da \textit{Support Vector Machine} (SVM), confirmando parcialmente a sexta hipótese (HP6).
+
+Por fim, apenas quatro dos vinte e nove estudos analisados, cerca de 14\%, mencionaram \textit{features} relacionadas ao transporte público, confirmando assim a quinta hipótese (HP5). Assim como a quantidade de trabalhos que realizam processamento de \textit{tweets} em tempo real, sendo apenas dois do total analisado, cerca de 6\%, que utilizam esse paradigma de processamento, o que confirma a quarta hipótese (HP4). É importante ainda observar que, outros estudos que mencionaram processamento em tempo real, realizaram na verdade coleta de \textit{tweets} em tempo real, para análises a posteriori via processamento em \textit{batch} (offline), categoria na qual a maioria dos estudos foram enquadrados.
+
+\chapter{Proposta de pesquisa}
+\label{proposta}
+
+Neste capítulo, são apresentadas as seções referentes a proposta de pesquisa para a dissertação. Assim, abordaremos a formalização do problema; solução proposta; construção do conjunto de dados; exploração e visualização do conjunto de dados; identificação dos eventos de exceção; correlação dos eventos de exceção com os dados AVL da SPTrans e, por fim, o plano de trabalho.
+
+\section{Formalização do problema}
+\label{problemForm}
+
+O problema de caracterização de eventos de exceção e de seus respectivos impactos envolve a fase inicial do ciclo do processo de \textit{feature engineering}, conhecida como \textit{feature extraction}. \textit{Feature extraction} consiste na extração de um conjunto de características ${\alpha =}$ $\lbrace {\chi_1}, {\chi_2}, ..., {\chi_n} \rbrace$ a partir de um dado de entrada $\chi$. Sendo assim, nessa proposta de pesquisa pretendemos extrair o conjunto de características ${E = }$ $\lbrace {\varepsilon_1}, {\varepsilon_2}, ..., {\varepsilon_n} \rbrace$, referente a cada evento de exceção, e o conjunto ${I_{\varepsilon_i} = }$ $\lbrace {\iota_{1\varepsilon_i}}, {\iota_{2\varepsilon_i}}, ..., {\iota_{n\varepsilon_i}} \rbrace$, contendo as características de cada impacto decorrente de um determinado evento de exceção $\varepsilon_i \in E$.
+
+Posto que os conjuntos \textit{E} e \textit{I} existem,  tem-se também como problema a correlação de cada evento de exceção com o seu respectivo impacto, permitindo assim uma análise histórica para identificação de padrões de causa e consequência. Tal correlação pode ser definida por uma função sobrejetora, representada formalmente em lógica de primeira ordem pela expressão:
+\begin{equation*} 
+\forall \iota \in I, \exists \varepsilon \in E (\iota = f(\varepsilon) ) 
+\end{equation*}
+
+Dessa forma, para todo impacto $\iota$ pertencente ao conjunto \textit{I} existe um evento de exceção $\varepsilon_i$ pertencente ao conjunto \textit{E}. 
+
+\section{Solução proposta}
+\label{solutionProp}
+
+A solução proposta pretende coletar \textit{tweets} dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}, pré-processá-los, extrair e selecionar \textit{features} para serem utilizadas em algoritmos de classificação, obtendo dessa forma os eventos de exceção. 
+Com esses eventos de exceção pretendemos analisar a base histórica da SPTrans de dados AVL (transmitidos utilizando AVL), e identificar os possíveis impactos de cada evento de exceção. O processo de identificação dos impactos contidos na base histórica da SPTrans pode ser definido com base nas localizações extraídas dos \textit{tweets} coletados e posteriormente geolocalizadas. 
+
+As localizações dos \textit{tweets} podem ser extraídas usando a seguinte fórmula em expressão regular: 
+\begin{equation}
+ER = \lbrace L_1|S_1|L_2|S_2|...|L_n|S_n \rbrace \lbrace [a-zA-Z \backslash s]+ \rbrace
+\end{equation}
+Tal expressão regular é dividida em dois conjuntos, no primeiro ($\lbrace L_1|S_1|L_2|S_2|...|L_n\\|S_n \rbrace$), os logradouros (L) e siglas (S) contidas na Tab. \ref{tab:logradouros} (no apêndice \ref{apendiceB}) são concatenadas, especificando um filtro para identificar cadeias de caracteres iniciadas com um logradouro ou sigla. No segundo conjunto ($\lbrace [a-zA-Z \backslash s]+ \rbrace$), o filtro especificado identifica as palavras seguintes aos logradouros e siglas.
+
+Em resumo, propomos solucionar o problema de caracterização dos eventos de exceção e de seus respectivos impactos seguindo os seguintes passos: (I) coleta de \textit{tweets} de órgãos responsáveis por notificar eventos de exceção; (II) identificação dos \textit{tweets} relacionados a eventos de exceção; (III) extração e geolocalização dos endereços dos eventos de exceção e (IV) análise e correlação com os dados AVL.
+
+\section{Construção do conjunto de dados}
+\label{dataSet}
+
+Nesta seção, são apresentados os conjuntos de dados referentes a proposta de pesquisa.
+
+\subsection{\textit{Corpus Twitter}}
+
+A Rede Social \textit{Twitter}, foi escolhida como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção. Isso devido ao fato de cada publicação ser limitada em 140 caracteres, o que reduz a complexidade de processamento do conteúdo publicado, e devido aos estudos existentes abordando problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Cap. \ref{revisao}.
+
+Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
+
+Sobre a seleção dos \textit{profiles}, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais \textit{profiles} são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
+Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frenquência de requisições aos \textit{endpoints}. Por exemplo, no protótipo desenvolvido (na linguagem de programação Java), há um artefato que coleta (utilizando o plugin \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acesso em Outubro, 29 de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acesso em Outubro, 29 de 2017.}.
+
+Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, precesso explicado da seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de tweets coletados constam na Tab. \ref{tab:tweetsCollected}.
+
+\begin{table}[!htb]
+\centering
+\caption{Intervalo de tempo e número de \textit{tweets} coletados}
+	\label{tab:tweetsCollected}
+\begin{threeparttable}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf {Profile no \textit{Twitter}} &\textbf{ \# tweets \tnote{a}}  &\textbf{ \textit{Timestamp 1 \tnote{b}}} & \textbf{\textit{Timestamp 2 \tnote{c}}} \\ 
+\hline
+BombeirosPMESP & 5750 & 2017-05-21 02:10:39 & 2017-10-29 23:07:08  \\
+\hline
+CETSP\_ & 5042 & 2017-02-20 14:07:04 & 2017-10-29 21:45:54 \\ 
+\hline
+CPTM\_oficial & 5435 & 2017-04-24 13:00:17 & 2017-10-29 10:00:40 \\ 
+\hline
+governosp & 5450 & 2017-05-10 17:00:05 & 2017-10-29 22:00:03 \\
+\hline
+metrosp\_oficial & 7296 & 2017-06-07 17:23:34  & 2017-10-29 17:48:12 \\
+\hline
+Policia\_Civil & 3360 & 2015-04-15 17:44:44 & 2017-10-27 10:01:53 \\  
+\hline
+PMESP & 3956 & 2016-06-02 17:21:32 & 2017-10-29 20:25:37 \\ 
+\hline
+saopaulo\_agora & 3671 & 2016-11-18 07:36:12 & 2017-10-29 20:56:28 \\
+\hline
+smtsp\_ & 1128 & 2017-04-26 10:44:26 & 2017-10-29 23:00:11 \\ 
+\hline
+SPCEDEC & 945 & 2015-06-09 10:50:23 & 2017-10-29 23:38:36 \\
+\hline
+sptrans\_ & 8447 & 2017-06-13 15:19:56 & 2017-10-29 22:01:44 \\
+\hline
+TurismoSaoPaulo & 3308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\ 
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Número de \textit{tweets} coletados.
+            \item[b] \textit{Timestamp} mais antigo.
+            \item[c] \textit{Timestamp} mais recente.
+        \end{tablenotes}
+\end{threeparttable}
+\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\end{table}
+
+Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus respectivos dados de geolocalização. No entanto, por meio de uma análise manual percebemos dois problemas: (I) alguns endereços não foram extraídos; (II) apesar de o endereço ser extraído corretamente, encontramos geolocalizações fora do estado de São Paulo e do país. Assim, pretendemos melhorar o processo de extração dos endereços dos \textit{tweets} e o restringir a geolocalização para a região de São Paulo. 
+
+\subsection{\textit{Corpus} SPTrans}
+
+O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na Tab. \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados, devido a isso foram desenvolvidos \textit{scripts} para um processo de ETL (\textit{Extract}, \textit{Tranform} and \textit{Load}). 
+
+No caso dos dados especificados em GTFS, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para  \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em Outubro, 29 de 2017.}. Além disso, visando viabilizar \textit{geospatial queries}, foram criados \textit{geospatial indexes}\footref{geoMongo} nas \textit{collections} contendo informações geolocalizadas, logo após serem criadas no \textit{MongoDB}. Dessa forma, conseguimos usar \textit{geospatial queries} para identificar as linhas afetadas por um determinado evento de exceção.
+
+\begin{table}[!htb]
+\centering
+\caption{Conjuntos e quantidades de dados especificados em GTFS pela SPTrans}
+	\label{tab:gtfs}
+\begin{tabular}{c|c}
+\hline
+\textbf{Conjunto de dados} & \textbf {Quantidade de dados} \\ 
+\hline
+\textit{agency.txt} & 1 \\ 
+\hline
+\textit{calendar.txt} & 6 \\ 
+\hline
+\textit{fare\_attributes.txt} & 6 \\ 
+\hline
+\textit{fare\_rules.txt} & 5.400 \\
+\hline
+\textit{frequencies.txt} & 39.625 \\
+\hline
+\textit{routes.txt} & 291.634 \\
+\hline
+\textit{shapes.txt} & 800.767 \\
+\hline
+\textit{stop\_times.txt} & 95.134 \\  
+\hline
+\textit{stops.txt} & 19.933 \\ 
+\hline
+\textit{trips.txt} & 2.273 \\
+\hline
+\end{tabular}
+\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\end{table}
+
+Por sua vez, os dados transmitidos por meio de AVL (ou simplesmente dados AVL) são em grande volume, devido a isso demandam processamento distribuído para que seja possível consultá-los. Visando abordar esse problema, utilizamos o \textit{Druid} como banco de dados de séries temporais, por possuir uma arquitetura simples de escalar, ser distribuído e específico para a análises temporais.
+
+Os dados AVL utilizados nesta análise (fornecidos pela empresa \textit{Scipopulis}\footnote{\url{https://www.scipopulis.com/}. Acesso em Outubro, 29 de 2017.} --- financiada pela FAPESP\footnote{Fundação de Amparo à pesquisa do Estado de São Paulo: \url{http://www.fapesp.br/}. Acesso em Outubro, 29 de 2017.})  são referentes as linhas de ônibus 917H-10 (Terminal Pirituba --- sentido 1 / Metrô Vila Mariana --- sentido 0) e 477P (Ipiranga --- sentido 1 / Rio Pequeno --- sentido 0), especificamente para a linha 477P dispomos dos dados de ambos os sentidos, e apenas do sentido 0 para a linha 917H, a quantidade de dados para cada \textit{trip\_id} (id da viagem --- popularmente conhecido como linha do ônibus) é detalhada na Tab. \ref{tab:tripidQtd}. No demais, os campos existentes nesse conjunto de dados são: \textit{bus\_id} (id do ônibus), \textit{trip\_id} (id da viagem), \textit{hr} (GMT-03:00:00), \textit{timestamp} (GMT), \textit{lat} (latitude) e \textit{lng} (longitude).
+
+\begin{table}[!htb]
+\centering
+\caption{Quantidade de dados por id de viagem}
+	\label{tab:tripidQtd}
+\begin{threeparttable}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{\textit{trip\_id}} & \textbf {Qtd. de dados \tnote{a}} & \textbf{\textit{Timestamp} 1 \tnote{b}} & \textbf{\textit{Timestamp} 2 \tnote{c}} \\ 
+\hline
+4779-10-0 & 259.382 & 2016-09-13 08:24:57.936Z & 2017-09-02 02:11:42.274Z \\ 
+\hline
+4779-10-1 & 271.671 & 2016-09-13 08:24:57.937Z & 2017-09-02 02:11:42.285Z \\ 
+\hline
+917H-10-0 & 256.648 & 2016-09-13 08:25:59.943Z & 2017-09-02 02:11:42.250Z \\ 
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Quantidade de dados.
+            \item[b] \textit{Timestamp} mais antigo.
+            \item[c] \textit{Timestamp} mais recente.
+        \end{tablenotes}
+\end{threeparttable}
+\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\end{table}
+
+Conforme pode ser observado, a base de dados AVL está limitada as linhas 4779-10 e 917H-10 (apenas um dos sentidos). Ainda é importante mencionar, que em 2017 foi noticiado\footnote{\url{https://vejasp.abril.com.br/cidades/como-e-andar-na-pior-linha-de-onibus-da-capital}. Acesso em Outubro, 29 de 2017.} que a linha 917H-10 teve 96 reclamações e a 477P-10 75, classificado-as como as linhas com os maiores números de queixas.
+
+\section{Exploração e visualização do conjunto de dados}
+\label{dataViz}
+
+O grande volume de dados que será analisado pode conter padrões complexos e difíceis de serem identificados, devido a isso pretendemos construir visualizações auxiliares ao processo de análise dos dados. Com esse objetivo, utilizaremos o \textit{Apache Superset}\footnote{\url{https://superset.incubator.apache.org}. Acesso em Outubro, 29 de 2017.}, que é integrado nativamente com o \textit{Druid}, para exploração e visualização dos corpus desse projeto de pesquisa. As Fig. \ref{fig:qtd_data_per_day477p971h}, \ref{fig:qtd_data_per_bus_month_477p971h} e \ref{fig:map_477p971h} são exemplos de algumas visualizações construídas para os dados das linhas 477P-10 e 917H-10.
+
+A Fig. \ref{fig:qtd_data_per_day477p971h} exibe séries temporais referentes a quantidade de dados enviados pelas viagens 477P-10-0, 477P-10 e 971H-10-0. Com essa visualização é possível observar, por exemplo, a oscilação da quantidade de dados enviados, assim como os picos de maior e menor volume de envio de dados, os quais podem indicar inúmeros problemas relacionados a essas viagens. O mesmo pode ser afirmado para a Fig. \ref{fig:qtd_data_per_bus_month_477p971h}, que representa séries temporais sobre dados enviados por mês dos ônibus pertencentes as mesmas viagens já mencionadas. Por fim, o mapa exibido pela Fig. \ref{fig:map_477p971h} ajuda a identificar a localização de onde os dados estão sendo enviados, o que permite identificar possíveis pontos de falha durante a transmissão desses dados.
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Quantidade de dados enviados: viagens 477P-10-0, 477P-10-1 e 971H-10-0}
+		\includegraphics[width=0.8\linewidth]{images/qtd_data_per_day477p971h.png}
+	\label{fig:qtd_data_per_day477p971h}
+  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Quantidade de dados enviados por ônibus / mês: viagens 477P-10-0, 477P-10-1 e 971H-10-0}
+		\includegraphics[width=0.8\linewidth]{images/qtd_data_per_bus_month_477p971h.png}
+	\label{fig:qtd_data_per_bus_month_477p971h}
+  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Localizações de envio dos dados: viagens 477P-10-0, 477P-10-1 e 971H-10-0}
+		\includegraphics[width=1\linewidth]{images/map_477p971h.png}
+	\label{fig:map_477p971h}
+  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\section{Identificação dos eventos de exceção}
+\label{eventsIden}
+
+Nesta seção são apresentadas as atividades planejadas para realizar a identificação dos eventos de exceção com base nos dados do Corpus \textit{Twitter}.
+
+\subsection{Pré-processamento}
+
+Numa pré-análise do \textit{Corpus Twitter}, podemos afirmar que os \textit{tweets} publicados pelos \textit{profiles} selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice \ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintaxe e que normalmente dependem de análise contextual para que possam ser interpretados.
+
+Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{Middleton2014}, \cite{Kobdani2010}, \cite{Setiawan2017},  \cite{Zagal2016}), as seguintes etapas de pré-processamento serão realizadas:
+
+\begin{itemize}
+\item \textit{\textbf{Case folding}}: processamento de normalização de todas as letras do texto (de a-z) para minúsculas \cite{Setiawan2017}.
+\item \textit{\textbf{Tokenization}}: processamento realizado para obtenção das palavras  (\textit{tokens}) que compõem uma sentença, inclui a remoção de números, pontuações e caracteres que não pertencem ao alfabeto \cite{Setiawan2017}.  
+\item \textbf{Remoção de} \textit{\textbf{stopwords}}: processamento para remoção do conjunto de tokens de palavras sem significado ou importância \cite{Setiawan2017}, o que reduz a quantidade de ruído do conteúdo \textit{tweet} \cite{Steiger2015Census}.
+\item \textit{\textbf{Stemming}}: processamento para encontrar a raiz de uma palavra, removendo sufixos e prefixos (no caso do Português Brasileiro) das palavras derivadas \cite{Setiawan2017}.
+\end{itemize}
+
+É importante observar que a extração dos endereços será feita após a fase de \textit{case folding}, pois as demais podem comprometê-la ao remover trechos do texto necessários para a expressão regular definida para identificação dos padrões de logradouro. Também não está planejado para o pré-processamento proposto uma etapa de transformação do conteúdo dos \textit{tweets}, embora seja utilizada em trabalhos como os relacionados a identificação de sentimentos, para transformar emoticons nos sentimentos que eles representam \cite{Zagal2016}.
+
+\subsection{\textit{Feature extraction}}
+
+A fase de \textit{feature  extraction} depende do conhecimento do domínio do objeto de estudo, além de normalmente envolver inúmeras iterações para obter um conjunto plausível de \textit{features} \cite{Zhu2013}. Assim, inicialmente exploramos o domínio dos eventos de exceção relacionados ao transporte público (detalhados em \ref{qp5}) com o auxílio da questão QP5 (em \ref{questoes}) da revisão sistemática do Cap. \ref{revisao}. 
+
+Após a exploração do conhecimento do domínio (já realizada), pretendemos na primeira iteração para extração de \textit{features} usar os \textit{tokens} (\textit{features}) obtidos no pré-processamento para selecionarmos as palavras mais frequentes (\textit{features}) para cada conjunto de dados do \textit{Copus Twitter}. Nas iterações seguintes, planejamos analisar as \textit{features} selecionadas, combiná-las entrei si e derivar novas \textit{features}, de acordo com o conhecimento do domínio.
+
+\subsection{\textit{Feature selection}}
+
+Pretendemos na fase de \textit{feature selection} encontrar as \textit{features} mais relevantes para a classificação dos eventos de exceção, pois com um conjunto relevante de \textit{features} evitamos um modelo de classificação com sobre-ajuste (\textit{overfitting}) e de alto custo computacional \cite{Zhu2013}. Assim, pretendemos selecionar as \textit{features} mais relevantes utilizando a medida estatística \textit{tf-idf} (\textit{term frequency–inverse document frequency}) para obtermos os termos mais frequentes de cada conjunto de dados do \textit{Corpus Twitter}.
+
+\subsection{Algoritmos de Aprendizado de Máquina}
+
+Após a extração e seleção de \textit{features}, planejamos classificar manualmente 30\% dos \textit{tweets} com base em suas respectivas \textit{features}, utilizando-os como conjunto de teste. Posteriormente, pretendemos analisar os algoritmos de aprendizado de máquina elencados pela revisão sistemática em \ref{iaClassification} para escolhermos dentre eles o com maior acurácia para identificar eventos de exceção, por meio de classificação.
+
+\section{Correlação dos eventos de exceção com os dados AVL da SPTrans}
+\label{dataCorr}
+
+Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans, especificamente os dados referentes a \textit{timestamp}, latitude, longitude, \textit{bus\_id} e \textit{trip\_id}. Dito isso, inicialmente pretendemos caracterizar os impactos em:
+
+\begin{itemize}
+\item Atraso médio induzido nas viagens.
+\item Ônibus frequentemente afetados por eventos de exceção.
+\item Ônibus frequentemente afetados por determinado evento de exceção.
+\item Padrão de ocorrência dos eventos de exceção no espaço-tempo (localizações e \textit{timestamps}).
+\item Quantidade e viagens afetadas.
+\item Quantidade e regiões da cidade de São Paulo afetadas.
+\item Viagens frequentemente afetadas por eventos de exceção.
+\item Viagens frequentemente afetadas por determinado evento de exceção.
+\end{itemize}
+
+\section{Plano de trabalho}
+\label{workPlan}
+
+Nesta seção, são apresentados o cronograma (Tab. \ref{tab:schedule}) e as atividades realizadas e planejadas para o desenvolvimento do projeto referente a proposta de pesquisa, enumeradas a seguir:
+
+\begin{enumerate}
+\item Revisão Bibliográfica.
+\begin{enumerate}
+\item Revisão Sistemática sobre estudos de caso utilizando \textit{tweets} na caracterização de problemas urbanos e relacionados ao transporte público.
+\end{enumerate}
+\item Desenvolvimento de protótipo.
+\begin{enumerate}
+\item Serviço para coleta, processamento e armazenamento de \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles}.
+\item Extração e geolocalização dos endereços contidos nos \textit{tweets}.
+\item Implementação de \textit{scripts} para extração, transformação e armazenamento dos dados AVL da SPTrans.
+\item Implementação de \textit{scripts} para extração, transformação e armazenamento dos dados da GTFS da SPTrans.
+\item Criação de especificações de ingestão de dados para os dados AVL da SPTrans e dos \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles} para o banco de dados de séries temporais \textit{Druid}\footnote{\label{druidIo}\url{http://druid.io}. Acesso em Outubro, 29 de 2017.}.
+\item Integração da ferramenta \textit{Superset}\footnote{\label{superset}\url{http://superset.apache.org}. Acesso em Outubro, 29 de 2017.} com o \textit{Druid}\footref{druidIo} para exploração e visualização dos dados AVL da SPTrans e dos \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles}.
+\item Implementação de \textit{scripts} para automação dos processos de ingestão de dados e \textit{deploy} e monitoramento dos serviços do \textit{Druid}\footref{druidIo} e Superset\footref{superset}.
+\item Configuração do ambiente em nuvem para execução do \textit{Druid}\footref{druidIo} e \textit{Superset}\footref{superset}.
+
+\end{enumerate}
+\item Construção do conjunto de dados.
+\begin{enumerate}
+\item Obtenção dos dados AVL de janeiro a dezembro de 2016 e de janeiro a setembro de 2017, de todas as linhas de ônibus de São Paulo.
+\item Obtenção da base de dados dos últimos cinco anos das reclamações relacionadas a SPTrans, realizadas na Centra de Atendimento ao Cidadão (156) da Prefeitura de São Paulo.
+\item Obtenção de um conjunto de \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles}.
+\end{enumerate}
+\item Implementação da solução proposta.
+\begin{enumerate}
+\item Identificação dos eventos de exceção (pré-processamento, \textit{feature extraction} e \textit{feature selection} dos \textit{tweets} coletados).
+\item Estudo dos algorítimos de classificação e implementação de um artefato de \textit{software} para classificação dos \textit{tweets} de acordo com seus respectivos eventos de exceção.
+\item Correlação dos eventos de exceção com os dados AVL da SPTrans.
+\end{enumerate}
+\item Avaliação dos resultados parciais obtidos durante e após o desenvolvimento da solução proposta.
+\item Escrita de artigo para submissão em periódicos ou eventos da área.
+\item Escrita da dissertação.
+\end{enumerate}
+
+\begin{table}[!htb]
+  \centering
+  \caption{Cronograma de atividades}
+  \resizebox{\textwidth}{!}{%
+    \begin{tabular}{cccccccccccccccccccc} \hline
+    \multicolumn{2}{c}{Atividade } & \multicolumn{12}{c}{2017}                                                                     & \multicolumn{6}{c}{2018} \\ 
+    Número & Descrição & 1     & 2     & 3     & 4     & 5     & 6     & 7     & 8     & 9     & 10    & 11    & 12    & 1     & 2     & 3     & 4     & 5     & 6 \\ \hline
+    1     & Revisão bibliográfica & X     & X     & X     & X     & X     & X     &       &       &       &       &       &       &       &       &       &       &       &  \\
+    2     & Desenvolvimento de protótipo &       &       & X     & X     & X     & X     &       &       &       &       &       &       &       &       &       &       &       &  \\
+    3     & Construção do conjunto de dados &       &       &       &       &       &       & X     & X     & X     & X     & X     &       &       &       &       &       &       &  \\
+    4     & Implementação da solução proposta &       &       &       &       &       &       &     &      &      &      &      & X     &   X    &  X     &   X    &  X   &   X   &  \\
+    5     & Avaliação dos resultados &       &       &       &       &       &       &       &       &       &      &     &      &   X    &       &   X    &       &   X    &  \\
+    6    & Escrita de artigo &       &       &       &       &       &       &       &       &       &       &      &       &       &   X    &   X    &       &       &  \\ 
+    7     & Escrita da dissertação &       &       & X     & X     & X     & X     & X     & X     & X     & X     & X     & X     & X     & X     & X     & X     & X     & X \\
+    \hline
+    \end{tabular}%
+    }
+  \label{tab:schedule}%
+ \source{Felipe Cordeiro Alves Dias, 2017}
+\end{table}%
+
+
+\chapter{Considerações finais}
+\label{conclusion}
+
+Neste capítulo, são apresentadas as contribuições e resultados esperados com o projeto de pesquisa, as limitações a ameaças à validade do estudo. 
+
+\section{Contribuições esperadas}
+
+A principal contribuição deste projeto é propor uma solução para o problema de caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, por meio de \textit{tweets} e de dados históricos dos módulos AVL do SIM. Além disso, a solução proposta visa disponibilizar os os conjuntos de dados que foram construídos e uma plataforma para que esses dados possam ser visualizados e explorados, de forma a contribuir com projetos e pesquisas futuras correlatas.
+
+Em relação a publicações científicas, serão submetidos artigos com os resultados obtidos para veículos de disseminação de conhecimento científico nas áreas de: Análise de Redes Sociais, Sistemas de Transporte Inteligentes, Cidades Inteligentes.
+
+\section{Limitações e riscos à validade do estudo}
+
+As principais limitações deste projeto estão relacionadas ao processamento de \textit{tweets} em português brasileiro e oriundos das contas selecionadas e referenciadas na Tab. \ref{tab:oficialProfiles}, o que pode tornar a solução não generalista. Dentre os riscos, apesar das análises preliminares realizadas para extração de endereços dos conteúdos dos \textit{tweets} por meio de Expressão Regular, é possível que sejam encontrados novos desafios que inviabilizem o uso dessa técnica.
+
+
+
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+
+% Imprime uma página indicando o início dos apêndices
+\partapendices
+\chapter{Exemplos de \textit{tweets}}
+\label{apendiceA}
+
+\begin{lstlisting}[language=json,title=Exemplos de \textit{tweets} dos \textit{profiles} selecionados citados na Tab. \ref{tab:oficialProfiles}, label=tweetsSample]
+{
+    "tweet_id" : 895060642952077314,
+    "tweet_account": "BombeirosPMESP",
+    "text" : "19h58 Colisão de Carro x Caminhão, Estrada Sta Isabel, 5950 Itaquaquecetuba. 2 Vítimas, 1 Vtr. Aguardando maiores informes"
+}
+{
+    "tweet_id" : 894707930217447427,
+    "tweet_account": "CETSP_",
+    "text" : "Referente manifestação Rua Augusta, pista liberada.#ZC"
+}
+{
+    "tweet_id" : 894147793060716544,
+    "tweet_account": "CPTM_oficial",
+    "text" : "#L11 Hoje, das 8h à meia-noite, circulação interrompida entre Luz e Brás. P/ seguir viagem, use a L7-Rubi q prestará serviço até a Est. Brás"
+}
+{
+    "tweet_id" : 895054721026838530,
+    "tweet_account": "governosp",
+    "text" : "@SANROGE Lamentamos o ocorrido, Rogerio. Estamos trabalhando continuamente para melhorar a segurança na região. Entre maio e junho, [+] [1]"
+}
+{
+    "tweet_id" : 895000711284621312,
+    "tweet_account": "metrosp_oficial",
+    "text" : "08/08/2017 16:16: #metrosp : Linha 5-Lilás: Velocidade Reduzida. Mais informações em https://t.co/CaeqD26iJR"
+}
+{
+    "tweet_id" : 884039273493803008,
+    "tweet_account": "PMESP",
+    "text" : "AGORA: Desfile Cívico-Militar de 9 de Julho no Obelisco - Ibirapuera SP, transmissão ao vivo na página oficial Facebook da Polícia Militar.",
+    "dateTime" : "2017-07-09 10:19:22"
+}
+{
+    "tweet_id" : 887315002117500932,
+    "tweet_account": "Policia_Civil",
+    "text" : "Polícia Civil realiza operação para combater a prática do Jogo conhecido como "Baleia Azul"... https://t.co/kh2HW6UZvT",
+}
+{
+    "tweet_id" : 895004079910518788,
+    "tweet_account": "saopaulo_agora",
+    "text" : "#ItaimPaulista Incêndio na Rua Mateus Barbosa de Resende nº 235. Defesa Civil Regional acionada para o local. (CCOI) #spagora"
+}
+{
+    "tweet_id" : 894694704989732864,
+    "tweet_account": "smtpsp_",
+    "text" : "A @sptrans_ irá modificar 14 linhas na Zona Leste para obras no Monotrilho Saiba mais: https://t.co/fCA0T7WCSY"
+}
+{
+    "tweet_id" : 902953598857949184,
+    "tweet_account": "SPCEDEC",
+    "text" : "30-08-2017 - Acidente com produto perigoso em  com 36 , deixa 21 vítimas feridas e 02 ."
+}
+{
+    "tweet_id" : 895065137484320769,
+    "tweet_account": "sptrans_",
+    "text" : "Obras do Monotrilho desviam itinerários de 14 linhas que atendem a Av. Sapopemba entre 5 e 11/08, das 23h às 5h: https://t.co/jH4LFgrSKZ"
+}
+{
+    "tweet_id : 895042604068458497,
+    "tweet_account": "TurismoSaoPaulo",
+    "text" : "Veganos, vegetarianos e simpatizantes: vem aí o Vegan Club, em 12/08, no Centro de SP! #crueltyfree #veganfood... https://t.co/7f7ggr4vn4"
+}
+\end{lstlisting}
+
+\clearpage
+
+\chapter{Logradouros utilizados}
+\label{apendiceB}
+
+\begin{longtable}{c|c}
+\caption{Tabela de logradouros com abreviaturas}
+\label{tab:logradouros}\\
+
+\hline \multicolumn{1}{c |}{\textbf{Abreviatura}} & \multicolumn{1}{c}{\textbf{Logradouro}} \\ \hline 
+\endfirsthead
+
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{c |}{\textbf{Abreviatura}} & \multicolumn{1}{c}{\textbf{Logradouro}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{2}{r}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+\hline
+ACAMP & Acampamento \\
+\hline
+AC & Acesso \\
+\hline
+AD & Adro \\
+\hline
+ERA & Aeroporto \\
+\hline
+AL & Alameda \\
+\hline
+AT & Alto \\
+\hline
+A & Area \\
+\hline
+AE & Area especial \\
+\hline
+ART & Arteria \\
+\hline
+ATL & Atalho \\
+\hline
+AV & Avenida \\
+\hline
+AV-CONT & Avenida contorno \\
+\hline
+BX & Baixa \\
+\hline
+BLO & Balao \\
+\hline
+BAL & Balneario \\
+\hline
+BC & Beco \\
+\hline
+BELV & Belvedere \\
+\hline
+BL & Bloco \\
+\hline
+BSQ & Bosque \\
+\hline
+BVD & Boulevard \\
+\hline
+BCO & Buraco \\
+\hline
+C & Cais \\
+\hline
+CALC & Calcada \\
+\hline
+CAM & Caminho \\
+\hline
+CPO & Campo \\
+\hline
+CAN & Canal \\
+\hline
+CHAP & Chacara \\
+\hline
+CHAP & Chapadao \\
+\hline
+CIRC & Circular \\
+\hline
+COL & Colonia \\
+\hline
+CMP-VR & Complexo viario \\
+\hline
+COND & Condominio \\
+\hline
+CJ & Conjunto \\
+\hline
+COR & Corredor \\
+\hline
+CRG & Corrego \\
+\hline
+DSC & Descida \\
+\hline
+DSV & Desvio \\
+\hline
+DT & Distrito \\
+\hline
+EVD & Elevada \\
+\hline
+ENT-PART & Entrada particular \\
+\hline
+EQ & Entre quadra \\
+\hline
+ESC & Escada \\
+\hline
+ESP & Esplanada \\
+\hline
+ETC & Estacao \\
+\hline
+ESTC & Estacionamento \\
+\hline
+ETD & Estadio \\
+\hline
+ETN & Estancia \\
+\hline
+EST & Estrada \\
+\hline
+EST-MUN & Estrada municipal \\
+\hline
+FAV & Favela \\
+\hline
+FAZ & Fazenda \\
+\hline
+FRA & Feira \\
+\hline
+FER & Ferrovia \\
+\hline
+FNT & Fonte \\
+\hline
+FTE & Forte \\
+\hline
+GAL & Galeria \\
+\hline
+GJA & Granja \\
+\hline
+HAB & Habitacional \\
+\hline
+IA & Ilha \\
+\hline
+JD & Jardim \\
+\hline
+JDE & Jardinete \\
+\hline
+LD & Ladeira \\
+\hline
+LG & Lago \\
+\hline
+LGA & Lagoa \\
+\hline
+LRG & Largo \\
+\hline
+LOT & Loteamento \\
+\hline
+MNA & Marina \\
+\hline
+MOD & Modulo \\
+\hline
+TEM & Monte \\
+\hline
+MRO & Morro \\
+\hline
+NUC & Nucleo \\
+\hline
+PDA & Parada \\
+\hline
+PDO & Paradouro \\
+\hline
+PAR & Paralela \\
+\hline
+PRQ & Parque \\
+\hline
+PSG & Passagem \\
+\hline
+PSC-SUB & Passagem subterranea \\
+\hline
+PSA & Passarela \\
+\hline
+PAS & Passeio \\
+\hline
+PAT & Patio \\
+\hline
+PNT & Ponta \\
+\hline
+PTE & Ponte \\
+\hline
+PTO & Porto \\
+\hline
+PC & Praca \\
+\hline
+PC-ESP & Praça de esportes \\
+\hline
+PR & Praia \\
+\hline
+PRL & Prolongamento \\
+\hline
+Q & Quadra \\
+\hline
+QTA & Quinta \\
+\hline
+QTAS & Quinta \\
+\hline
+RAM & Rama \\
+\hline
+RMP & Rampa \\
+\hline
+REC & Recanto \\
+\hline
+RES & Residencial \\
+\hline
+RET & Reta \\
+\hline
+RER & Retiro \\
+\hline
+RTN & Retorno \\
+\hline
+ROD-AN & RodoAnel \\
+\hline
+ROD & Rodovia \\
+\hline
+RTT & Rotatoria \\
+\hline
+ROT & Rotula \\
+\hline
+R & Rua \\
+\hline
+R-LIG & Rua de ligação \\
+\hline
+R-PED & Rua de pedrestre \\
+\hline
+SRV & Servidao \\
+\hline
+ST & Setor \\
+\hline
+SIT & Sitio \\
+\hline
+SUB & Subida \\
+\hline
+TER & Terminal \\
+\hline
+TV & Travessa \\
+\hline
+TV-PART & Travessa particular \\
+\hline
+TRV & Trecho \\
+\hline
+TRV & Trevo \\
+\hline
+TCH & Trincheira \\
+\hline
+TUN & Tunel \\
+\hline
+UNID & Unidade \\
+\hline
+VAL & Vala \\
+\hline
+VLE & Vale \\
+\hline
+VRTE & Variante \\
+\hline
+VER & Vereda \\
+\hline
+V & Via \\
+\hline
+V-AC & Via de acesso \\
+\hline
+V-PED & Via de pedestre \\
+\hline
+V-EVD & Via elevado \\
+\hline
+V-EXP & Via expressa \\
+\hline
+VD & Viaduto \\
+\hline
+VLA & Viela \\
+\hline
+VL & Vila \\
+\hline
+ZIG-ZAG & Zigue-zague \\
+
+\end{longtable}
+
+\center{\textbf{Fonte:}} MS/SAS/DRAC/CGSI - Coordenação Geral dos Sistemas de Informação (adaptada)\footnote{\url{http://www.pmf.sc.gov.br/arquivos/arquivos/pdf/04_01_2010_10.27.25.2b615e6755138defe1bdb00f1c86031f.PDF}. Acesso em Outubro, 29 de 2017.}
+
+\clearpage
+
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``apêndice''
+%
+% Para todos os captions/(títulos) (de seções, subseções, tabelas, 
+% ilustrações, etc.):
+%     - em maiúscula apenas a primeira letra da sentença (do título), 
+%       exceto nomes próprios, geográficos, institucionais ou Programas ou
+%       Projetos ou siglas, os quais podem ter letras em maiúscula também.
+%
+% Todas  as tabelas, ilustrações (figuras, quadros, gráficos etc. ), 
+% anexos, apêndices devem obrigatoriamente ser citados no texto.
+%      - a citação deve vir sempre antes da primeira vez em que a tabela, 
+%        ilustração etc., aparecer pela primeira vez.
+%
+%-------------------------------------------------------------------------
+\chapter{Detalhamento dos campos da GTFS}
+\label{apendiceC}
+
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%%%%%MF\phantompart
+%%%%%MF\printindex
+%---------------------------------------------------------------------
+
+\begin{table}[!htb]
+\centering
+  \caption{Detalhamento dos campos do arquivo \textit{agency.txt} da GTFS}
+      \label{tab:gtfsAgency}
+\begin{tabular}{>{\centering\arraybackslash}m{3.5cm} | >{\centering}m{3cm} | >{\centering\arraybackslash}m{8cm}}
+\hline
+\textbf{Nome do campo} & \textbf{Condicional} & \textbf{Descrição} \\
+\hline
+\textit{agency\_id} & Opcional & Identifica uma agência de transporte público. Um \textit{feed} de transporte público pode representar dados de mais de uma agência. Este campo é opcional para \textit{feeds} de transporte público que contenham somente dados de uma única agência. \\
+\hline
+\textit{agency\_name} & Obrigatório & Contém o nome completo da agência de transporte público. \\
+\hline
+\textit{agency\_url} & Obrigatório & Contém o \textit{URL} da agência de transporte público. \\
+\hline
+\textit{agency\_timezone} & Obrigatório & Contém o fuso horário de onde a agência de transporte público está localizada. \\
+\hline
+\textit{agency\_lang} & Opcional & Contém um código \textit{ISO 639-1} de duas letras para o idioma principal usado por essa agência de transporte público. \\
+\hline
+\textit{agency\_phone} & Opcional & Contém um único número de telefone da agência especificada. \\
+\hline
+\textit{agency\_fare\_url} & Opcional & Especifica o \textit{URL} de uma página da \textit{Web} que permite que um passageiro compre passagens ou outros instrumentos de tarifas dessa agência \textit{on-line}. \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footnote{\label{gtfsFields}\url{https://developers.google.com/transit}. Acesso em Outubro, 29 de 2017.}
+
+\clearpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{stops.txt} da GTFS}
+      \label{tab:gtfsStops} \\
+
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{c}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot     
+      
+\hline
+\textit{stop\_id} & Obrigatório & Contém um ID que identifica uma parada ou uma estação. Diversos trajetos podem usar a mesma parada. \\
+\hline
+\textit{stop\_code} & Opcional & Contém um pequeno texto ou um número que identifica a parada para os passageiros. Os códigos das paradas são usados muitas vezes em sistemas de informações sobre transporte público por telefone ou impressos em sinalizações nas paradas para que os passageiros possam obter informações sobre o horário das paradas com mais facilidade ou sobre chegadas de uma parada específica em tempo real. O campo \textit{stop\_code} só deve ser usado para códigos de parada exibidos aos passageiros. Para os códigos internos, use \textit{stop\_id}. Este campo deve ser deixado em branco para as paradas que não têm um código. \\
+\hline
+\textit{stop\_name} & Obrigatório & Contém o nome de uma parada ou estação. Use um nome compreensível para as pessoas locais e linguagem turística. \\
+\hline
+\textit{stop\_desc} & Opcional & Contém uma descrição de uma parada. Forneça informações úteis e de qualidade. Não basta repetir o nome da parada. \\
+\hline
+\textit{stop\_lat} & Obrigatório & Contém a latitude de uma parada ou estação. O valor do campo deve ser uma latitude WGS 84 válida. \\
+\hline
+\textit{stop\_lon} & Obrigatório & Contém a longitude de uma parada ou estação. O valor do campo deve ser uma latitude WGS 84 válida entre -180 e 180. \\
+\hline
+\textit{zone\_id} & Opcional & Define a zona tarifária do ID de uma parada. Os IDs de zonas são obrigatórios para fornecer informações sobre tarifas usando \textit{fare\_rules.txt}. Se esse ID de parada representa uma estação, o ID de zona é ignorado. \\
+\hline
+\textit{stop\_url} & Opcional & Contém o URL de uma página da Web sobre uma parada específica. Ele deve ser diferente dos campos \textit{agency\_url} e \textit{route\_url}. \\
+\hline
+\textit{location\_type} & Opcional & Identifica se este ID de parada representa uma parada ou uma estação. Se nenhum tipo de local for especificado ou se o campo \textit{location\_type} estiver em branco, os IDs de parada serão tratados como paradas. As estações podem ter propriedades diferentes das paradas quando são representadas em um mapa ou usadas em planejamento de viagens. O campo de tipo de local pode ter os seguintes valores: 0 ou em branco (para parada) e 1 (estação). \\
+\hline
+\textit{parent\_station} & Opcional & Para paradas que estejam fisicamente localizadas dentro de estações, o campo \textit{parent\_station} identifica a estação associada à parada. Para usar este campo, o arquivo \textit{stops.txt} também deve conter uma linha em que esse ID de parada tenha o tipo de localização=1. \\
+\hline
+\textit{stop\_timezone} & Opcional & Contém o fuso horário em que a parada ou estação está localizada. Se omitido, assume-se que a parada está localizada no fuso horário especificado por \textit{agency\_timezone} no arquivo \textit{agency.txt}.
+Quando uma parada tem uma estação principal, considera-se que a parada esteja no fuso horário especificado pelo valor \textit{stop\_timezone} da estação principal. Se uma parada específica possui um valor \textit{parent\_station}, qualquer valor \textit{stop\_timezone} especificado para essa parada deve ser ignorado. Mesmo que os valores de \textit{stop\_timezone} sejam fornecidos no arquivo \textit{stops.txt}, os horários em \textit{stop\_times.txt} devem continuar a ser especificados como horários desde a meia-noie no fuso horário especificado por \textit{agency\_timezone} em \textit{agency.txt}. Isso garante que os valores de tempo em uma viagem sempre aumentam durante uma viagem, independentemente dos fusos horários pelos quais uma viagem passa. \\
+\hline
+\textit{wheelchair\_boarding} & Opcional & Identifica se é possível o embarque de passageiros em cadeira de rodas na parada ou estação especificada. O campo pode ter os seguintes valores:
+0 (ou vazio) - indica que não há informações sobre acessibilidade para a parada; 1 - indica que, pelo menos, alguns veículos nesta parada possibilitam o embarque de passageiros em cadeira de rodas; 2 - o embarque de pessoas em cadeiras de roda não é possível nesta parada. Quando uma parada faz parte de um complexo de estações maiores, como indicado por uma para com um valor \textit{parent\_station}, o campo \textit{wheelchair\_boarding} da parada possui a seguinte semântica adicional:
+0 (ou vazio) - a parada herdará o valor para \textit{wheelchair\_boarding} da estação principal, se especificado; 1 - existem vias de acesso na parte externa da estação para a parada/plataforma específic; 2 - não há vias de acesso na parte externa da estação para a parada/plataforma específica \\
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields} 
+
+\newpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{routes.txt} da GTFS}
+      \label{tab:gtfsRoutes} \\
+
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{c}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot  
+
+\hline
+\textit{route\_id} & Obrigatório & Contém um ID que identifica um trajeto. \\
+\hline
+\textit{agency\_id} & Opcional & Define uma agência para o trajeto especificado. Este valor é indicado no arquivo \textit{agency.txt}. Campo destinado para quando for fornecido dados para trajetos de mais de uma agência. \\
+\hline
+\textit{route\_short\_name} & Obrigatório & Contém o nome abreviado de um trajeto. Geralmente, será um identificador pequeno e abstrato, como, por exemplo "32", "100X" ou "Verde", que os passageiros usam para identificar um trajeto, mas que não fornece nenhuma identificação de quais lugares são atendidos pelo trajeto. Se o trajeto não tem um nome abreviado, especifique um \textit{route\_long\_name} e use uma sequência vazia como o valor deste campo. \\
+\hline
+\textit{route\_long\_name} & Obrigatório & Contém o nome completo de um trajeto. Em geral, esse nome é mais descritivo que \textit{route\_short\_name} e incluirá o destino ou a parada do trajeto. Se o trajeto não tem um nome completo, especifique um \textit{route\_short\_name} e use uma sequência vazia como o valor deste campo. \\
+\hline
+\textit{route\_desc} & Opcional & Contém uma descrição de um trajeto. Não basta repetir o nome do trajeto. \\
+\hline
+\textit{route\_type} & Obrigatório & Descreve o tipo de transporte usado em um trajeto. Os valores válidos deste campo são:
+0 - Bonde, ônibus elétrico, veículo leve sobre trilhos; 1 - Metrô, trem subterrâneo; 2 - Via férrea;  3 - Ônibus; 4 - Balsa; 5 - Teleférico; 6 - Gôndola, teleférico suspenso; 7 - Funicular. \\
+\hline
+\textit{route\_url} & Opcional & Contém o URL de uma página da Web sobre esse trajeto específico. Ele deve ser diferente de \textit{agency\_url}.\\
+\hline
+\textit{route\_color} & Opcional & Define uma cor que corresponda ao trajeto. A cor deve ser informada como um número hexadecimal de seis caracteres. Se nenhuma cor é especificada, a cor padrão de trajetos é branca (FFFFFF). A diferença de cores entre \textit{route\_color} e \textit{route\_text\_color} deve fornecer contraste suficiente quando visualizado em uma tela em preto e branco. \\
+\hline
+\textit{route\_text\_color} & Opcional & Usado para especificar uma cor legível para usar em desenho de texto contra um plano de fundo de \textit{route\_color}. \\
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\newpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{4cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{trips.txt} da GTFS}
+      \label{tab:gtfsTrips} \\
+
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{4cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{4cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{c}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot 
+\hline
+\textit{route\_id} & Obrigatório & Contém um ID que identifica um trajeto. Este valor é indicado no arquivo \textit{agency.txt}. \\
+\hline
+\textit{service\_id} & Obrigatório & Contém um ID que identifica um conjunto de datas em que o serviço está disponível para um ou mais trajetos. Este valor é indicado no arquivo \textit{calendar.tx}t ou \textit{calendar\_dates.txt}. \\
+\hline
+\textit{trip\_id} & Obrigatório & Contém um ID que identifica uma viagem. \\
+\hline
+\textit{trip\_headsign} & Opcional & Contém o texto que aparece em uma sinalização que identifica o destino da viagem para os passageiros. Use este campo para distinguir diferentes padrões de serviço no mesmo trajeto. Se a placa muda durante uma viagem, você pode substituir o campo \textit{trip\_headsign}, especificando valores para o campo \textit{stop\_headsign} em \textit{stop\_times.txt}. \\
+\hline
+\textit{trip\_short\_name} & Opcional & Contém o texto que aparace em programações e placas de sinalização para identificar a viagem para os passageiros, por exemplo, para identificar números de trens para viagens de trens suburbanos. Se os passageiros não recorrem normalmente aos nomes da viagem, deixe este campo em branco.
+Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com exclusividade, uma viagem em um dia de serviço; ele não deve ser usado para nomes de destino ou designações limitadas/expressas. \\
+\hline
+\textit{direction\_id} & Opcional & Contém um valor binário que indica a direção de uma viagem. Use este campo para distinguir viagens bidirecionais com o mesmo \textit{route\_id}. Este campo não é usado na criação de trajetos; ele fornece uma maneira de separar viagens por direção durante a publicação de tabelas de horário. Você pode especificar nomes para cada direção com o campo \textit{trip\_headsign}.
+0 - viagem em uma única direção (por exemplo, só ida); 1 - viagem na direção oposta (por exemplo, de volta),os campos \textit{trip\_headsign} e \textit{direction\_id} podem ser usados juntos para atribuir um nome a uma viagem em cada direção "1234". \\
+\hline
+\textit{block\_id} & Opcional & Identifica o quadro a que a viagem pertence. Um bloco consiste em duas ou mais viagens sequenciais feitas usando o mesmo veículo, em que um passageiro pode passar de uma viagem para a próxima permanecendo no veículo. O campo \textit{block\_id} deve ser indicado por duas ou mais viagens no \textit{arquivo trips.txt}. \\
+\hline
+\textit{shape\_id} & Opcional & Contém um ID que define a forma da viagem. Este valor é indicado no arquivo \textit{shapes.txt}. O arquivo \textit{shapes.txt} permite definir como será traçada uma linha no mapa para representar uma viagem. \\
+\hline
+\textit{wheelchair\_accessible} & Opcional & 0 (ou vazio) - indica que não há informações sobre acessibilidade para a viagem; 1 - indica que o veículo que está sendo usado nesta viagem específica pode acomodar, pelo menos, um passageiro em cadeira de rodas; 2 - indica que não é possível acomodar passageiros em cadeiras de rodas nesta viagem \\
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\newpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{stop\_times.txt} da GTFS}
+      \label{tab:gtfsStopTimes} \\
+
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{c}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+\hline
+\textit{trip\_id} & Obrigatório & Contém um ID que identifica uma viagem. Este valor é indicado no arquivo \textit{trips.txt}. \\
+\hline
+\textit{arrival\_time} & Obrigatório & Especifica o horário de chegada em uma parada específica de uma viagem específica de um trajeto. No caso de horários que ocorram após a meia-noite na data do serviço, digite o horário como um valor maior que 24:00:00 em horário local HH:MM:SS para o dia em que começa a programação da viagem. Se não há horários separados para chegada e partida em uma parada, insira o mesmo valor para \textit{arrival\_time} e \textit{departure\_time}. É necessário especificar os horários de chegada para a primeira e a última paradas de uma viagem. Se essa parada não for programada, use uma sequência vazia para os campos \textit{arrival\_time} e \textit{departure\_time}. As paradas sem horário de chegada são programadas conforme a parada programada anterior mais próxima. Para garantir trajetos precisos, forneça horários de chegada e de partida para todas as paradas programadas. Não intercale as parada, ou, preencha os horários com espaços. Observação: as viagens que abrangem várias datas terão horários de parada maiores que 24:00:00. Por exemplo, se uma viagem começa às 10:30:00 p.m e termina às 2:15:00 a.m. do dia seguinte, os horários de parada seriam 22:30:00 e 26:15:00. A inclusão desses horários de parada como 22:30:00 e 02:15:00 não produzem os resultados desejados. \\
+\hline
+\textit{departure\_time} & Obrigatório & Especifica o horário de partida de uma parada específica para uma viagem específica de um trajeto. O horário é medido de "meio-dia menos 12h" (efetivamente meia-noite, exceto para dias do horário de verão), no início da data do serviço. No caso de horários que ocorram após a meia-noite na data do serviço, digite o horário como um valor maior que 24:00:00 em horário local HH:MM:SS para o dia em que começa a programação da viagem. Se não há horários diferentes para a chegada e a saída em uma parada, insira o mesmo valor para \textit{arrival\_time} e \textit{departure\_time}. É necessário especificar os horários de partida da primeira e da última paradas em uma viagem. Se essa parada não for programada, use uma sequência vazia para os campos \textit{arrival\_time} e \textit{departure\_time}. As paradas sem horário de chegada são programadas conforme a parada programada anterior mais próxima. Para garantir trajetos precisos, forneça horários de chegada e de partida para todas as paradas programadas. Não intercale as paradas. Os horários devem ter oito dígitos no formato HH:MM:SS (o formato H:MM:SS também é aceito, se a hora iniciar com 0). Não preencha os horários com espaços. \\
+\hline
+\textit{stop\_id} & Obrigatório & Contém um ID que identifica uma parada. Diversos trajetos podem usar a mesma parada. O campo \textit{stop\_id} é indicado no arquivo \textit{stops.txt}. Se \textit{location\_type} é usado no arquivo \textit{stops.txt}, todas as paradas indicadas em \textit{stop\_times.txt} deverão ter \textit{location\_type} igual a 0. Onde possível, os valores de \textit{stop\_id} devem permanecer consistentes entre as atualizações de feed. Se uma parada não está programada, digite valores em branco para \textit{arrival\_time} e \textit{departure\_time}. \\
+\hline
+\textit{stop\_sequence} & Obrigatório & Identifica a ordem das paradas de uma viagem específica. Os valores de \textit{stop\_sequence} devem ser números inteiros positivos e devem aumentar ao longo da viagem. \\
+\hline
+\textit{stop\_headsign} & Opcional & Contém o texto que aparece em uma sinalização que identifica o destino da viagem para os passageiros. Use este campo para substituir o \textit{trip\_headsign} padrão quando as placas mudarem durante as viagens. Se esta placa está associada a uma viagem inteira, use \textit{trip\_headsign} no lugar. \\
+\hline
+\textit{pickup\_type} & Opcional & Indica se os passageiros são embarcados em uma parada como parte da programação normal ou se não há embarque disponível na parada. Este campo também permite que a agência de transporte público indique se os passageiros devem ligar para a agência ou notificar o motorista para agendar um embarque em uma parada específica. Os valores válidos deste campo são: 0 - Embarque no horário normal; 1 - Sem embarque disponível; 2 - Deve ligar para a agência a fim de agendar o embarque; 3- Deve combinar com o motorista para agendar o embarque. O valor padrão deste campo é 0. \\
+\hline
+\textit{drop\_off\_type} & Opcional & Indica se há desembarque de passageiros em uma parada, como parte da programação normal ou se não há desembarques na parada. Este campo também permite que a agência de transporte público indique se os passageiros devem ligar para a agência ou notificar o motorista para agendar um desembarque em uma determinada parada. Os valores válidos deste campo são: 0 - Desembarque no horário normal; 1 - Desembarque não disponível; 2 - Deve telefonar para agendar o desembarque; 3 - Deve combinar com o motorista para agendar o desembarque. O valor padrão deste campo é 0. \\
+\hline
+\textit{shape\_dist\_traveled} & Opcional & Quando usado no arquivo \textit{stop\_times.txt}, o campo \textit{shape\_dist\_traveled} posiciona uma parada como uma distância a partir do primeiro ponto de forma. O campo \textit{shape\_dist\_traveled} representa uma distância real percorrida ao longo do trajeto em unidades como, por exemplo, pés ou quilômetros. Essas informações permitem que o planejador da viagem determine o quanto da forma deve ser desenhado ao exibir parte de uma viagem no mapa. Os valores usados para \textit{shape\_dist\_traveled} devem aumentar juntamente com \textit{stop\_sequence}. As unidades usadas para \textit{shape\_dist\_traveled} no arquivo \textit{stop\_times.txt} devem corresponder às unidades usadas para este campo no arquivo \textit{shapes.txt}. \\
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\newpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{calendar.txt} da GTFS}
+      \label{tab:gtfsCalendar} \\
+
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{c}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+\hline
+\textit{service\_id} & Obrigatório &Contém um ID que identifica um conjunto de datas em que o serviço está disponível para um ou mais trajetos. Cada valor de \textit{service\_id} pode aparecer, no máximo, uma vez em um arquivo \textit{calendar.txt}. Este valor é um conjunto de dados exclusivo. Ele é indicado pelo arquivo \textit{trips.txt}. \\
+\hline 
+\textit{monday} & Obrigatório & Contém um valor binário que indica se o serviço é válido para todas as segundas-feiras. O valor 1 indica que o serviço está disponível todas as segundas-feiras durante o período. O período é especificado utilizando-se os campos \textit{start\_date} e \textit{end\_date}. O valor 0 indica que o serviço não está disponível às segundas-feiras no período. Observação: você pode listar exceções para datas específicas, como, por exemplo, feriados, no arquivo \textit{calendar\_dates.txt}. \\
+\hline 
+\textit{tuesday} & Obrigatório & Contém um valor binário que indica se o serviço é válido para todas as terças-feiras. O valor 1 indica que o serviço está disponível todas as terças-feiras durante o período. O período é especificado utilizando-se os campos \textit{start\_date} e \textit{end\_date}. O valor 0 indica que o serviço não está disponível às terças-feiras no período. \\
+\hline 
+\textit{wednesday} & Obrigatório & Contém um valor binário que indica se o serviço é válido para todas as quartas-feiras. O valor 1 indica que o serviço está disponível todas as quartas-feiras durante o período. O período é especificado utilizando-se os campos \textit{start\_date} e \textit{end\_date}. O valor 0 indica que o serviço não está disponível às quartas-feiras no período. \\
+\hline 
+\textit{thursday} & Obrigatório & Contém um valor binário que indica se o serviço é válido para todas as quintas-feiras. O valor 1 indica que o serviço está disponível todas as quintas-feiras durante o período. O período é especificado utilizando-se os campos \textit{start\_date} e \textit{end\_date}. O valor 0 indica que o serviço não está disponível às quintas-feiras no período. \\
+\hline 
+\textit{friday} & Obrigatório & Contém um valor binário que indica se o serviço é válido para todas as sextas-feiras. O valor 1 indica que o serviço está disponível todas as sextas-feiras durante o período. O período é especificado utilizando-se os campos \textit{start\_date} e \textit{end\_date}. O valor 0 indica que o serviço não está disponível às sextas-feiras no período. \\
+\hline 
+\textit{saturday} & Obrigatório & Contém um valor binário que indica se o serviço é válido para todas os sábados. O valor 1 indica que o serviço está disponível todos os sábados durante o período. O período é especificado utilizando-se os campos \textit{start\_date} e \textit{end\_date}. O valor 0 indica que o serviço não está disponível aos sábados no período. \\
+\hline 
+\textit{sunday} & Obrigatório & Contém um valor binário que indica se o serviço é válido para todos os domingos. O valor 1 indica que o serviço está disponível todos os domingos durante o período. O período é especificado utilizando-se os campos \textit{start\_date} e \textit{end\_date}. O valor 0 indica que o serviço não está disponível aos sábados no período. \\
+\hline 
+\textit{start\_date} & Obrigatório & O \textit{campo start\_date} contém a data de início do serviço. O valor do campo \textit{start\_date} deve estar no formato YYYYMMDD. \\
+\hline 
+\textit{end\_date} & Obrigatório & O campo \textit{end\_date} contém a data final do serviço. Essa data está incluída no intervalo do serviço. O valor do campo end\_date deve estar no formato AAAAMMDD. \\
+
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\newpage
+
+\begin{table}
+\caption{Detalhamento dos campos do arquivo \textit{calendar\_dates.txt} da GTFS}
+      \label{tab:gtfsCalendarDates}
+\begin{tabular}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+\hline
+\textit{service\_id} & Obrigatório & Contém um ID que identifica identifica um conjunto de datas em que uma exceção ao serviço está disponível para um ou mais trajetos. Cada par (\textit{service\_id}, \textit{date}) pode aparecer somente uma vez em \textit{calendar\_dates.txt}. Se um valor de \textit{service\_id} aparace nos arquivos \textit{calendar.txt} e \textit{calendar\_dates.txt}, as informações contidas em \textit{calendar\_dates.txt} modifica as informações de serviço especificadas em \textit{calendar.txt}. Este campo é indicado pelo arquivo \textit{trips.txt}. \\
+\hline 
+\textit{date} & Obrigatório & Especifica uma data específica em que a disponibilidade do serviço é diferente do normal. Você pode usar o campo \textit{exception\_type} para indicar se o serviço está disponível na data especificada. O valor do campo date deve estar no formato AAAAMMDD. \\
+\hline 
+\textit{exception\_type} & Obrigatório & Indica se o serviço está disponível na data especificada no arquivo date. O valor 1 indica que o serviço foi adicionado para a data especificada. O valor 2 indica que o serviço foi removido para a data especificada. \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\clearpage
+
+\begin{table}
+\caption{Detalhamento dos campos do arquivo \textit{fare\_attributes.txt} da GTFS}
+      \label{tab:gtfsFareAttributes}
+\begin{tabular}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+\hline 
+\textit{fare\_id} & Obrigatório & Contém um ID que identifica uma classe de tarifas. \\
+\hline 
+\textit{price} & Obrigatório & Contém o preço da tarifa, na unidade especificada por \textit{currency\_type}. \\
+\hline 
+\textit{currency\_type} & Obrigatório & Define a moeda usada para pagar a tarifa. Use os códigos de moeda em ordem alfabética ISO 4217. \\
+\hline 
+\textit{payment\_method} & Obrigatório & Indica quando a tarifa deve ser paga. Os valores válidos deste campo são: 0 - A tarifa é paga a bordo; 1 - A tarifa deve ser paga antes do embarque. \\
+\hline 
+\textit{transfers} & Obrigatório & O campo \textit{transfers} especifica o número de baldeações permitidas nesta tarifa. Os valores válidos deste campo são: 0 - Não são permitidas baldeações nesta tarifa; 1 - Os passageiros só podem fazer uma baldeação; 2 - Os passageiros podem fazer duas baldeações; (\textit{empty}) - Se o campo estiver vazio, não há limites para o número de baldeações. \\
+\hline 
+\textit{transfer\_duration} & Opcional & Especifica a duração, em segundos, antes da expiração da baldeação. Quando usado com um valor 0 para \textit{transfers}, o campo \textit{transfer\_duration} indica por quanto tempo uma passagem é válida para uma tarifa quando as baldeações não são permitidas. A menos que você pretenda usar este campo para indicar a validade da passagem, \textit{transfer\_duration} deve ser omitido ou deve ficar em branco, quando \textit{transfers} é definido como 0. \\
+\hline 
+\end{tabular}
+\end{table}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\clearpage
+
+\begin{table}
+\caption{Detalhamento dos campos do arquivo \textit{fare\_rules.txt} da GTFS}
+      \label{tab:gtfsFareRules}
+\begin{tabular}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+\hline 
+\textit{fare\_id} & Obrigatório & Contém um ID que identifica uma classe de tarifas. Este valor é indicado no arquivo \textit{fare\_attributes.txt}. \\
+\hline 
+\textit{route\_id} & Opcional & Associa o ID da tarifa a um trajeto. Os IDs de trajetos são indicados no arquivo \textit{routes.txt}. Se você tem diversos trajetos com os mesmos atributos de tarifa, crie uma linha no arquivo \textit{fare\_rules.txt} para cada trajeto. \\
+\hline 
+\textit{origin\_id} & Opcional & Associa o ID da tarifa a um ID de zona de origens. Os IDs de zona são indicados no arquivo \textit{stops.txt}. Se há vários IDs de origem com os mesmos atributos, crie uma linha no arquivo \textit{fare\_rules.txt} para cada ID de origem. \\
+\hline 
+\textit{destination\_id} & Opcional & Associa o ID da tarifa a um ID de zona de destino. IDs de zona são indicados no arquivo \textit{stops.txt}. Se há vários IDs de destino com os mesmos atributos de tarifa, cria-se uma linha no arquivo \textit{fare\_rules.txt} para cada ID de destino. \\
+\hline 
+\textit{contains\_id} & Opcional & Associa o ID da tarifa a um ID de zona ID, indicado no arquivo \textit{stops.txt}. O ID da tarifa é, então, associado a itinerários que transmitem cada zona de \textit{contains\_id}.\\
+\hline 
+\end{tabular}
+\end{table}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\clearpage
+
+\begin{table}
+\caption{Detalhamento dos campos do arquivo \textit{shapes.txt} da GTFS}
+      \label{tab:gtfsShapes}
+\begin{tabular}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+\hline 
+\textit{shape\_id} & Obrigatório & Contém um ID que identifica uma forma. \\
+\hline 
+\textit{shape\_pt\_lat} & Obrigatório & Associa a latitude de um ponto de forma ao ID de uma forma. O valor do campo deve ser uma latitude WGS 84 válida. Cada linha do arquivo \textit{shapes.txt} representa um ponto de forma em sua definição de formas.\\
+\hline 
+\textit{shape\_pt\_lon} & Obrigatório & Associa a longitude de um ponto de forma ao ID de uma forma. O valor do campo deve ser uma longitude WGS 84 de valor de -180 a 180. Cada linha do arquivo \textit{shapes.txt} representa um ponto de forma em sua definição de formas. \\
+\hline 
+\textit{shape\_pt\_sequence} & Obrigatório & Associa a latitude e a longitude de uma forma de um ponto de formas com sua ordem sequencial juntamente com a forma. Os valores de \textit{shape\_pt\_sequence} devem ser números inteiros positivos e devem aumentar com a viagem. \\
+\hline 
+\textit{shape\_dist\_traveled} & Opcional & Quando usado no arquivo \textit{shapes.txt}, o campo \textit{shape\_dist\_traveled} posiciona um ponto de forma como uma distância percorrida juntamente com uma forma a partir do primeiro ponto de forma. O campo \textit{shape\_dist\_traveled} representa uma distância real percorrida ao longo do trajeto em unidades como, por exemplo, pés ou quilômetros. Esta informação permite que o planejador de viagens determine o quanto da forma deve ser desenhado ao mostrar parte de uma viagem no mapa. Os valores usados para \textit{shape\_dist\_traveled} devem aumentar juntamente com \textit{shape\_pt\_sequence}. As unidades usadas para \textit{shape\_dist\_traveled} no arquivo \textit{shapes.txt} devem corresponder às unidades usadas para este campo no arquivo \textit{stop\_times.txt}. \\
+\hline 
+\end{tabular}
+\end{table}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\clearpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{frequencies.txt} da GTFS}
+      \label{tab:gtfsFrequencies} \\
+
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline 
+\textit{trip\_id} & Obrigatório & Contém um ID que identifica uma viagem à qual a frequência especificada de serviço se aplica. Os IDs de viagem são indicados no arquivo \textit{trips.txt}. \\
+\hline 
+\textit{start\_time} & Obrigatório & Especifica o horário em que o serviço começa com a freqüência especificada. Para horários após a meia-noite, insira-os como um valor maior que 24:00:00 no horário local HH:MM:SS para o dia em que a programação das viagens começa. \\
+\hline 
+\textit{end\_time} & Obrigatório & Especifica o horário em que o serviço muda para uma frequência diferente (ou é interrompido), na primeira parada da viagem. Para horários após a meia-noite, insira-os como um valor maior que 24:00:00 no horário local HH:MM:SS para o dia em que a programação das viagens começa. \\
+\hline 
+\textit{headway\_secs} & Obrigatório & Indica o horário entre as saídas da mesma parada (intervalo entre as viagens) deste tipo de viagem, durante o intervalo de tempo especificado por \textit{start\_time} e \textit{end\_time}. O valor do intervalo de tempo entre duas viagens deve ser inserido em segundos. Períodos em que intervalos entre as viagens são definidos (as linhas no arquivo \textit{frequencies.txt}) não devem ser sobrepostos para a mesma viagem, uma vez que é difícil determinar o que deve ser inferido de dois intervalos de viagem sobrepostos. No entanto, um período de intervalo entre viagens pode começar exatamente no mesmo horário em que outro termina. \\
+\hline 
+\textit{exact\_times} & Opcional & Determina se viagens baseadas em frequência devem ser programadas com exatidão com base nas informações especificadas dos intervalos entre as viagens. Os valores válidos deste campo são: 0 ou (vazio) - Viagens baseadas em frequência não são programadas com exatidão. Este é o comportamento padrão; 1 - Viagens baseadas em frequência são programadas com exatidão. Para uma linha no\textit{ frequencies.txt}, as viagens são programadas com início com \textit{trip\_start\_time} =\textit{start\_time + x * headway\_secs} para todos x em (0, 1, 2, ...), em que \textit{trip\_start\_time < end\_time}. O valor de \textit{exact\_times} deve ser o mesmo para todas as linhas de \textit{frequencies.txt} com o mesmo \textit{trip\_id}. Se \textit{exact\_times} for igual a 1, e uma linha de \textit{frequencies.txt} tiver um \textit{start\_time} igual a \textit{end\_time}, nenhuma viagem deverá ser programada. Quando \textit{exact\_times} é 1, deve-se escolher um valor \textit{end\_time} que seja maior que o último horário de início da viagem programada, mas menor que o último horário de início da viagem desejada + \textit{headway\_secs}. \\
+\hline 
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\clearpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{transfer.txt} da GTFS}
+      \label{tab:gtfsTranfer} \\
+      
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{c}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot 
+
+\hline 
+\textit{from\_stop\_id} & Obrigatório & Contém um ID que identifica uma parada ou uma estação onde começa uma conexão entre trajetos. Os IDs de paradas são indicados no arquivo \textit{stops.txt}. Se a ID de parada se refere a uma estação que contém várias paradas, essa regra de baldeação se aplica a todas as paradas nesta estação. \\
+\hline 
+\textit{to\_stop\_id} & Obrigatório & Contém um ID que identifica uma parada ou uma estação onde termina uma conexão entre trajetos. Os IDs de paradas são indicados no arquivo \textit{stops.txt}. Se a ID de parada se refere a uma estação que contém várias paradas, essa regra de baldeação se aplica a todas as paradas nesta estação. \\
+\hline 
+\textit{transfer\_type} & Obrigatório & Especifica o tipo de conexão para o par (\textit{from\_stop\_id}, \textit{to\_stop\_id}) especificado. Os valores válidos deste campo são: 0 ou (vazio) - Este é um ponto de baldeação recomendado entre dois trajetos; 1 - Este é um ponto de baldeação programado entre dois trajetos; 2 - Essa baldeação exige um tempo mínimo entre a chegada e a partida para garantir uma conexão. O tempo necessário para a baldeação é especificado por \textit{min\_transfer\_time}; 3 - Não é possível fazer baldeações entre trajetos neste local. \\
+\hline 
+\textit{min\_transfer\_time} & Opcional & Quando uma conexão entre trajetos exige um tempo entre a chegada e a partida (\textit{transfer\_type=2}), o campo \textit{min\_transfer\_time} define o período de tempo que deve estar disponível em um itinerário para permitir uma baldeação entre trajetos nestas paradas. O \textit{min\_transfer\_time} deve ser suficiente para que um passageiro típico se desloque entre as duas paradas, incluindo um tempo extra para variação na programação em cada trajeto.
+O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser um número inteiro positivo. \\
+\hline 
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\clearpage
+
+\begin{longtable}[!htb]{>{\centering\arraybackslash}m{3.8cm} | >{\centering}m{2.5cm} | >{\centering\arraybackslash}m{8.5cm}}
+  \caption{Detalhamento dos campos do arquivo \textit{feed\_info.txt} da GTFS}
+      \label{tab:gtfsFeedInfo} \\
+
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} | }{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}\\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{>{\centering\arraybackslash}m{3.8cm} |}{\textbf{Nome do campo}} & \multicolumn{1}{>{\centering}m{2.5cm} |}{\textbf{Condicional}} & \multicolumn{1}{>{\centering\arraybackslash}m{8.5cm}}{\textbf{Descrição}}  \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{c}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot 
+
+\hline 
+\textit{feed\_publisher\_name} & Obrigatório & Contém o nome completo da organização que publica o \textit{feed}. Pode ser o mesmo que aquele definido pelos valores de \textit{agency\_name} no arquivo \textit{agency.txt}. Aplicativos que utilizam GTFS podem exibir este nome ao concederem atribuições relacionadas aos dados de um \textit{feed} específico. \\
+\hline 
+\textit{feed\_publisher\_url} & Obrigatório & Contém o URL do \textit{website} da organização que está publicando o \textit{feed}. Pode ser o mesmo que um dos valores de \textit{agency\_url} no arquivo \textit{agency.txt}. \\
+\hline 
+\textit{feed\_lang} & Obrigatório & Contém um código de idiomas IETF BCP 47 que especifica o idioma padrão usado para o texto neste \textit{feed}. Esta configuração ajuda os consumidores de GTFS a escolherem regras para o uso de letras maiúsculas e minúsculas e outras configurações específicas do idioma para o \textit{feed}. \\
+\textit{feed\_start\_date} / \textit{feed\_end\_date} & Opcional & O \textit{feed} fornece informações completas e confiáveis sobre a programação de um serviço, no período entre o início do dia \textit{feed\_start\_date} e o final do dia \textit{feed\_end\_date}. As datas nos dois dias estão no formato AAAAMMDD, assim como no arquivo \textit{calendar.txt}, ou são deixadas em branco se não estiverem disponíveis. A data \textit{feed\_end\_date} não deve preceder a data \textit{feed\_start\_date}, se ambas forem fornecidas. Os provedores de feeds são encorajados a oferecerem dados de programação fora desse período a fim de informarem sobre possíveis serviços no futuro, mas os consumidores de \textit{feed} devem estar conscientes de seu status não autorizado. Se \textit{feed\_start\_date} ou \textit{feed\_end\_date} se estendem além das datas do calendário ativo definidas nos arquivos \textit{calendar.txt} e \textit{calendar\_dates.txt}, o \textit{feed} se torna uma afirmação explícita de que não há serviços para as datas entre \textit{feed\_start\_date} ou \textit{feed\_end\_date} que não estão incluídas nas datas do calendário ativo. \\
+\hline 
+\textit{feed\_version} & Opcional & O editor de \textit{feeds} pode especificar uma sequência que indique a versão atual do \textit{feed} GTFS. Os aplicativos que utilizam GTFS podem exibir este valor para ajudar os editores de \textit{feed} a determinar se foi incorporada a versão mais recente do \textit{feed}. \\
+\hline 
+
+\end{longtable}
+\vspace{-\baselineskip}
+\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\end{apendicesenv}
+\end{document}
