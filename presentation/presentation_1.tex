@@ -122,7 +122,6 @@ Universidade de São Paulo \\ % Your institution for the title page
 \begin{itemize}
 \item Segregação urbana: dentre os mais de 12 milhões de habitantes da cidade de São Paulo, 10\% estão localizados no Centro Expandido (CE) e 90\% no Cinturão Periférico (CP).
 \begin{itemize}
-\item Movimento pendular e (CP) como região dormitória.
 \item Problemas relacionados a mobilidade urbana.
 \end{itemize}
 \end{itemize}
@@ -160,8 +159,12 @@ Universidade de São Paulo \\ % Your institution for the title page
 \begin{itemize}
 \item Sistemas de Transporte Inteligente (ITS --- \textit{Intelligent Transport System}).
 \item A lei de mobilidade urbana (12.587/2012) e o \textit{PlanMob/SP 2015} não mencionam explicitamente ITS e TIC.
+\end{itemize}
+\begin{itemize}
 \item O transporte público pode se beneficiar ao explorar ITS, e ao integrar as Redes Sociais com o planejamento, gestão e as atividades operacionais dos transportes públicos, abordando seus respectivos fatores sócio-técnicos.
-\item Analisar o impacto dos eventos de exceção na operação do sistema de transporte público por ônibus na cidade de São Paulo, usando dados do SIM (AVL) e de Redes Sociais.
+\begin{itemize}
+\item Analisar o impacto dos eventos de exceção na operação do sistema de transporte público por ônibus na cidade de São Paulo.
+\end{itemize}
 \end{itemize}
 \end{frame}
 %------------------------------------------------
@@ -175,7 +178,7 @@ Universidade de São Paulo \\ % Your institution for the title page
 \begin{itemize}
 \item Identificação de características dos eventos de exceção.
 \begin{itemize}
-\item Dados históricos dos módulos AVL do SIM.
+\item Dados históricos do SIM.
 \begin{itemize}
 \item Processamento de grandes volumes de dados;
 \item qualidade dos dados comprometida.
@@ -201,126 +204,25 @@ Universidade de São Paulo \\ % Your institution for the title page
 \frametitle{Objetivos}
 \begin{block}{Gerais}
 Caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo.
-\begin{itemize}
-\item \textbf{Observação}: Com a utilização de \textit{tweets} das contas oficiais das instituições responsáveis por reportar eventos de exceção na cidade de São Paulo e dados históricos dos módulos AVL do SIM.
-\end{itemize}
 \end{block}
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Objetivos}
-\begin{table}[!htb]
-\centering
-\caption{Descrição e nome dos profiles selecionados do Twitter}
-	\label{tab:oficialProfiles}
-\begin{adjustbox}{max height=28mm}
-\begin{threeparttable}
-\begin{tabular}{c|c}
-\hline
-\textbf{Descrição do \textit{profile} no \textit{Twitter}} & \textbf {Profile no \textit{Twitter}} \\ 
-\hline
-Comando do Corpo de Bombeiros da PMESP \tnote{a} & \textit{@BombeirosPMESP} \\ 
-\hline
-Companhia de Engenharia de Tráfego de SP & \textit{@CETSP\_} \\ 
-\hline
-Companhia Paulista de Trens Metropolitanos & \textit{@CPTM\_oficial} \\ 
-\hline
-Defesa Civil do Estado de São Paulo & \textit{@SPCEDEC} \\
-\hline
-Governo do Estado de São Paulo & \textit{@governosp} \\
-\hline
-Metrô de São Paulo & \textit{@metrosp\_oficial} \\
-\hline
-Polícia Cívil do Estado de São Paulo & \textit{@Policia\_Civil} \\  
-\hline
-Polícia Militar do Estado de São Paulo & \textit{@PMESP} \\ 
-\hline
-São Paulo Agora --- CCOI \tnote{b} & \textit{@saopaulo\_agora} \\
-\hline
-São Paulo Transporte & \textit{@sptrans\_} \\
-\hline
-São Paulo Turismo & \textit{@TurismoSaoPaulo} \\ 
-\hline
-Secretaria de Transportes de São Paulo & \textit{@smtsp\_} \\ 
-\hline
-\end{tabular}
-\begin{tablenotes}
-            \item[a] Polícia Militar do Estado de São Paulo.
-            \item[b] Centro de Controle Integrado 24 Horas da Cidade de São Paulo
-        \end{tablenotes}
-\end{threeparttable}
-\end{adjustbox}
-\end{table}
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Objetivos}
 \begin{block}{Específicos}
 \begin{itemize}
     \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados.
      \item Extrair os endereços dos eventos de exceção identificados e geolocalizá-los.
 		\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente.
-\item Criação de plataforma para exploração e visualização dos dados coletados e processados das fontes citadas na Tab. \ref{tab:oficialProfiles} e da SPTrans.
+\item Criação de plataforma para exploração e visualização dos dados coletados e processados do Twitter e da SPTrans.
 \end{itemize}
 \end{block}
 \end{frame}
 %------------------------------------------------
-\subsection{Hipóteses}
-\begin{frame}
-\frametitle{Hipóteses}
-Com base na Revisão Sistemática realizada, os eventos de exceção presentes nos \textit{tweets} podem ser caracterizados, não exaustivamente, em:
-
-\begin{itemize}
-\item \textbf{Acidentes}.
-\begin{itemize}
-\item Acidentes nas estações de transporte.
-\item Incêndio.
-\end{itemize}
-
-\item \textbf{Espaço-temporais}.
-\begin{itemize}
-\item Dia da semana.
-\item Hora do dia.
-\end{itemize}
-
-\item \textbf{Eventos sociais}.
-\begin{itemize}
-\item Feiras de rua.
-\item Festivais.
-\item Jogos esportivos.
-\item Passeatas e maratonas.
-\end{itemize}
-
-\item \textbf{Eventos urbanos}.
-\begin{itemize}
-\item Relacionados ao tráfego.
-\end{itemize}
-
-\end{itemize}
-
-\end{frame}
-%------------------------------------------------
 \begin{frame}
 \frametitle{Hipóteses}
 
 \begin{itemize}
-\item \textbf{Desastres naturais}.
-\begin{itemize}
-\item Tempestades.
-\item Terremoto.
-\item Tufões.
-\end{itemize}
 
-\item \textbf{Metereológicas}.
-\begin{itemize}
-\item Dia claro, nublado, chuvoso, nevando, com neblina.
-\item Temperatura do ar.
-\end{itemize}
-\end{itemize}
+\item É possível identificar e categorizar os eventos de exceção de acordo com os tipos de eventos encontrados pela Revisão Sistemática.
 
-\begin{itemize}
-
-\item Identificação de características utilizando Processamento de Linguagem Natural (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
+\item Extração de características com o auxílio de Processamento de Linguagem Natural (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
 
 \item Extração dos endereços dos \textit{tweets} utilizando a técnica de Expressão Regular e posterior geolocalização.
 \end{itemize}
@@ -380,27 +282,27 @@ Complexo e dinâmico sistema sócio-técnico. Composto por sistemas urbanos, com
 Tem como fim utilizar TICs para resolver problemas relacionados ao transporte, tais como congestionamento, segurança, eficiência e conservação ambiental. 
 \end{block}
 \begin{itemize}
-\item \textbf{\textit{Advanced Traffic Management System} (ATMS)} --- são sistemas utilizados para melhorar a qualidade do serviço de tráfego e redução de atrasos.
-\item \textbf{\textit{Advanced Travellers Information Systems} (ATIS)} --- são sistemas utilizados para fornecer informação em tempo real aos viajantes.
-\end{itemize}
-
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Sistemas de Transporte Inteligente}
-\begin{itemize}
-\item  \textbf{\textit{Advanced Public Transportations Systems} (APTS)} --- são sistemas que utilizam ATMS e ATIS para melhorar a eficiência e operação do transporte público coletivo.
-\item \textbf{\textit{Advanced Vehicles Control Systems} (AVCS)} --- são sistemas compostos por sensores, computadores e sistemas de controle para auxiliar e alertar motoristas, com o objetivo de melhorar a segurança e reduzir congestionamentos.
 \item \textbf{\textit{Commercial Vehicles Operation} (CVO)} --- são sistemas utilizados para a segurança de veículos comerciais e frotas, por meio de tecnologias relacionadas a gerenciamento de tráfego, controle e gerenciamento de veículos e informações aos viajantes, tais como:
 \begin{itemize}
-\item \textit{Automatic Vehicles Identification}.
-\item \textit{Automatic Vehicles Classification}.
-\item \textit{\textbf{Automatic Vehicles Location}}.
-\item \textit{Pedestrian Movement Detection}.
-\item \textit{Board Computers}.
-\item \textit{Real Time Traffic Transmissions}.
+\item \textit{Automatic Vehicles Location}.
 \end{itemize}
 \end{itemize}
+\end{frame}
+%------------------------------------------------
+\subsection{General Transit Feed Specification}
+\begin{frame}
+\frametitle{General Transit Feed Specification}
+\begin{block}{\textit{GTFS --- General Transit Feed Specification}}
+É uma especificação de um formato comum para troca de informações estáticas sobre transporte público.
+\begin{itemize}
+\item \textit{agency.txt}: agências de transporte público como fonte de dados.
+\item \textit{stops.txt}: locais de embarque e desembarque.
+\item \textit{routes.txt}: trajetos de um grupo de viagens.
+\item \textit{trips.txt}: viagens de cada trajeto.
+\item \textit{stop\_times.txt}: horários de partida e chegada em paradas.
+\item \textit{calendar.txt}: início, fim e dias disponíveis dos serviços.
+\end{itemize}
+\end{block}
 \end{frame}
 %------------------------------------------------
 \subsection{Conceitos relacionados ao transporte público}
@@ -425,35 +327,6 @@ Tem como fim utilizar TICs para resolver problemas relacionados ao transporte, t
 \item modicidade tarifária;
 \item  logística eficiente no transporte de carga, dentre outros itens.
 \end{itemize} 
-\end{itemize}
-\end{frame}
-%------------------------------------------------
-\subsection{General Transit Feed Specification}
-\begin{frame}
-\frametitle{General Transit Feed Specification}
-\begin{block}{\textit{GTFS --- General Transit Feed Specification}}
-É uma especificação de um formato comum para troca de informações estáticas sobre transporte público. Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto que modelam diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário.
-\end{block}
-\begin{itemize}
-\item {\textit{GTFS-realtime}}.
-\begin{itemize}
-\item Atualizações dos horários de parada: viagem programada, adicionada, cancelada, desprogramada, cancelada, substituição e indefinição.
-\item Alertas de serviço: frequência, entidades afetadas, causa e efeito (sem serviço, serviço reduzido, atrasos significativos, desvio, serviço adicional, serviço modificado, parada deslocada, outro efeito, efeito desconhecido).
-\item Posições de veículos: posição, nível de congestionamento e estado de parada do veículo.
-\end{itemize}
-\end{itemize}
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{General Transit Feed Specification}
-Arquivos obrigatórios da GTFS:
-\begin{itemize}
-\item \textit{agency.txt}: agências de transporte público como fonte de dados.
-\item \textit{stops.txt}: locais de embarque e desembarque.
-\item \textit{routes.txt}: trajetos de um grupo de viagens.
-\item \textit{trips.txt}: viagens de cada trajeto.
-\item \textit{stop\_times.txt}: horários de partida e chegada em paradas.
-\item \textit{calendar.txt}: início, fim e dias disponíveis dos serviços.
 \end{itemize}
 \end{frame}
 %------------------------------------------------
@@ -848,7 +721,7 @@ TurismoSaoPaulo & 3308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\
 \begin{frame}
 \frametitle{Extração, seleção e classificação de características}
 \begin{itemize}
-\item Extração de características: após a exploração do conhecimento do domínio (já realizada), pretendemos na primeira iteração para extração de características usar os \textit{tokens} (\textit{features}) obtidos no pré-processamento para selecionarmos as palavras mais frequentes (\textit{features}) para cada conjunto de dados do \textit{Copus Twitter}. Nas iterações seguintes, planejamos analisar as \textit{features} selecionadas, combiná-las entrei si e derivar novas \textit{features}, de acordo com o conhecimento do domínio.
+\item Extração de características: pretendemos na primeira iteração para extração de características usar os \textit{tokens} (\textit{features}) obtidos no pré-processamento para selecionarmos as palavras mais frequentes (\textit{features}) para cada conjunto de dados do \textit{Corpus Twitter}. Nas iterações seguintes, planejamos analisar as \textit{features} selecionadas, combiná-las entrei si e derivar novas \textit{features}, de acordo com o conhecimento do domínio.
 \item Seleção de características: pretendemos selecionar as \textit{features} mais relevantes utilizando a medida estatística \textit{tf-idf} (\textit{term frequency–inverse document frequency}) para obtermos os termos mais frequentes de cada conjunto de dados do \textit{Corpus Twitter}.
 \item Classificação de características: classificação manual de 30\% do Corpus Twitter e analise dos algoritmos de aprendizado de máquina elencados pela revisão sistemática para classificação automatizada dos 70\% restantes.
 \end{itemize}
@@ -914,7 +787,7 @@ TurismoSaoPaulo & 3308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\
     Número & Descrição & 1     & 2     & 3     & 4     & 5     & 6     & 7     & 8     & 9     & 10    & 11    & 12    & 1     & 2     & 3     & 4     & 5     & 6 \\ \hline
     1     & Revisão bibliográfica & X     & X     & X     & X     & X     & X     &       &       &       &       &       &       &       &       &       &       &       &  \\
     2     & Desenvolvimento de protótipo &       &       & X     & X     & X     & X     &       &       &       &       &       &       &       &       &       &       &       &  \\
-    3     & Construção do conjunto de dados &       &       &       &       &       &       & X     & X     & X     & X     & X     &       &       &       &       &       &       &  \\
+    3     & Construção do conjunto de dados &       &       &   X    &   X    &   X    &  X     & X     & X     & X     & X     & X     &       &       &       &       &       &       &  \\
     4     & Implementação da solução proposta &       &       &       &       &       &       &     &      &      &      &      & X     &   X    &  X     &   X    &  X   &   X   &  \\
     5     & Avaliação dos resultados &       &       &       &       &       &       &       &       &       &      &     &      &   X    &       &   X    &       &   X    &  \\
     6    & Escrita de artigo &       &       &       &       &       &       &       &       &       &       &      &       &       &   X    &   X    &       &       &  \\ 
@@ -924,10 +797,6 @@ TurismoSaoPaulo & 3308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\
     }
   \label{tab:schedule}%
 \end{table}%
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Plano de trabalho}
 \begin{itemize}
 \item Implementação da solução proposta.
 \begin{itemize}
@@ -935,18 +804,16 @@ TurismoSaoPaulo & 3308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\
 \item Estudo dos algorítimos de classificação e implementação de um artefato de \textit{software} para classificação dos \textit{tweets} de acordo com seus respectivos eventos de exceção.
 \item Correlação dos eventos de exceção com os dados AVL da SPTrans.
 \end{itemize}
-\item Avaliação dos resultados parciais obtidos durante e após o desenvolvimento da solução proposta.
-\item Escrita de artigo para submissão em periódicos ou eventos da área.
-\item Escrita da dissertação.
 \end{itemize}
+
 \end{frame}
 %------------------------------------------------
 \subsection{Contribuições esperadas}
 \begin{frame}
 \frametitle{Contribuições esperadas}
 \begin{itemize}
-\item Propor uma solução para o problema de caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, por meio de \textit{tweets} e de dados históricos dos módulos AVL do SIM;
-\item disponibilizar os os conjuntos de dados que foram construídos;
+\item Uma solução para o problema de caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, por meio de \textit{tweets} e de dados históricos dos módulos AVL do SIM;
+\item disponibilizar os conjuntos de dados que foram construídos;
 \item uma plataforma para que esses dados possam ser visualizados e explorados, de forma a contribuir com projetos e pesquisas futuras correlatas;
 \item submissão de artigos com os resultados obtidos para veículos de disseminação de conhecimento científico nas áreas de: Análise de Redes Sociais, Sistemas de Transporte Inteligentes, Cidades Inteligentes.
 \end{itemize}
