@@ -647,7 +647,7 @@ Texto de Exame de Qualificação apresentado à Escola de Artes, Ciências e Hum
 DIAS, Felipe Cordeiro Alves. \textbf{Caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo}. \imprimirdata. \pageref{LastPage} f. Dissertação (Mestrado em Ciências) – Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, 2018.
 \end{flushleft}
 
-A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações existentes para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas existentes, como a do desfasado Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM as Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção e dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município. A hipótese é de que é possível identificar e localizar eventos de exceção nos \textit{tweets} por meio de Processamento de Linguagem Natural e Expressão Regular, e correlacionar esses eventos com os dados históricos do SIM.
+A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações atuais para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas computacionais existentes -- como as necessárias ao desfasado Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM às Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção e dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município. A hipótese é de que é possível identificar e localizar eventos de exceção nos \textit{tweets} por meio de Processamento de Linguagem Natural e Expressão Regular, e correlacionar esses eventos com os dados históricos do SIM.
 
 Palavras-chaves: Cidades Inteligentes. Transporte Público. Sistemas de Transporte Inteligentes. Eventos de exceção.
 \end{resumo}
@@ -813,7 +813,7 @@ Palavras-chaves: Cidades Inteligentes. Transporte Público. Sistemas de Transpor
 \label{introducao}
 
 Neste capítulo, são apresentadas as seções
-referentes a motivação da proposta de pesquisa; sobre a definição do problema que pretendemos abordar; a respeito dos objetivos gerais e específicos; sobre as hipóteses inferidas e sobre a organização dos capítulos desse documento.
+referentes à motivação da proposta de pesquisa; sobre a definição do problema que pretendemos abordar; a respeito dos objetivos gerais e específicos; sobre as hipóteses a serem verificadas e sobre a organização dos capítulos desse documento.
 
 \section{Motivação}
 \label{motivation}
@@ -821,11 +821,11 @@ referentes a motivação da proposta de pesquisa; sobre a definição do problem
 A cidade de São Paulo é o município mais populoso do Brasil, que passou por um rápido processo de urbanização e tem população atual estimada em 12.106.920 milhões de habitantes (com data de referência em 1º de julho de 2017)\footnote{\url{https://agenciadenoticias.ibge.gov.br/media/com\_mediaibge/arquivos/9bc1a0065c49fd6f81dc785b2b8d8c35.xlsx}. Acesso em Outubro, 29 de 2017.}.
 Desse total de habitantes, 10\% vivem na área do Centro Expandido (CE) e 90\% no Cinturão Periférico (CP) \cite{SA201722}, o que caracteriza uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. 
 
-Um desses problemas é conhecido como o movimento pendular, no qual longas distâncias são percorridas diariamente pelos moradores do CP para acessar os locais de emprego, educação e serviços localizados em maioria no CE. Além disso, o movimento pendular torna o CP em uma região dormitória, com parte de seus respectivos moradores dependentes do Sistema de Transporte Público para acessar o CE.
+Um desses problemas é conhecido como o movimento pendular, no qual longas distâncias são percorridas diariamente pelos moradores do CP para acessar os locais de emprego, educação e serviços localizados em maioria no CE. Além disso, o movimento pendular torna o CP  uma região dormitória, com parte de seus respectivos moradores dependentes do Sistema de Transporte Público para acessar o CE.
 
 Devido aos problemas de mobilidade urbana existentes no Brasil, como os da cidade de São Paulo, a Lei Federal 12.587/2012\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2012/lei/l12587.htm}. Acesso em Outubro, 29 de 2017.}, relacionada ao Programa de Aceleração do Crescimento  (PAC)\footnote{\url{http://www.pac.gov.br}. Acesso em Outubro, 29 de 2017.}, obrigou os municípios a enviarem seus respectivos planos de mobilidade urbana até o final do ano de 2015, visando promover o desenvolvimento sustentável com a mitigação dos custos ambientais e socioeconômicos dos deslocamentos de pessoas. Considerando essa lei, o Plano de Mobilidade de São Paulo (\textit{PlanMob/SP 2015}) foi instituído pelo Decreto 56.834\footnote{\label{planmob}\url{http://www.prefeitura.sp.gov.br/cidade/secretarias/transportes/planmob}. Acesso em Outubro, 29 de 2017.}, como instrumento de planejamento e gestão do Sistema Municipal de Mobilidade Urbana para os próximos 15 anos.
 
-No \textit{PlanMob/SP 2015}, a Secretaria Municipal de Transportes (SMT) propõe criar uma central de monitoramento conhecida como Central Integrada de Mobilidade Urbana (CIMU), que tem como objetivo integrar as áreas de trânsito e transporte subordinadas à SMT. Nessa proposta, observam-se os seguintes problemas que poderiam ser resolvidos em paralelo ao desenvolvimento do CIMU: (I) a CIMU não processa conteúdo de Redes Sociais, (II) não aborda melhoria dos sistemas já existentes e (III) será integrada com o desfasado Sistema Integrado de Monitoramento e Transporte (SIM), da São Paulo Transportes (SPTrans), responsável pelo monitoramento da infraestrutura de ônibus. 
+No \textit{PlanMob/SP 2015}, a Secretaria Municipal de Transportes (SMT) propõe criar uma central de monitoramento conhecida como Central Integrada de Mobilidade Urbana (CIMU), que tem como objetivo integrar as áreas de trânsito e transporte subordinadas à SMT. Nessa proposta, observam-se os seguintes problemas que poderiam ser resolvidos em paralelo ao desenvolvimento do CIMU: (I) a CIMU não processa conteúdo de Redes Sociais, (II) não aborda melhoria dos sistemas computacionais já existentes e (III) será integrada com o desfasado Sistema Integrado de Monitoramento e Transporte (SIM), da São Paulo Transportes (SPTrans), responsável pelo monitoramento da infraestrutura de ônibus. 
 
 O SIM utiliza a tecnologia \textit{Automatic Vehicle Location} (AVL) para localizar e rastrear os ônibus, fornecer informações em tempo real aos passageiros (RTPI --- \textit{Real Time Passenger Information}), monitorar 1.353 rotas de ônibus\footnote{\label{gtfsSptrans}\url{http://www.sptrans.com.br/desenvolvedores}. Acesso em Outubro, 29 de 2017.}, 10 corredores de ônibus\footnote{\url{http://www.sptrans.com.br/terminais/corredores.aspx}. Acesso em Outubro, 29 de 2017.}, 28 terminais de ônibus\footnote{\url{http://www.sptrans.com.br/terminais}. Acesso em Outubro, 29 de 2017.} e 19.933 mil paradas de ônibus\footref{gtfsSptrans} que serviram em 2016 a aproximadamente 8 milhões de passageiros por dia\footnote{\url{http://www.sptrans.com.br/indicadores}. Acesso em Outubro, 29 de 2017.}. Apesar da importância do SIM, há inúmeras defasagens tecnológicas (que causam discrepância nas informações recebidas pelos usuários, dentre outros problemas) \cite{consulo2016evaluation}, que precisariam ser resolvidas antes de integrá-lo ao CIMU.
  
@@ -833,7 +833,7 @@ Sistemas como o SIM são classificados como Sistemas de Transporte Inteligente (
 
 No entanto, a lei de mobilidade urbana (12.587/2012) e o \textit{PlanMob/SP 2015} não mencionam explicitamente ITS e TIC. O conteúdo de ambos os documentos tem um viés político-urbano, com pouco aprofundamento em questões tecnológicas e melhorias dos sistemas já existentes. Esse cenário é diferente em alguns países, nos quais existem planejamentos para o transporte e mobilidade urbana que estão explicitamente relacionados ao desenvolvimento e uso de novas tecnologias.
 
-Por exemplo, os EUA têm o plano estratégico para 2015-2019 em ITS, abordando temas como veículos conectados, automação, uso de tecnologias emergentes (para apoiar decisões em tempo real), intregação de dados corporativos, interoperabilidade (comunicação entre diferentes sistemas) e entrega acelerada de projetos \cite{itsdot}. Enquanto que a União Européia e o Japão, estão centrados em padronizações de tecnologias em ITS, com o obtjetivo de serem referências nesse setor \cite{consulo2016evaluation}.
+Por exemplo, os EUA têm o plano estratégico para 2015-2019 em ITS, abordando temas como veículos conectados, automação, uso de tecnologias emergentes (para apoiar decisões em tempo real), intregação de dados corporativos, interoperabilidade (comunicação entre diferentes sistemas) e entrega acelerada de projetos \cite{itsdot}. Já a União Européia e o Japão estão centrados em padronizações de tecnologias em ITS, com o obtjetivo de serem referências nesse setor \cite{consulo2016evaluation}.
 
 O contraste entre os dois parágrafos anteriores talvez seja devido ao fato de a legislação brasileira e os planos para mobilidade urbana terem sido estabelecidos como consequência do crescimento urbano acelerado e sem planejamento. Ou seja, como solução paliativa para um problema urbano, o que difere dos planos em ITS mencionados, que têm como foco otimizar o transporte e criar padrões tecnológicos. 
 
@@ -852,8 +852,8 @@ O uso de conteúdo de Redes Sociais pode ajudar a abordar os problemas anteriorm
 
 \section{Objetivos}
 \label{objetivos}
-O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Visando alcançar esse objetivo, serão coletados \textit{tweets} das contas oficiais das instituições responsáveis por reportar eventos de exceção na
-cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na Tab. \ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos dos módulos AVL do SIM. 
+O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Visando alcançar esse objetivo, serão coletados \textit{tweets} das contas oficiais das instituições governamentais responsáveis por reportar eventos de exceção na
+cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na tabela \ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos dos módulos AVL do SIM. 
 
 Além disso, temos como objetivos específicos:
 
@@ -861,7 +861,7 @@ Além disso, temos como objetivos específicos:
     \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados.
      \item Extrair os endereços dos eventos de exceção identificados e geolocalizá-los.
 		\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente. Com isso, a necessidade de entrega dos dados a sociedade, apontada por \cite{kuflik2017automating}, será atendida.
-\item Criação de plataforma para exploração e visualização dos dados coletados e processados das fontes citadas na Tab. \ref{tab:oficialProfiles} e da SPTrans.
+\item Criação de plataforma para exploração e visualização dos dados coletados e processados das fontes citadas na tabela \ref{tab:oficialProfiles} e da SPTrans.
 \end{itemize}
 
 \begin{table}[!htb]
@@ -954,7 +954,7 @@ Com base na Revisão Sistemática do Cap. \ref{revisao}, os eventos de exceção
 
 Dito isso, espera-se que seja possível identificar tais características utilizando Processamento de Linguagem Natural (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
 
-Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Pois em uma análise preliminar observamos que o conteúdo das contas selecionadas, citadas na Tab. \ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
+Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Pois em uma análise preliminar observamos que o conteúdo das contas selecionadas, citadas na tabela \ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
 
 \section{Organização do documento}
 \label{docOrg}
@@ -1053,7 +1053,7 @@ Por fim, a seguir estão elencadas algumas frentes de estudo e de desenvolviment
 
 Sistemas de Transporte Inteligentes (ITS --- \textit{Intelligent Transportation Systems}) é uma das mais antigas tecnologias presentes em Cidades Inteligentes \cite{menouar2017uav}, que tem como fim utilizar TICs para resolver problemas relacionados ao transporte, tais como congestionamento, segurança, eficiência e conservação ambiental \cite{figueiredo2001towards}. 
 
-É importante notar a diferença entre o termo \textit{Intelligent} e \textit{Smart} de \textit{Smart transportation / mobility}, o primeiro, respectivamente, refere-se apenas ao uso de tecnologias, enquanto que o segundo ao uso de TICs para transformar de forma significativa a vida cotidiana das pessoas \cite{albino2015smart}. No demais, algumas das categorias de ITS estão enumeradas a seguir:
+É importante notar a diferença entre o termo \textit{Intelligent} e \textit{Smart} de \textit{Smart transportation / mobility}, o primeiro, respectivamente, refere-se apenas ao uso de tecnologias, enquanto que o segundo ao uso de TICs para transformar de forma significativa a vida cotidiana das pessoas \cite{albino2015smart}. A seguir, algumas das categorias de ITS estão enumeradas:
 
 \begin{enumerate}
 \item \textbf{\textit{Advanced Traffic Management System} (ATMS)} --- são sistemas utilizados para melhorar a qualidade do serviço de tráfego e redução de atrasos \cite{figueiredo2001towards}, por meio de:
@@ -1092,7 +1092,7 @@ Uma qualidade específica do espaço urbano é a acessibilidade universal, que o
 
 A mobilidade por ser entendida como um atributo do indivíduo, o qual está relacionado a sua capacidade de se deslocar pelo território da cidade e a sua respectiva renda (dimensão econômica); ou seja, pessoas ou famílias de maior renda tendem a ter maior número de viagens. Além disso, observa-se que a restrição da mobilidade devido a má qualidade das infraestruturas urbanas é considerada como falta de acessibilidade ao espaço e não como perda de mobilidade do indivíduo.
 
-A condição de mobilidade pode ser calculada pelo indicador conhecido como taxa ou índice de mobilidade, determinado pelo quociente entre o total de viagens realizadas e o total da população residente em uma região. Tal indicador pode ser especializado de acordo o tipo de mobilidade, por exemplo, ao considerar apenas as viagens motorizadas, obtém-se o índice de mobilidade motorizada.
+A condição de mobilidade pode ser calculada pelo indicador conhecido como taxa ou índice de mobilidade, determinado pelo quociente entre o total de viagens realizadas e o total da população residente em uma região. Tal indicador pode ser especializado de acordo o tipo de mobilidade, por exemplo, ao considerar apenas as viagens motorizadas, obtém-se o índice de mobilidade motorizada; e ser caracterizado como crescente ou decrescente de acordo com fatores socioeconômicos.
 
 Além da mobilidade como atributo do indivíduo, existe a mobilidade como atributo da cidade, conhecida como mobilidade urbana. A mobilidade urbana considera um conjunto de fatores de uma aglomeração urbana que tornam a mobilidade mais qualificada e eficiente, tais como: \begin{enumerate}
 \item Transporte público coletivo;
@@ -1137,7 +1137,7 @@ O conceito de viagem no setor de transportes é definido como o deslocamento de 
 \section{\textit{General Transit Feed Specification}}
 \label{gtfs}
 
-A \textit{GTFS --- General Transit Feed Specification}\footnote{\label{googleTransit}\url{https://developers.google.com/transit}. Acesso em Outubro, 29 de 2017.}, como o próprio nome sugere, é uma especificação de um formato comum (o que permite interoperabilidade) para troca de informações estáticas sobre transporte público.  Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto (que seguem determinados requisitos semelhantes aos do formato \textit{CSV}\footref{googleTransit})  compactados no formato \textit{Zip}\footnote{\url{https://support.pkware.com/display/PKZIP/APPNOTE}. Acesso em Outubro, 29 de 2017.}, e detalhados na Tab. \ref{tab:gtfsFiles}. Cada arquivo modela diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário.
+A \textit{GTFS --- General Transit Feed Specification}\footnote{\label{googleTransit}\url{https://developers.google.com/transit}. Acesso em Outubro, 29 de 2017.}, como o próprio nome sugere, é uma especificação de um formato comum (o que permite interoperabilidade) para troca de informações estáticas sobre transporte público.  Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto (que seguem determinados requisitos semelhantes aos do formato \textit{CSV}\footref{googleTransit})  compactados no formato \textit{Zip}\footnote{\url{https://support.pkware.com/display/PKZIP/APPNOTE}. Acesso em Outubro, 29 de 2017.}, e detalhados na tabela \ref{tab:gtfsFiles}. Cada arquivo modela diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário.
 
 \begin{table}[!htb]
   \centering
@@ -1176,7 +1176,7 @@ fare\_attributes.txt & Opcional & Contém informações sobre tarifas dos trajet
 \hline
   \end{tabular}
   \begin{tablenotes}
-            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice \ref{apendiceC}, nas Tab. \ref{tab:gtfsAgency} - \ref{tab:gtfsFeedInfo}.
+            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice \ref{apendiceC}, nas tabela \ref{tab:gtfsAgency} - \ref{tab:gtfsFeedInfo}.
         \end{tablenotes}
 \end{threeparttable}
 \center{\textbf{Fonte:}} Google Transit (adaptada)\footref{googleTransit}
@@ -1256,29 +1256,29 @@ Um conjunto de dados pode ser representado por um número fixo de característic
 
 O processo de \textit{feature engineering} é iterativo entre as fases de \textit{feature extraction}, \textit{feature construction} e \textit{feature selection} \cite{motoda2002feature}. Antes da fase de \textit{feature extraction} os dados podem ser pré-processados utilizando técnicas de padronização, normalização, remoção de ruídos, redução de dimensionalidade, discretização, expansão, dentre outras; observa-se que informações podem ser perdidas ao realizar essas transformações  \cite{guyon2006introduction}.
 
-Na fase de \textit{feature construction} é realizado um processo para descobrir informações ausentes a respeito dos relacionamentos entre as \textit{features} e aumentar o espaço de \textit{features} inferindo ou criando novas \textit{features}, com o objetivo de melhorar a acurácia dos algoritmos de classificação, compreensão dos dados, obtenção de dados ocultos, etc \cite{motoda2002feature}. Nessa fase, a partir de um conjunto de \textit{n features} $A_1, A_2, ..., A_n$ é possível construir \textit{m} \textit{features} adicionais $A_{n+1}, A_{n+2}, ..., A_{n+m}$, por meio de heurísticas, operadores lógicos, algorítmos (\textit{greedy search} aplicada em árvores de decisão, genéticos, etc.), dentro outros \cite{motoda2002feature}.
+Na fase de \textit{feature construction} é realizado um processo para descobrir informações ausentes a respeito dos relacionamentos entre as \textit{features} e aumentar o espaço de \textit{features} inferindo ou criando novas \textit{features}, com o objetivo de melhorar a acurácia dos algoritmos de classificação, compreensão dos dados, obtenção de dados ocultos, etc \cite{motoda2002feature}. Nessa fase, a partir de um conjunto de \textit{n features} $A_1, A_2, ..., A_n$ é possível construir \textit{m} \textit{features} adicionais $A_{n+1}, A_{n+2}, ..., A_{n+m}$, por meio de heurísticas, operadores lógicos, algoritmos (\textit{greedy search} aplicada em árvores de decisão, genéticos, etc.), dentro outros \cite{motoda2002feature}.
 
 O processo de \textit{feature extraction}, por sua vez, utiliza uma função de mapeamento para extrair um conjunto mínimo de novas \textit{features} com base nas \textit{features} originais e em métricas de desempenho (o que pode ser realizado também usando \textit{feedforward neural network}), diferentemente da análise dos relacionamentos entre as \textit{features} realizada na fase de \textit{feature construction} \cite{motoda2002feature}. Assim, com um conjunto inicial de \textit{n features} $A_1, A_2, ..., A_n$ é possível extrair novas \textit{features} $B_1, B_2, ..., B_m (m < n), B_i = F_i(A_1, A_2, ..., A_n)$, onde $F_i$ é a função de mapeamento \cite{motoda2002feature}. 
 
-Por fim, tem-se como objetivo no processo de \textit{feature selection} a redução ótima do espaço das \textit{features} com base em critérios de seleção, ou seja, obter \textit{m features} a partir de um conjunto de \textit{n features}, onde \textit{m} $\le$ \textit{n} (o que pode ser alncançado por algorítmos de busca seguindo critérios de avaliação). Dessa forma, com um subcojunto menor de \textit{features}, é possível reduzir a dimensionalidade do espaço das \textit{features} (evitando sobre-ajuste), otimizar algorítimos de Aprendizado de Máquina e compreender melhor seus respectivos resultados, melhorar a acurácia dos algorítimos de classificação, dentre outros benefícios \cite{motoda2002feature}.
+Por fim, tem-se como objetivo no processo de \textit{feature selection} a redução ótima do espaço das \textit{features} com base em critérios de seleção, ou seja, obter \textit{m features} a partir de um conjunto de \textit{n features}, onde \textit{m} $\le$ \textit{n} (o que pode ser alncançado por algoritmos de busca seguindo critérios de avaliação). Dessa forma, com um subcojunto menor de \textit{features}, é possível reduzir a dimensionalidade do espaço das \textit{features} (evitando sobre-ajuste), otimizar algoritmos de Aprendizado de Máquina e compreender melhor seus respectivos resultados, melhorar a acurácia dos algoritmos de classificação, dentre outros benefícios \cite{motoda2002feature}.
 
-\section{Algorítimos de Aprendizado de Máquina}
+\section{Algoritmos de Aprendizado de Máquina}
 \label{classification}
 
-Os algorítimos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
+Os algoritmos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
 
-No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Assim, elencamos a seguir alguns dos principais algoritmos de aprendizado de máquina supervisionado para classificação textual:
+No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Assim, elencamos a seguir alguns dos principais algoritmos de aprendizado de máquina supervisionado para classificação textual, com base em \cite{khan2010review}:
 
 \begin{enumerate}
-\item \textit{Artificial Neural Network} \cite{khan2010review};
-\item \textit{Decision Tree} \cite{khan2010review};
-\item \textit{Decision Rules Classification}  \cite{khan2010review};
-\item \textit{K-nearest neighbor (k-NN)} \cite{khan2010review};
-\item \textit{Fuzzy correlation} \cite{khan2010review};
-\item \textit{Genetic Algorithm} \cite{khan2010review};
-\item \textit{Naïve Bayes Algorithm} \cite{khan2010review};
-\item \textit{Rocchio's Algorithm} \cite{khan2010review};
-\item \textit{Support Vector Machine} \cite{khan2010review}.
+\item \textit{Artificial Neural Network};
+\item \textit{Decision Tree};
+\item \textit{Decision Rules Classification} ;
+\item \textit{K-nearest neighbor (k-NN)};
+\item \textit{Fuzzy correlation};
+\item \textit{Genetic Algorithm};
+\item \textit{Naïve Bayes Algorithm};
+\item \textit{Rocchio's Algorithm};
+\item \textit{Support Vector Machine}.
 \end{enumerate}
 
 
@@ -1306,7 +1306,7 @@ Este capítulo apresenta uma Revisão Sistemática (RS) com o objetivo de encont
 
 \section{Planejamento da Revisão Sistemática}
 \label{planejamento}
-A presente Revisão Sistemática utiliza a metodologia proposta por \citeonline{biolchini2005techincal}, composta por cinco etapas.
+A presente Revisão Sistemática utiliza a metodologia proposta por \citeauthor{biolchini2005techincal} (\citeyear{biolchini2005techincal}), composta por cinco etapas.
 A primeira etapa está relacionada à formulação do problema, na qual é levantada uma questão central se referindo ao tipo de evidência que deverá  estar contida na revisão. Em seguida, são construídas definições que permitem estabelecer uma distinção entre os estudos relevantes e irrelevantes para o propósito específico do que se está investigando \cite{biolchini2005techincal}.
 
 A segunda etapa da condução está relacionada à Coleta de Dados, na qual são definidos os procedimentos que serão utilizados para encontrar a evidência relevante que foi definida na etapa anterior. Nesta fase é extremamente importante determinar as fontes que podem fornecer estudos relevantes a serem incluídos na pesquisa \cite{biolchini2005techincal}.
@@ -1341,9 +1341,9 @@ Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipó
 
 \item Quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}?
 \label{item:3} \newline \newline
-O propósito da QP3 é identificar quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}, principalmente no que se refere a garantia da confiabilidade dos dados processados. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama de como garantir a confiabilidade ao utilizar dados oriundos de \textit{tweets}, dentre outros aspectos relacionados a testes estatísticos. \newline
+O propósito da QP3 é identificar quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}, principalmente no que se refere a análise de acurácia de classificação binária. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama de como garantir a confiabilidade ao utilizar dados oriundos de \textit{tweets}, dentre outros aspectos relacionados a testes estatísticos. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): \textit{${F_1}$ score} é a principal técnica estatística utilizada para garantir confiabilidade dos dados.\newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): \textit{${F_1}$ score} é a principal técnica estatística utilizada para análise de acurácia de classificação binária.\newline
 
 \item Quais os paradigmas de processamento têm sido utilizados ao lidar com \textit{tweets}?
 \label{item:4} \newline \newline
@@ -1355,18 +1355,18 @@ Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipó
 \label{item:5} \newline \newline
 O propósito da QP5 é identificar os eventos de exceção relacionados ao transporte público. A resposta a essa questão de pesquisa ajudará especialistas no levantamento de eventos de exceção relacionados ao transporte público, os quais podem ser utilizados em algoritmos de classificação.\newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP5): há poucos ou nenhum estudo que ao tratar de problemáticas relacionadas ao transporte público, realizam um levantamento dos eventos de exceção desse contexto.\newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP5): há poucos ou nenhum estudo que, ao tratar de problemáticas relacionadas ao transporte público, realizam um levantamento dos eventos de exceção desse contexto.\newline
 
 \item Quais as técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}?
 \label{item:6} \newline \newline
 O propósito da QP6 é identificar as técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das principais técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP6): a técnica \textit{Support Vector Machine} tem sido utilizada na maioria dos estudos que aplicam aos \textit{tweets} algum algorítimo de Aprendizado de Máquina.\newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP6): a técnica \textit{Support Vector Machine} tem sido utilizada na maioria dos estudos que aplicam aos \textit{tweets} algum algoritmo de Aprendizado de Máquina.\newline
 \end{enumerate}
 
 \section{Coleta de dados}
 \label{coleta}
-Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em Outubro, 29 de 2017.}. Constam na Tab. \ref{tab:tableNumberOfArticles} as bases pesquisadas, quantidades de artigos coletados, descartados no processo de filtragem (Fig. \ref{fig:filter}, descrito na seção \ref{avaliacao}) e selecionados. Com base na QP1, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline 
+Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em Outubro, 29 de 2017.}. Constam na tabela \ref{tab:tableNumberOfArticles} as bases pesquisadas no ano de 2017, quantidades de artigos coletados, descartados no processo de filtragem (Fig. \ref{fig:filter}, descrito na seção \ref{avaliacao}) e selecionados. Com base na QP1, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline 
 
 \textbf{\textit{String} de busca:} twitter urban planning city (analytics OR patterns OR tweets OR social OR media) AND (public transport) \newline
 
@@ -1414,9 +1414,9 @@ Visando selecionar os artigos relevantes para esta Revisão Sistemática, os seg
 \item Trabalhos que estão fora do escopo da questão de pesquisa.
 \end{itemize}
 
-O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \cite{fcas}, assim como seu respectivo protocolo. Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados. 
+O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \citeauthor{fcas} (\citeyear{fcas}) (não incluso neste trabalho com o objetivo de não deixar o texto exaustivo), assim como seu respectivo protocolo (no qual contém o detalhamento dos critérios de inclusão e exclusão, dentre outros artefatos da condução). Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados.
 
-Sendo assim, a Fig. \ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} sintetizando as palavras chaves dos estudos primários selecionados; e a Fig. \ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Fig. \ref{fig:porcentagem}.
+Sendo assim, a Fig. \ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gerada com a biblioteca \textit{wordcloud} \cite{wordcloud}) sintetizando as palavras chaves dos estudos primários selecionados; e a Fig. \ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Fig. \ref{fig:porcentagem}.
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -1463,17 +1463,17 @@ Os tipos de problemas urbanos abordados utilizando o processamento de \textit{tw
 
 Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que \textit{tweets} podem ser utilizados para auxiliar na mitigação de inúmeros problemas urbanos. Apesar disso, \cite{Chaniotakis2015} observam que os \textit{tweets} contendo informações sobre geolocalização são normalmente publicados em áreas relacionadas ao lazer, além de haver correlação entre regiões urbanas com maior renda \textit{per capita} e o número de \textit{tweets} postados. Tal evidência pode conduzir viés nas análises por representar somente algumas classes econômicas da população. 
 
-Considerando a observação anterior, um dos estudos analisados foi o realizado por \cite{Zagal2016}, na Cidade do México. Nesse estudo, foram mapeados os pontos da cidade referenciados em publicações relacionadas a doenças respiratórias e poluição; orientando tomadas de decisão no aspecto ambiental. 
+Considerando a observação anterior, um dos estudos analisados foi o realizado por \cite{Zagal2016}, na Cidade do México. Nesse estudo, foram mapeados os pontos da cidade referenciados em publicações relacionadas a doenças respiratórias e poluição, orientando tomadas de decisão no aspecto ambiental. 
 
 Além disso, há também exemplos de trabalhos relacionados a Segurança Pública, como o estudo de caso realizado por \cite{Wen2016}, no qual foi enriquecido um conjunto de dados com \textit{tweets} geolocalizados, visando analisar o impacto dos ataques terroristas (em Paris, em novembro de 2015) nos padrões de atividades urbanas (relacionadas ao uso de transporte público, serviços, realização de compras, e atividade noturna). Em um outro caso de aplicação, estimou-se por meio de \textit{tweets}, a probabilidade de ocorrência de crimes e ameaças nas ruas da Cidade do México, sugerindo rotas seguras aos pedestres \cite{Mata2015}.
 
-A parte dos estudos relacionados a Segurança Pública, há exemplos dos \textit{tweets} sendo utilizados para inferir padrões demográficos. Por exemplo, em \cite{Farseev2015}; \cite{Gkiotsalitis2015}; \cite{Gkiotsalitis2016}, \textit{tweets} foram processados para analisar a distribuição etária e de gênero da população, assim como seus respectivos pontos de interesse \cite{Hasan2014} e \cite{Maghrebi2015} (como locais para entretenimento, residência, trabalho, recriação, compras, educação e serviços sociais). 
+Também, foram encontrados na literatura estudos que utilizaram \textit{tweets} para inferir padrões demográficos. Por exemplo, em \cite{Farseev2015}; \cite{Gkiotsalitis2015}; \cite{Gkiotsalitis2016}, \textit{tweets} foram processados para analisar a distribuição etária e de gênero da população, assim como seus respectivos pontos de interesse \cite{Hasan2014} e \cite{Maghrebi2015} (como locais para entretenimento, residência, trabalho, recriação, compras, educação e serviços sociais). 
 
 Tais pontos de interesse, podem ser utilizados em problemas relacionados ao transporte público \cite{Gutev2016} e também ao Turismo, como no estudo realizado por \cite{Abbasi2015} para identificar a locomoção de visitantes e residentes em pontos turísticos de Sydney; por \cite{Chua2016}, ao caracterizar aspectos espaciais, temporais e demográficos, dos turistas da cidade de Cilento, Itália; e por \cite{Thomaz2016} na cidade de Curitiba (Brasil), no contexto da Copa do Mundo de 2014.
 
 Nesse mesmo contexto, \cite{Guo2016} estudaram algumas questões demográficas via análise de sentimento, encontrando correlação positiva entre oportunidades de emprego e sentimentos positivos, e negativa entre felicidade e número de crianças na população da Grande Londres. Outro caso de uso, foi o desenvolvido em \cite{Steiger2015Census}, no qual \textit{tweets} foram processados para identificar diferentes tipos de atividades em Londres, correlacionando-as com informações censitárias; e em \cite{Sobolevsky2015} ao estudar a atratividade da Espanha a turistas.
 
-Um dos problemas relacionados a identificação de pontos de interesse se refere as incertezas espaço-temporais e de determinação de tópicos, o qual foi abordado pelo trabalho realizado por \cite{Bendler2014}. Nele, os autores contribuíram com uma técnica para minimizar o problema ao processar \textit{tweets}; analisando a causalidade entre o tempo e local das postagens realizadas, reduzindo assim os índices de incerteza, no contexto da cidade de São Francisco, EUA. Outro problema, relaciona-se com a questão da privacidade, pois as localizações dos usuários podem ser inferidas mesmo quando não disponibilizadas. Nesse cenário, \cite{Wang2017} propõem um Sistema de Calibração de Trajetórias Privadas (PTCS), usando os mecanismos de Privacidade Diferencial e de \textit{k-anonymity}, com isso é possível extrair informações sobre trajetórias sem exposição de informações sensíveis, testado na extração de localizações por meio de \textit{tweets}. 
+Um dos problemas relacionados à identificação de pontos de interesse se refere as incertezas espaço-temporais e de determinação de tópicos, o qual foi abordado pelo trabalho realizado por \cite{Bendler2014}. Nele, os autores contribuíram com uma técnica para minimizar o problema ao processar \textit{tweets}; analisando a causalidade entre o tempo e local das postagens realizadas, reduzindo assim os índices de incerteza, no contexto da cidade de São Francisco, EUA. Outro problema, relaciona-se com a questão da privacidade, pois as localizações dos usuários podem ser inferidas mesmo quando não disponibilizadas. Nesse cenário, \cite{Wang2017} propõem um Sistema de Calibração de Trajetórias Privadas (PTCS), usando os mecanismos de Privacidade Diferencial e de \textit{k-anonymity}, com isso é possível extrair informações sobre trajetórias sem exposição de informações sensíveis, testado na extração de localizações por meio de \textit{tweets}. 
 
 Outro contexto na literatura revisada está relacionado ao processamento dos eventos que acontecem na cidade (idealmente em tempo real, como sugerem \cite{Soomro2016}). Um dos estudos encontrados sobre esse assunto, foi o realizado por \cite{Anantharam2015}, no qual foi desenvolvida uma técnica para identificar os diferentes tipos de eventos do cotidiano urbano, rotulando-os sequencialmente, por meio da anotação de \textit{tweets} e extração de eventos, considerando aspectos espaciais, temporais e temáticos. Para isso, utilizou conhecimentos de domínio, tais como informações sobre os locais em uma cidade e possíveis termos para os eventos, identificando assim os relacionados ao tráfego da região da Baia de São Francisco, EUA. 
 
@@ -1481,7 +1481,7 @@ Sobre a mesma temática, \cite{DiLorenzo2013} desenvolveram uma ferramenta intel
 
 Em uma abordagem mais genérica, \cite{Mukherjee2015} propuseram uma plataforma para processar (em \textit{near real time}) questões urgentes da cidade, oriundas de diversas fontes (incluindo o \textit{Twitter}), atuando como intermediadora entre cidadãos e agências civis. No que se refere a mobilidade urbana, mas não utilizando informações sobre pontos de interesse, \cite{Yousaf2014} inferiram a afinidade entre usuários por meio da análise de \textit{retweets}, possibilitando que rotas de corridas sejam compartilhadas entre pessoas com interesses em comum, tornando a viagem mais agradável.
 
-De forma inusitada, \cite{Frias-Martinez2014} utilizaram apenas \textit{tweets} geolocalizados para analisar suas respectivas distribuições no espaço urbano, visando identificar a caracterização do uso da terra; considerando os zoneamentos urbanos industriais, residenciais, comerciais e de lazer. O trabalho foi realizado no contexto da cidade de Manhattan (EUA), Londres (Reino Unido) e Madrid (Espanha).
+De forma inusitada, \cite{Frias-Martinez2014} utilizaram apenas \textit{tweets} geolocalizados para analisar suas respectivas distribuições no espaço urbano, visando identificar a caracterização do uso da terra, considerando os zoneamentos urbanos industriais, residenciais, comerciais e de lazer. O trabalho foi realizado no contexto da cidade de Manhattan (EUA), Londres (Reino Unido) e Madrid (Espanha).
 
 \subsection{Casos de uso relacionados ao transporte público (QP2)}
 Nesta seção, são identificados os estudos primários que utilizam processamento de \textit{tweets} tendo como foco a mitigação dos problemas relacionados ao transporte público; enumerados a seguir:
@@ -1505,7 +1505,7 @@ Nesta seção, são identificados os estudos primários que utilizam processamen
 \end{enumerate} 
 \end{enumerate}
 
-Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que os estudos estão classificados em análise de impacto de eventos, planejamento e gestão do transporte público. Por exemplo, \cite{Wen2016} utilizaram \textit{tweets} para analisar o impacto dos ataques terroristas em Paris (2015) nos padrões de mobilidade referentes ao uso de transporte público. Semelhantemente, \cite{Itoh2016} desenvolveram uma ferramenta para analisar e explorar visualmente, com base em \textit{tweets}, as tomadas de decisão dos passageiros do Metrô de Tokyo, ante a eventos anormais, tais como Tufões, Incêndios, Terremotos, dentre outros. Nesse mesmo contexto, \cite{Ni2016} propuseram uma técnica de predição de fluxo de passageiros no Metrô de Nova Iorque, identificando eventos com base nas \textit{hashtags} dos \textit{tweets}. Enquanto que em \cite{Chen2016}, analisaram a relação entre eventos do tráfego com a demanda por bicicletas.
+Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que os estudos estão classificados em análise de impacto de eventos, planejamento e gestão do transporte público. Por exemplo, \cite{Wen2016} utilizaram \textit{tweets} para analisar o impacto dos ataques terroristas em Paris (2015) nos padrões de mobilidade referentes ao uso de transporte público. Semelhantemente, \citeauthor{Itoh2016} (\citeyear{Itoh2016}) desenvolveram uma ferramenta para analisar e explorar visualmente, com base em \textit{tweets}, as tomadas de decisão dos passageiros do Metrô de Tokyo, ante a eventos anormais, tais como Tufões, Incêndios, Terremotos, dentre outros. Nesse mesmo contexto, \cite{Ni2016} propuseram uma técnica de predição de fluxo de passageiros no Metrô de Nova Iorque, identificando eventos com base nas \textit{hashtags} dos \textit{tweets}. Enquanto que em \cite{Chen2016}, analisaram a relação entre eventos do tráfego com a demanda por bicicletas.
 
 No que se refere aos estudos focados no planejamento e gestão do transporte público, \cite{Mukherjee2015} apresentam uma plataforma desenvolvida e utilizada pela Agência de Transporte Público de Bangalore, na Índia, a qual permite que usuários reportem questões relacionadas ao transporte  público, possibilitando a melhoria do planejamento de suas respectivas operações, assim como o serviço prestado para a população. Nessa mesma linha de estudo, em \cite{Gutev2016}, \textit{tweets} são utilizados para identificar a popularidade de determinados locais, pontos de interesse e distribuição etária, com o objetivo de determinar os melhores pontos para estações de bicicletas e incentivar assim o uso desse modal de transporte. Também relacionado aos pontos de interesse, \cite{Maghrebi2015} utilizaram \textit{tweets} para identificar padrões das atividades humanas (em diferentes horários do dia) e seus respectivos impactos na demanda por transporte público.
 
@@ -1618,7 +1618,7 @@ Especificamente sobre as técnicas de classificação, \cite{Mukherjee2015} util
 
 Apesar disso, \cite{Guo2016} utilizaram Processamento de Linguagem Natural (baseado em palavras chaves) para rotular sentimentos de \textit{tweets}, devido a facilidade de escalar essa técnica (para processamento de milhões de \textit{tweets}), em comparação a SVM. Outro caso de divergência é o do estudo realizado por \cite{Farseev2015}, no qual foi escolhido o modelo de classificação \textit{Random Forest}, devido ao fato de ser mais adequado para classificação em espaço dimensional elevado, em vez das técnicas SVM e \textit{Naive Bayes}, no que se refere a predição de idade e gênero usando \textit{tweets}.
 
-Em \cite{Mata2015}, por sua vez, aplicou-se a técnica \textit{Bayes Classification} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{C5.0 algorithm} devido a melhor desempenho em relação a \textit{Bayes}, dependendo do tópico que está sendo classificado. 
+\citeauthor{Mata2015} (\citeyear{Mata2015}), por sua vez, aplicou-se a técnica \textit{Bayes Classification} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{C5.0 algorithm} devido a melhor desempenho em relação a \textit{Bayes}, dependendo do tópico que está sendo classificado. 
 
 Para anotação de eventos, \cite{Anantharam2015} treinaram um modelo CRF (usando anotações baseadas em dicionários) para determinar os locais da cidade e os termos relacionas aos eventos expressos em \textit{tweets}. E, isoladamente \cite{Frias-Martinez2014} utilizaram a técnica \textit{Self-Organizing Maps}, tendo como entrada os valores de latitude e longitude de \textit{tweets}. Com isso, construíram um mapa segmentado em áreas urbanas, baseando-se nas regiões com diferentes concentrações de \textit{tweets}.
 
@@ -1634,7 +1634,7 @@ Tais estudos estão concentrados em maioria na identificação de pontos de inte
 
 Referente a segunda hipótese, os estudos exploraram principalmente o impacto de eventos no transporte público, confirmando-a parcialmente. Isso, devido ao fato de um dos trabalhos explorar como os eventos relacionados ao tráfego impactam na demanda por bicicletas; não havendo nenhum outro sobre processamento de \textit{tweets} para mitigação dos problemas envolvendo Tráfego. Outra temática não mencionada pela HP2 e sobre a qual há uma quantidade considerável de estudos, foi a do uso de \textit{tweets} para o planejamento e gerenciamento do transporte público.
 
-Independentemente dos problemas abordados por meio do processamento de \textit{tweets}, \textit{${F_1}$ score} tem sido a principal técnica estatística utilizada para garantir a confiabilidade do dados, confirmando a terceira hipótese (HP3). Apesar disso, a HP3 não considerou outras técnicas importantes, como a \textit{Linear Regression}, amplamente utilizada nos estudos analisados. Referente as técnicas de Aprendizado de Máquina, a mais utilizada foi a \textit{Latent Dirichlet Allocation} (LDA), seguida da \textit{Support Vector Machine} (SVM), confirmando parcialmente a sexta hipótese (HP6).
+Independentemente dos problemas abordados por meio do processamento de \textit{tweets}, dentre as 12 técnicas estatísticas elencadas, \textit{${F_1}$ score} foi a única referenciada como ferramenta para análise de acurácia de classificação binária, confirmando a terceira hipótese (HP3). Apesar disso, a HP3 não considerou outras técnicas importantes (com propósitos distintos), como a \textit{Linear Regression}, amplamente utilizada nos estudos analisados. Referente as técnicas de Aprendizado de Máquina, a mais utilizada foi a \textit{Latent Dirichlet Allocation} (LDA), seguida da \textit{Support Vector Machine} (SVM), confirmando parcialmente a sexta hipótese (HP6).
 
 Por fim, apenas quatro dos vinte e nove estudos analisados, cerca de 14\%, mencionaram \textit{features} relacionadas ao transporte público, confirmando assim a quinta hipótese (HP5). Assim como a quantidade de trabalhos que realizam processamento de \textit{tweets} em tempo real, sendo apenas dois do total analisado, cerca de 6\%, que utilizam esse paradigma de processamento, o que confirma a quarta hipótese (HP4). É importante ainda observar que, outros estudos que mencionaram processamento em tempo real, realizaram na verdade coleta de \textit{tweets} em tempo real, para análises a posteriori via processamento em \textit{batch} (offline), categoria na qual a maioria dos estudos foram enquadrados.
 
@@ -1646,7 +1646,7 @@ Neste capítulo, são apresentadas as seções referentes a proposta de pesquisa
 \section{Formalização do problema}
 \label{problemForm}
 
-O problema de caracterização de eventos de exceção e de seus respectivos impactos envolve a fase conhecida como \textit{feature extraction}, do ciclo iterativo do processo de \textit{feature engineering}. \textit{Feature extraction} consiste na extração de um conjunto de características ${\alpha =}$ $\lbrace {\chi_1}, {\chi_2}, ..., {\chi_n} \rbrace$ a partir de um dado de entrada $\chi$. Sendo assim, nessa proposta de pesquisa pretendemos extrair o conjunto de características ${E = }$ $\lbrace {\varepsilon_1}, {\varepsilon_2}, ..., {\varepsilon_n} \rbrace$, referente a cada evento de exceção, e o conjunto ${I_{\varepsilon_i} = }$ $\lbrace {\iota_{1\varepsilon_i}}, {\iota_{2\varepsilon_i}}, ..., {\iota_{n\varepsilon_i}} \rbrace$, contendo as características de cada impacto decorrente de um determinado evento de exceção $\varepsilon_i \in E$.
+O problema de caracterização de eventos de exceção e de seus respectivos impactos envolve a fase conhecida como \textit{feature extraction}, do ciclo iterativo do processo de \textit{feature engineering}. \textit{Feature extraction} consiste na extração de um conjunto de características ${\alpha =}$ $\lbrace {\chi_1}, {\chi_2}, ..., {\chi_n} \rbrace$ a partir de um dado de entrada $\chi$. Sendo assim, nessa proposta de pesquisa pretendemos extrair o conjunto de características (utilizando o Corpus \textit{Twitter}) ${E = }$ $\lbrace {\varepsilon_1}, {\varepsilon_2}, ..., {\varepsilon_n} \rbrace$, referente a cada evento de exceção, e o conjunto ${I_{\varepsilon_i} = }$ $\lbrace {\iota_{1\varepsilon_i}}, {\iota_{2\varepsilon_i}}, ..., {\iota_{n\varepsilon_i}} \rbrace$, contendo as características de cada impacto (utilizando o Corpus SPTrans) decorrente de um determinado evento de exceção $\varepsilon_i \in E$.
 
 Posto que os conjuntos \textit{E} e \textit{I} existem,  tem-se também como problema a correlação de cada evento de exceção com o seu respectivo impacto, permitindo assim uma análise histórica para identificação de padrões de causa e consequência. Tal correlação pode ser definida por uma função sobrejetora, representada formalmente em lógica de primeira ordem pela expressão:
 \begin{equation*} 
@@ -1658,14 +1658,14 @@ Dessa forma, para todo impacto $\iota$ pertencente ao conjunto \textit{I} existe
 \section{Solução proposta}
 \label{solutionProp}
 
-A solução proposta pretende coletar \textit{tweets} dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}, pré-processá-los, extrair e selecionar \textit{features} para serem utilizadas em algoritmos de classificação, obtendo dessa forma os eventos de exceção. 
+A solução proposta pretende coletar \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, pré-processá-los, extrair e selecionar \textit{features} para serem utilizadas em algoritmos de classificação, obtendo dessa forma os eventos de exceção. 
 Com esses eventos de exceção pretendemos analisar a base histórica da SPTrans de dados AVL (transmitidos utilizando AVL), e identificar os possíveis impactos de cada evento de exceção. O processo de identificação dos impactos contidos na base histórica da SPTrans pode ser definido com base nas localizações extraídas dos \textit{tweets} coletados e posteriormente geolocalizadas. 
 
 As localizações dos \textit{tweets} podem ser extraídas usando a seguinte fórmula em expressão regular: 
 \begin{equation}
 ER = \lbrace L_1|S_1|L_2|S_2|...|L_n|S_n \rbrace \lbrace [a-zA-Z \backslash s]+ \rbrace
 \end{equation}
-Tal expressão regular é dividida em dois conjuntos, no primeiro ($\lbrace L_1|S_1|L_2|S_2|...|L_n\\|S_n \rbrace$), os logradouros (L) e siglas (S) contidas na Tab. \ref{tab:logradouros} (no apêndice \ref{apendiceB}) são concatenadas, especificando um filtro para identificar cadeias de caracteres iniciadas com um logradouro ou sigla. No segundo conjunto ($\lbrace [a-zA-Z \backslash s]+ \rbrace$), o filtro especificado identifica as palavras seguintes aos logradouros e siglas.
+Tal expressão regular é dividida em dois conjuntos, no primeiro ($\lbrace L_1|S_1|L_2|S_2|...|L_n\\|S_n \rbrace$), os logradouros (L) e siglas (S) contidas na tabela \ref{tab:logradouros} (no apêndice \ref{apendiceB}) são concatenadas, especificando um filtro para identificar cadeias de caracteres iniciadas com um logradouro ou sigla. No segundo conjunto ($\lbrace [a-zA-Z \backslash s]+ \rbrace$), o filtro especificado identifica as palavras seguintes aos logradouros e siglas.
 
 Em resumo, propomos solucionar o problema de caracterização dos eventos de exceção e de seus respectivos impactos seguindo os seguintes passos: (I) coleta de \textit{tweets} de órgãos responsáveis por notificar eventos de exceção; (II) identificação dos \textit{tweets} relacionados a eventos de exceção; (III) extração e geolocalização dos endereços dos eventos de exceção e (IV) análise e correlação com os dados AVL.
 
@@ -1678,12 +1678,12 @@ Nesta seção, são apresentados os conjuntos de dados referentes a proposta de 
 
 A Rede Social \textit{Twitter}, foi escolhida como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção. Isso devido ao fato de cada publicação ser limitada em 280 caracteres, o que reduz a complexidade de processamento do conteúdo publicado, e devido aos estudos existentes abordando problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Cap. \ref{revisao}.
 
-Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
+Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
 
 Sobre a seleção dos \textit{profiles}, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais \textit{profiles} são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
 Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frequência de requisições aos \textit{endpoints}. Por exemplo, no protótipo desenvolvido (na linguagem de programação Java), há um artefato que coleta (utilizando o \textit{plugin} \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acesso em Outubro, 29 de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acesso em Outubro, 29 de 2017.}.
 
-Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, precesso explicado da seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de tweets coletados constam na Tab. \ref{tab:tweetsCollected}.
+Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, precesso explicado na seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na tabela \ref{tab:tweetsCollected}.
 
 \begin{table}[!htb]
 \centering
@@ -1736,7 +1736,7 @@ Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus resp
 
 \subsection{\textit{Corpus} SPTrans}
 
-O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na Tab. \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados, devido a isso foram desenvolvidos \textit{scripts} para um processo de ETL (\textit{Extract}, \textit{Tranform} and \textit{Load}). 
+O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na tabela \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido -- não tratados, dados separados em lotes de dados -- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional -- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de ETL (\textit{Extract}, \textit{Tranform} and \textit{Load}). 
 
 No caso dos dados especificados em GTFS, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para  \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em Outubro, 29 de 2017.}. Além disso, visando viabilizar \textit{geospatial queries}, foram criados \textit{geospatial indexes}\footref{geoMongo} nas \textit{collections} contendo informações geolocalizadas, logo após serem criadas no \textit{MongoDB}. Dessa forma, conseguimos usar \textit{geospatial queries} para identificar as linhas afetadas por um determinado evento de exceção.
 
@@ -1778,7 +1778,7 @@ No caso dos dados especificados em GTFS, convertemos os dados originais de \text
 
 Por sua vez, os dados transmitidos por meio de AVL (ou simplesmente dados AVL) são em grande volume, devido a isso demandam processamento distribuído para que seja possível consultá-los. Visando abordar esse problema, utilizamos o \textit{Druid} como banco de dados de séries temporais, por possuir uma arquitetura simples de escalar, ser distribuído e específico para a análises temporais.
 
-Os dados AVL utilizados nesta análise (fornecidos pela empresa \textit{Scipopulis}\footnote{\url{https://www.scipopulis.com/}. Acesso em Outubro, 29 de 2017.} --- financiada pela FAPESP\footnote{Fundação de Amparo à pesquisa do Estado de São Paulo: \url{http://www.fapesp.br/}. Acesso em Outubro, 29 de 2017.})  são referentes as linhas de ônibus 917H-10 (Terminal Pirituba --- sentido 1 / Metrô Vila Mariana --- sentido 0) e 477P (Ipiranga --- sentido 1 / Rio Pequeno --- sentido 0), especificamente para a linha 477P dispomos dos dados de ambos os sentidos, e apenas do sentido 0 para a linha 917H, a quantidade de dados para cada \textit{trip\_id} (id da viagem --- popularmente conhecido como linha do ônibus) é detalhada na Tab. \ref{tab:tripidQtd}. No demais, os campos existentes nesse conjunto de dados são: \textit{bus\_id} (id do ônibus), \textit{trip\_id} (id da viagem), \textit{hr} (GMT-03:00:00), \textit{timestamp} (GMT), \textit{lat} (latitude) e \textit{lng} (longitude).
+Os dados AVL utilizados nesta análise (fornecidos pela empresa \textit{Scipopulis}\footnote{\url{https://www.scipopulis.com/}. Acesso em Outubro, 29 de 2017.} --- financiada pela FAPESP\footnote{Fundação de Amparo à pesquisa do Estado de São Paulo: \url{http://www.fapesp.br/}. Acesso em Outubro, 29 de 2017.})  são referentes as linhas de ônibus 917H-10 (Terminal Pirituba --- sentido 1 / Metrô Vila Mariana --- sentido 0) e 477P (Ipiranga --- sentido 1 / Rio Pequeno --- sentido 0). Especificamente para a linha 477P dispomos dos dados de ambos os sentidos, e apenas do sentido 0 para a linha 917H, a quantidade de dados para cada \textit{trip\_id} (id da viagem --- popularmente conhecido como linha do ônibus) é detalhada na tabela \ref{tab:tripidQtd}. No demais, os campos existentes nesse conjunto de dados são: \textit{bus\_id} (id do ônibus), \textit{trip\_id} (id da viagem), \textit{hr} (GMT-03:00:00), \textit{timestamp} (GMT), \textit{lat} (latitude) e \textit{lng} (longitude).
 
 \begin{table}[!htb]
 \centering
@@ -1814,7 +1814,7 @@ Conforme pode ser observado, a base de dados AVL está limitada as linhas 4779-1
 \section{Exploração e visualização do conjunto de dados}
 \label{dataViz}
 
-O grande volume de dados que será analisado pode conter padrões complexos e difíceis de serem identificados, devido a isso pretendemos construir visualizações auxiliares ao processo de análise dos dados. Com esse objetivo, utilizaremos o \textit{Apache Superset}\footnote{\url{https://superset.incubator.apache.org}. Acesso em Outubro, 29 de 2017.}, que é integrado nativamente com o \textit{Druid}, para exploração e visualização dos corpus desse projeto de pesquisa. As Fig. \ref{fig:qtd_data_per_day477p971h}, \ref{fig:qtd_data_per_bus_month_477p971h} e \ref{fig:map_477p971h} são exemplos de algumas visualizações construídas para os dados das linhas 477P-10 e 917H-10.
+O grande volume de dados que será analisado pode conter padrões complexos e difíceis de serem identificados. Devido a isso pretendemos construir visualizações auxiliares ao processo de análise dos dados. Com esse objetivo, utilizaremos o \textit{Apache Superset}\footnote{\url{https://superset.incubator.apache.org}. Acesso em Outubro, 29 de 2017.}, que é integrado nativamente com o \textit{Druid}, para exploração e visualização dos corpus desse projeto de pesquisa. As Fig. \ref{fig:qtd_data_per_day477p971h}, \ref{fig:qtd_data_per_bus_month_477p971h} e \ref{fig:map_477p971h} são exemplos de algumas visualizações construídas para os dados das linhas 477P-10 e 917H-10.
 
 A Fig. \ref{fig:qtd_data_per_day477p971h} exibe séries temporais referentes a quantidade de dados enviados pelas viagens 477P-10-0, 477P-10 e 971H-10-0. Com essa visualização é possível observar, por exemplo, a oscilação da quantidade de dados enviados, assim como os picos de maior e menor volume de envio de dados, os quais podem indicar inúmeros problemas relacionados a essas viagens. O mesmo pode ser afirmado para a Fig. \ref{fig:qtd_data_per_bus_month_477p971h}, que representa séries temporais sobre dados enviados por mês dos ônibus pertencentes as mesmas viagens já mencionadas. Por fim, o mapa exibido pela Fig. \ref{fig:map_477p971h} ajuda a identificar a localização de onde os dados estão sendo enviados, o que permite identificar possíveis pontos de falha durante a transmissão desses dados.
 
@@ -1879,7 +1879,7 @@ Após a extração e seleção de \textit{features}, planejamos classificar manu
 \section{Correlação dos eventos de exceção com os dados AVL da SPTrans}
 \label{dataCorr}
 
-Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans, especificamente os dados referentes a \textit{timestamp}, latitude, longitude, \textit{bus\_id} e \textit{trip\_id}. Dito isso, inicialmente pretendemos caracterizar os impactos em:
+Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans, especificamente os dados referentes a \textit{timestamp}, latitude, longitude, \textit{bus\_id} e \textit{trip\_id}. Dito isso, inicialmente pretendemos caracterizar os impactos em:
 
 \begin{itemize}
 \item Atraso médio induzido nas viagens.
@@ -1892,10 +1892,10 @@ Dado que os eventos de exceção podem ser identificados utilizando \textit{twee
 \item Viagens frequentemente afetadas por determinado evento de exceção.
 \end{itemize}
 
-\section{Plano de trabalho}
+	\section{Plano de trabalho}
 \label{workPlan}
 
-Nesta seção, são apresentados o cronograma (Tab. \ref{tab:schedule}) e as atividades realizadas e planejadas para o desenvolvimento do projeto referente a proposta de pesquisa, enumeradas a seguir:
+Nesta seção, são apresentados o cronograma (tabela \ref{tab:schedule}) e as atividades realizadas e planejadas para o desenvolvimento do projeto referente a proposta de pesquisa, enumeradas a seguir:
 
 \begin{enumerate}
 \item Revisão Bibliográfica.
@@ -1904,12 +1904,12 @@ Nesta seção, são apresentados o cronograma (Tab. \ref{tab:schedule}) e as ati
 \end{enumerate}
 \item Desenvolvimento de protótipo.
 \begin{enumerate}
-\item Serviço para coleta, processamento e armazenamento de \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles}.
+\item Serviço para coleta, processamento e armazenamento de \textit{tweets} dos \textit{profiles} selecionados contidos na tabela \ref{tab:oficialProfiles}.
 \item Extração e geolocalização dos endereços contidos nos \textit{tweets}.
 \item Implementação de \textit{scripts} para extração, transformação e armazenamento dos dados AVL da SPTrans.
 \item Implementação de \textit{scripts} para extração, transformação e armazenamento dos dados da GTFS da SPTrans.
-\item Criação de especificações de ingestão de dados para os dados AVL da SPTrans e dos \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles} para o banco de dados de séries temporais \textit{Druid}\footnote{\label{druidIo}\url{http://druid.io}. Acesso em Outubro, 29 de 2017.}.
-\item Integração da ferramenta \textit{Superset}\footnote{\label{superset}\url{http://superset.apache.org}. Acesso em Outubro, 29 de 2017.} com o \textit{Druid}\footref{druidIo} para exploração e visualização dos dados AVL da SPTrans e dos \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles}.
+\item Criação de especificações de ingestão de dados para os dados AVL da SPTrans e dos \textit{tweets} dos \textit{profiles} selecionados contidos na tabela \ref{tab:oficialProfiles} para o banco de dados de séries temporais \textit{Druid}\footnote{\label{druidIo}\url{http://druid.io}. Acesso em Outubro, 29 de 2017.}.
+\item Integração da ferramenta \textit{Superset}\footnote{\label{superset}\url{http://superset.apache.org}. Acesso em Outubro, 29 de 2017.} com o \textit{Druid}\footref{druidIo} para exploração e visualização dos dados AVL da SPTrans e dos \textit{tweets} dos \textit{profiles} selecionados contidos na tabela \ref{tab:oficialProfiles}.
 \item Implementação de \textit{scripts} para automação dos processos de ingestão de dados e \textit{deploy} e monitoramento dos serviços do \textit{Druid}\footref{druidIo} e Superset\footref{superset}.
 \item Configuração do ambiente em nuvem para execução do \textit{Druid}\footref{druidIo} e \textit{Superset}\footref{superset}.
 
@@ -1917,13 +1917,13 @@ Nesta seção, são apresentados o cronograma (Tab. \ref{tab:schedule}) e as ati
 \item Construção do conjunto de dados.
 \begin{enumerate}
 \item Obtenção dos dados AVL de janeiro a dezembro de 2016 e de janeiro a setembro de 2017, de todas as linhas de ônibus de São Paulo.
-\item Obtenção da base de dados dos últimos cinco anos das reclamações relacionadas a SPTrans, realizadas na Centra de Atendimento ao Cidadão (156) da Prefeitura de São Paulo.
-\item Obtenção de um conjunto de \textit{tweets} dos \textit{profiles} selecionados contidos na Tab. \ref{tab:oficialProfiles}.
+\item Obtenção da base de dados dos últimos cinco anos das reclamações relacionadas a SPTrans, realizadas na Central de Atendimento ao Cidadão (156) da Prefeitura de São Paulo.
+\item Obtenção de um conjunto de \textit{tweets} dos \textit{profiles} selecionados contidos na tabela \ref{tab:oficialProfiles}.
 \end{enumerate}
 \item Implementação da solução proposta.
 \begin{enumerate}
 \item Identificação dos eventos de exceção (pré-processamento, \textit{feature extraction} e \textit{feature selection} dos \textit{tweets} coletados).
-\item Estudo dos algorítimos de classificação e implementação de um artefato de \textit{software} para classificação dos \textit{tweets} de acordo com seus respectivos eventos de exceção.
+\item Estudo dos algoritmos de classificação e implementação de um artefato de \textit{software} para classificação dos \textit{tweets} de acordo com seus respectivos eventos de exceção.
 \item Correlação dos eventos de exceção com os dados AVL da SPTrans.
 \end{enumerate}
 \item Avaliação dos resultados parciais obtidos durante e após o desenvolvimento da solução proposta.
@@ -1960,13 +1960,13 @@ Neste capítulo, são apresentadas as contribuições e resultados esperados com
 
 \section{Contribuições esperadas}
 
-A principal contribuição deste projeto é propor uma solução para o problema de caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, por meio de \textit{tweets} e de dados históricos dos módulos AVL do SIM. Além disso, a solução proposta visa disponibilizar os os conjuntos de dados que foram construídos e uma plataforma para que esses dados possam ser visualizados e explorados, de forma a contribuir com projetos e pesquisas futuras correlatas.
+A principal contribuição deste projeto é propor uma solução para o problema de caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, por meio de \textit{tweets} e de dados históricos dos módulos AVL do SIM. Além disso, a solução proposta visa disponibilizar os conjuntos de dados que foram construídos e uma plataforma para que esses dados possam ser visualizados e explorados, de forma a contribuir com projetos e pesquisas futuras correlatas.
 
 Em relação a publicações científicas, serão submetidos artigos com os resultados obtidos para veículos de disseminação de conhecimento científico nas áreas de: Análise de Redes Sociais, Sistemas de Transporte Inteligentes, Cidades Inteligentes.
 
 \section{Limitações e riscos à validade do estudo}
 
-As principais limitações deste projeto estão relacionadas ao processamento de \textit{tweets} em português brasileiro e oriundos das contas selecionadas e referenciadas na Tab. \ref{tab:oficialProfiles}, o que pode tornar a solução não generalista. Dentre os riscos, apesar das análises preliminares realizadas para extração de endereços dos conteúdos dos \textit{tweets} por meio de Expressão Regular, é possível que sejam encontrados novos desafios que inviabilizem o uso dessa técnica.
+As principais limitações deste projeto estão relacionadas ao processamento de \textit{tweets} em português brasileiro e oriundos das contas selecionadas e referenciadas na tabela \ref{tab:oficialProfiles}, o que pode tornar a solução não generalista. Dentre os riscos, apesar das análises preliminares realizadas para extração de endereços dos conteúdos dos \textit{tweets} por meio de Expressão Regular, é possível que sejam encontrados novos desafios que inviabilizem o uso dessa técnica.
 
 
 
@@ -2006,7 +2006,7 @@ As principais limitações deste projeto estão relacionadas ao processamento de
 \chapter{Exemplos de \textit{tweets}}
 \label{apendiceA}
 
-\begin{lstlisting}[language=json,title=Exemplos de \textit{tweets} dos \textit{profiles} selecionados citados na Tab. \ref{tab:oficialProfiles}, label=tweetsSample]
+\begin{lstlisting}[language=json,title=Exemplos de \textit{tweets} dos \textit{profiles} selecionados citados na tabela \ref{tab:oficialProfiles}, label=tweetsSample]
 {
     "tweet_id" : 895060642952077314,
     "tweet_account": "BombeirosPMESP",
