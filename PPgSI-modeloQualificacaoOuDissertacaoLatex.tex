@@ -1256,39 +1256,58 @@ O processamento automático de \textit{tweets} envolve o Processamento de Lingua
 \end{enumerate}
 \end{enumerate}
 
+Para esta pesquisa, utilizamos o processo de \textit{tokenização} \textit{TweetTokenizer}\footnote {\url{https://www.nltk.org/api/nltk.tokenize}. Acessado em 15 de maio de 2018.} para extrair os \textit{tokens} dos \textit{tweets} (\textit{features} utilizadas para treinar os modelos de classificações) e o processo de \textit{stemming} \textit {RSLPStemmer}\footnote{\url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Acessado em 15 de maio de 2018.} para redução do espaço de \textit{features}, além da remoção de palavras vazias (\textit{stopwords}\footnote{\url{http://www.nltk.org/howto/portuguese\_en}. Acessado em 15 de maio de 2018.}\footnote{Palavras com alta ou baixa frequência no corpus --- comuns ou raras --- ou removidas por meio de \textit{feature selection} --- \url{http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html}. Acessado em 03 de junho de 2018.}) do Português Brasileiro.  --- palavras comuns do Português Brasileiro.
+
 \section{\textit{Feature Engineering}}
 \label{featuresEng}
 
-Neste projeto, inicialmente pretendemos utilizar \textit{feature extraction} e \textit{selection}, duas das fases do processo de \textit{feature engineering}. Dito isso, explicamos nos parágrafos seguintes o que são \textit{features} e as fases do processo de \textit{feature engineering}.  
+%A fase de \textit{feature  extraction} depende do conhecimento do domínio do objeto de estudo, além de normalmente envolver inúmeras iterações para obter um conjunto plausível de \textit{features} \cite{Zhu2013}. Assim, inicialmente exploramos o domínio dos eventos de exceção relacionados ao transporte público (detalhados em \ref{qp5}) com o auxílio da questão QP5 (em \ref{questoes}) da revisão sistemática do Cap. \ref{revisao}. 
 
-Um conjunto de dados pode ser representado por um número fixo de características (\textit{features}) binárias, categóricas ou contínuas \cite{guyon2006introduction}. O processo de construção dessas \textit{features} é conhecido como \textit{feature engineering}, o qual depende estritamente do conhecimento de domínio dos dados e de suas respectivas métricas \cite{guyon2006introduction}.
+%Após a exploração do conhecimento do domínio (já realizada), pretendemos na primeira iteração para extração de \textit{features} usar os \textit{tokens} (\textit{features}) obtidos no pré-processamento para selecionarmos as palavras mais frequentes (\textit{features}) para cada conjunto de dados do \textit{Corpus Twitter}. Nas iterações seguintes, planejamos analisar as \textit{features} selecionadas, combiná-las entrei si e derivar novas \textit{features}, de acordo com o conhecimento do domínio.
 
-O processo de \textit{feature engineering} é iterativo entre as fases de \textit{feature extraction}, \textit{feature construction} e \textit{feature selection} \cite{motoda2002feature}. Antes da fase de \textit{feature extraction} os dados podem ser pré-processados utilizando técnicas de padronização, normalização, remoção de ruídos, redução de dimensionalidade, discretização, expansão, dentre outras; observa-se que informações podem ser perdidas ao realizar essas transformações  \cite{guyon2006introduction}.
+%Pretendemos na fase de \textit{feature selection} encontrar as \textit{features} mais relevantes para a classificação dos eventos de exceção, pois com um conjunto relevante de \textit{features} evitamos um modelo de classificação com sobre-ajuste (\textit{overfitting}) e de alto custo computacional \cite{Zhu2013}. Assim, pretendemos selecionar as \textit{features} mais relevantes utilizando a medida estatística \textit{tf-idf} (\textit{term frequency–inverse document frequency}) para obtermos os termos mais frequentes de cada conjunto de dados do \textit{Corpus Twitter}.
 
-Na fase de \textit{feature construction} é realizado um processo para descobrir informações ausentes a respeito dos relacionamentos entre as \textit{features} e aumentar o espaço de \textit{features} inferindo ou criando novas \textit{features}, com o objetivo de melhorar a acurácia dos algoritmos de classificação, compreensão dos dados, obtenção de dados ocultos, etc \cite{motoda2002feature}. Nessa fase, a partir de um conjunto de \textit{n features} $A_1, A_2, ..., A_n$ é possível construir \textit{m} \textit{features} adicionais $A_{n+1}, A_{n+2}, ..., A_{n+m}$, por meio de heurísticas, operadores lógicos, algoritmos (\textit{greedy search} aplicada em árvores de decisão, genéticos, etc.), dentro outros \cite{motoda2002feature}.
+\textit{Feature egineering} é um processo iterativo que utiliza o conhecimento do domínio dos dados e de suas métricas para criar (\textit{feature construction}), extrair (\textit{feature extraction}) e selecionar \textit{features} (\textit{feature selection}) para serem utilizadas em algoritmos de aprendizado de máquina. Um conjunto de dados pode ser representado por um número fixo de \textit{features} binárias, categóricas ou contínuas. Antes do processo de \textit{feature engineering}, os dados podem ser pré-processados %​​usando 
+usando técnicas de padronização, normalização, remoção de ruído, redução de dimensionalidade, discretização, expansão, entre outros; é importante notar que informações podem ser perdidas ao realizar essas transformações \cite{guyon2006introduction}.
 
-O processo de \textit{feature extraction}, por sua vez, utiliza uma função de mapeamento para extrair um conjunto mínimo de novas \textit{features} com base nas \textit{features} originais e em métricas de desempenho (o que pode ser realizado também usando \textit{feedforward neural network}), diferentemente da análise dos relacionamentos entre as \textit{features} realizada na fase de \textit{feature construction} \cite{motoda2002feature}. Assim, com um conjunto inicial de \textit{n features} $A_1, A_2, ..., A_n$ é possível extrair novas \textit{features} $B_1, B_2, ..., B_m (m < n), B_i = F_i(A_1, A_2, ..., A_n)$, onde $F_i$ é a função de mapeamento \cite{motoda2002feature}. 
+No experimento abordado no Cap.\ref{exp1} usamos uma fase de pré-processamento, explicada na subseção \ref{preprocessing}, e um processo para \textit{feature extraction} (explicado adiante) realizado por meio de uma função que utiliza NLP para preparar os \textit{tweets} coletados para a tarefa de treinamento. As fases de \textit{feature construction} e \textit{feature selection} não são utilizadas pelos experimentos deste trabalho, porém, são mencionadas para um melhor entendimento.
 
-Por fim, tem-se como objetivo no processo de \textit{feature selection} a redução ótima do espaço das \textit{features} com base em critérios de seleção, ou seja, obter \textit{m features} a partir de um conjunto de \textit{n features}, onde \textit{m} $\le$ \textit{n} (o que pode ser alncançado por algoritmos de busca seguindo critérios de avaliação). Dessa forma, com um subcojunto menor de \textit{features}, é possível reduzir a dimensionalidade do espaço das \textit{features} (evitando sobre-ajuste), otimizar algoritmos de Aprendizado de Máquina e compreender melhor seus respectivos resultados, melhorar a acurácia dos algoritmos de classificação, dentre outros benefícios \cite{motoda2002feature}.
+Sendo assim, na fase de \textit{feature construction}, é realizado um processo para descobrir informações ausentes sobre as relações entre as \textit{features} e para aumentar o espaço de \textit{features}, inferindo ou criando novas \textit{features} com o objetivo de melhorar a precisão dos algoritmos de classificação, entender os dados e obter dados ocultos. , etc. \cite{motoda2002feature}. Neste estágio, de um conjunto de \textit{n features} $ A_1, A_2, ..., A_n $, é possível construir \textit{features} adicionais $ A_ {n + 1}, A_ {n + 2}, ... , A_ {n + m} $, por meio de heurísticas, operadores lógicos, algoritmos, etc \cite{motoda2002feature}.
+
+Por fim, no processo de extração de \textit{features}, usa uma função de mapeamento para extrair um conjunto mínimo de novas \textit{features} com base nas \textit{features} originais e em métricas de desempenho, diferentemente da análise das relações entre \textit{features} na fase de \textit{feature construction} \cite{motoda2002feature}. Assim, com um conjunto inicial de \textit{n features} $ A_1, A_2, ..., A_n $ é possível extrair novas \textit{features} $ B_1, B_2, ..., B_m (m < n), B_i = F_i (A_1, A_2, ..., A_n) $, onde $ F_i $ é a função de mapeamento \cite {motoda2002feature}. Analogamente, no processamento de \textit{tweets} realizado no Cap. \ref{exp1}, o espaço de \textit{features} é composto inicialmente por cada palavra extraída do processo de \textit{Tokenization}, o qual posteriormente é reduzido pelas funções responsáveis pelos processos de \textit{stemming} e remoção de \textit{stopwords}.
+
+%Finalmente, o objetivo no processo de seleção de recursos é a redução ideal do espaço de \ textit {features} baseado em critérios de seleção, ou seja, para obter \ textit {m features} de um conjunto de \ textit {n features}, onde \ textit {m} $ \ le $ \ textit {n} (que pode ser obtido por algoritmos de busca seguindo os critérios de avaliação). Assim, com um subconjunto menor de \ textit {features}, é possível reduzir a dimensionalidade do espaço \ textit {features}, otimizar algoritmos de Machine Learning e entender melhor seus respectivos resultados, para melhorar a precisão dos algoritmos de classificação. , entre outros benefícios \ cite {motoda2002feature}.
+
 
 \section{Algoritmos de Aprendizado de Máquina}
 \label{classification}
 
 Os algoritmos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
 
-No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Assim, elencamos a seguir alguns dos principais algoritmos de aprendizado de máquina supervisionado para classificação textual, com base em \cite{khan2010review}:
+No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Thus, we evaluated four known supervised machine learning algorithms for textual classification: Decision Tree, Gaussian Naive Bayes, Regression Logistic and Support Vector Machine:
+\todo[inline]{Escrever sobre cada algoritmo utilizado}
+\improvement[inline]{Fazer uma revisão não sistemática dos principais algoritmos utilizados}
 
-\begin{enumerate}
-\item \textit{Artificial Neural Network};
-\item \textit{Decision Tree};
-\item \textit{Decision Rules Classification} ;
-\item \textit{K-nearest neighbor (k-NN)};
-\item \textit{Fuzzy correlation};
-\item \textit{Genetic Algorithm};
-\item \textit{Naïve Bayes Algorithm};
-\item \textit{Rocchio's Algorithm};
-\item \textit{Support Vector Machine}.
-\end{enumerate}
+The validation of the models to classification tasks can be realized through metrics that has as inputs the number of real positive (P), negative (N) cases in the result of classification, true positive (TP), true negative (TN), false positive (FP) and false negative (FN) classifications. Following are some of the main metrics utilized to:
+
+\begin{equation}
+Accuracy = \frac{TP + TN}{P + N} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+\begin{equation}
+Precision = \frac{TP}{TP + FP}
+\end{equation}
+
+\begin{equation}
+Recall = \frac{TP}{P} = \frac{TP}{TP + FN}
+\end{equation}
+
+\begin{equation}
+F_1 score = \frac{Precision * Recall}{Precision + Recall} = \frac{2TP}{2TP + FP + FN}
+\end{equation}
+
+\section{TF-IDF}
+\todo[inline]{Escrever capítulo}
 
 
 \chapter{Revisão Sistemática}
@@ -1822,10 +1841,11 @@ A Fig. \ref{fig:qtd_data_per_day477p971h} exibe séries temporais referentes a q
 
 
 \chapter{Uma metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
+\label{exp1}
 
 Nesta seção são apresentadas as atividades planejadas para realizar a identificação dos eventos de exceção com base nos dados do Corpus \textit{Twitter}.
 
-\subsection{Pré-processamento}
+\section{Pré-processamento}
 \label{preprocessing}
 
 Numa pré-análise do \textit{Corpus Twitter}, podemos afirmar que os \textit{tweets} publicados pelos \textit{profiles} selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice \ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintaxe e que normalmente dependem de análise contextual para que possam ser interpretados.
@@ -1843,7 +1863,7 @@ Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{
 \item Correção erros de digitação por meio de uma função de mapeamento
 \end{itemize}
 
-Além disso, é importante observar que (I) as informações data e hora (raras de serem encontradas em \textit{tweets}\todo[inline]{Precisa de ref} e irrelevantes para o processo de classificação de eventos de exceção) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos dados de meta-informação dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora seja utilizada em trabalhos como os relacionados a identificação de sentimentos, para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
+Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos dados de meta-informação dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora seja utilizada em trabalhos como os relacionados a identificação de sentimentos, para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
 
 Apesar da relevância mencionada, as \textit{hashtags} adicionam ruído à fase de extração de endereços. Para atenuar esse problema, as \textit{hashtags} são identificadas e substituídas por espaços vazios no processo de extração de endereço; o qual é realizado após a fase de pré-processamento, pois as transformações realizadas no pré-processamento e processamento dos \textit{tweets} devido ao fato da possibilidade de remoção de trechos do texto necessários para a expressão regular definida para extração de endereços.
 
@@ -1859,14 +1879,14 @@ A expressão anterior é dividida em dois conjuntos, no primeiro ($\lbrace L_1 |
 
 Essas palavras são candidatas porque é difícil saber quantas palavras após L ou S pertencem ao endereço, no entanto, as contas selecionadas publicam padrões visíveis após os endereços. Como consequência, um método possível para encontrar o endereço desejado é a remoção desses padrões após o início do endereço.
 
-Após a extração do endereço, é necessário geolocalizar o endereço encontrado --- apenas 1,5 \% de \textit {tweets} têm geolocalização \cite{niu2016community} --- o que é possível, por exemplo, usando a API de geocodificação do Google Maps \footnote {\url {https://developers.google.com/maps/documentation/geocoding}. Acessado em 11 de Abril de 2018.}. Os parâmetros de URL utilizados neste trabalho para chamar a API mencionada anteriormente são: (I) \emph {address} --- o endereço desejado; (II) \emph {bounds} --- uma caixa delimitadora para o resultado retornado, a qual é especificada pelas coordenadas de latitude / longitude dos cantos sudoeste e nordeste de São Paulo; (III) \emph {region} --- código da região com dois caracteres, por exemplo, \textit{br} para o Brasil e (IV) \emph {token} --- \textit{token} usado na autenticação da API.
+Após a extração do endereço, é necessário geolocalizar o endereço encontrado --- apenas 1,5 \% de \textit {tweets} têm geolocalização \cite{niu2016community} --- o que é possível, por exemplo, usando a API de geocodificação do Google Maps\footnote {\url {https://developers.google.com/maps/documentation/geocoding}. Acessado em 11 de Abril de 2018.}. Os parâmetros de URL utilizados neste trabalho para chamar a API mencionada anteriormente são: (I) \emph {address} --- o endereço desejado; (II) \emph {bounds} --- uma caixa delimitadora para o resultado retornado, a qual é especificada pelas coordenadas de latitude / longitude dos cantos sudoeste e nordeste de São Paulo; (III) \emph {region} --- código da região com dois caracteres, por exemplo, \textit{br} para o Brasil e (IV) \emph {token} --- \textit{token} usado na autenticação da API.
 
 Em seguida, a resposta HTTP é processada para obter os valores da localização (que contém informações de latitude e longitude) e o \emph{endereço formatado}. É importante observar que os \textit{tokens} do endereço extraído (\emph{endereço não formatado}) são \textit{stopwords} específicas do \textit{corpus} em caso de alta frequência de eventos de exceção localizados neste endereço, devido ao fato de que nesse cenário elas são tratados como \textit{features} relevantes para o modelo de classificação. Portanto, os \textit{tokens} dos endereços extraídos são armazenados para serem removidos na fase de processamento dos \textit{tweets}.
 
 \section{Processamento de \textit{tweets}}
 \label{processing}
 
-Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase, os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do Português Brasileiro filtradas\footnote{\textit{Stopwords} do Português Brasileiro obtidas da NLTK --- \url{https://www.nltk.org}. Acessado em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  Português Brasileiro \footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acessado em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
+Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase, os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do Português Brasileiro filtradas\footnote{\textit{Stopwords} do Português Brasileiro obtidas da NLTK --- \url{https://www.nltk.org}. Acessado em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  Português Brasileiro\footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acessado em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
 
 \section{Classificação manual do Corpus \textit{Twitter}}
 \label{manualClassification}
@@ -1926,7 +1946,7 @@ O corpus obtido da fase de processamento de \textit {tweets} é representado por
 
 Para encontrar as linhas de ônibus afetadas por eventos de exceção, é necessário correlacionar latitude e longitude dos eventos de exceção com as \textit{shapes} da GTFS da SPTrans. Como mencionado anteriormente, as \textit{shapes} da GTFS são um conjunto de coordenadas de latitude e longitude para desenhar linhas dos ônibus em um mapa, para representar seus respectivos caminhos, por exemplo.
 
-De acordo com a seção ~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB \footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acessado em 18 de Maio de 2018.} para encontrar as \textit{shapes} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{shape\_id} faz parte dos atributos contidos no arquivo de \textit{shapes}, referindo-se a um código de linha de ônibus com o qual é possível procurar mais detalhes sobre o referido código, como direção da linha de ônibus, identificação, paradas, etc.
+De acordo com a seção ~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acessado em 18 de Maio de 2018.} para encontrar as \textit{shapes} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{shape\_id} faz parte dos atributos contidos no arquivo de \textit{shapes}, referindo-se a um código de linha de ônibus com o qual é possível procurar mais detalhes sobre o referido código, como direção da linha de ônibus, identificação, paradas, etc.
 
 \section{Resultados}
 
@@ -1992,7 +2012,7 @@ Considerando apenas os 2.175 eventos de exceção, foram encontrados 1.610 ender
 	\label{fig:dispersion}
 \end{figure}
 
-Consideramos que uma linha de ônibus é afetada por uma exceção se uma \textit{shape} em um raio de 100 metros do evento. Utilizando este critério, o total de 799 linhas de ônibus foram afetadas por eventos de exceção durante este período, sendo ``35276'' o código de linha de ônibus mais impactado (itinerário próximo à concentração de eventos de exceção, conforme Figura \ref{fig:35276_geo}). Essa linha específica foi impactada por 1.663 eventos de exceção. A tabela ~ \ref{tab:impacted_bus_code_lines} lista as linhas de ônibus que foram impactadas por mais de 1.000 \footnote{O conteúdo completo da tabela pode ser acessado em:\url{https://docs.google.com/spreadsheets/d/1SxnzVeBaSjophbo-slISUcUG0GMD2MYaEM0JAdKiNBs}. Acessado em 18 de maio de 2018.} eventos de exceção.
+Consideramos que uma linha de ônibus é afetada por uma exceção se uma \textit{shape} em um raio de 100 metros do evento. Utilizando este critério, o total de 799 linhas de ônibus foram afetadas por eventos de exceção durante este período, sendo ``35276'' o código de linha de ônibus mais impactado (itinerário próximo à concentração de eventos de exceção, conforme Figura \ref{fig:35276_geo}). Essa linha específica foi impactada por 1.663 eventos de exceção. A Tab.  \ref{tab:impacted_bus_code_lines} lista as linhas de ônibus que foram impactadas por mais de 1.000\footnote{O conteúdo completo da tabela pode ser acessado em:\url{https://docs.google.com/spreadsheets/d/1SxnzVeBaSjophbo-slISUcUG0GMD2MYaEM0JAdKiNBs}. Acessado em 18 de maio de 2018.} eventos de exceção.
    
 \begin{figure}[!htb]
 	\centering
@@ -2003,12 +2023,13 @@ Consideramos que uma linha de ônibus é afetada por uma exceção se uma \texti
 
 \begin {table} [!htb]
 \centering
-\caption {Linhas de ônibus mais impactadas por eventos de exceção}
-\label {tab:impacted_bus_code_lines}
 \resizebox{16cm}{!}{
+\begin{threeparttable}
+\caption {Linhas de ônibus mais impactadas por eventos de exceção\tnote{a}}
+\label {tab:impacted_bus_code_lines}
 \begin {tabular} {c|c|c}
  \hline
-\textbf{Bus code line} & \textbf{Total exception events} & \textbf{Bus line identification} \\
+\textbf{Código da linha} & \textbf{\# eventos de exceção} & \textbf{Letreiro} \\
     \hline
 35276 & 1,663  & PÇA. RAMOS DE AZEVEDO / TERM. CAMPO LIMPO \\
     \hline
@@ -2050,15 +2071,19 @@ Consideramos que uma linha de ônibus é afetada por uma exceção se uma \texti
     \hline
 33042 & 1,022  & PÇA. DA SÉ / JD. IV CENTENÁRIO \\
     \hline
-\end{tabular}}
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Tabela completa no Apêndice \ref{apendiceD}.
+        \end{tablenotes}
+\end{threeparttable}
+}
 \end{table}
-\improvement[inline]{Adicionar a tabela completa}
 
-\section{CONCLUSIONS}
+\section{Considerações finais sobre a metodologia desenvolvida}
 
-This work presents a new methodology for exception events classification and analyze their respective impacts on the public transport system by bus of the São Paulo city. Using \textit{tweets} from selected public service providers, we found that Logistic Regression was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the public transport network.
+Este experimento apresenta uma nova metodologia para classificação de eventos de exceção e analisa seus respectivos impactos no sistema de transporte coletivo por ônibus da cidade de São Paulo. Com o conjunto de dados utilizados, descobrimos que a Regressão Logística foi o melhor algoritmo para classificar \textit{tweets} em eventos de exceção. Também, mostramos que é possível extrair endereços de \textit{tweets} semi-estruturados usando apenas expressões regulares. A classificação desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
 
-Although validated using selected Twitter profiles written in Brazilian Portuguese language, this method can be generalized for different languages and cities. GTFS is a ubiquitous format for public transport and tools like NLTK supports several languages.
+Embora o método tenha sido validado usando perfis selecionados do Twitter escritos em português do Brasil, o mesmo pode ser generalizado para diferentes idiomas e cidades. A GTFS é um formato ubíquo para o transporte público e ferramentas como a NLTK suporta vários idiomas.
 
 %\subsection{Future work}
 %As future work, the methodology presented in this paper will be applied to the other accounts from the Corpus Twitter, described in the Section~\ref{corpusTwitter}. Besides, we will extract features from the dataset of bus movements, for each bus line affected by the exception events, also we will extract more exception events from another dataset related to reclamations made by bus users to enrich the impact analysis.
@@ -2092,16 +2117,6 @@ Although validated using selected Twitter profiles written in Brazilian Portugue
 %Tal expressão regular é dividida em dois conjuntos, no primeiro ($\lbrace L_1|S_1|L_2|S_2|...|L_n\\|S_n \rbrace$), os logradouros (L) e siglas (S) contidas na tabela \ref{tab:logradouros} (no apêndice \ref{apendiceB}) são concatenadas, especificando um filtro para identificar cadeias de caracteres iniciadas com um logradouro ou sigla. No segundo conjunto ($\lbrace [a-zA-Z \backslash s]+ \rbrace$), o filtro especificado identifica as palavras seguintes aos logradouros e siglas.
 
 %Em resumo, propomos solucionar o problema de caracterização dos eventos de exceção e de seus respectivos impactos seguindo os seguintes passos: (I) coleta de \textit{tweets} de órgãos responsáveis por notificar eventos de exceção; (II) identificação dos \textit{tweets} relacionados a eventos de exceção; (III) extração e geolocalização dos endereços dos eventos de exceção e (IV) análise e correlação com os dados AVL.
-
-\subsection{\textit{Feature extraction}}
-
-A fase de \textit{feature  extraction} depende do conhecimento do domínio do objeto de estudo, além de normalmente envolver inúmeras iterações para obter um conjunto plausível de \textit{features} \cite{Zhu2013}. Assim, inicialmente exploramos o domínio dos eventos de exceção relacionados ao transporte público (detalhados em \ref{qp5}) com o auxílio da questão QP5 (em \ref{questoes}) da revisão sistemática do Cap. \ref{revisao}. 
-
-Após a exploração do conhecimento do domínio (já realizada), pretendemos na primeira iteração para extração de \textit{features} usar os \textit{tokens} (\textit{features}) obtidos no pré-processamento para selecionarmos as palavras mais frequentes (\textit{features}) para cada conjunto de dados do \textit{Corpus Twitter}. Nas iterações seguintes, planejamos analisar as \textit{features} selecionadas, combiná-las entrei si e derivar novas \textit{features}, de acordo com o conhecimento do domínio.
-
-\subsection{\textit{Feature selection}}
-
-Pretendemos na fase de \textit{feature selection} encontrar as \textit{features} mais relevantes para a classificação dos eventos de exceção, pois com um conjunto relevante de \textit{features} evitamos um modelo de classificação com sobre-ajuste (\textit{overfitting}) e de alto custo computacional \cite{Zhu2013}. Assim, pretendemos selecionar as \textit{features} mais relevantes utilizando a medida estatística \textit{tf-idf} (\textit{term frequency–inverse document frequency}) para obtermos os termos mais frequentes de cada conjunto de dados do \textit{Corpus Twitter}.
 
 %\subsection{Algoritmos de Aprendizado de Máquina}
 
@@ -2169,6 +2184,7 @@ Pretendemos na fase de \textit{feature selection} encontrar as \textit{features}
 
 \chapter{Correlação dos eventos de exceção com os dados AVL da SPTrans}
 \label{dataCorr}
+\todo[inline]{Escrever Correlação dos eventos de exceção com os dados AVL da SPTrans}
 
 Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans, especificamente os dados referentes a \textit{timestamp}, latitude, longitude, \textit{bus\_id} e \textit{trip\_id}. Dito isso, inicialmente pretendemos caracterizar os impactos em:
 
@@ -2195,9 +2211,10 @@ A principal contribuição deste projeto é propor uma solução para o problema
 Em relação a publicações científicas, serão submetidos artigos com os resultados obtidos para veículos de disseminação de conhecimento científico nas áreas de: Análise de Redes Sociais, Sistemas de Transporte Inteligentes, Cidades Inteligentes.
 
 \section{Trabalhos publicados}
+\todo[inline]{Escrever trabalhos publicados}
 
 \section{Trabalhos futuros}
-
+\todo[inline]{Escrever trabalhos futuros}
 As principais limitações deste projeto estão relacionadas ao processamento de \textit{tweets} em português brasileiro e oriundos das contas selecionadas e referenciadas na tabela \ref{tab:oficialProfiles}, o que pode tornar a solução não generalista. Dentre os riscos, apesar das análises preliminares realizadas para extração de endereços dos conteúdos dos \textit{tweets} por meio de Expressão Regular, é possível que sejam encontrados novos desafios que inviabilizem o uso dessa técnica.
 
 \section*{Acknowledgment}
@@ -3050,6 +3067,1631 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \end{longtable}
 \vspace{-\baselineskip}
 \center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+
+\chapter{Linhas de ônibus impactadas por eventos de exceção}
+\label{apendiceD}
+
+\footnotesize
+\begin{longtable}{c|c|p{7cm}}
+\caption{Linhas de ônibus impactadas por eventos de exceção}
+\label{tab:logradouros}\\
+
+\hline \multicolumn{1}{c |}{\textbf{Código da linha}} & \multicolumn{1}{c |}{\textbf{Total de eventos de exceção}} & \multicolumn{1}{c}{\textbf{Letreiro}} \\ \hline 
+\endfirsthead
+
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{c |}{\textbf{Código da linha}} & \multicolumn{1}{c |}{\textbf{Total de eventos de exceção}} & \multicolumn{1}{c}{\textbf{Letreiro}} \\ \hline 
+\endhead
+
+\hline \multicolumn{2}{r}{{Continua na próxima página}} \\
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+    35276 & 1663  & PÇA. RAMOS DE AZEVEDO / TERM. CAMPO LIMPO \\
+\hline
+    32953 & 1606  & TERM. PINHEIROS / TERM. JD. ÂNGELA \\
+\hline
+    32805 & 1462  & TERM. PRINC. ISABEL / CHÁC. SANTANA \\
+\hline
+    32772 & 1423  & TERM. PRINC. ISABEL / TERM. STO. AMARO \\
+\hline
+    32846 & 1420  & METRÔ BRÁS / TERM. GRAJAÚ \\
+\hline
+    32869 & 1339  & PINHEIROS / GRAJAÚ \\
+\hline
+    34134 & 1335  & METRÔ ANA ROSA / MORRO GRANDE \\
+\hline
+    33966 & 1296  & METRÔ VL. MARIANA / TERM. PARELHEIROS \\
+\hline
+    33943 & 1295  & TERM. STO. AMARO / VARGEM GRANDE \\
+\hline
+    34694 & 1245  & PARAÍSO / TERM. CAMPO LIMPO \\
+\hline
+    32874 & 1210  & METRÔ JABAQUARA / PQ. RES. COCAIA \\
+\hline
+    34660 & 1184  & ACLIMAÇÃO / TERM. CAMPO LIMPO \\
+\hline
+    33272 & 1150  & PÇA. RAMOS DE AZEVEDO / JD. JOÃO XXIII \\
+\hline
+    34210 & 1129  & LGO. SÃO FRANCISCO / TERM. VARGINHA \\
+\hline
+    32838 & 1105  & PÇA. DA SÉ / PQ. RES. COCAIA \\
+\hline
+    32829 & 1076  & TERM. BANDEIRA / TERM. CAPELINHA \\
+\hline
+    34233 & 1061  & TERM. BANDEIRA / TERM. VARGINHA \\
+\hline
+    33640 & 1056  & TERM. CACHOEIRINHA / JD. PRINCESA \\
+\hline
+    33377 & 1054  & PERDIZES / AEROPORTO \\
+\hline
+    33042 & 1022  & PÇA. DA SÉ / JD. IV CENTENÁRIO \\
+\hline
+    34209 & 953   & METRÔ JABAQUARA / TERM. VARGINHA \\
+\hline
+    34144 & 937   & PÇA. DA SÉ / CID. UNIVERSITÁRIA \\
+\hline
+    32827 & 934   & TERM. BANDEIRA / TERM. CAPELINHA \\
+\hline
+    33675 & 892   & ITAIM PAULISTA / VL. CALIFÓRNIA \\
+\hline
+    33258 & 875   & LGO. DA PÓLVORA / JD. MARIA LUIZA \\
+\hline
+    33275 & 871   & METRÔ ANA ROSA / JD. GUARAÚ \\
+\hline
+    33382 & 840   & METRÔ SANTANA / CPTM JARAGUÁ \\
+\hline
+    34861 & 834   & METRÔ STA. CECÍLIA / TERM. STO. AMARO \\
+\hline
+    33075 & 831   & LAPA / IPIRANGA \\
+\hline
+    34149 & 821   & METRÔ PARAÍSO / VL. ANASTÁCIO \\
+\hline
+    34098 & 818   & TERM. PQ. D. PEDRO II / CID. UNIVERSITÁRIA \\
+\hline
+    33253 & 789   & METRÔ BELÉM / JD. BONFIGLIOLI \\
+\hline
+    34085 & 771   & TERM. BANDEIRA / JD. VAZ DE LIMA \\
+\hline
+    33123 & 759   & TERM. BANDEIRA / TERM. STO. AMARO \\
+\hline
+    35229 & 738   & TURISMO / CIRCULAR \\
+\hline
+    35174 & 733   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+\hline
+    32871 & 721   & PINHEIROS / VL. SÃO JOSÉ \\
+\hline
+    33908 & 706   & TERM. STO. AMARO / TERM. PARELHEIROS \\
+\hline
+    35160 & 697   & TERM. PQ. D. PEDRO II / TERM. GRAJAÚ \\
+\hline
+    32826 & 694   & TERM. PQ. D. PEDRO II / TERM. JOÃO DIAS \\
+\hline
+    35148 & 676   & METRÔ VL. MADALENA / TERM. SACOMÃ \\
+\hline
+    33224 & 667   & METRÔ VL. MARIANA / TERM. PIRITUBA \\
+\hline
+    32837 & 664   & PÇA. DO CORREIO / SESC/ORION \\
+\hline
+    32849 & 663   & LGO. SÃO FRANCISCO / VL. SÃO JOSÉ \\
+\hline
+    34108 & 660   & METRÔ VL. MARIANA / TERM. LAPA \\
+\hline
+    33117 & 649   & POMPÉIA ATÉ VL. ROMANA / SACOMÃ \\
+\hline
+    33277 & 646   & TERM. PRINC. ISABEL / COHAB RAPOSO TAVARES \\
+\hline
+    32769 & 645   & LGO. SÃO FRANCISCO / TERM. CAPELINHA \\
+\hline
+    33357 & 641   & METRÔ ANA ROSA / VL. BRASILÂNDIA \\
+\hline
+    34109 & 641   & METRÔ ANA ROSA / METRÔ BARRA FUNDA \\
+\hline
+    34907 & 641   & SOCORRO / JD. APURÁ \\
+\hline
+    33443 & 640   & ANA ROSA / METRÔ SANTANA \\
+\hline
+    35196 & 639   & TERM. PQ. D. PEDRO II / METRÔ BUTANTÃ \\
+\hline
+    32816 & 621   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+\hline
+    32814 & 613   & TERM. BANDEIRA / TERM. STO. AMARO \\
+\hline
+    33476 & 609   & PÇA. DO CORREIO / TERM. CACHOEIRINHA \\
+\hline
+    34840 & 606   & ANHANGABAÚ / SHOP. CONTINENTAL \\
+\hline
+    34832 & 604   & TERM. PRINC. ISABEL / RIO PEQUENO \\
+\hline
+    33200 & 599   & PÇA. RAMOS DE AZEVEDO / CID. D'ABRIL \\
+\hline
+    32939 & 590   & LGO. SÃO FRANCISCO / JD. ÂNGELA \\
+\hline
+    35280 & 583   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
+\hline
+    33280 & 582   & PÇA. RAMOS DE AZEVEDO / JD. JOÃO XXIII/EDUC. \\
+\hline
+    34393 & 579   & PÇA. DO CORREIO / TERM. SAPOPEMBA \\
+\hline
+    33544 & 578   & PINHEIROS / PARAISÓPOLIS \\
+\hline
+    34062 & 578   & TERM. BANDEIRA / JD. LUSO \\
+\hline
+    34064 & 578   & PQ. IBIRAPUERA / JD. MIRIAM \\
+\hline
+    32885 & 577   & ACLIMAÇÃO / TERM. PRINC. ISABEL \\
+\hline
+    34761 & 570   & TERM. PINHEIROS / EST. STO. AMARO/GUIDO CALOI \\
+\hline
+    33763 & 568   & PÇA. JOÃO MENDES / JD. VL. FORMOSA \\
+\hline
+    33425 & 567   & CID. UNIVERSITÁRIA / METRÔ SANTANA \\
+\hline
+    32877 & 562   & METRÔ JABAQUARA / GRAJAÚ \\
+\hline
+    34050 & 549   & PQ. D. PEDRO II / CID. ADEMAR \\
+\hline
+    35068 & 545   & METRÔ BARRA FUNDA / TERM. PQ. D. PEDRO II \\
+\hline
+    33121 & 543   & TERM. PRINC. ISABEL / TERM. STO. AMARO \\
+\hline
+    33964 & 541   & TERM. STO. AMARO / JD. HERPLIN \\
+\hline
+    32813 & 540   & PÇA. DA SÉ / CHÁC. SANTANA \\
+\hline
+    34196 & 540   & SOCORRO / LAPA \\
+\hline
+    32892 & 533   & ACLIMAÇÃO / TERM. PRINC. ISABEL \\
+\hline
+    32855 & 531   & TERM. STO. AMARO / JD. ICARAÍ \\
+\hline
+    34218 & 531   & TERM. BANDEIRA / TERM. GUARAPIRANGA \\
+\hline
+    34884 & 529   & BUTANTÃ / TERM. PQ. D. PEDRO II \\
+\hline
+    33643 & 528   & TERM. CACHOEIRINHA / PQ. DE TAIPAS \\
+\hline
+    34883 & 515   & TERM. PINHEIROS / TERM. PQ. D. PEDRO II \\
+\hline
+    33264 & 513   & EST. DA LUZ / JD. BOA VISTA \\
+\hline
+    34049 & 511   & TERM. GUARAPIRANGA / JD. MIRIAM \\
+\hline
+    33952 & 505   & AEROPORTO / CONJ. HAB. PALMARES \\
+\hline
+    33502 & 504   & TERM. PQ. D. PEDRO II / SÃO MATEUS \\
+\hline
+    32825 & 503   & TERM. BANDEIRA / TERM. JOÃO DIAS \\
+\hline
+    33924 & 502   & TERM. STO. AMARO / JD. ORION \\
+\hline
+    35087 & 496   & METRÔ SANTANA / TERM. CACHOEIRINHA \\
+\hline
+    33336 & 494   & PINHEIROS / IMIRIM \\
+\hline
+    34397 & 494   & METRÔ BELÉM / JD. WALKIRIA \\
+\hline
+    34463 & 488   & METRÔ SANTANA / TERM. CACHOEIRINHA \\
+\hline
+    32876 & 487   & METRÔ JABAQUARA / CENTRO SESC \\
+\hline
+    34045 & 485   & TERM. PRINC. ISABEL / JD. MIRIAM \\
+\hline
+    34107 & 483   & TERM. PQ. D. PEDRO II / PQ. DA LAPA \\
+\hline
+    33934 & 480   & SHOP. INTERLAGOS / CANTINHO DO CÉU \\
+\hline
+    33936 & 480   & SHOP. INTERLAGOS / JD. LUCÉLIA \\
+\hline
+    33128 & 473   & TERM. BANDEIRA / SOCORRO \\
+\hline
+    34391 & 472   & METRÔ BELÉM / TERM. SAPOPEMBA \\
+\hline
+    33129 & 471   & TERM. BANDEIRA / VL. CRUZEIRO \\
+\hline
+    35145 & 470   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+\hline
+    33538 & 467   & PAULISTA / PARAISÓPOLIS \\
+\hline
+    34083 & 467   & PINHEIROS / VALO VELHO \\
+\hline
+    32815 & 466   & TERM. PINHEIROS / TERM. STO. AMARO \\
+\hline
+    35178 & 458   & TERM. PINHEIROS / TERM. STO. AMARO \\
+\hline
+    35069 & 456   & TERM. PINHEIROS / CACHOEIRINHA \\
+\hline
+    33389 & 451   & TERM. PINHEIROS / METRÔ TUCURUVI \\
+\hline
+    34014 & 445   & SHOP. ARICANDUVA / HOSP. IPIRANGA \\
+\hline
+    32882 & 442   & METRÔ JABAQUARA / JD. STA. BARBARA \\
+\hline
+    33131 & 442   & HOSP. DAS CLÍNICAS / TERM. STO. AMARO \\
+\hline
+    33391 & 442   & METRÔ JABAQUARA / METRÔ SANTANA \\
+\hline
+    34395 & 442   & TERM. PRINC. ISABEL / TERM. SAPOPEMBA \\
+\hline
+    34061 & 440   & PQ. IBIRAPUERA / JD. MIRIAM \\
+\hline
+    34789 & 440   & METRÔ ARMÊNIA / SHOP. MORUMBI \\
+\hline
+    35278 & 440   & METRÔ STA. CRUZ / TERM. LAPA \\
+\hline
+    34211 & 437   & TERM. STO. AMARO / TERM. VARGINHA \\
+\hline
+    33191 & 436   & ITAIM BIBI / TERM. PIRITUBA \\
+\hline
+    33126 & 433   & TERM. BANDEIRA / INOCOOP CAMPO LIMPO \\
+\hline
+    33236 & 433   & TERM. BANDEIRA / JD. JAQUELINE \\
+\hline
+    34831 & 432   & TERM. BANDEIRA / JD. PAULO VI \\
+\hline
+    33479 & 430   & TERM. BANDEIRA / TERM. PQ. D. PEDRO II \\
+\hline
+    33564 & 430   & HOSP. DAS CLÍNICAS / JD. DAS PALMAS \\
+\hline
+    34139 & 427   & TERM. BANDEIRA / CEASA \\
+\hline
+    33457 & 417   & METRÔ VL. MADALENA / PQ. EDÚ CHAVES \\
+\hline
+    33506 & 416   & TERM. PQ. D. PEDRO II / SÃO MATEUS \\
+\hline
+    33648 & 416   & TERM. CACHOEIRINHA / JD. DAMASCENO \\
+\hline
+    33363 & 415   & PÇA. JOÃO MENDES / JD. MIRIAM \\
+\hline
+    35083 & 408   & TERM. PINHEIROS / TERM. CACHOEIRINHA \\
+\hline
+    33915 & 403   & TERM. GRAJAÚ / PQ. STA. CECÍLIA \\
+\hline
+    33914 & 396   & SHOP. INTERLAGOS / JD. SÃO BERNARDO \\
+\hline
+    35109 & 396   & TERM. PINHEIROS / TERM. PQ. D. PEDRO II \\
+\hline
+    33652 & 392   & TERM. CASA VERDE / PQ. TIETÊ \\
+\hline
+    33372 & 388   & PINHEIROS / VL. CLARA \\
+\hline
+    33867 & 388   & VL. PRUDENTE / SÃO MATEUS \\
+\hline
+    34101 & 387   & PÇA. RAMOS DE AZEVEDO / MERCADO DA LAPA \\
+\hline
+    32831 & 384   & LGO. SÃO FRANCISCO / TERM. CAPELINHA \\
+\hline
+    35191 & 383   & TERM. PINHEIROS / TERM. JOÃO DIAS \\
+\hline
+    34685 & 379   & TERM. BANDEIRA / TERM. CAMPO LIMPO \\
+\hline
+    34407 & 377   & DIV. DE SÃO CAETANO / SÃO MATEUS \\
+\hline
+    34788 & 370   & ITAIM BIBI / TERM. GUARAPIRANGA \\
+\hline
+    33239 & 368   & PÇA. RAMOS DE AZEVEDO / PQ. CONTINENTAL \\
+\hline
+    34102 & 368   & PÇA. RAMOS DE AZEVEDO / LAPA \\
+\hline
+    34076 & 366   & TERM. PQ. D. PEDRO II / TERM. GUARAPIRANGA \\
+\hline
+    33284 & 365   & ITAIM BIBI / METRÔ SANTANA \\
+\hline
+    33922 & 365   & TERM. STO. AMARO / JD. SÃO BERNARDO \\
+\hline
+    33034 & 362   & PÇA. D. GASTÃO / JD. MIRIAM \\
+\hline
+    34084 & 362   & TERM. PINHEIROS / COHAB ADVENTISTA \\
+\hline
+    33573 & 360   & TERM. CACHOEIRINHA / PERUS \\
+\hline
+    34195 & 358   & PÇA. RAMOS DE AZEVEDO / APIACÁS \\
+\hline
+    35062 & 352   & JD. PRINCESA / TERM. CACHOEIRINHA \\
+\hline
+    34693 & 350   & METRÔ STA. CRUZ / TERM. CAMPO LIMPO \\
+\hline
+    33910 & 347   & TERM. STO. AMARO / UNISA-CAMPUS 1 \\
+\hline
+    33919 & 347   & TERM. GRAJAÚ / JD. CASTRO ALVES \\
+\hline
+    34007 & 346   & ITAIM BIBI / TERM. JD. ÂNGELA \\
+\hline
+    33645 & 344   & TERM. CACHOEIRINHA / COHAB BRASILÂNDIA \\
+\hline
+    33486 & 341   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+\hline
+    32910 & 340   & TERM. PQ. D. PEDRO II / VL. MARA \\
+\hline
+    33229 & 340   & PÇA. DO CORREIO / TERM. CACHOEIRINHA \\
+\hline
+    35088 & 340   & PEDRA BRANCA / TERM. CACHOEIRINHA \\
+\hline
+    34860 & 336   & METRÔ ANA ROSA / E.T. ÁGUA ESPRAIADA \\
+\hline
+    35058 & 336   & TAIPAS / TERM. CACHOEIRINHA \\
+\hline
+    32836 & 331   & METRÔ SÃO JUDAS / TERM. JOÃO DIAS \\
+\hline
+    33646 & 328   & TERM. CACHOEIRINHA / CPTM JARAGUÁ \\
+\hline
+    32900 & 321   & PÇA. DO CORREIO / SÃO MIGUEL \\
+\hline
+    35175 & 321   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+\hline
+    33234 & 320   & TERM. PRINC. ISABEL / TERM. CACHOEIRINHA \\
+\hline
+    33596 & 320   & METRÔ BARRA FUNDA / VL. TEREZINHA \\
+\hline
+    33122 & 317   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+\hline
+    33929 & 317   & CPTM JURUBATUBA / JD. GAIVOTAS \\
+\hline
+    32884 & 316   & TERM. PQ. D. PEDRO II / TERM. CASA VERDE \\
+\hline
+    35065 & 312   & JD. CAROMBÉ / TERM. CACHOEIRINHA \\
+\hline
+    33534 & 310   & CARDOSO DE ALMEIDA / MACHADO DE ASSIS \\
+\hline
+    32833 & 308   & HOSP. DAS CLÍNICAS / TERM. JOÃO DIAS \\
+\hline
+    34886 & 302   & TERM. STO. AMARO / JD. ÂNGELA \\
+\hline
+    35011 & 302   & METRÔ - TRIANON - MASP / VL. GOMES \\
+\hline
+    35147 & 299   & TERM. PINHEIROS / TERM. SACOMÃ \\
+\hline
+    33328 & 295   & HOSP. DAS CLÍNICAS / LAUZANE PAULISTA \\
+\hline
+    34008 & 294   & MORUMBI SHOP. / JD. GUARUJÁ \\
+\hline
+    35230 & 294   & TERM. PINHEIROS / TERM. STO. AMARO \\
+\hline
+    34138 & 293   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
+\hline
+    34494 & 291   & SHOP. MORUMBI / BUTANTÃ \\
+\hline
+    32966 & 288   & METRÔ STA. CRUZ / TERM. JD. ÂNGELA \\
+\hline
+    35051 & 287   & TERM. PQ. D. PEDRO II / TERM. LAPA \\
+\hline
+    33916 & 286   & TERM. GRAJAÚ / VL. NATAL \\
+\hline
+    34353 & 286   & TERM. GRAJAÚ / VARGEM GRANDE \\
+\hline
+    34355 & 286   & TERM. GRAJAÚ / DIVISA DE EMBU-GUAÇU \\
+\hline
+    35169 & 286   & JD. NORONHA / TERM. GRAJAÚ \\
+\hline
+    33558 & 284   & STO. AMARO / REAL PQ. \\
+\hline
+    33642 & 280   & TERM. CACHOEIRINHA / VL. PENTEADO \\
+\hline
+    33116 & 279   & RIO PEQUENO / IPIRANGA \\
+\hline
+    33535 & 278   & PÇA. DA REPÚBLICA / STA. MARGARIDA MARIA \\
+\hline
+    33536 & 278   & PÇA. DA REPÚBLICA / GENTIL DE MOURA \\
+\hline
+    33051 & 276   & METRÔ BELÉM / JD. IMPERADOR \\
+\hline
+    33550 & 276   & SHOP. SP MARKET / CAMPO LIMPO \\
+\hline
+    34137 & 276   & METRÔ BARRA FUNDA / TERM. CACHOEIRINHA \\
+\hline
+    33339 & 272   & METRÔ SANTANA / COHAB BRASILÂNDIA \\
+\hline
+    33232 & 270   & ITAIM BIBI / COHAB TAIPAS \\
+\hline
+    33170 & 269   & TERM. PQ. D. PEDRO II / ITAIM PAULISTA \\
+\hline
+    35162 & 266   & TERM. PINHEIROS / METRÔ JABAQUARA \\
+\hline
+    33380 & 264   & METRÔ SANTANA / VL. PENTEADO \\
+\hline
+    33639 & 264   & TERM. CACHOEIRINHA / JD. ELISA MARIA \\
+\hline
+    35054 & 264   & TERM. LAPA / TERM. CACHOEIRINHA \\
+\hline
+    33361 & 262   & PÇA. DA SÉ / BALN. SÃO FRANCISCO \\
+\hline
+    33359 & 261   & TERM. PRINC. ISABEL / VOITH \\
+\hline
+    33481 & 260   & PÇA. DA SÉ / TERM. VL. CARRÃO \\
+\hline
+    34977 & 260   & TERM. MERCADO / TERM. SÃO MATEUS \\
+\hline
+    32834 & 259   & TERM. PINHEIROS / TERM. CAPELINHA \\
+\hline
+    33561 & 259   & E.T. Água Espraiada / JD. PAULO VI \\
+\hline
+    35180 & 259   & TERM. STO. AMARO / TERM. CAPELINHA \\
+\hline
+    33276 & 258   & METRÔ BARRA FUNDA / JD. ARPOADOR \\
+\hline
+    35164 & 258   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+\hline
+    33475 & 256   & TERM. CACHOEIRINHA / JD. STA. CRUZ \\
+\hline
+    33638 & 256   & TERM. CACHOEIRINHA / JD. PERY ALTO \\
+\hline
+    33114 & 255   & TERM. PINHEIROS / SACOMÃ \\
+\hline
+    33072 & 254   & TERM. STO. AMARO / IPIRANGA \\
+\hline
+    34051 & 254   & PQ. IBIRAPUERA / VL. STA. CATARINA \\
+\hline
+    33241 & 253   & PINHEIROS / JD. ADALGIZA \\
+\hline
+    34100 & 253   & TERM. PRINC. ISABEL / CID. UNIVERSITÁRIA \\
+\hline
+    33146 & 249   & TERM. PQ. D. PEDRO II / JD. CAMARGO VELHO \\
+\hline
+    33151 & 249   & TERM. PQ. D. PEDRO II / OLIVEIRINHA \\
+\hline
+    34758 & 249   & METRÔ PÇA. DA ÁRVORE / JD. ÂNGELA \\
+\hline
+    33243 & 248   & ITAIM BIBI / RIO PEQUENO \\
+\hline
+    33233 & 246   & ITAIM BIBI / JD. NARDINI \\
+\hline
+    33553 & 244   & STO. AMARO / JD. JAQUELINE \\
+\hline
+    33032 & 243   & PQ. IBIRAPUERA / JD. SELMA \\
+\hline
+    33090 & 240   & PÇA. DA REPÚBLICA / SHOP. PLAZA SUL \\
+\hline
+    34033 & 236   & PÇA. RAMOS DE AZEVEDO / TERM. PIRITUBA \\
+\hline
+    32879 & 235   & METRÔ VL. MARIANA / TERM. GRAJAÚ \\
+\hline
+    33933 & 235   & TERM. STO. AMARO / JD. PROGRESSO \\
+\hline
+    34053 & 234   & TERM. STO. AMARO / JD. LUSO \\
+\hline
+    35167 & 234   & JD. LUSO / TERM. STO. AMARO \\
+\hline
+    34834 & 231   & TERM. PINHEIROS / JD. COLOMBO \\
+\hline
+    34136 & 228   & LAPA / TERM. CACHOEIRINHA \\
+\hline
+    33142 & 227   & TERM. PQ. D. PEDRO II / VL. NOVA CURUÇÁ \\
+\hline
+    34669 & 227   & METRÔ CONCEIÇÃO / TERM. CAMPO LIMPO \\
+\hline
+    33112 & 226   & TERM. PQ. D. PEDRO II / JD. SÃO SAVÉRIO \\
+\hline
+    33354 & 226   & TERM. PRINC. ISABEL / COHAB TAIPAS \\
+\hline
+    34246 & 226   & METRÔ STA. CRUZ / TERM. STO. AMARO \\
+\hline
+    33366 & 221   & PÇA. JOÃO MENDES / ELDORADO \\
+\hline
+    33477 & 221   & SHOP. CENTER NORTE / JD. DAMASCENO \\
+\hline
+    34962 & 217   & LGO. DA CONCÓRDIA / SHOP. ARICANDUVA \\
+\hline
+    33398 & 214   & CID. UNIVERSITÁRIA / METRÔ SANTANA \\
+\hline
+    35197 & 214   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
+\hline
+    33968 & 210   & TERM. STO. AMARO / JD. PLANALTO \\
+\hline
+    34090 & 210   & METRÔ VL. MARIANA / TERM. CAPELINHA \\
+\hline
+    35207 & 209   & STA. CECÍLIA / TERM. VL. MARIANA \\
+\hline
+    34240 & 208   & TERM. VARGINHA / TERM. GRAJAÚ \\
+\hline
+    33611 & 204   & LAPA / JD. PERY ALTO \\
+\hline
+    34128 & 200   & PÇA. DO CORREIO / BRASILÂNDIA \\
+\hline
+    35125 & 200   & TERM. PQ. D. PEDRO II / TERM. VL. CARRÃO \\
+\hline
+    33348 & 197   & PÇA. DO CORREIO / TAIPAS \\
+\hline
+    34283 & 195   & PÇA. JOÃO MENDES / ELDORADO \\
+\hline
+    32872 & 193   & TERM. STO. AMARO / PQ. AMÉRICA \\
+\hline
+    35177 & 193   & TERM. STO. AMARO / TERM. CAPELINHA \\
+\hline
+    35206 & 190   & METRÔ VL. MARIANA / METRÔ BUTANTÃ \\
+\hline
+    32897 & 189   & LUZ / TERM. A. E. CARVALHO \\
+\hline
+    35179 & 188   & TERM. PINHEIROS / TERM. CAMPO LIMPO \\
+\hline
+    33198 & 187   & PÇA. DO CORREIO / CID. D'ABRIL 3ª GLEBA \\
+\hline
+    33206 & 187   & PÇA. RAMOS DE AZEVEDO / MORRO DOCE \\
+\hline
+    34856 & 186   & ITAIM BIBI / TERM. LAPA \\
+\hline
+    33144 & 184   & TERM. PQ. D. PEDRO II / JD. NAZARÉ \\
+\hline
+    34760 & 184   & EST. STO. AMARO/GUIDO CALOI / TERM. JD. JACIRA \\
+\hline
+    32776 & 182   & METRÔ ANA ROSA / TERM. CAPELINHA \\
+\hline
+    34000 & 182   & TERM. STO. AMARO / JD. SÃO FRANCISCO \\
+\hline
+    33211 & 181   & LGO. DO PAISSANDÚ / JD. LÍBANO \\
+\hline
+    33088 & 179   & PÇA. DA REPÚBLICA / VL. MONUMENTO \\
+\hline
+    35203 & 179   & PQ. CONTINENTAL / TERM. PINHEIROS \\
+\hline
+    34938 & 177   & TERM. PQ. D. PEDRO II / TERM. CID. TIRADENTES \\
+\hline
+    35085 & 177   & TERM. PQ. D. PEDRO II / TERM. CASA VERDE \\
+\hline
+    32903 & 176   & TERM. PQ. D. PEDRO II / JD. DANFER \\
+\hline
+    33089 & 176   & TERM. PQ. D. PEDRO II / VL. GUMERCINDO \\
+\hline
+    33989 & 176   & TERM. STO. AMARO / JD. D. JOSÉ \\
+\hline
+    35274 & 176   & PÇA. RAMOS DE AZEVEDO / TERM. LAPA \\
+\hline
+    33000 & 175   & METRÔ VL. MARIANA / PENHA \\
+\hline
+    33230 & 174   & LGO. DO PAISSANDÚ / TERM. CACHOEIRINHA \\
+\hline
+    32820 & 172   & TERM. STO. AMARO / TERM. CAPELINHA \\
+\hline
+    34969 & 170   & METRÔ BELÉM / TERM. VL. CARRÃO \\
+\hline
+    35022 & 169   & METRÔ BARRA FUNDA / CID. UNIVERSITÁRIA \\
+\hline
+    35176 & 169   & TERM. STO. AMARO / TERM. JD. ÂNGELA \\
+\hline
+    33386 & 168   & METRÔ SANTANA / VL. STA. MARIA \\
+\hline
+    33595 & 168   & METRÔ BARRA FUNDA / JD. DOS FRANCOS \\
+\hline
+    33680 & 168   & PQ. D. PEDRO II / UNIÃO DE VL. NOVA \\
+\hline
+    33953 & 168   & TERM. GRAJAÚ / CANTINHO DO CÉU \\
+\hline
+    33979 & 167   & TERM. STO. AMARO / RIVIERA \\
+\hline
+    34920 & 167   & TERM. STO. AMARO / JD. NAKAMURA \\
+\hline
+    34717 & 166   & LAPA / CAMPO LIMPO \\
+\hline
+    34935 & 166   & METRÔ BELÉM / TERM. SÃO MATEUS \\
+\hline
+    33214 & 165   & LGO. DO PAISSANDÚ / MANGALOT \\
+\hline
+    32909 & 164   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+\hline
+    33037 & 164   & PQ. IBIRAPUERA / JD. APURÁ \\
+\hline
+    33130 & 164   & METRÔ ANA ROSA / TERM. STO. AMARO \\
+\hline
+    33516 & 160   & METRÔ BRESSER / CID. TIRADENTES \\
+\hline
+    33575 & 160   & CEM. VL. NOVA CACHOEIRINHA / PIRITUBA \\
+\hline
+    34668 & 156   & TERM. STO. AMARO / TERM. CAMPO LIMPO \\
+\hline
+    35192 & 156   & JD. PLANALTO / TERM. JOÃO DIAS \\
+\hline
+    34498 & 153   & TERM. STO. AMARO / TERM. JD. ÂNGELA \\
+\hline
+    33956 & 152   & TERM. STO. AMARO / JD. ICARAÍ \\
+\hline
+    34043 & 152   & METRÔ STA. CRUZ / CPTM AUTÓDROMO \\
+\hline
+    34110 & 150   & JAGUARÉ / CITY JARAGUÁ \\
+\hline
+    35072 & 150   & METRÔ BARRA FUNDA / CONEXÃO PETRÔNIO PORTELA \\
+\hline
+    33343 & 149   & PÇA. DO CORREIO / JD. GUARANI \\
+\hline
+    34086 & 149   & METRÔ SÃO JUDAS / PQ. STO. ANTONIO \\
+\hline
+    32975 & 148   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+\hline
+    33656 & 148   & METRÔ BARRA FUNDA / JD. TEREZA \\
+\hline
+    34386 & 148   & TERM. PQ. D. PEDRO II / TERM. SÃO MIGUEL \\
+\hline
+    35104 & 147   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+\hline
+    33314 & 144   & SHOP. CENTER NORTE / VL.NOVA CACHOEIRINHA \\
+\hline
+    33070 & 142   & METRÔ SAÚDE / VL. LIVIERO \\
+\hline
+    33237 & 142   & METRÔ BARRA FUNDA / RIO PEQUENO \\
+\hline
+    35103 & 142   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+\hline
+    34396 & 138   & TERM. PQ. D. PEDRO II / TERM. SAPOPEMBA \\
+\hline
+    35084 & 138   & METRÔ VL. MADALENA / METRÔ SANTANA \\
+\hline
+    33255 & 137   & PAULISTA / COHAB EDUCANDÁRIO \\
+\hline
+    34659 & 136   & TERM. PINHEIROS / TERM. CAMPO LIMPO \\
+\hline
+    33427 & 135   & PÇA. DO CORREIO / VL. SABRINA \\
+\hline
+    33462 & 134   & PÇA. DO CORREIO / PQ. EDÚ CHAVES \\
+\hline
+    34928 & 133   & TERM. PQ. D. PEDRO II / E.T. ITAQUERA \\
+\hline
+    35209 & 133   & COHAB RAPOSO TAVARES / TERM. PINHEIROS \\
+\hline
+    33667 & 132   & CACHOEIRINHA / COHAB ANTÁRTICA \\
+\hline
+    35050 & 132   & TERM. PQ. D. PEDRO II / TERM. LAPA \\
+\hline
+    33468 & 130   & PÇA. DO CORREIO / JD. BRASIL \\
+\hline
+    33095 & 129   & TERM. PQ. D. PEDRO II / ZOOLÓGICO \\
+\hline
+    34852 & 129   & TERM. STO. AMARO / JD. CAIÇARA \\
+\hline
+    33472 & 128   & LUZ / CANGAÍBA \\
+\hline
+    34133 & 128   & TERM. CASA VERDE / VL. PENTEADO \\
+\hline
+    33240 & 126   & TERM. LAPA / RIO PEQUENO \\
+\hline
+    34439 & 126   & JD. ITÁPOLIS / TERM. SACOMÃ \\
+\hline
+    35252 & 126   & TERM. STO. AMARO / E T. ÁGUA ESPRAIADA \\
+\hline
+    33870 & 124   & OBJETIVO UNIP / VL. DAS MERCÊS \\
+\hline
+    33543 & 122   & PINHEIROS / PQ. ARARIBA \\
+\hline
+    35165 & 121   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+\hline
+    33441 & 120   & MUSEU DO IPIRANGA / VL. SABRINA \\
+\hline
+    33474 & 120   & PENHA / METRÔ SANTANA \\
+\hline
+    35171 & 117   & UNISA / TERM. GRAJAÚ \\
+\hline
+    35172 & 117   & VARGEM GRANDE / TERM. GRAJAÚ \\
+\hline
+    33039 & 116   & TERM. STO. AMARO / VL. IMPÉRIO \\
+\hline
+    34650 & 116   & TERM. PQ. D. PEDRO II / TERM. PENHA \\
+\hline
+    32858 & 114   & TERM. STO. AMARO / JD. GRAUNA \\
+\hline
+    33576 & 114   & TERM. PIRITUBA / RECANTO DOS HUMILDES \\
+\hline
+    33986 & 114   & STO. AMARO / JD. JANGADEIRO \\
+\hline
+    35161 & 110   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+\hline
+    33581 & 109   & METRÔ BARRA FUNDA / JD. VISTA ALEGRE \\
+\hline
+    34132 & 109   & METRÔ BARRA FUNDA / PENTEADO \\
+\hline
+    32934 & 108   & TERM. PQ. D. PEDRO II / JD. SÃO PAULO \\
+\hline
+    34941 & 108   & TERM. PQ. D. PEDRO II / TERM. CID. TIRADENTES \\
+\hline
+    32956 & 106   & TERM. STO. AMARO / TERM. JD. JACIRA \\
+\hline
+    32964 & 106   & TERM. STO. AMARO / JD. ARACATI \\
+\hline
+    34273 & 106   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+\hline
+    33017 & 104   & CERET / JD. HELENA \\
+\hline
+    33571 & 104   & JD. PRIMAVERA / CPTM VL. AURORA \\
+\hline
+    34140 & 104   & TERM. PRINC. ISABEL / TERM. PINHEIROS \\
+\hline
+    33985 & 103   & STO. AMARO / VALO VELHO \\
+\hline
+    35061 & 103   & PERUS / TERM. PIRITUBA \\
+\hline
+    33105 & 101   & METRÔ JABAQUARA / SHOP. PLAZA SUL \\
+\hline
+    35139 & 101   & HOSP. STA. MARCELINA / METRÔ ITAQUERA \\
+\hline
+    34838 & 100   & BUTANTÃ / VL. SÔNIA \\
+\hline
+    35143 & 100   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+\hline
+    33566 & 99    & LAPA / PERUS \\
+\hline
+    33540 & 96    & HOSP. DAS CLÍNICAS / JD. ROSA MARIA \\
+\hline
+    33794 & 96    & METRÔ CARRÃO / SHOP. ARICANDUVA \\
+\hline
+    33981 & 96    & STO. AMARO / VL. GILDA \\
+\hline
+    34193 & 96    & TERM. LAPA / MORRO GRANDE \\
+\hline
+    32798 & 95    & TERM. JOÃO DIAS / JD. INGÁ \\
+\hline
+    34745 & 93    & ITAIM BIBI / JD. MIRIAM \\
+\hline
+    32773 & 92    & TERM. JOÃO DIAS / JD. IBIRAPUERA \\
+\hline
+    32799 & 92    & TERM. JOÃO DIAS / TERM. CAPELINHA \\
+\hline
+    33176 & 92    & LAPA / JARAGUÁ \\
+\hline
+    33274 & 92    & HOSP. DAS CLÍNICAS / JD. JOÃO XXIII \\
+\hline
+    33848 & 92    & METRÔ BELÉM / VL. INDUSTRIAL \\
+\hline
+    35173 & 92    & ELDORADO / TERM. STO. AMARO \\
+\hline
+    33577 & 90    & LAPA / CAPELA DA LAGOA \\
+\hline
+    33601 & 90    & TERM. PIRITUBA / COHAB BRASILÂNDIA \\
+\hline
+    34024 & 90    & TERM. PIRITUBA / JD. DONÁRIA \\
+\hline
+    34027 & 90    & TERM. PIRITUBA / CID. D'ABRIL 3ª GLEBA \\
+\hline
+    34029 & 90    & TERM. PIRITUBA / CPTM VL. AURORA \\
+\hline
+    34035 & 90    & METRÔ BARRA FUNDA / TERM. PIRITUBA \\
+\hline
+    34114 & 90    & TERM. PIRITUBA / JD. RINCÃO \\
+\hline
+    34205 & 90    & TERM. PIRITUBA / PQ. DE TAIPAS \\
+\hline
+    34937 & 90    & METRÔ PENHA / TERM. CID. TIRADENTES \\
+\hline
+    35059 & 90    & JD. DONÁRIA / TERM. PIRITUBA \\
+\hline
+    35265 & 90    & CONEXÃO VL. IÓRIO / PERUS \\
+\hline
+    35081 & 89    & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
+\hline
+    35202 & 89    & JD. JOÃO XXIII / TERM. PINHEIROS \\
+\hline
+    32954 & 88    & TERM. STO. AMARO / JD. NAKAMURA \\
+\hline
+    33040 & 88    & TERM. STO. AMARO / VL. GUACURI \\
+\hline
+    33251 & 88    & METRÔ BARRA FUNDA / PINHEIROS/VILA IDA \\
+\hline
+    33333 & 88    & CEASA / METRÔ SANTANA \\
+\hline
+    35163 & 87    & TERM. PQ. D. PEDRO II / METRÔ JABAQUARA \\
+\hline
+    32923 & 86    & CERET / TERM. A. E. CARVALHO \\
+\hline
+    32944 & 86    & TERM. STO. AMARO / TERM. CAPELINHA \\
+\hline
+    33356 & 86    & PÇA. DO CORREIO / PEDRA BRANCA \\
+\hline
+    34939 & 86    & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+\hline
+    35271 & 86    & METRÔ JABAQUARA / TERM. GUARAPIRANGA \\
+\hline
+    33610 & 85    & CORREIO / PQ. VL. MARIA \\
+\hline
+    33863 & 85    & METRÔ TATUAPÉ / VL. CALIFÓRNIA \\
+\hline
+    33876 & 85    & METRÔ BELÉM / PQ. BANCÁRIO \\
+\hline
+    34835 & 85    & TERM. PINHEIROS / RIO PEQUENO \\
+\hline
+    34903 & 85    & TERM. PINHEIROS / CONEXÃO VL. IÓRIO \\
+\hline
+    32824 & 84    & STO. AMARO / CAPÃO REDONDO \\
+\hline
+    32863 & 84    & TERM. GRAJAÚ / PQ. RES. COCAIA \\
+\hline
+    33859 & 84    & METRÔ BRESSER / JD. ITÁPOLIS \\
+\hline
+    33913 & 84    & TERM. GRAJAÚ / JD. ELLUS \\
+\hline
+    33935 & 84    & TERM. GRAJAÚ / ILHA DO BORORÉ \\
+\hline
+    33954 & 84    & TERM. GRAJAÚ / JD. PRAINHA \\
+\hline
+    33957 & 84    & TERM. GRAJAÚ / JD. LUCÉLIA \\
+\hline
+    33961 & 84    & TERM. GRAJAÚ / JD. GAIVOTAS \\
+\hline
+    33993 & 84    & TERM. GRAJAÚ / PQ. COCAIA \\
+\hline
+    35110 & 84    & TERM. PQ. D. PEDRO II / METRÔ ITAQUERA \\
+\hline
+    33245 & 83    & METRÔ - TRIANON - MASP / PQ. CONTINENTAL \\
+\hline
+    34804 & 83    & E.T. ÁGUA ESPRAIADA / TERM. GRAJAÚ \\
+\hline
+    33079 & 82    & PÇA. ALMEIDA JR. / VL. EMA \\
+\hline
+    33879 & 81    & IBIRAPUERA / JD. ELBA \\
+\hline
+    34200 & 81    & LGO. DO PAISSANDÚ / TERM. PIRITUBA \\
+\hline
+    33325 & 80    & SHOP. CENTER NORTE / COHAB ANTÁRTICA \\
+\hline
+    33412 & 80    & METRÔ SANTANA / CACHOEIRA \\
+\hline
+    33988 & 80    & TERM. STO. AMARO / JD. CAPELINHA \\
+\hline
+    34058 & 80    & TERM. STO. AMARO / METRÔ JABAQUARA \\
+\hline
+    34427 & 79    & PÇA. DO CORREIO / TERM. SACOMÃ \\
+\hline
+    34837 & 79    & TERM. PINHEIROS / JD. D'ABRIL \\
+\hline
+    32913 & 78    & METRÔ TATUAPÉ / VL. CISPER \\
+\hline
+    33807 & 78    & METRÔ ITAQUERA / RECANTO VERDE SOL \\
+\hline
+    33810 & 78    & METRÔ ITAQUERA / JD. LARANJEIRA \\
+\hline
+    33831 & 78    & METRÔ ITAQUERA / COHAB BARRO BRANCO \\
+\hline
+    34380 & 78    & METRÔ ITAQUERA / CID. TIRADENTES \\
+\hline
+    33657 & 77    & METRÔ BARRA FUNDA / JD. GUARANI \\
+\hline
+    34812 & 76    & METRÔ BUTANTÃ / TERM. CAMPO LIMPO \\
+\hline
+    35156 & 74    & JD. ITÁPOLIS / TERM. SACOMÃ \\
+\hline
+    33093 & 73    & TERM. PQ. D. PEDRO II / JD. PLANALTO \\
+\hline
+    33226 & 73    & PÇA. DO CORREIO / TERM. CASA VERDE \\
+\hline
+    33165 & 72    & METRÔ TATUAPÉ / JD. ROMANO \\
+\hline
+    33342 & 72    & PÇA. DO CORREIO / JD. PAULISTANO \\
+\hline
+    33702 & 72    & METRÔ ITAQUERA / JD. NAZARÉ \\
+\hline
+    33735 & 72    & METRÔ ITAQUERA / JD. ALTO PAULISTANO \\
+\hline
+    33795 & 72    & METRÔ ITAQUERA / JD. LIMOEIRO \\
+\hline
+    33835 & 72    & METRÔ ITAQUERA / CID. TIRADENTES \\
+\hline
+    33548 & 71    & SHOP. MORUMBI / JD. INGÁ \\
+\hline
+    34836 & 71    & TERM. PINHEIROS / COHAB EDUCANDÁRIO \\
+\hline
+    34414 & 70    & MOEMA / TERM. SACOMÃ \\
+\hline
+    35080 & 70    & TERM. PINHEIROS / METRÔ SANTANA \\
+\hline
+    35246 & 70    & TERM. PINHEIROS / METRÔ SANTANA \\
+\hline
+    33173 & 69    & METRÔ ITAQUERA / JD. CAMARGO VELHO \\
+\hline
+    33482 & 69    & PÇA. DA SÉ / PÇA. SILVIO ROMERO \\
+\hline
+    33987 & 69    & STO. AMARO / JD. TRÊS ESTRELAS \\
+\hline
+    32991 & 68    & METRÔ ARTUR ALVIM / JD. HELENA \\
+\hline
+    33549 & 68    & STO. AMARO / JD. INGÁ \\
+\hline
+    33990 & 68    & STO. AMARO / VALO VELHO \\
+\hline
+    34191 & 68    & METRÔ BARRA FUNDA / VL. ZATT \\
+\hline
+    35144 & 68    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
+\hline
+    35146 & 68    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
+\hline
+    34990 & 67    & METRÔ BRESSER / CONJ. MANOEL DA NÓBREGA \\
+\hline
+    32781 & 66    & TERM. JOÃO DIAS / CAPÃO REDONDO \\
+\hline
+    32912 & 66    & METRÔ TATUAPÉ / ERMELINO MATARAZZO \\
+\hline
+    33758 & 66    & SÃO MIGUEL PAULISTA / TERM. CID. TIRADENTES \\
+\hline
+    33873 & 66    & TERM. NORTE METRÔ CARRÃO / VL. INDUSTRIAL \\
+\hline
+    33972 & 65    & STO. AMARO / PQ. INDEPENDÊNCIA \\
+\hline
+    33973 & 65    & STO. AMARO / VL. CALÚ \\
+\hline
+    33974 & 65    & STO. AMARO / JD. NAKAMURA \\
+\hline
+    33975 & 65    & STO. AMARO / PQ. CEREJEIRA \\
+\hline
+    33111 & 64    & TERM. AMARAL GURGEL / JD. DA SAÚDE \\
+\hline
+    33984 & 64    & STO. AMARO / JD. DAS ROSAS \\
+\hline
+    34501 & 64    & TERM. GRAJAÚ / JD. ELIANA \\
+\hline
+    34747 & 64    & HOSP. PEDREIRA / CID. DUTRA \\
+\hline
+    35168 & 64    & JD. GAIVOTAS / TERM. GRAJAÚ \\
+\hline
+    35200 & 64    & CEASA / TERM. PINHEIROS \\
+\hline
+    33460 & 63    & LIBERDADE / VL. MEDEIROS \\
+\hline
+    33846 & 63    & SHOP. ARICANDUVA / JD. SÃO FRANCISCO \\
+\hline
+    35149 & 63    & METRÔ SANTANA / TERM. SACOMÃ \\
+\hline
+    33365 & 62    & PÇA. JOÃO MENDES / DIV. DIADEMA \\
+\hline
+    34010 & 61    & STO. AMARO / JD. CAPELA \\
+\hline
+    34942 & 61    & TERM. PQ. D. PEDRO II / INÁCIO MONTEIRO \\
+\hline
+    32787 & 60    & TERM. CAPELINHA / JD. DAS ROSAS \\
+\hline
+    32791 & 60    & TERM. CAPELINHA / PQ. FERNANDA \\
+\hline
+    33406 & 60    & SHOP. CENTER NORTE / VL. ALBERTINA \\
+\hline
+    33514 & 60    & TERM. PQ. D. PEDRO II / VL. DALILA \\
+\hline
+    33777 & 60    & METRÔ ITAQUERA / JD. SÃO JOÃO \\
+\hline
+    34031 & 60    & TERM. LAPA / TERM. PIRITUBA \\
+\hline
+    34409 & 60    & PÇA. ALMEIDA JR. / TERM. SAPOPEMBA \\
+\hline
+    34560 & 60    & METRÔ SANTANA / PEDRA BRANCA \\
+\hline
+    34940 & 60    & TERM. PQ. D. PEDRO II / JD. MARÍLIA \\
+\hline
+    35053 & 60    & TERM. LAPA / TERM. PIRITUBA \\
+\hline
+    35111 & 60    & OLIVEIRINHA / TERM. A. E. CARVALHO \\
+\hline
+    35275 & 60    & TERM. LAPA / TERM. PIRITUBA \\
+\hline
+    32800 & 59    & TERM. JOÃO DIAS / JD. NOVO ORIENTE \\
+\hline
+    32943 & 59    & SHOP. INTERLAGOS / JD. HERCULANO \\
+\hline
+    32990 & 58    & METRÔ ARTUR ALVIM / PQ. D. JOÃO NERY \\
+\hline
+    33139 & 58    & TERM. ARICANDUVA / CID. KEMEL \\
+\hline
+    33311 & 57    & SHOP. D / JD. PERY ALTO \\
+\hline
+    33819 & 57    & METRÔ CARRÃO / 3A. DIVISÃO \\
+\hline
+    33904 & 57    & SHOP. MORUMBI / METRÔ CONCEIÇÃO \\
+\hline
+    34826 & 57    & SHOP. MORUMBI / TERM. CAMPO LIMPO \\
+\hline
+    33312 & 56    & METRÔ SANTANA / LAUZANE PAULISTA \\
+\hline
+    33455 & 56    & TERM. VL. CARRÃO / JAÇANÃ \\
+\hline
+    33635 & 56    & PINHEIROS / METRÔ BARRA FUNDA \\
+\hline
+    33784 & 56    & METRÔ TATUAPÉ / VL. STA. ISABEL \\
+\hline
+    34857 & 56    & TERM. PINHEIROS / LAPA \\
+\hline
+    35032 & 56    & METRÔ SANTANA / LAUZANE PAULISTA \\
+\hline
+    33287 & 55    & TERM. AMARAL GURGEL / JD. PERY ALTO \\
+\hline
+    33488 & 55    & CIRCULAR / TERM. VL. CARRÃO \\
+\hline
+    34059 & 55    & METRÔ ANA ROSA / JD. MIRIAM \\
+\hline
+    33043 & 54    & METRÔ CONCEIÇÃO / SHOP. SP MARKET \\
+\hline
+    33711 & 54    & METRÔ PENHA / JD. DO CASTELO \\
+\hline
+    34387 & 54    & TERM. SÃO MATEUS / TERM. SÃO MIGUEL \\
+\hline
+    32932 & 53    & TERM. SÃO MATEUS / JD. HELENA \\
+\hline
+    34048 & 53    & LGO. SÃO FRANCISCO / JD. SELMA \\
+\hline
+    34077 & 53    & STO. AMARO / VALO VELHO \\
+\hline
+    34684 & 53    & SHOP. MORUMBI / TERM. CAMPO LIMPO \\
+\hline
+    35204 & 53    & CDHU BUTANTÃ / TERM. JOÃO DIAS \\
+\hline
+    33044 & 52    & VL. PRUDENTE / PQ. BANCÁRIO \\
+\hline
+    33837 & 52    & METRÔ ARTUR ALVIM / SHOP. ARICANDUVA \\
+\hline
+    33320 & 51    & METRÔ SANTANA / JD. ANTÁRTICA \\
+\hline
+    33321 & 51    & METRÔ SANTANA / JD. PERY \\
+\hline
+    33556 & 51    & STO. AMARO / PARAISÓPOLIS \\
+\hline
+    34943 & 51    & TERM. PQ. D. PEDRO II / TERM. VL. CARRÃO \\
+\hline
+    33009 & 50    & METRÔ TATUAPÉ / CID. PEDRO JOSÉ NUNES \\
+\hline
+    33160 & 50    & METRÔ ARTUR ALVIM / JD. DAS OLIVEIRAS \\
+\hline
+    33439 & 50    & TERM. AMARAL GURGEL / VL. SABRINA \\
+\hline
+    33781 & 50    & NOVA AMERICA / METRÔ ARTUR ALVIM \\
+\hline
+    34882 & 50    & METRÔ ARTUR ALVIM / CONJ. ENCOSTA NORTE \\
+\hline
+    34056 & 49    & METRÔ CONCEIÇÃO / CID. JÚLIA \\
+\hline
+    34127 & 49    & PÇA. DO CORREIO / FREGUESIA DO Ó \\
+\hline
+    32926 & 48    & TERM. SÃO MATEUS / TERM. A. E. CARVALHO \\
+\hline
+    33136 & 48    & TERM. PENHA / JD. DAS OLIVEIRAS \\
+\hline
+    33158 & 48    & METRÔ VL. MATILDE / CID. KEMEL II \\
+\hline
+    33299 & 48    & LAPA / COHAB ANTÁRTICA \\
+\hline
+    33346 & 48    & TERM. LAPA / JD. DOS CUNHAS \\
+\hline
+    33585 & 48    & METRÔ SANTANA / JD. ALMANARA \\
+\hline
+    33609 & 48    & LAPA / LAUZANE PAULISTA \\
+\hline
+    33653 & 48    & LAPA / VL. TEREZINHA \\
+\hline
+    33822 & 48    & METRÔ TATUAPÉ / TERM. VL. CARRÃO \\
+\hline
+    33991 & 48    & STO. AMARO / JD. SÃO BENTO NOVO \\
+\hline
+    34036 & 48    & TERM. LAPA / ITABERABA \\
+\hline
+    35033 & 48    & LAPA / MANDAQUI \\
+\hline
+    35093 & 48    & JD. ANTÁRTICA / METRÔ SANTANA \\
+\hline
+    33326 & 47    & LAPA / METRÔ SANTANA \\
+\hline
+    33982 & 47    & STO. AMARO / JD. MACEDÔNIA \\
+\hline
+    33614 & 46    & TIETÊ / JOVA RURAL \\
+\hline
+    34419 & 46    & TERM. MERCADO / TERM. SACOMÃ \\
+\hline
+    34757 & 46    & TERM. JOÃO DIAS / JD. MARACÁ \\
+\hline
+    34839 & 46    & METRÔ BUTANTÃ / PQ. CONTINENTAL \\
+\hline
+    34867 & 46    & STO. AMARO / PARAISÓPOLIS \\
+\hline
+    35193 & 46    & JD. VAZ DE LIMA / TERM. JOÃO DIAS \\
+\hline
+    33440 & 45    & METRÔ SANTANA / VL. CONSTANÇA \\
+\hline
+    33539 & 45    & BROOKLIN NOVO / REAL PQ. \\
+\hline
+    33021 & 44    & TERM. SÃO MATEUS / GUAIANAZES \\
+\hline
+    33307 & 44    & METRÔ SANTANA / VL. DIONISIA \\
+\hline
+    33461 & 44    & LIBERDADE / PQ. EDÚ CHAVES \\
+\hline
+    33731 & 44    & SHOP. ARICANDUVA / VL. MINERVA \\
+\hline
+    35102 & 44    & JD. PERY ALTO / METRÔ SANTANA \\
+\hline
+    35126 & 44    & TERM. VL. CARRÃO / METRÔ ITAQUERA \\
+\hline
+    33728 & 43    & PQ. SÃO RAFAEL / SHOP. ARICANDUVA \\
+\hline
+    33827 & 43    & METRÔ CARRÃO / RES. STA. BÁRBARA \\
+\hline
+    33868 & 43    & SHOP. ARICANDUVA / FAZENDA DA JUTA \\
+\hline
+    33878 & 43    & METRÔ CARRÃO / JD. VERA CRUZ \\
+\hline
+    34936 & 43    & METRÔ CARRÃO / TERM. SÃO MATEUS \\
+\hline
+    34964 & 43    & METRÔ CARRÃO / JD. NOVA VITÓRIA \\
+\hline
+    35150 & 43    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
+\hline
+    35266 & 43    & METRÔ BELÉM / PQ. EDÚ CHAVES \\
+\hline
+    33077 & 42    & BOM RETIRO / PQ. SÃO LUCAS \\
+\hline
+    33906 & 42    & METRÔ CONCEIÇÃO / PQ. PRIMAVERA \\
+\hline
+    34394 & 42    & TERM. PQ. D. PEDRO II / TERM. SAPOPEMBA \\
+\hline
+    34453 & 42    & TERM. VL. CARRÃO / METRÔ CONCEIÇÃO \\
+\hline
+    34791 & 42    & CID. UNIVERSITÁRIA / METRÔ BUTANTÃ \\
+\hline
+    34853 & 42    & CID. UNIVERSITÁRIA / METRÔ BUTANTÃ \\
+\hline
+    34960 & 42    & TERM. PENHA / CPTM JOSÉ BONIFÁCIO \\
+\hline
+    34965 & 42    & METRÔ ITAQUERA / JD. SÃO FRANCISCO \\
+\hline
+    33110 & 41    & METRÔ SÃO JUDAS / JD. CLÍMAX \\
+\hline
+    33555 & 41    & CAMPO BELO / PARAISÓPOLIS \\
+\hline
+    32780 & 40    & TERM. CAPELINHA / VALO VELHO \\
+\hline
+    33370 & 40    & LGO. CAMBUCI / AMERICANÓPOLIS \\
+\hline
+    33551 & 40    & STO. AMARO / JD. TABOÃO \\
+\hline
+    33796 & 40    & METRÔ VL. MATILDE / SHOP. ARICANDUVA \\
+\hline
+    33803 & 40    & JD. SÃO JOÃO / METRÔ ARTUR ALVIM \\
+\hline
+    33805 & 40    & METRÔ GUILHERMINA/ESPERANÇA / SHOP. ARICANDUVA \\
+\hline
+    34399 & 40    & SHOP. ARICANDUVA / MASCARENHAS DE MORAIS \\
+\hline
+    34689 & 40    & METRÔ PENHA / JD. KERALUX \\
+\hline
+    34847 & 40    & BUTANTÃ / PQ. IPÊ \\
+\hline
+    34849 & 40    & BUTANTÃ / JD. GUARAÚ \\
+\hline
+    34851 & 40    & BUTANTÃ / JD. INGÁ \\
+\hline
+    33015 & 39    & METRÔ TATUAPÉ / VL. SANTANA \\
+\hline
+    32987 & 38    & CONJ. JOSÉ BONIFÁCIO / PENHA \\
+\hline
+    33067 & 38    & METRÔ VL. MARIANA / JD. MARIA ESTELA II \\
+\hline
+    33100 & 38    & METRÔ VL. MARIANA / JD. CLÍMAX \\
+\hline
+    33135 & 38    & TERM. A. E. CARVALHO / CID. KEMEL II \\
+\hline
+    33140 & 38    & TERM. A. E. CARVALHO / CONJ. ENCOSTA NORTE \\
+\hline
+    33190 & 38    & TERM. PINHEIROS / VL. PIAUÍ \\
+\hline
+    33473 & 38    & PQ. D. PEDRO II / PQ. NOVO MUNDO \\
+\hline
+    34619 & 38    & TERM. MERCADO / TERM. VL. PRUDENTE \\
+\hline
+    33058 & 37    & TERM. PQ. D. PEDRO II / PQ. STA. MADALENA \\
+\hline
+    32927 & 36    & METRÔ ITAQUERA / VL. MARA \\
+\hline
+    33001 & 36    & METRÔ PENHA / GUAIANAZES \\
+\hline
+    33783 & 36    & METRÔ BRESSER / UNIV. SÃO JUDAS TADEU \\
+\hline
+    33787 & 36    & METRÔ ARTUR ALVIM / SHOP. ARICANDUVA \\
+\hline
+    34576 & 36    & SÃO MIGUEL / JD. MABEL \\
+\hline
+    34652 & 36    & TERM. CAMPO LIMPO / JD. DAS ROSAS \\
+\hline
+    34692 & 36    & TERM. CAMPO LIMPO / PQ. DO ENGENHO \\
+\hline
+    35052 & 36    & TERM. LAPA / TERM. PIRITUBA \\
+\hline
+    33628 & 35    & MOOCA / CEM. PQ. DOS PINHEIROS \\
+\hline
+    33726 & 35    & SHOP. ARICANDUVA / COHAB JOSÉ BONIFÁCIO \\
+\hline
+    33761 & 35    & METRÔ TAMANDUATEÍ / SHOP. ARICANDUVA \\
+\hline
+    34983 & 35    & METRÔ CARRÃO / JD. STO. ANDRÉ \\
+\hline
+    32922 & 34    & PENHA / VL. PARANAGUÁ \\
+\hline
+    33375 & 34    & METRÔ VERGUEIRO / ELDORADO \\
+\hline
+    34968 & 33    & METRÔ TATUAPÉ / TERM. CID. TIRADENTES \\
+\hline
+    35208 & 33    & STA. CECÍLIA / TERM. VL. MARIANA \\
+\hline
+    35270 & 33    & TERM. GUARAPIRANGA / JD. GUARUJÁ \\
+\hline
+    33027 & 32    & CPTM GUAIANAZES / TERM. SÃO MIGUEL \\
+\hline
+    33028 & 32    & CPTM GUAIANAZES / SÃO MIGUEL \\
+\hline
+    33143 & 32    & TERM. ARICANDUVA / VL. CURUÇÁ \\
+\hline
+    33167 & 32    & METRÔ ITAQUERA / JD. CAMARGO NOVO \\
+\hline
+    33670 & 32    & SÃO MIGUEL / JD. DAS OLIVEIRAS \\
+\hline
+    34405 & 32    & VL. ALPINA / METRÔ BRESSER \\
+\hline
+    34418 & 32    & TERM. SÃO MIGUEL / ITAIM PAULISTA \\
+\hline
+    35028 & 32    & METRÔ TUCURUVI / CACHOEIRA \\
+\hline
+    35097 & 32    & CACHOEIRA / METRÔ SANTANA \\
+\hline
+    35124 & 32    & VL. CISPER / TERM. PENHA \\
+\hline
+    32797 & 31    & TERM. JOÃO DIAS / JD. CAPELINHA \\
+\hline
+    33078 & 30    & PÇA. ALMEIDA JR. / PQ. STA. MADALENA \\
+\hline
+    33743 & 30    & HOSP. SAPOPEMBA / JD. PALANQUE \\
+\hline
+    33992 & 30    & STO. AMARO / JD. LÍDIA \\
+\hline
+    34926 & 30    & E.T. ITAQUERA / COHAB FAZENDA DO CARMO \\
+\hline
+    35079 & 30    & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
+\hline
+    35082 & 30    & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
+\hline
+    35166 & 30    & MORUMBI SHOP. / METRÔ JABAQUARA \\
+\hline
+    34527 & 29    & E.T. ÁGUA ESPRAIADA / METRÔ CONCEIÇÃO \\
+\hline
+    33030 & 28    & LAR ESC. SÃO FRANCISCO / METRÔ VL. MARIANA \\
+\hline
+    33157 & 28    & METRÔ PENHA / JD. ROMANO \\
+\hline
+    33470 & 28    & METRÔ SANTANA / TERM. PENHA \\
+\hline
+    33983 & 28    & STO. AMARO / JD. MITSUTANI \\
+\hline
+    34237 & 28    & METRÔ PENHA / JD. DANFER \\
+\hline
+    34818 & 28    & METRÔ BUTANTÃ / JD. JOÃO XXIII \\
+\hline
+    33599 & 27    & SHOP. CENTER NORTE / CEM. DO HORTO \\
+\hline
+    33615 & 27    & SHOP. CENTER NORTE / JD. FONTÁLIS \\
+\hline
+    32907 & 26    & TERM. ARICANDUVA / BURGO PAULISTA \\
+\hline
+    32978 & 26    & TERM. ARICANDUVA / JD. COIMBRA \\
+\hline
+    32981 & 26    & TERM. ARICANDUVA / VL. SÃO FRANCISCO \\
+\hline
+    33451 & 26    & METRÔ BELÉM / CENTER NORTE \\
+\hline
+    33970 & 26    & TERM. GUARAPIRANGA / CHÁC. STA. MARIA \\
+\hline
+    34239 & 26    & PENHA / JD. VL. NOVA \\
+\hline
+    35105 & 26    & TERM. ARICANDUVA / TERM. A. E. CARVALHO \\
+\hline
+    35106 & 26    & TERM. ARICANDUVA / TERM. SÃO MIGUEL \\
+\hline
+    33450 & 25    & TERM. PRINC. ISABEL / PQ. VL. MARIA \\
+\hline
+    34423 & 25    & PQ. BELÉM / TERM. SACOMÃ \\
+\hline
+    32782 & 24    & TERM. CAPELINHA / VALO VELHO \\
+\hline
+    32802 & 24    & TERM. CAPELINHA / JD. GUARUJÁ \\
+\hline
+    33174 & 24    & TERM. LAPA / SOL NASCENTE \\
+\hline
+    33222 & 24    & COHAB TAIPAS / PERUS \\
+\hline
+    33387 & 24    & SHOP. CENTER NORTE / JD. VISTA ALEGRE \\
+\hline
+    33418 & 24    & METRÔ SANTANA / VL. MARIETA \\
+\hline
+    33600 & 24    & METRÔ SANTANA / VL. ROSA \\
+\hline
+    33632 & 24    & METRÔ TUCURUVI / JD. MARINA \\
+\hline
+    33636 & 24    & METRÔ JD. SÃO PAULO / VL. AMÉLIA \\
+\hline
+    33682 & 24    & METRÔ ARTUR ALVIM / VL. AMERICANA \\
+\hline
+    33793 & 24    & PQ. SAVOY CITY / METRÔ ARTUR ALVIM \\
+\hline
+    33882 & 24    & STO. AMARO / JABAQUARA \\
+\hline
+    34429 & 24    & TERM. SACOMÃ / PQ. BRISTOL \\
+\hline
+    34454 & 24    & VL. MATIAS / IPIRANGA \\
+\hline
+    34657 & 24    & TERM. CAMPO LIMPO / VALO VELHO \\
+\hline
+    34680 & 24    & TERM. CAMPO LIMPO / PQ. DO LAGO \\
+\hline
+    34909 & 24    & CONEXÃO VL. IÓRIO / PERUS \\
+\hline
+    35030 & 24    & METRÔ PARADA INGLESA / HORTO FLORESTAL \\
+\hline
+    35091 & 24    & LGO. DO PERY / METRÔ TUCURUVI \\
+\hline
+    35155 & 24    & JD. CELESTE / TERM. SACOMÃ \\
+\hline
+    35190 & 24    & VALO VELHO / TERM. CAPELINHA \\
+\hline
+    35263 & 24    & TERM. PIRITUBA / SOL NASCENTE \\
+\hline
+    33266 & 23    & LAPA / JD. D'ABRIL \\
+\hline
+    33448 & 23    & METRÔ BARRA FUNDA / JD. FONTÁLIS \\
+\hline
+    33020 & 22    & COHAB II / JD. HELENA \\
+\hline
+    33103 & 22    & METRÔ SAÚDE / JD. MARIA ESTELA \\
+\hline
+    33671 & 22    & SÃO MIGUEL / JD. ROBRU \\
+\hline
+    33672 & 22    & SÃO MIGUEL / JD. CAMPOS \\
+\hline
+    33708 & 22    & METRÔ PENHA / LIMOEIRO \\
+\hline
+    33736 & 22    & SÃO MATEUS / GUAIANAZES \\
+\hline
+    33897 & 22    & E.T. ÁGUA ESPRAIADA / JD. SELMA \\
+\hline
+    34952 & 22    & TERM. SÃO MATEUS / JD. LIMOEIRO \\
+\hline
+    34959 & 22    & TERM. SÃO MATEUS / METALÚRGICOS \\
+\hline
+    34979 & 22    & MUSEU DO IPIRANGA / SÃO MATEUS \\
+\hline
+    35130 & 22    & TERM. SÃO MATEUS / TERM. CID. TIRADENTES \\
+\hline
+    33269 & 21    & METRÔ BARRA FUNDA / JD. JOÃO XXIII \\
+\hline
+    33432 & 21    & METRÔ BELÉM / SHOP. CENTER NORTE \\
+\hline
+    33633 & 21    & SANTANA / CENTER NORTE \\
+\hline
+    32795 & 20    & TERM. CAPELINHA / JD. SÃO BENTO \\
+\hline
+    33186 & 20    & TERM. LAPA / VL. PIAUÍ \\
+\hline
+    33668 & 20    & METRÔ BARRA FUNDA / JD. PERY ALTO \\
+\hline
+    33699 & 20    & METRÔ PENHA / VL. SÍLVIA \\
+\hline
+    33877 & 20    & METRÔ SAÚDE / VL. MORAES \\
+\hline
+    33994 & 20    & STO. AMARO / JD. UNIVERSAL \\
+\hline
+    34016 & 20    & LAPA / METRÔ BARRA FUNDA \\
+\hline
+    34483 & 20    & METRÔ TATUAPÉ / PQ. SÃO LUCAS \\
+\hline
+    34656 & 20    & TERM. CAMPO LIMPO / JD. GUARUJÁ \\
+\hline
+    35183 & 20    & VALO VELHO / TERM. CAPELINHA \\
+\hline
+    35157 & 19    & VL. PRUDENTE / METRÔ VL. MARIANA \\
+\hline
+    32902 & 18    & METRÔ ARTUR ALVIM / TERM. A. E. CARVALHO \\
+\hline
+    32994 & 18    & METRÔ ARTUR ALVIM / JD. ROBRU \\
+\hline
+    34443 & 18    & TERM. PQ. D. PEDRO II / JD. CELESTE \\
+\hline
+    34841 & 18    & BUTANTÃ / JD. MARIA LUIZA \\
+\hline
+    34930 & 18    & BUTANTÃ / VL. DALVA \\
+\hline
+    35112 & 18    & VL. CISPER (CPTM USP) / TERM. A. E. CARVALHO \\
+\hline
+    35201 & 18    & TERM. PINHEIROS / TERM. LAPA \\
+\hline
+    33811 & 17    & METRÔ ITAQUERA / SÃO MATEUS \\
+\hline
+    32789 & 16    & TERM. CAPELINHA / JD. JANGADEIRO \\
+\hline
+    32969 & 16    & TERM. CAPELINHA / TERM. JD. JACIRA \\
+\hline
+    33337 & 16    & METRÔ SANTANA / HOSP. CACHOEIRINHA \\
+\hline
+    33624 & 16    & TATUAPÉ / JD. BRASIL \\
+\hline
+    33802 & 16    & METRÔ ARTUR ALVIM / CID. LIDER \\
+\hline
+    34763 & 16    & JD. ÂNGELA / JD. HORIZONTE AZUL \\
+\hline
+    34766 & 16    & JD. ÂNGELA / JD. VERA CRUZ \\
+\hline
+    35010 & 16    & METRÔ SÃO JUDAS / AEROPORTO \\
+\hline
+    35115 & 16    & ERMELINO MATARAZZO / TERM. PENHA \\
+\hline
+    33310 & 15    & METRÔ SANTANA / JD. ANTÁRTICA \\
+\hline
+    33315 & 15    & METRÔ SANTANA / PEDRA BRANCA \\
+\hline
+    33316 & 15    & METRÔ SANTANA - CIRCULAR / CONJ. DOS BANCÁRIOS \\
+\hline
+    33625 & 14    & METRÔ TATUAPÉ / JD. TREMEMBÉ \\
+\hline
+    33629 & 14    & METRÔ TATUAPÉ / PQ. NOVO MUNDO \\
+\hline
+    33698 & 14    & CANGAÍBA / METRÔ GUILHERMINA/ESPERANÇA \\
+\hline
+    33705 & 14    & METRÔ ITAQUERA / UNIÃO DE VL. NOVA \\
+\hline
+    33893 & 14    & HOSP. SÃO PAULO / JD. MIRIAM \\
+\hline
+    34105 & 14    & HOSP. DAS CLÍNICAS / LAPA \\
+\hline
+    34258 & 14    & JD. ALFREDO / TERM. GUARAPIRANGA \\
+\hline
+    35108 & 14    & METRÔ ITAQUERA / TERM. SÃO MIGUEL \\
+\hline
+    35151 & 14    & TERM. SACOMÃ / TERM. SAPOPEMBA \\
+\hline
+    35187 & 14    & PQ. DO LAGO / TERM. GUARAPIRANGA \\
+\hline
+    35188 & 14    & JD. UNIVERSAL / TERM. CAPELINHA \\
+\hline
+    33056 & 13    & MOOCA / PQ. STA. MADALENA \\
+\hline
+    33788 & 13    & METRÔ PENHA / COHAB JOSÉ BONIFÁCIO \\
+\hline
+    34811 & 13    & TERM. GUARAPIRANGA / PQ. DO LAGO \\
+\hline
+    33101 & 12    & METRÔ VL. MARIANA / JD. SÃO SAVÉRIO \\
+\hline
+    33188 & 12    & LAPA / PQ. SÃO DOMINGOS \\
+\hline
+    33804 & 12    & METRÔ ARTUR ALVIM / JD. NSA. SRA. DO CARMO \\
+\hline
+    34260 & 12    & JABAQUARA / SHOP. INTERLAGOS \\
+\hline
+    34437 & 12    & TERM. SACOMÃ / JD. MARIA ESTELA \\
+\hline
+    35067 & 12    & MORRO GRANDE / METRÔ BARRA FUNDA \\
+\hline
+    35092 & 12    & PEDRA BRANCA / METRÔ SANTANA \\
+\hline
+    35218 & 12    & LAPA / CONEXÃO VL. IÓRIO \\
+\hline
+    33874 & 11    & METRÔ STA. CRUZ / SACOMÃ \\
+\hline
+    34433 & 11    & TERM. SACOMÃ / VL. BRASILINA \\
+\hline
+    34974 & 11    & METRÔ VL. PRUDENTE / PQ. SAVOY CITY \\
+\hline
+    33026 & 10    & TERM. VL. CARRÃO / GUAIANAZES \\
+\hline
+    33637 & 10    & TERM. PARADA INGLESA / JD. HEBRON \\
+\hline
+    34021 & 10    & TERM. LAPA / REMÉDIOS \\
+\hline
+    34944 & 10    & TERM. VL. CARRÃO / ITAQUERA \\
+\hline
+    34949 & 10    & TERM. VL. CARRÃO / COHAB JUSCELINO \\
+\hline
+    35055 & 10    & VL. PIAUÍ / TERM. LAPA \\
+\hline
+    35129 & 10    & METRÔ ITAQUERA / TERM. VL. CARRÃO \\
+\hline
+    35141 & 10    & SAVOY/DALILA / TERM. VL. CARRÃO \\
+\hline
+    35153 & 10    & JD. PLANALTO / TERM. SACOMÃ \\
+\hline
+    34945 & 9     & TERM. VL. CARRÃO / GUAIANAZES \\
+\hline
+    35015 & 9     & LGO. DA CONCÓRDIA / JD. FILHOS DA TERRA \\
+\hline
+    32796 & 8     & TERM. CAPELINHA / JD. VALE DAS VIRTUDES \\
+\hline
+    32893 & 8     & TERM. PQ. D. PEDRO II / TERM. VL. PRUDENTE \\
+\hline
+    32988 & 8     & CHÁC. BELA VISTA / METRÔ PENHA \\
+\hline
+    32992 & 8     & METRÔ ARTUR ALVIM / CPTM JOSÉ BONIFÁCIO \\
+\hline
+    33018 & 8     & TERM. A. E. CARVALHO / VL. PROGRESSO \\
+\hline
+    33182 & 8     & LAPA / PERUS \\
+\hline
+    33421 & 8     & METRÔ SANTANA / JD. FONTÁLIS \\
+\hline
+    33515 & 8     & TERM. PENHA / TERM. SÃO MATEUS \\
+\hline
+    33569 & 8     & PERUS / MORRO DOCE \\
+\hline
+    33578 & 8     & BOM RETIRO / JD. ELISA MARIA \\
+\hline
+    33686 & 8     & METRÔ VL. MATILDE / CEM. DA SAUDADE \\
+\hline
+    33847 & 8     & JD. DA CONQUISTA / HOSP. SÃO MATEUS \\
+\hline
+    33852 & 8     & TERM. PQ. D. PEDRO II / JD. COLORADO \\
+\hline
+    33865 & 8     & JD. STO. ANDRÉ / HOSP. SÃO MATEUS \\
+\hline
+    33866 & 8     & DIV. DE MAUÁ / HOSP. SÃO MATEUS \\
+\hline
+    34654 & 8     & TERM. CAMPO LIMPO / JD. HELGA \\
+\hline
+    34880 & 8     & CONJ. CHAPARRAL / METRÔ PENHA \\
+\hline
+    35013 & 8     & LAPA / JD. BOA VISTA \\
+\hline
+    35099 & 8     & JD. CAMPO LIMPO / METRÔ SANTANA \\
+\hline
+    35128 & 8     & TERM. PENHA / TERM. SÃO MATEUS \\
+\hline
+    35210 & 8     & PQ. ARARIBA / TERM. CAPELINHA \\
+\hline
+    33057 & 6     & VL. PRUDENTE / VL. CALIFÓRNIA \\
+\hline
+    33094 & 6     & VL. PRUDENTE / VL. INDUSTRIAL \\
+\hline
+    33613 & 6     & CARANDIRU / JOVA RURAL \\
+\hline
+    33695 & 6     & VL. RUI BARBOSA / METRÔ VL. MATILDE \\
+\hline
+    34430 & 6     & TERM. SACOMÃ / VL. ARAPUÁ \\
+\hline
+    34901 & 6     & METRÔ BARRA FUNDA / LIMÃO \\
+\hline
+    35035 & 6     & SANTANA / VL. NOVA GALVÃO \\
+\hline
+    35154 & 6     & VL. ARAPUÁ / TERM. SACOMÃ \\
+\hline
+    33741 & 5     & METRÔ BELÉM / JD. ITÁPOLIS \\
+\hline
+    33045 & 4     & VL. PRUDENTE / VL. INDUSTRIAL \\
+\hline
+    33180 & 4     & LAPA / PQ. MORRO DOCE \\
+\hline
+    33244 & 4     & SESC POMPÉIA / PQ. CONTINENTAL \\
+\hline
+    34402 & 4     & METRÔ ALTO DO IPIRANGA / CONJ. HAB. HELIÓPOLIS \\
+\hline
+    34436 & 4     & TERM. SACOMÃ / VL. ARAPUÁ \\
+\hline
+    34440 & 4     & TERM. SACOMÃ / JD. PATENTE \\
+\hline
+    35060 & 4     & MORRO DOCE / TERM. LAPA \\
+\hline
+    33371 & 3     & STO. AMARO / METRÔ JABAQUARA \\
+\hline
+    33790 & 3     & VL. DALILA / METRÔ VL. MATILDE \\
+\hline
+    35023 & 3     & TERM. PQ. D. PEDRO II / METRÔ SANTANA \\
+\hline
+    33429 & 2     & TERM. PRINC. ISABEL / PQ. EDÚ CHAVES \\
+\hline
+    33896 & 2     & METRÔ CONCEIÇÃO / JD. APURÁ \\
+\hline
+    34872 & 2     & SHOP. D / PQ. EDU CHAVES \\
+\hline
+    35049 & 2     & METRÔ TIETÊ / VL. MEDEIROS \\
+\hline
+    33049 & 1     & SHOP. METRÔ TATUAPÉ / JD. GUAIRACÁ \\
+\hline
+    33426 & 1     & SHOP. D / JD. PRIMAVERA \\
+\hline
+    33884 & 1     & JABAQUARA / VL. GUACURI \\
+\hline
+    33885 & 1     & STO. AMARO / JD. LUSO \\
+\hline
+    33905 & 1     & METRÔ JABAQUARA / REFÚGIO STA. TEREZINHA \\
+\hline
+    34291 & 1     & METRÔ SÃO JUDAS / JD. UBIRAJARA \\
+\hline
+    34842 & 1     & BUTANTÃ / CDHU MUNCK \\
+\hline
+\end{longtable}
+
+\normalsize
+
 
 \end{apendicesenv}
 \end{document}
