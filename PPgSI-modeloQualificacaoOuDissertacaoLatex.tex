@@ -1551,7 +1551,6 @@ Nesta seção, são apresentadas as técnicas estatísticas utilizadas pelos est
 \item \textit{\textbf{Term frequency–inverse document frequency}} (TF-IDF) \cite{Mukherjee2015}.
 \item \textit{\textbf{Inverse coefficient of variation}} \cite{Bendler2014}.
 \item \textit{\textbf{Jackknife resampling}} \cite{Bendler2014}.
-\item \textit{\textbf{Linear Regression}} \cite{Gutev2016}, \cite{Bendler2014}, \cite{Ni2016}, \cite{Guo2016}.
 \item \textit{\textbf{Local Indicators of Spatial Association}} (LISA) \cite{Steiger2015Census}.
 \item \textit{\textbf{Local Moran's}} \cite{Steiger2015Census}.
 \item \textit{\textbf{Maximum likelihood estimation}} \cite{Mukherjee2015}.
@@ -1559,15 +1558,15 @@ Nesta seção, são apresentadas as técnicas estatísticas utilizadas pelos est
 \item \textit{\textbf{Optimization and Prediction with hybrid loss function}} \cite{Ni2016}.
 \end{enumerate}
  
-Em \cite{Gutev2016}, os autores utilizaram Regressão Linear (RL) para analisar a demanda por bicicletas de acordo com as localizações extraídas dos \textit{tweets}. Enquanto que \cite{Bendler2014} usaram RL para fornecer evidências de que as categorias dos pontos de interesse se relacionam com as variáveis referentes ao espectro espaço-temporal; e \cite{Guo2016} para analisar a correlação entre sentimentos positivos com as oportunidades de trabalho, com a quantidade de crianças, e com o acesso a transporte. \cite{Ni2016}, por outro lado, uniram Regressão Linear com a técnica \textit{Seasonal Autoregressive Integrated Moving Average}, propondo uma abordagem baseada em otimização paramétrica e convexa, chamada \textit{Optimization and Prediction with hybrid loss function} e adequada para modelagem utilizando séries temporais.  
+Em \cite{Ni2016}, os autores utilizaram a técnica \textit{Seasonal Autoregressive Integrated Moving Average} em conjunto com Regressão Linear, propondo uma abordagem baseada em otimização paramétrica e convexa, chamada \textit{Optimization and Prediction with hybrid loss function}, adequada para modelagem utilizando séries temporais. Com isso, tal técnica foi aplicada na predição de fluxo de passageiros com base em \textit{hashtags} de \textit{tweets}.  
 
-Devido aos problemas relacionados a ambiguidade e identificação de contextos, \cite{Anantharam2015}; \cite{Chen2016} e \cite{Gal-Tzur2014} aplicaram a técnica \textit{${F_1}$ score} para analisar a acurácia do processamento de \textit{tweets}. Por outro lado, em \cite{Mukherjee2015}, utilizaram a técnica \textit{Maximum likelihood estimation} para determinar a probabilidade de ocorrência de um evento, assim como a confiabilidade da informação.
+Referente aos problemas relacionados a ambiguidade e identificação de contextos, \cite{Anantharam2015}; \cite{Chen2016} e \cite{Gal-Tzur2014} aplicaram a técnica \textit{${F_1}$ score} para analisar a acurácia do processamento de \textit{tweets}. Por outro lado, em \cite{Mukherjee2015}, utilizaram a técnica \textit{Maximum likelihood estimation} para determinar a probabilidade de ocorrência de um evento, assim como a confiabilidade da informação.
 
 No que se refere a agrupamento, \cite{Yousaf2014} agruparam usuários de acordo com a \textit{Cosine similarity}, unindo pessoas com interesses em comum nos mesmos grupos. \cite{Frias-Martinez2014}, por outro lado, usou a mesma técnica para agrupar \textit{tweets} de acordo com suas semelhanças quanto aos tipos de zoneamento urbano.
 
 De forma isolada, no trabalho realizado por \cite{Mukherjee2015}, utilizaram a técnica TF-IDF na fase de classificação para o definir o \textit{score} de categorias de eventos, escolhendo a mais relevante a ser buscada em um dicionário de categorias. Também isoladamente, \cite{Steiger2015Census} usaram a técnica LISA na identificação de \textit{clusters} espaciais e valores esporádicos espaciais, obtendo assim os locais com atividades sociais. Além disso, também utilizaram a técnica \textit{Local Moran's} para detectar diferentes padrões de atividade de acordo com o espaço geográfico.
 
-Por último, \cite{Bendler2014} inovaram ao utilizar a técnica \textit{Jackknife resampling} como inspiração para o desenvolvimento de uma abordagem que visa analisar a estabilidade estatística de um conjunto de categorias. Além disso, usaram também a análise \textit{Iverse Coefficient of variation} para verificar a dispersão negativa da distribuição de um conjunto de variáveis. 
+Por último, \cite{Bendler2014} inovaram ao utilizar a técnica \textit{Jackknife resampling} como inspiração para o desenvolvimento de uma abordagem que visa analisar a estabilidade estatística de um conjunto de categorias. Além disso, usaram também a análise \textit{Inverse Coefficient of variation} para verificar a dispersão negativa da distribuição de um conjunto de variáveis. 
 
 \subsection{Paradigmas de processamento (QP4)}
 Nesta seção, encontram-se a seguir apenas os paradigmas de processamento extraídos dos estudos primários analisados: 
@@ -1631,8 +1630,9 @@ Nesta seção, são apresentadas as técnicas de Aprendizado de Máquina utiliza
 \item \textit{\textbf{Bayes classification}} \cite{Mata2015}.
 \item \textit{\textbf{C5.0 algorithm}} \cite{Zagal2016}.
 \item \textit{\textbf{Conditional Random Field (CRF) with Logistic Regression}} \cite{Anantharam2015}.
-\item \textit{\textbf{Event extraction based on tweet hashtags}} \cite{Ni2016}.
-\item \textbf{\textit{Latent Dirichlet Allocation} (LDA)} \cite{Farseev2015}, \cite{Abbasi2015}, \cite{Hasan2014}, \cite{DiLorenzo2013}.
+%\item \textit{\textbf{Event extraction based on tweet hashtags}} \cite{Ni2016}.
+\item \textbf{\textit{Latent Dirichlet Allocation} (LDA)} \cite{Farseev2015}, \cite{Abbasi2015}, \cite{Hasan2014}, \cite{DiLorenzo2013}, \cite{Ni2016} .
+\item \textit{\textbf{Linear Regression}} \cite{Gutev2016}, \cite{Bendler2014}, \cite{Ni2016}, \cite{Guo2016}.
 \item \textit{\textbf{Monte Carlo simulation}} \cite{Chen2016}.
 \item \textbf{\textit{PairFac}} (técnica inovadora que utiliza \textit{Tensor Factorization}) \cite{Wen2016}.
 \item \textit{\textbf{Random Forest classification}} \cite{Farseev2015}.
@@ -1646,13 +1646,15 @@ Especificamente sobre as técnicas de classificação, \cite{Mukherjee2015} util
 
 Apesar disso, \cite{Guo2016} utilizaram Processamento de Linguagem Natural (baseado em palavras chaves) para rotular sentimentos de \textit{tweets}, devido a facilidade de escalar essa técnica (para processamento de milhões de \textit{tweets}), em comparação a SVM. Outro caso de divergência é o do estudo realizado por \cite{Farseev2015}, no qual foi escolhido o modelo de classificação \textit{Random Forest}, devido ao fato de ser mais adequado para classificação em espaço dimensional elevado, em vez das técnicas SVM e \textit{Naive Bayes}, no que se refere a predição de idade e gênero usando \textit{tweets}.
 
-\citeauthor{Mata2015} (\citeyear{Mata2015}), por sua vez, aplicou-se a técnica \textit{Bayes Classification} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{C5.0 algorithm} devido a melhor desempenho em relação a \textit{Bayes}, dependendo do tópico que está sendo classificado. 
+\citeauthor{Mata2015} (\citeyear{Mata2015}), por sua vez, aplicou a técnica \textit{Bayes Classification} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{C5.0 algorithm} devido ao melhor desempenho em relação a \textit{Bayes}, dependendo do tópico que está sendo classificado. 
 
-Para anotação de eventos, \cite{Anantharam2015} treinaram um modelo CRF (usando anotações baseadas em dicionários) para determinar os locais da cidade e os termos relacionas aos eventos expressos em \textit{tweets}. E, isoladamente \cite{Frias-Martinez2014} utilizaram a técnica \textit{Self-Organizing Maps}, tendo como entrada os valores de latitude e longitude de \textit{tweets}. Com isso, construíram um mapa segmentado em áreas urbanas, baseando-se nas regiões com diferentes concentrações de \textit{tweets}.
+Para anotação de eventos, \cite{Anantharam2015} treinaram um modelo CRF (usando anotações baseadas em dicionários) para determinar os locais da cidade e os termos relacionados aos eventos expressos em \textit{tweets}. E, isoladamente \cite{Frias-Martinez2014} utilizaram a técnica \textit{Self-Organizing Maps}, tendo como entrada os valores de latitude e longitude de \textit{tweets}. Com isso, construíram um mapa segmentado em áreas urbanas, baseando-se nas regiões com diferentes concentrações de \textit{tweets}.
 
-Segundo \cite{Farseev2015}, a técnica LDA tem sido muito utilizada para identificação de pontos de interesses mencionados em \textit{tweets}, sendo adequada para grandes bases de dados e agrupamento de \textit{tweets} com tópicos similares, de acordo com \cite{Steiger2015Census}. \cite{Abbasi2015} exemplificou isso ao aplicar LDA para identificação de \textit{tweets} relacionados ao Turismo; \cite{Hasan2014}, para identificação de padrões de atividades humanas; e \cite{DiLorenzo2013}, para identificação de eventos sociais.
+Em relação a localidades, segundo \cite{Farseev2015}, a técnica LDA tem sido muito utilizada para identificação de pontos de interesses mencionados em \textit{tweets}, sendo adequada para grandes bases de dados e agrupamento de \textit{tweets} com tópicos similares, de acordo com \cite{Steiger2015Census}. \cite{Abbasi2015} exemplificou isso ao aplicar LDA para identificação de \textit{tweets} relacionados ao Turismo; \cite{Hasan2014}, para identificação de padrões de atividades humanas; e \cite{DiLorenzo2013}, para identificação de eventos sociais.
 
 No entanto, \cite{Ni2016} em vez de usarem LDA, extraíram \textit{hashtags} de \textit{tweets} para um vetor, utilizando-o para medir as atividades sociais e identificar seus respectivos contextos. Segundo \cite{Ni2016}, isso se justifica devido ao fato de que há uma grande chance do alto volume de \textit{tweets} não indicar necessariamente eventos e atendimentos a eles. Além disso, afirmam que o método baseado em \textit{hashtag} é capaz de indicar sobre o que é o evento, mesmo não utilizando o Inglês formal.
+
+Por sua vez, em \cite{Gutev2016}, os autores utilizaram Regressão Linear (RL) para analisar a demanda por bicicletas de acordo com as localizações extraídas dos \textit{tweets}. Enquanto que \cite{Bendler2014} usaram RL para fornecer evidências de que as categorias dos pontos de interesse se relacionam com as variáveis referentes ao espectro espaço-temporal; e \cite{Guo2016} para analisar a correlação entre sentimentos positivos com as oportunidades de trabalho, com a quantidade de crianças, e com o acesso a transporte. 
 
 \section{Considerações finais sobre a revisão sistemática}
 \label{conclusao}
@@ -1680,7 +1682,7 @@ Assim, o conjunto de dados utilizado para a identificação dos eventos de exce�
 Sobre a seleção dos \textit{profiles}, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais \textit{profiles} são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
 Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frequência de requisições aos \textit{endpoints}. Por exemplo, no protótipo desenvolvido (na linguagem de programação Java), há um artefato que coleta (utilizando o \textit{plugin} \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acesso em Outubro, 29 de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acesso em Outubro, 29 de 2017.}.
 
-Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, precesso explicado na seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na tabela \ref{tab:tweetsCollected}.
+Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, processo explicado na seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na tabela \ref{tab:tweetsCollected}.
 
 \begin{table}[!htb]
 \centering
@@ -1733,7 +1735,7 @@ Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus resp
 
 \subsection{\textit{Corpus} SPTrans}
 
-O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na tabela \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido -- não tratados, dados separados em lotes de dados -- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional -- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de ETL (\textit{Extract}, \textit{Tranform} and \textit{Load}). 
+O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na tabela \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de ETL (\textit{Extract}, \textit{Tranform} and \textit{Load}). 
 
 No caso dos dados especificados em GTFS, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para  \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em Outubro, 29 de 2017.}. Além disso, visando viabilizar \textit{geospatial queries}, foram criados \textit{geospatial indexes}\footref{geoMongo} nas \textit{collections} contendo informações geolocalizadas, logo após serem criadas no \textit{MongoDB}. Dessa forma, conseguimos usar \textit{geospatial queries} para identificar as linhas afetadas por um determinado evento de exceção.
 
@@ -1773,71 +1775,221 @@ No caso dos dados especificados em GTFS, convertemos os dados originais de \text
 \center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
 \end{table}
 
-Por sua vez, os dados transmitidos por meio de AVL (ou simplesmente dados AVL) são em grande volume, devido a isso demandam processamento distribuído para que seja possível consultá-los. Visando abordar esse problema, utilizamos o \textit{Druid} como banco de dados de séries temporais, por possuir uma arquitetura simples de escalar, ser distribuído e específico para a análises temporais.
+Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e setembro de 2017 (intervalo antes da data em que os dados foram solicitados, por meio da \textit{Lei de Acesso a Informação} \footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a tabela \ref{tab:avlDataset}, não recebemos todos os dados de fevereiro da \textit{SPTrans}, o que pode ter sido causado por problemas no sistema de monitoramento ou durante o processo de exportação de dados. No demais, os meta dados do conjunto de dados AVL estão especificados na tabela \ref{tab:avlDataset}. \todo[inline]{Obter os dados faltantes de fevereiro.}
 
-Os dados AVL utilizados nesta análise (fornecidos pela empresa \textit{Scipopulis}\footnote{\url{https://www.scipopulis.com/}. Acesso em Outubro, 29 de 2017.} --- financiada pela FAPESP\footnote{Fundação de Amparo à pesquisa do Estado de São Paulo: \url{http://www.fapesp.br/}. Acesso em Outubro, 29 de 2017.})  são referentes as linhas de ônibus 917H-10 (Terminal Pirituba --- sentido 1 / Metrô Vila Mariana --- sentido 0) e 477P (Ipiranga --- sentido 1 / Rio Pequeno --- sentido 0). Especificamente para a linha 477P dispomos dos dados de ambos os sentidos, e apenas do sentido 0 para a linha 917H, a quantidade de dados para cada \textit{trip\_id} (id da viagem --- popularmente conhecido como linha do ônibus) é detalhada na tabela \ref{tab:tripidQtd}. No demais, os campos existentes nesse conjunto de dados são: \textit{bus\_id} (id do ônibus), \textit{trip\_id} (id da viagem), \textit{hr} (GMT-03:00:00), \textit{timestamp} (GMT), \textit{lat} (latitude) e \textit{lng} (longitude).
 
 \begin{table}[!htb]
-\centering
-\caption{Quantidade de dados enviados pelos módulos AVL, por \textit{id} de viagem}
-	\label{tab:tripidQtd}
 \begin{threeparttable}
-\begin{tabular}{c|c|c|c}
+\centering
+\caption{Descrição do conjunto de dados AVL}
+\label{tab:avlDataset}
+\begin{tabular}{ c | c | c | c }
 \hline
-\textbf{\textit{trip\_id}} & \textbf {Qtd. de dados \tnote{a}} & \textbf{\textit{Timestamp} 1 \tnote{b}} & \textbf{\textit{Timestamp} 2 \tnote{c}} \\ 
+\textbf{Mês} & \textbf{Intervalo (dias)} & \textbf{Total de arquivos AVL} & \textbf{Espaço\tnote{a}  em disco (GB)} \\
 \hline
-4779-10-0 & 259.382 & 2016-09-13 08:24:57.936Z & 2017-09-02 02:11:42.274Z \\ 
+Janeiro & 1 - 31 & 744 & 30,34 \\
 \hline
-4779-10-1 & 271.671 & 2016-09-13 08:24:57.937Z & 2017-09-02 02:11:42.285Z \\ 
+Fevereiro & 1 - 4\tnote{b} e 13\tnote{c} - 28 & 459 & 18,95 \\
 \hline
-917H-10-0 & 256.648 & 2016-09-13 08:25:59.943Z & 2017-09-02 02:11:42.250Z \\ 
+Março & 1 - 31 & 744 & 30,41 \\
+\hline
+Abril & 1 - 30 & 720 & 28,66\\
+\hline
+Maio & 1 - 31 & 744 & 30,05 \\
+\hline
+Junho & 1 - 30 & 720 & 28,78 \\
+\hline
+Julho & 1 - 31 & 744 & 31,08 \\
+\hline
+Agosto & 1 - 31 & 744 & 32,10 \\
+\hline
+Setembro & 1 - 30 & 720 & 32,46 \\
 \hline
 \hline
-\textbf{Total} & 787.701 & - & - \\
+--- & --- & 6,339 & 261,83 \\
 \hline
 \hline
 \end{tabular}
 \begin{tablenotes}
-            \item[a] Quantidade de dados.
-            \item[b] \textit{Timestamp} mais antigo.
-            \item[c] \textit{Timestamp} mais recente.
-        \end{tablenotes}
+\item[a] compactado no formato ZIP
+\item[b] das 0h às 14h
+\item[c] das 12h em diante
+\end{tablenotes}
 \end{threeparttable}
-\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
 \end{table}
 
-Conforme pode ser observado, a base de dados AVL está limitada as linhas 4779-10 e 917H-10 (apenas um dos sentidos). Ainda é importante mencionar, que em 2017 foi noticiado\footnote{\url{https://vejasp.abril.com.br/cidades/como-e-andar-na-pior-linha-de-onibus-da-capital}. Acesso em Outubro, 29 de 2017.} que a linha 917H-10 teve 96 reclamações e a 477P-10 75, classificado-as como as linhas com os maiores números de queixas.
+\begin{table}[!htb]
+\centering
+\caption{Meta dados dos dados AVL da SPTrans}
+\label{tab:avlDataset}
+\begin{tabular}{c|c}
+\hline
+\textbf{Nome do campo} & \textbf{Descrição do campo} \\
+\hline
+\textit{cd\_evento\_avl\_movto} & 
+Código sequencial identificador do evento \\
+\hline
+\textit{cd\_linha} & 
+Código identificador da linha em operação
+ \\
+\hline
+\textit{dt\_movto} & \begin{tabular}{@{}c@{}} Data da gravação em banco \\ de dados do evento gerado no AVL \end{tabular} \\
+\hline
+\textit{nr\_identificador} & 
+Código identificador do AVL \\
+\hline
+\textit{nr\_evento\_linha} & 
+Grupo de indicadores relacionados ao evento \\
+\hline
+\textit{nr\_ponto} & 
+Código do ponto notável \\
+\hline
+\text{nr\_velocidade} & 
+Velocidade instantânea \\
+\hline
+\textit{nr\_voltagem} & 
+Tensão de alimentação \\
+\hline
+\textit{nr\_temperatura\_interna} & 
+Temperatura do processador \\
+\hline
+\textit{nr\_evento\_terminal\_dado} & Código do evento relacionado no terminal de dados \\
+\hline
+\textit{nr\_evento\_es\_1} & 
+Grupo de indicadores relacionados ao evento \\
+\hline
+\textit{nr\_latitude\_grau} & 
+Latitude da geolocalização do veículo \\
+\hline
+\textit{nr\_longitude\_grau} & Longitude da geolocalização do veículo \\
+\hline
+\textit{nr\_indiceregistro} & 
+Índice de geração do evento no AVL \\
+\hline
+\textit{dt\_avl} & 
+Data da geração do evento no AVL \\
+\hline
+\textit{nr\_distancia} & \begin{tabular}{@{}c@{}} 
+Distância em metros do evento com relação ao evento \\ anterior do mesmo AVL \end{tabular} \\
+\hline
+\textit{nr\_tipo\_veiculo\_geo} &
+Código para identificação  no software de mapeamento \\
+\hline
+\textit{cd\_avl\_conexao} & \begin{tabular}{@{}c@{}} 
+Código interno utilizado para  identificar
+ \\   qual a conexão utilizada para transmissão do evento \end{tabular} \\
+\hline
+\textit{cd\_prefixo} & 
+Prefixo do veículo \\
+\hline
+\end{tabular}
+\end{table}
 
-\chapter{Exploração e visualização do conjunto de dados}
+
+\chapter{Exploração e visualização de grandes volumes de dados}
 \label{dataViz}
 
-O grande volume de dados que será analisado pode conter padrões complexos e difíceis de serem identificados. Devido a isso pretendemos construir visualizações auxiliares ao processo de análise dos dados. Com esse objetivo, utilizaremos o \textit{Apache Superset}\footnote{\url{https://superset.incubator.apache.org}. Acesso em Outubro, 29 de 2017.}, que é integrado nativamente com o \textit{Druid}, para exploração e visualização dos corpus desse projeto de pesquisa. As Fig. \ref{fig:qtd_data_per_day477p971h}, \ref{fig:qtd_data_per_bus_month_477p971h} e \ref{fig:map_477p971h} são exemplos de algumas visualizações construídas para os dados das linhas 477P-10 e 917H-10.
+Este capítulo tem como objetivo apresentar um estudo de caso para visualizar possíveis eventos de exceção (padrões ocultos) no Corpus AVL da SPTrans. Estes dados possuem padrões complexos e demandam um sistema distribuído, apresentado neste trabalho, capaz de suportar atividades analíticas, como visualização e exploração de dados, que podem contribuir para o gerenciamento e planejamento do transporte público. Na seção \ref{related_work_data_viz} são mencionados alguns trabalhos referentes a visualização de de dados, encontrados por meio de uma revisão não sistemática da literatura; na \ref{related_work_data_viz} é descrita a arquitetura do banco de dados \textit{Druid}; na \ref{arch_viz} a arquitetura proposta para processamento e exploração dos dados AVL; na \ref{viz_case} os resultados obtidos no estudo de caso e, por fim, na \ref{viz_case_cons} as considerações finais.
 
-A Fig. \ref{fig:qtd_data_per_day477p971h} exibe séries temporais referentes a quantidade de dados enviados pelas viagens 477P-10-0, 477P-10 e 971H-10-0. Com essa visualização é possível observar, por exemplo, a oscilação da quantidade de dados enviados, assim como os picos de maior e menor volume de envio de dados, os quais podem indicar inúmeros problemas relacionados a essas viagens. O mesmo pode ser afirmado para a Fig. \ref{fig:qtd_data_per_bus_month_477p971h}, que representa séries temporais sobre dados enviados por mês dos ônibus pertencentes as mesmas viagens já mencionadas. Por fim, o mapa exibido pela Fig. \ref{fig:map_477p971h} ajuda a identificar a localização de onde os dados estão sendo enviados, o que permite identificar possíveis pontos de falha durante a transmissão desses dados.
+\section{Trabalhos relacionados}
+\label{related_work_data_viz}
 
-\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+Em \cite{chen2015survey} são mencionados conceitos básicos e fluxos de visualização de dados de tráfego (dos dados brutos, pré-processamento ao mapeamento visual, construído com símbolos visuais), além de uma visão geral das técnicas e métodos de processamento de dados relacionados para processar e descrever propriedades temporais, espaciais, numéricas e categóricas de dados de tráfego.
+
+Analogamente, em \cite{andrienko2017visual} é descrita uma tipologia de dados de tráfego, capaz de abordar suas respectivas propriedades, problemas e transformações relevantes para a análise. Além disso, são apresentadas abordagens analíticas visuais para analisar dados de tráfego de veículos, pedestres, passageiros dentro de sistemas de transporte, etc.
+
+Por fim, no trabalho desenvolvido em \cite{seraj2017aggregation} é apresentado um novo algoritmo para mapeamento de medições coletivas para monitorar as infraestruturas de transporte terrestre e, aliviar o impacto de imprecisões de GPS para monitoramento contínuo de infraestruturas de transporte por meio de \textit{smart phones}.
+
+Nenhum dos trabalhos mencionados anteriormente aborda o uso se software livre com suporte a computação distribuída, escalabilidade, tolerância a falhas, processamento em tempo real, baixa latência e visualização de grandes volumes de dados temporais; o que é explorado neste trabalho usando banco de dados \textit{Druid} e o \textit{Apache Superset} para analisar padrões complexos existentes nos dados AVL da SPTrans.
+
+\section{Druid}
+\label{druid}
+
+O Druid é um banco de dados para análises exploratórias em tempo real (latências abaixo da sub-segundos) em grandes conjuntos de dados. A arquitetura distribuída do Druid é composta por um \textit{cluster} com diferentes tipos de nós, que operam independentemente uns dos outros e possuem interação mínima entre eles. Existem duas dependências externas: (I) Apache Zookeeper \footnote{\url{https://zookeeper.apache.org}. Acessado em 23 de junho de 2018.}, responsável pela coordenação do cluster e (II) um sistema de gerenciamento de banco de dados relacional (RDBMS), para armazenar parâmetros operacionais adicionais e configurações \cite{yang2014druid}.
+
+\subsection{Real-time nodes}
+
+\textit {Real-time nodes} são responsáveis por ingerir, indexar e consultar fluxos de eventos. Periodicamente, cada nó agenda uma tarefa em segundo plano para procurar todos os índices localmente persistentes, mesclando-os para construir \emph{blocos imutáveis de dados com todos os eventos ingeridos em um período de tempo}, conhecidos como \emph{segmentos}, os quais podem posteriormente serem carregados para uma camada de \textit {deep storage} \cite{yang2014druid}.
+
+Durante os processos mencionados anteriormente não há perda de dados. Além disso, a imutabilidade dos blocos permite a consistência de leitura e um modelo de paralelização simples: \textit{historical nodes} podem simultaneamente examinar e agregar blocos imutáveis de forma não bloqueante \cite{yang2014druid}.
+
+\subsection{Historical nodes}
+
+Os \textit{historical nodes} são responsáveis por carregar, descartar e servir \emph{segmentos} imutáveis por meio de uma arquitetura \textit{shared-nothing} (sem um único ponto de contenção entre os nós) \cite{yang2014druid}.
+
+\subsection{Broker nodes}
+
+Os \textit{broker nodes} são responsáveis por receber consultas e mesclar resultados parciais dos \textit{historicals} e \textit{real-time nodes} antes de retornar um resultado final consolidado para o cliente \cite{yang2014druid}.
+
+\subsection{Coordinator nodes}
+
+Os \textit{coordinator nodes} são responsáveis pelo gerenciamento e distribuição dos dados nos \textit {historical nodes}, exigindo destes o carregamento, descarte e replicação dos dados \cite{yang2014druid}.
+
+\section{Arquitetura utilizada para visualização e exploração dos dados AVL da SPTrans}
+\label{arch_viz}
+
+A Figura ~ \ref{fig:viz_arch} mostra a arquitetura utilizada no estudo de caso deste capítulo, composta pelos componentes do \textit{Druid} em conjunto com o módulo \textit {Apache Superset}\footnote{\url{https://superset.incubator.apache.org}. Acessado em 23 de junho de 2018.}, para exploração e visualização de dados. Nesta arquitetura, dois fluxos para processamento de dados também são exibidos: (I) \textit{batch} e (II) \textit{near real time}.
+
+\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
- 	  \caption{Quantidade de dados enviados: viagens 477P-10-0, 477P-10-1 e 971H-10-0}
-		\includegraphics[width=0.8\linewidth]{images/qtd_data_per_day477p971h.png}
-	\label{fig:qtd_data_per_day477p971h}
-  \source{Felipe Cordeiro Alves Dias, 2017}
+ 	  \caption{Arquitetura usada no estudo de caso para visualização e exploração dos dados AVL da SPTrans}
+		\includegraphics[width=1\linewidth]{images/viz_arch.png}
+	\label{fig:viz_arch}
+%  \source{Felipe Cordeiro Alves Dias, 2017}
 \end{figure}
 
-\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+O fluxo de processamento em \textit{batch} é executado a partir dos dados extraídos do sistema de monitoramento da \textit{SPTrans}, ingeridos nos \textit{historical nodes} (a latência de ingestão máxima medida é 22914.43 eventos / segundo / núcleo, com uma fonte de dados com 30 dimensões e 19 métricas \cite{yang2014druid}) e disponibilizados para o \textit{Apache Superset} por meio dos \textit{broker nodes} (que tem uma latência média de consulta de aproximadamente 550 milissegundos \cite{yang2014druid}). É importante observar que o fluxo de processamento em \textit{batch} é o fluxo de dados implementado neste estudo de caso.
+
+Na arquitetura ilustrada na Fig.\ref{fig:viz_arch}, o fluxo de dados em \textit{streaming} refere-se a uma proposta alvo para a \textit{SPTrans}, a fim de permitir a exploração e visualização dos dados dos ônibus da cidade de São Paulo em \textit{near real time}. Nesta proposta, os tópicos do \textit{Apache Kafka} desempenham o papel de receptores do fluxo de dados, a partir dos quais os dados podem seguir tanto o processamento em \textit{near real time} quanto \textit{batch} (por meio do \textit{Kafka Sink Connector}\footnote{\url{https://kafka.apache.org}. Acesso em 29 de junho de 2018.}).
+
+Ambos os fluxos de dados mencionados anteriormente são válidos, o fluxo \textit{streaming} não exclui a necessidade de um fluxo em \textit{batch}, o qual pode ser usado para análises mais complexas dos dados em questão. Além disso, é importante observar que em ambos os fluxos há um estágio de pré-processamento de dados, para adequar os dados AVL as especificações exigidas para a ingestão do Druid (o que adiciona atraso no fluxo de processamento).
+
+\section{Estudo de caso com os dados AVL da SPTrans}
+\label{viz_case}
+
+Grandes volumes de dados podem conter padrões complexos e difíceis de identificar. Devido a isso, é importante construir visualizações auxiliares para o processo de análise de dados. Com este propósito, usamos o \textit{Apache Superset}\footnote{\url{https://superset.incubator.apache.org}. Acessado em 29 de junho de 2018}, com suporte nativo ao \textit{Druid}, para exploração e visualização do \textit{corpus} da SPTrans. As figuras \ref{fig:analysis_by_bus_lines}, \ref{fig:pizza_bus}, \ref{fig:only_one_bus_map} e \ref{fig:buses_map} são exemplos de algumas visualizações construídas a partir dos dados de janeiro das linhas de ônibus selecionadas aleatoriamente.
+
+A Fig. \ref {fig:analysis_by_bus_lines} ilustra uma série temporal referente à quantidade de dados enviados por ônibus selecionados aleatoriamente, referentes a janeiro de 2017. Com esta visualização é possível observar, por exemplo, a oscilação da quantidade de dados enviados, assim como os picos de maior e menor volume de envio de dados, que podem indicar inúmeros problemas relacionados a essas viagens, como eventos de exceção.
+
+\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
- 	  \caption{Quantidade de dados enviados por ônibus / mês: viagens 477P-10-0, 477P-10-1 e 971H-10-0}
-		\includegraphics[width=0.8\linewidth]{images/qtd_data_per_bus_month_477p971h.png}
-	\label{fig:qtd_data_per_bus_month_477p971h}
-  \source{Felipe Cordeiro Alves Dias, 2017}
+ 	  \caption{Quantidade de dados enviados por dia  por ônibus (selecionados aleatoriamente) em janeiro de 2017}
+		\includegraphics[width=1\linewidth]{images/analysis_by_bus_lines.png}
+	\label{fig:analysis_by_bus_lines}
+  %\source{Felipe Cordeiro Alves Dias, 2017}
 \end{figure}
 
-\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+A Fig. \ref{fig:pizza_bus}, representa a distribuição dos dados enviados em janeiro, a partir de uma amostra aleatória. Nessa figura é possível analisar que a distribuição da quantidade de dados enviados não é normalizada, ou seja, existem ônibus que normalmente enviam mais dados, enquanto outros um valor menor. Há muitas razões possíveis para isso, por exemplo: viagens de ônibus mais longas que outras, regiões com diferenças climáticas; módulos AVL desatualizados; etc.
+
+\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
- 	  \caption{Localizações de envio dos dados: viagens 477P-10-0, 477P-10-1 e 971H-10-0}
-		\includegraphics[width=1\linewidth]{images/map_477p971h.png}
-	\label{fig:map_477p971h}
-  \source{Felipe Cordeiro Alves Dias, 2017}
+ 	  \caption{Distribuição da quantidade de dados enviados por ônibus (selecionados aleatoriamente) em janeiro de 2017}
+		\includegraphics[width=1\linewidth]{images/pizza_bus.png}
+	\label{fig:pizza_bus}
+  %\source{Felipe Cordeiro Alves Dias, 2017}
 \end{figure}
+
+Finalmente, os mapas exibidos pelas figuras \ref {fig:buses_map} e \ref{fig:only_one_bus_map} ajudam a identificar a localização a partir da qual os dados estão sendo enviados, permitindo visualizar possíveis pontos de falhas durante a transmissão desses dados. O primeiro mapa, respectivamente, refere-se à rota de uma única linha de ônibus e o segundo de todas as rotas; em ambos os casos, referentes aos dados de janeiro. Além disso, na figura \ref {fig:buses_map}, é possível observar a segregação urbana da cidade, devido ao fato de algumas regiões terem uma maior densidade de dados enviados, o que também indica regiões de maior tráfego, nas quais eventos de exceção teriam maior impacto.
+
+\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Localizações enviadas em Janeiro de 2017 de uma linha de ônibus selecionada aleatoriamente}
+		\includegraphics[width=0.95\linewidth]{images/only_one_bus_map.png}
+	\label{fig:only_one_bus_map}
+  %\source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
+
+\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Localizações dos ônibus referente a movimentação de Janeiro de 2017}
+		\includegraphics[width=0.95\linewidth]{images/buses_map.png}
+	\label{fig:buses_map}
+\end{figure}
+
+\section{Consideração sobre a arquitetura utilizada para exploração e visualização dos dados AVL da SPTrans}
+\label{viz_case_cons}
+
+Este capítulo apresentou um estudo de caso relacionado à visualização de grandes conjuntos de dados, utilizando dados dos ônibus da cidade de São Paulo. Também, mostramos que é possível encontrar padrões complexos e incomuns e possíveis eventos de exceção em grandes conjuntos de dados por meio da visualização. O \textit{Druid} e o \textit{Apache Superset} demonstraram suporte a agregação, exploração e visualização de grandes conjuntos de dados. Como trabalho futuro, pretendemos implementar o fluxo de dados de fluxo mencionado na figura ~\ref{fig: viz_arch}, em um cenário de exploração e visualização de dados \textit{near real time}.
 
 
 \chapter{Uma metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
@@ -1851,21 +2003,21 @@ Nesta seção são apresentadas as atividades planejadas para realizar a identif
 Numa pré-análise do \textit{Corpus Twitter}, podemos afirmar que os \textit{tweets} publicados pelos \textit{profiles} selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice \ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintaxe e que normalmente dependem de análise contextual para que possam ser interpretados.
 
 Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{Middleton2014}, \cite{Kobdani2010}, \cite{Setiawan2017},  \cite{Zagal2016}), as seguintes etapas de pré-processamento são necessárias para remoção de ruído e redução da dimensão do espaço de \textit{features} e foram realizadas para o \textit{Corpus Twitter}:
-\unsure[inline]{Revisar os artigos mencionados}
 
 \begin{itemize}
-\item \textit{\textbf{Case folding}}: processamento de normalização de todas as letras do texto (de a-z) para minúsculas \cite{Setiawan2017}.
+\item \textit{Case folding}: processamento de normalização de todas as letras do texto (de a-z) para minúsculas.
 %\item \textit{\textbf{Tokenization}}: processamento realizado para obtenção das palavras  (\textit{tokens}) que compõem uma sentença, inclui a remoção de números, pontuações e caracteres que não pertencem ao alfabeto \cite{Setiawan2017}.  
 %\item \textbf{Remoção de} \textit{\textbf{stopwords}}: processamento para remoção do conjunto de \textit{tokens} de palavras sem significado ou importância \cite{Setiawan2017}, o que reduz a quantidade de ruído do conteúdo \textit{tweet} \cite{Steiger2015Census}.
 %\item \textit{\textbf{Stemming}}: processamento para encontrar a raiz de uma palavra, removendo sufixos e prefixos (no caso do Português Brasileiro) das palavras derivadas \cite{Setiawan2017}.
 \item Remoção \abrv[URL --­ Uniform Resource Locator] \textit{URLs} e menções a outros \textit{tweets}.
 \item Remoção de acentos, \textit{emoticons} e pontuações substituídas por espaços vazios.
-\item Correção erros de digitação por meio de uma função de mapeamento
+%\item Correção erros de digitação por meio de uma função de mapeamento
+\item \textit{Stemming} --- realizado neste trabalho na fase de processamento mencionada na subseção \ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
 \end{itemize}
 
-Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos dados de meta-informação dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora seja utilizada em trabalhos como os relacionados a identificação de sentimentos, para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
+Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos dados de meta-informação dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
 
-Apesar da relevância mencionada, as \textit{hashtags} adicionam ruído à fase de extração de endereços. Para atenuar esse problema, as \textit{hashtags} são identificadas e substituídas por espaços vazios no processo de extração de endereço; o qual é realizado após a fase de pré-processamento, pois as transformações realizadas no pré-processamento e processamento dos \textit{tweets} devido ao fato da possibilidade de remoção de trechos do texto necessários para a expressão regular definida para extração de endereços.
+Uma atenção especial foi dada às \textit{hashtags}, que são relevantes para a classificação de eventos de exceção, mas adicionam ruído à fase de extração de endereços. Para mitigar o problema, \textit{hashtags} são identificados e substituídos por espaços vazios no processo de extração de endereço. Além disso, é importante notar que as \textit{hashtags} não são removias dos \textit{tweets} originais.
 
 \section{Extração de endereço e geolocalização}
 
@@ -1949,7 +2101,7 @@ Para encontrar as linhas de ônibus afetadas por eventos de exceção, é necess
 De acordo com a seção ~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acessado em 18 de Maio de 2018.} para encontrar as \textit{shapes} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{shape\_id} faz parte dos atributos contidos no arquivo de \textit{shapes}, referindo-se a um código de linha de ônibus com o qual é possível procurar mais detalhes sobre o referido código, como direção da linha de ônibus, identificação, paradas, etc.
 
 \section{Resultados}
-
+	
 A metodologia foi aplicada ao conjunto de dados da conta \textit {@CETSP\_} \footnote{Conjunto de dados disponível em: \url{https://docs.google.com/spreadsheets/d/1H8e6eL94AWS7jVE5jOO7QURm6GsvSxoyq50Q1ZzTmXk}. Acessado em 18 de Maio de 2018.}, , que contém 5.735 \textit{tweets} de 2017-02-20 a 2017-12-01. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 34.702 palavras, com um vocabulário de 2.373 palavras. O comprimento máximo das sentenças do conjunto de dados é 15, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}. \improvement[inline]{Atualizar estudo considerando outras contas além da @CETSP\_}
  
 \begin{figure}[!htb]
@@ -1958,7 +2110,6 @@ A metodologia foi aplicada ao conjunto de dados da conta \textit {@CETSP\_} \foo
 		\includegraphics[width=1\linewidth]{images/corpus_metrics.png}
 	\label{fig:corpus_metrics}
 \end{figure}
-\todo[inline]{Atualizar índices para o Português}
 
 Todos os \textit{tweets} da conta \textit{@CETSP\_} foram classificados manualmente de acordo com os eventos de exceção identificados. Este conjunto de dados é composto pelos seguintes rótulos: Acidente, Irrelevante --- quando o \textit{tweet} não é um evento de exceção, Desastre Natural, Evento Social e Evento Urbano; essa distribuição é ilustrada na Figura \ref{fig:pizza_events}.\improvement[inline]{Atualizar estudo considerando outras contas além da @CETSP\_} Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo de Regressão Logística para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de Regressão Logística é ilustrada pela Figura ~\ref{fig:confusion_matrix}.
 
@@ -2073,7 +2224,7 @@ Consideramos que uma linha de ônibus é afetada por uma exceção se uma \texti
     \hline
 \end{tabular}
 \begin{tablenotes}
-            \item[a] Tabela completa no Apêndice \ref{apendiceD}.
+            \item[a] Tabela completa no apêndice \ref{apendiceD}.
         \end{tablenotes}
 \end{threeparttable}
 }
