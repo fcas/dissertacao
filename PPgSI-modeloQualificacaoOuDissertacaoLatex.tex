@@ -2069,9 +2069,15 @@ Encontrar eventos de exceção envolve a identificação de eventos relacionados
 \end{enumerate}
 \end{enumerate}
 
-Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, foi selecionado um conjunto de \textit{tweets} para classificação manual. Inicialmente, 5.735 \textit{tweets} da conta \textit{@CETSP\_} foram manualmente classificados. Este perfil em particular foi escolhido porque pertence à \textit{Companhia de Engenharia de Tráfego de São Paulo} (CET), a principal instituição responsável por monitorar os eventos de tráfego. Este conjunto de dados marcado foi usado para treinar um modelo para aprender a classificar \textit {tweets} da conta \textit {@CETSP\_}.
+Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, o Corpus Twitter, contendo 60.985, foi classificado manualmente de acordo com suas respectivas classes. Tal conjunto foi usado para treinar o modelo de classificação de \textit{tweets} em eventos de exceção. A figura \ref{fig:tweets_distribution} ilustra a distribuição das classes de eventos de exceção em cada conta selecionada.
 
-\improvement[inline]{Usar outras contas além da @CETSP\_}
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Distribuição das classes dos eventos de exceção do Corpus Twitter}
+		\includegraphics[width=1\linewidth]{images/tweets_distribution.png}
+	\label{fig:tweets_distribution}
+\end{figure}
+
 
 \section{Modelo de classificação de \textit{tweets} relacionados a eventos de exceção}
 \label{model}
