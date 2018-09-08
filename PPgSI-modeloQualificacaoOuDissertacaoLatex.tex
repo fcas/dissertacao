@@ -1759,8 +1759,9 @@ No caso dos dados especificados em GTFS, convertemos os dados originais de \text
 \center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
 \end{table}
 
-Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e setembro de 2017 (intervalo antes da data em que os dados foram solicitados, por meio da \textit{Lei de Acesso a Informação} \footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a tabela \ref{tab:avlDataset}, não recebemos todos os dados de fevereiro da \textit{SPTrans}, o que pode ter sido causado por problemas no sistema de monitoramento ou durante o processo de exportação de dados. No demais, os meta dados do conjunto de dados AVL estão especificados na tabela \ref{tab:avlDataset}. \todo[inline]{Obter os dados faltantes de fevereiro.}
+Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (intervalo antes da data em que os dados foram solicitados, por meio da \textit{Lei de Acesso a Informação} \footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a tabela \ref{tab:avlDataset}, alguns dos dos dados de movimentação referentes a novembro e dezembro estão ausentes, segundo a \textit{SPTrans}, essa ausência é justificada devido a períodos de indisponibilidade do sistema de monitoramento.
 
+Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na tabela \ref{tab:avlDataset}.
 
 \begin{table}[!htb]
 \begin{threeparttable}
@@ -1773,31 +1774,50 @@ Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus 
 \hline
 Janeiro & 1 - 31 & 744 & 30,34 \\
 \hline
-Fevereiro & 1 - 4\tnote{b} e 13\tnote{c} - 28 & 459 & 18,95 \\
+ Fevereiro & 1 - 28 & 672 & 25,69 \\
 \hline
-Março & 1 - 31 & 744 & 30,41 \\
+ Março & 1 - 31 & 744 & 28,32 \\
 \hline
-Abril & 1 - 30 & 720 & 28,66\\
+ Abril & 1 - 30 & 720 & 26,68 \\
 \hline
-Maio & 1 - 31 & 744 & 30,05 \\
+ Maio & 1 - 31 & 744 & 27,98 \\
 \hline
-Junho & 1 - 30 & 720 & 28,78 \\
+ Junho & 1 - 30 & 720 & 26,80 \\
 \hline
-Julho & 1 - 31 & 744 & 31,08 \\
+ Julho & 1 - 31 & 744 & 28,95 \\
 \hline
-Agosto & 1 - 31 & 744 & 32,10 \\
+ Agosto & 1 - 31 & 744 & 29,90 \\
 \hline
-Setembro & 1 - 30 & 720 & 32,46 \\
+ Setembro & 1 - 30 & 720 & 30,23 \\
+\hline
+ Outubro & 1 - 31 & 744 & 30,53 \\
+\hline
+ Novembro\tnote{b} & 1 - 30 & 717 & 29,64 \\
+\hline
+ Dezembro\tnote{c} & 1 - 31 & 738 & 30,39 \\
 \hline
 \hline
---- & --- & 6,339 & 261,83 \\
+--- & --- & 8,751 & 345,46 \\
 \hline
 \hline
 \end{tabular}
 \begin{tablenotes}
-\item[a] compactado no formato ZIP
-\item[b] das 0h às 14h
-\item[c] das 12h em diante
+\item[a]Compactado no formato ZIP.
+\item[b]Arquivos indisponíveis em novembro: 
+\begin{itemize}
+\item Movto\_201711011200\_201711011300.zip 
+\item Movto\_201711011300\_201711011400.zip 
+\item Movto\_201711011400\_201711011500.zip
+\end{itemize}
+\item[c]Arquivos indisponíveis em dezembro: 
+\begin{itemize}
+\item Movto\_201712150100\_201712150200.zip 
+\item Movto\_201712150400\_201712150500.zip 
+\item Movto\_201712150500\_201712150600.zip 
+\item Movto\_201712150600\_201712150700.zip 
+\item Movto\_201712150700\_201712150800.zip 
+\item Movto\_201712150800\_201712150900.zip
+\end{itemize}
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
