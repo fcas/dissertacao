@@ -194,6 +194,7 @@
 \usepackage{xargs}                      % Use more than one optional 
 \interfootnotelinepenalty=10000 %% Completely prevent breaking of footnotes
 
+
 % --- 
 % CONFIGURAÇÕES DE PACOTES
 % --- 
@@ -1268,9 +1269,17 @@ Por fim, no processo de extração de \textit{features}, usa uma função de map
 
 Os algoritmos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
 
-No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Thus, we evaluated four known supervised machine learning algorithms for textual classification: Decision Tree, Gaussian Naive Bayes, Regression Logistic and Support Vector Machine:
-\todo[inline]{Escrever sobre cada algoritmo utilizado}
+No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Assim, foram avaliados cinco algoritmos de aprendizado de máquina supervisionados conhecidos para classificação textual: Árvore de Decisão (\textit{Decision Tree}), \textit{Naive Bayes}, Regressão Logística (Logistic Regression), Máquina de Vetores de Suporte ({SVM --- \textit{Support Vector Machine}}) e Floresta Aleatória (\textit{Random Forest}); descritos na subseção \ref{supervisionedLearning}.
 \improvement[inline]{Fazer uma revisão não sistemática dos principais algoritmos utilizados}
+
+\subsection{Algoritmos de aprendizado supervisionado}
+\label{supervisionedLearning}
+
+\todo[inline]{Escrever sobre cada algoritmo utilizado}
+
+
+\subsection{Validação dos modelos de aprendizado supervisionado}
+\label{modelValidation}
 
 The validation of the models to classification tasks can be realized through metrics that has as inputs the number of real positive (P), negative (N) cases in the result of classification, true positive (TP), true negative (TN), false positive (FP) and false negative (FN) classifications. Following are some of the main metrics utilized to:
 
@@ -1718,6 +1727,7 @@ TurismoSaoPaulo & 3.308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\
 Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus respectivos dados de geolocalização. No entanto, por meio de uma análise manual percebemos dois problemas: (I) alguns endereços não foram extraídos; (II) apesar de o endereço ser extraído corretamente, encontramos geolocalizações fora do estado de São Paulo e do país. Assim, pretendemos melhorar o processo de extração dos endereços dos \textit{tweets} e o restringir a geolocalização para a região de São Paulo. 
 
 \subsection{\textit{Corpus} SPTrans}
+\label{CorpusSPTrans}
 
 O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na tabela \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de \nomenclature{ETL}{\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}}{ETL (\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}).} 
 
@@ -1999,7 +2009,22 @@ Este capítulo apresentou um estudo de caso relacionado à visualização de gra
 \chapter{Uma metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
 \label{exp1}
 
-Nesta seção são apresentadas as atividades planejadas para realizar a identificação dos eventos de exceção com base nos dados do Corpus \textit{Twitter}.
+Nesta seção é apresentada uma metodologia baseada em \textit{tweets} para identificar linhas de ônibus impactadas por eventos de exceção. De acordo com a Fig. \ref{fig:tweet_based_methodology}, a metodologia, explicada em detalhes na seções seguintes, é composta por:
+\begin{enumerate*}
+\item Uma base de dados de \textit{tweets} --- \textit{Copus Twitter}.
+\item Pré-processamento dos \textit{tweets} existentes no conjunto de dados.
+\item Extração de localização e geolocalização.
+\item Processamento dos \textit{tweets}.
+\item Criação de um modelo de classificação de \textit{tweets} em classes de eventos de exceção.
+\item Identificação das linhas impactadas --- por meio de consultas a base GTFS existente no \textit{Corpus SPTrans} --- a partir de um raio de cada evento de exceção.
+\end{enumerate*}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
+		\includegraphics[width=0.7\linewidth]{images/tweet_based_methodology.png}
+	\label{fig:tweet_based_methodology}
+\end{figure}
 
 \section{Pré-processamento}
 \label{preprocessing}
@@ -2019,7 +2044,7 @@ Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{
 \item \textit{Stemming} --- realizado neste trabalho na fase de processamento mencionada na subseção \ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
 \end{itemize}
 
-Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos dados de meta-informação dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
+Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos meta dados dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
 
 Uma atenção especial foi dada às \textit{hashtags}, que são relevantes para a classificação de eventos de exceção, mas adicionam ruído à fase de extração de endereços. Para mitigar o problema, \textit{hashtags} são identificados e substituídos por espaços vazios no processo de extração de endereço. Além disso, é importante notar que as \textit{hashtags} não são removias dos \textit{tweets} originais.
 
@@ -2089,20 +2114,12 @@ Encontrar eventos de exceção envolve a identificação de eventos relacionados
 \end{enumerate}
 \end{enumerate}
 
-Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, o Corpus Twitter, contendo 60.985, foi classificado manualmente de acordo com suas respectivas classes. Tal conjunto foi usado para treinar o modelo de classificação de \textit{tweets} em eventos de exceção. A figura \ref{fig:tweets_distribution} ilustra a distribuição das classes de eventos de exceção em cada conta selecionada.
-
-\begin{figure}[!htb]
-	\centering
- 	  \caption{Distribuição das classes dos eventos de exceção do Corpus Twitter}
-		\includegraphics[width=1\linewidth]{images/tweets_distribution.png}
-	\label{fig:tweets_distribution}
-\end{figure}
-
+Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, o Corpus Twitter, contendo 60.985, foi classificado manualmente de acordo com suas respectivas classes. Tal conjunto foi usado para treinar o modelo de classificação de \textit{tweets} em classes de eventos de exceção. 
 
 \section{Modelo de classificação de \textit{tweets} relacionados a eventos de exceção}
 \label{model}
 
-O corpus obtido da fase de processamento de \textit {tweets} é representado por meio de um \textit{bag-of-words}, que contém vetores de \textit{features} criados usando a medida \textit{Term Frequency - Inverse Document Frequency}\nomenclature{TF-IDF}{\textit{Term Frequency - Inverse Document Frequency}}(TF-IDF). A bag-of-words é particionada aleatoriamente em conjuntos de treinamento (75 \%) e teste (25 \%), os quais são entradas para os algoritmos de classificação mencionados na seção ~\ref{machinelearning}.
+O corpus obtido da fase de processamento de \textit {tweets} é representado por meio de um \textit{bag-of-words}, que contém vetores de \textit{features} criados usando a medida \textit{Term Frequency - Inverse Document Frequency}\nomenclature{TF-IDF}{\textit{Term Frequency - Inverse Document Frequency}} (TF-IDF). A bag-of-words é particionada aleatoriamente em conjuntos de treinamento (60\%) e teste (40\%), os quais são entradas para os algoritmos de classificação mencionados na subseção ~\ref{supervisionedLearning}.
 
 \section{Encontrando linhas de ônibus afetadas por eventos de exceção}
 
@@ -2112,25 +2129,26 @@ De acordo com a seção ~\ref{CorpusSPTrans}, todas as coordenadas são armazena
 
 \section{Resultados}
 	
-A metodologia foi aplicada ao conjunto de dados da conta \textit {@CETSP\_} \footnote{Conjunto de dados disponível em: \url{https://docs.google.com/spreadsheets/d/1H8e6eL94AWS7jVE5jOO7QURm6GsvSxoyq50Q1ZzTmXk}. Acessado em 18 de Maio de 2018.}, , que contém 5.735 \textit{tweets} de 2017-02-20 a 2017-12-01. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 34.702 palavras, com um vocabulário de 2.373 palavras. O comprimento máximo das sentenças do conjunto de dados é 15, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}. \improvement[inline]{Atualizar estudo considerando outras contas além da @CETSP\_}
+A metodologia foi aplicada ao Corpus Twitter \footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acessado em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 3.761.226 palavras, com um vocabulário de 33 palavras. O comprimento máximo das sentenças do conjunto de dados é 136, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}.
  
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Histograma da variação dos tamanhos das sentenças dos \textit{tweets} da conta \textit{@CETSP\_}}
+ 	  \caption{Histograma da variação dos tamanhos das sentenças dos \textit{tweets} existentes no \textit{Corpus Twitter}}
 		\includegraphics[width=1\linewidth]{images/corpus_metrics.png}
 	\label{fig:corpus_metrics}
 \end{figure}
 
-Todos os \textit{tweets} da conta \textit{@CETSP\_} foram classificados manualmente de acordo com os eventos de exceção identificados. Este conjunto de dados é composto pelos seguintes rótulos: Acidente, Irrelevante --- quando o \textit{tweet} não é um evento de exceção, Desastre Natural, Evento Social e Evento Urbano; essa distribuição é ilustrada na Figura \ref{fig:pizza_events}.\improvement[inline]{Atualizar estudo considerando outras contas além da @CETSP\_} Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo de Regressão Logística para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de Regressão Logística é ilustrada pela Figura ~\ref{fig:confusion_matrix}.
+Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificados manualmente de acordo com os eventos de exceção identificados. Este conjunto de dados é composto pelas seguintes classes: Acidente, Irrelevante --- quando o \textit{tweet} não é um evento de exceção, Desastre Natural, Evento Social e Evento Urbano. A figura \ref{fig:tweets_distribution} ilustra a distribuição das classes de eventos de exceção em cada conta selecionada.
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Distribuição dos eventos de exceção de acordo com o tipo do evento}
-		\includegraphics[width=1\linewidth]{images/pizza_events.png}
-	\label{fig:pizza_events}
+ 	  \caption{Distribuição das classes dos eventos de exceção do Corpus Twitter}
+		\includegraphics[width=1\linewidth]{images/tweets_distribution.png}
+	\label{fig:tweets_distribution}
 \end{figure}
 
-\improvement[inline]{Teste de classificação considerando dados das outras contas selecionadas}
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo de Regressão Logística para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de Regressão Logística é ilustrada pela Figura ~\ref{fig:confusion_matrix}.
+
 \begin{table}[!htb]
 \centering
 \caption {Métricas das avaliações dos algoritmos utilizados para classificação dos \textit{tweets} em eventos de exceção}
@@ -2139,25 +2157,83 @@ Todos os \textit{tweets} da conta \textit{@CETSP\_} foram classificados manualme
 \hline
 \textbf{Algoritmo} & \textbf{Acurácia} & \textbf{Precisão} & \textbf{Revocação} & \textbf{\textit{f1-score}} \\
 \hline
-Árvore de Decisão & 0.957 & 0.958 & 0.957 & 0.956 \\
+Árvore de Decisão & 0.966 & 0.966 & 0.966 & 0.966 \\
 \hline
-\textit{Gaussian Naive Bayes} & 0.913 & 0.926 & 0.913 & 0.918 \\
+Floresta Aleatória & \textit{0.974} & \textit{0.973} & \textit{0.974} & \textit{0.973} \\
 \hline
-Regressão Logística & 0.972 & 0.973 & 0.972 & 0.972 \\
+\textit{Gaussian Naive Bayes} & 0.889 & 0.992 & 0.889 & 0.900 \\
 \hline
-\textit{Support Vector Machine} & 0.632 & 0.400 & 0.632 & 0.490 \\
+Máquina de Vetores de Suporte & 0.830 & 0.689 & 0.830 & 0.753 \\
+\hline
+\textit{Multinomial Naive Bayes} & 0.879 & 0.917 & 0.879 & 0.893 \\
+\hline
+Regressão Logística & 0.971 & 0.970 & 0.971 & 0.970 \\
 \hline
 \end{tabular}
 \end{table}
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets}  em eventos de exceção (da conta \textit{@CETSP\_}) por meio do algoritmo Regrão Logística}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix.png}
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Floresta Aleatória}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_rf.png}
 	\label{fig:confusion_matrix}
 \end{figure}
 
-Considerando apenas os 2.175 eventos de exceção, foram encontrados 1.610 endereços (74,02\%); as razões para \textit {tweets} sem endereço extraído são: evento mencionando o ponto de interesse, ou seja, não consta explicitamente o endereço; sem endereço; nome de logradouro incomum (por exemplo \emph{passagem}, \emph{complexo viário}, \emph{ligação sentido}) e endereços com palavras concatenadas (por exemplo \emph{avenidapaulista}).\unsure[inline]{Talvez a API da Google trate endereços concatenados, se sim, é necessária splitar tweets nos logradouros} A Figura ~\ref{fig:address_analysis} ilustra os endereços mais afetados por eventos de exceção e Figura \ref{fig:dispersion} parte da distribuição desses eventos na região central de São Paulo. É importante ressaltar que os eventos de exceção encontrados estão concentrados em endereços e regiões onde normalmente ocorrem em São Paulo, o que valida a metodologia desenvolvida.
+Dos 60.984 \textit{tweets} 10.027 foram classificados em eventos de exceção e desse subconjunto encontrados 7.674 endereços, de acordo com a Tab. \ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} --- (o que representa 76,53\% do total dos \textit{tweets} eventos de exceção, sem considerar a classe \textit{Irrelevant}). A quantidade de endereços extraídos por classe está descrita na Tab. \ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
+
+\begin{enumerate*}
+\item \textit{Tweets} apenas com o ponto de interesse, ou seja, não consta explicitamente o endereço.
+\item \textit{Tweets} sem informação de endereço.
+\item \textit{Tweets} com nome de logradouro incomum (por exemplo \emph{passagem}, \emph{complexo viário}, \emph{ligação sentido}).
+\item \textit{Tweets} com endereços com palavras concatenadas (por exemplo \emph{avenidapaulista}).
+\end{enumerate*}
+
+Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers.google.com/maps/documentation/geocoding}. Acessado em 16 de setembro de 2018.} podem ser classificados em:
+\begin{enumerate*}
+\item \textit{ROOFTOP} --- Indica que o resultado retornado há informações de localização com precisão a nível do endereço de rua.
+\item \textit{RANGE\_INTERPOLATED} --- Indica que o resultado retornado reflete uma aproximação interpolada entre dois pontos precisos (como interseções). Geralmente, os resultados interpolados são retornados quando os códigos geográficos do \textit{rooftop} não estão disponíveis para um endereço de rua.
+\item \textit{GEOMETRIC\_CENTER} --- Indica que o resultado retornado é o centro geométrico de um resultado.
+\item \textit{APPROXIMATE} --- Indica que o resultado retornado é aproximado.
+\end{enumerate*}
+
+Neste estudo de caso, desconsideramos os endereços com classificação \textit{APPROXIMATE}, devido ao fato de poderem comprometer a confiabilidade das análises realizadas. 
+
+\begin{table}[!htb]
+\centering
+\caption {Quantidade de eventos extraídos por classe}
+\label {tab:qtdExtractedAddresses}
+\begin{threeparttable}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{Classe} & \textbf{\#endereços extraídos\tnote{a}} & \textbf{\textit{\#APP\tnote{b}}} & \textbf{\textit{\#GEO\tnote{c}}} & \textbf{\textit{\#RANGE\tnote{d}}} & \textbf{\textit{\#ROOF\tnote{e}}} \\
+\hline
+Accident & 3.439 & 7 & 805 & 1.130 & 1.497 \\
+\hline
+Irrelevant & 451 & 13 & 292 & 6 & 140 \\
+\hline
+Natural Disaster & 2.464 & 9 & 340 & 719 & 1.396 \\
+\hline
+Social Event & 793 & 4 & 761 & 2 & 26 \\
+\hline
+Urban Event & 1.002 & 4 & 942 & 10 & 46 \\
+\hline
+\hline
+- & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
+\hline
+\hline
+\end{tabular}
+\begin{tablenotes}
+\item[a] Total de endereços extraídos
+\item[b] Total de endereços extraídos com o tipo de localidade \textit{APPROXIMATE}
+\item[c] Total de endereços extraídos com o tipo de localidade \textit{GEOMETRIC\_CENTER}
+\item[d] Total de endereços extraídos com o tipo de localidade \textit{RANGE\_INTERPOLATED}
+\item[e] Total de endereços extraídos com o tipo de localidade \textit{ROOFTOP}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+A Fig. ~\ref{fig:address_analysis} ilustra os endereços\footnote{Lista completa está disponível em \url{https://docs.google.com/spreadsheets/d/1gn1cTDifUJEPdgcU67SC45GdYHRKmIHtAfJwRBm088s/edit?usp=sharing}. Acessado em 09 de setembro de 2018.} mais afetados por eventos de exceção e a Fig. \ref{fig:dispersion} parte da distribuição desses eventos na região central de São Paulo. É importante ressaltar que os eventos de exceção encontrados estão concentrados em endereços e regiões onde normalmente ocorrem em São Paulo, o que valida a metodologia desenvolvida.
 
 \begin{figure}[!htb]
 	\centering
