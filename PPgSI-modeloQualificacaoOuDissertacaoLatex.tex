@@ -1269,8 +1269,17 @@ Por fim, no processo de extração de \textit{features}, usa uma função de map
 
 Os algoritmos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
 
-No contexto desse trabalho conhecemos como os dados de entrada podem ser classificados, devido a isso iremos utilizar aprendizado de máquina supervisionado. Os dados de entrada que pretendemos utilizar nesse trabalho são textuais. Assim, foram avaliados cinco algoritmos de aprendizado de máquina supervisionados conhecidos para classificação textual: Árvore de Decisão (\textit{Decision Tree}), \textit{Naive Bayes}, Regressão Logística (Logistic Regression), Máquina de Vetores de Suporte ({SVM --- \textit{Support Vector Machine}}) e Floresta Aleatória (\textit{Random Forest}); descritos na subseção \ref{supervisionedLearning}.
-\improvement[inline]{Fazer uma revisão não sistemática dos principais algoritmos utilizados}
+No contexto desse trabalho, os dados de entrada são conhecidos e foram classificados manualmente, devido a isso usamos aprendizado de máquina supervisionado para o desenvolvimento do modelo de classificação, abordagem a qual também possui melhor desempenho para a tarefa de classificação textual \cite{dwivedi2016automatic}.  Com base nisso, realizamos uma revisão não sistemática e, de acordo com a literatura, os seguintes algoritmos são os mais utilizados para aprendizado supervisionado \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}:
+
+\begin{itemize}
+\item Árvore de Decisão (\textit{Decision Tree}).
+\item Floresta Aleatória (\textit{Random Forest}).
+\item K-ésimo Vizinho mais Próximo \nomenclature{K-NN}{\textit{K-Nearest Neighbour}}{(K-NN --- \textit{K-Nearest Neighbour})}.
+\item Máquina de Vetores de Suporte ({SVM --- \textit{Support Vector Machine}}).
+\item \textit{Naive Bayes}.
+\item Redes Neurais (\textit{Neural Networks}).
+\item Regressão Logística (\textit{Logistic Regression}).
+\end{itemize}
 
 \subsection{Algoritmos de aprendizado supervisionado}
 \label{supervisionedLearning}
