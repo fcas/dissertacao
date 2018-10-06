@@ -1299,8 +1299,24 @@ Recall = \frac{TP}{P} = \frac{TP}{TP + FN}
 F_1 score = \frac{Precision * Recall}{Precision + Recall} = \frac{2TP}{2TP + FP + FN}
 \end{equation}
 
-\section{TF-IDF}
-\todo[inline]{Escrever capítulo}
+\section{Term frequency–Inverse document frequency}
+
+TF-IDF é um algoritmo de ponderação de variáveis que combina as ponderações \emph{frequência do termo} \nomenclature{TF}{\textit{Term Frequency}}{(TF --- \textit{Term Frequency})} e \emph{inverso da frequência nos documentos} (\nomenclature{IDF}{nverse Document Frequency}{IDF --- \textit{Inverse Document Frequency}}) para calcular os pesos dos termos linguísticos (variáveis) em um determinado corpus. Em outras palavras, o peso da variável é proporcional a frequência com a qual aparece nos documentos, e inversamente proporcional a quantidade de documentos que contém o termo linguístico em questão \cite{wu2018improved, yahav2018comments}. 
+
+
+Dentre as variações de implementação da ponderação $W_{t,d}$ (TF-IDF) existentes, a abordagem tradicional considera uma coleção de termos $t \in T$ que aparecem em um conjunto de N documentos $d \in D$, posto isso, defini-se como o produto entre $tf_{i,j}$ e $idf_i$ --- onde $n_{i,j}$ é a frequência do termo $t_i$ no documento $d_j$, $\sum_k n_{k,j}$ o somatório da frequência de todos os termos do documento $d_j$ e $n$ o número de documentos onde $t_i$ aparece ($n + 1$, caso $n = 0$) --- conforme a seguinte equação \cite{wu2018improved}:
+
+\begin{equation}
+\begin{split}
+tf_{i,j} = \frac{n_{i,j}}{\sum_k n_{k,j}}
+\\
+idf_i = \log \frac{N}{n + 1}
+\\
+W_{t,d} = tf_{t,d} * idf_t
+\end{split}
+\end{equation}
+
+No contexto deste trabalho, entendemos documentos como as classes dos eventos de exceção. A \emph{frequência dos termos} (TF --- $tf_{t,d}$) é determinada por classe e a \emph{frequência do termo - inverso da frequência nos documentos} (IDF --- $idf_t $) como o inverso dos eventos de exceção, sendo $N$ o tamanho do conjunto dos eventos de exceção, sob o qual $df_t$ é definido. Os eventos de exceção são classificados em suas respectivas classes por meio dos modelos de aprendizado supervisionado, elencados na subseção \ref{supervisionedLearning}. 
 
 
 \chapter{Revisão Sistemática}
