@@ -1284,13 +1284,24 @@ No contexto desse trabalho, os dados de entrada são conhecidos e foram classifi
 \subsection{Algoritmos de aprendizado supervisionado}
 \label{supervisionedLearning}
 
-\subsection{Árvore de Decisão}.
-\subsection{Floresta Aleatória}
-\subsection{K-ésimo Vizinho mais Próximo} 
-\subsection{Máquina de Vetores de Suporte}
-\subsection{Naive Bayes}
-\subsection{Redes Neurais}
-\subsection{Regressão Logística}
+De acordo com a Fig. \ref{fig:arch_ml}, a aplicação de algoritmos de aprendizado supervisionado a um problema passa por algumas fases.
+A primeira se refere aos processos de construção do conjunto de dados e pré-processamento, descritas respectivamente no Cap. \ref{dataSet} e seção \ref{preprocessing}, as demais fases são explicadas na subseção \ref{model}. É importante observar que não faz parte do escopo deste trabalho afinar os parâmetros dos algoritmos mencionados na subseção \ref{classification}, devido a isso as parametrizações padrões são utilizadas e descritas no apêndice \ref{apendiceF}.
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Fluxograma do processo do aprendizado supervisionado}
+		\includegraphics[width=0.8\linewidth]{images/ml_arch.png}
+	\label{fig:arch_ml}
+  \source{\cite{kotsiantis2007supervised}}
+\end{figure}
+
+\subsubsection{Árvore de Decisão}.
+\subsubsection{Floresta Aleatória}
+\subsubsection{K-ésimo Vizinho mais Próximo} 
+\subsubsection{Máquina de Vetores de Suporte}
+\subsubsection{Naive Bayes}
+\subsubsection{Redes Neurais}
+\subsubsection{Regressão Logística}
 
 \todo[inline]{Escrever sobre cada algoritmo utilizado}
 
@@ -2187,7 +2198,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
 	\label{fig:tweets_distribution}
 \end{figure}
 
-Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mpc}.
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mpc}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice \ref{apendiceE}.
 
 \begin{table}[!htb]
 \centering
@@ -5018,6 +5029,9 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 		\includegraphics[width=1\linewidth]{images/confusion_matrix_svm.png}
 	\label{fig:confusion_matrix_svm}
 \end{figure}
+
+\chapter{Parametrizações dos algoritmos}
+\label{apendiceF}
 
 
 \end{apendicesenv}
