@@ -1284,6 +1284,14 @@ No contexto desse trabalho, os dados de entrada são conhecidos e foram classifi
 \subsection{Algoritmos de aprendizado supervisionado}
 \label{supervisionedLearning}
 
+\subsection{Árvore de Decisão}.
+\subsection{Floresta Aleatória}
+\subsection{K-ésimo Vizinho mais Próximo} 
+\subsection{Máquina de Vetores de Suporte}
+\subsection{Naive Bayes}
+\subsection{Redes Neurais}
+\subsection{Regressão Logística}
+
 \todo[inline]{Escrever sobre cada algoritmo utilizado}
 
 
@@ -2179,7 +2187,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
 	\label{fig:tweets_distribution}
 \end{figure}
 
-Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo de Regressão Logística para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de Regressão Logística é ilustrada pela Figura ~\ref{fig:confusion_matrix}.
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mpc}.
 
 \begin{table}[!htb]
 \centering
@@ -2189,26 +2197,31 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \hline
 \textbf{Algoritmo} & \textbf{Acurácia} & \textbf{Precisão} & \textbf{Revocação} & \textbf{\textit{f1-score}} \\
 \hline
-Árvore de Decisão & 0.966 & 0.966 & 0.966 & 0.966 \\
+\textit{Decision Tree} & 0.966 & 0.966 & 0.966 & 0.966 \\
 \hline
-Floresta Aleatória & \textit{0.974} & \textit{0.973} & \textit{0.974} & \textit{0.973} \\
+\textit{Gaussian Naive Bayes} & 0.891 & 0.919 & 0.891 & 0.901 \\
 \hline
-\textit{Gaussian Naive Bayes} & 0.889 & 0.992 & 0.889 & 0.900 \\
+\textit{K-Nearest Neighbors} & 0.970 & 0.971 & 0.970 & 0.970 \\
 \hline
-Máquina de Vetores de Suporte & 0.830 & 0.689 & 0.830 & 0.753 \\
+\textit{Logistic Regression} & 0.970 & 0.970 & 0.970 & 0.969 \\
 \hline
-\textit{Multinomial Naive Bayes} & 0.879 & 0.917 & 0.879 & 0.893 \\
+\textit{Multi-layer Perceptron} & \textit{0.974} & \textit{0.974} & \textit{0.974} & \textit{0.974} \\
 \hline
-Regressão Logística & 0.971 & 0.970 & 0.971 & 0.970 \\
+\textit{Multinomial Naive Bayes} & 0.954 & 0.953 & 0.954 & 0.951 \\
+\hline
+\textit{Random Forest} & 0.972 & 0.971 & 0.972 & 0.971 \\
+\hline
+\textit{Support Vector Machine} & 0.828 & 0.686 & 0.828 & 0.751 \\
 \hline
 \end{tabular}
 \end{table}
 
+
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Floresta Aleatória}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_rf.png}
-	\label{fig:confusion_matrix}
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Multi-layer Perceptron}}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_mpc.png}
+	\label{fig:confusion_matrix_mpc}
 \end{figure}
 
 Dos 60.984 \textit{tweets} 10.027 foram classificados em eventos de exceção e desse subconjunto encontrados 7.674 endereços, de acordo com a Tab. \ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} --- (o que representa 76,53\% do total dos \textit{tweets} eventos de exceção, sem considerar a classe \textit{Irrelevant}). A quantidade de endereços extraídos por classe está descrita na Tab. \ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
@@ -2350,7 +2363,7 @@ Consideramos que uma linha de ônibus é afetada por uma exceção se uma \texti
 
 \section{Considerações finais sobre a metodologia desenvolvida}
 
-Este experimento apresenta uma nova metodologia para classificação de eventos de exceção e analisa seus respectivos impactos no sistema de transporte coletivo por ônibus da cidade de São Paulo. Com o conjunto de dados utilizados, descobrimos que a Regressão Logística foi o melhor algoritmo para classificar \textit{tweets} em eventos de exceção. Também, mostramos que é possível extrair endereços de \textit{tweets} semi-estruturados usando apenas expressões regulares. A classificação desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
+Este experimento apresenta uma nova metodologia para classificação de eventos de exceção e analisa seus respectivos impactos no sistema de transporte coletivo por ônibus da cidade de São Paulo. Com o conjunto de dados utilizados, descobrimos que o melhor algoritmo para classificar \textit{tweets} em eventos de exceção foi \textit{Multi-layer Perceptron}. Também, mostramos que é possível extrair endereços de \textit{tweets} semi-estruturados usando apenas expressões regulares. A classificação desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
 
 Embora o método tenha sido validado usando perfis selecionados do Twitter escritos em português do Brasil, o mesmo pode ser generalizado para diferentes idiomas e cidades. A GTFS é um formato ubíquo para o transporte público e ferramentas como a NLTK suporta vários idiomas.
 
@@ -4960,6 +4973,51 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \end{longtable}
 
 \normalsize
+
+\chapter{Matrizes de confusão}
+\label{apendiceE}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Regressão Logística}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_rl.png}
+	\label{fig:confusion_matrix_rl}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Árvore de Decisão}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_dt.png}
+	\label{fig:confusion_matrix_dt}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Multinomial Naive Bayes}}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_mnb.png}
+	\label{fig:confusion_matrix_mnb}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Gaussian Naive Bayes}}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_gnb.png}
+	\label{fig:confusion_matrix_gnb}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Florestas Aleatórias}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_rf.png}
+	\label{fig:confusion_matrix_rf}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Máquina de Vetores de Suporte}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_svm.png}
+	\label{fig:confusion_matrix_svm}
+\end{figure}
 
 
 \end{apendicesenv}
