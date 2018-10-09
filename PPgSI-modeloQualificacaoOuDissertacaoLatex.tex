@@ -5033,6 +5033,23 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \chapter{Parametrizações dos algoritmos}
 \label{apendiceF}
 
+\section{Árvore de Decisão}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html}. Acessado em 08 de outubro de 2018.}
+\begin{itemize}
+\item \textit{criterion} --- $string$, opcional ($default=$\textit{``gini''}) --- Parâmetro responsável por definir a função que mede a qualidade da divisão da árvore de decisão. Os valores suportados são $gini$ para a \textit{impureza Gini} e $entropy$ para o \textit{ganho de informação}.
+\item \textit{splitter} --- $string,$ opcional ($default=$\textit{``best''}) --- Parâmetro responsável por definir a estratégia usada para escolher a divisão em cada nó. As estratégias suportadas são $best$ para escolher a melhor divisão e $random$ para escolher a melhor divisão aleatoriamente.
+\item \textit{max\_depth} --- $int$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por definir a profundidade máxima da árvore. Se definido como $None$, os nós são expandidos até que todas as folhas fiquem puras ou até que todas as folhas contenham menos amostras que $min\_samples\_split$.
+\item \textit{min\_samples\_split} --- $int$, $float$, opcional ($default=2$) --- Parâmetro responsável por definir o número mínimo de amostras necessárias para dividir um nó interno.
+\item \textit{min\_samples\_leaf} --- $int$, $float$, opcional ($default=1$) --- Parâmetro responsável por definir o número mínimo de amostras necessárias em um nó folha. Um ponto de divisão em qualquer profundidade só será considerado se deixar pelo menos $min\_samples\_leaf$ amostras de treinamento em cada uma das ramificações esquerda e direita. Isso pode ter o efeito de suavizar o modelo, especialmente na regressão.
+\item \textit{min\_weight\_fraction\_leaf} --- $float$, opcional ($default=0.$) --- Parâmetro responsável por definir a fração ponderada mínima da soma total de pesos (de todas as amostras de entrada) necessária para estar em um nó folha. As amostras têm peso igual quando \textit{sample\_weight} não é fornecido.
+\item \textit{max\_features} --- $int$, $float$, $string$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por definir o número de \textit{features} (características) a serem consideradas ao procurar a melhor divisão. A procura por uma divisão não é interrompida até que pelo menos uma partição válida das amostras de nó seja localizada, mesmo que seja necessário inspecionar do que mais de \textit{max\_features} características.
+\item \textit{random\_state} --- $int$, $RandomState instance$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por determinar a estratégia de geração de número aleatórios. Se definido como $RandomState$, $random\_state$ será o gerador de números aleatórios; se $None$ o gerador de números aleatórios é a instância $RandomState$ usada por $np.random$.
+\item \textit{max\_leaf\_nodes} --- $int$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por gerar uma árvore com o máximo número de nós folhas, usando a estratégia \textit{best-first}.
+Os melhores (\textit{best}) nós são os definidos como redução relativa a impureza. Caso o parâmetro seja definido como $None$ então o número máximo de nós folhas será ilimitado. 
+\item \textit{min\_impurity\_decrease} --- $float$, opcional ($default=0.$) --- Parâmetro responsável por definir que um nó será dividido se essa divisão induzir uma diminuição da impureza maior ou igual a esse valor.
+\item \textit{class\_weight} --- $dict$, $list$ de $dict$, ``$balanced$'', $None$, $default=None$ --- Parâmetro responsável por associar ponderação as classes, no seguinte formato: ``${class\_label: weight}$''. Caso não haja valores para esse parâmetro, supõem-se que todos as classes possuam o mesmo peso. 
+\item \textit{presort} --- $bool$, opcional ($default=False$) --- Se o valor desse parâmetro é igual a $true$ é realizada uma pré-ordenação dos dados, o que acelera encontrar as melhores divisões das árvores de decisão no processo de ajuste. Ao habilitar esse parâmetro, a velocidade do processo de treinamento de um grande volume de dados  é reduzida. Por outro lado, habilitar esse parâmetro em alguns casos pode acelerar o processo de treinamento, como quando há pequenos conjuntos de dados, ou, restrição quanto a profundidade da árvore de decisão.
+\end{itemize}
+
 
 \end{apendicesenv}
 \end{document}
