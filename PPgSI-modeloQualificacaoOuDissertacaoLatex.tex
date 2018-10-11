@@ -2174,13 +2174,13 @@ O corpus obtido da fase de processamento de \textit {tweets} é representado por
 
 \section{Encontrando linhas de ônibus afetadas por eventos de exceção}
 
-Para encontrar as linhas de ônibus afetadas por eventos de exceção, é necessário correlacionar latitude e longitude dos eventos de exceção com as \textit{shapes} da GTFS da SPTrans. Como mencionado anteriormente, as \textit{shapes} da GTFS são um conjunto de coordenadas de latitude e longitude para desenhar linhas dos ônibus em um mapa, para representar seus respectivos caminhos, por exemplo.
+Para encontrar as linhas de ônibus afetadas por eventos de exceção, é necessário correlacionar latitude e longitude dos eventos de exceção com as \textit{stops} da GTFS da SPTrans. Como mencionado anteriormente, os dados referentes as \textit{stops} contém os locais individuais em que os veículos pegam ou deixam passageiros, incluindo coordenadas de latitude e longitude.
 
-De acordo com a seção ~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acessado em 18 de Maio de 2018.} para encontrar as \textit{shapes} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{shape\_id} faz parte dos atributos contidos no arquivo de \textit{shapes}, referindo-se a um código de linha de ônibus com o qual é possível procurar mais detalhes sobre o referido código, como direção da linha de ônibus, identificação, paradas, etc.
+De acordo com a seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acessado em 18 de Maio de 2018.} para encontrar as \textit{stops} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{stop\_id} faz parte dos atributos contidos no arquivo de \textit{stops}, referindo-se a um código de parada de ônibus com o qual é possível correlacioná-lo com as bases \textit{stop\_times} e \textit{lines} (por meio do atributo \textit{trip\_id} existente em \textit{stops}) para obter mais detalhes sobre a direção da linha de ônibus, identificação, etc.
 
 \section{Resultados}
 	
-A metodologia foi aplicada ao Corpus Twitter \footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acessado em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 3.761.226 palavras, com um vocabulário de 33 palavras. O comprimento máximo das sentenças do conjunto de dados é 136, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}.
+A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acessado em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 3.761.226 palavras, com um vocabulário de 33 palavras. O comprimento máximo das sentenças do conjunto de dados é 136, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}.
  
 \begin{figure}[!htb]
 	\centering
@@ -2289,7 +2289,7 @@ Urban Event & 1.002 & 4 & 942 & 10 & 46 \\
 \end{table}
 
 
-A Fig. ~\ref{fig:address_analysis} ilustra os endereços\footnote{Lista completa está disponível em \url{https://docs.google.com/spreadsheets/d/1gn1cTDifUJEPdgcU67SC45GdYHRKmIHtAfJwRBm088s/edit?usp=sharing}. Acessado em 09 de setembro de 2018.} mais afetados por eventos de exceção e a Fig. \ref{fig:dispersion} parte da distribuição desses eventos na região central de São Paulo. É importante ressaltar que os eventos de exceção encontrados estão concentrados em endereços e regiões onde normalmente ocorrem em São Paulo, o que valida a metodologia desenvolvida.
+A Fig.~\ref{fig:address_analysis} ilustra os endereços\footnote{Lista completa está disponível em \url{https://docs.google.com/spreadsheets/d/1gn1cTDifUJEPdgcU67SC45GdYHRKmIHtAfJwRBm088s/edit?usp=sharing}. Acessado em 09 de setembro de 2018.} mais afetados por eventos de exceção e a Fig. \ref{fig:dispersion} parte da distribuição desses eventos na região central de São Paulo. É importante ressaltar que os eventos de exceção encontrados estão concentrados em endereços e regiões onde normalmente ocorrem em São Paulo, o que valida a metodologia desenvolvida.
 
 \begin{figure}[!htb]
 	\centering
@@ -2305,7 +2305,7 @@ A Fig. ~\ref{fig:address_analysis} ilustra os endereços\footnote{Lista completa
 	\label{fig:dispersion}
 \end{figure}
 
-Consideramos que uma linha de ônibus é afetada por uma exceção se uma \textit{shape} em um raio de 100 metros do evento. Utilizando este critério, o total de 799 linhas de ônibus foram afetadas por eventos de exceção durante este período, sendo ``35276'' o código de linha de ônibus mais impactado (itinerário próximo à concentração de eventos de exceção, conforme Figura \ref{fig:35276_geo}). Essa linha específica foi impactada por 1.663 eventos de exceção. A Tab.  \ref{tab:impacted_bus_code_lines} lista as linhas de ônibus que foram impactadas por mais de 1.000\footnote{O conteúdo completo da tabela pode ser acessado em:\url{https://docs.google.com/spreadsheets/d/1SxnzVeBaSjophbo-slISUcUG0GMD2MYaEM0JAdKiNBs}. Acessado em 18 de maio de 2018.} eventos de exceção.
+Consideramos que uma linha de ônibus é afetada por um evento de exceção se uma \textit{stop} estiver dentro de um raio de 1000 metros de distância do evento. Utilizando este critério, o total de 992 linhas de ônibus foram afetadas por eventos de exceção durante este período, sendo ``33389'' o código de linha de ônibus mais impactado (itinerário próximo à concentração de eventos de exceção, conforme Figura \ref{fig:35276_geo}). Essa linha específica foi impactada por 1.301 eventos de exceção. A Tab.  \ref{tab:impacted_bus_code_lines} lista as linhas de ônibus que foram impactadas por mais de 600 eventos de exceção.
    
 \begin{figure}[!htb]
 	\centering
@@ -2324,46 +2324,89 @@ Consideramos que uma linha de ônibus é afetada por uma exceção se uma \texti
  \hline
 \textbf{Código da linha} & \textbf{\# eventos de exceção} & \textbf{Letreiro} \\
     \hline
-35276 & 1,663  & PÇA. RAMOS DE AZEVEDO / TERM. CAMPO LIMPO \\
-    \hline
-32953 & 1,606  & TERM. PINHEIROS / TERM. JD. ÂNGELA \\ 
-    \hline
-32805 & 1,462  & TERM. PRINC. ISABEL / CHÁC. SANTANA \\
-    \hline
-32772 & 1,423  & TERM. PRINC. ISABEL / TERM. STO. AMARO \\
-    \hline
-32846 & 1,420  & METRÔ BRÁS / TERM. GRAJAÚ \\
-    \hline
-32869 & 1,339  & PINHEIROS / GRAJAÚ \\
-    \hline
-34134 & 1,335  & METRÔ ANA ROSA / MORRO GRANDE \\
-    \hline
-33966 & 1,296  & METRÔ VL. MARIANA / TERM. PARELHEIROS \\
-    \hline
-33943 & 1,295  & TERM. STO. AMARO / VARGEM GRANDE \\
-    \hline
-34694 & 1,245  & PARAÍSO / TERM. CAMPO LIMPO \\
-    \hline
-32874 & 1,210  & METRÔ JABAQUARA / PQ. RES. COCAIA \\
-    \hline
-34660 & 1,184  & ACLIMAÇÃO / TERM. CAMPO LIMPO \\
-    \hline
-33272 & 1,150  & PÇA. RAMOS DE AZEVEDO / JD. JOÃO XXIII \\
-    \hline
-34210 & 1,129  & LGO. SÃO FRANCISCO / TERM. VARGINHA \\
-    \hline
-32838 & 1,105  & PÇA. DA SÉ / PQ. RES. COCAIA \\
-    \hline
-32829 & 1,076  & TERM. BANDEIRA / TERM. CAPELINHA \\
-    \hline
-34233 & 1,061  & TERM. BANDEIRA / TERM. VARGINHA \\
-    \hline
-33640 & 1,056  & TERM. CACHOEIRINHA / JD. PRINCESA \\
-    \hline
-33377 & 1,054  & PERDIZES / AEROPORTO \\
-    \hline
-33042 & 1,022  & PÇA. DA SÉ / JD. IV CENTENÁRIO \\
-    \hline
+    33389 & 1301  & TERM. PINHEIROS / METRÔ TUCURUVI  \\
+\hline
+
+    33284 & 1176  & ITAIM BIBI / METRÔ SANTANA  \\
+\hline
+
+    33121 & 1023  & TERM. PRINC. ISABEL / TERM. STO. AMARO  \\
+\hline
+
+    32805 & 1006  & TERM. PRINC. ISABEL / CHÁC. SANTANA  \\
+\hline
+
+    33112 & 933   & TERM. PQ. D. PEDRO II / JD. SÃO SAVÉRIO  \\
+\hline
+
+    33111 & 857   & TERM. AMARAL GURGEL / JD. DA SAÚDE  \\
+\hline
+
+    35229 & 841   & TURISMO / CIRCULAR  \\
+\hline
+
+    33443 & 816   & ANA ROSA / METRÔ SANTANA  \\
+\hline
+
+    32897 & 805   & LUZ / TERM. A. E. CARVALHO  \\
+\hline
+
+    35072 & 767   & METRÔ BARRA FUNDA / CONEXÃO PETRÔNIO PORTELA  \\
+\hline
+
+    32772 & 759   & TERM. PRINC. ISABEL / TERM. STO. AMARO  \\
+\hline
+
+    33253 & 754   & METRÔ BELÉM / JD. BONFIGLIOLI  \\
+\hline
+
+    33391 & 748   & METRÔ JABAQUARA / METRÔ SANTANA  \\
+\hline
+
+    32813 & 746   & PÇA. DA SÉ / CHÁC. SANTANA  \\
+\hline
+
+    32829 & 746   & TERM. BANDEIRA / TERM. CAPELINHA  \\
+\hline
+
+    34048 & 719   & LGO. SÃO FRANCISCO / JD. SELMA  \\
+\hline
+
+    33486 & 715   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS  \\
+\hline
+
+    33236 & 708   & TERM. BANDEIRA / JD. JAQUELINE  \\
+\hline
+
+    33336 & 697   & PINHEIROS / IMIRIM  \\
+\hline
+
+    32816 & 693   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO  \\
+\hline
+
+    33534 & 690   & CARDOSO DE ALMEIDA / MACHADO DE ASSIS  \\
+\hline
+
+    32838 & 647   & PÇA. DA SÉ / PQ. RES. COCAIA  \\
+\hline
+
+    33398 & 639   & CID. UNIVERSITÁRIA / METRÔ SANTANA  \\
+\hline
+
+    32769 & 638   & LGO. SÃO FRANCISCO / TERM. CAPELINHA  \\
+\hline
+
+    33114 & 637   & TERM. PINHEIROS / SACOMÃ  \\
+\hline
+
+    34210 & 637   & LGO. SÃO FRANCISCO / TERM. VARGINHA  \\
+\hline
+
+    33116 & 625   & RIO PEQUENO / IPIRANGA  \\
+\hline
+
+    33126 & 614   & TERM. BANDEIRA / INOCOOP CAMPO LIMPO  \\
+\hline
 \end{tabular}
 \begin{tablenotes}
             \item[a] Tabela completa no apêndice \ref{apendiceD}.
@@ -3383,1604 +3426,2984 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \hline \hline
 \endlastfoot
 
-    35276 & 1663  & PÇA. RAMOS DE AZEVEDO / TERM. CAMPO LIMPO \\
+
+    33389 & 1301  & TERM. PINHEIROS / METRÔ TUCURUVI \\
 \hline
-    32953 & 1606  & TERM. PINHEIROS / TERM. JD. ÂNGELA \\
+
+    33284 & 1176  & ITAIM BIBI / METRÔ SANTANA \\
 \hline
-    32805 & 1462  & TERM. PRINC. ISABEL / CHÁC. SANTANA \\
+
+    33121 & 1023  & TERM. PRINC. ISABEL / TERM. STO. AMARO \\
 \hline
-    32772 & 1423  & TERM. PRINC. ISABEL / TERM. STO. AMARO \\
+
+    32805 & 1006  & TERM. PRINC. ISABEL / CHÁC. SANTANA \\
 \hline
-    32846 & 1420  & METRÔ BRÁS / TERM. GRAJAÚ \\
+
+    33112 & 933   & TERM. PQ. D. PEDRO II / JD. SÃO SAVÉRIO \\
 \hline
-    32869 & 1339  & PINHEIROS / GRAJAÚ \\
+
+    33111 & 857   & TERM. AMARAL GURGEL / JD. DA SAÚDE \\
 \hline
-    34134 & 1335  & METRÔ ANA ROSA / MORRO GRANDE \\
+
+    35229 & 841   & TURISMO / CIRCULAR \\
 \hline
-    33966 & 1296  & METRÔ VL. MARIANA / TERM. PARELHEIROS \\
+
+    33443 & 816   & ANA ROSA / METRÔ SANTANA \\
 \hline
-    33943 & 1295  & TERM. STO. AMARO / VARGEM GRANDE \\
+
+    32897 & 805   & LUZ / TERM. A. E. CARVALHO \\
 \hline
-    34694 & 1245  & PARAÍSO / TERM. CAMPO LIMPO \\
+
+    35072 & 767   & METRÔ BARRA FUNDA / CONEXÃO PETRÔNIO PORTELA \\
 \hline
-    32874 & 1210  & METRÔ JABAQUARA / PQ. RES. COCAIA \\
+
+    32772 & 759   & TERM. PRINC. ISABEL / TERM. STO. AMARO \\
 \hline
-    34660 & 1184  & ACLIMAÇÃO / TERM. CAMPO LIMPO \\
+
+    33253 & 754   & METRÔ BELÉM / JD. BONFIGLIOLI \\
 \hline
-    33272 & 1150  & PÇA. RAMOS DE AZEVEDO / JD. JOÃO XXIII \\
+
+    33391 & 748   & METRÔ JABAQUARA / METRÔ SANTANA \\
 \hline
-    34210 & 1129  & LGO. SÃO FRANCISCO / TERM. VARGINHA \\
+
+    32813 & 746   & PÇA. DA SÉ / CHÁC. SANTANA \\
 \hline
-    32838 & 1105  & PÇA. DA SÉ / PQ. RES. COCAIA \\
+
+    32829 & 746   & TERM. BANDEIRA / TERM. CAPELINHA \\
 \hline
-    32829 & 1076  & TERM. BANDEIRA / TERM. CAPELINHA \\
+
+    34048 & 719   & LGO. SÃO FRANCISCO / JD. SELMA \\
 \hline
-    34233 & 1061  & TERM. BANDEIRA / TERM. VARGINHA \\
+
+    33486 & 715   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
 \hline
-    33640 & 1056  & TERM. CACHOEIRINHA / JD. PRINCESA \\
+
+    33236 & 708   & TERM. BANDEIRA / JD. JAQUELINE \\
 \hline
-    33377 & 1054  & PERDIZES / AEROPORTO \\
+
+    33336 & 697   & PINHEIROS / IMIRIM \\
 \hline
-    33042 & 1022  & PÇA. DA SÉ / JD. IV CENTENÁRIO \\
+
+    32816 & 693   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
 \hline
-    34209 & 953   & METRÔ JABAQUARA / TERM. VARGINHA \\
+
+    33534 & 690   & CARDOSO DE ALMEIDA / MACHADO DE ASSIS \\
 \hline
-    34144 & 937   & PÇA. DA SÉ / CID. UNIVERSITÁRIA \\
+
+    32838 & 647   & PÇA. DA SÉ / PQ. RES. COCAIA \\
 \hline
-    32827 & 934   & TERM. BANDEIRA / TERM. CAPELINHA \\
+
+    33398 & 639   & CID. UNIVERSITÁRIA / METRÔ SANTANA \\
 \hline
-    33675 & 892   & ITAIM PAULISTA / VL. CALIFÓRNIA \\
+
+    32769 & 638   & LGO. SÃO FRANCISCO / TERM. CAPELINHA \\
 \hline
-    33258 & 875   & LGO. DA PÓLVORA / JD. MARIA LUIZA \\
+
+    33114 & 637   & TERM. PINHEIROS / SACOMÃ \\
 \hline
-    33275 & 871   & METRÔ ANA ROSA / JD. GUARAÚ \\
+
+    34210 & 637   & LGO. SÃO FRANCISCO / TERM. VARGINHA \\
 \hline
-    33382 & 840   & METRÔ SANTANA / CPTM JARAGUÁ \\
+
+    33116 & 625   & RIO PEQUENO / IPIRANGA \\
 \hline
-    34861 & 834   & METRÔ STA. CECÍLIA / TERM. STO. AMARO \\
+
+    33126 & 614   & TERM. BANDEIRA / INOCOOP CAMPO LIMPO \\
 \hline
-    33075 & 831   & LAPA / IPIRANGA \\
+
+    33328 & 598   & HOSP. DAS CLÍNICAS / LAUZANE PAULISTA \\
 \hline
-    34149 & 821   & METRÔ PARAÍSO / VL. ANASTÁCIO \\
+
+    33077 & 593   & BOM RETIRO / PQ. SÃO LUCAS \\
 \hline
-    34098 & 818   & TERM. PQ. D. PEDRO II / CID. UNIVERSITÁRIA \\
+
+    33129 & 579   & TERM. BANDEIRA / VL. CRUZEIRO \\
 \hline
-    33253 & 789   & METRÔ BELÉM / JD. BONFIGLIOLI \\
+
+    33072 & 561   & TERM. STO. AMARO / IPIRANGA \\
 \hline
-    34085 & 771   & TERM. BANDEIRA / JD. VAZ DE LIMA \\
+
+    33342 & 556   & PÇA. DO CORREIO / JD. PAULISTANO \\
 \hline
-    33123 & 759   & TERM. BANDEIRA / TERM. STO. AMARO \\
+
+    33089 & 555   & TERM. PQ. D. PEDRO II / VL. GUMERCINDO \\
 \hline
-    35229 & 738   & TURISMO / CIRCULAR \\
+
+    34139 & 552   & TERM. BANDEIRA / CEASA \\
 \hline
-    35174 & 733   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+
+    33538 & 549   & PAULISTA / PARAISÓPOLIS \\
 \hline
-    32871 & 721   & PINHEIROS / VL. SÃO JOSÉ \\
+
+    34050 & 547   & PQ. D. PEDRO II / CID. ADEMAR \\
 \hline
-    33908 & 706   & TERM. STO. AMARO / TERM. PARELHEIROS \\
+
+    32825 & 545   & TERM. BANDEIRA / TERM. JOÃO DIAS \\
 \hline
-    35160 & 697   & TERM. PQ. D. PEDRO II / TERM. GRAJAÚ \\
+
+    32885 & 525   & ACLIMAÇÃO / TERM. PRINC. ISABEL \\
 \hline
-    32826 & 694   & TERM. PQ. D. PEDRO II / TERM. JOÃO DIAS \\
+
+    35274 & 524   & PÇA. RAMOS DE AZEVEDO / TERM. LAPA \\
 \hline
-    35148 & 676   & METRÔ VL. MADALENA / TERM. SACOMÃ \\
+
+    35208 & 523   & STA. CECÍLIA / TERM. VL. MARIANA \\
 \hline
-    33224 & 667   & METRÔ VL. MARIANA / TERM. PIRITUBA \\
+
+    35207 & 520   & STA. CECÍLIA / TERM. VL. MARIANA \\
 \hline
-    32837 & 664   & PÇA. DO CORREIO / SESC/ORION \\
+
+    33356 & 509   & PÇA. DO CORREIO / PEDRA BRANCA \\
 \hline
-    32849 & 663   & LGO. SÃO FRANCISCO / VL. SÃO JOSÉ \\
+
+    33122 & 504   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
 \hline
-    34108 & 660   & METRÔ VL. MARIANA / TERM. LAPA \\
+
+    32939 & 503   & LGO. SÃO FRANCISCO / JD. ÂNGELA \\
 \hline
-    33117 & 649   & POMPÉIA ATÉ VL. ROMANA / SACOMÃ \\
+
+    33481 & 502   & PÇA. DA SÉ / TERM. VL. CARRÃO \\
 \hline
-    33277 & 646   & TERM. PRINC. ISABEL / COHAB RAPOSO TAVARES \\
+
+    33427 & 496   & PÇA. DO CORREIO / VL. SABRINA \\
 \hline
-    32769 & 645   & LGO. SÃO FRANCISCO / TERM. CAPELINHA \\
+
+    33457 & 489   & METRÔ VL. MADALENA / PQ. EDÚ CHAVES \\
 \hline
-    33357 & 641   & METRÔ ANA ROSA / VL. BRASILÂNDIA \\
+
+    34101 & 487   & PÇA. RAMOS DE AZEVEDO / MERCADO DA LAPA \\
 \hline
-    34109 & 641   & METRÔ ANA ROSA / METRÔ BARRA FUNDA \\
+
+    33479 & 484   & TERM. BANDEIRA / TERM. PQ. D. PEDRO II \\
 \hline
-    34907 & 641   & SOCORRO / JD. APURÁ \\
+
+    34045 & 482   & TERM. PRINC. ISABEL / JD. MIRIAM \\
 \hline
-    33443 & 640   & ANA ROSA / METRÔ SANTANA \\
+
+    34884 & 471   & BUTANTÃ / TERM. PQ. D. PEDRO II \\
 \hline
-    35196 & 639   & TERM. PQ. D. PEDRO II / METRÔ BUTANTÃ \\
+
+    33365 & 461   & PÇA. JOÃO MENDES / DIV. DIADEMA \\
 \hline
-    32816 & 621   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+
+    32846 & 458   & METRÔ BRÁS / TERM. GRAJAÚ \\
 \hline
-    32814 & 613   & TERM. BANDEIRA / TERM. STO. AMARO \\
+
+    33326 & 450   & LAPA / METRÔ SANTANA \\
 \hline
-    33476 & 609   & PÇA. DO CORREIO / TERM. CACHOEIRINHA \\
+
+    32975 & 445   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
 \hline
-    34840 & 606   & ANHANGABAÚ / SHOP. CONTINENTAL \\
+
+    32849 & 444   & LGO. SÃO FRANCISCO / VL. SÃO JOSÉ \\
 \hline
-    34832 & 604   & TERM. PRINC. ISABEL / RIO PEQUENO \\
+
+    32900 & 441   & PÇA. DO CORREIO / SÃO MIGUEL \\
 \hline
-    33200 & 599   & PÇA. RAMOS DE AZEVEDO / CID. D'ABRIL \\
+
+    33439 & 440   & TERM. AMARAL GURGEL / VL. SABRINA \\
 \hline
-    32939 & 590   & LGO. SÃO FRANCISCO / JD. ÂNGELA \\
+
+    32837 & 435   & PÇA. DO CORREIO / SESC/ORION \\
 \hline
-    35280 & 583   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
+
+    34233 & 435   & TERM. BANDEIRA / TERM. VARGINHA \\
 \hline
-    33280 & 582   & PÇA. RAMOS DE AZEVEDO / JD. JOÃO XXIII/EDUC. \\
+
+    34977 & 432   & TERM. MERCADO / TERM. SÃO MATEUS \\
 \hline
-    34393 & 579   & PÇA. DO CORREIO / TERM. SAPOPEMBA \\
+
+    33287 & 431   & TERM. AMARAL GURGEL / JD. PERY ALTO \\
 \hline
-    33544 & 578   & PINHEIROS / PARAISÓPOLIS \\
+
+    33460 & 427   & LIBERDADE / VL. MEDEIROS \\
 \hline
-    34062 & 578   & TERM. BANDEIRA / JD. LUSO \\
+
+    33763 & 424   & PÇA. JOÃO MENDES / JD. VL. FORMOSA \\
 \hline
-    34064 & 578   & PQ. IBIRAPUERA / JD. MIRIAM \\
+
+    33482 & 423   & PÇA. DA SÉ / PÇA. SILVIO ROMERO \\
 \hline
-    32885 & 577   & ACLIMAÇÃO / TERM. PRINC. ISABEL \\
+
+    33264 & 421   & EST. DA LUZ / JD. BOA VISTA \\
 \hline
-    34761 & 570   & TERM. PINHEIROS / EST. STO. AMARO/GUIDO CALOI \\
+
+    33123 & 419   & TERM. BANDEIRA / TERM. STO. AMARO \\
 \hline
-    33763 & 568   & PÇA. JOÃO MENDES / JD. VL. FORMOSA \\
+
+    33502 & 418   & TERM. PQ. D. PEDRO II / SÃO MATEUS \\
 \hline
-    33425 & 567   & CID. UNIVERSITÁRIA / METRÔ SANTANA \\
+
+    34804 & 417   & E.T. ÁGUA ESPRAIADA / TERM. GRAJAÚ \\
 \hline
-    32877 & 562   & METRÔ JABAQUARA / GRAJAÚ \\
+
+    33610 & 415   & CORREIO / PQ. VL. MARIA \\
 \hline
-    34050 & 549   & PQ. D. PEDRO II / CID. ADEMAR \\
+
+    33095 & 414   & TERM. PQ. D. PEDRO II / ZOOLÓGICO \\
 \hline
-    35068 & 545   & METRÔ BARRA FUNDA / TERM. PQ. D. PEDRO II \\
+
+    34085 & 407   & TERM. BANDEIRA / JD. VAZ DE LIMA \\
 \hline
-    33121 & 543   & TERM. PRINC. ISABEL / TERM. STO. AMARO \\
+
+    35276 & 406   & PÇA. RAMOS DE AZEVEDO / TERM. CAMPO LIMPO \\
 \hline
-    33964 & 541   & TERM. STO. AMARO / JD. HERPLIN \\
+
+    33476 & 403   & PÇA. DO CORREIO / TERM. CACHOEIRINHA \\
 \hline
-    32813 & 540   & PÇA. DA SÉ / CHÁC. SANTANA \\
+
+    34685 & 402   & TERM. BANDEIRA / TERM. CAMPO LIMPO \\
 \hline
-    34196 & 540   & SOCORRO / LAPA \\
+
+    32826 & 400   & TERM. PQ. D. PEDRO II / TERM. JOÃO DIAS \\
 \hline
-    32892 & 533   & ACLIMAÇÃO / TERM. PRINC. ISABEL \\
+
+    34396 & 400   & TERM. PQ. D. PEDRO II / TERM. SAPOPEMBA \\
 \hline
-    32855 & 531   & TERM. STO. AMARO / JD. ICARAÍ \\
+
+    34195 & 399   & PÇA. RAMOS DE AZEVEDO / APIACÁS \\
 \hline
-    34218 & 531   & TERM. BANDEIRA / TERM. GUARAPIRANGA \\
+
+    33093 & 397   & TERM. PQ. D. PEDRO II / JD. PLANALTO \\
 \hline
-    34884 & 529   & BUTANTÃ / TERM. PQ. D. PEDRO II \\
+
+    33042 & 393   & PÇA. DA SÉ / JD. IV CENTENÁRIO \\
 \hline
-    33643 & 528   & TERM. CACHOEIRINHA / PQ. DE TAIPAS \\
+
+    33058 & 393   & TERM. PQ. D. PEDRO II / PQ. STA. MADALENA \\
 \hline
-    34883 & 515   & TERM. PINHEIROS / TERM. PQ. D. PEDRO II \\
+
+    33462 & 393   & PÇA. DO CORREIO / PQ. EDÚ CHAVES \\
 \hline
-    33264 & 513   & EST. DA LUZ / JD. BOA VISTA \\
+
+    33852 & 383   & TERM. PQ. D. PEDRO II / JD. COLORADO \\
 \hline
-    34049 & 511   & TERM. GUARAPIRANGA / JD. MIRIAM \\
+
+    32831 & 382   & LGO. SÃO FRANCISCO / TERM. CAPELINHA \\
 \hline
-    33952 & 505   & AEROPORTO / CONJ. HAB. PALMARES \\
+
+    34419 & 382   & TERM. MERCADO / TERM. SACOMÃ \\
 \hline
-    33502 & 504   & TERM. PQ. D. PEDRO II / SÃO MATEUS \\
+
+    34128 & 379   & PÇA. DO CORREIO / BRASILÂNDIA \\
 \hline
-    32825 & 503   & TERM. BANDEIRA / TERM. JOÃO DIAS \\
+
+    32884 & 376   & TERM. PQ. D. PEDRO II / TERM. CASA VERDE \\
 \hline
-    33924 & 502   & TERM. STO. AMARO / JD. ORION \\
+
+    33032 & 376   & PQ. IBIRAPUERA / JD. SELMA \\
 \hline
-    35087 & 496   & METRÔ SANTANA / TERM. CACHOEIRINHA \\
+
+    32814 & 375   & TERM. BANDEIRA / TERM. STO. AMARO \\
 \hline
-    33336 & 494   & PINHEIROS / IMIRIM \\
+
+    33361 & 372   & PÇA. DA SÉ / BALN. SÃO FRANCISCO \\
 \hline
-    34397 & 494   & METRÔ BELÉM / JD. WALKIRIA \\
+
+    33506 & 372   & TERM. PQ. D. PEDRO II / SÃO MATEUS \\
 \hline
-    34463 & 488   & METRÔ SANTANA / TERM. CACHOEIRINHA \\
+
+    33539 & 372   & BROOKLIN NOVO / REAL PQ. \\
 \hline
-    32876 & 487   & METRÔ JABAQUARA / CENTRO SESC \\
+
+    34100 & 367   & TERM. PRINC. ISABEL / CID. UNIVERSITÁRIA \\
 \hline
-    34045 & 485   & TERM. PRINC. ISABEL / JD. MIRIAM \\
+
+    35050 & 366   & TERM. PQ. D. PEDRO II / TERM. LAPA \\
 \hline
-    34107 & 483   & TERM. PQ. D. PEDRO II / PQ. DA LAPA \\
+
+    33128 & 365   & TERM. BANDEIRA / SOCORRO \\
 \hline
-    33934 & 480   & SHOP. INTERLAGOS / CANTINHO DO CÉU \\
+
+    33302 & 365   & METRÔ BARRA FUNDA / PEDRA BRANCA \\
 \hline
-    33936 & 480   & SHOP. INTERLAGOS / JD. LUCÉLIA \\
+
+    34938 & 362   & TERM. PQ. D. PEDRO II / TERM. CID. TIRADENTES \\
 \hline
-    33128 & 473   & TERM. BANDEIRA / SOCORRO \\
+
+    32827 & 361   & TERM. BANDEIRA / TERM. CAPELINHA \\
 \hline
-    34391 & 472   & METRÔ BELÉM / TERM. SAPOPEMBA \\
+
+    33230 & 361   & LGO. DO PAISSANDÚ / TERM. CACHOEIRINHA \\
 \hline
-    33129 & 471   & TERM. BANDEIRA / VL. CRUZEIRO \\
+
+    33514 & 361   & TERM. PQ. D. PEDRO II / VL. DALILA \\
 \hline
-    35145 & 470   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+
+    34200 & 360   & LGO. DO PAISSANDÚ / TERM. PIRITUBA \\
 \hline
-    33538 & 467   & PAULISTA / PARAISÓPOLIS \\
+
+    34064 & 359   & PQ. IBIRAPUERA / JD. MIRIAM \\
 \hline
-    34083 & 467   & PINHEIROS / VALO VELHO \\
+
+    33337 & 356   & METRÔ SANTANA / HOSP. CACHOEIRINHA \\
 \hline
-    32815 & 466   & TERM. PINHEIROS / TERM. STO. AMARO \\
+
+    34098 & 355   & TERM. PQ. D. PEDRO II / CID. UNIVERSITÁRIA \\
 \hline
-    35178 & 458   & TERM. PINHEIROS / TERM. STO. AMARO \\
+
+    34062 & 354   & TERM. BANDEIRA / JD. LUSO \\
 \hline
-    35069 & 456   & TERM. PINHEIROS / CACHOEIRINHA \\
+
+    34940 & 351   & TERM. PQ. D. PEDRO II / JD. MARÍLIA \\
 \hline
-    33389 & 451   & TERM. PINHEIROS / METRÔ TUCURUVI \\
+
+    32834 & 349   & TERM. PINHEIROS / TERM. CAPELINHA \\
 \hline
-    34014 & 445   & SHOP. ARICANDUVA / HOSP. IPIRANGA \\
+
+    33272 & 348   & PÇA. RAMOS DE AZEVEDO / JD. JOÃO XXIII \\
 \hline
-    32882 & 442   & METRÔ JABAQUARA / JD. STA. BARBARA \\
+
+    34831 & 346   & TERM. BANDEIRA / JD. PAULO VI \\
 \hline
-    33131 & 442   & HOSP. DAS CLÍNICAS / TERM. STO. AMARO \\
+
+    33078 & 344   & PÇA. ALMEIDA JR. / PQ. STA. MADALENA \\
 \hline
-    33391 & 442   & METRÔ JABAQUARA / METRÔ SANTANA \\
+
+    34840 & 344   & ANHANGABAÚ / SHOP. CONTINENTAL \\
 \hline
-    34395 & 442   & TERM. PRINC. ISABEL / TERM. SAPOPEMBA \\
+
+    34076 & 342   & TERM. PQ. D. PEDRO II / TERM. GUARAPIRANGA \\
 \hline
-    34061 & 440   & PQ. IBIRAPUERA / JD. MIRIAM \\
+
+    33214 & 341   & LGO. DO PAISSANDÚ / MANGALOT \\
 \hline
-    34789 & 440   & METRÔ ARMÊNIA / SHOP. MORUMBI \\
+
+    34928 & 341   & TERM. PQ. D. PEDRO II / E.T. ITAQUERA \\
 \hline
-    35278 & 440   & METRÔ STA. CRUZ / TERM. LAPA \\
+
+    33348 & 339   & PÇA. DO CORREIO / TAIPAS \\
 \hline
-    34211 & 437   & TERM. STO. AMARO / TERM. VARGINHA \\
+
+    34033 & 336   & PÇA. RAMOS DE AZEVEDO / TERM. PIRITUBA \\
 \hline
-    33191 & 436   & ITAIM BIBI / TERM. PIRITUBA \\
-\hline
-    33126 & 433   & TERM. BANDEIRA / INOCOOP CAMPO LIMPO \\
-\hline
-    33236 & 433   & TERM. BANDEIRA / JD. JAQUELINE \\
-\hline
-    34831 & 432   & TERM. BANDEIRA / JD. PAULO VI \\
-\hline
-    33479 & 430   & TERM. BANDEIRA / TERM. PQ. D. PEDRO II \\
-\hline
-    33564 & 430   & HOSP. DAS CLÍNICAS / JD. DAS PALMAS \\
-\hline
-    34139 & 427   & TERM. BANDEIRA / CEASA \\
-\hline
-    33457 & 417   & METRÔ VL. MADALENA / PQ. EDÚ CHAVES \\
-\hline
-    33506 & 416   & TERM. PQ. D. PEDRO II / SÃO MATEUS \\
-\hline
-    33648 & 416   & TERM. CACHOEIRINHA / JD. DAMASCENO \\
-\hline
-    33363 & 415   & PÇA. JOÃO MENDES / JD. MIRIAM \\
-\hline
-    35083 & 408   & TERM. PINHEIROS / TERM. CACHOEIRINHA \\
-\hline
-    33915 & 403   & TERM. GRAJAÚ / PQ. STA. CECÍLIA \\
-\hline
-    33914 & 396   & SHOP. INTERLAGOS / JD. SÃO BERNARDO \\
-\hline
-    35109 & 396   & TERM. PINHEIROS / TERM. PQ. D. PEDRO II \\
-\hline
-    33652 & 392   & TERM. CASA VERDE / PQ. TIETÊ \\
-\hline
-    33372 & 388   & PINHEIROS / VL. CLARA \\
-\hline
-    33867 & 388   & VL. PRUDENTE / SÃO MATEUS \\
-\hline
-    34101 & 387   & PÇA. RAMOS DE AZEVEDO / MERCADO DA LAPA \\
-\hline
-    32831 & 384   & LGO. SÃO FRANCISCO / TERM. CAPELINHA \\
-\hline
-    35191 & 383   & TERM. PINHEIROS / TERM. JOÃO DIAS \\
-\hline
-    34685 & 379   & TERM. BANDEIRA / TERM. CAMPO LIMPO \\
-\hline
-    34407 & 377   & DIV. DE SÃO CAETANO / SÃO MATEUS \\
-\hline
-    34788 & 370   & ITAIM BIBI / TERM. GUARAPIRANGA \\
-\hline
-    33239 & 368   & PÇA. RAMOS DE AZEVEDO / PQ. CONTINENTAL \\
-\hline
-    34102 & 368   & PÇA. RAMOS DE AZEVEDO / LAPA \\
-\hline
-    34076 & 366   & TERM. PQ. D. PEDRO II / TERM. GUARAPIRANGA \\
-\hline
-    33284 & 365   & ITAIM BIBI / METRÔ SANTANA \\
-\hline
-    33922 & 365   & TERM. STO. AMARO / JD. SÃO BERNARDO \\
-\hline
-    33034 & 362   & PÇA. D. GASTÃO / JD. MIRIAM \\
-\hline
-    34084 & 362   & TERM. PINHEIROS / COHAB ADVENTISTA \\
-\hline
-    33573 & 360   & TERM. CACHOEIRINHA / PERUS \\
-\hline
-    34195 & 358   & PÇA. RAMOS DE AZEVEDO / APIACÁS \\
-\hline
-    35062 & 352   & JD. PRINCESA / TERM. CACHOEIRINHA \\
-\hline
-    34693 & 350   & METRÔ STA. CRUZ / TERM. CAMPO LIMPO \\
-\hline
-    33910 & 347   & TERM. STO. AMARO / UNISA-CAMPUS 1 \\
-\hline
-    33919 & 347   & TERM. GRAJAÚ / JD. CASTRO ALVES \\
-\hline
-    34007 & 346   & ITAIM BIBI / TERM. JD. ÂNGELA \\
-\hline
-    33645 & 344   & TERM. CACHOEIRINHA / COHAB BRASILÂNDIA \\
-\hline
-    33486 & 341   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
-\hline
-    32910 & 340   & TERM. PQ. D. PEDRO II / VL. MARA \\
-\hline
-    33229 & 340   & PÇA. DO CORREIO / TERM. CACHOEIRINHA \\
-\hline
-    35088 & 340   & PEDRA BRANCA / TERM. CACHOEIRINHA \\
-\hline
+
     34860 & 336   & METRÔ ANA ROSA / E.T. ÁGUA ESPRAIADA \\
 \hline
-    35058 & 336   & TAIPAS / TERM. CACHOEIRINHA \\
+
+    33468 & 333   & PÇA. DO CORREIO / JD. BRASIL \\
 \hline
-    32836 & 331   & METRÔ SÃO JUDAS / TERM. JOÃO DIAS \\
+
+    33142 & 332   & TERM. PQ. D. PEDRO II / VL. NOVA CURUÇÁ \\
 \hline
-    33646 & 328   & TERM. CACHOEIRINHA / CPTM JARAGUÁ \\
+
+    33211 & 328   & LGO. DO PAISSANDÚ / JD. LÍBANO \\
 \hline
-    32900 & 321   & PÇA. DO CORREIO / SÃO MIGUEL \\
+
+    34138 & 325   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
 \hline
-    35175 & 321   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+
+    35280 & 325   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
 \hline
-    33234 & 320   & TERM. PRINC. ISABEL / TERM. CACHOEIRINHA \\
+
+    33170 & 323   & TERM. PQ. D. PEDRO II / ITAIM PAULISTA \\
 \hline
-    33596 & 320   & METRÔ BARRA FUNDA / VL. TEREZINHA \\
+
+    33363 & 323   & PÇA. JOÃO MENDES / JD. MIRIAM \\
 \hline
-    33122 & 317   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO \\
+
+    33441 & 323   & MUSEU DO IPIRANGA / VL. SABRINA \\
 \hline
-    33929 & 317   & CPTM JURUBATUBA / JD. GAIVOTAS \\
+
+    33258 & 322   & LGO. DA PÓLVORA / JD. MARIA LUIZA \\
 \hline
-    32884 & 316   & TERM. PQ. D. PEDRO II / TERM. CASA VERDE \\
+
+    32903 & 321   & TERM. PQ. D. PEDRO II / JD. DANFER \\
 \hline
-    35065 & 312   & JD. CAROMBÉ / TERM. CACHOEIRINHA \\
+
+    35023 & 321   & TERM. PQ. D. PEDRO II / METRÔ SANTANA \\
 \hline
-    33534 & 310   & CARDOSO DE ALMEIDA / MACHADO DE ASSIS \\
+
+    33229 & 319   & PÇA. DO CORREIO / TERM. CACHOEIRINHA \\
 \hline
-    32833 & 308   & HOSP. DAS CLÍNICAS / TERM. JOÃO DIAS \\
+
+    34883 & 316   & TERM. PINHEIROS / TERM. PQ. D. PEDRO II \\
 \hline
-    34886 & 302   & TERM. STO. AMARO / JD. ÂNGELA \\
+
+    34283 & 311   & PÇA. JOÃO MENDES / ELDORADO \\
 \hline
-    35011 & 302   & METRÔ - TRIANON - MASP / VL. GOMES \\
+
+    32893 & 310   & TERM. PQ. D. PEDRO II / TERM. VL. PRUDENTE \\
 \hline
-    35147 & 299   & TERM. PINHEIROS / TERM. SACOMÃ \\
+
+    33198 & 310   & PÇA. DO CORREIO / CID. D'ABRIL 3ª GLEBA \\
 \hline
-    33328 & 295   & HOSP. DAS CLÍNICAS / LAUZANE PAULISTA \\
+
+    35079 & 307   & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
 \hline
-    34008 & 294   & MORUMBI SHOP. / JD. GUARUJÁ \\
+
+    33429 & 304   & TERM. PRINC. ISABEL / PQ. EDÚ CHAVES \\
 \hline
-    35230 & 294   & TERM. PINHEIROS / TERM. STO. AMARO \\
+
+    33680 & 303   & PQ. D. PEDRO II / UNIÃO DE VL. NOVA \\
 \hline
-    34138 & 293   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
+
+    34903 & 300   & TERM. PINHEIROS / CONEXÃO VL. IÓRIO \\
 \hline
-    34494 & 291   & SHOP. MORUMBI / BUTANTÃ \\
+
+    33675 & 299   & ITAIM PAULISTA / VL. CALIFÓRNIA \\
 \hline
-    32966 & 288   & METRÔ STA. CRUZ / TERM. JD. ÂNGELA \\
+
+    33635 & 297   & PINHEIROS / METRÔ BARRA FUNDA \\
 \hline
-    35051 & 287   & TERM. PQ. D. PEDRO II / TERM. LAPA \\
+
+    33144 & 294   & TERM. PQ. D. PEDRO II / JD. NAZARÉ \\
 \hline
-    33916 & 286   & TERM. GRAJAÚ / VL. NATAL \\
+
+    34443 & 294   & TERM. PQ. D. PEDRO II / JD. CELESTE \\
 \hline
-    34353 & 286   & TERM. GRAJAÚ / VARGEM GRANDE \\
+
+    33366 & 292   & PÇA. JOÃO MENDES / ELDORADO \\
 \hline
-    34355 & 286   & TERM. GRAJAÚ / DIVISA DE EMBU-GUAÇU \\
+
+    33377 & 289   & PERDIZES / AEROPORTO \\
 \hline
-    35169 & 286   & JD. NORONHA / TERM. GRAJAÚ \\
+
+    34942 & 289   & TERM. PQ. D. PEDRO II / INÁCIO MONTEIRO \\
 \hline
-    33558 & 284   & STO. AMARO / REAL PQ. \\
+
+    33994 & 287   & STO. AMARO / JD. UNIVERSAL \\
 \hline
-    33642 & 280   & TERM. CACHOEIRINHA / VL. PENTEADO \\
+
+    35278 & 287   & METRÔ STA. CRUZ / TERM. LAPA \\
 \hline
-    33116 & 279   & RIO PEQUENO / IPIRANGA \\
+
+    32910 & 286   & TERM. PQ. D. PEDRO II / VL. MARA \\
 \hline
-    33535 & 278   & PÇA. DA REPÚBLICA / STA. MARGARIDA MARIA \\
+
+    33333 & 286   & CEASA / METRÔ SANTANA \\
 \hline
-    33536 & 278   & PÇA. DA REPÚBLICA / GENTIL DE MOURA \\
+
+    33461 & 285   & LIBERDADE / PQ. EDÚ CHAVES \\
 \hline
-    33051 & 276   & METRÔ BELÉM / JD. IMPERADOR \\
+
+    33372 & 284   & PINHEIROS / VL. CLARA \\
 \hline
-    33550 & 276   & SHOP. SP MARKET / CAMPO LIMPO \\
+
+    34650 & 284   & TERM. PQ. D. PEDRO II / TERM. PENHA \\
 \hline
-    34137 & 276   & METRÔ BARRA FUNDA / TERM. CACHOEIRINHA \\
+
+    34127 & 282   & PÇA. DO CORREIO / FREGUESIA DO Ó \\
 \hline
-    33339 & 272   & METRÔ SANTANA / COHAB BRASILÂNDIA \\
+
+    34527 & 282   & E.T. ÁGUA ESPRAIADA / METRÔ CONCEIÇÃO \\
 \hline
-    33232 & 270   & ITAIM BIBI / COHAB TAIPAS \\
+
+    34427 & 281   & PÇA. DO CORREIO / TERM. SACOMÃ \\
 \hline
-    33170 & 269   & TERM. PQ. D. PEDRO II / ITAIM PAULISTA \\
+
+    33578 & 280   & BOM RETIRO / JD. ELISA MARIA \\
 \hline
-    35162 & 266   & TERM. PINHEIROS / METRÔ JABAQUARA \\
+
+    34745 & 280   & ITAIM BIBI / JD. MIRIAM \\
 \hline
-    33380 & 264   & METRÔ SANTANA / VL. PENTEADO \\
+
+    32934 & 278   & TERM. PQ. D. PEDRO II / JD. SÃO PAULO \\
 \hline
-    33639 & 264   & TERM. CACHOEIRINHA / JD. ELISA MARIA \\
+
+    32909 & 276   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
 \hline
-    35054 & 264   & TERM. LAPA / TERM. CACHOEIRINHA \\
+
+    34386 & 275   & TERM. PQ. D. PEDRO II / TERM. SÃO MIGUEL \\
 \hline
-    33361 & 262   & PÇA. DA SÉ / BALN. SÃO FRANCISCO \\
+
+    35144 & 274   & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
 \hline
-    33359 & 261   & TERM. PRINC. ISABEL / VOITH \\
+
+    33130 & 272   & METRÔ ANA ROSA / TERM. STO. AMARO \\
 \hline
-    33481 & 260   & PÇA. DA SÉ / TERM. VL. CARRÃO \\
+
+    35085 & 271   & TERM. PQ. D. PEDRO II / TERM. CASA VERDE \\
 \hline
-    34977 & 260   & TERM. MERCADO / TERM. SÃO MATEUS \\
+
+    33151 & 270   & TERM. PQ. D. PEDRO II / OLIVEIRINHA \\
 \hline
-    32834 & 259   & TERM. PINHEIROS / TERM. CAPELINHA \\
+
+    33000 & 269   & METRÔ VL. MARIANA / PENHA \\
 \hline
-    33561 & 259   & E.T. Água Espraiada / JD. PAULO VI \\
+
+    33146 & 269   & TERM. PQ. D. PEDRO II / JD. CAMARGO VELHO \\
 \hline
-    35180 & 259   & TERM. STO. AMARO / TERM. CAPELINHA \\
+
+    35110 & 269   & TERM. PQ. D. PEDRO II / METRÔ ITAQUERA \\
 \hline
-    33276 & 258   & METRÔ BARRA FUNDA / JD. ARPOADOR \\
+
+    34939 & 268   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
 \hline
-    35164 & 258   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+
+    34943 & 268   & TERM. PQ. D. PEDRO II / TERM. VL. CARRÃO \\
 \hline
-    33475 & 256   & TERM. CACHOEIRINHA / JD. STA. CRUZ \\
+
+    35069 & 268   & TERM. PINHEIROS / CACHOEIRINHA \\
 \hline
-    33638 & 256   & TERM. CACHOEIRINHA / JD. PERY ALTO \\
+
+    35163 & 268   & TERM. PQ. D. PEDRO II / METRÔ JABAQUARA \\
 \hline
-    33114 & 255   & TERM. PINHEIROS / SACOMÃ \\
+
+    33585 & 265   & METRÔ SANTANA / JD. ALMANARA \\
 \hline
-    33072 & 254   & TERM. STO. AMARO / IPIRANGA \\
+
+    34619 & 264   & TERM. MERCADO / TERM. VL. PRUDENTE \\
 \hline
-    34051 & 254   & PQ. IBIRAPUERA / VL. STA. CATARINA \\
+
+    32953 & 261   & TERM. PINHEIROS / TERM. JD. ÂNGELA \\
 \hline
-    33241 & 253   & PINHEIROS / JD. ADALGIZA \\
+
+    35051 & 259   & TERM. PQ. D. PEDRO II / TERM. LAPA \\
 \hline
-    34100 & 253   & TERM. PRINC. ISABEL / CID. UNIVERSITÁRIA \\
+
+    33200 & 258   & PÇA. RAMOS DE AZEVEDO / CID. D'ABRIL  \\
 \hline
-    33146 & 249   & TERM. PQ. D. PEDRO II / JD. CAMARGO VELHO \\
+
+    33131 & 257   & HOSP. DAS CLÍNICAS / TERM. STO. AMARO \\
 \hline
-    33151 & 249   & TERM. PQ. D. PEDRO II / OLIVEIRINHA \\
+
+    34043 & 256   & METRÔ STA. CRUZ / CPTM AUTÓDROMO \\
 \hline
-    34758 & 249   & METRÔ PÇA. DA ÁRVORE / JD. ÂNGELA \\
+
+    35143 & 254   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
 \hline
-    33243 & 248   & ITAIM BIBI / RIO PEQUENO \\
+
+    34394 & 253   & TERM. PQ. D. PEDRO II / TERM. SAPOPEMBA \\
 \hline
-    33233 & 246   & ITAIM BIBI / JD. NARDINI \\
+
+    33628 & 251   & MOOCA / CEM. PQ. DOS PINHEIROS \\
 \hline
-    33553 & 244   & STO. AMARO / JD. JAQUELINE \\
+
+    33543 & 249   & PINHEIROS / PQ. ARARIBA \\
 \hline
-    33032 & 243   & PQ. IBIRAPUERA / JD. SELMA \\
+
+    34049 & 243   & TERM. GUARAPIRANGA / JD. MIRIAM \\
 \hline
-    33090 & 240   & PÇA. DA REPÚBLICA / SHOP. PLAZA SUL \\
+
+    34941 & 243   & TERM. PQ. D. PEDRO II / TERM. CID. TIRADENTES \\
 \hline
-    34033 & 236   & PÇA. RAMOS DE AZEVEDO / TERM. PIRITUBA \\
+
+    33882 & 242   & STO. AMARO / JABAQUARA \\
 \hline
-    32879 & 235   & METRÔ VL. MARIANA / TERM. GRAJAÚ \\
+
+    33548 & 238   & SHOP. MORUMBI / JD. INGÁ \\
 \hline
-    33933 & 235   & TERM. STO. AMARO / JD. PROGRESSO \\
+
+    33904 & 238   & SHOP. MORUMBI / METRÔ CONCEIÇÃO \\
 \hline
-    34053 & 234   & TERM. STO. AMARO / JD. LUSO \\
+
+    33609 & 232   & LAPA / LAUZANE PAULISTA \\
 \hline
-    35167 & 234   & JD. LUSO / TERM. STO. AMARO \\
+
+    33897 & 231   & E.T. ÁGUA ESPRAIADA / JD. SELMA \\
 \hline
-    34834 & 231   & TERM. PINHEIROS / JD. COLOMBO \\
+
+    33982 & 231   & STO. AMARO / JD. MACEDÔNIA \\
 \hline
-    34136 & 228   & LAPA / TERM. CACHOEIRINHA \\
+
+    33067 & 215   & METRÔ VL. MARIANA / JD. MARIA ESTELA II \\
 \hline
-    33142 & 227   & TERM. PQ. D. PEDRO II / VL. NOVA CURUÇÁ \\
+
+    34014 & 213   & SHOP. ARICANDUVA / HOSP. IPIRANGA \\
 \hline
-    34669 & 227   & METRÔ CONCEIÇÃO / TERM. CAMPO LIMPO \\
+
+    33544 & 212   & PINHEIROS / PARAISÓPOLIS \\
 \hline
-    33112 & 226   & TERM. PQ. D. PEDRO II / JD. SÃO SAVÉRIO \\
+
+    33879 & 210   & IBIRAPUERA / JD. ELBA \\
 \hline
-    33354 & 226   & TERM. PRINC. ISABEL / COHAB TAIPAS \\
+
+    33848 & 209   & METRÔ BELÉM / VL. INDUSTRIAL \\
 \hline
-    34246 & 226   & METRÔ STA. CRUZ / TERM. STO. AMARO \\
+
+    33117 & 208   & POMPÉIA ATÉ VL. ROMANA / SACOMÃ \\
 \hline
-    33366 & 221   & PÇA. JOÃO MENDES / ELDORADO \\
+
+    33079 & 207   & PÇA. ALMEIDA JR. / VL. EMA \\
 \hline
-    33477 & 221   & SHOP. CENTER NORTE / JD. DAMASCENO \\
+
+    33448 & 206   & METRÔ BARRA FUNDA / JD. FONTÁLIS \\
 \hline
-    34962 & 217   & LGO. DA CONCÓRDIA / SHOP. ARICANDUVA \\
+
+    34395 & 203   & TERM. PRINC. ISABEL / TERM. SAPOPEMBA \\
 \hline
-    33398 & 214   & CID. UNIVERSITÁRIA / METRÔ SANTANA \\
+
+    33299 & 202   & LAPA / COHAB ANTÁRTICA \\
 \hline
-    35197 & 214   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
+
+    33625 & 201   & METRÔ TATUAPÉ / JD. TREMEMBÉ \\
 \hline
-    33968 & 210   & TERM. STO. AMARO / JD. PLANALTO \\
+
+    34051 & 201   & PQ. IBIRAPUERA / VL. STA. CATARINA \\
 \hline
-    34090 & 210   & METRÔ VL. MARIANA / TERM. CAPELINHA \\
+
+    33101 & 200   & METRÔ VL. MARIANA / JD. SÃO SAVÉRIO \\
 \hline
-    35207 & 209   & STA. CECÍLIA / TERM. VL. MARIANA \\
+
+    33251 & 198   & METRÔ BARRA FUNDA / PINHEIROS/VILA IDA  \\
 \hline
-    34240 & 208   & TERM. VARGINHA / TERM. GRAJAÚ \\
+
+    33614 & 198   & TIETÊ / JOVA RURAL \\
 \hline
-    33611 & 204   & LAPA / JD. PERY ALTO \\
+
+    34061 & 198   & PQ. IBIRAPUERA / JD. MIRIAM \\
 \hline
-    34128 & 200   & PÇA. DO CORREIO / BRASILÂNDIA \\
+
+    33240 & 197   & TERM. LAPA / RIO PEQUENO \\
 \hline
-    35125 & 200   & TERM. PQ. D. PEDRO II / TERM. VL. CARRÃO \\
+
+    33017 & 195   & CERET / JD. HELENA \\
 \hline
-    33348 & 197   & PÇA. DO CORREIO / TAIPAS \\
+
+    33266 & 195   & LAPA / JD. D'ABRIL \\
 \hline
-    34283 & 195   & PÇA. JOÃO MENDES / ELDORADO \\
+
+    35246 & 194   & TERM. PINHEIROS / METRÔ SANTANA \\
 \hline
-    32872 & 193   & TERM. STO. AMARO / PQ. AMÉRICA \\
+
+    33314 & 186   & SHOP. CENTER NORTE / VL.NOVA CACHOEIRINHA \\
 \hline
-    35177 & 193   & TERM. STO. AMARO / TERM. CAPELINHA \\
+
+    33870 & 185   & OBJETIVO UNIP / VL. DAS MERCÊS \\
 \hline
-    35206 & 190   & METRÔ VL. MARIANA / METRÔ BUTANTÃ \\
+
+    33472 & 182   & LUZ / CANGAÍBA \\
 \hline
-    32897 & 189   & LUZ / TERM. A. E. CARVALHO \\
+
+    33632 & 182   & METRÔ TUCURUVI / JD. MARINA \\
 \hline
-    35179 & 188   & TERM. PINHEIROS / TERM. CAMPO LIMPO \\
+
+    33039 & 181   & TERM. STO. AMARO / VL. IMPÉRIO \\
 \hline
-    33198 & 187   & PÇA. DO CORREIO / CID. D'ABRIL 3ª GLEBA \\
+
+    33176 & 180   & LAPA / JARAGUÁ \\
 \hline
-    33206 & 187   & PÇA. RAMOS DE AZEVEDO / MORRO DOCE \\
+
+    33863 & 178   & METRÔ TATUAPÉ / VL. CALIFÓRNIA \\
 \hline
-    34856 & 186   & ITAIM BIBI / TERM. LAPA \\
+
+    33470 & 177   & METRÔ SANTANA / TERM. PENHA \\
 \hline
-    33144 & 184   & TERM. PQ. D. PEDRO II / JD. NAZARÉ \\
+
+    35252 & 177   & TERM. STO. AMARO / E T. ÁGUA ESPRAIADA \\
 \hline
-    34760 & 184   & EST. STO. AMARO/GUIDO CALOI / TERM. JD. JACIRA \\
+
+    32944 & 174   & TERM. STO. AMARO / TERM. CAPELINHA \\
 \hline
-    32776 & 182   & METRÔ ANA ROSA / TERM. CAPELINHA \\
+
+    32871 & 173   & PINHEIROS / VL. SÃO JOSÉ \\
 \hline
-    34000 & 182   & TERM. STO. AMARO / JD. SÃO FRANCISCO \\
+
+    33044 & 173   & VL. PRUDENTE / PQ. BANCÁRIO \\
 \hline
-    33211 & 181   & LGO. DO PAISSANDÚ / JD. LÍBANO \\
+
+    33086 & 173   & METRÔ VL. MARIANA / VL. MONUMENTO \\
 \hline
-    33088 & 179   & PÇA. DA REPÚBLICA / VL. MONUMENTO \\
+
+    33741 & 173   & METRÔ BELÉM / JD. ITÁPOLIS \\
 \hline
-    35203 & 179   & PQ. CONTINENTAL / TERM. PINHEIROS \\
+
+    33030 & 172   & LAR ESC. SÃO FRANCISCO / METRÔ VL. MARIANA \\
 \hline
-    34938 & 177   & TERM. PQ. D. PEDRO II / TERM. CID. TIRADENTES \\
+
+    33761 & 172   & METRÔ TAMANDUATEÍ / SHOP. ARICANDUVA \\
 \hline
-    35085 & 177   & TERM. PQ. D. PEDRO II / TERM. CASA VERDE \\
+
+    34084 & 172   & TERM. PINHEIROS / COHAB ADVENTISTA \\
 \hline
-    32903 & 176   & TERM. PQ. D. PEDRO II / JD. DANFER \\
+
+    33739 & 171   & METRÔ TATUAPÉ / VL. GUARANI \\
 \hline
-    33089 & 176   & TERM. PQ. D. PEDRO II / VL. GUMERCINDO \\
+
+    33859 & 171   & METRÔ BRESSER / JD. ITÁPOLIS \\
 \hline
-    33989 & 176   & TERM. STO. AMARO / JD. D. JOSÉ \\
+
+    33874 & 171   & METRÔ STA. CRUZ / SACOMÃ \\
 \hline
-    35274 & 176   & PÇA. RAMOS DE AZEVEDO / TERM. LAPA \\
+
+    33933 & 171   & TERM. STO. AMARO / JD. PROGRESSO \\
 \hline
-    33000 & 175   & METRÔ VL. MARIANA / PENHA \\
+
+    34140 & 169   & TERM. PRINC. ISABEL / TERM. PINHEIROS \\
 \hline
-    33230 & 174   & LGO. DO PAISSANDÚ / TERM. CACHOEIRINHA \\
+
+    32855 & 168   & TERM. STO. AMARO / JD. ICARAÍ \\
 \hline
-    32820 & 172   & TERM. STO. AMARO / TERM. CAPELINHA \\
+
+    33269 & 168   & METRÔ BARRA FUNDA / JD. JOÃO XXIII \\
 \hline
-    34969 & 170   & METRÔ BELÉM / TERM. VL. CARRÃO \\
+
+    33611 & 168   & LAPA / JD. PERY ALTO \\
 \hline
-    35022 & 169   & METRÔ BARRA FUNDA / CID. UNIVERSITÁRIA \\
+
+    33613 & 168   & CARANDIRU / JOVA RURAL \\
 \hline
-    35176 & 169   & TERM. STO. AMARO / TERM. JD. ÂNGELA \\
+
+    33106 & 166   & SHOP. IBIRAPUERA / VL. BRASILINA \\
 \hline
-    33386 & 168   & METRÔ SANTANA / VL. STA. MARIA \\
+
+    34669 & 166   & METRÔ CONCEIÇÃO / TERM. CAMPO LIMPO \\
 \hline
-    33595 & 168   & METRÔ BARRA FUNDA / JD. DOS FRANCOS \\
+
+    33726 & 165   & SHOP. ARICANDUVA / COHAB JOSÉ BONIFÁCIO  \\
 \hline
-    33680 & 168   & PQ. D. PEDRO II / UNIÃO DE VL. NOVA \\
+
+    32820 & 164   & TERM. STO. AMARO / TERM. CAPELINHA \\
 \hline
-    33953 & 168   & TERM. GRAJAÚ / CANTINHO DO CÉU \\
+
+    33074 & 164   & METRÔ VL. MARIANA / HELIÓPOLIS \\
 \hline
-    33979 & 167   & TERM. STO. AMARO / RIVIERA \\
+
+    33770 & 164   & PENHA / JD. MARÍLIA \\
 \hline
-    34920 & 167   & TERM. STO. AMARO / JD. NAKAMURA \\
+
+    33885 & 164   & STO. AMARO / JD. LUSO \\
 \hline
-    34717 & 166   & LAPA / CAMPO LIMPO \\
+
+    34857 & 164   & TERM. PINHEIROS / LAPA \\
 \hline
-    34935 & 166   & METRÔ BELÉM / TERM. SÃO MATEUS \\
+
+    33015 & 163   & METRÔ TATUAPÉ / VL. SANTANA \\
 \hline
-    33214 & 165   & LGO. DO PAISSANDÚ / MANGALOT \\
+
+    33307 & 163   & METRÔ SANTANA / VL. DIONISIA \\
 \hline
-    32909 & 164   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+
+    33731 & 163   & SHOP. ARICANDUVA / VL. MINERVA \\
 \hline
-    33037 & 164   & PQ. IBIRAPUERA / JD. APURÁ \\
+
+    33924 & 163   & TERM. STO. AMARO / JD. ORION \\
 \hline
-    33130 & 164   & METRÔ ANA ROSA / TERM. STO. AMARO \\
+
+    33986 & 163   & STO. AMARO / JD. JANGADEIRO \\
 \hline
-    33516 & 160   & METRÔ BRESSER / CID. TIRADENTES \\
+
+    34058 & 163   & TERM. STO. AMARO / METRÔ JABAQUARA \\
 \hline
-    33575 & 160   & CEM. VL. NOVA CACHOEIRINHA / PIRITUBA \\
+
+    35022 & 162   & METRÔ BARRA FUNDA / CID. UNIVERSITÁRIA \\
 \hline
-    34668 & 156   & TERM. STO. AMARO / TERM. CAMPO LIMPO \\
+
+    33387 & 160   & SHOP. CENTER NORTE / JD. VISTA ALEGRE \\
 \hline
-    35192 & 156   & JD. PLANALTO / TERM. JOÃO DIAS \\
+
+    33432 & 159   & METRÔ BELÉM / SHOP. CENTER NORTE \\
 \hline
-    34498 & 153   & TERM. STO. AMARO / TERM. JD. ÂNGELA \\
+
+    34108 & 159   & METRÔ VL. MARIANA / TERM. LAPA \\
 \hline
-    33956 & 152   & TERM. STO. AMARO / JD. ICARAÍ \\
+
+    33311 & 158   & SHOP. D / JD. PERY ALTO \\
 \hline
-    34043 & 152   & METRÔ STA. CRUZ / CPTM AUTÓDROMO \\
+
+    34260 & 157   & JABAQUARA / SHOP. INTERLAGOS \\
 \hline
-    34110 & 150   & JAGUARÉ / CITY JARAGUÁ \\
+
+    33556 & 156   & STO. AMARO / PARAISÓPOLIS \\
 \hline
-    35072 & 150   & METRÔ BARRA FUNDA / CONEXÃO PETRÔNIO PORTELA \\
+
+    33734 & 156   & METRÔ TATUAPÉ / JD. DAS ROSAS \\
 \hline
-    33343 & 149   & PÇA. DO CORREIO / JD. GUARANI \\
+
+    33599 & 155   & SHOP. CENTER NORTE / CEM. DO HORTO \\
 \hline
-    34086 & 149   & METRÔ SÃO JUDAS / PQ. STO. ANTONIO \\
+
+    33631 & 155   & CANTAREIRA / JD. GUANCÃ \\
 \hline
-    32975 & 148   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+
+    34409 & 154   & PÇA. ALMEIDA JR. / TERM. SAPOPEMBA \\
 \hline
-    33656 & 148   & METRÔ BARRA FUNDA / JD. TEREZA \\
+
+    33673 & 151   & SHOP. PENHA / PQ. PAINEIRAS \\
 \hline
-    34386 & 148   & TERM. PQ. D. PEDRO II / TERM. SÃO MIGUEL \\
+
+    33908 & 151   & TERM. STO. AMARO / TERM. PARELHEIROS \\
 \hline
-    35104 & 147   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+
+    32833 & 150   & HOSP. DAS CLÍNICAS / TERM. JOÃO DIAS \\
 \hline
-    33314 & 144   & SHOP. CENTER NORTE / VL.NOVA CACHOEIRINHA \\
+
+    34425 & 149   & METRÔ VERGUEIRO / TERM. SACOMÃ \\
 \hline
-    33070 & 142   & METRÔ SAÚDE / VL. LIVIERO \\
+
+    33653 & 148   & LAPA / VL. TEREZINHA \\
 \hline
-    33237 & 142   & METRÔ BARRA FUNDA / RIO PEQUENO \\
+
+    33596 & 147   & METRÔ BARRA FUNDA / VL. TEREZINHA \\
 \hline
-    35103 & 142   & TERM. PQ. D. PEDRO II / TERM. A. E. CARVALHO \\
+
+    34872 & 147   & SHOP. D / PQ. EDU CHAVES \\
 \hline
-    34396 & 138   & TERM. PQ. D. PEDRO II / TERM. SAPOPEMBA \\
+
+    33819 & 146   & METRÔ CARRÃO / 3A. DIVISÃO \\
 \hline
-    35084 & 138   & METRÔ VL. MADALENA / METRÔ SANTANA \\
+
+    33883 & 146   & STO. AMARO / ELDORADO \\
 \hline
-    33255 & 137   & PAULISTA / COHAB EDUCANDÁRIO \\
+
+    33553 & 145   & STO. AMARO / JD. JAQUELINE \\
 \hline
-    34659 & 136   & TERM. PINHEIROS / TERM. CAMPO LIMPO \\
+
+    34105 & 144   & HOSP. DAS CLÍNICAS / LAPA \\
 \hline
-    33427 & 135   & PÇA. DO CORREIO / VL. SABRINA \\
+
+    34789 & 144   & METRÔ ARMÊNIA / SHOP. MORUMBI \\
 \hline
-    33462 & 134   & PÇA. DO CORREIO / PQ. EDÚ CHAVES \\
+
+    33906 & 143   & METRÔ CONCEIÇÃO / PQ. PRIMAVERA \\
 \hline
-    34928 & 133   & TERM. PQ. D. PEDRO II / E.T. ITAQUERA \\
+
+    33564 & 142   & HOSP. DAS CLÍNICAS / JD. DAS PALMAS \\
 \hline
-    35209 & 133   & COHAB RAPOSO TAVARES / TERM. PINHEIROS \\
+
+    34856 & 142   & ITAIM BIBI / TERM. LAPA \\
 \hline
-    33667 & 132   & CACHOEIRINHA / COHAB ANTÁRTICA \\
+
+    35268 & 142   & TERM. LAPA / VL. SULINA \\
 \hline
-    35050 & 132   & TERM. PQ. D. PEDRO II / TERM. LAPA \\
+
+    33075 & 141   & LAPA / IPIRANGA \\
 \hline
-    33468 & 130   & PÇA. DO CORREIO / JD. BRASIL \\
+
+    33600 & 141   & METRÔ SANTANA / VL. ROSA \\
 \hline
-    33095 & 129   & TERM. PQ. D. PEDRO II / ZOOLÓGICO \\
+
+    33983 & 141   & STO. AMARO / JD. MITSUTANI \\
 \hline
-    34852 & 129   & TERM. STO. AMARO / JD. CAIÇARA \\
+
+    34861 & 141   & METRÔ STA. CECÍLIA / TERM. STO. AMARO \\
 \hline
-    33472 & 128   & LUZ / CANGAÍBA \\
+
+    33788 & 140   & METRÔ PENHA / COHAB JOSÉ BONIFÁCIO \\
 \hline
-    34133 & 128   & TERM. CASA VERDE / VL. PENTEADO \\
+
+    34423 & 140   & PQ. BELÉM / TERM. SACOMÃ \\
 \hline
-    33240 & 126   & TERM. LAPA / RIO PEQUENO \\
+
+    34717 & 140   & LAPA / CAMPO LIMPO \\
 \hline
-    34439 & 126   & JD. ITÁPOLIS / TERM. SACOMÃ \\
+
+    33346 & 139   & TERM. LAPA / JD. DOS CUNHAS \\
 \hline
-    35252 & 126   & TERM. STO. AMARO / E T. ÁGUA ESPRAIADA \\
+
+    33919 & 139   & TERM. GRAJAÚ / JD. CASTRO ALVES \\
 \hline
-    33870 & 124   & OBJETIVO UNIP / VL. DAS MERCÊS \\
+
+    33386 & 138   & METRÔ SANTANA / VL. STA. MARIA \\
 \hline
-    33543 & 122   & PINHEIROS / PQ. ARARIBA \\
+
+    33575 & 138   & CEM. VL. NOVA CACHOEIRINHA / PIRITUBA \\
 \hline
-    35165 & 121   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+
+    32892 & 137   & ACLIMAÇÃO / TERM. PRINC. ISABEL \\
 \hline
-    33441 & 120   & MUSEU DO IPIRANGA / VL. SABRINA \\
+
+    33100 & 137   & METRÔ VL. MARIANA / JD. CLÍMAX \\
 \hline
-    33474 & 120   & PENHA / METRÔ SANTANA \\
+
+    33393 & 137   & METRÔ SANTANA / JD. CORISCO \\
 \hline
-    35171 & 117   & UNISA / TERM. GRAJAÚ \\
+
+    33440 & 137   & METRÔ SANTANA / VL. CONSTANÇA \\
 \hline
-    35172 & 117   & VARGEM GRANDE / TERM. GRAJAÚ \\
+
+    33968 & 137   & TERM. STO. AMARO / JD. PLANALTO \\
 \hline
-    33039 & 116   & TERM. STO. AMARO / VL. IMPÉRIO \\
+
+    34660 & 137   & ACLIMAÇÃO / TERM. CAMPO LIMPO \\
 \hline
-    34650 & 116   & TERM. PQ. D. PEDRO II / TERM. PENHA \\
+
+    33233 & 136   & ITAIM BIBI / JD. NARDINI \\
 \hline
-    32858 & 114   & TERM. STO. AMARO / JD. GRAUNA \\
+
+    33434 & 134   & METRÔ CARANDIRU / VL. SABRINA \\
 \hline
-    33576 & 114   & TERM. PIRITUBA / RECANTO DOS HUMILDES \\
+
+    33573 & 134   & TERM. CACHOEIRINHA / PERUS \\
 \hline
-    33986 & 114   & STO. AMARO / JD. JANGADEIRO \\
+
+    33516 & 133   & METRÔ BRESSER / CID. TIRADENTES \\
 \hline
-    35161 & 110   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+
+    34196 & 133   & SOCORRO / LAPA \\
 \hline
-    33581 & 109   & METRÔ BARRA FUNDA / JD. VISTA ALEGRE \\
+
+    33182 & 131   & LAPA / PERUS \\
 \hline
-    34132 & 109   & METRÔ BARRA FUNDA / PENTEADO \\
+
+    33784 & 131   & METRÔ TATUAPÉ / VL. STA. ISABEL \\
 \hline
-    32934 & 108   & TERM. PQ. D. PEDRO II / JD. SÃO PAULO \\
+
+    34019 & 131   & TERM. LAPA / VL. PIAUÍ \\
 \hline
-    34941 & 108   & TERM. PQ. D. PEDRO II / TERM. CID. TIRADENTES \\
+
+    33577 & 130   & LAPA / CAPELA DA LAGOA  \\
 \hline
-    32956 & 106   & TERM. STO. AMARO / TERM. JD. JACIRA \\
+
+    33049 & 129   & SHOP. METRÔ TATUAPÉ / JD. GUAIRACÁ \\
 \hline
-    32964 & 106   & TERM. STO. AMARO / JD. ARACATI \\
+
+    33540 & 129   & HOSP. DAS CLÍNICAS / JD. ROSA MARIA \\
 \hline
-    34273 & 106   & TERM. STO. AMARO / TERM. GRAJAÚ \\
+
+    33668 & 129   & METRÔ BARRA FUNDA / JD. PERY ALTO \\
 \hline
-    33017 & 104   & CERET / JD. HELENA \\
+
+    33426 & 128   & SHOP. D / JD. PRIMAVERA \\
 \hline
-    33571 & 104   & JD. PRIMAVERA / CPTM VL. AURORA \\
+
+    33812 & 128   & TATUAPÉ / JD. IMPERADOR \\
 \hline
-    34140 & 104   & TERM. PRINC. ISABEL / TERM. PINHEIROS \\
+
+    33970 & 128   & TERM. GUARAPIRANGA / CHÁC. STA. MARIA \\
 \hline
-    33985 & 103   & STO. AMARO / VALO VELHO \\
+
+    34053 & 128   & TERM. STO. AMARO / JD. LUSO \\
 \hline
-    35061 & 103   & PERUS / TERM. PIRITUBA \\
+
+    33794 & 127   & METRÔ CARRÃO / SHOP. ARICANDUVA \\
 \hline
-    33105 & 101   & METRÔ JABAQUARA / SHOP. PLAZA SUL \\
+
+    33104 & 126   & METRÔ STA. CRUZ / JD. CELESTE \\
 \hline
-    35139 & 101   & HOSP. STA. MARCELINA / METRÔ ITAQUERA \\
+
+    33191 & 126   & ITAIM BIBI / TERM. PIRITUBA \\
 \hline
-    34838 & 100   & BUTANTÃ / VL. SÔNIA \\
+
+    33555 & 126   & CAMPO BELO / PARAISÓPOLIS \\
 \hline
-    35143 & 100   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+
+    34059 & 126   & METRÔ ANA ROSA / JD. MIRIAM \\
 \hline
-    33566 & 99    & LAPA / PERUS \\
+
+    33451 & 125   & METRÔ BELÉM      / CENTER NORTE \\
 \hline
-    33540 & 96    & HOSP. DAS CLÍNICAS / JD. ROSA MARIA \\
+
+    33821 & 125   & METRÔ TATUAPÉ / JD. IVA \\
 \hline
-    33794 & 96    & METRÔ CARRÃO / SHOP. ARICANDUVA \\
+
+    33966 & 125   & METRÔ VL. MARIANA / TERM. PARELHEIROS \\
 \hline
-    33981 & 96    & STO. AMARO / VL. GILDA \\
+
+    33992 & 125   & STO. AMARO / JD. LÍDIA \\
 \hline
-    34193 & 96    & TERM. LAPA / MORRO GRANDE \\
+
+    33459 & 124   & METRÔ TUCURUVI / PQ. NOVO MUNDO \\
 \hline
-    32798 & 95    & TERM. JOÃO DIAS / JD. INGÁ \\
+
+    34448 & 124   & METRÔ TATUAPÉ / MOOCA \\
 \hline
-    34745 & 93    & ITAIM BIBI / JD. MIRIAM \\
+
+    33910 & 123   & TERM. STO. AMARO / UNISA-CAMPUS 1 \\
 \hline
-    32773 & 92    & TERM. JOÃO DIAS / JD. IBIRAPUERA \\
+
+    32879 & 122   & METRÔ VL. MARIANA / TERM. GRAJAÚ \\
 \hline
-    32799 & 92    & TERM. JOÃO DIAS / TERM. CAPELINHA \\
+
+    33237 & 122   & METRÔ BARRA FUNDA / RIO PEQUENO \\
 \hline
-    33176 & 92    & LAPA / JARAGUÁ \\
+
+    33987 & 121   & STO. AMARO / JD. TRÊS ESTRELAS \\
 \hline
-    33274 & 92    & HOSP. DAS CLÍNICAS / JD. JOÃO XXIII \\
+
+    34083 & 121   & PINHEIROS / VALO VELHO \\
 \hline
-    33848 & 92    & METRÔ BELÉM / VL. INDUSTRIAL \\
+
+    32923 & 120   & CERET / TERM. A. E. CARVALHO \\
 \hline
-    35173 & 92    & ELDORADO / TERM. STO. AMARO \\
+
+    33988 & 120   & TERM. STO. AMARO / JD. CAPELINHA \\
 \hline
-    33577 & 90    & LAPA / CAPELA DA LAGOA \\
+
+    34453 & 120   & TERM. VL. CARRÃO / METRÔ CONCEIÇÃO \\
 \hline
-    33601 & 90    & TERM. PIRITUBA / COHAB BRASILÂNDIA \\
+
+    33105 & 119   & METRÔ JABAQUARA / SHOP. PLAZA SUL \\
 \hline
-    34024 & 90    & TERM. PIRITUBA / JD. DONÁRIA \\
+
+    33315 & 119   & METRÔ SANTANA / PEDRA BRANCA \\
 \hline
-    34027 & 90    & TERM. PIRITUBA / CID. D'ABRIL 3ª GLEBA \\
+
+    33566 & 119   & LAPA / PERUS \\
 \hline
-    34029 & 90    & TERM. PIRITUBA / CPTM VL. AURORA \\
+
+    34056 & 119   & METRÔ CONCEIÇÃO / CID. JÚLIA \\
 \hline
-    34035 & 90    & METRÔ BARRA FUNDA / TERM. PIRITUBA \\
+
+    32926 & 118   & TERM. SÃO MATEUS / TERM. A. E. CARVALHO \\
 \hline
-    34114 & 90    & TERM. PIRITUBA / JD. RINCÃO \\
+
+    33651 & 118   & LAPA / JD. PAULISTANO \\
 \hline
-    34205 & 90    & TERM. PIRITUBA / PQ. DE TAIPAS \\
+
+    33890 & 118   & STO. AMARO / MISSIONÁRIA \\
 \hline
-    34937 & 90    & METRÔ PENHA / TERM. CID. TIRADENTES \\
+
+    34909 & 118   & CONEXÃO VL. IÓRIO / PERUS \\
 \hline
-    35059 & 90    & JD. DONÁRIA / TERM. PIRITUBA \\
+
+    33455 & 117   & TERM. VL. CARRÃO / JAÇANÃ \\
 \hline
-    35265 & 90    & CONEXÃO VL. IÓRIO / PERUS \\
+
+    33884 & 117   & JABAQUARA / VL. GUACURI \\
 \hline
-    35081 & 89    & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
+
+    32922 & 116   & PENHA / VL. PARANAGUÁ \\
 \hline
-    35202 & 89    & JD. JOÃO XXIII / TERM. PINHEIROS \\
+
+    33626 & 116   & METRÔ BELÉM / VL. ZILDA \\
 \hline
-    32954 & 88    & TERM. STO. AMARO / JD. NAKAMURA \\
+
+    34966 & 116   & METRÔ TATUAPÉ / JD. SOARES \\
 \hline
-    33040 & 88    & TERM. STO. AMARO / VL. GUACURI \\
+
+    35201 & 115   & TERM. PINHEIROS / TERM. LAPA \\
 \hline
-    33251 & 88    & METRÔ BARRA FUNDA / PINHEIROS/VILA IDA \\
+
+    33136 & 114   & TERM. PENHA / JD. DAS OLIVEIRAS \\
 \hline
-    33333 & 88    & CEASA / METRÔ SANTANA \\
+
+    33972 & 114   & STO. AMARO / PQ. INDEPENDÊNCIA \\
 \hline
-    35163 & 87    & TERM. PQ. D. PEDRO II / METRÔ JABAQUARA \\
+
+    34483 & 114   & METRÔ TATUAPÉ / PQ. SÃO LUCAS \\
 \hline
-    32923 & 86    & CERET / TERM. A. E. CARVALHO \\
+
+    34901 & 114   & METRÔ BARRA FUNDA / LIMÃO \\
 \hline
-    32944 & 86    & TERM. STO. AMARO / TERM. CAPELINHA \\
+
+    33088 & 113   & PÇA. DA REPÚBLICA / VL. MONUMENTO \\
 \hline
-    33356 & 86    & PÇA. DO CORREIO / PEDRA BRANCA \\
+
+    33275 & 113   & METRÔ ANA ROSA / JD. GUARAÚ \\
 \hline
-    34939 & 86    & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+
+    33190 & 112   & TERM. PINHEIROS / VL. PIAUÍ \\
 \hline
-    35271 & 86    & METRÔ JABAQUARA / TERM. GUARAPIRANGA \\
+
+    33551 & 112   & STO. AMARO / JD. TABOÃO \\
 \hline
-    33610 & 85    & CORREIO / PQ. VL. MARIA \\
+
+    33873 & 111   & TERM. NORTE METRÔ CARRÃO / VL. INDUSTRIAL \\
 \hline
-    33863 & 85    & METRÔ TATUAPÉ / VL. CALIFÓRNIA \\
+
+    34406 & 110   & SHOP. METRÔ TATUAPÉ / DIV. SÃO CAETANO \\
 \hline
-    33876 & 85    & METRÔ BELÉM / PQ. BANCÁRIO \\
+
+    32966 & 109   & METRÔ STA. CRUZ / TERM. JD. ÂNGELA \\
 \hline
-    34835 & 85    & TERM. PINHEIROS / RIO PEQUENO \\
+
+    33188 & 109   & LAPA / PQ. SÃO DOMINGOS \\
 \hline
-    34903 & 85    & TERM. PINHEIROS / CONEXÃO VL. IÓRIO \\
+
+    33239 & 109   & PÇA. RAMOS DE AZEVEDO / PQ. CONTINENTAL \\
 \hline
-    32824 & 84    & STO. AMARO / CAPÃO REDONDO \\
+
+    33796 & 109   & METRÔ VL. MATILDE / SHOP. ARICANDUVA \\
 \hline
-    32863 & 84    & TERM. GRAJAÚ / PQ. RES. COCAIA \\
+
+    33956 & 109   & TERM. STO. AMARO / JD. ICARAÍ \\
 \hline
-    33859 & 84    & METRÔ BRESSER / JD. ITÁPOLIS \\
+
+    34133 & 109   & TERM. CASA VERDE / VL. PENTEADO \\
 \hline
-    33913 & 84    & TERM. GRAJAÚ / JD. ELLUS \\
+
+    34171 & 109   & METRÔ SANTANA / CEM. PQ. DOS PINHEIROS \\
 \hline
-    33935 & 84    & TERM. GRAJAÚ / ILHA DO BORORÉ \\
+
+    35049 & 109   & METRÔ TIETÊ / VL. MEDEIROS \\
 \hline
-    33954 & 84    & TERM. GRAJAÚ / JD. PRAINHA \\
+
+    35265 & 109   & CONEXÃO VL. IÓRIO  / PERUS \\
 \hline
-    33957 & 84    & TERM. GRAJAÚ / JD. LUCÉLIA \\
+
+    33070 & 108   & METRÔ SAÚDE / VL. LIVIERO \\
 \hline
-    33961 & 84    & TERM. GRAJAÚ / JD. GAIVOTAS \\
+
+    33619 & 108   & METRÔ TUCURUVI / JD. JOANA D'ARC \\
 \hline
-    33993 & 84    & TERM. GRAJAÚ / PQ. COCAIA \\
+
+    33787 & 108   & METRÔ ARTUR ALVIM / SHOP. ARICANDUVA \\
 \hline
-    35110 & 84    & TERM. PQ. D. PEDRO II / METRÔ ITAQUERA \\
+
+    33805 & 108   & METRÔ GUILHERMINA/ESPERANÇA / SHOP. ARICANDUVA \\
 \hline
-    33245 & 83    & METRÔ - TRIANON - MASP / PQ. CONTINENTAL \\
+
+    32815 & 107   & TERM. PINHEIROS / TERM. STO. AMARO \\
 \hline
-    34804 & 83    & E.T. ÁGUA ESPRAIADA / TERM. GRAJAÚ \\
+
+    33382 & 107   & METRÔ SANTANA / CPTM JARAGUÁ \\
 \hline
-    33079 & 82    & PÇA. ALMEIDA JR. / VL. EMA \\
+
+    33535 & 107   & PÇA. DA REPÚBLICA / STA. MARGARIDA MARIA \\
 \hline
-    33879 & 81    & IBIRAPUERA / JD. ELBA \\
+
+    33617 & 107   & METRÔ TUCURUVI / JD. SÃO JOÃO \\
 \hline
-    34200 & 81    & LGO. DO PAISSANDÚ / TERM. PIRITUBA \\
+
+    33901 & 107   & STO. AMARO / JD. SELMA \\
 \hline
-    33325 & 80    & SHOP. CENTER NORTE / COHAB ANTÁRTICA \\
+
+    35219 & 107   & LAPA / VL. IÓRIO \\
 \hline
-    33412 & 80    & METRÔ SANTANA / CACHOEIRA \\
+
+    35230 & 106   & TERM. PINHEIROS / TERM. STO. AMARO \\
 \hline
-    33988 & 80    & TERM. STO. AMARO / JD. CAPELINHA \\
+
+    33488 & 105   & CIRCULAR / TERM. VL. CARRÃO \\
 \hline
-    34058 & 80    & TERM. STO. AMARO / METRÔ JABAQUARA \\
+
+    33837 & 105   & METRÔ ARTUR ALVIM / SHOP. ARICANDUVA \\
 \hline
-    34427 & 79    & PÇA. DO CORREIO / TERM. SACOMÃ \\
+
+    34036 & 105   & TERM. LAPA / ITABERABA \\
 \hline
-    34837 & 79    & TERM. PINHEIROS / JD. D'ABRIL \\
+
+    35197 & 105   & TERM. PQ. D. PEDRO II / TERM. PINHEIROS \\
 \hline
-    32913 & 78    & METRÔ TATUAPÉ / VL. CISPER \\
+
+    32869 & 104   & PINHEIROS / GRAJAÚ \\
 \hline
-    33807 & 78    & METRÔ ITAQUERA / RECANTO VERDE SOL \\
+
+    33624 & 104   & TATUAPÉ / JD. BRASIL \\
 \hline
-    33810 & 78    & METRÔ ITAQUERA / JD. LARANJEIRA \\
+
+    33629 & 104   & METRÔ TATUAPÉ / PQ. NOVO MUNDO \\
 \hline
-    33831 & 78    & METRÔ ITAQUERA / COHAB BARRO BRANCO \\
+
+    34102 & 104   & PÇA. RAMOS DE AZEVEDO / LAPA \\
 \hline
-    34380 & 78    & METRÔ ITAQUERA / CID. TIRADENTES \\
+
+    35081 & 104   & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
 \hline
-    33657 & 77    & METRÔ BARRA FUNDA / JD. GUARANI \\
+
+    33310 & 103   & METRÔ SANTANA / JD. ANTÁRTICA \\
 \hline
-    34812 & 76    & METRÔ BUTANTÃ / TERM. CAMPO LIMPO \\
+
+    33914 & 103   & SHOP. INTERLAGOS / JD. SÃO BERNARDO \\
 \hline
-    35156 & 74    & JD. ITÁPOLIS / TERM. SACOMÃ \\
+
+    34021 & 103   & TERM. LAPA / REMÉDIOS \\
 \hline
-    33093 & 73    & TERM. PQ. D. PEDRO II / JD. PLANALTO \\
+
+    32912 & 102   & METRÔ TATUAPÉ / ERMELINO MATARAZZO \\
 \hline
-    33226 & 73    & PÇA. DO CORREIO / TERM. CASA VERDE \\
+
+    33135 & 102   & TERM. A. E. CARVALHO / CID. KEMEL II \\
 \hline
-    33165 & 72    & METRÔ TATUAPÉ / JD. ROMANO \\
+
+    33232 & 102   & ITAIM BIBI / COHAB TAIPAS \\
 \hline
-    33342 & 72    & PÇA. DO CORREIO / JD. PAULISTANO \\
+
+    34398 & 102   & METRÔ BRESSER / HOSP. SAPOPEMBA \\
 \hline
-    33702 & 72    & METRÔ ITAQUERA / JD. NAZARÉ \\
+
+    34733 & 102   & METRÔ ITAQUERA / CPTM ERMELINO MATARAZZO \\
 \hline
-    33735 & 72    & METRÔ ITAQUERA / JD. ALTO PAULISTANO \\
+
+    33108 & 101   & METRÔ PÇA. DA ÁRVORE / JD. CLÍMAX \\
 \hline
-    33795 & 72    & METRÔ ITAQUERA / JD. LIMOEIRO \\
+
+    33359 & 101   & TERM. PRINC. ISABEL / VOITH \\
 \hline
-    33835 & 72    & METRÔ ITAQUERA / CID. TIRADENTES \\
+
+    33687 & 101   & METRÔ ITAQUERA / CHABILÂNDIA \\
 \hline
-    33548 & 71    & SHOP. MORUMBI / JD. INGÁ \\
+
+    34132 & 101   & METRÔ BARRA FUNDA / PENTEADO \\
 \hline
-    34836 & 71    & TERM. PINHEIROS / COHAB EDUCANDÁRIO \\
+
+    34273 & 101   & TERM. STO. AMARO / TERM. GRAJAÚ \\
 \hline
-    34414 & 70    & MOEMA / TERM. SACOMÃ \\
+
+    35218 & 101   & LAPA / CONEXÃO VL. IÓRIO \\
 \hline
-    35080 & 70    & TERM. PINHEIROS / METRÔ SANTANA \\
+
+    33045 & 100   & VL. PRUDENTE / VL. INDUSTRIAL \\
 \hline
-    35246 & 70    & TERM. PINHEIROS / METRÔ SANTANA \\
+
+    33276 & 100   & METRÔ BARRA FUNDA / JD. ARPOADOR \\
 \hline
-    33173 & 69    & METRÔ ITAQUERA / JD. CAMARGO VELHO \\
+
+    33679 & 100   & SHOP. PENHA / BURGO PAULISTA \\
 \hline
-    33482 & 69    & PÇA. DA SÉ / PÇA. SILVIO ROMERO \\
+
+    34387 & 100   & TERM. SÃO MATEUS / TERM. SÃO MIGUEL \\
 \hline
-    33987 & 69    & STO. AMARO / JD. TRÊS ESTRELAS \\
+
+    35068 & 100   & METRÔ BARRA FUNDA / TERM. PQ. D. PEDRO II \\
 \hline
-    32991 & 68    & METRÔ ARTUR ALVIM / JD. HELENA \\
+
+    34246 & 99    & METRÔ STA. CRUZ / TERM. STO. AMARO \\
 \hline
-    33549 & 68    & STO. AMARO / JD. INGÁ \\
+
+    33189 & 98    & LAPA / VL. CLARICE \\
 \hline
-    33990 & 68    & STO. AMARO / VALO VELHO \\
+
+    32774 & 97    & TERM. CAPELINHA / SHOP. PORTAL \\
 \hline
-    34191 & 68    & METRÔ BARRA FUNDA / VL. ZATT \\
+
+    32876 & 97    & METRÔ JABAQUARA / CENTRO SESC \\
 \hline
-    35144 & 68    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
+
+    35013 & 97    & LAPA / JD. BOA VISTA \\
 \hline
-    35146 & 68    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
+
+    34000 & 96    & TERM. STO. AMARO / JD. SÃO FRANCISCO \\
 \hline
-    34990 & 67    & METRÔ BRESSER / CONJ. MANOEL DA NÓBREGA \\
+
+    33822 & 95    & METRÔ TATUAPÉ / TERM. VL. CARRÃO \\
 \hline
-    32781 & 66    & TERM. JOÃO DIAS / CAPÃO REDONDO \\
+
+    33981 & 95    & STO. AMARO / VL. GILDA \\
 \hline
-    32912 & 66    & METRÔ TATUAPÉ / ERMELINO MATARAZZO \\
+
+    33990 & 95    & STO. AMARO / VALO VELHO \\
 \hline
-    33758 & 66    & SÃO MIGUEL PAULISTA / TERM. CID. TIRADENTES \\
+
+    34055 & 95    & METRÔ CONCEIÇÃO / VL. MISSIONÁRIA \\
 \hline
-    33873 & 66    & TERM. NORTE METRÔ CARRÃO / VL. INDUSTRIAL \\
+
+    33412 & 94    & METRÔ SANTANA / CACHOEIRA \\
 \hline
-    33972 & 65    & STO. AMARO / PQ. INDEPENDÊNCIA \\
+
+    33425 & 94    & CID. UNIVERSITÁRIA / METRÔ SANTANA \\
 \hline
-    33973 & 65    & STO. AMARO / VL. CALÚ \\
+
+    33536 & 94    & PÇA. DA REPÚBLICA / GENTIL DE MOURA \\
 \hline
-    33974 & 65    & STO. AMARO / JD. NAKAMURA \\
+
+    33708 & 94    & METRÔ PENHA / LIMOEIRO \\
 \hline
-    33975 & 65    & STO. AMARO / PQ. CEREJEIRA \\
+
+    33984 & 94    & STO. AMARO / JD. DAS ROSAS \\
 \hline
-    33111 & 64    & TERM. AMARAL GURGEL / JD. DA SAÚDE \\
+
+    32797 & 93    & TERM. JOÃO DIAS / JD. CAPELINHA \\
 \hline
-    33984 & 64    & STO. AMARO / JD. DAS ROSAS \\
+
+    33139 & 93    & TERM. ARICANDUVA / CID. KEMEL \\
 \hline
-    34501 & 64    & TERM. GRAJAÚ / JD. ELIANA \\
+
+    33685 & 93    & METRÔ ITAQUERA / JD. FANGANIELO \\
 \hline
-    34747 & 64    & HOSP. PEDREIRA / CID. DUTRA \\
+
+    33915 & 93    & TERM. GRAJAÚ / PQ. STA. CECÍLIA \\
 \hline
-    35168 & 64    & JD. GAIVOTAS / TERM. GRAJAÚ \\
+
+    34193 & 93    & TERM. LAPA / MORRO GRANDE \\
 \hline
-    35200 & 64    & CEASA / TERM. PINHEIROS \\
+
+    34402 & 93    & METRÔ ALTO DO IPIRANGA / CONJ. HAB. HELIÓPOLIS \\
 \hline
-    33460 & 63    & LIBERDADE / VL. MEDEIROS \\
+
+    35267 & 93    & TERM. ROD. TIETÊ  / VL. SABRINA \\
 \hline
-    33846 & 63    & SHOP. ARICANDUVA / JD. SÃO FRANCISCO \\
+
+    32902 & 92    & METRÔ ARTUR ALVIM / TERM. A. E. CARVALHO \\
 \hline
-    35149 & 63    & METRÔ SANTANA / TERM. SACOMÃ \\
+
+    33277 & 92    & TERM. PRINC. ISABEL / COHAB RAPOSO TAVARES \\
 \hline
-    33365 & 62    & PÇA. JOÃO MENDES / DIV. DIADEMA \\
+
+    33325 & 92    & SHOP. CENTER NORTE / COHAB ANTÁRTICA \\
 \hline
+
+    33474 & 92    & PENHA   / METRÔ SANTANA \\
+\hline
+
+    34851 & 92    & BUTANTÃ / JD. INGÁ \\
+\hline
+
+    32987 & 91    & CONJ. JOSÉ BONIFÁCIO / PENHA \\
+\hline
+
+    33165 & 91    & METRÔ TATUAPÉ / JD. ROMANO \\
+\hline
+
+    33343 & 91    & PÇA. DO CORREIO / JD. GUARANI \\
+\hline
+
+    33627 & 91    & METRÔ BELÉM / JAÇANÃ \\
+\hline
+
+    33683 & 91    & METRÔ ITAQUERA / JD. ETELVINA \\
+\hline
+
+    34837 & 91    & TERM. PINHEIROS / JD. D'ABRIL \\
+\hline
+
+    32852 & 90    & TERM. GRAJAÚ / JD. NORONHA \\
+\hline
+
+    32954 & 90    & TERM. STO. AMARO / JD. NAKAMURA \\
+\hline
+
+    33175 & 90    & LAPA / HAB. TURÍSTICA \\
+\hline
+
+    33186 & 90    & TERM. LAPA / VL. PIAUÍ \\
+\hline
+
+    33615 & 90    & SHOP. CENTER NORTE / JD. FONTÁLIS \\
+\hline
+
+    34022 & 90    & TERM. LAPA / STA. MÔNICA \\
+\hline
+
+    34090 & 90    & METRÔ VL. MARIANA / TERM. CAPELINHA \\
+\hline
+
+    34149 & 90    & METRÔ PARAÍSO / VL. ANASTÁCIO \\
+\hline
+
+    34812 & 90    & METRÔ BUTANTÃ / TERM. CAMPO LIMPO \\
+\hline
+
+    33103 & 89    & METRÔ SAÚDE / JD. MARIA ESTELA \\
+\hline
+
+    32978 & 88    & TERM. ARICANDUVA / JD. COIMBRA \\
+\hline
+
+    32990 & 88    & METRÔ ARTUR ALVIM / PQ. D. JOÃO NERY \\
+\hline
+
+    33686 & 88    & METRÔ VL. MATILDE / CEM. DA SAUDADE \\
+\hline
+
+    34962 & 88    & LGO. DA CONCÓRDIA / SHOP. ARICANDUVA \\
+\hline
+
+    33735 & 87    & METRÔ ITAQUERA / JD. ALTO PAULISTANO \\
+\hline
+
+    33777 & 87    & METRÔ ITAQUERA / JD. SÃO JOÃO \\
+\hline
+
+    33869 & 87    & METRÔ TAMANDUATEÍ / PQ. STA. MADALENA \\
+\hline
+
+    34109 & 87    & METRÔ ANA ROSA / METRÔ BARRA FUNDA \\
+\hline
+
+    33630 & 86    & METRÔ BELÉM / VL. CONSTANÇA \\
+\hline
+
+    33876 & 86    & METRÔ BELÉM / PQ. BANCÁRIO \\
+\hline
+
+    34960 & 86    & TERM. PENHA / CPTM JOSÉ BONIFÁCIO \\
+\hline
+
+    32860 & 85    & TERM. GRAJAÚ / JD. SÃO BERNARDO \\
+\hline
+
+    32908 & 85    & METRÔ ITAQUERA / JD. STO. ANTÔNIO \\
+\hline
+
+    32956 & 85    & TERM. STO. AMARO / TERM. JD. JACIRA \\
+\hline
+
+    33450 & 85    & TERM. PRINC. ISABEL / PQ. VL. MARIA \\
+\hline
+
+    33652 & 85    & TERM. CASA VERDE / PQ. TIETÊ \\
+\hline
+
+    33887 & 85    & METRÔ JABAQUARA / JD. SÃO JORGE \\
+\hline
+
+    34291 & 85    & METRÔ SÃO JUDAS / JD. UBIRAJARA \\
+\hline
+
+    33371 & 84    & STO. AMARO / METRÔ JABAQUARA \\
+\hline
+
+    34016 & 84    & LAPA / METRÔ BARRA FUNDA \\
+\hline
+
+    34020 & 84    & TERM. LAPA / TERM. PIRITUBA \\
+\hline
+
+    34550 & 84    & METRÔ TUCURUVI / JD. CABUÇU \\
+\hline
+
+    33375 & 83    & METRÔ VERGUEIRO / ELDORADO \\
+\hline
+
+    33736 & 83    & SÃO MATEUS / GUAIANAZES \\
+\hline
+
+    33893 & 83    & HOSP. SÃO PAULO / JD. MIRIAM \\
+\hline
+
+    34694 & 83    & PARAÍSO / TERM. CAMPO LIMPO \\
+\hline
+
+    34758 & 83    & METRÔ PÇA. DA ÁRVORE / JD. ÂNGELA \\
+\hline
+
+    34838 & 83    & BUTANTÃ / VL. SÔNIA \\
+\hline
+
+    33020 & 82    & COHAB II / JD. HELENA \\
+\hline
+
+    33320 & 82    & METRÔ SANTANA / JD. ANTÁRTICA \\
+\hline
+
+    33370 & 82    & LGO. CAMBUCI / AMERICANÓPOLIS \\
+\hline
+
+    33565 & 82    & LAPA / PQ. CONTINENTAL \\
+\hline
+
+    34684 & 82    & SHOP. MORUMBI / TERM. CAMPO LIMPO \\
+\hline
+
+    32824 & 81    & STO. AMARO / CAPÃO REDONDO \\
+\hline
+
+    32872 & 81    & TERM. STO. AMARO / PQ. AMÉRICA \\
+\hline
+
+    34399 & 81    & SHOP. ARICANDUVA / MASCARENHAS DE MORAIS \\
+\hline
+
+    34976 & 81    & METRÔ CARRÃO / TERM. SAPOPEMBA \\
+\hline
+
+    33728 & 80    & PQ. SÃO RAFAEL / SHOP. ARICANDUVA \\
+\hline
+
+    32799 & 79    & TERM. JOÃO DIAS / TERM. CAPELINHA \\
+\hline
+
+    32877 & 79    & METRÔ JABAQUARA / GRAJAÚ \\
+\hline
+
+    32882 & 79    & METRÔ JABAQUARA / JD. STA. BARBARA \\
+\hline
+
+    33009 & 79    & METRÔ TATUAPÉ / CID. PEDRO JOSÉ NUNES \\
+\hline
+
+    33034 & 79    & PÇA. D. GASTÃO / JD. MIRIAM \\
+\hline
+
+    33234 & 79    & TERM. PRINC. ISABEL / TERM. CACHOEIRINHA \\
+\hline
+
+    33417 & 79    & METRÔ SANTANA / VL. ALBERTINA \\
+\hline
+
+    33697 & 79    & METRÔ PENHA / CHÁC. CRUZ. DO SUL \\
+\hline
+
+    33918 & 79    & TERM. GRAJAÚ / JD. MARILDA \\
+\hline
+
+    33993 & 79    & TERM. GRAJAÚ / PQ. COCAIA \\
+\hline
+
+    34008 & 79    & MORUMBI SHOP. / JD. GUARUJÁ \\
+\hline
+
+    35032 & 79    & METRÔ SANTANA / LAUZANE PAULISTA \\
+\hline
+
+    33026 & 78    & TERM. VL. CARRÃO / GUAIANAZES \\
+\hline
+
+    33549 & 78    & STO. AMARO / JD. INGÁ \\
+\hline
+
+    33888 & 78    & JABAQUARA / VL. STA. MARGARIDA \\
+\hline
+
+    33985 & 78    & STO. AMARO / VALO VELHO \\
+\hline
+
+    35266 & 78    & METRÔ BELÉM / PQ. EDÚ CHAVES \\
+\hline
+
+    33597 & 77    & METRÔ BARRA FUNDA / JD. PAULISTANO \\
+\hline
+
+    33991 & 77    & STO. AMARO / JD. SÃO BENTO NOVO \\
+\hline
+
+    34007 & 77    & ITAIM BIBI / TERM. JD. ÂNGELA \\
+\hline
+
+    34239 & 77    & PENHA / JD. VL. NOVA \\
+\hline
+
+    34832 & 77    & TERM. PRINC. ISABEL / RIO PEQUENO \\
+\hline
+
+    32776 & 76    & METRÔ ANA ROSA / TERM. CAPELINHA \\
+\hline
+
+    32781 & 76    & TERM. JOÃO DIAS / CAPÃO REDONDO \\
+\hline
+
+    33312 & 76    & METRÔ SANTANA / LAUZANE PAULISTA \\
+\hline
+
+    33640 & 76    & TERM. CACHOEIRINHA / JD. PRINCESA \\
+\hline
+
+    34835 & 76    & TERM. PINHEIROS / RIO PEQUENO \\
+\hline
+
+    34990 & 76    & METRÔ BRESSER / CONJ. MANOEL DA NÓBREGA \\
+\hline
+
+    33158 & 75    & METRÔ VL. MATILDE / CID. KEMEL II \\
+\hline
+
+    33477 & 75    & SHOP. CENTER NORTE / JD. DAMASCENO \\
+\hline
+
+    33793 & 75    & PQ. SAVOY CITY / METRÔ ARTUR ALVIM \\
+\hline
+
+    34405 & 75    & VL. ALPINA / METRÔ BRESSER \\
+\hline
+
+    33707 & 74    & JD. SÃO CARLOS / METRÔ ARTUR ALVIM \\
+\hline
+
+    33877 & 74    & METRÔ SAÚDE / VL. MORAES \\
+\hline
+
+    34584 & 74    & METRÔ SANTANA / VL. AURORA \\
+\hline
+
+    35275 & 74    & TERM. LAPA / TERM. PIRITUBA \\
+\hline
+
+    33560 & 73    & HOSP. CAMPO LIMPO / JD. REBOUÇAS \\
+\hline
+
+    33827 & 73    & METRÔ CARRÃO / RES. STA. BÁRBARA \\
+\hline
+
+    33846 & 73    & SHOP. ARICANDUVA / JD. SÃO FRANCISCO \\
+\hline
+
+    34211 & 73    & TERM. STO. AMARO / TERM. VARGINHA \\
+\hline
+
+    34836 & 73    & TERM. PINHEIROS / COHAB EDUCANDÁRIO \\
+\hline
+
+    32798 & 72    & TERM. JOÃO DIAS / JD. INGÁ \\
+\hline
+
+    33636 & 72    & METRÔ JD. SÃO PAULO / VL. AMÉLIA \\
+\hline
+
+    33905 & 72    & METRÔ JABAQUARA / REFÚGIO STA. TEREZINHA \\
+\hline
+
+    34400 & 72    & METRÔ CARRÃO / TERM. SAPOPEMBA \\
+\hline
+
+    34494 & 72    & SHOP. MORUMBI / BUTANTÃ \\
+\hline
+
+    33899 & 71    & STO. AMARO / JD. APURÁ \\
+\hline
+
+    34030 & 71    & TERM. LAPA / TERM. PIRITUBA \\
+\hline
+
+    34414 & 71    & MOEMA / TERM. SACOMÃ \\
+\hline
+
+    34501 & 71    & TERM. GRAJAÚ / JD. ELIANA \\
+\hline
+
+    35070 & 71    & CONEXÃO PETRÔNIO PORTELA / JD. CAROMBÉ \\
+\hline
+
+    33452 & 70    & METRÔ SANTANA / PQ. NOVO MUNDO \\
+\hline
+
+    33868 & 70    & SHOP. ARICANDUVA / FAZENDA DA JUTA \\
+\hline
+
+    33935 & 70    & TERM. GRAJAÚ / ILHA DO BORORÉ \\
+\hline
+
+    33952 & 70    & AEROPORTO / CONJ. HAB. PALMARES \\
+\hline
+
+    32994 & 69    & METRÔ ARTUR ALVIM / JD. ROBRU \\
+\hline
+
+    33396 & 69    & METRÔ TUCURUVI / PQ. EDÚ CHAVES \\
+\hline
+
+    33945 & 69    & TERM. GRAJAÚ / JD. DAS PEDRAS \\
+\hline
+
+    34077 & 69    & STO. AMARO / VALO VELHO \\
+\hline
+
+    34134 & 69    & METRÔ ANA ROSA / MORRO GRANDE \\
+\hline
+
+    34240 & 69    & TERM. VARGINHA / TERM. GRAJAÚ \\
+\hline
+
+    32800 & 68    & TERM. JOÃO DIAS / JD. NOVO ORIENTE \\
+\hline
+
+    33001 & 68    & METRÔ PENHA / GUAIANAZES \\
+\hline
+
+    33090 & 68    & PÇA. DA REPÚBLICA / SHOP. PLAZA SUL \\
+\hline
+
+    33180 & 68    & LAPA / PQ. MORRO DOCE \\
+\hline
+
+    33357 & 68    & METRÔ ANA ROSA / VL. BRASILÂNDIA \\
+\hline
+
+    33581 & 68    & METRÔ BARRA FUNDA / JD. VISTA ALEGRE \\
+\hline
+
+    33713 & 68    & METRÔ ARTUR ALVIM / VL. JACUI \\
+\hline
+
+    34983 & 68    & METRÔ CARRÃO / JD. STO. ANDRÉ \\
+\hline
+
+    35191 & 68    & TERM. PINHEIROS / TERM. JOÃO DIAS \\
+\hline
+
+    33633 & 67    & SANTANA / CENTER NORTE \\
+\hline
+
+    33646 & 67    & TERM. CACHOEIRINHA / CPTM JARAGUÁ \\
+\hline
+
+    34027 & 67    & TERM. PIRITUBA / CID. D'ABRIL 3ª GLEBA \\
+\hline
+
+    34029 & 67    & TERM. PIRITUBA / CPTM VL. AURORA \\
+\hline
+
+    34434 & 67    & TERM. SACOMÃ / JD. CELESTE \\
+\hline
+
+    33040 & 66    & TERM. STO. AMARO / VL. GUACURI \\
+\hline
+
+    33255 & 66    & PAULISTA / COHAB EDUCANDÁRIO \\
+\hline
+
+    33637 & 66    & TERM. PARADA INGLESA / JD. HEBRON \\
+\hline
+
+    33979 & 66    & TERM. STO. AMARO / RIVIERA \\
+\hline
+
+    34332 & 66    & METRÔ TAMANDUATEÍ / JD. GUAIRACÁ \\
+\hline
+
+    34430 & 66    & TERM. SACOMÃ / VL. ARAPUÁ \\
+\hline
+
+    34431 & 66    & TERM. SACOMÃ / VL. LIVIERO \\
+\hline
+
+    35203 & 66    & PQ. CONTINENTAL / TERM. PINHEIROS \\
+\hline
+
+    33339 & 65    & METRÔ SANTANA / COHAB BRASILÂNDIA \\
+\hline
+
+    33354 & 65    & TERM. PRINC. ISABEL / COHAB TAIPAS \\
+\hline
+
+    33804 & 65    & METRÔ ARTUR ALVIM / JD. NSA. SRA. DO CARMO \\
+\hline
+
+    33989 & 65    & TERM. STO. AMARO / JD. D. JOSÉ \\
+\hline
+
+    35012 & 65    & LAPA / VL. DALVA \\
+\hline
+
+    32863 & 64    & TERM. GRAJAÚ / PQ. RES. COCAIA \\
+\hline
+
+    33110 & 64    & METRÔ SÃO JUDAS / JD. CLÍMAX \\
+\hline
+
+    33515 & 64    & TERM. PENHA / TERM. SÃO MATEUS \\
+\hline
+
+    33639 & 64    & TERM. CACHOEIRINHA / JD. ELISA MARIA \\
+\hline
+
+    33803 & 64    & JD. SÃO JOÃO  / METRÔ ARTUR ALVIM \\
+\hline
+
+    33830 & 64    & METRÔ CARRÃO / JD. STA. TEREZINHA \\
+\hline
+
+    34035 & 64    & METRÔ BARRA FUNDA / TERM. PIRITUBA \\
+\hline
+
+    34974 & 64    & METRÔ VL. PRUDENTE / PQ. SAVOY CITY \\
+\hline
+
+    32858 & 63    & TERM. STO. AMARO / JD. GRAUNA \\
+\hline
+
+    32913 & 63    & METRÔ TATUAPÉ / VL. CISPER \\
+\hline
+
+    33027 & 63    & CPTM GUAIANAZES / TERM. SÃO MIGUEL \\
+\hline
+
+    33028 & 63    & CPTM GUAIANAZES / SÃO MIGUEL \\
+\hline
+
+    33242 & 63    & METRÔ VL. MADALENA / RIO PEQUENO \\
+\hline
+
+    33558 & 63    & STO. AMARO / REAL PQ. \\
+\hline
+
+    33692 & 63    & BURGO PAULISTA / METRÔ PATRIARCA \\
+\hline
+
+    33695 & 63    & VL. RUI BARBOSA / METRÔ VL. MATILDE \\
+\hline
+
+    34853 & 63    & CID. UNIVERSITÁRIA / METRÔ BUTANTÃ \\
+\hline
+
+    34944 & 63    & TERM. VL. CARRÃO / ITAQUERA \\
+\hline
+
+    33174 & 62    & TERM. LAPA / SOL NASCENTE \\
+\hline
+
+    33657 & 62    & METRÔ BARRA FUNDA / JD. GUARANI \\
+\hline
+
+    33699 & 62    & METRÔ PENHA / VL. SÍLVIA \\
+\hline
+
+    33701 & 62    & METRÔ GUILHERMINA/ESPERANÇA / JD. BELÉM \\
+\hline
+
+    34209 & 62    & METRÔ JABAQUARA / TERM. VARGINHA \\
+\hline
+
+    34353 & 62    & TERM. GRAJAÚ / VARGEM GRANDE \\
+\hline
+
+    34693 & 62    & METRÔ STA. CRUZ / TERM. CAMPO LIMPO \\
+\hline
+
+    34972 & 62    & METRÔ CARRÃO / JD. IV CENTENÁRIO \\
+\hline
+
+    33403 & 61    & METRÔ TUCURUVI / JD. FILHOS DA TERRA \\
+\hline
+
+    33656 & 61    & METRÔ BARRA FUNDA / JD. TEREZA \\
+\hline
+
+    33694 & 61    & SHOP. METRÔ ITAQUERA / JD. SÃO NICOLAU \\
+\hline
+
+    33743 & 61    & HOSP. SAPOPEMBA / JD. PALANQUE \\
+\hline
+
     34010 & 61    & STO. AMARO / JD. CAPELA \\
 \hline
-    34942 & 61    & TERM. PQ. D. PEDRO II / INÁCIO MONTEIRO \\
+
+    34024 & 61    & TERM. PIRITUBA / JD. DONÁRIA \\
 \hline
-    32787 & 60    & TERM. CAPELINHA / JD. DAS ROSAS \\
+
+    34437 & 61    & TERM. SACOMÃ / JD. MARIA ESTELA \\
 \hline
-    32791 & 60    & TERM. CAPELINHA / PQ. FERNANDA \\
+
+    34666 & 61    & TERM. CAMPO LIMPO / INOCOOP CAMPO LIMPO \\
 \hline
-    33406 & 60    & SHOP. CENTER NORTE / VL. ALBERTINA \\
+
+    34844 & 61    & BUTANTÃ / JD. ROSA MARIA \\
 \hline
-    33514 & 60    & TERM. PQ. D. PEDRO II / VL. DALILA \\
+
+    34907 & 61    & SOCORRO / JD. APURÁ \\
 \hline
-    33777 & 60    & METRÔ ITAQUERA / JD. SÃO JOÃO \\
+
+    35147 & 61    & TERM. PINHEIROS / TERM. SACOMÃ \\
 \hline
-    34031 & 60    & TERM. LAPA / TERM. PIRITUBA \\
+
+    33056 & 60    & MOOCA / PQ. STA. MADALENA \\
 \hline
-    34409 & 60    & PÇA. ALMEIDA JR. / TERM. SAPOPEMBA \\
+
+    33783 & 60    & METRÔ BRESSER / UNIV. SÃO JUDAS TADEU \\
 \hline
-    34560 & 60    & METRÔ SANTANA / PEDRA BRANCA \\
+
+    33807 & 60    & METRÔ ITAQUERA / RECANTO VERDE SOL \\
 \hline
-    34940 & 60    & TERM. PQ. D. PEDRO II / JD. MARÍLIA \\
+
+    33974 & 60    & STO. AMARO / JD. NAKAMURA \\
 \hline
-    35053 & 60    & TERM. LAPA / TERM. PIRITUBA \\
+
+    33975 & 60    & STO. AMARO / PQ. CEREJEIRA \\
 \hline
-    35111 & 60    & OLIVEIRINHA / TERM. A. E. CARVALHO \\
+
+    34757 & 60    & TERM. JOÃO DIAS / JD. MARACÁ \\
 \hline
-    35275 & 60    & TERM. LAPA / TERM. PIRITUBA \\
+
+    34886 & 60    & TERM. STO. AMARO / JD. ÂNGELA \\
 \hline
-    32800 & 59    & TERM. JOÃO DIAS / JD. NOVO ORIENTE \\
+
+    32964 & 59    & TERM. STO. AMARO / JD. ARACATI \\
 \hline
-    32943 & 59    & SHOP. INTERLAGOS / JD. HERCULANO \\
+
+    33157 & 59    & METRÔ PENHA / JD. ROMANO \\
 \hline
-    32990 & 58    & METRÔ ARTUR ALVIM / PQ. D. JOÃO NERY \\
+
+    33321 & 59    & METRÔ SANTANA / JD. PERY \\
 \hline
-    33139 & 58    & TERM. ARICANDUVA / CID. KEMEL \\
+
+    33690 & 59    & VL. UNIÃO / METRÔ PATRIARCA \\
 \hline
-    33311 & 57    & SHOP. D / JD. PERY ALTO \\
+
+    33703 & 59    & METRÔ GUILHERMINA/ESPERANÇA / JD. VERONIA \\
 \hline
-    33819 & 57    & METRÔ CARRÃO / 3A. DIVISÃO \\
+
+    33781 & 59    & NOVA AMERICA / METRÔ ARTUR ALVIM \\
 \hline
-    33904 & 57    & SHOP. MORUMBI / METRÔ CONCEIÇÃO \\
+
+    33790 & 59    & VL. DALILA / METRÔ VL. MATILDE \\
 \hline
-    34826 & 57    & SHOP. MORUMBI / TERM. CAMPO LIMPO \\
+
+    34114 & 59    & TERM. PIRITUBA / JD. RINCÃO \\
 \hline
-    33312 & 56    & METRÔ SANTANA / LAUZANE PAULISTA \\
+
+    34463 & 59    & METRÔ SANTANA / TERM. CACHOEIRINHA \\
 \hline
-    33455 & 56    & TERM. VL. CARRÃO / JAÇANÃ \\
+
+    32794 & 58    & TERM. CAPELINHA / JD. MITSUTANI \\
 \hline
-    33635 & 56    & PINHEIROS / METRÔ BARRA FUNDA \\
+
+    33094 & 58    & VL. PRUDENTE / VL. INDUSTRIAL \\
 \hline
-    33784 & 56    & METRÔ TATUAPÉ / VL. STA. ISABEL \\
+
+    33710 & 58    & CONJ. A. E. CARVALHO / METRÔ ARTUR ALVIM \\
 \hline
-    34857 & 56    & TERM. PINHEIROS / LAPA \\
+
+    33841 & 58    & METRÔ ITAQUERA / JD. SÃO CARLOS \\
 \hline
-    35032 & 56    & METRÔ SANTANA / LAUZANE PAULISTA \\
+
+    34968 & 58    & METRÔ TATUAPÉ / TERM. CID. TIRADENTES \\
 \hline
-    33287 & 55    & TERM. AMARAL GURGEL / JD. PERY ALTO \\
+
+    35031 & 58    & METRÔ TUCURUVI / VL. AYROSA \\
 \hline
-    33488 & 55    & CIRCULAR / TERM. VL. CARRÃO \\
+
+    32981 & 57    & TERM. ARICANDUVA / VL. SÃO FRANCISCO \\
 \hline
-    34059 & 55    & METRÔ ANA ROSA / JD. MIRIAM \\
+
+    33661 & 57    & SÃO MIGUEL / JD. ROMANO \\
 \hline
-    33043 & 54    & METRÔ CONCEIÇÃO / SHOP. SP MARKET \\
+
+    33667 & 57    & CACHOEIRINHA / COHAB ANTÁRTICA \\
 \hline
-    33711 & 54    & METRÔ PENHA / JD. DO CASTELO \\
+
+    33682 & 57    & METRÔ ARTUR ALVIM / VL. AMERICANA \\
 \hline
-    34387 & 54    & TERM. SÃO MATEUS / TERM. SÃO MIGUEL \\
+
+    33913 & 57    & TERM. GRAJAÚ / JD. ELLUS \\
 \hline
-    32932 & 53    & TERM. SÃO MATEUS / JD. HELENA \\
+
+    33973 & 57    & STO. AMARO / VL. CALÚ \\
 \hline
-    34048 & 53    & LGO. SÃO FRANCISCO / JD. SELMA \\
+
+    34355 & 57    & TERM. GRAJAÚ / DIVISA DE EMBU-GUAÇU \\
 \hline
-    34077 & 53    & STO. AMARO / VALO VELHO \\
+
+    34834 & 57    & TERM. PINHEIROS / JD. COLOMBO \\
 \hline
-    34684 & 53    & SHOP. MORUMBI / TERM. CAMPO LIMPO \\
+
+    32784 & 56    & TERM. CAPELINHA / JD. D. JOSÉ \\
 \hline
-    35204 & 53    & CDHU BUTANTÃ / TERM. JOÃO DIAS \\
+
+    33405 & 56    & MANDAQUI / CEM. PQ. DOS PINHEIROS \\
 \hline
-    33044 & 52    & VL. PRUDENTE / PQ. BANCÁRIO \\
+
+    33670 & 56    & SÃO MIGUEL / JD. DAS OLIVEIRAS \\
 \hline
-    33837 & 52    & METRÔ ARTUR ALVIM / SHOP. ARICANDUVA \\
+
+    33806 & 56    & METRÔ ITAQUERA / COHAB JUSCELINO \\
 \hline
-    33320 & 51    & METRÔ SANTANA / JD. ANTÁRTICA \\
+
+    33964 & 56    & TERM. STO. AMARO / JD. HERPLIN \\
 \hline
-    33321 & 51    & METRÔ SANTANA / JD. PERY \\
+
+    32907 & 55    & TERM. ARICANDUVA / BURGO PAULISTA \\
 \hline
-    33556 & 51    & STO. AMARO / PARAISÓPOLIS \\
+
+    33706 & 55    & CONJ. ARAUCÁRIA / METRÔ ARTUR ALVIM \\
 \hline
-    34943 & 51    & TERM. PQ. D. PEDRO II / TERM. VL. CARRÃO \\
+
+    34826 & 55    & SHOP. MORUMBI / TERM. CAMPO LIMPO \\
 \hline
-    33009 & 50    & METRÔ TATUAPÉ / CID. PEDRO JOSÉ NUNES \\
+
+    34950 & 55    & TERM. VL. CARRÃO / JD. CIBELE \\
 \hline
-    33160 & 50    & METRÔ ARTUR ALVIM / JD. DAS OLIVEIRAS \\
+
+    34964 & 55    & METRÔ CARRÃO / JD. NOVA VITÓRIA \\
 \hline
-    33439 & 50    & TERM. AMARAL GURGEL / VL. SABRINA \\
+
+    35270 & 55    & TERM. GUARAPIRANGA / JD. GUARUJÁ \\
 \hline
-    33781 & 50    & NOVA AMERICA / METRÔ ARTUR ALVIM \\
+
+    32773 & 54    & TERM. JOÃO DIAS / JD. IBIRAPUERA \\
 \hline
-    34882 & 50    & METRÔ ARTUR ALVIM / CONJ. ENCOSTA NORTE \\
+
+    32836 & 54    & METRÔ SÃO JUDAS / TERM. JOÃO DIAS \\
 \hline
-    34056 & 49    & METRÔ CONCEIÇÃO / CID. JÚLIA \\
+
+    34668 & 54    & TERM. STO. AMARO / TERM. CAMPO LIMPO \\
 \hline
-    34127 & 49    & PÇA. DO CORREIO / FREGUESIA DO Ó \\
+
+    35034 & 54    & METRÔ CARANDIRU / JD. BRASIL \\
 \hline
-    32926 & 48    & TERM. SÃO MATEUS / TERM. A. E. CARVALHO \\
+
+    33418 & 53    & METRÔ SANTANA / VL. MARIETA \\
 \hline
-    33136 & 48    & TERM. PENHA / JD. DAS OLIVEIRAS \\
+
+    33802 & 53    & METRÔ ARTUR ALVIM / CID. LIDER \\
 \hline
-    33158 & 48    & METRÔ VL. MATILDE / CID. KEMEL II \\
+
+    33896 & 53    & METRÔ CONCEIÇÃO / JD. APURÁ \\
 \hline
-    33299 & 48    & LAPA / COHAB ANTÁRTICA \\
+
+    35271 & 53    & METRÔ JABAQUARA / TERM. GUARAPIRANGA \\
 \hline
-    33346 & 48    & TERM. LAPA / JD. DOS CUNHAS \\
+
+    32790 & 52    & TERM. CAPELINHA / JD. MACEDÔNIA \\
 \hline
-    33585 & 48    & METRÔ SANTANA / JD. ALMANARA \\
+
+    33571 & 52    & JD. PRIMAVERA / CPTM VL. AURORA \\
 \hline
-    33609 & 48    & LAPA / LAUZANE PAULISTA \\
+
+    33601 & 52    & TERM. PIRITUBA / COHAB BRASILÂNDIA \\
 \hline
-    33653 & 48    & LAPA / VL. TEREZINHA \\
+
+    33696 & 52    & METRÔ PATRIARCA / VL. SÍLVIA \\
 \hline
-    33822 & 48    & METRÔ TATUAPÉ / TERM. VL. CARRÃO \\
+
+    34747 & 52    & HOSP. PEDREIRA / CID. DUTRA \\
 \hline
-    33991 & 48    & STO. AMARO / JD. SÃO BENTO NOVO \\
+
+    33643 & 51    & TERM. CACHOEIRINHA / PQ. DE TAIPAS \\
 \hline
-    34036 & 48    & TERM. LAPA / ITABERABA \\
+
+    33648 & 51    & TERM. CACHOEIRINHA / JD. DAMASCENO \\
 \hline
-    35033 & 48    & LAPA / MANDAQUI \\
+
+    33818 & 51    & METRÔ ITAQUERA  / BARRO BRANCO \\
 \hline
-    35093 & 48    & JD. ANTÁRTICA / METRÔ SANTANA \\
+
+    33916 & 51    & TERM. GRAJAÚ / VL. NATAL \\
 \hline
-    33326 & 47    & LAPA / METRÔ SANTANA \\
+
+    34191 & 51    & METRÔ BARRA FUNDA / VL. ZATT \\
 \hline
-    33982 & 47    & STO. AMARO / JD. MACEDÔNIA \\
+
+    34920 & 51    & TERM. STO. AMARO / JD. NAKAMURA \\
 \hline
-    33614 & 46    & TIETÊ / JOVA RURAL \\
+
+    34935 & 51    & METRÔ BELÉM / TERM. SÃO MATEUS \\
 \hline
-    34419 & 46    & TERM. MERCADO / TERM. SACOMÃ \\
+
+    32791 & 50    & TERM. CAPELINHA / PQ. FERNANDA \\
 \hline
-    34757 & 46    & TERM. JOÃO DIAS / JD. MARACÁ \\
+
+    33576 & 50    & TERM. PIRITUBA / RECANTO DOS HUMILDES \\
 \hline
-    34839 & 46    & METRÔ BUTANTÃ / PQ. CONTINENTAL \\
+
+    33638 & 50    & TERM. CACHOEIRINHA / JD. PERY ALTO \\
 \hline
-    34867 & 46    & STO. AMARO / PARAISÓPOLIS \\
+
+    33729 & 50    & CPTM GUAIANAZES / JD. WILMA FLOR \\
 \hline
-    35193 & 46    & JD. VAZ DE LIMA / TERM. JOÃO DIAS \\
+
+    34037 & 50    & TERM. PIRITUBA / VL. ZATT \\
 \hline
-    33440 & 45    & METRÔ SANTANA / VL. CONSTANÇA \\
+
+    34237 & 50    & METRÔ PENHA / JD. DANFER \\
 \hline
-    33539 & 45    & BROOKLIN NOVO / REAL PQ. \\
+
+    34238 & 50    & CPTM GUAIANAZES / CPTM JD. ROMANO \\
 \hline
-    33021 & 44    & TERM. SÃO MATEUS / GUAIANAZES \\
+
+    34454 & 50    & VL. MATIAS / IPIRANGA \\
 \hline
-    33307 & 44    & METRÔ SANTANA / VL. DIONISIA \\
+
+    34828 & 50    & VL. NHOCUNÉ / METRÔ PATRIARCA \\
 \hline
-    33461 & 44    & LIBERDADE / PQ. EDÚ CHAVES \\
+
+    32874 & 49    & METRÔ JABAQUARA / PQ. RES. COCAIA \\
 \hline
-    33731 & 44    & SHOP. ARICANDUVA / VL. MINERVA \\
+
+    32988 & 49    & CHÁC. BELA VISTA / METRÔ PENHA \\
 \hline
-    35102 & 44    & JD. PERY ALTO / METRÔ SANTANA \\
+
+    33011 & 49    & METRÔ VL. MATILDE / CPTM JOSÉ BONIFÁCIO \\
 \hline
-    35126 & 44    & TERM. VL. CARRÃO / METRÔ ITAQUERA \\
+
+    33550 & 49    & SHOP. SP MARKET / CAMPO LIMPO \\
 \hline
-    33728 & 43    & PQ. SÃO RAFAEL / SHOP. ARICANDUVA \\
+
+    33936 & 49    & SHOP. INTERLAGOS / JD. LUCÉLIA \\
 \hline
-    33827 & 43    & METRÔ CARRÃO / RES. STA. BÁRBARA \\
+
+    33943 & 49    & TERM. STO. AMARO / VARGEM GRANDE \\
 \hline
-    33868 & 43    & SHOP. ARICANDUVA / FAZENDA DA JUTA \\
+
+    34113 & 49    & TERM. PIRITUBA / CEM. DE PERUS \\
 \hline
-    33878 & 43    & METRÔ CARRÃO / JD. VERA CRUZ \\
+
+    32802 & 48    & TERM. CAPELINHA / JD. GUARUJÁ \\
 \hline
-    34936 & 43    & METRÔ CARRÃO / TERM. SÃO MATEUS \\
+
+    33671 & 48    & SÃO MIGUEL / JD. ROBRU \\
 \hline
-    34964 & 43    & METRÔ CARRÃO / JD. NOVA VITÓRIA \\
+
+    33689 & 48    & METRÔ ITAQUERA / JD. LAJEADO \\
 \hline
-    35150 & 43    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
+
+    33700 & 48    & METRÔ VL. MATILDE / ERMELINO MATARAZZO \\
 \hline
-    35266 & 43    & METRÔ BELÉM / PQ. EDÚ CHAVES \\
+
+    34031 & 48    & TERM. LAPA / TERM. PIRITUBA \\
 \hline
-    33077 & 42    & BOM RETIRO / PQ. SÃO LUCAS \\
+
+    34205 & 48    & TERM. PIRITUBA / PQ. DE TAIPAS \\
 \hline
-    33906 & 42    & METRÔ CONCEIÇÃO / PQ. PRIMAVERA \\
+
+    34440 & 48    & TERM. SACOMÃ / JD. PATENTE \\
 \hline
-    34394 & 42    & TERM. PQ. D. PEDRO II / TERM. SAPOPEMBA \\
+
+    34514 & 48    & TERM. SACOMÃ / VL. ARAPUÁ \\
 \hline
-    34453 & 42    & TERM. VL. CARRÃO / METRÔ CONCEIÇÃO \\
+
+    34680 & 48    & TERM. CAMPO LIMPO / PQ. DO LAGO \\
 \hline
-    34791 & 42    & CID. UNIVERSITÁRIA / METRÔ BUTANTÃ \\
+
+    34791 & 48    & CID. UNIVERSITÁRIA / METRÔ BUTANTÃ \\
 \hline
-    34853 & 42    & CID. UNIVERSITÁRIA / METRÔ BUTANTÃ \\
+
+    34913 & 48    & METRÔ ITAQUERA / CPTM GUAIANAZES \\
 \hline
-    34960 & 42    & TERM. PENHA / CPTM JOSÉ BONIFÁCIO \\
+
+    35263 & 48    & TERM. PIRITUBA / SOL NASCENTE \\
 \hline
-    34965 & 42    & METRÔ ITAQUERA / JD. SÃO FRANCISCO \\
+
+    32787 & 47    & TERM. CAPELINHA / JD. DAS ROSAS \\
 \hline
-    33110 & 41    & METRÔ SÃO JUDAS / JD. CLÍMAX \\
+
+    32992 & 47    & METRÔ ARTUR ALVIM / CPTM JOSÉ BONIFÁCIO \\
 \hline
-    33555 & 41    & CAMPO BELO / PARAISÓPOLIS \\
+
+    33595 & 47    & METRÔ BARRA FUNDA / JD. DOS FRANCOS \\
 \hline
-    32780 & 40    & TERM. CAPELINHA / VALO VELHO \\
+
+    33698 & 47    & CANGAÍBA / METRÔ GUILHERMINA/ESPERANÇA \\
 \hline
-    33370 & 40    & LGO. CAMBUCI / AMERICANÓPOLIS \\
+
+    33730 & 47    & CPTM GUAIANAZES / VL. IOLANDA II \\
 \hline
-    33551 & 40    & STO. AMARO / JD. TABOÃO \\
+
+    33809 & 47    & METRÔ ITAQUERA / CPTM D. BOSCO \\
 \hline
-    33796 & 40    & METRÔ VL. MATILDE / SHOP. ARICANDUVA \\
+
+    33871 & 47    & NOVA CONQUISTA / JD. GUAIRACÁ \\
 \hline
-    33803 & 40    & JD. SÃO JOÃO / METRÔ ARTUR ALVIM \\
+
+    34201 & 47    & TERM. PIRITUBA / JD. PAULISTANO \\
 \hline
-    33805 & 40    & METRÔ GUILHERMINA/ESPERANÇA / SHOP. ARICANDUVA \\
+
+    34439 & 47    & JD. ITÁPOLIS / TERM. SACOMÃ \\
 \hline
-    34399 & 40    & SHOP. ARICANDUVA / MASCARENHAS DE MORAIS \\
+
+    34528 & 47    & METRÔ ITAQUERA / JD. CAMPOS \\
 \hline
-    34689 & 40    & METRÔ PENHA / JD. KERALUX \\
+
+    34904 & 47    & METRÔ SANTANA / VL. SABRINA \\
 \hline
-    34847 & 40    & BUTANTÃ / PQ. IPÊ \\
+
+    35052 & 47    & TERM. LAPA / TERM. PIRITUBA \\
 \hline
-    34849 & 40    & BUTANTÃ / JD. GUARAÚ \\
+
+    35167 & 47    & JD. LUSO / TERM. STO. AMARO \\
 \hline
-    34851 & 40    & BUTANTÃ / JD. INGÁ \\
+
+    35221 & 47    & CONEXÃO VL. IÓRIO / COHAB BRASILÂNDIA \\
 \hline
-    33015 & 39    & METRÔ TATUAPÉ / VL. SANTANA \\
+
+    32999 & 46    & METRÔ PENHA / PARADA XV DE NOVEMBRO \\
 \hline
-    32987 & 38    & CONJ. JOSÉ BONIFÁCIO / PENHA \\
+
+    33166 & 46    & METRÔ PENHA / JD. NAZARÉ \\
 \hline
-    33067 & 38    & METRÔ VL. MARIANA / JD. MARIA ESTELA II \\
+
+    33716 & 46    & METRÔ ITAQUERA / PQ. GUARANI \\
 \hline
-    33100 & 38    & METRÔ VL. MARIANA / JD. CLÍMAX \\
+
+    34397 & 46    & METRÔ BELÉM / JD. WALKIRIA \\
 \hline
-    33135 & 38    & TERM. A. E. CARVALHO / CID. KEMEL II \\
+
+    34438 & 46    & TERM. SACOMÃ / HOSP. HELIÓPOLIS \\
 \hline
-    33140 & 38    & TERM. A. E. CARVALHO / CONJ. ENCOSTA NORTE \\
+
+    34882 & 46    & METRÔ ARTUR ALVIM / CONJ. ENCOSTA NORTE \\
 \hline
-    33190 & 38    & TERM. PINHEIROS / VL. PIAUÍ \\
+
+    34937 & 46    & METRÔ PENHA / TERM. CID. TIRADENTES \\
 \hline
-    33473 & 38    & PQ. D. PEDRO II / PQ. NOVO MUNDO \\
+
+    34951 & 46    & TERM. VL. CARRÃO / JD. NSA. SRA. DO CARMO \\
 \hline
-    34619 & 38    & TERM. MERCADO / TERM. VL. PRUDENTE \\
+
+    35035 & 46    & SANTANA / VL. NOVA GALVÃO \\
 \hline
-    33058 & 37    & TERM. PQ. D. PEDRO II / PQ. STA. MADALENA \\
+
+    35149 & 46    & METRÔ SANTANA / TERM. SACOMÃ \\
 \hline
-    32927 & 36    & METRÔ ITAQUERA / VL. MARA \\
+
+    35199 & 46    & PQ. CONTINENTAL / TERM. LAPA \\
 \hline
-    33001 & 36    & METRÔ PENHA / GUAIANAZES \\
+
+    32789 & 45    & TERM. CAPELINHA / JD. JANGADEIRO \\
 \hline
-    33783 & 36    & METRÔ BRESSER / UNIV. SÃO JUDAS TADEU \\
+
+    32943 & 45    & SHOP. INTERLAGOS / JD. HERCULANO \\
 \hline
-    33787 & 36    & METRÔ ARTUR ALVIM / SHOP. ARICANDUVA \\
+
+    33693 & 45    & METRÔ PATRIARCA / PONTE RASA \\
 \hline
-    34576 & 36    & SÃO MIGUEL / JD. MABEL \\
+
+    33758 & 45    & SÃO MIGUEL PAULISTA / TERM. CID. TIRADENTES \\
 \hline
-    34652 & 36    & TERM. CAMPO LIMPO / JD. DAS ROSAS \\
+
+    34136 & 45    & LAPA / TERM. CACHOEIRINHA \\
 \hline
-    34692 & 36    & TERM. CAMPO LIMPO / PQ. DO ENGENHO \\
+
+    34880 & 45    & CONJ. CHAPARRAL / METRÔ PENHA \\
 \hline
-    35052 & 36    & TERM. LAPA / TERM. PIRITUBA \\
+
+    34927 & 45    & E.T. ITAQUERA / INÁCIO MONTEIRO \\
 \hline
-    33628 & 35    & MOOCA / CEM. PQ. DOS PINHEIROS \\
+
+    35030 & 45    & METRÔ PARADA INGLESA / HORTO FLORESTAL \\
 \hline
-    33726 & 35    & SHOP. ARICANDUVA / COHAB JOSÉ BONIFÁCIO \\
+
+    35060 & 45    & MORRO DOCE / TERM. LAPA \\
 \hline
-    33761 & 35    & METRÔ TAMANDUATEÍ / SHOP. ARICANDUVA \\
+
+    35198 & 45    & PQ. DA LAPA / TERM. LAPA \\
 \hline
-    34983 & 35    & METRÔ CARRÃO / JD. STO. ANDRÉ \\
+
+    33006 & 44    & METRÔ PATRIARCA / GUAIANAZES \\
 \hline
-    32922 & 34    & PENHA / VL. PARANAGUÁ \\
+
+    33421 & 44    & METRÔ SANTANA / JD. FONTÁLIS \\
 \hline
-    33375 & 34    & METRÔ VERGUEIRO / ELDORADO \\
+
+    33561 & 44    & E.T. Água Espraiada / JD. PAULO VI \\
 \hline
-    34968 & 33    & METRÔ TATUAPÉ / TERM. CID. TIRADENTES \\
+
+    33642 & 44    & TERM. CACHOEIRINHA / VL. PENTEADO \\
 \hline
-    35208 & 33    & STA. CECÍLIA / TERM. VL. MARIANA \\
+
+    34202 & 44    & TERM. PIRITUBA / VL. MIRANTE \\
 \hline
-    35270 & 33    & TERM. GUARAPIRANGA / JD. GUARUJÁ \\
+
+    34435 & 44    & TERM. SACOMÃ / ÁGUA FUNDA \\
 \hline
-    33027 & 32    & CPTM GUAIANAZES / TERM. SÃO MIGUEL \\
+
+    34926 & 44    & E.T. ITAQUERA / COHAB FAZENDA DO CARMO \\
 \hline
-    33028 & 32    & CPTM GUAIANAZES / SÃO MIGUEL \\
+
+    32801 & 43    & TERM. CAPELINHA / JD. LÍDIA \\
 \hline
-    33143 & 32    & TERM. ARICANDUVA / VL. CURUÇÁ \\
+
+    33140 & 43    & TERM. A. E. CARVALHO / CONJ. ENCOSTA NORTE \\
 \hline
-    33167 & 32    & METRÔ ITAQUERA / JD. CAMARGO NOVO \\
+
+    33380 & 43    & METRÔ SANTANA / VL. PENTEADO \\
 \hline
-    33670 & 32    & SÃO MIGUEL / JD. DAS OLIVEIRAS \\
+
+    33568 & 43    & LAPA / TERM. JD. BRITANIA \\
 \hline
-    34405 & 32    & VL. ALPINA / METRÔ BRESSER \\
+
+    33702 & 43    & METRÔ ITAQUERA / JD. NAZARÉ \\
 \hline
-    34418 & 32    & TERM. SÃO MIGUEL / ITAIM PAULISTA \\
+
+    33847 & 43    & JD. DA CONQUISTA / HOSP. SÃO MATEUS \\
 \hline
-    35028 & 32    & METRÔ TUCURUVI / CACHOEIRA \\
+
+    35106 & 43    & TERM. ARICANDUVA / TERM. SÃO MIGUEL \\
 \hline
-    35097 & 32    & CACHOEIRA / METRÔ SANTANA \\
+
+    35178 & 43    & TERM. PINHEIROS / TERM. STO. AMARO \\
 \hline
-    35124 & 32    & VL. CISPER / TERM. PENHA \\
+
+    35220 & 43    & CONEXÃO VL. IÓRIO / VL. IARA \\
 \hline
-    32797 & 31    & TERM. JOÃO DIAS / JD. CAPELINHA \\
+
+    33684 & 42    & METRÔ ITAQUERA / JD. ROBRU \\
 \hline
-    33078 & 30    & PÇA. ALMEIDA JR. / PQ. STA. MADALENA \\
+
+    33878 & 42    & METRÔ CARRÃO / JD. VERA CRUZ  \\
 \hline
-    33743 & 30    & HOSP. SAPOPEMBA / JD. PALANQUE \\
+
+    34436 & 42    & TERM. SACOMÃ / VL. ARAPUÁ \\
 \hline
-    33992 & 30    & STO. AMARO / JD. LÍDIA \\
+
+    35074 & 42    & CONEXÃO PETRÔNIO PORTELA / VL. IARA \\
 \hline
-    34926 & 30    & E.T. ITAQUERA / COHAB FAZENDA DO CARMO \\
+
+    34848 & 41    & HOSP. CAMPO LIMPO / JD. DAS PALMAS \\
 \hline
-    35079 & 30    & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
+
+    34955 & 41    & TERM. VL. CARRÃO / JD. VL. CARRÃO \\
 \hline
-    35082 & 30    & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
+
+    35010 & 41    & METRÔ SÃO JUDAS / AEROPORTO \\
 \hline
-    35166 & 30    & MORUMBI SHOP. / METRÔ JABAQUARA \\
+
+    35173 & 41    & ELDORADO / TERM. STO. AMARO \\
 \hline
-    34527 & 29    & E.T. ÁGUA ESPRAIADA / METRÔ CONCEIÇÃO \\
+
+    32969 & 40    & TERM. CAPELINHA / TERM. JD. JACIRA \\
 \hline
-    33030 & 28    & LAR ESC. SÃO FRANCISCO / METRÔ VL. MARIANA \\
+
+    32991 & 40    & METRÔ ARTUR ALVIM / JD. HELENA \\
 \hline
-    33157 & 28    & METRÔ PENHA / JD. ROMANO \\
+
+    33043 & 40    & METRÔ CONCEIÇÃO / SHOP. SP MARKET \\
 \hline
-    33470 & 28    & METRÔ SANTANA / TERM. PENHA \\
+
+    33714 & 40    & METRÔ ITAQUERA / VL. PROGRESSO \\
 \hline
-    33983 & 28    & STO. AMARO / JD. MITSUTANI \\
+
+    33817 & 40    & METRÔ ITAQUERA / INÁCIO MONTEIRO \\
 \hline
-    34237 & 28    & METRÔ PENHA / JD. DANFER \\
+
+    33831 & 40    & METRÔ ITAQUERA / COHAB BARRO BRANCO \\
 \hline
-    34818 & 28    & METRÔ BUTANTÃ / JD. JOÃO XXIII \\
+
+    33865 & 40    & JD. STO. ANDRÉ / HOSP. SÃO MATEUS \\
 \hline
-    33599 & 27    & SHOP. CENTER NORTE / CEM. DO HORTO \\
+
+    34086 & 40    & METRÔ SÃO JUDAS / PQ. STO. ANTONIO \\
 \hline
-    33615 & 27    & SHOP. CENTER NORTE / JD. FONTÁLIS \\
+
+    34429 & 40    & TERM. SACOMÃ / PQ. BRISTOL \\
 \hline
-    32907 & 26    & TERM. ARICANDUVA / BURGO PAULISTA \\
+
+    35038 & 40    & METRÔ TUCURUVI / JD. FONTÁLIS \\
 \hline
-    32978 & 26    & TERM. ARICANDUVA / JD. COIMBRA \\
+
+    34039 & 39    & TERM. PIRITUBA / VL. MIRANTE \\
 \hline
-    32981 & 26    & TERM. ARICANDUVA / VL. SÃO FRANCISCO \\
+
+    35005 & 39    & TERM. SÃO MATEUS / PQ. BOA ESPERANÇA \\
 \hline
-    33451 & 26    & METRÔ BELÉM / CENTER NORTE \\
+
+    35015 & 39    & LGO. DA CONCÓRDIA / JD. FILHOS DA TERRA \\
 \hline
-    33970 & 26    & TERM. GUARAPIRANGA / CHÁC. STA. MARIA \\
+
+    35131 & 39    & METRÔ BELÉM / TERM. VL. CARRÃO \\
 \hline
-    34239 & 26    & PENHA / JD. VL. NOVA \\
+
+    33018 & 38    & TERM. A. E. CARVALHO / VL. PROGRESSO \\
 \hline
-    35105 & 26    & TERM. ARICANDUVA / TERM. A. E. CARVALHO \\
+
+    33645 & 38    & TERM. CACHOEIRINHA / COHAB BRASILÂNDIA \\
 \hline
-    35106 & 26    & TERM. ARICANDUVA / TERM. SÃO MIGUEL \\
+
+    33666 & 38    & CPTM GUAIANAZES / JD. ROBRU \\
 \hline
-    33450 & 25    & TERM. PRINC. ISABEL / PQ. VL. MARIA \\
+
+    33752 & 38    & TERM. SÃO MATEUS / JD. RECANTO VERDE SOL \\
 \hline
-    34423 & 25    & PQ. BELÉM / TERM. SACOMÃ \\
+
+    33771 & 38    & E.T. ITAQUERA / COHAB PRES. JUSCELINO KUBITSCHECK \\
 \hline
-    32782 & 24    & TERM. CAPELINHA / VALO VELHO \\
+
+    34258 & 38    & JD. ALFREDO / TERM. GUARAPIRANGA \\
 \hline
-    32802 & 24    & TERM. CAPELINHA / JD. GUARUJÁ \\
+
+    34970 & 38    & METRÔ ITAQUERA / JD. REDIL \\
 \hline
-    33174 & 24    & TERM. LAPA / SOL NASCENTE \\
+
+    33678 & 37    & CPTM GUAIANAZES / HOSP. ITAIM \\
 \hline
-    33222 & 24    & COHAB TAIPAS / PERUS \\
+
+    33715 & 37    & VL. REGINA / METRÔ ARTUR ALVIM \\
 \hline
-    33387 & 24    & SHOP. CENTER NORTE / JD. VISTA ALEGRE \\
+
+    33961 & 37    & TERM. GRAJAÚ / JD. GAIVOTAS \\
 \hline
-    33418 & 24    & METRÔ SANTANA / VL. MARIETA \\
+
+    34107 & 37    & TERM. PQ. D. PEDRO II / PQ. DA LAPA \\
 \hline
-    33600 & 24    & METRÔ SANTANA / VL. ROSA \\
+
+    34576 & 37    & SÃO MIGUEL / JD. MABEL \\
 \hline
-    33632 & 24    & METRÔ TUCURUVI / JD. MARINA \\
+
+    34867 & 37    & STO. AMARO / PARAISÓPOLIS \\
 \hline
-    33636 & 24    & METRÔ JD. SÃO PAULO / VL. AMÉLIA \\
+
+    34949 & 37    & TERM. VL. CARRÃO / COHAB JUSCELINO \\
 \hline
-    33682 & 24    & METRÔ ARTUR ALVIM / VL. AMERICANA \\
+
+    34969 & 37    & METRÔ BELÉM / TERM. VL. CARRÃO \\
 \hline
-    33793 & 24    & PQ. SAVOY CITY / METRÔ ARTUR ALVIM \\
+
+    35214 & 37    & TERM. A. E. CARVALHO / ERMELINO MATARAZZO \\
 \hline
-    33882 & 24    & STO. AMARO / JABAQUARA \\
+
+    32793 & 36    & TERM. CAPELINHA / JD. COMERCIAL \\
 \hline
-    34429 & 24    & TERM. SACOMÃ / PQ. BRISTOL \\
+
+    33051 & 36    & METRÔ BELÉM / JD. IMPERADOR \\
 \hline
-    34454 & 24    & VL. MATIAS / IPIRANGA \\
+
+    33143 & 36    & TERM. ARICANDUVA / VL. CURUÇÁ \\
 \hline
-    34657 & 24    & TERM. CAMPO LIMPO / VALO VELHO \\
+
+    33402 & 36    & METRÔ SANTANA / JD. FONTÁLIS \\
 \hline
-    34680 & 24    & TERM. CAMPO LIMPO / PQ. DO LAGO \\
+
+    33473 & 36    & PQ. D. PEDRO II / PQ. NOVO MUNDO \\
 \hline
-    34909 & 24    & CONEXÃO VL. IÓRIO / PERUS \\
+
+    33664 & 36    & CPTM ITAIM PAULISTA / CID. KEMEL II \\
 \hline
-    35030 & 24    & METRÔ PARADA INGLESA / HORTO FLORESTAL \\
+
+    33665 & 36    & CPTM ITAIM PAULISTA / JD. NSA. SRA. DO CAMINHO \\
 \hline
-    35091 & 24    & LGO. DO PERY / METRÔ TUCURUVI \\
+
+    33867 & 36    & VL. PRUDENTE / SÃO MATEUS \\
 \hline
-    35155 & 24    & JD. CELESTE / TERM. SACOMÃ \\
+
+    33911 & 36    & TERM. VARGINHA / JD. ITAJAÍ \\
 \hline
-    35190 & 24    & VALO VELHO / TERM. CAPELINHA \\
+
+    33922 & 36    & TERM. STO. AMARO / JD. SÃO BERNARDO \\
 \hline
-    35263 & 24    & TERM. PIRITUBA / SOL NASCENTE \\
+
+    34655 & 36    & TERM. CAMPO LIMPO / JD. MACEDÔNIA \\
 \hline
-    33266 & 23    & LAPA / JD. D'ABRIL \\
+
+    35171 & 36    & UNISA / TERM. GRAJAÚ \\
 \hline
-    33448 & 23    & METRÔ BARRA FUNDA / JD. FONTÁLIS \\
+
+    33160 & 35    & METRÔ ARTUR ALVIM / JD. DAS OLIVEIRAS \\
 \hline
-    33020 & 22    & COHAB II / JD. HELENA \\
+
+    33224 & 35    & METRÔ VL. MARIANA / TERM. PIRITUBA \\
 \hline
-    33103 & 22    & METRÔ SAÚDE / JD. MARIA ESTELA \\
+
+    33226 & 35    & PÇA. DO CORREIO / TERM. CASA VERDE \\
 \hline
-    33671 & 22    & SÃO MIGUEL / JD. ROBRU \\
+
+    33895 & 35    & CPTM JURUBATUBA / VL. GUACURI \\
 \hline
-    33672 & 22    & SÃO MIGUEL / JD. CAMPOS \\
+
+    34404 & 35    & TERM. SAPOPEMBA / JD. ESTER \\
 \hline
-    33708 & 22    & METRÔ PENHA / LIMOEIRO \\
+
+    34415 & 35    & METRÔ ITAQUERA / JD. SANTANA \\
 \hline
-    33736 & 22    & SÃO MATEUS / GUAIANAZES \\
+
+    34654 & 35    & TERM. CAMPO LIMPO / JD. HELGA \\
 \hline
-    33897 & 22    & E.T. ÁGUA ESPRAIADA / JD. SELMA \\
+
+    34689 & 35    & METRÔ PENHA / JD. KERALUX \\
 \hline
-    34952 & 22    & TERM. SÃO MATEUS / JD. LIMOEIRO \\
+
+    34965 & 35    & METRÔ ITAQUERA / JD. SÃO FRANCISCO \\
 \hline
-    34959 & 22    & TERM. SÃO MATEUS / METALÚRGICOS \\
+
+    35028 & 35    & METRÔ TUCURUVI / CACHOEIRA \\
 \hline
-    34979 & 22    & MUSEU DO IPIRANGA / SÃO MATEUS \\
+
+    35193 & 35    & JD. VAZ DE LIMA / TERM. JOÃO DIAS \\
 \hline
-    35130 & 22    & TERM. SÃO MATEUS / TERM. CID. TIRADENTES \\
+
+    32906 & 34    & TERM. A. E. CARVALHO / CEM. DA SAUDADE \\
 \hline
-    33269 & 21    & METRÔ BARRA FUNDA / JD. JOÃO XXIII \\
+
+    33406 & 34    & SHOP. CENTER NORTE / VL. ALBERTINA \\
 \hline
-    33432 & 21    & METRÔ BELÉM / SHOP. CENTER NORTE \\
+
+    33711 & 34    & METRÔ PENHA / JD. DO CASTELO \\
 \hline
-    33633 & 21    & SANTANA / CENTER NORTE \\
+
+    33866 & 34    & DIV. DE MAUÁ / HOSP. SÃO MATEUS \\
 \hline
-    32795 & 20    & TERM. CAPELINHA / JD. SÃO BENTO \\
+
+    33912 & 34    & TERM. VARGINHA / JD. SETE DE SETEMBRO \\
 \hline
-    33186 & 20    & TERM. LAPA / VL. PIAUÍ \\
+
+    34403 & 34    & JD. SÃO ROBERTO / CONJ. TEOTÔNIO VILELA \\
 \hline
-    33668 & 20    & METRÔ BARRA FUNDA / JD. PERY ALTO \\
+
+    34407 & 34    & DIV. DE SÃO CAETANO / SÃO MATEUS \\
 \hline
-    33699 & 20    & METRÔ PENHA / VL. SÍLVIA \\
+
+    32927 & 33    & METRÔ ITAQUERA / VL. MARA \\
 \hline
-    33877 & 20    & METRÔ SAÚDE / VL. MORAES \\
+
+    33222 & 33    & COHAB TAIPAS / PERUS \\
 \hline
-    33994 & 20    & STO. AMARO / JD. UNIVERSAL \\
+
+    33920 & 33    & TERM. VARGINHA / JD. VARGINHA \\
 \hline
-    34016 & 20    & LAPA / METRÔ BARRA FUNDA \\
+
+    34137 & 33    & METRÔ BARRA FUNDA / TERM. CACHOEIRINHA \\
 \hline
-    34483 & 20    & METRÔ TATUAPÉ / PQ. SÃO LUCAS \\
+
+    34653 & 33    & TERM. CAMPO LIMPO / JD. ROSANA \\
 \hline
-    34656 & 20    & TERM. CAMPO LIMPO / JD. GUARUJÁ \\
+
+    34847 & 33    & BUTANTÃ / PQ. IPÊ \\
 \hline
-    35183 & 20    & VALO VELHO / TERM. CAPELINHA \\
+
+    35033 & 33    & LAPA / MANDAQUI \\
 \hline
-    35157 & 19    & VL. PRUDENTE / METRÔ VL. MARIANA \\
+
+    32795 & 32    & TERM. CAPELINHA / JD. SÃO BENTO \\
 \hline
-    32902 & 18    & METRÔ ARTUR ALVIM / TERM. A. E. CARVALHO \\
+
+    32796 & 32    & TERM. CAPELINHA / JD. VALE DAS VIRTUDES \\
 \hline
-    32994 & 18    & METRÔ ARTUR ALVIM / JD. ROBRU \\
+
+    33021 & 32    & TERM. SÃO MATEUS / GUAIANAZES \\
 \hline
-    34443 & 18    & TERM. PQ. D. PEDRO II / JD. CELESTE \\
+
+    33674 & 32    & CPTM GUAIANAZES / JD. BANDEIRANTES \\
 \hline
-    34841 & 18    & BUTANTÃ / JD. MARIA LUIZA \\
+
+    34380 & 32    & METRÔ ITAQUERA / CID. TIRADENTES \\
 \hline
-    34930 & 18    & BUTANTÃ / VL. DALVA \\
+
+    34936 & 32    & METRÔ CARRÃO / TERM. SÃO MATEUS \\
 \hline
-    35112 & 18    & VL. CISPER (CPTM USP) / TERM. A. E. CARVALHO \\
+
+    34953 & 32    & TERM. SÃO MATEUS / JD. IGUATEMI \\
 \hline
-    35201 & 18    & TERM. PINHEIROS / TERM. LAPA \\
+
+    34979 & 32    & MUSEU DO IPIRANGA / SÃO MATEUS \\
 \hline
-    33811 & 17    & METRÔ ITAQUERA / SÃO MATEUS \\
+
+    35115 & 32    & ERMELINO MATARAZZO / TERM. PENHA \\
 \hline
-    32789 & 16    & TERM. CAPELINHA / JD. JANGADEIRO \\
+
+    35122 & 32    & JD. DANFER / TERM. PENHA     \\
 \hline
-    32969 & 16    & TERM. CAPELINHA / TERM. JD. JACIRA \\
+
+    32932 & 31    & TERM. SÃO MATEUS / JD. HELENA \\
 \hline
-    33337 & 16    & METRÔ SANTANA / HOSP. CACHOEIRINHA \\
+
+    33316 & 31    & METRÔ SANTANA - CIRCULAR / CONJ. DOS BANCÁRIOS \\
 \hline
-    33624 & 16    & TATUAPÉ / JD. BRASIL \\
+
+    33663 & 31    & CPTM ITAIM PAULISTA / CID. KEMEL I \\
 \hline
-    33802 & 16    & METRÔ ARTUR ALVIM / CID. LIDER \\
+
+    33748 & 31    & CPTM GUAIANAZES / CID. TIRADENTES \\
 \hline
-    34763 & 16    & JD. ÂNGELA / JD. HORIZONTE AZUL \\
+
+    33815 & 31    & METRÔ ITAQUERA / COHAB PRESTES MAIA \\
 \hline
-    34766 & 16    & JD. ÂNGELA / JD. VERA CRUZ \\
+
+    34760 & 31    & EST. STO. AMARO/GUIDO CALOI / TERM. JD. JACIRA \\
 \hline
-    35010 & 16    & METRÔ SÃO JUDAS / AEROPORTO \\
+
+    34912 & 31    & CPTM GUAIANAZES / JD. SÃO PAULO \\
 \hline
-    35115 & 16    & ERMELINO MATARAZZO / TERM. PENHA \\
+
+    35014 & 31    & LAPA / COHAB RAPOSO TAVARES \\
 \hline
-    33310 & 15    & METRÔ SANTANA / JD. ANTÁRTICA \\
+
+    35087 & 31    & METRÔ SANTANA / TERM. CACHOEIRINHA \\
 \hline
-    33315 & 15    & METRÔ SANTANA / PEDRA BRANCA \\
+
+    35170 & 31    & VL. MISSIONÁRIA / METRÔ JABAQUARA \\
 \hline
-    33316 & 15    & METRÔ SANTANA - CIRCULAR / CONJ. DOS BANCÁRIOS \\
+
+    32880 & 30    & CPTM GRAJAÚ / JD. ALPINO \\
 \hline
-    33625 & 14    & METRÔ TATUAPÉ / JD. TREMEMBÉ \\
+
+    33241 & 30    & PINHEIROS / JD. ADALGIZA \\
 \hline
-    33629 & 14    & METRÔ TATUAPÉ / PQ. NOVO MUNDO \\
+
+    34566 & 30    & CPTM VL. MARA/ITAIM / JD. SÃO MARTINHO \\
 \hline
-    33698 & 14    & CANGAÍBA / METRÔ GUILHERMINA/ESPERANÇA \\
+
+    32782 & 29    & TERM. CAPELINHA / VALO VELHO \\
 \hline
-    33705 & 14    & METRÔ ITAQUERA / UNIÃO DE VL. NOVA \\
+
+    33244 & 29    & SESC POMPÉIA / PQ. CONTINENTAL \\
 \hline
-    33893 & 14    & HOSP. SÃO PAULO / JD. MIRIAM \\
+
+    33411 & 29    & METRÔ SANTANA / VL. NOVA GALVÃO \\
 \hline
-    34105 & 14    & HOSP. DAS CLÍNICAS / LAPA \\
+
+    33660 & 29    & CPTM GUAIANAZES / JD. NSA. SRA. DO CAMINHO \\
 \hline
-    34258 & 14    & JD. ALFREDO / TERM. GUARAPIRANGA \\
+
+    34692 & 29    & TERM. CAMPO LIMPO / PQ. DO ENGENHO \\
 \hline
-    35108 & 14    & METRÔ ITAQUERA / TERM. SÃO MIGUEL \\
+
+    34842 & 29    & BUTANTÃ / CDHU MUNCK \\
 \hline
-    35151 & 14    & TERM. SACOMÃ / TERM. SAPOPEMBA \\
+
+    35011 & 29    & METRÔ - TRIANON - MASP / VL. GOMES \\
 \hline
-    35187 & 14    & PQ. DO LAGO / TERM. GUARAPIRANGA \\
+
+    35108 & 29    & METRÔ ITAQUERA / TERM. SÃO MIGUEL \\
 \hline
-    35188 & 14    & JD. UNIVERSAL / TERM. CAPELINHA \\
+
+    35129 & 29    & METRÔ ITAQUERA / TERM. VL. CARRÃO \\
 \hline
-    33056 & 13    & MOOCA / PQ. STA. MADALENA \\
+
+    33705 & 28    & METRÔ ITAQUERA / UNIÃO DE VL. NOVA \\
 \hline
-    33788 & 13    & METRÔ PENHA / COHAB JOSÉ BONIFÁCIO \\
+
+    33957 & 28    & TERM. GRAJAÚ / JD. LUCÉLIA \\
 \hline
-    34811 & 13    & TERM. GUARAPIRANGA / PQ. DO LAGO \\
+
+    34633 & 28    & CPTM GUAIANAZES / JD. FANGANIELO \\
 \hline
-    33101 & 12    & METRÔ VL. MARIANA / JD. SÃO SAVÉRIO \\
+
+    34811 & 28    & TERM. GUARAPIRANGA / PQ. DO LAGO \\
 \hline
-    33188 & 12    & LAPA / PQ. SÃO DOMINGOS \\
+
+    34967 & 28    & METRÔ GUILHERMINA/ESPERANÇA / BARRO BRANCO \\
 \hline
-    33804 & 12    & METRÔ ARTUR ALVIM / JD. NSA. SRA. DO CARMO \\
+
+    35037 & 28    & PQ. NOVO MUNDO / JAÇANÃ \\
 \hline
-    34260 & 12    & JABAQUARA / SHOP. INTERLAGOS \\
+
+    35071 & 28    & CONEXÃO PETRÔNIO PORTELA / JD. CAROMBÉ \\
 \hline
-    34437 & 12    & TERM. SACOMÃ / JD. MARIA ESTELA \\
+
+    32809 & 27    & TERM. CAMPO LIMPO / JD. MACEDÔNIA \\
 \hline
-    35067 & 12    & MORRO GRANDE / METRÔ BARRA FUNDA \\
+
+    33835 & 27    & METRÔ ITAQUERA / CID. TIRADENTES \\
 \hline
-    35092 & 12    & PEDRA BRANCA / METRÔ SANTANA \\
+
+    34839 & 27    & METRÔ BUTANTÃ / PQ. CONTINENTAL \\
 \hline
-    35218 & 12    & LAPA / CONEXÃO VL. IÓRIO \\
+
+    35066 & 27    & TERM. CASA VERDE / TERM. PIRITUBA \\
 \hline
-    33874 & 11    & METRÔ STA. CRUZ / SACOMÃ \\
+
+    35082 & 27    & TERM. PQ. D. PEDRO II / METRÔ TUCURUVI \\
 \hline
-    34433 & 11    & TERM. SACOMÃ / VL. BRASILINA \\
+
+    35179 & 27    & TERM. PINHEIROS / TERM. CAMPO LIMPO \\
 \hline
-    34974 & 11    & METRÔ VL. PRUDENTE / PQ. SAVOY CITY \\
+
+    33937 & 26    & TERM. VARGINHA / JD. CHÁC. DO SOL \\
 \hline
-    33026 & 10    & TERM. VL. CARRÃO / GUAIANAZES \\
+
+    34763 & 26    & JD. ÂNGELA / JD. HORIZONTE AZUL \\
 \hline
-    33637 & 10    & TERM. PARADA INGLESA / JD. HEBRON \\
+
+    34766 & 26    & JD. ÂNGELA / JD. VERA CRUZ \\
 \hline
-    34021 & 10    & TERM. LAPA / REMÉDIOS \\
+
+    35111 & 26    & OLIVEIRINHA / TERM. A. E. CARVALHO \\
 \hline
-    34944 & 10    & TERM. VL. CARRÃO / ITAQUERA \\
+
+    35138 & 26    & TERM. CID. TIRADENTES / CPTM GUAIANAZES \\
 \hline
-    34949 & 10    & TERM. VL. CARRÃO / COHAB JUSCELINO \\
+
+    33057 & 25    & VL. PRUDENTE / VL. CALIFÓRNIA \\
 \hline
-    35055 & 10    & VL. PIAUÍ / TERM. LAPA \\
+
+    33672 & 25    & SÃO MIGUEL / JD. CAMPOS \\
 \hline
-    35129 & 10    & METRÔ ITAQUERA / TERM. VL. CARRÃO \\
+
+    34418 & 25    & TERM. SÃO MIGUEL / ITAIM PAULISTA \\
 \hline
-    35141 & 10    & SAVOY/DALILA / TERM. VL. CARRÃO \\
+
+    35102 & 25    & JD. PERY ALTO / METRÔ SANTANA \\
 \hline
-    35153 & 10    & JD. PLANALTO / TERM. SACOMÃ \\
+
+    35107 & 25    & CPTM GUAIANAZES / TERM. SÃO MIGUEL \\
 \hline
-    34945 & 9     & TERM. VL. CARRÃO / GUAIANAZES \\
+
+    33037 & 24    & PQ. IBIRAPUERA / JD. APURÁ \\
 \hline
-    35015 & 9     & LGO. DA CONCÓRDIA / JD. FILHOS DA TERRA \\
+
+    33475 & 24    & TERM. CACHOEIRINHA / JD. STA. CRUZ \\
 \hline
-    32796 & 8     & TERM. CAPELINHA / JD. VALE DAS VIRTUDES \\
+
+    33569 & 24    & PERUS / MORRO DOCE \\
 \hline
-    32893 & 8     & TERM. PQ. D. PEDRO II / TERM. VL. PRUDENTE \\
+
+    34652 & 24    & TERM. CAMPO LIMPO / JD. DAS ROSAS \\
 \hline
-    32988 & 8     & CHÁC. BELA VISTA / METRÔ PENHA \\
+
+    34945 & 24    & TERM. VL. CARRÃO / GUAIANAZES \\
 \hline
-    32992 & 8     & METRÔ ARTUR ALVIM / CPTM JOSÉ BONIFÁCIO \\
+
+    34954 & 24    & TERM. SÃO MATEUS / JD. STO. ANDRÉ \\
 \hline
-    33018 & 8     & TERM. A. E. CARVALHO / VL. PROGRESSO \\
+
+    32780 & 23    & TERM. CAPELINHA / VALO VELHO \\
 \hline
-    33182 & 8     & LAPA / PERUS \\
+
+    33173 & 23    & METRÔ ITAQUERA / JD. CAMARGO VELHO \\
 \hline
-    33421 & 8     & METRÔ SANTANA / JD. FONTÁLIS \\
+
+    33797 & 23    & METRÔ ITAQUERA / CPTM JOSÉ BONIFÁCIO \\
 \hline
-    33515 & 8     & TERM. PENHA / TERM. SÃO MATEUS \\
+
+    34667 & 23    & TERM. CAMPO LIMPO / JD. MACEDÔNIA \\
 \hline
-    33569 & 8     & PERUS / MORRO DOCE \\
+
+    34958 & 23    & METALÚRGICOS / VL. YOLANDA \\
 \hline
-    33578 & 8     & BOM RETIRO / JD. ELISA MARIA \\
+
+    35150 & 23    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
 \hline
-    33686 & 8     & METRÔ VL. MATILDE / CEM. DA SAUDADE \\
+
+    35215 & 23    & VL. SOLANGE / CPTM GUAIANAZES \\
 \hline
-    33847 & 8     & JD. DA CONQUISTA / HOSP. SÃO MATEUS \\
+
+    33917 & 22    & TERM. VARGINHA / JD. NORONHA \\
 \hline
-    33852 & 8     & TERM. PQ. D. PEDRO II / JD. COLORADO \\
+
+    34026 & 22    & TERM. PIRITUBA / STA. MÔNICA \\
 \hline
-    33865 & 8     & JD. STO. ANDRÉ / HOSP. SÃO MATEUS \\
+
+    34218 & 22    & TERM. BANDEIRA / TERM. GUARAPIRANGA \\
 \hline
-    33866 & 8     & DIV. DE MAUÁ / HOSP. SÃO MATEUS \\
+
+    34356 & 22    & TERM. VARGINHA / JD. SÃO NICOLAU \\
 \hline
-    34654 & 8     & TERM. CAMPO LIMPO / JD. HELGA \\
+
+    34565 & 22    & CPTM VL. MARA/ITAIM / JD. SÃO MARTINHO \\
 \hline
-    34880 & 8     & CONJ. CHAPARRAL / METRÔ PENHA \\
+
+    34665 & 22    & TERM. CAMPO LIMPO / JD. MITSUTANI \\
 \hline
-    35013 & 8     & LAPA / JD. BOA VISTA \\
+
+    35105 & 22    & TERM. ARICANDUVA / TERM. A. E. CARVALHO \\
 \hline
-    35099 & 8     & JD. CAMPO LIMPO / METRÔ SANTANA \\
+
+    35112 & 22    & VL. CISPER (CPTM USP) / TERM. A. E. CARVALHO \\
 \hline
-    35128 & 8     & TERM. PENHA / TERM. SÃO MATEUS \\
+
+    35114 & 22    & CPTM GUAIANAZES / TERM. A. E. CARVALHO \\
 \hline
-    35210 & 8     & PQ. ARARIBA / TERM. CAPELINHA \\
+
+    33810 & 21    & METRÔ ITAQUERA / JD. LARANJEIRA \\
 \hline
-    33057 & 6     & VL. PRUDENTE / VL. CALIFÓRNIA \\
+
+    34761 & 21    & TERM. PINHEIROS / EST. STO. AMARO/GUIDO CALOI \\
 \hline
-    33094 & 6     & VL. PRUDENTE / VL. INDUSTRIAL \\
+
+    34788 & 21    & ITAIM BIBI / TERM. GUARAPIRANGA \\
 \hline
-    33613 & 6     & CARANDIRU / JOVA RURAL \\
+
+    34948 & 21    & CIRCULAR / JD. NOVA VITÓRIA \\
 \hline
-    33695 & 6     & VL. RUI BARBOSA / METRÔ VL. MATILDE \\
+
+    35062 & 21    & JD. PRINCESA / TERM. CACHOEIRINHA \\
 \hline
-    34430 & 6     & TERM. SACOMÃ / VL. ARAPUÁ \\
+
+    35088 & 21    & PEDRA BRANCA / TERM. CACHOEIRINHA \\
 \hline
-    34901 & 6     & METRÔ BARRA FUNDA / LIMÃO \\
+
+    35146 & 21    & TERM. PQ. D. PEDRO II / TERM. SACOMÃ \\
 \hline
-    35035 & 6     & SANTANA / VL. NOVA GALVÃO \\
+
+    33842 & 20    & METRÔ ITAQUERA / GLEBA DO PESSEGO \\
 \hline
-    35154 & 6     & VL. ARAPUÁ / TERM. SACOMÃ \\
+
+    34110 & 20    & JAGUARÉ / CITY JARAGUÁ \\
 \hline
-    33741 & 5     & METRÔ BELÉM / JD. ITÁPOLIS \\
+
+    34946 & 20    & BARRO BRANCO / TERM. CID. TIRADENTES \\
 \hline
-    33045 & 4     & VL. PRUDENTE / VL. INDUSTRIAL \\
+
+    35205 & 20    & CPTM LEOPOLDINA / METRÔ VL. MADALENA \\
 \hline
-    33180 & 4     & LAPA / PQ. MORRO DOCE \\
+
+    35249 & 20    & JD. SÃO ROBERTO / TERM. SAPOPEMBA \\
 \hline
-    33244 & 4     & SESC POMPÉIA / PQ. CONTINENTAL \\
+
+    32945 & 19    & JD. NOVA ERA / TERM. VARGINHA \\
 \hline
-    34402 & 4     & METRÔ ALTO DO IPIRANGA / CONJ. HAB. HELIÓPOLIS \\
+
+    33167 & 19    & METRÔ ITAQUERA / JD. CAMARGO NOVO \\
 \hline
-    34436 & 4     & TERM. SACOMÃ / VL. ARAPUÁ \\
+
+    33677 & 19    & CPTM GUAIANAZES / DIV. DE FERRAZ \\
 \hline
-    34440 & 4     & TERM. SACOMÃ / JD. PATENTE \\
+
+    33823 & 19    & METRÔ ITAQUERA / COHAB II \\
 \hline
-    35060 & 4     & MORRO DOCE / TERM. LAPA \\
+
+    33927 & 19    & TERM. VARGINHA / PQ. FLORESTAL \\
 \hline
-    33371 & 3     & STO. AMARO / METRÔ JABAQUARA \\
+
+    34490 & 19    & JD. ÂNGELA / VL. GILDA \\
 \hline
-    33790 & 3     & VL. DALILA / METRÔ VL. MATILDE \\
+
+    34849 & 19    & BUTANTÃ / JD. GUARAÚ \\
 \hline
-    35023 & 3     & TERM. PQ. D. PEDRO II / METRÔ SANTANA \\
+
+    34947 & 18    & BARRO BRANCO / TERM. CID. TIRADENTES \\
 \hline
-    33429 & 2     & TERM. PRINC. ISABEL / PQ. EDÚ CHAVES \\
+
+    35216 & 18    & TERM. CID. TIRADENTES / CID. TIRADENTES \\
 \hline
-    33896 & 2     & METRÔ CONCEIÇÃO / JD. APURÁ \\
+
+    35222 & 18    & JD. MABEL / JD. ROMANO \\
 \hline
-    34872 & 2     & SHOP. D / PQ. EDU CHAVES \\
+
+    33138 & 17    & CPTM ITAIM PAULISTA / JD. NÉLIA \\
 \hline
-    35049 & 2     & METRÔ TIETÊ / VL. MEDEIROS \\
+
+    34656 & 17    & TERM. CAMPO LIMPO / JD. GUARUJÁ \\
 \hline
-    33049 & 1     & SHOP. METRÔ TATUAPÉ / JD. GUAIRACÁ \\
+
+    33929 & 16    & CPTM JURUBATUBA / JD. GAIVOTAS \\
 \hline
-    33426 & 1     & SHOP. D / JD. PRIMAVERA \\
+
+    33930 & 16    & TERM. VARGINHA / JD. REC. CAMPO BELO \\
 \hline
-    33884 & 1     & JABAQUARA / VL. GUACURI \\
+
+    33934 & 16    & SHOP. INTERLAGOS / CANTINHO DO CÉU \\
 \hline
-    33885 & 1     & STO. AMARO / JD. LUSO \\
+
+    33954 & 16    & TERM. GRAJAÚ / JD. PRAINHA \\
 \hline
-    33905 & 1     & METRÔ JABAQUARA / REFÚGIO STA. TEREZINHA \\
+
+    34557 & 16    & METRÔ SANTANA / JD. CABUÇU \\
 \hline
-    34291 & 1     & METRÔ SÃO JUDAS / JD. UBIRAJARA \\
+
+    34852 & 16    & TERM. STO. AMARO / JD. CAIÇARA \\
 \hline
-    34842 & 1     & BUTANTÃ / CDHU MUNCK \\
+
+    34956 & 16    & JD. RODOLFO PIRANI / TERM. SÃO MATEUS \\
 \hline
+
+    34957 & 16    & JD. RODOLFO PIRANI / TERM. SÃO MATEUS \\
+\hline
+
+    35055 & 16    & VL. PIAUÍ / TERM. LAPA \\
+\hline
+
+    33928 & 15    & TERM. VARGINHA / JD. STA. TEREZINHA \\
+\hline
+
+    34025 & 15    & TERM. PIRITUBA / HAB. TURÍSTICA \\
+\hline
+
+    34433 & 15    & TERM. SACOMÃ / VL. BRASILINA \\
+\hline
+
+    34657 & 15    & TERM. CAMPO LIMPO / VALO VELHO \\
+\hline
+
+    35063 & 15    & JD. PAULISTANO / TERM. PIRITUBA \\
+\hline
+
+    35119 & 15    & ARTUR ALVIM / METRÔ ITAQUERA \\
+\hline
+
+    35120 & 15    & JD. STO. ANTÔNIO / METRÔ ITAQUERA \\
+\hline
+
+    35123 & 15    & METRÔ ITAQUERA / TERM. A. E. CARVALHO \\
+\hline
+
+    33274 & 14    & HOSP. DAS CLÍNICAS / JD. JOÃO XXIII \\
+\hline
+
+    34391 & 14    & METRÔ BELÉM / TERM. SAPOPEMBA \\
+\hline
+
+    34914 & 14    & CPTM JOSÉ BONIFÁCIO / GUAIANAZES \\
+\hline
+
+    34959 & 14    & TERM. SÃO MATEUS / METALÚRGICOS \\
+\hline
+
+    35113 & 14    & CID. KEMEL / TERM. SÃO MIGUEL \\
+\hline
+
+    35116 & 14    & JD. CAMARGO VELHO / TERM. SÃO MIGUEL \\
+\hline
+
+    35117 & 14    & JD. CAMARGO VELHO / TERM. SÃO MIGUEL \\
+\hline
+
+    35121 & 14    & VL. CISPER (CPTM USP) / TERM. SÃO MIGUEL \\
+\hline
+
+    35152 & 14    & HOSP. SÃO MATEUS / TERM. SAPOPEMBA \\
+\hline
+
+    33722 & 13    & METALÚRGICOS / TERM. CID. TIRADENTES \\
+\hline
+
+    33725 & 13    & VL. PAULISTA I / TERM. CID. TIRADENTES \\
+\hline
+
+    33939 & 13    & TERM. VARGINHA / MARSILAC \\
+\hline
+
+    34313 & 13    & TERM. VARGINHA / JD. STA. FÉ \\
+\hline
+
+    34393 & 12    & PÇA. DO CORREIO / TERM. SAPOPEMBA \\
+\hline
+
+    34841 & 12    & BUTANTÃ / JD. MARIA LUIZA \\
+\hline
+
+    35254 & 12    & JD. MONTE BELO / TERM. JD. BRITANIA \\
+\hline
+
+    33811 & 11    & METRÔ ITAQUERA / SÃO MATEUS \\
+\hline
+
+    34144 & 11    & PÇA. DA SÉ / CID. UNIVERSITÁRIA \\
+\hline
+
+    34560 & 11    & METRÔ SANTANA / PEDRA BRANCA \\
+\hline
+
+    33243 & 10    & ITAIM BIBI / RIO PEQUENO \\
+\hline
+
+    33824 & 10    & CPTM JOSÉ BONIFÁCIO / VL. YOLANDA \\
+\hline
+
+    34644 & 10    & SETOR IIB / TERM. CID. TIRADENTES \\
+\hline
+
+    34952 & 10    & TERM. SÃO MATEUS / JD. LIMOEIRO \\
+\hline
+
+    35018 & 9     & CIRCULAR / TERM. CID. TIRADENTES \\
+\hline
+
+    35128 & 9     & TERM. PENHA / TERM. SÃO MATEUS \\
+\hline
+
+    35130 & 9     & TERM. SÃO MATEUS / TERM. CID. TIRADENTES \\
+\hline
+
+    35132 & 9     & JD. DA CONQUISTA / TERM. SÃO MATEUS \\
+\hline
+
+    35133 & 9     & JD. STO. ANDRÉ / TERM. SÃO MATEUS \\
+\hline
+
+    35145 & 9     & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS \\
+\hline
+
+    34498 & 8     & TERM. STO. AMARO / TERM. JD. ÂNGELA \\
+\hline
+
+    34659 & 8     & TERM. PINHEIROS / TERM. CAMPO LIMPO \\
+\hline
+
+    34720 & 8     & JD. ÂNGELA / JD. DOS REIS \\
+\hline
+
+    35182 & 8     & VL. GILDA / TERM. JD. ÂNGELA \\
+\hline
+
+    35184 & 8     & JD. GUARUJÁ / TERM. CAPELINHA \\
+\hline
+
+    35185 & 8     & JD. HORIZONTE AZUL / TERM. JD. ÂNGELA \\
+\hline
+
+    35195 & 8     & JD. IRENE / TERM. CAMPO LIMPO \\
+\hline
+
+    33206 & 7     & PÇA. RAMOS DE AZEVEDO / MORRO DOCE \\
+\hline
+
+    33280 & 7     & PÇA. RAMOS DE AZEVEDO / JD. JOÃO XXIII/EDUC. \\
+\hline
+
+    34924 & 7     & METRÔ ITAQUERA / COHAB FAZENDA DO CARMO \\
+\hline
+
+    33245 & 6     & METRÔ - TRIANON - MASP  / PQ. CONTINENTAL \\
+\hline
+
+    35029 & 6     & CACHOEIRA / DIB \\
+\hline
+
+    35137 & 6     & BARRO BRANCO / TERM. CID. TIRADENTES \\
+\hline
+
+    35142 & 6     & VL. YOLANDA / TERM. CID. TIRADENTES \\
+\hline
+
+    34818 & 5     & METRÔ BUTANTÃ / JD. JOÃO XXIII \\
+\hline
+
+    35186 & 5     & PQ. DO LAGO / TERM. JD. ÂNGELA \\
+\hline
+
+    34998 & 4     & CHÁC. MARIA TRINDADE / TERM. JD. BRITÂNIA \\
+\hline
+
+    35124 & 4     & VL. CISPER / TERM. PENHA \\
+\hline
+
+    34719 & 3     & JD. ÂNGELA / JD. SÃO LOURENÇO \\
+\hline
+
+    33953 & 2     & TERM. GRAJAÚ / CANTINHO DO CÉU \\
+\hline
+
+    35223 & 2     & PARELHEIROS / CHÁC. BOSQUE DO SOL \\
+\hline
+
+    33795 & 1     & METRÔ ITAQUERA / JD. LIMOEIRO \\
+\hline
+
+    33948 & 1     & TERM. PARELHEIROS / JD. ORIENTAL/FONTES \\
+\hline
+
+
 \end{longtable}
 
 \normalsize
