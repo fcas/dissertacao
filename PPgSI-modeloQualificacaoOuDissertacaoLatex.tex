@@ -6466,6 +6466,98 @@ Os melhores (\textit{best}) nós são os definidos como redução relativa a imp
 \item \textit{presort} --- $bool$, opcional ($default=False$) --- Se o valor desse parâmetro é igual a $true$ é realizada uma pré-ordenação dos dados, o que acelera encontrar as melhores divisões das árvores de decisão no processo de ajuste. Ao habilitar esse parâmetro, a velocidade do processo de treinamento de um grande volume de dados  é reduzida. Por outro lado, habilitar esse parâmetro em alguns casos pode acelerar o processo de treinamento, como quando há pequenos conjuntos de dados, ou, restrição quanto a profundidade da árvore de decisão.
 \end{itemize}
 
+\section{Floresta Aleatória}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}. Acessado em 08 de outubro de 2018.}
+
+\begin{itemize}
+\item \textit{n\_estimators} --- $integer$, opcional ($default=100$) --- Parâmetro responsável pelo número de árvores na floresta.
+\item \textit{criterion} --- $string$, opcional ($default=$\textit{``gini''}) --- Parâmetro responsável por definir a função que mede a qualidade da divisão da árvore de decisão. Os valores suportados são $gini$ para a \textit{impureza Gini} e $entropy$ para o \textit{ganho de informação}.
+\item \textit{max\_depth} --- $int$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por definir a profundidade máxima da árvore. Se definido como $None$, os nós são expandidos até que todas as folhas fiquem puras ou até que todas as folhas contenham menos amostras que $min\_samples\_split$.
+\item \textit{min\_samples\_split} --- $int$, $float$, opcional ($default=2$) --- Parâmetro responsável por definir o número mínimo de amostras necessárias para dividir um nó interno.
+\item \textit{min\_samples\_leaf} --- $int$, $float$, opcional ($default=1$) --- Parâmetro responsável por definir o número mínimo de amostras necessárias em um nó folha. Um ponto de divisão em qualquer profundidade só será considerado se deixar pelo menos $min\_samples\_leaf$ amostras de treinamento em cada uma das ramificações esquerda e direita. Isso pode ter o efeito de suavizar o modelo, especialmente na regressão.
+\item \textit{min\_weight\_fraction\_leaf} --- $float$, opcional ($default=0.$) --- Parâmetro responsável por definir a fração ponderada mínima da soma total de pesos (de todas as amostras de entrada) necessária para estar em um nó folha. As amostras têm peso igual quando \textit{sample\_weight} não é fornecido.
+\item \textit{max\_features} --- $int$, $float$, $string$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por definir o número de \textit{features} (características) a serem consideradas ao procurar a melhor divisão. A procura por uma divisão não é interrompida até que pelo menos uma partição válida das amostras de nó seja localizada, mesmo que seja necessário inspecionar do que mais de \textit{max\_features} características.
+\item \textit{random\_state} --- $int$, $RandomState instance$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por determinar a estratégia de geração de número aleatórios. Se definido como $RandomState$, $random\_state$ será o gerador de números aleatórios; se $None$ o gerador de números aleatórios é a instância $RandomState$ usada por $np.random$.
+\item \textit{max\_leaf\_nodes} --- $int$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por gerar uma árvore com o máximo número de nós folhas, usando a estratégia \textit{best-first}.
+Os melhores (\textit{best}) nós são os definidos como redução relativa a impureza. Caso o parâmetro seja definido como $None$ então o número máximo de nós folhas será ilimitado. 
+\item \textit{min\_impurity\_decrease} --- $float$, opcional ($default=0.$) --- Parâmetro responsável por definir que um nó será dividido se essa divisão induzir uma diminuição da impureza maior ou igual a esse valor.
+\item \textit{bootstrap} --- $boolean$, opcional ($default=True$) --- Parâmetro responsável por definir se amostras de \textit{bootstrap} serão usadas ao construir árvores.
+\item \textit{oob\_score} --- $boolean$, opcional ($default=False$) --- Parâmetro responsável por definir o uso de amostras \textit{out-of-bag} para estimar a precisão da generalização.
+\item \textit{n\_jobs} --- $int$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por definir o número de $jobs$ a serem executados em paralelo durante os processos de \textit{fit} e \textit{predict}. $None$ define 1 \textit{job} a menos que esteja em um contexto \textit{joblib.parallel\_backend}; -1 define que todos os processadores sejam usados.
+\item \textit{verbose} --- $int$, opcional ($default=0$) ---
+Parâmetro responsável por controlar a verbosidade durante os processos de \textit{fit} e \textit{predict}.
+\item \textit{warm\_start} --- $bool$, opcional ($default=False$) --- Parâmetro que
+quando definido como $True$ reutiliza a solução da chamada anterior no processo de \textit{fit} e adiciona mais estimadores ao \textit{ensemble}, caso contrário, apenas aplica o processo de \textit{fit} a toda uma nova floresta.
+\item \textit{class\_weight} --- $dict$, $list$ de $dict$, ``$balanced$'', $None$, $default=None$ --- Parâmetro responsável por associar ponderação as classes, no seguinte formato: ``${class\_label: weight}$''. Caso não haja valores para esse parâmetro, supõem-se que todos as classes possuam o mesmo peso. 
+\item \textit{presort} --- $bool$, opcional ($default=False$) --- Se o valor desse parâmetro é igual a $true$ é realizada uma pré-ordenação dos dados, o que acelera encontrar as melhores divisões das árvores de decisão no processo de ajuste. Ao habilitar esse parâmetro, a velocidade do processo de treinamento de um grande volume de dados  é reduzida. Por outro lado, habilitar esse parâmetro em alguns casos pode acelerar o processo de treinamento, como quando há pequenos conjuntos de dados, ou, restrição quanto a profundidade da árvore de decisão.
+\end{itemize}
+
+\section{K-ésimo Vizinho mais Próximo}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acessado em 08 de outubro de 2018.}
+
+\begin{itemize}
+
+\item \textit{n\_neighbors} --- $int$, opcional ($default = 5$) --- Parâmetro responsável por definir o número padrão de \textit{neighbors} usados pelas \textit{kneighbors queries}.
+
+\item \textit{weights} --- $str$ ou $callable$, opcional ($default = ‘uniform’$) --- Parâmetro usado para definir a função de peso usada no processo \textit{predict}. Valores possíveis: (I) $uniform$: pesos uniformes; todos os pontos em cada vizinha são ponderados igualmente; (II) $distance$: pontos de ponderação pelo inverso da suas respectivas distâncias; nesse caso, os vizinhos mais próximos de um ponto de consulta terão uma influência maior do que os vizinhos mais distantes; (III) $callable$: uma função definida pelo usuário que aceita uma matriz de distâncias e retorna uma matriz da mesma forma, contendo contém os pesos.
+
+\item \textit{algorithm} --- $auto$, $ball\_tree$ (\textit{BallTree}), $kd\_tree$ (\textit{KDTree}), $brute$ (pesquisa por força bruta), opcional ($default = ‘auto’$) --- Parâmetro responsável por definir algoritmo utilizado para calcular os vizinhos mais próximos. O valor padrão tentará decidir o algoritmo mais apropriado com base nos valores passados para o método \textit{fit}. Em case de dados esparsos no processo de ajuste esse parâmetro é ignorado e usado a opção $brute$ por padrão.
+
+\item \textit{leaf\_size} --- $int$, opcional ($default = 30$) --- Parâmetro responsável por definir o tamanho da folha passado para o \textit{BallTree} ou \textit{KDTree}. Isso pode afetar a velocidade da construção e consulta, bem como a memória necessária para armazenar a árvore. O valor ideal depende da natureza do problema.
+
+\item \textit{p} --- $integer$, opcional ($default = 2$) --- Parâmetro de potência para a métrica \textit{Minkowski}. Quando p = 1, isso equivale a usar \textit{manhattan\_distance} ($l1$) e \textit{euclidean\_distance} ($l2$) para p = 2. Para \textit{p} arbitrário, \textit{minkowski\_distance} ($l\_p$) é usado.
+
+\item \textit{metric} --- $string$ ou $callable$, opcional ($default = ‘minkowski’$) --- Parâmetro responsável por definir a distância métrica para usar na árvore. A métrica padrão é \textit{minkowski} e com $p = 2$ é equivalente à métrica euclidiana padrão. 
+
+\item \textit{n\_jobs} --- $int$ ou $None$, opcional ($default = None$) --- Parâmetro responsável por definir o número de $jobs$ a serem executados em paralelo durante os processos de \textit{fit} e \textit{predict}. $None$ define 1 \textit{job} a menos que esteja em um contexto \textit{joblib.parallel\_backend}; -1 define que todos os processadores sejam usados.
+\end{itemize}
+
+\section{Máquina de Vetores de Suporte}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html\#sklearn.svm.SVC}. Acessado em 08 de outubro de 2018.}
+
+\begin{itemize}
+\item \textit{C} --- $float$, opcional ($default=1.0$)
+ --- Parâmetro de \textit{penalidade C} do termo de erro.
+ 
+ \item \textit{kernel} --- $string$, opcional ($default='rbf'$) --- Parâmetro responsável por especificar o tipo de \textit{kernel} a ser usado no algoritmo. Pode ser $linear$, $poli$, $rbf$, $sigmoid$, $precomputed$ ou $callable$.
+
+\item \textit{degree} --- $int$, opcional ($default=3$) --- Parâmetro responsável por definir a \textit{polynomial kernel function} ($poly$). Ignorado por todos os 
+outros \textit{kernels}.
+
+\item \textit{gamma} --- $float$, opcional ($default='auto'$) --- Parâmetro responsável por definir o coeficiente de \textit{Kernel} para $rbf$, $poly$ e $sigmoid$.
+
+\item \textit{coef0} --- $float$, opcional ($default=0.0$) --- Parâmetro responsável por definir o termo independente na função \textit{kernel}. É significativo apenas para $poli$ e $sigmoid$.
+
+\item \textit{shrinking} --- $boolean$, opcional ($default=True$) --- Parâmetro responsável por definir o uso da heurística $shrinking$.
+
+\item \textit{probability} --- $boolean$, opcional ($default=False$) --- Parâmetro responsável por definir o uso de estimativas de probabilidade, o qual deve ser ativado antes do processo de $fit$ (implica em perda de desempenho).
+
+\item \textit{tol} --- $float$, opcional ($default=1e-3$) --- Parâmetro responsável por definir a tolerância ao critério de parada.
+
+\item \textit{cache\_size} --- $float$, opcional --- Parâmetro responsável por definir o tamanho do cache do \textit{kernel} (em MB).
+
+\item \textit{class\_weight} --- $dict$, $balanced$, optional ($default = None$) --- Parâmetro responsável  por definir o parâmetro C da classe $i$ para $class\_weight[i]*C$ para o \textit{SVC}.
+
+\item \textit{verbose} --- $bool$, ($default = False$) --- Parâmetro responsável por habilitar a saída detalhada.
+
+\item \textit{max\_iter} --- $int$, opcional ($default=-1$) --- Parâmetro responsável por definir um limite rígido em iterações no \textit{solver}, ou -1 para sem limite.
+
+\item \textit{decision\_function\_shape} --- $ovo$, $ovr$, ($default='ovr'$) --- Parâmetro responsável por definir se deve retornar uma função de decisão \textit{one-vs-rest} ($ovr$) ou a função de decisão original \textit{one-vs-one}.
+
+\item \textit{random\_state} --- $int$, $RandomState instance$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por determinar a estratégia de geração de número aleatórios. Se definido como $RandomState$, $random\_state$ será o gerador de números aleatórios; se $None$ o gerador de números aleatórios é a instância $RandomState$ usada por $np.random$.
+
+\end{itemize}
+
+%decision_function_shape : ‘ovo’, ‘ovr’, default=’ovr’
+%Whether to return a one-vs-rest (‘ovr’) decision function of shape (n_samples, n_classes) as all other classifiers, or the original one-vs-one (‘ovo’) decision function of libsvm which has shape (n_samples, n_classes * (n_classes - 1) / 2). However, one-vs-one (‘ovo’) is always used as multi-class strategy.
+%Changed in version 0.19: decision_function_shape is ‘ovr’ by default.
+%New in version 0.17: decision_function_shape=’ovr’ is recommended.
+%Changed in version 0.17: Deprecated decision_function_shape=’ovo’ and None.
+%random_state : int, RandomState instance or None, optional (default=None)
+%The seed of the pseudo random number generator used when shuffling the data for probability estimates. If int, random_state is the seed used by the random number generator; If RandomState instance, random_state is the random number generator; If None, the random number generator is the RandomState instance used by np.random.
+
+\section{Naive Bayes}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acessado em 08 de outubro de 2018.}
+
+\section{Redes Neurais}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acessado em 08 de outubro de 2018.}
+
+\section{Regressão Logística}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acessado em 08 de outubro de 2018.}
 
 \end{apendicesenv}
 \end{document}
