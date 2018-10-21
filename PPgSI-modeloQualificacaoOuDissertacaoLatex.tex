@@ -2210,8 +2210,8 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \hline
 \textit{Decision Tree} & 0.966 & 0.966 & 0.966 & 0.966 \\
 \hline
-\textit{Gaussian Naive Bayes} & 0.891 & 0.919 & 0.891 & 0.901 \\
-\hline
+%\textit{Gaussian Naive Bayes} & 0.891 & 0.919 & 0.891 & 0.901 \\
+%\hline
 \textit{K-Nearest Neighbors} & 0.970 & 0.971 & 0.970 & 0.970 \\
 \hline
 \textit{Logistic Regression} & 0.970 & 0.970 & 0.970 & 0.969 \\
@@ -6552,19 +6552,83 @@ outros \textit{kernels}.
 
 \end{itemize}
 
-%decision_function_shape : ‘ovo’, ‘ovr’, default=’ovr’
-%Whether to return a one-vs-rest (‘ovr’) decision function of shape (n_samples, n_classes) as all other classifiers, or the original one-vs-one (‘ovo’) decision function of libsvm which has shape (n_samples, n_classes * (n_classes - 1) / 2). However, one-vs-one (‘ovo’) is always used as multi-class strategy.
-%Changed in version 0.19: decision_function_shape is ‘ovr’ by default.
-%New in version 0.17: decision_function_shape=’ovr’ is recommended.
-%Changed in version 0.17: Deprecated decision_function_shape=’ovo’ and None.
-%random_state : int, RandomState instance or None, optional (default=None)
-%The seed of the pseudo random number generator used when shuffling the data for probability estimates. If int, random_state is the seed used by the random number generator; If RandomState instance, random_state is the random number generator; If None, the random number generator is the RandomState instance used by np.random.
+\section{Naive Bayes}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html\#sklearn.naive_bayes.MultinomialNB} e \url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.ComplementNB.html\#sklearn.naive_bayes.ComplementNB} . Acessado em 08 de outubro de 2018.}
 
-\section{Naive Bayes}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acessado em 08 de outubro de 2018.}
+\begin{itemize}
+\item \textit{alpha} --- $float$, opcional ($default=1.0$) --- Parâmetro de suavização (0 para não suavização) aditivo (Laplace / Lidstone).
+\item \textit{fit\_prior} --- $boolean$, opcional ($default=True$) --- Parâmetro responsável por definir ou não o aprendizado das probabilidades anteriores da classe.
+\item \textit{class\_prior} --- $array-like$, $size$ ($n\_classes$,), opcional ($default=None$) --- Parâmetro responsável por definir probabilidades anteriores das classes. Se especificado, os antecedentes não são ajustados de acordo com os dados.
+\item \textit{norm} --- $boolean$, opcional ($default=False$) ---
+Parâmetro responsável por definir se uma segunda normalização dos pesos é executada ou não. Disponível somente na implementação \textit{ComplementNB}.
+\end{itemize}
 
-\section{Redes Neurais}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acessado em 08 de outubro de 2018.}
+\section{Redes Neurais}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\#sklearn.neural_network.MLPClassifier}. Acessado em 08 de outubro de 2018.}
 
-\section{Regressão Logística}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acessado em 08 de outubro de 2018.}
+\begin{itemize}
+\item\textit{hidden\_layer\_sizes} --- $tuple$, $length = n\_layers - 2$,  opcional($default = (100,)$) --- Parâmetro responsável por definir o $ith$ elemento que representa o número de neurônios na $ith$ camada oculta.
+\item \textit{activation} --- $identity$, $logistic$, $tanh$, $relu$, opcional ($default =relu$) --- Parâmetro responsável por definir a função de ativação para a camada oculta.
+\item \textit{solver} --- $lbfgs$, $sgd$, $adam$, opcional ($default = adam$) --- Parâmetro responsável por definir o solucionador para otimização de peso.
+\item \textit{alpha} --- $float$, opcional ($default=0.0001$) --- Parâmetro de penalidade L2 (termo de regularização).
+\item \textit{batch\_size} --- $int$, opcional ($default = auto$) --- Parâmetro responsável pelo tamanho de \textit{mini-batches} para otimizadores estocásticos. Se o solucionador for $lbfgs$, o classificador não usa $minibatch$. Quando definido como $auto$, $batch\_size = min (200, n_samples)$.
+\item \textit{learning\_rate} --- $constant$, $invscaling$, $adaptive$,opcional ($default$ = $constant$) --- Parâmetro responsável pela programação da taxa de aprendizado para atualizações de ponderações.
+\item \textit{learning\_rate\_init} --- $double$, opcional ($default = 0.001$) --- Parâmetro responsável por definir a taxa inicial de aprendizado utilizada, somente quando $solver = sgd$ ou $adam$.
+\item \textit{power\_t} --- $double$, opcional ($default = 0.5$) --- Parâmetro responsável por definir o expoente para a taxa de aprendizado de escala inversa, quando a \textit{learning\_rate} é definida como $invscaling$ e $solver = sgd$. 
+\item \textit{max\_iter} --- $int$, opcional ($default = 200$) --- Parâmetro responsável por definir o número máximo de iterações. O \textit{solver} itera até a convergência (determinada por \textit{tol}) ou pelo \textit{max\_iter}. Para \textit{solvers} estocásticos ($sgd$, $adam$), esse parâmetro determina o número de \textit{epochs} (quantas vezes cada ponto de dados será usado), não o número de etapas do gradiente.
+\item \textit{shuffle} --- $bool$, opcional ($default = True$) --- Parâmetro responsável por definir o embaralhamento das amostras em cada iteração. Usado somente quando $solver = sgd$ ou $adam$.
+\item \textit{random\_state} --- $int$, $RandomState instance$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por determinar a estratégia de geração de número aleatórios. Se definido como $RandomState$, $random\_state$ será o gerador de números aleatórios; se $None$ o gerador de números aleatórios é a instância $RandomState$ usada por $np.random$.
+\item \textit{verbose} --- $bool$, ($default = False$) --- Parâmetro responsável por habilitar a saída detalhada.
+\item \textit{tol} --- $float$, opcional, ($default=1e-4$) --- Parâmetro responsável por definir a tolerância para a otimização.
+\item \textit{warm\_start} --- $bool$, opcional ($default=False$) --- Parâmetro responsável por definir a reutilização da solução da chamada anterior para o processo de \textit{fit} como inicialização, caso contrário, a solução anterior é apagada.
+\item \textit{momentum} --- $float$, opcional ($default=0.9$) --- Parâmetro responsável por definir o \textit{momentum} para a atualização de descida de gradiente. Deve estar entre 0 e 1. Apenas utilizado quando $solver=sgd$.
+\item \textit{nesterovs\_momentum} --- $boolean$, ($default=True$) --- Parâmetro responsável por definir o uso do \textit{Nesterov’s momentum}. Apenas utilizando quando $solver=sgd$ e $momentum > 0$.
+\item \textit{early\_stopping} --- $bool$, opcional ($default=False$) --- Parâmetro responsável por definir parada antecipada para finalizar o treinamento quando a pontuação de validação não estiver melhorando. Se definido como verdadeiro,  automaticamente 10\% dos dados de treinamento são usados como validação,  encerrando o treinamento quando a pontuação de validação não estiver melhorando em pelo menos $tol$ para \textit{n\_iter\_no\_change} \textit{epochs} consecutivos. Esse parâmetro somente é efetivo quando $solver=sgd$ ou $adam$.
+\item \textit{validation\_fraction} --- $float$, opcional, ($default=0.1$) --- Parâmetro responsável por definir a proporção de dados de treinamento a serem definidos como um conjunto de validação para interrupção antecipada. O valor deve estar entre 0 e 1. Apenas usado se $early\_stopping=True$.
+\item \textit{beta\_1} --- $float$, opcional ($default=0.9$) --- Parâmetro responsável por definir a taxa de decaimento exponencial (entre 0 e 1) para estimativas do primeiro momento vetorial em \textit{adam}. Usado somente quando $solver=adam$.
+\item \textit{beta\_2} --- $float$, opcional ($default=0.9$) --- Parâmetro responsável por definir a taxa de decaimento exponencial (entre 0 e 1) para estimativas do segundo momento vetorial em \textit{adam}. Usado somente quando $solver=adam$.
+\item \textit{epsilon} --- $float$, opcional ($default=1e-8$) --- Parâmetro responsável por definir o valor para estabilidade numérica em \textit{adam}. Usado somente quando $solver=adam$.
+\item \textit{n\_iter\_no\_change} --- $int$, opcional ($default=10$) --- Parâmetro responsável por definir o número máximo de \textit{epochs} para não atender a melhoria definida pelo parâmetro \textit{tol}. Usado somente quando $solver=adam$.
+\end{itemize}
+
+\section{Regressão Logística}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}. Acessado em 08 de outubro de 2018.}
+\begin{itemize}
+\item \textit{penalty} --- $str$, $l1’$ ou $l2$, opcional ($default=l2$) --- Usado para especificar a norma usada na penalização. Os solucionadores "newton-cg", "sag" e "lbfgs" apoiam apenas as penalidades l2.
+\item \textit{dual} --- $bool$, opcional ($default=False$) --- Parâmetro responsável por definir formulação \textit{dual} ou \textit{primal}. Formulação \textit{dual} é apenas implementada para penalidade $l2$ com o $liblinear solver$. Preferível $dual=False$ quando $n\_samples > n\_features$.
+\item \textit{tol} --- $float$, opcional ($default=1e-4$) --- Parâmetro responsável por definir a tolerância para o critério de parada.
+\item \textit{C}  --- $float$, opcional ($default=1.0$) --- Parâmetro responsável por definir a inversão da força de regularização; deve ser um \textit{floar} positivo. Como nas máquinas de vetores de suporte, valores menores especificam uma regularização mais forte.
+\item \textit{fit\_intercept} --- $bool$, opcional ($default=True$) --- Parâmetro responsável por definir se uma constante (viés ou interceptação) deve ser adicionada a função de decisão.
+\item \textit{intercept\_scaling} --- $float$, opcional ($default=1$) --- Parâmetro responsável por definir a escala de interceptação. Útil somente quando $solver=liblinear$ e $self.fit_intercept=True$.
+\item \textit{class\_weight} --- $dict$, $list$ de $dict$, ``$balanced$'', $None$, $default=None$ --- Parâmetro responsável por associar ponderação as classes, no seguinte formato: ``${class\_label: weight}$''. Caso não haja valores para esse parâmetro, supõem-se que todos as classes possuam o mesmo peso. 
+\item \textit{random\_state} --- $int$, $RandomState instance$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por determinar a estratégia de geração de número aleatórios. Se definido como $RandomState$, $random\_state$ será o gerador de números aleatórios; se $None$ o gerador de números aleatórios é a instância $RandomState$ usada por $np.random$.
+\item $solver$ --- $str$, $newton-cg$, $lbfgs$, $liblinear$, $sag$, $saga$, opcional ($default=liblinear$) --- Parâmetro responsável por definir o algoritmo utilizado no problema de otimização.
+\item \textit{max\_iter} --- $int$, opcional ($default=100$) --- Parâmetro utilizado com $solver=newton-cg$, $sag$ e $lbfgs$. Número máximo de iterações tomadas para os \textit{solvers} convergirem.
+\item \textit{verbose} --- $bool$, ($default = False$) --- Parâmetro responsável por habilitar a saída detalhada.
+\item \textit{multi\_class} --- $str$, $ovr$, $multinomial$, $auto$, opcional ($default=ovr$) --- Parâmetro responsável por definir multi classes.
+\item \textit{warm\_start} --- $bool$, opcional ($default=False$) --- Parâmetro que quando definido como $True$, reutiliza a solução da chamada anterior para o processo de \textit{fit} como inicialização, caso contrário, a solução anterior é apagada. Sem efeitos quando $solver=liblinear$.
+\item \textit{n\_jobs} --- $int$ ou $None$, opcional ($default=None$) --- Parâmetro responsável por definir a quantidade de núcleos de CPU utilizados na paralelização sob as classes, quando $multi\_class=ovr$. Esse parâmetro é ignorado quando $solver=liblinear$, independentemente de $multi\_class$ estar especificado ou não. $None$ define 1 núcleo a menos que esteja em um contexto $joblib.parallel_backend$; -1 define o uso de todos os processadores.
+\end{itemize}
+
+%solver : str, {‘newton-cg’, ‘lbfgs’, ‘liblinear’, ‘sag’, ‘saga’}, default: ‘liblinear’.
+%Algorithm to use in the optimization problem.
+%For small datasets, ‘liblinear’ is a good choice, whereas ‘sag’ and ‘saga’ are faster for large ones.
+%For multiclass problems, only ‘newton-cg’, ‘sag’, ‘saga’ and ‘lbfgs’ handle multinomial loss; ‘liblinear’ is limited to one-versus-rest schemes.
+%‘newton-cg’, ‘lbfgs’ and ‘sag’ only handle L2 penalty, whereas ‘liblinear’ and ‘saga’ handle L1 penalty.
+%Note that ‘sag’ and ‘saga’ fast convergence is only guaranteed on features with approximately the same scale. You can preprocess the data with a scaler from sklearn.preprocessing.
+%New in version 0.17: Stochastic Average Gradient descent solver.
+%New in version 0.19: SAGA solver.
+%Changed in version 0.20: Default will change from ‘liblinear’ to ‘lbfgs’ in 0.22.
+%max_iter : int, default: 100
+%Useful only for the newton-cg, sag and lbfgs solvers. Maximum number of iterations taken for the solvers to converge.
+%multi_class : str, {‘ovr’, ‘multinomial’, ‘auto’}, default: ‘ovr’
+%If the option chosen is ‘ovr’, then a binary problem is fit for each label. For ‘multinomial’ the loss minimised is the multinomial loss fit across the entire probability distribution, even when the data is binary. ‘multinomial’ is unavailable when solver=’liblinear’. ‘auto’ selects ‘ovr’ if the data is binary, or if solver=’liblinear’, and otherwise selects ‘multinomial’.
+%New in version 0.18: Stochastic Average Gradient descent solver for ‘multinomial’ case.
+%Changed in version 0.20: Default will change from ‘ovr’ to ‘auto’ in 0.22.
+%verbose : int, default: 0
+%For the liblinear and lbfgs solvers set verbose to any positive number for verbosity.
+%warm_start : bool, default: False
+%When set to True, reuse the solution of the previous call to fit as initialization, otherwise, just erase the previous solution. Useless for liblinear solver. See the Glossary.
+%New in version 0.17: warm_start to support lbfgs, newton-cg, sag, saga solvers.
+%n_jobs : int or None, optional (default=None)
+%Number of CPU cores used when parallelizing over classes if multi_class=’ovr’”. This parameter is ignored when the solver is set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or not. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors. See Glossary for more details.
 
 \end{apendicesenv}
 \end{document}
