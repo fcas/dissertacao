@@ -2513,27 +2513,50 @@ Embora o método tenha sido validado usando perfis selecionados do Twitter escri
 
 \chapter{Correlação dos eventos de exceção com os dados AVL da SPTrans}
 \label{dataCorr}
-\todo[inline]{Escrever Correlação dos eventos de exceção com os dados AVL da SPTrans}
+%\todo[inline]{Escrever Correlação dos eventos de exceção com os dados AVL da SPTrans}
 
-Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans, especificamente os dados referentes a \textit{timestamp}, latitude, longitude, \textit{bus\_id} e \textit{trip\_id}. Dito isso, inicialmente pretendemos caracterizar os impactos em:
+Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans, especificamente os dados referentes a \textit{timestamp}, latitude, longitude, \textit{bus\_id} e \textit{trip\_id}.  Devido a limitações de recursos computacionais, analisamos o mês com maior quantidade de eventos, de acordo com a Fig. \ref{fig:geolocated_exception_events_distribution} e o \textit{Corpus Twitter} classificado manualmente, a maior concentração de eventos de exceção e no mês de agosto de 2017, com 904.
 
-\begin{itemize}
-\item Atraso médio induzido nas viagens.
-\item Ônibus frequentemente afetados por eventos de exceção.
-\item Ônibus frequentemente afetados por determinado evento de exceção.
-\item Padrão de ocorrência dos eventos de exceção no espaço-tempo (localizações e \textit{timestamps}).
-\item Quantidade e viagens afetadas.
-\item Quantidade e regiões da cidade de São Paulo afetadas.
-\item Viagens frequentemente afetadas por eventos de exceção.
-\item Viagens frequentemente afetadas por determinado evento de exceção.
-\end{itemize}
+%Dito isso, inicialmente pretendemos caracterizar os impactos em:
+
+%\begin{itemize}
+%\item Atraso médio induzido nas viagens.
+%\item Ônibus frequentemente afetados por eventos de exceção.
+%\item Ônibus frequentemente afetados por determinado evento de exceção.
+%\item Padrão de ocorrência dos eventos de exceção no espaço-tempo (localizações e \textit{timestamps}).
+%\item Quantidade e viagens afetadas.
+%\item Quantidade e regiões da cidade de São Paulo afetadas.
+%\item Viagens frequentemente afetadas por eventos de exceção.
+%\item Viagens frequentemente afetadas por determinado evento de exceção.
+%\end{itemize}
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Multi-layer Perceptron}}
+ 	  \caption{Distribuição do número de eventos de exceção geolocalizados}
 		\includegraphics[width=1\linewidth]{images/geolocated_exception_events_distribution.png}
 	\label{fig:geolocated_exception_events_distribution}
 \end{figure}
+
+Conforme descrito no Cap. \ref{exp1} e na Fig. \ref{fig:avl_tweets_correlation}, analisamos as linhas afetadas por eventos de exceção em um raio de 1.000 metros das paradas de ônibus (contidas na coleção \textit{stops} da GTFS da SPTrans) as geolocalizações extraídas dos \textit{tweets}. 
+
+A partir disso, selecionamos os dados de movimentação que serão analisados, por exemplo, se o evento de exceção aconteceu em 17/08/2017 (quinta-feira), todas as demais quinta-feiras do mês de agosto (3, 10, 24 e 31/08/2017) serão consideradas na análise. Isso, porque os dias da semana possuem padrões diferentes de movimentação, por exemplo, nas sextas feiras ocorrem inúmeros eventos sociais que acarretam em um trânsito mais congestionado. Além da diferenciação dos dias da semana, os meses também possuem características distintas, devido a isso os dias selecionados são restritos ao mês de ocorrência do evento.    
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Processo para correlação entre os dados AVL, GTFS e \textit{tweets} para análise do impacto dos eventos de exceção}
+		\includegraphics[width=0.7\linewidth]{images/avl_tweets_correlation.png}
+	\label{fig:avl_tweets_correlation}
+\end{figure}
+
+As filtragens de dias e meses a parte, também filtramos os dados relacionados as linhas impactadas e a um raio de distância de 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. Apesar de ser difícil estimarmos os horários de início e término de um evento de exceção, sabemos que as classes de eventos analisadas não possuem a característica de término de impacto imediato, devido a isso consideramos o horário contido nos \textit{tweets} como válidos para o recorte da faixa de horário.
+
+Após a seleção dos dados de movimentação, eles são agregados de acordo com a linha do ônibus para então extrairmos dados estatísticos sobre a velocidade instantânea, tais como: velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. Em seguida, para cada conjunto de linhas afetadas pelo eventos de exceção e para cada linha, comparamos a velocidade média da faixa de horário da ocorrência com a velocidade média dos dias analisados.
+
+Consideramos que a linha foi impactada se a velocidade média dos dias analisados for maior que a velocidade média do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%. 
+
+
+
+
 
 \chapter{Conclusão}
 \label{conclusion}
