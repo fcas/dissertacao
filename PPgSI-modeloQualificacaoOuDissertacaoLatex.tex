@@ -2548,15 +2548,36 @@ A partir disso, selecionamos os dados de movimentação que serão analisados, p
 	\label{fig:avl_tweets_correlation}
 \end{figure}
 
-As filtragens de dias e meses a parte, também filtramos os dados relacionados as linhas impactadas e a um raio de distância de 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. Apesar de ser difícil estimarmos os horários de início e término de um evento de exceção, sabemos que as classes de eventos analisadas não possuem a característica de término de impacto imediato, devido a isso consideramos o horário contido nos \textit{tweets} como válidos para o recorte da faixa de horário.
+As filtragens de dias e meses a parte, também filtramos os dados relacionados as linhas impactadas e a um raio de distância de 100 e 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. Apesar de ser difícil estimarmos os horários de início e término de um evento de exceção, sabemos que as classes de eventos analisadas não possuem a característica de término de impacto imediato, devido a isso consideramos o horário contido nos \textit{tweets} como válidos para o recorte da faixa de horário.
 
 Após a seleção dos dados de movimentação, eles são agregados de acordo com a linha do ônibus para então extrairmos dados estatísticos sobre a velocidade instantânea, tais como: velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. Em seguida, para cada conjunto de linhas afetadas pelo eventos de exceção e para cada linha, comparamos a velocidade média da faixa de horário da ocorrência com a velocidade média dos dias analisados.
 
 Consideramos que a linha foi impactada se a velocidade média dos dias analisados for maior que a velocidade média do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%. 
 
+\section*{Resultados}
 
+Utilizando a metodologia anteriormente descrita, podemos observar na Tab. \ref{tab:exceptEventVelocityImp} que os eventos de exceção relacionados a eventos sociais possuem 72.28\% de impacto na velocidade média nos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento. A segunda e terceira classe mais afetadas são as de acidentes e desastres naturais, 71.61\% e 70.53\% respectivamente, as quais normalmente resultam em bloqueios de vias públicas utilizadas pelos ônibus. Por último, os eventos urbanos são os que menos afetam a velocidade média dos ônibus, com 68.10\% de impacto na velocidade média, muito possivelmente porque em suas ocorrências há planejamento de rotas alternativas e sinalizações nas vias públicas.
 
-
+Além da análise de um raio de 1.000 metros de distância do evento de exceção, consideramos impactos a 100 metros. Nesse cenário, há uma pequena diferença para a classe de acidentes, de 71.61\% para 71.78\%, respectivamente. No que se refere aos desestres naturais, o impacto passa de 70.53\% para 75.47\%. Dentro do raio de 100 metros de distância não encontramos dados de movimentação que pudessem ser correlacionados com os eventos de exceção referentes a eventos sociais e urbanos, de acordo com os critérios estabelecidos pela metodologia.
+ 
+\begin{table}[!htb]
+\centering
+\caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 100m e 1.000m de distância}
+\label {tab:exceptEventVelocityImp}
+\begin{tabular}{c|c|c}
+\hline
+\textbf{Evento de exceção} & \textbf{ \begin{tabular}{@{}c@{}} \% de linhas impactadas \\  no raio de 1.000m \end{tabular}} & \textbf{ \begin{tabular}{@{}c@{}} \% de linhas impactadas \\  no raio de 100m \end{tabular}} \\
+\hline
+\textit{Accident} &  71.61 & 71.78 \\
+\hline
+\textit{Natural Disaster} & 70.53 & 75.47 \\
+\hline
+\textit{Social Event} & 72.28 & - \\
+\hline
+\textit{Urban Event} & 68.10 & - \\
+\hline
+\end{tabular}
+\end{table}
 
 \chapter{Conclusão}
 \label{conclusion}
