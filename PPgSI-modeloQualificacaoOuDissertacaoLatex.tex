@@ -1295,7 +1295,10 @@ As primeiras fases se referem aos processos de construção do conjunto de dados
   \source{\cite{kotsiantis2007supervised}}
 \end{figure}
 
-\subsubsection{Árvore de Decisão}.
+\subsubsection{Árvore de Decisão}
+
+As árvores de decisão são árvores utilizadas para classificação de instâncias com base em seus respectivos valores. Cada nó em uma árvore de decisão representa um recurso em uma instância a ser classificada e cada ramificação representa o valor que o nó pode assumir. As instâncias são classificadas começando no nó raiz e classificadas com base em seus valores de recurso. A Figura 2 é um exemplo de uma árvore de decisão para o conjunto de treinamento da Tabela 2.
+
 \subsubsection{Floresta Aleatória}
 \subsubsection{K-ésimo Vizinho mais Próximo} 
 \subsubsection{Máquina de Vetores de Suporte}
@@ -2552,7 +2555,7 @@ As filtragens de dias e meses a parte, também filtramos os dados relacionados a
 
 Após a seleção dos dados de movimentação, eles são agregados de acordo com a linha do ônibus para então extrairmos dados estatísticos sobre a velocidade instantânea, tais como: velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. Em seguida, para cada conjunto de linhas afetadas pelo eventos de exceção e para cada linha, comparamos a velocidade média da faixa de horário da ocorrência com a velocidade média dos dias analisados.
 
-Consideramos que a linha foi impactada se a velocidade média dos dias analisados for maior que a velocidade média do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%. 
+Consideramos que a linha foi impactada se a mediana da velocidade média dos dias analisados for maior que a mediana da velocidade média do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%. 
 
 \section*{Resultados}
 
@@ -2578,6 +2581,61 @@ Além da análise de um raio de 1.000 metros de distância do evento de exceçã
 \hline
 \end{tabular}
 \end{table}
+
+\chapter{Análise das velocidades médias dos dados AVL}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori}\tnote{a} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c}
+\hline
+\textbf{Month} & \textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+February & 7 $\rightarrow$ 8 & 0.101 & 0.496 & 3.586\\
+April & 7 $\rightarrow$ 8  & 0.108 & 0.456 & 3.188\\
+May & 7 $\rightarrow$ 8 & 0.108 & 0.570 & 4.375\\
+\hline
+\hline
+October & 8 $\rightarrow$ 7 & 0.100 & 0.595 & 3.433\\
+November & 8 $\rightarrow$ 7 & 0.104 & 0.446 & 3.369\\
+\hline
+\hline
+January & 11 $\rightarrow$ 12 & 0.137 & 0.476 & 1.729 \\
+June & 11 $\rightarrow$ 12 & 0.129 & 0.632 & 1.656\\
+July & 11 $\rightarrow$ 12 & 0.204 & 0.694 & 1.934\\
+August & 11 $\rightarrow$ 12 & 0.169 & 0.670 & 1.662\\
+October & 11 $\rightarrow$ 12 & 0.119 & 0.601 & 1.669\\
+\hline
+\hline
+February & 12 $\rightarrow$ 11 & 0.126 & 0.582 & 1.770\\
+March & 12 $\rightarrow$ 11 & 0.134 & 0.621 & 1.627\\
+April & 12 $\rightarrow$ 11 & 0.123 & 0.601 & 2.013\\
+May & 12 $\rightarrow$ 11 & 0.137 & 0.645 & 1.703\\
+September & 12 $\rightarrow$ 11 & 0.163 & 0.608 & 1.863\\
+November & 12 $\rightarrow$ 11 & 0.154 & 0.531 & 1.875\\
+December & 12 $\rightarrow$ 11 & 0.143 & 0.432 & 2.073\\
+\hline
+\hline
+February & 12 $\rightarrow$ 13 & 0.123 & 0.375 & 1.956\\
+March & 12 $\rightarrow$ 13 & 0.158 & 0.415 & 1.766\\
+June & 12 $\rightarrow$ 13 & 0.141 & 0.370 & 1.907\\
+\hline
+\hline
+April  & 13 $\rightarrow$ 12 & 0.109 & 0.367 & 2.280\\
+May & 13 $\rightarrow$ 12 & 0.161 & 0.425 & 1.942\\
+August & 13 $\rightarrow$ 12 & 0.147 & 0.366 & 1.830\\
+October & 13 $\rightarrow$ 12 & 0.150 & 0.417 & 1.737\\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Tabela completa no apêndice \ref{apendiceD}.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
 
 \chapter{Conclusão}
 \label{conclusion}
@@ -6673,6 +6731,421 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 %New in version 0.17: warm_start to support lbfgs, newton-cg, sag, saga solvers.
 %n_jobs : int or None, optional (default=None)
 %Number of CPU cores used when parallelizing over classes if multi_class=’ovr’”. This parameter is ignored when the solver is set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or not. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors. See Glossary for more details.
+
+\chapter{Análises \textit{Apriori}}
+\label{apendiceF}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Janeiro}
+\label {tab:aprioriJanuary}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.1424731182795699 &  0.1424731182795699 &  1.0\\
+\hline
+11 &  0.28763440860215056 &  0.28763440860215056 &  1.0\\
+\hline
+12 &  0.27553763440860213 &  0.27553763440860213 &  1.0\\
+\hline
+13 &  0.15591397849462366 &  0.15591397849462366 &  1.0\\
+\hline
+2 &  0.12634408602150538 &  0.12634408602150538 &  1.0\\
+\hline
+4 &  0.10080645161290322 &  0.10080645161290322 &  1.0\\
+\hline
+5 &  0.11693548387096774 &  0.11693548387096774 &  1.0\\
+\hline
+6 &  0.12231182795698925 &  0.12231182795698925 &  1.0\\
+\hline
+7 &  0.19623655913978494 &  0.19623655913978494 &  1.0\\
+\hline
+8 &  0.15591397849462366 &  0.15591397849462366 &  1.0\\
+\hline
+9 &  0.13172043010752688 &  0.13172043010752688 &  1.0\\
+\hline
+11 $\rightarrow$ 12 &  0.13709677419354838 &  0.47663551401869153 &  1.729838158194666\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Fevereiro}
+\label {tab:aprioriFebruary}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.17708333333333334 &  0.17708333333333334 &  1.0\\ \hline 11 &  0.21726190476190477 &  0.21726190476190477 &  1.0\\ \hline 12 &  0.3288690476190476 &  0.3288690476190476 &  1.0\\ \hline 13 &  0.19196428571428573 &  0.19196428571428573 &  1.0\\ \hline 14 &  0.10416666666666667 &  0.10416666666666667 &  1.0\\ \hline 2 &  0.12351190476190477 &  0.12351190476190477 &  1.0\\ \hline 5 &  0.12202380952380952 &  0.12202380952380952 &  1.0\\ \hline 6 &  0.10267857142857142 &  0.10267857142857142 &  1.0\\ \hline 7 &  0.20386904761904762 &  0.20386904761904762 &  1.0\\ \hline 8 &  0.13839285714285715 &  0.13839285714285715 &  1.0\\ \hline 9 &  0.1800595238095238 &  0.1800595238095238 &  1.0\\ \hline 12 $\rightarrow$ 11 &  0.12648809523809523 &  0.5821917808219178 &  1.7702845100105373\\ \hline 12 $\rightarrow$ 13 &  0.12351190476190477 &  0.3755656108597285 &  1.9564348100599809\\ \hline 7 $\rightarrow$ 8 &  0.10119047619047619 &  0.49635036496350365 &  3.5865316694137035\\ \hline
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Março}
+\label {tab:aprioriMarch}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline 
+10 &  0.1586021505376344 &  0.1586021505376344 &  1.0\\ 
+\hline 
+11 &  0.2163978494623656 &  0.2163978494623656 &  1.0\\ 
+\hline 
+12 &  0.3817204301075269 &  0.3817204301075269 &  1.0\\ 
+\hline 
+13 &  0.23521505376344087 &  0.23521505376344087 &  1.0\\ 
+\hline 
+14 &  0.13172043010752688 &  0.13172043010752688 &  1.0\\ 
+\hline 
+2 &  0.125 &  0.125 &  1.0\\ 
+\hline 
+5 &  0.12096774193548387 &  0.12096774193548387 &  1.0\\ 
+\hline 
+6 &  0.10752688172043011 &  0.10752688172043011 &  1.0\\ 
+\hline 
+7 &  0.17338709677419356 &  0.17338709677419356 &  1.0\\ 
+\hline 
+9 &  0.16129032258064516 &  0.16129032258064516 &  1.0\\ 
+\hline 
+12 $\rightarrow$ 11 &  0.13440860215053763 &  0.6211180124223602 &  1.6271542297261832\\ 
+\hline 
+12 $\rightarrow$ 13 &  0.1586021505376344 &  0.4154929577464789 &  1.7664386317907443\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Abril}
+\label {tab:aprioriApril}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline 
+10 &  0.125 &  0.125 &  1.0\\
+\hline
+11 &  0.20555555555555555 &  0.20555555555555555 &  1.0\\
+\hline
+12 &  0.2986111111111111 &  0.2986111111111111 &  1.0\\
+\hline
+13 &  0.16111111111111112 &  0.16111111111111112 &  1.0\\
+\hline
+2 &  0.12638888888888888 &  0.12638888888888888 &  1.0\\
+\hline
+4 &  0.12083333333333333 &  0.12083333333333333 &  1.0\\
+\hline
+5 &  0.11944444444444445 &  0.11944444444444445 &  1.0\\
+\hline
+6 &  0.10277777777777777 &  0.10277777777777777 &  1.0\\
+\hline
+7 &  0.2375 &  0.2375 &  1.0\\
+\hline
+8 &  0.14305555555555555 &  0.14305555555555555 &  1.0\\
+\hline
+9 &  0.16111111111111112 &  0.16111111111111112 &  1.0\\
+\hline
+12  $\rightarrow$ 11 &  0.12361111111111112 &  0.6013513513513514 &  2.013827781269642\\
+\hline
+13  $\rightarrow$ 12 &  0.10972222222222222 &  0.3674418604651163 &  2.280673616680032\\
+\hline
+7  $\rightarrow$ 8 &  0.10833333333333334 &  0.456140350877193 &  3.1885539090444563\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Maio}
+\label {tab:aprioriMay}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.11559139784946236 &  0.11559139784946236 &  1.0\\
+\hline
+11 &  0.21236559139784947 &  0.21236559139784947 &  1.0\\
+\hline
+12 &  0.3790322580645161 &  0.3790322580645161 &  1.0\\
+\hline
+13 &  0.21908602150537634 &  0.21908602150537634 &  1.0\\
+\hline
+14 &  0.12365591397849462 &  0.12365591397849462 &  1.0\\
+\hline
+2 &  0.12365591397849462 &  0.12365591397849462 &  1.0\\
+\hline
+5 &  0.125 &  0.125 &  1.0\\
+\hline
+6 &  0.11290322580645161 &  0.11290322580645161 &  1.0\\
+\hline
+7 &  0.19086021505376344 &  0.19086021505376344 &  1.0\\
+\hline
+8 &  0.1303763440860215 &  0.1303763440860215 &  1.0\\
+\hline
+9 &  0.15456989247311828 &  0.15456989247311828 &  1.0\\
+\hline
+12 $\rightarrow$ 11 &  0.13709677419354838 &  0.6455696202531644 &  1.7032049555615403\\
+\hline
+13 $\rightarrow$ 12 &  0.16129032258064516 &  0.425531914893617 &  1.9423051820911108\\
+\hline
+7 $\rightarrow$ 8 &  0.10887096774193548 &  0.5704225352112676 &  4.3751996515173515\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Junho}
+\label {tab:aprioriJune}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.12361111111111112 &  0.12361111111111112 &  1.0\\
+\hline
+11 &  0.20416666666666666 &  0.20416666666666666 &  1.0\\
+\hline
+12 &  0.3819444444444444 &  0.3819444444444444 &  1.0\\
+\hline
+13 &  0.19444444444444445 &  0.19444444444444445 &  1.0\\
+\hline
+14 &  0.12638888888888888 &  0.12638888888888888 &  1.0\\
+\hline
+2 &  0.13194444444444445 &  0.13194444444444445 &  1.0\\
+\hline
+5 &  0.125 &  0.125 &  1.0\\
+\hline
+6 &  0.1 &  0.1 &  1.0\\
+\hline
+7 &  0.19027777777777777 &  0.19027777777777777 &  1.0\\
+\hline
+8 &  0.12361111111111112 &  0.12361111111111112 &  1.0\\
+\hline
+9 &  0.1597222222222222 &  0.1597222222222222 &  1.0\\
+\hline
+11 $\rightarrow$ 12 &  0.12916666666666668 &  0.6326530612244898 &  1.656400742115028\\
+\hline
+12 $\rightarrow$ 13 &  0.14166666666666666 &  0.3709090909090909 &  1.9075324675324674\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Julho}
+\label {tab:aprioriJuly}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.135752688172043 &  0.135752688172043 &  1.0\\
+\hline
+11 &  0.29435483870967744 &  0.29435483870967744 &  1.0\\
+\hline
+12 &  0.3588709677419355 &  0.3588709677419355 &  1.0\\
+\hline
+13 &  0.1196236559139785 &  0.1196236559139785 &  1.0\\
+\hline
+2 &  0.13440860215053763 &  0.13440860215053763 &  1.0\\
+\hline
+5 &  0.12903225806451613 &  0.12903225806451613 &  1.0\\
+\hline
+6 &  0.10752688172043011 &  0.10752688172043011 &  1.0\\
+\hline
+7 &  0.1935483870967742 &  0.1935483870967742 &  1.0\\
+\hline
+8 &  0.11693548387096774 &  0.11693548387096774 &  1.0\\
+\hline
+9 &  0.17204301075268819 &  0.17204301075268819 &  1.0\\
+\hline
+11 $\rightarrow$ 12 &  0.20430107526881722 &  0.6940639269406392 &  1.934020830126725\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Agosto}
+\label {tab:aprioriAugust}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.12231182795698925 &  0.12231182795698925 &  1.0\\
+\hline
+11 &  0.25268817204301075 &  0.25268817204301075 &  1.0\\
+\hline
+12 &  0.4032258064516129 &  0.4032258064516129 &  1.0\\
+\hline
+13 &  0.20026881720430106 &  0.20026881720430106 &  1.0\\
+\hline
+14 &  0.13172043010752688 &  0.13172043010752688 &  1.0\\
+\hline
+2 &  0.125 &  0.125 &  1.0\\
+\hline
+5 &  0.125 &  0.125 &  1.0\\
+\hline
+6 &  0.10483870967741936 &  0.10483870967741936 &  1.0\\
+\hline
+7 &  0.1760752688172043 &  0.1760752688172043 &  1.0\\
+\hline
+8 &  0.10618279569892473 &  0.10618279569892473 &  1.0\\
+\hline
+9 &  0.16263440860215053 &  0.16263440860215053 &  1.0\\
+\hline
+11 $\rightarrow$ 12 &  0.1693548387096774 &  0.6702127659574467 &  1.662127659574468\\
+\hline
+13 $\rightarrow$ 12 &  0.1478494623655914 &  0.3666666666666667 &  1.8308724832214767\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Setembro}
+\label {tab:aprioriSeptember}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.1486111111111111 &  0.1486111111111111 &  1.0\\
+\hline
+11 &  0.26944444444444443 &  0.26944444444444443 &  1.0\\
+\hline
+12 &  0.3263888888888889 &  0.3263888888888889 &  1.0\\
+\hline
+13 &  0.19305555555555556 &  0.19305555555555556 &  1.0\\
+\hline
+2 &  0.12083333333333333 &  0.12083333333333333 &  1.0\\
+\hline
+5 &  0.11944444444444445 &  0.11944444444444445 &  1.0\\
+\hline
+6 &  0.11388888888888889 &  0.11388888888888889 &  1.0\\
+\hline
+7 &  0.2 &  0.2 &  1.0\\
+\hline
+8 &  0.12083333333333333 &  0.12083333333333333 &  1.0\\
+\hline
+9 &  0.17222222222222222 &  0.17222222222222222 &  1.0\\
+\hline
+12 $\rightarrow$ 11 &  0.1638888888888889 &  0.6082474226804124 &  1.8635665716165828\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Outubro}
+\label {tab:aprioriOctober}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.13440860215053763 &  0.13440860215053763 &  1.0\\
+\hline
+11 &  0.1989247311827957 &  0.1989247311827957 &  1.0\\
+\hline
+12 &  0.3602150537634409 &  0.3602150537634409 &  1.0\\
+\hline
+13 &  0.24059139784946237 &  0.24059139784946237 &  1.0\\
+\hline
+14 &  0.11559139784946236 &  0.11559139784946236 &  1.0\\
+\hline
+3 &  0.1196236559139785 &  0.1196236559139785 &  1.0\\
+\hline
+5 &  0.10483870967741936 &  0.10483870967741936 &  1.0\\
+\hline
+6 &  0.1196236559139785 &  0.1196236559139785 &  1.0\\
+\hline
+7 &  0.1693548387096774 &  0.1693548387096774 &  1.0\\
+\hline
+8 &  0.17338709677419356 &  0.17338709677419356 &  1.0\\
+\hline
+9 &  0.15456989247311828 &  0.15456989247311828 &  1.0\\
+\hline
+11 $\rightarrow$ 12 &  0.1196236559139785 &  0.6013513513513514 &  1.6694231544977816\\
+\hline
+13 $\rightarrow$ 12 &  0.15053763440860216 &  0.417910447761194 &  1.7370132577336779\\
+\hline
+8 $\rightarrow$ 7 &  0.10080645161290322 &  0.5952380952380952 &  3.4330011074197118\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Novembro}
+\label {tab:aprioriNovember}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.11715481171548117 &  0.11715481171548117 &  1.0\\
+\hline
+11 &  0.2914923291492329 &  0.2914923291492329 &  1.0\\
+\hline
+12 &  0.28312412831241285 &  0.28312412831241285 &  1.0\\
+\hline
+13 &  0.13389121338912133 &  0.13389121338912133 &  1.0\\
+\hline
+2 &  0.12552301255230125 &  0.12552301255230125 &  1.0\\
+\hline
+5 &  0.12831241283124128 &  0.12831241283124128 &  1.0\\
+\hline
+6 &  0.12552301255230125 &  0.12552301255230125 &  1.0\\
+\hline
+7 &  0.23430962343096234 &  0.23430962343096234 &  1.0\\
+\hline
+8 &  0.13249651324965134 &  0.13249651324965134 &  1.0\\
+\hline
+9 &  0.1492329149232915 &  0.1492329149232915 &  1.0\\
+\hline
+12 $\rightarrow$ 11 &  0.15481171548117154 &  0.5311004784688995 &  1.8758573549862114\\
+\hline
+8 $\rightarrow$ 7 &  0.10460251046025104 &  0.4464285714285714 &  3.3693609022556386\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Dezembro}
+\label {tab:aprioriDecember}
+\begin{tabular}{c|c|c|c}
+\hline
+\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\hline
+10 &  0.15311653116531165 &  0.15311653116531165 &  1.0\\
+\hline
+11 &  0.3319783197831978 &  0.3319783197831978 &  1.0\\
+\hline
+12 &  0.2086720867208672 &  0.2086720867208672 &  1.0\\
+\hline
+13 &  0.11924119241192412 &  0.11924119241192412 &  1.0\\
+\hline
+2 &  0.12601626016260162 &  0.12601626016260162 &  1.0\\
+\hline
+5 &  0.12195121951219512 &  0.12195121951219512 &  1.0\\
+\hline
+6 &  0.15040650406504066 &  0.15040650406504066 &  1.0\\
+\hline
+7 &  0.1978319783197832 &  0.1978319783197832 &  1.0\\
+\hline
+8 &  0.14363143631436315 &  0.14363143631436315 &  1.0\\
+\hline
+9 &  0.15311653116531165 &  0.15311653116531165 &  1.0\\
+\hline
+12 $\rightarrow$ 11 &  0.14363143631436315 &  0.4326530612244898 &  2.073363371322555\\
+\hline
+\end{tabular}
+\end{table}
 
 \end{apendicesenv}
 \end{document}
