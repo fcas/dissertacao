@@ -1349,6 +1349,8 @@ W_{t,d} = tf_{t,d} * idf_t
 
 No contexto deste trabalho, entendemos documentos como as classes dos eventos de exceção. A \emph{frequência dos termos} (TF --- $tf_{t,d}$) é determinada por classe e a \emph{frequência do termo - inverso da frequência nos documentos} (IDF --- $idf_t $) como o inverso dos eventos de exceção, sendo $N$ o tamanho do conjunto dos eventos de exceção, sob o qual $df_t$ é definido. Os eventos de exceção são classificados em suas respectivas classes por meio dos modelos de aprendizado supervisionado, elencados na subseção \ref{supervisionedLearning}. 
 
+\chapter{Algoritmo \textit{Apriori}}
+\label{apriori}
 
 \chapter{Revisão Sistemática}
 \label{revisao}
@@ -2063,7 +2065,7 @@ Este capítulo apresentou um estudo de caso relacionado à visualização de gra
 \chapter{Uma metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
 \label{exp1}
 
-Nesta seção é apresentada uma metodologia baseada em \textit{tweets} para identificar linhas de ônibus impactadas por eventos de exceção. De acordo com a Fig. \ref{fig:tweet_based_methodology}, a metodologia, explicada em detalhes na seções seguintes, é composta por:
+Nesta capítulo é apresentada uma metodologia baseada em \textit{tweets} para identificar linhas de ônibus impactadas por eventos de exceção. De acordo com a Fig. \ref{fig:tweet_based_methodology}, a metodologia, explicada em detalhes na seções seguintes, é composta por:
 \begin{enumerate*}
 \item Uma base de dados de \textit{tweets} --- \textit{Copus Twitter}.
 \item Pré-processamento dos \textit{tweets} existentes no conjunto de dados.
@@ -2582,7 +2584,23 @@ Além da análise de um raio de 1.000 metros de distância do evento de exceçã
 \end{tabular}
 \end{table}
 
-\chapter{Análise das velocidades médias dos dados AVL}
+\chapter{Identificação de padrões de velocidade média dos dados AVL}
+
+Neste capítulo, é apresentado um processo para identificação de padrões de velocidade média dos dados AVL, por meio do algoritmo \textit{Apriori}. De acordo com \cite{xie2008optimization}, o algoritmo é ineficiente para grandes volumes de dados, devido ao fato da quantidade elevada de itens candidatos, processo explicado no Cap. \ref{apriori} e aos inúmeros acessos necessários ao banco de dados. O foco deste trabalho não é melhorar o desempenho do algoritmo \textit{Apriori} ou usar as melhorias existente na literatura \cite{xie2008optimization, zhang2014method}, pois não são significativas para as características dos dados AVL, com mais de um milhão de registros por hora.
+
+Além da quantidade de registros total, o volume de dados para pequenos intervalos de tempo também é considerável, pois os módulos AVL enviam dados dos ônibus a todo instante. Dessa forma, para viabilizarmos o uso do algoritmo \textit{Apriori}, agrupamos os dados por intervalos de tempo de cinco minutos e calculamos a velocidade média para cada intervalo. Com isso, executamos esse processo para cada mês do conjunto de dados AVL para determinarmos as velocidades médias e identificar os padrões existentes nos intervalos definidos.
+
+\section{Trabalhos relacionados}
+
+\section{Resultados}
+
+A Tab. \ref{tab:aprioriFull} é referente aos padrões encontrados com valores de $\textit{Lift} > 1$, métrica que indica correlações entre dois valores. Mais de um padrão de associações entre velocidade médias foi encontrado para a maioria dos meses, exceto para os meses de Janeiro $\lbrace 11 \rightarrow 12 \rbrace$ (aceleração), Julho $\lbrace 11 \rightarrow 12\rbrace$ (aceleração) e Dezembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração), meses nos quais normalmente o transito é menos congestionado e mais estável, devido as férias escolares. Apesar disso, em Setembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração) foi identificado apenas um padrão. Tais padrões indicam correlações de velocidades médias nesses meses a cada cinco minutos entre 11 e 12Km/h.
+
+Por sua vez, os meses com menores velocidades médias no intervalo de cinco minutos foram Fevereiro $\lbrace 7 \rightarrow 8\rbrace$, Abril $\lbrace 7 \rightarrow 8 \rbrace$, Maio $\lbrace7 \rightarrow 8\rbrace$, Outubro $\lbrace8 \rightarrow 7\rbrace$ e Novembro $\lbrace8 \rightarrow 7\rbrace$. Ou seja, nessas meses as correlações de velocidades médias no intervalo de estudo foram entre 7 e 8Km/h.
+
+Referente ao demais meses, Junho teve médias entre $\lbrace11 \rightarrow 12\rbrace$ e $\lbrace12 \rightarrow 13\rbrace$ (aceleração); Agosto $\lbrace11 \rightarrow 12\rbrace$ (aceleração) e $\lbrace13 \rightarrow 12\rbrace$  (desaceleração); Outubro $\lbrace11 \rightarrow 12\rbrace$ (aceleração) e $\lbrace13 \rightarrow 12\rbrace$ (desaceleração); Novembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração). Tais padrões indicam correlações de velocidades médias a cada cinco minutos entre 11 e 13Km/h.
+
+Os valores de \textit{Support} indicados na Tab. \ref{tab:aprioriFull} representam uma baixa frequência dos padrões encontrados, apesar das correlações existentes entre eles. 
 
 \begin{table}[!htb]
 \centering
@@ -6778,7 +6796,7 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \hline
 \textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
 \hline
-10 &  0.17708333333333334 &  0.17708333333333334 &  1.0\\ \hline 11 &  0.21726190476190477 &  0.21726190476190477 &  1.0\\ \hline 12 &  0.3288690476190476 &  0.3288690476190476 &  1.0\\ \hline 13 &  0.19196428571428573 &  0.19196428571428573 &  1.0\\ \hline 14 &  0.10416666666666667 &  0.10416666666666667 &  1.0\\ \hline 2 &  0.12351190476190477 &  0.12351190476190477 &  1.0\\ \hline 5 &  0.12202380952380952 &  0.12202380952380952 &  1.0\\ \hline 6 &  0.10267857142857142 &  0.10267857142857142 &  1.0\\ \hline 7 &  0.20386904761904762 &  0.20386904761904762 &  1.0\\ \hline 8 &  0.13839285714285715 &  0.13839285714285715 &  1.0\\ \hline 9 &  0.1800595238095238 &  0.1800595238095238 &  1.0\\ \hline 12 $\rightarrow$ 11 &  0.12648809523809523 &  0.5821917808219178 &  1.7702845100105373\\ \hline 12 $\rightarrow$ 13 &  0.12351190476190477 &  0.3755656108597285 &  1.9564348100599809\\ \hline 7 $\rightarrow$ 8 &  0.10119047619047619 &  0.49635036496350365 &  3.5865316694137035\\ \hline
+10 &  0.17708333333333334 &  0.17708333333333334 &  1.0\\ \hline 11 &  0.21726190476190477 &  0.21726190476190477 &  1.0\\ \hline 12 &  0.3288690476190476 &  0.3288690476190476 &  1.0\\ \hline 13 &  0.19196428571428573 &  0.19196428571428573 &  1.0\\ \hline 14 &  0.10416666666666667 &  0.10416666666666667 &  1.0\\ \hline 2 &  0.12351190476190477 &  0.12351190476190477 &  1.0\\ \hline 5 &  0.12202380952380952 &  0.12202380952380952 &  1.0\\ \hline 6 &  0.10267857142857142 &  0.10267857142857142 &  1.0\\ \hline 7 &  0.20386904761904762 &  0.20386904761904762 &  1.0\\ \hline 8 &  0.13839285714285715 &  0.13839285714285715 &  1.0\\ \hline 9 &  0.1800595238095238 &  0.1800595238095238 &  1.0\\ \hline 12 $\rightarrow$ 11 &  0.12648809523809523 &  0.5821917808219178 &  1.7702845100105373\\ \hline 12 $\rightarrow$ 13 &  0.12351190476190477 &  0.3755656108597285 &  1.9564348100599809\\ \hline 7 $\rightarrow$ 8 &  0.10119047619047619 &  0.49635036496350365 &  3.5865316694137035\\
 \hline
 \end{tabular}
 \end{table}
