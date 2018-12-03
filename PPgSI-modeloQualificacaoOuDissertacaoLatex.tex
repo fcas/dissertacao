@@ -863,9 +863,9 @@ Além disso, temos como objetivos específicos:
 	\label{tab:oficialProfiles}
 \begin{threeparttable}
 \begin{tabular}{c|c}
-\hline
+\toprule
 \textbf{Descrição do \textit{profile} no \textit{Twitter}} & \textbf {Profile no \textit{Twitter}} \\ 
-\hline
+\midrule
 Comando do Corpo de Bombeiros da PMESP\tnote{a} & \textit{@BombeirosPMESP} \\ 
 \hline
 \nomenclature{CETSP}{Companhia de Engenharia de Tráfego de SP}{Companhia de Engenharia de Tráfego de SP} & \textit{@CETSP\_} \\ 
@@ -889,7 +889,7 @@ São Paulo Transporte & \textit{@sptrans\_} \\
 São Paulo Turismo & \textit{@TurismoSaoPaulo} \\ 
 \hline
 Secretaria Municipal de Transportes de São Paulo & \textit{@smtsp\_} \\ 
-\hline
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] \nomenclature{PMESP}{Polícia Militar do Estado de São Paulo}{Polícia Militar do Estado de São Paulo (PMESP).}
@@ -1139,9 +1139,9 @@ A \textit{GTFS --- General Transit Feed Specification}\footnote{\label{googleTra
       \label{tab:gtfsFiles}
 \begin{threeparttable}
 \begin{tabular}{>{\centering\arraybackslash}m{3.5cm} | >{\centering}m{3cm} | >{\centering\arraybackslash}m{8cm}}
-\hline
+\toprule
     \textbf{Nome do arquivo} & \textbf{Condicional} & \textbf{Contéudo} \tnote{a} \\
-\hline
+\midrule
 \textit{agency.txt} & Obrigatório & Contém uma ou mais agências de transporte público como fonte dos dados. \\
 \hline
 \textit{stops.txt} & Obrigatório & Contém os locais individuais em que os veículos pegam ou deixam passageiros. \\
@@ -1167,7 +1167,7 @@ fare\_attributes.txt & Opcional & Contém informações sobre tarifas dos trajet
 \textit{transfers.txt }& Opcional & Contém regras para conexões em pontos de baldeação entre os trajetos. \\
 \hline
 \textit{feed\_info.txt} & Opcional & Contém informações adicionais sobre o \textit{feed}, incluindo editor, versão e informações sobre validade. \\
-\hline
+\bottomrule
   \end{tabular}
   \begin{tablenotes}
             \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice \ref{apendiceC}, nas tabela \ref{tab:gtfsAgency} - \ref{tab:gtfsFeedInfo}.
@@ -1447,9 +1447,9 @@ Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesq
 \caption{Quantidades de artigos coletados e fontes de busca}
 	\label{tab:tableNumberOfArticles}
 \begin{tabular}{c|c|c|c}
-\hline
+\toprule
 \textbf{Fonte} & \textbf {Artigos coletados} & \textbf{Filtragem} & \textbf{Selecionados}\\ 
-\hline
+\midrule
 \nomenclature{ACM}{\textit{Association for Computing Machinery}}{ACM} & 44 & 34 & 10 \\ 
 \hline
 \nomenclature{IEEE}{\textit{Institute of Electrical and Electronics Engineers}}{IEEE} & 82 & 74 & 8 \\ 
@@ -1459,7 +1459,7 @@ Elsevier & 81 & 72 & 9\\
 Springer & 22 & 20 & 2\\ 
 \hline
 {-} & 229 & 200 & 29\\ 
-\hline
+\bottomrule
 \end{tabular}
 \center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
 \end{table}
@@ -1732,9 +1732,9 @@ Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe 
 	\label{tab:tweetsCollected}
 \begin{threeparttable}
 \begin{tabular}{c|c|c|c}
-\hline
+\toprule
 \textbf {Profile no \textit{Twitter}} &\textbf{ \# tweets \tnote{a}}  &\textbf{ \textit{Timestamp 1 \tnote{b}}} & \textbf{\textit{Timestamp 2 \tnote{c}}} \\ 
-\hline
+\midrule
 BombeirosPMESP & 5.750 & 2017-05-21 02:10:39 & 2017-10-29 23:07:08  \\
 \hline
 CETSP\_ & 5.042 & 2017-02-20 14:07:04 & 2017-10-29 21:45:54 \\ 
@@ -1758,11 +1758,9 @@ SPCEDEC & 945 & 2015-06-09 10:50:23 & 2017-10-29 23:38:36 \\
 sptrans\_ & 8.447 & 2017-06-13 15:19:56 & 2017-10-29 22:01:44 \\
 \hline
 TurismoSaoPaulo & 3.308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\ 
-\hline
-\hline
-\textbf{Total} & 53.788 & - & -   \\
-\hline
-\hline
+\midrule
+{} & 53.788 & - & -   \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Número de \textit{tweets} coletados.
@@ -1787,9 +1785,9 @@ No caso dos dados especificados em GTFS, convertemos os dados originais de \text
 \caption{Conjuntos e quantidades de dados especificados em GTFS pela SPTrans}
 	\label{tab:gtfs}
 \begin{tabular}{c|c}
-\hline
+\toprule
 \textbf{Conjunto de dados} & \textbf {Quantidade de dados} \\ 
-\hline
+\midrule
 \textit{agency.txt} & 1 \\ 
 \hline
 \textit{calendar.txt} & 6 \\ 
@@ -1809,18 +1807,16 @@ No caso dos dados especificados em GTFS, convertemos os dados originais de \text
 \textit{stops.txt} & 19.933 \\ 
 \hline
 \textit{trips.txt} & 2.273 \\
-\hline
-\hline
-\textbf{Total} & 1.254.779 \\
-\hline
-\hline
+\midrule
+{} & 1.254.779 \\
+\bottomrule
 \end{tabular}
 \center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
 \end{table}
 
 Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (intervalo antes da data em que os dados foram solicitados, por meio da \textit{Lei de Acesso a Informação} \footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a tabela \ref{tab:avlDataset}, alguns dos dos dados de movimentação referentes a novembro e dezembro estão ausentes, segundo a \textit{SPTrans}, essa ausência é justificada devido a períodos de indisponibilidade do sistema de monitoramento.
 
-Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na tabela \ref{tab:avlDataset}.
+Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na tabela \ref{tab:avlDataset}. Além dos períodos indisponíveis, encontramos arquivos com linhas contendo dados divergentes do meta dados fornecido pela SPTrans,  de acordo com a Tab. \ref{tab:avlDataset}, tais registros foram ignorados para os experimentos deste trabalho.
 
 \begin{table}[!htb]
 \begin{threeparttable}
@@ -1828,10 +1824,10 @@ Os períodos indisponíveis foram identificados por meio de um \textit{script}\f
 \caption{Descrição do conjunto de dados AVL}
 \label{tab:avlDataset}
 \begin{tabular}{ c | c | c | c }
-\hline
+\toprule
 \textbf{Mês} & \textbf{Intervalo (dias)} & \textbf{Total de arquivos AVL} & \textbf{Espaço em disco (GB)} \\
-\hline
-Janeiro & 1 - 31 & 744 & 102,44 \\
+\midrule
+Janeiro\tnote{c} & 1 - 31 & 744 & 102,44 \\
 \hline
  Fevereiro & 1 - 28 & 672 & 93,21 \\
 \hline
@@ -1854,28 +1850,27 @@ Janeiro & 1 - 31 & 744 & 102,44 \\
  Novembro\tnote{a} & 1 - 30 & 717 & 108,16 \\
 \hline
  Dezembro\tnote{b} & 1 - 31 & 738 & 110,89 \\
-\hline
-\hline
---- & --- & 8,751 & 1,247.09 \\
-\hline
-\hline
+\midrule
+{} & --- & 8,751 & 1,247.09 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
 \item[a]Arquivos indisponíveis em novembro: 
 \begin{itemize}
-\item Movto\_201711011200\_201711011300.zip 
-\item Movto\_201711011300\_201711011400.zip 
-\item Movto\_201711011400\_201711011500.zip
+\item \texttt{Movto\_201711011200\_201711011300.zip}
+\item \texttt{Movto\_201711011300\_201711011400.zip}
+\item \texttt{Movto\_201711011400\_201711011500.zip}
 \end{itemize}
 \item[b]Arquivos indisponíveis em dezembro, devido a falha na rede de transmissão de dados \nomenclature{GPRS}{\textit{General Packet Radio Services,}}conforme apresentado no sistema interno de registro de interrupções do sistema, Fig. \ref{fig:e_sic_33310} --- resposta oficial da SPTrans, responsável: Albino Silva da Rocha, Chefe de Gabinete da SPTrans: 
 \begin{itemize}
-\item Movto\_201712150100\_201712150200.zip 
-\item Movto\_201712150400\_201712150500.zip 
-\item Movto\_201712150500\_201712150600.zip 
-\item Movto\_201712150600\_201712150700.zip 
-\item Movto\_201712150700\_201712150800.zip 
-\item Movto\_201712150800\_201712150900.zip
+\item \texttt{Movto\_201712150100\_201712150200.zip}
+\item \texttt{Movto\_201712150400\_201712150500.zip}
+\item \texttt{Movto\_201712150500\_201712150600.zip}
+\item \texttt{Movto\_201712150600\_201712150700.zip}
+\item \texttt{Movto\_201712150700\_201712150800.zip}
+\item \texttt{Movto\_201712150800\_201712150900.zip}
 \end{itemize}
+\item[c] Arquivos  \texttt{Movto\_201701111000\_201701111100} com 35 campos na linha 60.025 e \texttt{Movto\_201701110900\_201701111000} com 21 campos na linha 1.075.548, ambos deveriam conter 19 campos de acordo com os meta dados fornecidos pela SPTrans.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -1893,9 +1888,9 @@ Janeiro & 1 - 31 & 744 & 102,44 \\
 \caption{Meta dados dos dados AVL da SPTrans}
 \label{tab:avlDataset}
 \begin{tabular}{c|c}
-\hline
+\toprule
 \textbf{Nome do campo} & \textbf{Descrição do campo} \\
-\hline
+\midrule
 \textit{cd\_evento\_avl\_movto} & 
 Código sequencial identificador do evento \\
 \hline
@@ -1951,7 +1946,7 @@ Código interno utilizado para  identificar
 \hline
 \textit{cd\_prefixo} & 
 Prefixo do veículo \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -2210,9 +2205,9 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \caption {Métricas das avaliações dos algoritmos utilizados para classificação dos \textit{tweets} em eventos de exceção}
 \label {tab:metrics}
 \begin{tabular}{c|c|c|c|c}
-\hline
+\toprule
 \textbf{Algoritmo} & \textbf{Acurácia} & \textbf{Precisão} & \textbf{Revocação} & \textbf{\textit{f1-score}} \\
-\hline
+\midrule
 \textit{Complement Naive Bayes} & 0,952 & 0,955 & 0,952 & 0,953 \\
 \hline
 \textit{Decision Tree} & 0,965 & 0,964 & 0,965 & 0,964 \\
@@ -2228,7 +2223,7 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \textit{Random Forest} & 0,973 & 0,972 & 0,973 & 0,972 \\
 \hline
 \textit{Support Vector Machine} & 0,831 & 0,691 & 0,831 & 0,755 \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -2265,9 +2260,9 @@ Neste estudo de caso, desconsideramos os endereços com classificação \textit{
 \label {tab:qtdExtractedAddresses}
 \begin{threeparttable}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{Classe} & \textbf{\#endereços extraídos\tnote{a}} & \textbf{\textit{\#APP\tnote{b}}} & \textbf{\textit{\#GEO\tnote{c}}} & \textbf{\textit{\#RANGE\tnote{d}}} & \textbf{\textit{\#ROOF\tnote{e}}} \\
-\hline
+\midrule
 Accident & 3.439 & 7 & 805 & 1.130 & 1.497 \\
 \hline
 Irrelevant & 451 & 13 & 292 & 6 & 140 \\
@@ -2277,11 +2272,9 @@ Natural Disaster & 2.464 & 9 & 340 & 719 & 1.396 \\
 Social Event & 793 & 4 & 761 & 2 & 26 \\
 \hline
 Urban Event & 1.002 & 4 & 942 & 10 & 46 \\
-\hline
-\hline
-- & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
-\hline
-\hline
+\midrule
+{} & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
 \item[a] Total de endereços extraídos
@@ -2319,9 +2312,9 @@ Consideramos que uma linha de ônibus é afetada por um evento de exceção se u
 \caption {Linhas de ônibus mais impactadas por eventos de exceção\tnote{a}}
 \label {tab:impacted_bus_code_lines}
 \begin {tabular} {c|c|c}
- \hline
+ \toprule
 \textbf{Código da linha} & \textbf{\# eventos de exceção} & \textbf{Letreiro} \\
-    \hline
+    \midrule
     33389 & 1301  & TERM. PINHEIROS / METRÔ TUCURUVI  \\
 \hline
 
@@ -2404,7 +2397,7 @@ Consideramos que uma linha de ônibus é afetada por um evento de exceção se u
 \hline
 
     33126 & 614   & TERM. BANDEIRA / INOCOOP CAMPO LIMPO  \\
-\hline
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Tabela completa no apêndice \ref{apendiceD}.
@@ -2520,7 +2513,7 @@ Embora o método tenha sido validado usando perfis selecionados do Twitter escri
 \label{dataCorr}
 %\todo[inline]{Escrever Correlação dos eventos de exceção com os dados AVL da SPTrans}
 
-Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans, especificamente os dados referentes a \textit{timestamp}, latitude, longitude, \textit{bus\_id} e \textit{trip\_id}.  Devido a limitações de recursos computacionais, analisamos o mês com maior quantidade de eventos, de acordo com a Fig. \ref{fig:geolocated_exception_events_distribution} e o \textit{Corpus Twitter} classificado manualmente, a maior concentração de eventos de exceção e no mês de agosto de 2017, com 904.
+Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans.  Neste estudo consideramos os eventos de exceção geolocalizados do ano de 2017 do \textit{Corpus Twitter}, classificados manualmente. A distribuição desses eventos ao longo dos meses pode ser observada  na Fig. \ref{fig:geolocated_exception_events_distribution}, assim como de suas respectivas classes na Fig. \ref{fig:exception_events_classification_distribution}.
 
 %Dito isso, inicialmente pretendemos caracterizar os impactos em:
 
@@ -2542,9 +2535,16 @@ Dado que os eventos de exceção podem ser identificados utilizando \textit{twee
 	\label{fig:geolocated_exception_events_distribution}
 \end{figure}
 
-Conforme descrito no Cap. \ref{exp1} e na Fig. \ref{fig:avl_tweets_correlation}, analisamos as linhas afetadas por eventos de exceção em um raio de 1.000 metros das paradas de ônibus (contidas na coleção \textit{stops} da GTFS da SPTrans) as geolocalizações extraídas dos \textit{tweets}. 
+Conforme descrito no Cap. \ref{exp1} e ilustrado na Fig. \ref{fig:avl_tweets_correlation}, identificamos as linhas afetadas por eventos de exceção filtrando as paradas de ônibus (contidas na coleção \textit{stops} da GTFS da SPTrans) dentro de um raio de 1.000 metros das geolocalizações extraídas dos \textit{tweets}. 
 
-A partir disso, selecionamos os dados de movimentação que serão analisados, por exemplo, se o evento de exceção aconteceu em 17/08/2017 (quinta-feira), todas as demais quinta-feiras do mês de agosto (3, 10, 24 e 31/08/2017) serão consideradas na análise. Isso, porque os dias da semana possuem padrões diferentes de movimentação, por exemplo, nas sextas feiras ocorrem inúmeros eventos sociais que acarretam em um trânsito mais congestionado. Além da diferenciação dos dias da semana, os meses também possuem características distintas, devido a isso os dias selecionados são restritos ao mês de ocorrência do evento.    
+A partir disso, selecionamos os dados de movimentação que serão analisados, por exemplo, se o evento de exceção aconteceu em 17/08/2017 (quinta-feira), todas as demais quinta-feiras do mês de agosto (3, 10, 24 e 31/08/2017) serão consideradas na análise. Isso, porque os dias da semana possuem padrões diferentes de movimentação (sazonalidade), por exemplo, nas sextas feiras ocorrem inúmeros eventos sociais que normalmente acarretam em um trânsito mais congestionado. Além da diferenciação dos dias da semana, os meses também possuem características distintas --- festas no final do ano, férias, início de períodos letivos, etc. ---, conforme Fig. \ref{fig:exception_events_classification_distribution}, devido a isso os dias selecionados são restritos ao mês de ocorrência do evento.
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Distribuição das classes de eventos de exceção geolocalizados ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/exception_events_classification_distribution.png}
+	\label{fig:exception_events_classification_distribution}
+\end{figure}
 
 \begin{figure}[!htb]
 	\centering
@@ -2553,34 +2553,91 @@ A partir disso, selecionamos os dados de movimentação que serão analisados, p
 	\label{fig:avl_tweets_correlation}
 \end{figure}
 
-As filtragens de dias e meses a parte, também filtramos os dados relacionados as linhas impactadas e a um raio de distância de 100 e 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. Apesar de ser difícil estimarmos os horários de início e término de um evento de exceção, sabemos que as classes de eventos analisadas não possuem a característica de término de impacto imediato, devido a isso consideramos o horário contido nos \textit{tweets} como válidos para o recorte da faixa de horário.
+Seleções de dias e meses à parte, também filtramos os dados relacionados as linhas impactadas a um raio de distância de 100 e 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. É importante observar que esse trabalho não considera início e término exato dos eventos de exceção, mas uma faixa de horário de uma hora a partir do horário contido no \textit{timestamp}  do \textit{tweet}.
 
-Após a seleção dos dados de movimentação, eles são agregados de acordo com a linha do ônibus para então extrairmos dados estatísticos sobre a velocidade instantânea, tais como: velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. Em seguida, para cada conjunto de linhas afetadas pelo eventos de exceção e para cada linha, comparamos a velocidade média da faixa de horário da ocorrência com a velocidade média dos dias analisados.
+Em seguida, agregamos os dados selecionados para analisarmos  de forma descritiva a velocidade instantânea de cada linha de ônibus, com isso extraímos dados sobre a velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. Após isso, comparamos a velocidade média da faixa de horário da ocorrência com a velocidade média dos dias que não fazem referência ao evento de exceção, para cada conjunto de linhas afetadas pelo evento de exceção e para cada linha.
 
-Consideramos que a linha foi impactada se a mediana da velocidade média dos dias analisados for maior que a mediana da velocidade média do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%. 
+Consideramos que a linha foi impactada se a média das velocidades médias dos dias analisados for maior ou igual a velocidade média do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%. 
 
 \section*{Resultados}
 
-Utilizando a metodologia anteriormente descrita, podemos observar na Tab. \ref{tab:exceptEventVelocityImp} que os eventos de exceção relacionados a eventos sociais possuem 72,28\% de impacto na velocidade média nos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento. A segunda e terceira classe mais afetadas são as de acidentes e desastres naturais, 71,61\% e 70,53\% respectivamente, as quais normalmente resultam em bloqueios de vias públicas utilizadas pelos ônibus. Por último, os eventos urbanos são os que menos afetam a velocidade média dos ônibus, com 68,10\% de impacto na velocidade média, muito possivelmente porque em suas ocorrências há planejamento de rotas alternativas e sinalizações nas vias públicas.
+Utilizando a metodologia anteriormente descrita, podemos observar na Tab. \ref{tab:exceptEventVelocityImpAll} que os eventos de exceção relacionados a eventos sociais possuem em média 87,04\% de impacto na velocidade média nos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância e 100\% a um raio de 100 metros, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento, quantidade de avenidas com fluxo do trânsito modificado ou interrompido. 
 
-Além da análise de um raio de 1.000 metros de distância do evento de exceção, consideramos impactos a 100 metros. Nesse cenário, há uma pequena diferença para a classe de acidentes, de 71,61\% para 71,78\%, respectivamente. No que se refere aos desestres naturais, o impacto passa de 70,53\% para 75,47\%. Dentro do raio de 100 metros de distância não encontramos dados de movimentação que pudessem ser correlacionados com os eventos de exceção referentes a eventos sociais e urbanos, de acordo com os critérios estabelecidos pela metodologia.
- 
+Os eventos urbanos, por sua vez, impactam em 70,11\% a 1.000 metros e 98,86\% a 100 metros, mesmo sendo realizados com planejamento de rotas alternativas e sinalizações nas vias públicas. A terceira e quarta classe mais afetadas são as de acidentes e desastres naturais, respectivamente, 66,51\% e 59,77\% a 1.000 metros e 98,39\% e 99,80\% a 100 mestros, as quais normalmente resultam em bloqueios ou desvios em vias públicas utilizadas pelos ônibus. 
+
+Além disso, janeiro, fevereiro e março foram os três meses mais afetados por eventos de exceção relacionados a destrases naturais, período de grandes volumes de preciptação de chuva em São Paulo, no qual normalmente ocorre deslizamentos de terra, quedas de árvores e inundações.  Em relação aos eventos sociais, o ano de 2017 foi marcado com inúmeras manifestações políticas, neste contexto, o mês de maio foi o mais impactado por esse tipo de evento de exceção, principalmente devido aos protestos contra o governo Temer\footnote{{http://www1.folha.uol.com.br/poder/2017/05/1884977-manifestacao-anti-\newline temer-reune-centenas-de-pessoas-na-av-paulista.shtml}. Acessado em 02 de dezembro de 2018}. Os eventos relacionados a acidentes normalmente ocorrem em maior concentração nos períodos de festas e feriados, o que pode ser observado nos meses de janeiro e abril (único mês de 2017 com dois feriados prolongados), com média de impacto de 83,33\% e 87,50\% nas velocidades médias, respectivamente.  Os impactos relacionados a eventos urbanos ocorrem normalmente durante todos os meses, devido a isso são mais uniformes.
+
+Os meses próximos a 100\% de impacto nas velocidades médias são justificados devido ao pouco volume de eventos para uma determinada classe em um determinados mês, conforme Fig. \ref{fig:exception_events_classification_distribution}, o que também acontece para cenários com dados geolocalizados muito próximos aos eventos de exceção. Analogamente, os meses e clases sem dado de impacto são meses com pouco dado para a classe em questão. 
+
+
 \begin{table}[!htb]
 \centering
-\caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 100m e 1.000m de distância}
-\label {tab:exceptEventVelocityImp}
-\begin{tabular}{c|c|c}
+\caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 1.000m e 100m de distância, respectivamente, nos meses do ano de 2017}
+\label {tab:exceptEventVelocityImpAll}
+\begin{tabular}{c|cc|cc|cc|cc}
+\toprule
+\textbf{Mês} & \multicolumn{2}{c}{\textit{\textbf{Accident}}} & \multicolumn{2}{c}{\textit{\textbf{Natural Disaster}}} & \multicolumn{2}{c}{\textit{\textbf{Social Event}}} &
+\multicolumn{2}{c}{\textit{\textbf{Urban Event}}}\\
+\midrule
+Janeiro & 83,33 &  100 & 
+64,23 &  98,00 & 
+100 & - &
+ 100 & - \\
 \hline
-\textbf{Evento de exceção} & \textbf{ \begin{tabular}{@{}c@{}} \% de linhas impactadas \\  no raio de 1.000m \end{tabular}} & \textbf{ \begin{tabular}{@{}c@{}} \% de linhas impactadas \\  no raio de 100m \end{tabular}} \\
+Fevereiro & 70,58 &  100 &
+ 66,25 &  100 &
+ 100 & 100 &
+ 80 & - \\
 \hline
-\textit{Accident} &  71,61 & 71,78 \\
+Março &  50,00 &  - & 
+66,66 &  100 &
+85,00 & 100 &
+68,18 & 100 \\
 \hline
-\textit{Natural Disaster} & 70,53 & 75,47 \\
+Abril & 87,50 &100 & 
+ 61,11 & 100 & 
+ 82,75 & 100 & 
+ 76,92 &  100 \\
 \hline
-\textit{Social Event} & 72,28 & - \\
+Maio & 65,13 &  100 &
+ 58,82 &  100 &
+ 93,33 & 100 &
+ 50,00 & 100 \\
 \hline
-\textit{Urban Event} & 68,10 & - \\
+Junho & 54,46 &  100 &
+ 61,53 &  100 &
+ 76,47 & 100 &
+ 72,41 & 100 \\
 \hline
+Julho & 61,48 &  98,41 &
+ 66,66 & 100 &
+ 69,23 & 100 &
+58,13 & 100 \\
+\hline
+Agosto & 57,86 & 87,17 &
+ 55,35 & 100 &
+ 85,54 & 100 & 
+ 68,10 & 90,90 \\
+\hline
+Setembro & 64,21 & 100 &
+ 42,10 & 100 &
+ 92,30 & 100 & 
+ 62,06 & 100 \\
+\hline
+Outubro & 70,49 & - &
+ 56,81 & - &
+ 80,00 & - &
+ 61,11 & - \\
+\hline
+Novembro & 66,66 & 100 &
+ 57,99 & 100 &
+ 92,85 & 100 &
+ 74,35 & 100 \\
+\hline
+Dezembro & - & - & - & - & - & - & - & -  \\
+\midrule
+{} & 66,51 & 98,39 & 59,77 & 99,80 & 87,04 & 100 & 70,11 & 98,86  \\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -2588,7 +2645,7 @@ Além da análise de um raio de 1.000 metros de distância do evento de exceçã
 
 Neste capítulo, é apresentado um processo para identificação de padrões de velocidade média dos dados AVL, por meio do algoritmo \textit{Apriori}. De acordo com \cite{xie2008optimization}, o algoritmo é ineficiente para grandes volumes de dados, devido ao fato da quantidade elevada de itens candidatos, processo explicado no Cap. \ref{apriori} e aos inúmeros acessos necessários ao banco de dados. O foco deste trabalho não é melhorar o desempenho do algoritmo \textit{Apriori} ou usar as melhorias existente na literatura \cite{xie2008optimization, zhang2014method}, pois não são significativas para as características dos dados AVL, com mais de um milhão de registros por hora.
 
-Além da quantidade de registros total, o volume de dados para pequenos intervalos de tempo também é considerável, pois os módulos AVL enviam dados dos ônibus a todo instante. Dessa forma, para viabilizarmos o uso do algoritmo \textit{Apriori}, agrupamos os dados por intervalos de tempo de cinco minutos e calculamos a velocidade média para cada intervalo. Com isso, executamos esse processo para cada mês do conjunto de dados AVL para determinarmos as velocidades médias e identificar os padrões existentes nos intervalos definidos.
+Além da quantidade de registros total, o volume de dados para pequenos intervalos de tempo também é considerável, pois os módulos AVL enviam dados dos ônibus a todo instante. Dessa forma, para viabilizarmos o uso do algoritmo \textit{Apriori}, agrupamos os dados por intervalos de tempo de cinco minutos e calculamos a velocidade média para cada intervalo. Com isso, executamos esse processo para cada mês do conjunto de dados AVL para determinarmos as velocidades médias e identificarmos os padrões existentes nos intervalos definidos.
 
 Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL correlacionados aos eventos de exceção (\textit{Accident}, \textit{Urban Event}, \textit{Natural Disaster} e \textit{Social Event}), mencionados no Cap. \ref{dataCorr}.
 
@@ -2655,21 +2712,25 @@ October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 \end{threeparttable}
 \end{table}
 
-
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção do mês de agosto de 2017}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 100m) dos meses do ano\tnote{g} de 2017}
 \label {tab:aprioriFull}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 1.677 & 315.063 & 278.493 & 30.804 & 5.766 \\
 \hline
-\textit{Accident} & 462 &  667.882 & 585.663 & 62.135 & 30.084\\
-\textit{Natural Disaster} & 112 & 150.161 & 128.268  & 13.640 & 8.253\\
-\textit{Social Event} & 83 & 63.040 & 49.253 & 9.327 & 4.460	  \\
-\textit{Urban Event} & 189 & 286.852 & 249.817 & 24.670 & 12.365 \\
+\textit{Natural Disaster} & 912 & 115.301 & 99.206 & 14.282 & 1.813 \\
 \hline
+\textit{Social Event} & 506 & 61.927 & 52.403 & 8.245 & 1.279 \\
+\hline
+\textit{Urban Event} & 596 & 93.513 & 81.261 & 10.480 & 1.772 \\
+\midrule
+{} & 3.691 & 585.804 & 511.363 & 63.811 & 10.603 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
@@ -2678,12 +2739,39 @@ October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
             \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
             \item[e] Regras inesperadas ($Lift = 1$)
             \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 3.545 eventos de exceção não atingiram linhas de ônibus no raio de 100m.
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
-
-
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 1.000m) dos meses do ano\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 3.029 & 3.980.542 & 3.415.780 & 385.728 & 179.034 \\
+\textit{Natural Disaster} & 2.016 & 2.624.415 & 2.253.123 & 259.285 & 112.007 \\
+\textit{Social Event} & 764 & 1.262.805 & 1.118.546 & 100.224 & 44.035 \\
+\textit{Urban Event} & 980 & 1.481.040 & 1.296.476 & 125.803 & 58.761 \\
+\midrule
+{} & 6.789 & 9.348.802 & 8.083.925 & 871.040 & 393.837 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 447 eventos de exceção não atingiram linhas de ônibus no raio de 1.000m.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
 
 \chapter{Conclusão}
 \label{conclusion}
@@ -7193,6 +7281,660 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 12 $\rightarrow$ 11 &  0,14363143631436315 &  0,4326530612244898 &  2,073363371322555\\
 \hline
 \end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de janeiro\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 40 & 49.012 & 41.870 & 4.399 & 2.743 \\
+\textit{Natural Disaster} & 599 & 809.338 & 703.331 & 70.304 & 35.703 \\
+\textit{Social Event} & 7 & 13.863 & 11.022 & 2.259 & 582 \\
+\textit{Urban Event} & 1 & 2.907 & 2.412 & 424 & 71 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 23 eventos de exceção não atingiram linhas de ônibus. 
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de fevereiro\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 46 & 49.452 & 39.294 & 8.213 & 1.945 \\
+\textit{Natural Disaster} & 318 & 336.685 & 278.368 & 47.390 & 10.927 \\
+\textit{Social Event} & 8 & 7.972 & 5.590 & 2.077 & 305 \\
+\textit{Urban Event} & 5 & 7.750 & 6.391 & 960 & 399 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 23 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de março\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 37 & 37.421 & 30.253 & 46.04 & 2.564 \\
+\textit{Natural Disaster} & 184 & 279.140 & 243.777 & 22.276 & 13.087 \\
+\textit{Social Event} & 48 & 56.600 & 46.990 & 6.006 & 3.604 \\
+\textit{Urban Event} & 49 & 55.893 & 46.005 & 6.076 & 3.812 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 9 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de abril\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 29 & 21.105 & 16.955 & 3.105 & 1.045 \\
+\textit{Natural Disaster} & 100 & 143.394 & 122.541 & 15.743 & 5.110 \\
+\textit{Social Event} & 179 & 527.761 & 493.875 & 23.576 & 10.310 \\
+\textit{Urban Event} & 79 & 146.124 & 129.399 & 12.191 & 4.534 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 3 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de maio\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 194 & 263.940 & 228.631 & 22.846 & 12.463 \\
+\textit{Natural Disaster} & 99 & 130.660 & 111.003 & 12.778 & 6.879 \\
+\textit{Social Event} & 80 & 87.786 & 70.995 & 12.082 & 4.709 \\
+\textit{Urban Event} & 52 & 108.674 & 98.464 & 7.283 & 2.927 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 27 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de junho\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 496 & 595.019 & 498.826 & 66.882 & 29.311 \\
+\textit{Natural Disaster} & 100 & 138.667 & 118.128 & 15.067 & 5.472 \\
+\textit{Social Event} & 95 & 150.404 & 131.000 & 13.924 & 5.480 \\
+\textit{Urban Event} & 87 & 131.486 & 115.145 & 12.094 & 4.247 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 72 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de julho\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 517 & 696.754 & 596.893 & 65.641 & 34.220 \\
+\textit{Natural Disaster} & 51 & 52.739 & 44.165 & 6.319 & 2.255 \\
+\textit{Social Event} & 60 & 97.610 & 87.833 & 6.184 & 3.593 \\
+\textit{Urban Event} & 134 & 138.378 & 116.202 & 14.998 & 7.178 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 68 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de agosto\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 462 &  667.882 & 585.663 & 62.135 & 30.084\\
+\textit{Natural Disaster} & 112 & 150.161 & 128.268  & 13.640 & 8.253\\
+\textit{Social Event} & 83 & 63.040 & 49.253 & 9.327 & 4.460	  \\
+\textit{Urban Event} & 189 & 286.852 & 249.817 & 24.670 & 12.365 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 58 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de setembro\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 454 & 454.837 & 379.438 & 53.504 & 21.895 \\
+\textit{Natural Disaster} & 62 & 78.835 & 66.581 & 8.047 & 4.207 \\
+\textit{Social Event} & 63 & 60.756 & 50.897 & 65.70 & 3.289 \\
+\textit{Urban Event} & 142 & 204.034 & 178.696 & 16.735 & 8.603 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 40 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de outubro\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 396 & 649.238 & 578.523 & 46.116 & 24.599 \\
+\textit{Natural Disaster} & 163 & 246.022 & 218.846 & 17.877 & 9.299 \\
+\textit{Social Event} & 68 & 68.507 & 57.616 & 7.069 & 3.822 \\
+\textit{Urban Event} & 90 & 140.985 & 125.946 & 9.175 & 5.864 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 71 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de novembro\tnote{g} de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 350 & 477.061 & 412.095 & 47.137 & 17.829 \\
+\textit{Natural Disaster} & 228 & 258.774 & 218.115 & 29.844 & 10.815 \\
+\textit{Social Event} & 72 & 127.963 & 113.103 & 11.061 & 3.799 \\
+\textit{Urban Event} & 151 & 251.380 & 221.597 & 21.067 & 8.716 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 53 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de dezembro de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 8 & 8.821 & 7.339 & 1.146 & 336 \\
+\textit{Natural Disaster} & - & - & - & - & - \\
+\textit{Social Event} & 1 & 543 & 372 & 89 & 82 \\
+\textit{Urban Event} & 1 & 6.577 & 6.402 & 130 & 45 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de janeiro de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 16 & 284 & 209 & 75 & 0 \\
+\textit{Natural 	Disaster} & 266 & 41.646 & 37.002 & 3.945 & 699 \\
+\textit{Social Event} & 4 & 111 & 84 & 27 & 0 \\
+\textit{Urban Event} & 1 & 5 & 1 & 4 & 0 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 383 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de fevereiro de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 23 & 663 & 477 & 182 & 4 \\
+\textit{Natural Disaster} & 151 & 12.595 & 10.346 & 2.091 & 158 \\
+\textit{Social Event} & 6 & 706 & 617 & 85 & 4 \\
+\textit{Urban Event} & 5 & 139 & 92 & 43 & 4 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 215 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de março de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 22 & 2.368 & 2.044 & 271 & 53 \\
+\textit{Natural Disaster} & 90 & 11.188 & 9.664 & 1.378 & 146 \\
+\textit{Social Event} & 33 & 10.072 & 9.206 & 527 & 339 \\
+\textit{Urban Event} & 24 & 823 & 575 & 248 & 0 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 158 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de abril de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 17 & 1.757 & 1.476 & 260 & 21 \\
+\textit{Natural Disaster} & 45 & 9.858 & 8.642 & 1.040 & 176 \\
+\textit{Social Event} & 100 & 3.068 & 2.139 & 907 & 22 \\
+\textit{Urban Event} & 57 & 3.577 & 2.894 & 666 & 17 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 171 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de maio de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 117 & 18.064 & 15.179 & 2.523 & 362 \\
+\textit{Natural Disaster} & 34 & 5.338 & 3.908 & 1.330 & 100 \\
+\textit{Social Event} & 55 & 7.118 & 6.396 & 576 & 146 \\
+\textit{Urban Event} & 34 & 3.027 & 2.567 & 435 & 25 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 212 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de junho de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 288 & 49.659 & 42.233 & 6.293 & 1.133 \\
+\textit{Natural Disaster} & 52 & 4.403 & 3.704 & 647 & 52 \\
+\textit{Social Event} & 62 & 2.366 & 1.775 & 585 & 6 \\
+\textit{Urban Event} & 51 & 7.729 & 6.617 & 949 & 163 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 397 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de julho de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 282 & 60.501 & 53.828 & 5.382 & 1.291 \\
+\textit{Natural Disaster} & 24 & 3.681 & 3.104 & 521 & 56 \\
+\textit{Social Event} & 41 & 10.965 & 9.338 & 1.359 & 268 \\
+\textit{Urban Event} & 88 & 25.140 & 22.954 & 1.947 & 239 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 395 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de agosto de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 253 & 68.926 & 62.995 & 4.666 & 1.265 \\
+\textit{Natural Disaster} & 45 & 3.318 & 2.712 & 555 & 51 \\
+\textit{Social Event} & 63 & 10.380 & 8.835 & 1.288 & 257 \\
+\textit{Urban Event} & 111 & 22.585 & 19.837 & 2.262 & 486 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 432 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de setembro de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 228 & 36.130 & 31.202 & 4.437 & 491 \\
+\textit{Natural Disaster} & 33 & 4.698 & 4.116 & 501 & 81 \\
+\textit{Social Event} & 44 & 4.066 & 3.440 & 591 & 35 \\
+\textit{Urban Event} & 85 & 10.793 & 9.123 & 1.074 & 596 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 371 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de outubro de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 221 & 41.610 & 36.983 & 3.793 & 834 \\
+\textit{Natural Disaster} & 79 & 9.356 & 8.132 & 1.064 & 160 \\
+\textit{Social Event} & 49 & 7.948 & 6.256 & 1.581 & 111 \\
+\textit{Urban Event} & 50 & 1.574 & 1.089 & 470 & 15 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 389 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de novembro de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 208 & 31596 & 28664 & 2670 & 262 \\
+\textit{Natural Disaster} & 93 & 9220 & 7876 & 1210 & 134 \\
+\textit{Social Event} & 49 & 5127 & 4317 & 719 & 91 \\
+\textit{Urban Event} & 89 & 18038 & 15450 & 2361 & 227 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 415 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de dezembro de 2017}
+\label {tab:aprioriFull}
+\begin{tabular}{c|c|c|c|c|c}
+\hline
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\hline
+\textit{Accident} & 2 & 3505 & 3203 & 252 & 50 \\
+\textit{Natural Disaster} & - & - & - & - & - \\
+\textit{Social Event} & - & - & - & - & - \\
+\textit{Urban Event} & 1 & 83 & 62 & 21 & 0 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras inesperadas ($Lift = 1$)
+            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[g] 7 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
 \end{table}
 
 \end{apendicesenv}
