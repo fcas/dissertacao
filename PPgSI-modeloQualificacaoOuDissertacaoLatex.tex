@@ -2198,7 +2198,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
 	\label{fig:tweets_distribution}
 \end{figure}
 
-Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} para classificação é mais adequado para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mlpc}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice \ref{apendiceE}.
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mlpc}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice \ref{apendiceE}.
 
 \begin{table}[!htb]
 \centering
@@ -2212,20 +2212,19 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \hline
 \textit{Decision Tree} & 0,965 & 0,965 & 0,965 & 0,965 \\
 \hline
-\textit{K-Nearest Neighbors} & 0,971 & 0,972 & 0,971 & 0,971 \\
+\textit{K-Nearest Neighbors} & 0,970 & 0,971 & 0,970 & 0,970 \\
 \hline
-\textit{Logistic Regression} & 0,968 & 0,967 & 0,968 & 0,967 \\
+\textit{Logistic Regression} & 0,969 & 0,968 & 0,969 & 0,968 \\
 \hline
-\textit{Multi-layer Perceptron} & \textit{0,974} & \textit{0,974} & \textit{0,974} & \textit{0,974} \\
+\textit{Multi-layer Perceptron} & \textit{0,973} & \textit{0,972} & \textit{0,973} & \textit{0,972} \\
 \hline
-\textit{Multinomial Naive Bayes} & 0,952 & 0,952 & 0,952 & 0,948 \\
+\textit{Multinomial Naive Bayes} & 0,953 & 0,952 & 0,953 & 0,949 \\
 \hline
 \textit{Random Forest} & 0,970 & 0,970 & 0,970 & 0,970 \\
 \hline
-\textit{Support Vector Machine} & 0,830 & 0,689 & 0,830 & 0,753 \\
+\textit{Support Vector Machine} & 0,833 & 0,694 & 0,833 & 0,757 \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{tabular}\end{table}
 
 
 \begin{figure}[!htb]
@@ -2408,7 +2407,7 @@ Consideramos que uma linha de ônibus é afetada por um evento de exceção se u
 
 \section{Considerações finais sobre a metodologia desenvolvida}
 
-Este experimento apresenta uma nova metodologia para classificação de eventos de exceção e analisa seus respectivos impactos no sistema de transporte coletivo por ônibus da cidade de São Paulo. Com o conjunto de dados utilizados, descobrimos que o melhor algoritmo para classificar \textit{tweets} em eventos de exceção foi \textit{Multi-layer Perceptron}. Também, mostramos que é possível extrair endereços de \textit{tweets} semi-estruturados usando apenas expressões regulares. A classificação desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
+Este experimento apresenta uma nova metodologia para classificação de eventos de exceção e analisa seus respectivos impactos no sistema de transporte coletivo por ônibus da cidade de São Paulo. De acordo com os experimentos realizados, o algoritmo com maior  acurácia para classificação de \textit{tweets} em eventos de exceção foi \textit{Multi-layer Perceptron}. Também, mostramos que é possível extrair endereços de \textit{tweets} semi-estruturados usando apenas expressões regulares. A classificação desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
 
 Embora o método tenha sido validado usando perfis selecionados do Twitter escritos em português do Brasil, o mesmo pode ser generalizado para diferentes idiomas e cidades. A GTFS é um formato ubíquo para o transporte público e ferramentas como a NLTK suporta vários idiomas.
 
@@ -6680,7 +6679,7 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Regressão Logística}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_rl.png}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_lr.png}
 	\label{fig:confusion_matrix_rl}
 \end{figure}
 
