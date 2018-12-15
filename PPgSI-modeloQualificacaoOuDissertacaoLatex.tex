@@ -1735,31 +1735,31 @@ Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe 
 \toprule
 \textbf {Profile no \textit{Twitter}} &\textbf{ \# tweets \tnote{a}}  &\textbf{ \textit{Timestamp 1 \tnote{b}}} & \textbf{\textit{Timestamp 2 \tnote{c}}} \\ 
 \midrule
-BombeirosPMESP & 5.750 & 2017-05-21 02:10:39 & 2017-10-29 23:07:08  \\
+\textit{@BombeirosPMESP} & 6,632 & 2017-05-21 & 2017-12-01 \\
 \hline
-CETSP\_ & 5.042 & 2017-02-20 14:07:04 & 2017-10-29 21:45:54 \\ 
+\textit{@CETSP\_} & 5,735 & 2017-02-20  & 2017-12-01 \\
 \hline
-CPTM\_oficial & 5.435 & 2017-04-24 13:00:17 & 2017-10-29 10:00:40 \\ 
+\textit{@CPTM\_oficial} & 6,301 & 2017-04-24 & 2017-12-01 \\
 \hline
-governosp & 5.450 & 2017-05-10 17:00:05 & 2017-10-29 22:00:03 \\
+\textit{@governosp}  & 6,011 & 2017-05-10 & 2017-12-01 \\
 \hline
-metrosp\_oficial & 7.296 & 2017-06-07 17:23:34  & 2017-10-29 17:48:12 \\
+\textit{@metrosp\_oficial} & 8,621 & 2017-06-07 & 2017-12-01 \\
 \hline
-Policia\_Civil & 3.360 & 2015-04-15 17:44:44 & 2017-10-27 10:01:53 \\  
+\textit{@Policia\_Civil}  & 3,417 & 2015-04-15 & 2017-11-30 \\
 \hline
-PMESP & 3.956 & 2016-06-02 17:21:32 & 2017-10-29 20:25:37 \\ 
+\textit{@PMESP}  & 4,365 & 2016-06-02 & 2017-11-30 \\
 \hline
-saopaulo\_agora & 3.671 & 2016-11-18 07:36:12 & 2017-10-29 20:56:28 \\
+\textit{@saopaulo\_agora}  & 3,960 & 2016-11-18 & 2017-11-30 \\
 \hline
-smtsp\_ & 1.128 & 2017-04-26 10:44:26 & 2017-10-29 23:00:11 \\ 
+\textit{@smtsp\_} & 1,316 & 2017-04-26 & 2017-12-01 \\
 \hline
-SPCEDEC & 945 & 2015-06-09 10:50:23 & 2017-10-29 23:38:36 \\
+\textit{@SPCEDEC} & 1,301 & 2015-06-09 & 2017-12-01 \\
 \hline
-sptrans\_ & 8.447 & 2017-06-13 15:19:56 & 2017-10-29 22:01:44 \\
+\textit{@sptrans\_} & 9,956 & 2017-06-13 & 2017-12-01 \\
 \hline
-TurismoSaoPaulo & 3.308 & 2012-06-12 22:00:38 & 2017-10-27 17:46:59 \\ 
+\textit{@TurismoSaoPaulo} & 3,369 & 2012-06-12 & 2017-11-29 \\
 \midrule
-{} & 53.788 & - & -   \\
+\textbf {} & 60,984 & {} & {} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -2165,7 +2165,7 @@ Encontrar eventos de exceção envolve a identificação de eventos relacionados
 \end{enumerate}
 \end{enumerate}
 
-Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, o Corpus Twitter, contendo 60.985, foi classificado manualmente de acordo com suas respectivas classes. Tal conjunto foi usado para treinar o modelo de classificação de \textit{tweets} em classes de eventos de exceção. 
+Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, o Corpus Twitter, contendo 60.984, foi classificado manualmente de acordo com suas respectivas classes. Tal conjunto foi usado para treinar o modelo de classificação de \textit{tweets} em classes de eventos de exceção. 
 
 \section{Modelo de classificação de \textit{tweets} relacionados a eventos de exceção}
 \label{model}
@@ -2180,7 +2180,7 @@ De acordo com a seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenad
 
 \section{Resultados}
 	
-A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acessado em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 3.761.226 palavras, com um vocabulário de 33 palavras. O comprimento máximo das sentenças do conjunto de dados é 136, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}.
+A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acessado em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 414,637 palavras, com um vocabulário de 13,915 palavras. O comprimento máximo das sentenças do conjunto de dados é 19, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}.
  
 \begin{figure}[!htb]
 	\centering
@@ -2208,21 +2208,21 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \toprule
 \textbf{Algoritmo} & \textbf{Acurácia} & \textbf{Precisão} & \textbf{Revocação} & \textbf{\textit{f1-score}} \\
 \midrule
-\textit{Complement Naive Bayes} & 0,952 & 0,955 & 0,952 & 0,953 \\
+\textit{Complement Naive Bayes} & 0,941 & 0,949 & 0,941 & 0,944 \\
 \hline
-\textit{Decision Tree} & 0,965 & 0,964 & 0,965 & 0,964 \\
+\textit{Decision Tree} & 0,965 & 0,965 & 0,965 & 0,965 \\
 \hline
-\textit{K-Nearest Neighbors} & 0,971 & 0,971 & 0,971 & 0,971 \\
+\textit{K-Nearest Neighbors} & 0,971 & 0,972 & 0,971 & 0,971 \\
 \hline
-\textit{Logistic Regression} & 0,970 & 0,969 & 0,970 & 0,969 \\
+\textit{Logistic Regression} & 0,968 & 0,967 & 0,968 & 0,967 \\
 \hline
 \textit{Multi-layer Perceptron} & \textit{0,974} & \textit{0,974} & \textit{0,974} & \textit{0,974} \\
 \hline
-\textit{Multinomial Naive Bayes} & 0,955 & 0,954 & 0,955 & 0,951 \\
+\textit{Multinomial Naive Bayes} & 0,952 & 0,952 & 0,952 & 0,948 \\
 \hline
-\textit{Random Forest} & 0,973 & 0,972 & 0,973 & 0,972 \\
+\textit{Random Forest} & 0,970 & 0,970 & 0,970 & 0,970 \\
 \hline
-\textit{Support Vector Machine} & 0,831 & 0,691 & 0,831 & 0,755 \\
+\textit{Support Vector Machine} & 0,830 & 0,689 & 0,830 & 0,753 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2231,11 +2231,11 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Multi-layer Perceptron}}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_mlpc.png}
+		\includegraphics[width=1\linewidth]{images/confusion_matrix_mlp.png}
 	\label{fig:confusion_matrix_mlpc}
 \end{figure}
 
-Dos 60.984 \textit{tweets} 10.027 foram classificados em eventos de exceção e desse subconjunto encontrados 7.674 endereços, de acordo com a Tab. \ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} --- (o que representa 76,53\% do total dos \textit{tweets} eventos de exceção, sem considerar a classe \textit{Irrelevant}). A quantidade de endereços extraídos por classe está descrita na Tab. \ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
+Dos 60.984 \textit{tweets} 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto encontrados 8.112 endereços, de acordo com a Tab. \ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe \textit{Irrelevant}). A quantidade de endereços extraídos por classe está descrita na Tab. \ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
 
 \begin{enumerate*}
 \item \textit{Tweets} apenas com o ponto de interesse, ou seja, não consta explicitamente o endereço.
