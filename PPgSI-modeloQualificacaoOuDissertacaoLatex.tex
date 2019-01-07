@@ -1352,6 +1352,33 @@ No contexto deste trabalho, entendemos documentos como as classes dos eventos de
 \chapter{Algoritmo \textit{Apriori}}
 \label{apriori}
 
+O algoritimo Apriori normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como a de \textit{suporte} (\textit{support}) --- indicador da frequência de determinados registros no conjunto de dados; \textit{confiânça} (\textit{confidence}) --- frequência com que determinadas regras de associações entre registros são encontradas encontradas como verdadeiras e \textit{lift} --- probabilidade de ocorrência de um consequente B no conjunto de dados (se $lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros). Todas as métricas mencionadas anteriormente são detalhadas nas equações \ref{eqSupportA}, \ref{eqSupportB}, \ref{eqSupports}, \ref{eqConfidence} e  \ref{eqLift} a seguir  \cite{park2018apriori}:
+
+\begin{equation}
+\label{eqSupportA}
+support(A) = \dfrac{\sum_{i=1}^{n}[A \in s_i]} {n} = P(A) 
+\end{equation}
+
+\begin{equation}
+\label{eqSupportB}
+support(B) = \dfrac{\sum_{i=1}^{n}[B \in s_i]} {n} = P(B) 
+\end{equation}
+
+\begin{equation}
+\label{eqSupports}
+support(A \rightarrow B) = \dfrac{\sum_{i=1}^{n}[A \in s_i \land B \in s_i]} {n} = P(A \cap B)
+\end{equation}
+
+\begin{equation}
+\label{eqConfidence}
+confidence(A \rightarrow B) = \dfrac{support(A \rightarrow B)}{support(A)} = \dfrac{P(A \cap B)}{P(A)} = P(B|A)
+\end{equation}
+
+\begin{equation}
+\label{eqLift}
+lift(A \rightarrow B) = \dfrac{confidence(A \rightarrow B)}{support(B)} = \dfrac{P(B|A)}{P(B)}
+\end{equation}
+
 \chapter{Revisão Sistemática}
 \label{revisao}
 Este capítulo apresenta uma Revisão Sistemática (RS) com o objetivo de encontrar o estado da arte de trabalhos que visam melhorar sistemas de transporte público por meio do processamento de \textit{tweets}. Além disso, de uma forma mais ampla, busca-se também entender como os \textit{tweets} têm sido utilizados na caracterização de problemas urbanos. Sendo assim, o capítulo é iniciado com a seção sobre o planejamento da Revisão Sistemática; seguida das questões de pesquisa utilizadas na formulação do problema da RS; do processo de coleta dos estudos primários; da avaliação dos dados coletados; da análise e interpretação dos estudos selecionados, concluindo com as considerações finais.
@@ -2198,7 +2225,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
 	\label{fig:tweets_distribution}
 \end{figure}
 
-Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mlpc}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice \ref{apendiceE}.
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice \ref{apendiceE}.
 
 \begin{table}[!htb]
 \centering
@@ -2566,7 +2593,7 @@ Os eventos urbanos, por sua vez, impactam em 70,11\% a 1.000 metros e 98,86\% a 
 
 Além disso, janeiro, fevereiro e março foram os três meses mais afetados por eventos de exceção relacionados a destrases naturais, período de grandes volumes de preciptação de chuva em São Paulo, no qual normalmente ocorre deslizamentos de terra, quedas de árvores e inundações.  Em relação aos eventos sociais, o ano de 2017 foi marcado com inúmeras manifestações políticas, neste contexto, o mês de maio foi o mais impactado por esse tipo de evento de exceção, principalmente devido aos protestos contra o governo Temer\footnote{{http://www1.folha.uol.com.br/poder/2017/05/1884977-manifestacao-anti-\newline temer-reune-centenas-de-pessoas-na-av-paulista.shtml}. Acessado em 02 de dezembro de 2018}. Os eventos relacionados a acidentes normalmente ocorrem em maior concentração nos períodos de festas e feriados, o que pode ser observado nos meses de janeiro e abril (único mês de 2017 com dois feriados prolongados), com média de impacto de 83,33\% e 87,50\% nas velocidades médias, respectivamente.  Os impactos relacionados a eventos urbanos ocorrem normalmente durante todos os meses, devido a isso são mais uniformes.
 
-Os meses próximos a 100\% de impacto nas velocidades médias são justificados devido ao pouco volume de eventos para uma determinada classe em um determinados mês, conforme Fig. \ref{fig:exception_events_classification_distribution}, o que também acontece para cenários com dados geolocalizados muito próximos aos eventos de exceção. Analogamente, os meses e clases sem dado de impacto são meses com pouco dado para a classe em questão. 
+Os meses próximos a 100\% de impacto nas velocidades médias são justificados devido ao pouco volume de eventos para uma determinada classe em um determinados mês, conforme Fig. \ref{fig:exception_events_classification_distribution}, o que também acontece para cenários com dados geolocalizados muito próximos aos eventos de exceção. Analogamente, os meses e clases sem dados de impacto são meses com pouco dados para a classe em questão. 
 
 
 \begin{table}[!htb]
@@ -2639,6 +2666,78 @@ Dezembro & - & - & - & - & - & - & - & -  \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{table}[!htb]
+\centering
+\caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 1.000m e 100m de distância, respectivamente, nos meses do ano de 2017}
+\label {tab:exceptEventVelocityImpAll}
+\begin{tabular}{c|cc|cc|cc|cc}
+\toprule
+\textbf{Mês} & \multicolumn{2}{c}{\textit{\textbf{Accident}}} & \multicolumn{2}{c}{\textit{\textbf{Natural Disaster}}} & \multicolumn{2}{c}{\textit{\textbf{Social Event}}} &
+\multicolumn{2}{c}{\textit{\textbf{Urban Event}}}\\
+\midrule
+Janeiro & 66,66 &  100 & 
+ 47,68 &  78,49 & 
+ 100 & 100 &
+ 100 & - \\
+\hline
+Fevereiro & 35,29  &  100 &
+ 49,09 &  81,25 &
+ 100 & 100 &
+ 40,00 & 100 \\
+\hline
+Março  & 66,66  &  100 & 
+ 42,85 &  62,5 &
+90,00 & 72,22 &
+50,00 & 53,84 \\
+\hline
+Abril & 62,50 & 60,00 & 
+47,05  & 100 & 
+76,11 & 77,27 & 
+89,47 &  90,90\\
+\hline
+Maio & 49,09 &  77,77 &
+64,70 &  100 &
+73,33 & 80,00 &
+40,00 & 50,00 \\
+\hline
+Junho & 47,78 &  79,76 &
+ 46,15 &  70,00 &
+ 61,76 & 61,29 &
+72,41 & 77,77 \\
+\hline
+Julho & 44,85  &  75,55 &
+ 66,66  & 83,33 &
+48,14  & 75,00 &
+41,86 & 61,53 \\
+\hline
+Agosto & 49,49 & 75,36 &
+  44,44 & 71,42 &
+  72,72 & 72,72 & 
+70,00  & 56,75 \\
+\hline
+Setembro & 49,47  & 79,16 &
+36,84  & 54,54 &
+76,92  & 58,33 & 
+55,17 & 73,91 \\
+\hline
+Outubro & 56,06 & 78,26 &
+58,69  & 90,00 &
+90,00  & 75,00 &
+55,00 & 60,00 \\
+\hline
+Novembro & 54,32 & 66,66 &
+ 44,00 & 74,07 &
+85,71  & 85,71 &
+67,50  & 72,97 \\
+\hline
+Dezembro & - & - & - & - & - & - & - & -  \\
+\midrule
+{} & 52,92 & 81,13 & 49,83 & 78,69 & 79,51 & 77,95 & 68,14 & 69,76  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 \chapter{Identificação de padrões de velocidade média dos dados AVL}
 
@@ -2714,7 +2813,7 @@ October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 100m) dos meses do ano\tnote{g} de 2017}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 100m e 1.000m, respectivamente) dos meses do ano\tnote{g} de 2017}
 \label {tab:aprioriFull}
 \begin{tabular}{c|c|c|c|c|c}
 \toprule
@@ -2728,27 +2827,8 @@ October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 \hline
 \textit{Urban Event} & 596 & 93.513 & 81.261 & 10.480 & 1.772 \\
 \midrule
-{} & 3.691 & 585.804 & 511.363 & 63.811 & 10.603 \\
+{---} & 3.691 & 585.804 & 511.363 & 63.811 & 10.603 \\
 \bottomrule
-\end{tabular}
-\begin{tablenotes}
-            \item[a] Classificação dos eventos de exceção.
-            \item[b] Total de eventos de exceção.
-            \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
-            \item[g] 3.545 eventos de exceção não atingiram linhas de ônibus no raio de 100m.
-        \end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-\begin{table}[!htb]
-\centering
-\begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 1.000m) dos meses do ano\tnote{g} de 2017}
-\label {tab:aprioriFull}
-\begin{tabular}{c|c|c|c|c|c}
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
@@ -2757,17 +2837,18 @@ October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 \textit{Social Event} & 764 & 1.262.805 & 1.118.546 & 100.224 & 44.035 \\
 \textit{Urban Event} & 980 & 1.481.040 & 1.296.476 & 125.803 & 58.761 \\
 \midrule
-{} & 6.789 & 9.348.802 & 8.083.925 & 871.040 & 393.837 \\
+{---} & 6.789 & 9.348.802 & 8.083.925 & 871.040 & 393.837 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
+            \item[d] Regras experadas ($Lift > 1$, $Support > 0,05$)
             \item[e] Regras inesperadas ($Lift = 1$)
             \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
-            \item[g] 447 eventos de exceção não atingiram linhas de ônibus no raio de 1.000m.
+            \item[g] 3.545 eventos de exceção não atingiram linhas de ônibus no raio de 100m.
+            \item[h] 447 eventos de exceção não atingiram linhas de ônibus no raio de 1.000m.
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
