@@ -67,7 +67,7 @@
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
 \usepackage{array,booktabs}
-\usepackage[pdftex,dvipsnames]{xcolor} 
+%\usepackage[pdftex,dvipsnames]{xcolor} 
 \usepackage{makecell}
 \renewcommand\theadalign{bc}
 \renewcommand\theadfont{\bfseries}
@@ -1297,10 +1297,27 @@ As primeiras fases se referem aos processos de construção do conjunto de dados
 
 \subsubsection{Árvore de Decisão}
 
-As árvores de decisão são árvores utilizadas para classificação de instâncias com base em seus respectivos valores. Cada nó em uma árvore de decisão representa um recurso em uma instância a ser classificada e cada ramificação representa o valor que o nó pode assumir. As instâncias são classificadas começando no nó raiz e classificadas com base em seus valores de recurso. A Figura 2 é um exemplo de uma árvore de decisão para o conjunto de treinamento da Tabela 2.
+As árvores de decisão podem ser utilizadas principalmente para problemas relacionados a classificação de instâncias --- quando as variáveis alvo são categóricas --- e regressão --- quando as variáveis alvo são contínuas, além disso o algoritmo em si não tem premissas sobre os dados de entrada, ou seja, é não paramétrico. Os nós internos da árvore representam as variáveis de entrada e os nós-folha as classes (variáveis alvo ou de saída) que podem ser utilizadas para classificação. As arestas, por sua vez, determinam as conjunções utilizadas para as ligações entre os diferentes nós, formando assim os caminhos possíveis entre a raíz e os nós-folha \cite{kotsiantis2007supervised}.
+
+O uso de uma árvore de decisão envolve o processo de construção de uma árvore de decisão binária ótima, que é conhecido como um problema NP-completo. Devido a isso, existem inúmeras heurísticas eficientes para construir árvores de decisão quase ótimas, tais como a de ganho de informação, índice de gini, redução de variância, etc \cite{kotsiantis2007supervised}. 
+
+Algumas das vantagens da árvore de decisão estão relacionadas a fácil interpretação do aprendizado (\textit{white box}), devido ao fato de ser possível visualizar e interpretar a árvore de decisão e bom desempenho com grandes volumes de dados; dentre as desvantagens, estão o alto custo computacional para grandes quantidades de variáveis e possibilidade de sobre ajuste quando a árvore atinge sua altura máxima \cite{kotsiantis2007supervised, dwivedi2016automatic}.
 
 \subsubsection{Floresta Aleatória}
+
+Florestas aleatórias ou florestas de decisão aleatórias são um método de aprendizado conjunto (\textit{ensemble}) utilizados principalmente  para classificação e regressão. O conceito geral de classificação em conjunto é o de combinar classificadores fracos, por meio de árvores de decisão, para formar um classificador com melhores métricas de desempenho. Duas abordagens comuns para a classificação em conjunto são a de \textit{boosting} e \textit{bagging}, que podem ser implementadas como árvores impulsionadas (\textit{Boosted Trees}) e florestas aleatórias (RF --- \textit{Random Forests}), respectivamente \cite{mcdonald2014steering}.
+
+O processo que utiliza \textit{boosting} ajusta (\textit{fit}) o algoritmo a todos os dados de entrada, em seguida encontra o conjunto de pontos classificados erroneamente e ajusta outro algoritmo (escolhido por meio de voto ponderado) aos pontos classificados incorretamente. Tal processo é repetido recursivamente com conjuntos de dados menores até que o erro fique abaixo de um determinado limiar.  Por sua vez, o processo que utiliza \textit{bagging} ajusta um algoritmo selecionando aleatoriamente do conjunto de dados original vários conjuntos de instâncias para treinamento \textit{com substituição} (um elemento pode aparecer várias vezes na amostra), ajustando em seguida um algoritmo simples (escolhidos por meio de votação majoritária) a cada uma dessas amostras \cite{mcdonald2014steering, dogru2018traffic}.
+
+Em resumo, o algoritmo de florestas aleatórias constroí um conjunto de árvores de decisão e as une para obter predições mais precisas e estáveis. Diferentemente das árvores de decisão, o algoritimo RF previne sobre-ajuste por meio da criação aleatória de conjuntos de dados menores, o que implica também em árvores de menor altura. Há também a possibilidade de redução de desempenho, dependendo da quantidade de árvores criadas durante o processo de aprendizado \cite{dogru2018traffic}.
+
 \subsubsection{K-ésimo Vizinho mais Próximo} 
+
+O algoritimo \textit{K-ésimo Vizinho mais Próximo} (k-NN ---  \textit{k-Nearest Neighbors}) é uma abordagem para classificação e regressão não-paramétrica, na  qual o processo de aprendizado é caracterizado por encontrar um grupo de $k$ amostras que estão mais próximas de amostras desconhecidas, por exemplo, com base em funções de distância. A partir dessas $k$ amostras, as classes das amostras desconhecidas são determinadas com base nas classes mais próximas de um conjunto de pontos previamente rotulados \cite{singh2016review, thanh2018comparison}. 
+
+Devido a característica de determinar os rótulos desconhecidos com base nos $k$ mais próximos, o k-NN é considerado um método de aprendizado ``preguiçoso'' (\textit{lazy learning}), com alto custo computacional durante a fase de classificação  e baixo na fase de treinamento. Além disso, a eficiência do algoritimo depende da escolha de um bom valor para o $k$, é afetado por ruídos, variáveis irrelevantes e pelo tamanho do conjunto de dados que precisa ser revisatado \cite{singh2016review, kibanov2018adaptive}. 
+
+
 \subsubsection{Máquina de Vetores de Suporte}
 \subsubsection{Naive Bayes}
 \subsubsection{Redes Neurais}
@@ -1349,10 +1366,10 @@ W_{t,d} = tf_{t,d} * idf_t
 
 No contexto deste trabalho, entendemos documentos como as classes dos eventos de exceção. A \emph{frequência dos termos} (TF --- $tf_{t,d}$) é determinada por classe e a \emph{frequência do termo - inverso da frequência nos documentos} (IDF --- $idf_t $) como o inverso dos eventos de exceção, sendo $N$ o tamanho do conjunto dos eventos de exceção, sob o qual $df_t$ é definido. Os eventos de exceção são classificados em suas respectivas classes por meio dos modelos de aprendizado supervisionado, elencados na subseção \ref{supervisionedLearning}. 
 
-\chapter{Algoritmo \textit{Apriori}}
+\section{ Algoritimo \textit{Apriori}}
 \label{apriori}
 
-O algoritimo Apriori normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como a de \textit{suporte} (\textit{support}) --- indicador da frequência de determinados registros no conjunto de dados; \textit{confiânça} (\textit{confidence}) --- frequência com que determinadas regras de associações entre registros são encontradas encontradas como verdadeiras e \textit{lift} --- probabilidade de ocorrência de um consequente B no conjunto de dados (se $lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros). Todas as métricas mencionadas anteriormente são detalhadas nas equações \ref{eqSupportA}, \ref{eqSupportB}, \ref{eqSupports}, \ref{eqConfidence} e  \ref{eqLift} a seguir  \cite{park2018apriori}:
+O algoritimo \textit{Apriori}\footnote{Utilizamos para este trabalho a implementação do algoritimo \textit{Apriori} feita pela biblioteca \textit{Apyori}  \url{https://pypi.org/project/apyori}. Acesso em Janeiro, 08 de 2019} normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como a de \textit{suporte} (\textit{support}) --- indicador da frequência de determinados registros no conjunto de dados; \textit{confiânça} (\textit{confidence}) --- frequência com que determinadas regras de associações entre registros são encontradas encontradas como verdadeiras e \textit{lift} --- probabilidade de ocorrência de um consequente B no conjunto de dados ($lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros). Todas as métricas mencionadas anteriormente são detalhadas nas equações \ref{eqSupportA}, \ref{eqSupportB}, \ref{eqSupports}, \ref{eqConfidence} e  \ref{eqLift} a seguir  \cite{park2018apriori}:
 
 \begin{equation}
 \label{eqSupportA}
@@ -1378,6 +1395,8 @@ confidence(A \rightarrow B) = \dfrac{support(A \rightarrow B)}{support(A)} = \df
 \label{eqLift}
 lift(A \rightarrow B) = \dfrac{confidence(A \rightarrow B)}{support(B)} = \dfrac{P(B|A)}{P(B)}
 \end{equation}
+
+Algoritmos para mineração de dados, como o \textit{Apriori}, não tem tido seu potencial explorado no domínio de grandes volumes de dados relacionados ao transporte \cite{park2018apriori}. Neste trabalho, aplicamos o algoritmo \textit{Apriori} no conjunto de dados da \textit{SPTrans} para identificarmos as regras de associação existentes, detalhadas no Cap. \ref{dataSet}, com o objetivo de contribuirmos para a gestão do transporte público por ônibus da cidade de São Paulo.   
 
 \chapter{Revisão Sistemática}
 \label{revisao}
