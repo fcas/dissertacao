@@ -1317,10 +1317,37 @@ O algoritimo \textit{K-ésimo Vizinho mais Próximo} (k-NN ---  \textit{k-Neares
 
 Devido a característica de determinar os rótulos desconhecidos com base nos $k$ mais próximos, o k-NN é considerado um método de aprendizado ``preguiçoso'' (\textit{lazy learning}), com alto custo computacional durante a fase de classificação  e baixo na fase de treinamento. Além disso, a eficiência do algoritimo depende da escolha de um bom valor para o $k$, é afetado por ruídos, variáveis irrelevantes e pelo tamanho do conjunto de dados que precisa ser revisatado \cite{singh2016review, kibanov2018adaptive}. 
 
-
 \subsubsection{Máquina de Vetores de Suporte}
+
+O algoritmo \textit{Máquina de Vetores de Suporte} (SVM --- \textit{Support Vector Machines}) é uma abordagem de aprendizado para tarefas de classificação e regressão, que funciona em torno do conceito de ``margem'' --- de cada lado de um hiperplano responsável por separar duas classes de dados. Dessa forma, o algoritmo tem como objetivo maximizar a margem entre o hiperplano de separação e as instâncias de ambos os lados \cite{kotsiantis2006machine, singh2016review}. 
+
+Ao contrário do k-NN, a precisão e o desempenho do SVM são independentes do tamanho do conjunto de dados, mas dependentes do número de ciclos de treinamento. Sua complexidade não é afetada pelo tamanho do conjunto de dados de treinamento (o número de vetores de suporte selecionados pelo SVM é geralmente pequeno) \cite{kotsiantis2006machine, singh2016review}.
+
+O SVM é muito utilizado em problemas de classificação de texto, que normalmente possuem altos espaços dimensionais e tem boa capacidade de generalização. No entanto, a velocidade de treinamento é menor em relação ao k-NNN e seu desempenho depende dos hiper parâmetros escolhidos \cite{kotsiantis2006machine, singh2016review}.
+
+Dependendo do conjunto de dados, o SVM pode não conseguir localizar um hiperplano de separação devido a instâncias atribuídas incorretamente. O problema pode ser resolvido usando uma margem flexível que aceita algumas classificações erradas das instâncias de treinamento \cite{kotsiantis2006machine}.
+
 \subsubsection{Naive Bayes}
+
+Uma Rede Bayesiana (\nomenclature{BN}{\textit{Bayesian Network}}{BN --- \textit{Bayesian Network}}) é um modelo gráfico para relações de probabilidade entre um conjunto de variáveis. A estrutura de rede bayesiana $S$ é um grafo acíclico direcionado (\nomenclature{DAG}{\textit{Directed Acyclic Graph}}{DAG --- \textit{Directed Acyclic Graph}}) e os nós em $S$ possuem uma correspondência um-para-um com o conjunto de variáveis $X$. As arestas, por sua vez, representam as influências casuais entre as variáveis,
+ quando não existem arestas entre dois nós, não significa que eles sejam completamente independentes, pois podem ser conectados através de outros nós. Tais nós podem, no entanto, tornar-se dependentes ou independentes, dependendo da evidência que é definida em outros nós. Além disso, um nó é condicionalmente independente de seus não descendentes, dados seus pais \cite{kotsiantis2006machine}.
+ 
+Redes Naive Bayesianas (\nomenclature{NB}{\textit{Naive Bayesian}}{NB --- \textit{Naive Bayesian}}) são redes Bayesianas muito simples que são compostas de DAGs com apenas um pai (representando o nó não observado) e vários filhos (correspondentes a nós observados) com uma forte suposição de independência entre os nós descendentes no contexto de seu pai \cite{kotsiantis2006machine}.  A suposição de independência entre nós descendentes comumente está errada e, por essa razão, os classificadores bayesianos geralmente são menos precisos do que outros algoritmos de aprendizado mais sofisticados (como o de Redes Neurais). Apesar disso, há evidências de que em determinados cenários a abordagem NB possui desempenho melhor do que algortimos do estado da arte \cite{kotsiantis2006machine}.
+
+A principal vantagem do NB é seu curto tempo computacional para treinamento, além disso, ao contrário das Redes Neurais ou SVM, não há hiper parâmetros a serem definidos, o que o torna mais simples de ser aplicado a uma grande variedade de tarefas. Apesar disso, o NB não é aplicável quando há necessidade de se considerar interações entre as variáveis \cite{kotsiantis2006machine, singh2016review}.
+
 \subsubsection{Redes Neurais}
+
+O aprendizado por meio de Redes de Neurais depende de três aspectos fundamentais: dados de entrada e função de ativação do neurônio; arquitetura da rede e o peso de cada conexão. Dado que os dois primeiros aspectos são fixos, o comportamento da rede é definido pelos valores  dos pesos. A função de ativação mais simples é popularmente conhecida como perceptron \cite{kotsiantis2006machine}.
+
+O conceito de perceptron, mapeia um conjunto de entrada de $x_1$ a $x_n$ para um valor de saída $f(x)$ (0 ou 1 de acordo com um limiar determinado), considerando $w_1$ a $w_n$ como pesos; abordagen a qual pode ser usada para aprender um aproximador de função não linear para classificação ou regressão. Perceptrons somente podem classificar conjuntos de instâncias linearmente separáveis, ou seja, se uma linha reta ou plano puder ser desenhado para separar as instâncias de entrada em suas categorias corretas, as instâncias de entrada serão linearmente separáveis e o perceptron encontrará a solução. Se as instâncias não forem linearmente separáveis, o aprendizado nunca chegará a um ponto em que todas as instâncias sejam classificadas corretamente, nesse contexto, Redes Neurais Artificiais \nomenclature{ANN}{\textit{Artificial Neural Networks}}(ANN --- \textit{Artificial Neural Networks}) as foram criadas para tentar resolver esse problema \cite{kotsiantis2006machine, singh2016review}. 
+
+Dessa forma, os perceptrons podem ser utilizados para formar uma rede neural com multicamadas \nomenclature{MLP}{\textit{Multi-layer Perceptron}}(MLP --- \textit{Multi-layer Perceptron}), que consiste em um grande número de unidades (neurônios) unidos em um padrão de conexões. Unidades nessa rede são geralmente segregadas em três classes: unidades de entrada, que recebem informações a serem processadas; unidades de saída, onde os resultados do processamento são encontrados; e unidades centrais conhecidas como unidades ocultas. \textit{Feed-forward} ANN, como a MLP, permitem que os sinais percorram somente um caminho, da entrada à saída  \cite{kotsiantis2006machine}.
+
+Geralmente, determinar corretamente o tamanho da camada oculta é um problema, porque uma subestimativa do número de neurônios pode levar a capacidades de aproximação e generalização ruins, enquanto nós excessivos podem resultar em superajuste e eventualmente tornar a busca pelo ótimo global mais difícil  \cite{kotsiantis2006machine}.
+
+A ANN depende de três aspectos fundamentais, funções de entrada e ativação da unidade, arquitetura de rede e o peso de cada conexão de entrada; dentre os inúmeros  algoritmos com os quais uma rede pode ser treinada, o algoritmo de aprendizado mais conhecido e amplamente utilizado para estimar os valores dos pesos é o algoritmo \nomenclature{BP}{\textit{Back Propagation }}(BP --- \textit{Back Propagation}). No entanto, o BP tende a ser mais lento de treinar do que outros, o que pode ser problemático em redes muito grandes e com uma alta quantidade de dados. Além disso, outra desvantagem das ANN é o fato de ser difícil entender o aprendizado obtido pela rede \cite{kotsiantis2006machine, singh2016review}.
+
 \subsubsection{Regressão Logística}
 
 \todo[inline]{Escrever sobre cada algoritmo utilizado}
