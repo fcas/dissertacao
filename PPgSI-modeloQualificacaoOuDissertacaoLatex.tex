@@ -270,7 +270,7 @@
 % Nome completo.
 % Sem ponto final.
 %-------------------------------------------------------------------------
-\autor{\uppercase{Felipe Cordeiro Alves Dias}}
+\autor{\uppercase{Elaborado pelo autor}}
 
 %-------------------------------------------------------------------------
 % Comentário adicional do PPgSI - Informações sobre o ``local'':
@@ -904,7 +904,7 @@ Secretaria Municipal de Transportes de São Paulo & \textit{@smtsp\_} \\
             \item[b] \nomenclature{CCOI}{Centro de Controle Integrado 24 Horas da Cidade de São Paulo}{Centro de Controle Integrado 24 Horas da Cidade de São Paulo.}
         \end{tablenotes}
 \end{threeparttable}
-\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\source{Elaborado pelo autor}
 \end{table}
 
 \section{Hipóteses}
@@ -960,7 +960,9 @@ Após a identificação dos eventos de exceção, temos como hipótese que seja 
 \section{Organização do documento}
 \label{docOrg}
 
-Neste documento, é apresentado o Cap. \ref{introducao} sobre a introdução do trabalho; o Cap. \ref{fundamentacao} a respeito da fundamentação teórica;  Cap. o \ref{revisao} sobre a revisão sistemática realizada; o Cap. \ref{proposta} referente a proposta de pesquisa e o Cap. \ref{conclusion} contendo a conclusão da proposta apresentada.
+Neste documento, é apresentado o Cap. \ref{introducao} sobre a introdução do trabalho; o Cap. \ref{fundamentacao} a respeito da fundamentação teórica;  Cap. o \ref{revisao} sobre a revisão sistemática realizada; o Cap. \ref{dataSet} sobre a coleta e análise de dados abertos relacionados ao transporte público e eventos de exceção; os capítulos \ref{dataViz}, \ref{exp1}, \ref{dataCorr}
+
+o Cap. \ref{proposta} referente a proposta de pesquisa e o Cap. \ref{conclusion} contendo a conclusão da proposta apresentada.
 \todo[inline]{Atualizar organização do documento}
 
 %-------------------------------------------------------------------------
@@ -1547,7 +1549,7 @@ Springer & 22 & 20 & 2\\
 {-} & 229 & 200 & 29\\ 
 \bottomrule
 \end{tabular}
-\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\source{Elaborado pelo autor}
 \end{table}
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -1555,7 +1557,7 @@ Springer & 22 & 20 & 2\\
  	  \caption{Processo de Filtragem}
 		\includegraphics[width=0.5\linewidth]{images/metodologia_metodologia.png}
 	\label{fig:filter}
-  \source{Felipe Cordeiro Alves Dias, 2017}
+  \source{Elaborado pelo autor}
 \end{figure}
 
 \section{Avaliação de Dados}
@@ -1579,7 +1581,7 @@ Sendo assim, a Fig. \ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gera
  	  \caption{Quantidade de artigos publicados por ano}
 		\includegraphics[width=0.8\linewidth]{images/g1.png}
 	\label{fig:qtd}
-  \source{Felipe Cordeiro Alves Dias, 2017}
+  \source{Elaborado pelo autor}
 \end{figure}
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -1587,7 +1589,7 @@ Sendo assim, a Fig. \ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gera
  	  \caption{Porcentagem dos artigos publicados por ano}
 		\includegraphics[width=0.8\linewidth]{images/g2.png}
 	\label{fig:porcentagem}
-  \source{Felipe Cordeiro Alves Dias, 2017}
+  \source{Elaborado pelo autor}
 \end{figure}
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -1595,7 +1597,7 @@ Sendo assim, a Fig. \ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gera
  	  \caption{Nuvem de palavras das \textit{keywords} dos artigos selecionados}
 		\includegraphics[width=0.8\linewidth]{images/world_cloud_metodologia.png}
 	\label{fig:w_cloud}
-  \source{Felipe Cordeiro Alves Dias, 2017}
+  \source{Elaborado pelo autor}
 \end{figure}
 
 \section{Análise e Interpretação}
@@ -1796,75 +1798,17 @@ Independentemente dos problemas abordados por meio do processamento de \textit{t
 
 Por fim, apenas quatro dos vinte e nove estudos analisados, cerca de 14\%, mencionaram \textit{features} relacionadas ao transporte público, confirmando assim a quinta hipótese (HP5). Assim como a quantidade de trabalhos que realizam processamento de \textit{tweets} em tempo real, sendo apenas dois do total analisado, cerca de 6\%, que utilizam esse paradigma de processamento, o que confirma a quarta hipótese (HP4). É importante ainda observar que, outros estudos que mencionaram processamento em tempo real, realizaram na verdade coleta de \textit{tweets} em tempo real, para análises a posteriori via processamento em \textit{batch} (offline), categoria na qual a maioria dos estudos foram enquadrados.
 
-\chapter{Construção do conjunto de dados}
+\chapter{Coleta e análise de dados abertos relacionados ao transporte público e eventos de exceção}
 \label{dataSet}
 
-Nesta seção, são apresentados os conjuntos de dados referentes a proposta de pesquisa.
-
-\subsection{\textit{Corpus Twitter}}
-
-A Rede Social \textit{Twitter}, foi escolhida como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção. Isso devido ao fato de cada publicação ser limitada em 280 caracteres, o que reduz a complexidade de processamento do conteúdo publicado, e devido aos estudos existentes abordando problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Cap. \ref{revisao}.
-
-Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
-
-Sobre a seleção dos \textit{profiles}, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais \textit{profiles} são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
-Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frequência de requisições aos \textit{endpoints}. Por exemplo, no protótipo desenvolvido (na linguagem de programação Java), há um artefato que coleta (utilizando o \textit{plugin} \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acesso em Outubro, 29 de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acesso em Outubro, 29 de 2017.}.
-
-Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, processo explicado na seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na Tab. \ref{tab:tweetsCollected}.
-
-\begin{table}[!htb]
-\centering
-\caption{Intervalo de tempo e número de \textit{tweets} coletados}
-	\label{tab:tweetsCollected}
-\begin{threeparttable}
-\begin{tabular}{c|c|c|c}
-\toprule
-\textbf {Profile no \textit{Twitter}} &\textbf{ \# tweets \tnote{a}}  &\textbf{ \textit{Timestamp 1 \tnote{b}}} & \textbf{\textit{Timestamp 2 \tnote{c}}} \\ 
-\midrule
-\textit{@BombeirosPMESP} & 6,632 & 2017-05-21 & 2017-12-01 \\
-\hline
-\textit{@CETSP\_} & 5,735 & 2017-02-20  & 2017-12-01 \\
-\hline
-\textit{@CPTM\_oficial} & 6,301 & 2017-04-24 & 2017-12-01 \\
-\hline
-\textit{@governosp}  & 6,011 & 2017-05-10 & 2017-12-01 \\
-\hline
-\textit{@metrosp\_oficial} & 8,621 & 2017-06-07 & 2017-12-01 \\
-\hline
-\textit{@Policia\_Civil}  & 3,417 & 2015-04-15 & 2017-11-30 \\
-\hline
-\textit{@PMESP}  & 4,365 & 2016-06-02 & 2017-11-30 \\
-\hline
-\textit{@saopaulo\_agora}  & 3,960 & 2016-11-18 & 2017-11-30 \\
-\hline
-\textit{@smtsp\_} & 1,316 & 2017-04-26 & 2017-12-01 \\
-\hline
-\textit{@SPCEDEC} & 1,301 & 2015-06-09 & 2017-12-01 \\
-\hline
-\textit{@sptrans\_} & 9,956 & 2017-06-13 & 2017-12-01 \\
-\hline
-\textit{@TurismoSaoPaulo} & 3,369 & 2012-06-12 & 2017-11-29 \\
-\midrule
-\textbf {} & 60,984 & {} & {} \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}
-            \item[a] Número de \textit{tweets} coletados.
-            \item[b] \textit{Timestamp} mais antigo.
-            \item[c] \textit{Timestamp} mais recente.
-        \end{tablenotes}
-\end{threeparttable}
-\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
-\end{table}
-
-Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus respectivos dados de geolocalização. No entanto, por meio de uma análise manual percebemos dois problemas: (I) alguns endereços não foram extraídos; (II) apesar de o endereço ser extraído corretamente, encontramos geolocalizações fora do estado de São Paulo e do país. Assim, pretendemos melhorar o processo de extração dos endereços dos \textit{tweets} e o restringir a geolocalização para a região de São Paulo. 
+Nesta seção, são apresentados os processos de coleta e análise de dados abertos relacionados ao transporte público e eventos de exceção, utilizados nos experimentos deste trabalho.
 
 \subsection{\textit{Corpus} SPTrans}
 \label{CorpusSPTrans}
 
-O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na Tab. \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de \nomenclature{ETL}{\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}}{ETL (\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}).} 
+O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans no padrão da GTFS, detalhados na Tab. \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de \nomenclature{ETL}{\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}}{ETL (\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}).} 
 
-No caso dos dados especificados em GTFS, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para  \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em Outubro, 29 de 2017.}. Além disso, visando viabilizar \textit{geospatial queries}, foram criados \textit{geospatial indexes}\footref{geoMongo} nas \textit{collections} contendo informações geolocalizadas, logo após serem criadas no \textit{MongoDB}. Dessa forma, conseguimos usar \textit{geospatial queries} para identificar as linhas afetadas por um determinado evento de exceção.
+No caso dos dados no padrão da GTFS, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para  \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em Outubro, 29 de 2017.}. Além disso, visando viabilizar \textit{geospatial queries}, foram criados \textit{geospatial indexes}\footref{geoMongo} nas \textit{collections} contendo informações geolocalizadas, logo após serem criadas no \textit{MongoDB}. Dessa forma, conseguimos usar \textit{geospatial queries} para identificar as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
 
 \begin{table}[!htb]
 \centering
@@ -1897,12 +1841,12 @@ No caso dos dados especificados em GTFS, convertemos os dados originais de \text
 {} & 1.254.779 \\
 \bottomrule
 \end{tabular}
-\center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
+\source{Elaborado pelo autor}
 \end{table}
 
-Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (intervalo antes da data em que os dados foram solicitados, por meio da \textit{Lei de Acesso a Informação} \footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a Tab. \ref{tab:avlDataset}, alguns dos dos dados de movimentação referentes a novembro e dezembro estão ausentes, segundo a \textit{SPTrans}, essa ausência é justificada devido a períodos de indisponibilidade do sistema de monitoramento.
+Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (solicitados por meio da \textit{Lei de Acesso a Informação}\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a Tab. \ref{tab:avlDataset}, alguns dos dos dados de movimentação referentes a novembro e dezembro estão ausentes, segundo a \textit{SPTrans}, essa ausência é justificada devido a períodos de indisponibilidade do sistema de monitoramento.
 
-Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na Tab. \ref{tab:avlDataset}. Além dos períodos indisponíveis, encontramos arquivos com linhas contendo dados divergentes do meta dados fornecido pela SPTrans,  de acordo com a Tab. \ref{tab:avlDataset}, tais registros foram ignorados para os experimentos deste trabalho.
+Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na Tab. \ref{tab:avlDataset}. Além dos períodos indisponíveis, encontramos arquivos com linhas contendo dados divergentes do meta dados fornecido pela SPTrans, contidos na Tab. \ref{tab:avlMetaDataSPTrans}, tais registros foram ignorados para os experimentos deste trabalho.
 
 \begin{table}[!htb]
 \begin{threeparttable}
@@ -1972,7 +1916,7 @@ Janeiro\tnote{c} & 1 - 31 & 744 & 102,44 \\
 \begin{table}[!htb]
 \centering
 \caption{Meta dados dos dados AVL da SPTrans}
-\label{tab:avlDataset}
+\label{tab:avlMetaDataSPTrans}
 \begin{tabular}{c|c}
 \toprule
 \textbf{Nome do campo} & \textbf{Descrição do campo} \\
@@ -2036,6 +1980,63 @@ Prefixo do veículo \\
 \end{tabular}
 \end{table}
 
+\subsection{\textit{Corpus Twitter}}
+
+A Rede Social \textit{Twitter}, foi escolhida como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção. Isso devido ao fato de cada publicação ser limitada em 280 caracteres, o que reduz a complexidade de processamento do conteúdo publicado, e devido aos estudos existentes abordando problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Cap. \ref{revisao}.
+
+Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
+
+Sobre a seleção dos \textit{profiles}, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais \textit{profiles} são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
+Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frequência de requisições aos \textit{endpoints}. Por exemplo, no protótipo desenvolvido (na linguagem de programação Java), há um artefato que coleta (utilizando o \textit{plugin} \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acesso em Outubro, 29 de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acesso em Outubro, 29 de 2017.}.
+
+Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, processo explicado na seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na Tab. \ref{tab:tweetsCollected}.
+
+\begin{table}[!htb]
+\centering
+\caption{Intervalo de tempo e número de \textit{tweets} coletados}
+	\label{tab:tweetsCollected}
+\begin{threeparttable}
+\begin{tabular}{c|c|c|c}
+\toprule
+\textbf {Profile no \textit{Twitter}} &\textbf{ \# tweets \tnote{a}}  &\textbf{ \textit{Timestamp 1 \tnote{b}}} & \textbf{\textit{Timestamp 2 \tnote{c}}} \\ 
+\midrule
+\textit{@BombeirosPMESP} & 6,632 & 2017-05-21 & 2017-12-01 \\
+\hline
+\textit{@CETSP\_} & 5,735 & 2017-02-20  & 2017-12-01 \\
+\hline
+\textit{@CPTM\_oficial} & 6,301 & 2017-04-24 & 2017-12-01 \\
+\hline
+\textit{@governosp}  & 6,011 & 2017-05-10 & 2017-12-01 \\
+\hline
+\textit{@metrosp\_oficial} & 8,621 & 2017-06-07 & 2017-12-01 \\
+\hline
+\textit{@Policia\_Civil}  & 3,417 & 2015-04-15 & 2017-11-30 \\
+\hline
+\textit{@PMESP}  & 4,365 & 2016-06-02 & 2017-11-30 \\
+\hline
+\textit{@saopaulo\_agora}  & 3,960 & 2016-11-18 & 2017-11-30 \\
+\hline
+\textit{@smtsp\_} & 1,316 & 2017-04-26 & 2017-12-01 \\
+\hline
+\textit{@SPCEDEC} & 1,301 & 2015-06-09 & 2017-12-01 \\
+\hline
+\textit{@sptrans\_} & 9,956 & 2017-06-13 & 2017-12-01 \\
+\hline
+\textit{@TurismoSaoPaulo} & 3,369 & 2012-06-12 & 2017-11-29 \\
+\midrule
+\textbf {} & 60,984 & {} & {} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Número de \textit{tweets} coletados.
+            \item[b] \textit{Timestamp} mais antigo.
+            \item[c] \textit{Timestamp} mais recente.
+        \end{tablenotes}
+\end{threeparttable}
+\source{Elaborado pelo autor}
+\end{table}
+
+Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus respectivos dados de geolocalização. No entanto, por meio de uma análise manual percebemos dois problemas: (I) alguns endereços não foram extraídos; (II) apesar de o endereço ser extraído corretamente, encontramos geolocalizações fora do estado de São Paulo e do país. Assim, pretendemos melhorar o processo de extração dos endereços dos \textit{tweets} e o restringir a geolocalização para a região de São Paulo. 
 
 \chapter{Exploração e visualização de grandes volumes de dados}
 \label{dataViz}
@@ -2945,8 +2946,7 @@ DIAS, F. C. A. ; Daniel Cordeiro . Visualizing large datasets: A case study with
 DIAS, F.C.A; Daniel Cordeiro. Characterization of exception events and their respective impacts on the public transport system by bus of São Paulo. Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos (SBRC), 2019.
 
 \section{Trabalhos futuros}
-\todo[inline]{Escrever trabalhos futuros}
-As principais limitações deste projeto estão relacionadas ao processamento de \textit{tweets} em português brasileiro e oriundos das contas selecionadas e referenciadas na Tab. \ref{tab:oficialProfiles}, o que pode tornar a solução não generalista. Dentre os riscos, apesar das análises preliminares realizadas para extração de endereços dos conteúdos dos \textit{tweets} por meio de Expressão Regular, é possível que sejam encontrados novos desafios que inviabilizem o uso dessa técnica.
+Como trabalho futuro, pretendemos implementar o fluxo de processamento de dados em \textit{streaming} mencionado na Fig. ~\ref{fig:viz_arch}, em um cenário de exploração e visualização de dados quase em tempo real.  Além disso, há a necessidade de estabelecermos uma cooperação entre a Acadêmia e a SPTrans para aplicação cotidiana dos experimentos realizados por esse trabalho e outros relacionados a análise de grandes volumes de dados de transportes públicos. Outra possibilidade futura é a de aplicar os experimentos realizados por este trabalho a publicações de usuários que representam a sociedade civil.
 
 \section*{Acknowledgment}
 This research is part of the INCT of the Future Internet for Smart Cities funded by CNPq, proc. 465446/2014-0, CAPES proc.88887.136422/2017-00, and FAPESP, proc. 2014/50937-1.
