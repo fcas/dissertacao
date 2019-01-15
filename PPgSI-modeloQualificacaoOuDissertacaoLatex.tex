@@ -62,11 +62,16 @@
 % Pacotes básicos 
 % ---
 % \usepackage{lmodern}			% Usa a fonte Latin Modern			
-% \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
-\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+%\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+%\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{fontspec}
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
 \usepackage{array,booktabs}
+%\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+
+
 %\usepackage[pdftex,dvipsnames]{xcolor} 
 \usepackage{makecell}
 \renewcommand\theadalign{bc}
@@ -288,7 +293,7 @@
 % Não incluir o dia, nem o mês.
 % Sem ponto final.
 %-------------------------------------------------------------------------
-\data{2017}
+\data{2019}
 
 %-------------------------------------------------------------------------
 % Comentário adicional do PPgSI - Informações sobre o ``Orientador'':
@@ -846,7 +851,7 @@ O uso de conteúdo de Redes Sociais pode ajudar a abordar os problemas anteriorm
 \section{Objetivos}
 \label{objetivos}
 O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Visando alcançar esse objetivo, serão coletados \textit{tweets} das contas oficiais das instituições governamentais responsáveis por reportar eventos de exceção na
-cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na tabela \ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos dos módulos AVL do SIM. 
+cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na Tab. \ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos dos módulos AVL do SIM. 
 
 Além disso, temos como objetivos específicos:
 
@@ -854,7 +859,7 @@ Além disso, temos como objetivos específicos:
     \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados.
      \item Extrair os endereços dos eventos de exceção identificados e geolocalizá-los.
 		\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente. Com isso, a necessidade de entrega dos dados a sociedade, apontada por \cite{kuflik2017automating}, será atendida.
-\item Criação de plataforma para exploração e visualização dos dados coletados e processados das fontes citadas na tabela \ref{tab:oficialProfiles} e da SPTrans.
+\item Criação de plataforma para exploração e visualização dos dados coletados e processados das fontes citadas na Tab. \ref{tab:oficialProfiles} e da SPTrans.
 \end{itemize}
 
 \begin{table}[!htb]
@@ -947,7 +952,7 @@ Com base na Revisão Sistemática do Cap. \ref{revisao}, os eventos de exceção
 
 Dito isso, espera-se que seja possível identificar tais características utilizando \nomenclature{NLP}{\textit{Natural Language Processing}}{Processamento de Linguagem Natural} (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
 
-Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Pois em uma análise preliminar observamos que o conteúdo das contas selecionadas, citadas na tabela \ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
+Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Pois em uma análise preliminar observamos que o conteúdo das contas selecionadas, citadas na Tab. \ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
 
 \section{Organização do documento}
 \label{docOrg}
@@ -1131,7 +1136,7 @@ O conceito de viagem no setor de transportes é definido como o deslocamento de 
 \section{\textit{General Transit Feed Specification}}
 \label{gtfs}
 
-A \textit{GTFS --- General Transit Feed Specification}\footnote{\label{googleTransit}\url{https://developers.google.com/transit}. Acesso em Outubro, 29 de 2017.}, como o próprio nome sugere, é uma especificação de um formato comum (o que permite interoperabilidade) para troca de informações estáticas sobre transporte público.  Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto (que seguem determinados requisitos semelhantes aos do formato \nomenclature{CSV}{\textit{Comma-separated values}}{\textit{CSV}\footref{googleTransit})}  compactados no formato \textit{Zip}\footnote{\url{https://support.pkware.com/display/PKZIP/APPNOTE}. Acesso em Outubro, 29 de 2017.}, e detalhados na tabela \ref{tab:gtfsFiles}. Cada arquivo modela diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário.
+A \textit{GTFS --- General Transit Feed Specification}\footnote{\label{googleTransit}\url{https://developers.google.com/transit}. Acesso em Outubro, 29 de 2017.}, como o próprio nome sugere, é uma especificação de um formato comum (o que permite interoperabilidade) para troca de informações estáticas sobre transporte público.  Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto (que seguem determinados requisitos semelhantes aos do formato \nomenclature{CSV}{\textit{Comma-separated values}}{\textit{CSV}\footref{googleTransit})}  compactados no formato \textit{Zip}\footnote{\url{https://support.pkware.com/display/PKZIP/APPNOTE}. Acesso em Outubro, 29 de 2017.}, e detalhados na Tab. \ref{tab:gtfsFiles}. Cada arquivo modela diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário.
 
 \begin{table}[!htb]
   \centering
@@ -1170,7 +1175,7 @@ fare\_attributes.txt & Opcional & Contém informações sobre tarifas dos trajet
 \bottomrule
   \end{tabular}
   \begin{tablenotes}
-            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice \ref{apendiceC}, nas tabela \ref{tab:gtfsAgency} - \ref{tab:gtfsFeedInfo}.
+            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice \ref{apendiceC}, nas tabelas \ref{tab:gtfsAgency}, \ref{tab:gtfsFeedInfo}.
         \end{tablenotes}
 \end{threeparttable}
 \center{\textbf{Fonte:}} Google Transit (adaptada)\footref{googleTransit}
@@ -1241,7 +1246,7 @@ O processamento automático de \textit{tweets} envolve o Processamento de Lingua
 \end{enumerate}
 \end{enumerate}
 
-Para esta pesquisa, utilizamos o processo de \textit{tokenização} \textit{TweetTokenizer}\footnote {\url{https://www.nltk.org/api/nltk.tokenize}. Acessado em 15 de maio de 2018.} para extrair os \textit{tokens} dos \textit{tweets} (\textit{features} utilizadas para treinar os modelos de classificações) e o processo de \textit{stemming} \textit {RSLPStemmer}\footnote{\url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Acessado em 15 de maio de 2018.} para redução do espaço de \textit{features}, além da remoção de palavras vazias (\textit{stopwords}\footnote{\url{http://www.nltk.org/howto/portuguese\_en}. Acessado em 15 de maio de 2018.}\footnote{Palavras com alta ou baixa frequência no corpus --- comuns ou raras --- ou removidas por meio de \textit{feature selection} --- \url{http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html}. Acessado em 03 de junho de 2018.}) do Português Brasileiro.  --- palavras comuns do Português Brasileiro.
+Para esta pesquisa, utilizamos o processo de \textit{tokenização} \textit{TweetTokenizer}\footnote {\url{https://www.nltk.org/api/nltk.tokenize}. Acessado em 15 de maio de 2018.} para extrair os \textit{tokens} dos \textit{tweets} (\textit{features} utilizadas para treinar os modelos de classificações) e o processo de \textit{stemming} \textit {RSLPStemmer}\footnote{\url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Acessado em 15 de maio de 2018.} para redução do espaço de \textit{features}, além da remoção de palavras vazias (\textit{stopwords}\footnote{\url{http://www.nltk.org/howto/portuguese\_en}. Acessado em 15 de maio de 2018.}\footnote{Palavras com alta ou baixa frequência no corpus --- comuns ou raras --- ou removidas por meio de \textit{feature selection} --- \url{http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html}. Acessado em 03 de junho de 2018.}) do português brasileiro.  --- palavras comuns do português brasileiro.
 
 \section{\textit{Feature Engineering}}
 \label{featuresEng}
@@ -1255,7 +1260,7 @@ Para esta pesquisa, utilizamos o processo de \textit{tokenização} \textit{Twee
 \textit{Feature egineering} é um processo iterativo que utiliza o conhecimento do domínio dos dados e de suas métricas para criar (\textit{feature construction}), extrair (\textit{feature extraction}) e selecionar \textit{features} (\textit{feature selection}) para serem utilizadas em algoritmos de aprendizado de máquina. Um conjunto de dados pode ser representado por um número fixo de \textit{features} binárias, categóricas ou contínuas. Antes do processo de \textit{feature engineering}, os dados podem ser pré-processados %​​usando 
 usando técnicas de padronização, normalização, remoção de ruído, redução de dimensionalidade, discretização, expansão, entre outros; é importante notar que informações podem ser perdidas ao realizar essas transformações \cite{guyon2006introduction}.
 
-No experimento abordado no Cap.\ref{exp1} usamos uma fase de pré-processamento, explicada na subseção \ref{preprocessing}, e um processo para \textit{feature extraction} (explicado adiante) realizado por meio de uma função que utiliza NLP para preparar os \textit{tweets} coletados para a tarefa de treinamento. As fases de \textit{feature construction} e \textit{feature selection} não são utilizadas pelos experimentos deste trabalho, porém, são mencionadas para um melhor entendimento.
+No experimento abordado no Cap.\ref{exp1} usamos uma fase de pré-processamento, explicada na seção \ref{preprocessing}, e um processo para \textit{feature extraction} (explicado adiante) realizado por meio de uma função que utiliza NLP para preparar os \textit{tweets} coletados para a tarefa de treinamento. As fases de \textit{feature construction} e \textit{feature selection} não são utilizadas pelos experimentos deste trabalho, porém, são mencionadas para um melhor entendimento.
 
 Sendo assim, na fase de \textit{feature construction}, é realizado um processo para descobrir informações ausentes sobre as relações entre as \textit{features} e para aumentar o espaço de \textit{features}, inferindo ou criando novas \textit{features} com o objetivo de melhorar a precisão dos algoritmos de classificação, entender os dados e obter dados ocultos. , etc. \cite{motoda2002feature}. Neste estágio, de um conjunto de \textit{n features} $ A_1, A_2, ..., A_n $, é possível construir \textit{features} adicionais $ A_ {n + 1}, A_ {n + 2}, ... , A_ {n + m} $, por meio de heurísticas, operadores lógicos, algoritmos, etc \cite{motoda2002feature}.
 
@@ -1285,7 +1290,7 @@ No contexto desse trabalho, os dados de entrada são conhecidos e foram classifi
 \label{supervisionedLearning}
 
 De acordo com a Fig. \ref{fig:arch_ml}, a aplicação de algoritmos de aprendizado supervisionado a um problema passa por algumas fases.
-As primeiras fases se referem aos processos de construção do conjunto de dados (\textit{identification of required data}) e pré-processamento (\textit{data pre-processing}), descritas respectivamente no Cap. \ref{dataSet} e seção \ref{preprocessing}, as demais fases (\textit{definition of training set} --- definição do conjunto de treinamento; \textit{algorithm selection} --- seleção do algoritmo; \textit{training} --- treinamento; \textit{evaluation with test set} --- validação com conjunto de teste; \textit{classifier} --- classificador) são explicadas na subseção \ref{model}. É importante observar que não faz parte do escopo deste trabalho afinar os parâmetros dos algoritmos mencionados na subseção \ref{classification} (fase \textit{parameter tuning}), devido a isso as parametrizações padrões são utilizadas e descritas no apêndice \ref{apendiceF}.
+As primeiras fases se referem aos processos de construção do conjunto de dados (\textit{identification of required data}) e pré-processamento (\textit{data pre-processing}), descritas respectivamente no Cap. \ref{dataSet} e seção \ref{preprocessing}, as demais fases (\textit{definition of training set} --- definição do conjunto de treinamento; \textit{algorithm selection} --- seleção do algoritmo; \textit{training} --- treinamento; \textit{evaluation with test set} --- validação com conjunto de teste; \textit{classifier} --- classificador) são explicadas na seção \ref{model}. É importante observar que não faz parte do escopo deste trabalho afinar os parâmetros dos algoritmos mencionados na seção \ref{classification} (fase \textit{parameter tuning}), devido a isso as parametrizações padrões são utilizadas e descritas no apêndice \ref{apendiceF}.
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -1350,28 +1355,33 @@ A ANN depende de três aspectos fundamentais, funções de entrada e ativação 
 
 \subsubsection{Regressão Logística}
 
-\todo[inline]{Escrever sobre cada algoritmo utilizado}
+A Regressão Logística  \nomenclature{LR}{\textit{Logistic Regression}}(LR --- \textit{Logistic Regression}) é um método estatístico no qual uma curva logística é ajustada ao conjunto de dados, com o objetivo de predizer preseça ou ausência de determinada característica. A LR é semelhante a um modelo de regressão linear, mas é mais adequada para modelos em que a variável dependente é dicotômica, apesar disso, essa metodologia também pode ser utilizada para predições de multiplas classes \cite{schein2007active, kurt2008comparing, singh2016review}. 
 
+Como a LR retorna a probabilidade de uma variável pertecer a determinada classe, os limites de classificação podem ser facilmente ajustados, no entanto, requer um tamanho de amostra grande para alcançar resultados estáveis, além de não lidar adequadamente com problemas não-lineares \cite{khemphila2010comparing, singh2016review}.
 
 \subsection{Validação dos modelos de aprendizado supervisionado}
 \label{modelValidation}
 
-The validation of the models to classification tasks can be realized through metrics that has as inputs the number of real positive (P), negative (N) cases in the result of classification, true positive (TP), true negative (TN), false positive (FP) and false negative (FN) classifications. Following are some of the main metrics utilized to:
+A validação dos modelos para tarefas de classificação pode ser realizada por meio de \textit{validação cruzada}\footnote{\url{https://scikit-learn.org/stable/modules/cross\_validation.html\#cross-validation}} (nos experimentos desse trabalho utilizamos 10 \textit{folds} --- subconjuntos do conjunto de dados de treinamento --- para validar a generalização dos modelos) e métricas tais como: \textit{acurácia} \nomenclature{ACC}{\textit{Accuracy}}{(ACC --- \textit{Accuracy}, Eq. \ref{acc}), \textit{precisão} \nomenclature{PPV}{\textit{Positive Predictive Value}}{PPV --- \textit{Positive Predictive Value}, Eq. \ref{prec})}, \textit{revocação} \nomenclature{TPR}{\textit{\textit{True Positive Rate}}}{(TPR --- \textit{True Positive Rate}, Eq. \ref{rec}) e $f_1 score$ (Eq. \ref{f1}), que tem como entrada o número de casos reais positivos (P), negativos (N), verdadeiro positivo (VP), verdadeiro negativo (VN), falso positivo (FP) e falso negativo (FN):
 
 \begin{equation}
-Accuracy = \frac{TP + TN}{P + N} = \frac{TP + TN}{TP + TN + FP + FN}
+\label{acc}
+ACC = \frac{VP + VN}{P + N} = \frac{TP + TN}{TP + TN + FP + FN}
 \end{equation}
 
 \begin{equation}
-Precision = \frac{TP}{TP + FP}
+\label{prec}
+PPV = \frac{VP}{VP + FP}
 \end{equation}
 
 \begin{equation}
-Recall = \frac{TP}{P} = \frac{TP}{TP + FN}
+\label{rec}
+TPR = \frac{VP}{P} = \frac{VP}{VP + FN}
 \end{equation}
 
 \begin{equation}
-F_1 score = \frac{Precision * Recall}{Precision + Recall} = \frac{2TP}{2TP + FP + FN}
+\label{f1}
+f_1 score = \frac{PPV * TPR}{PPV + TPR} = \frac{2VP}{2VP + FP + FN}
 \end{equation}
 
 \section{Term frequency–Inverse document frequency}
@@ -1391,7 +1401,7 @@ W_{t,d} = tf_{t,d} * idf_t
 \end{split}
 \end{equation}
 
-No contexto deste trabalho, entendemos documentos como as classes dos eventos de exceção. A \emph{frequência dos termos} (TF --- $tf_{t,d}$) é determinada por classe e a \emph{frequência do termo - inverso da frequência nos documentos} (IDF --- $idf_t $) como o inverso dos eventos de exceção, sendo $N$ o tamanho do conjunto dos eventos de exceção, sob o qual $df_t$ é definido. Os eventos de exceção são classificados em suas respectivas classes por meio dos modelos de aprendizado supervisionado, elencados na subseção \ref{supervisionedLearning}. 
+No contexto deste trabalho, entendemos documentos como as classes dos eventos de exceção. A \emph{frequência dos termos} (TF --- $tf_{t,d}$) é determinada por classe e a \emph{frequência do termo - inverso da frequência nos documentos} (IDF --- $idf_t $) como o inverso dos eventos de exceção, sendo $N$ o tamanho do conjunto dos eventos de exceção, sob o qual $df_t$ é definido. Os eventos de exceção são classificados em suas respectivas classes por meio dos modelos de aprendizado supervisionado, elencados na seção \ref{supervisionedLearning}. 
 
 \section{ Algoritimo \textit{Apriori}}
 \label{apriori}
@@ -1509,7 +1519,7 @@ Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipó
 
 \section{Coleta de dados}
 \label{coleta}
-Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em Outubro, 29 de 2017.}. Constam na tabela \ref{tab:tableNumberOfArticles} as bases pesquisadas no ano de 2017, quantidades de artigos coletados, descartados no processo de filtragem (Fig. \ref{fig:filter}, descrito na seção \ref{avaliacao}) e selecionados. Com base na QP1, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline 
+Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em Outubro, 29 de 2017.}. Constam na Tab. \ref{tab:tableNumberOfArticles} as bases pesquisadas no ano de 2017, quantidades de artigos coletados, descartados no processo de filtragem (Fig. \ref{fig:filter}, descrito na seção \ref{avaliacao}) e selecionados. Com base na QP1, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline 
 
 \textbf{\textit{String} de busca:} twitter urban planning city (analytics OR patterns OR tweets OR social OR media) AND (public transport) \newline
 
@@ -1587,7 +1597,7 @@ Sendo assim, a Fig. \ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gera
 
 \section{Análise e Interpretação}
 \label{analise}
-Nesta seção é realizada a análise e interpretação dos estudos primários selecionados pela Revisão Sistemática, sendo as subseções divididas de acordo com as questões de pesquisa.
+Nesta seção é realizada a análise e interpretação dos estudos primários selecionados pela Revisão Sistemática, sendo as seções divididas de acordo com as questões de pesquisa.
 \subsection{Tipos de problemas urbanos abordados utilizando o processamento \textit{tweets} (QP1)}
 
 Os tipos de problemas urbanos abordados utilizando o processamento de \textit{tweets} foram divididos nas seguintes categorias: 
@@ -1792,12 +1802,12 @@ Nesta seção, são apresentados os conjuntos de dados referentes a proposta de 
 
 A Rede Social \textit{Twitter}, foi escolhida como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção. Isso devido ao fato de cada publicação ser limitada em 280 caracteres, o que reduz a complexidade de processamento do conteúdo publicado, e devido aos estudos existentes abordando problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Cap. \ref{revisao}.
 
-Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
+Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
 
 Sobre a seleção dos \textit{profiles}, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais \textit{profiles} são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
 Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frequência de requisições aos \textit{endpoints}. Por exemplo, no protótipo desenvolvido (na linguagem de programação Java), há um artefato que coleta (utilizando o \textit{plugin} \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acesso em Outubro, 29 de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acesso em Outubro, 29 de 2017.}.
 
-Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, processo explicado na seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na tabela \ref{tab:tweetsCollected}.
+Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em Outubro, 29 de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em Outubro, 29 de 2017.} para exploração e visualização dos dados, processo explicado na seção \ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na Tab. \ref{tab:tweetsCollected}.
 
 \begin{table}[!htb]
 \centering
@@ -1849,7 +1859,7 @@ Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus resp
 \subsection{\textit{Corpus} SPTrans}
 \label{CorpusSPTrans}
 
-O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na tabela \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de \nomenclature{ETL}{\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}}{ETL (\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}).} 
+O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans especificados em GTFS, detalhados na Tab. \ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de \nomenclature{ETL}{\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}}{ETL (\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}).} 
 
 No caso dos dados especificados em GTFS, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para  \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em Outubro, 29 de 2017.}. Além disso, visando viabilizar \textit{geospatial queries}, foram criados \textit{geospatial indexes}\footref{geoMongo} nas \textit{collections} contendo informações geolocalizadas, logo após serem criadas no \textit{MongoDB}. Dessa forma, conseguimos usar \textit{geospatial queries} para identificar as linhas afetadas por um determinado evento de exceção.
 
@@ -1887,9 +1897,9 @@ No caso dos dados especificados em GTFS, convertemos os dados originais de \text
 \center{\textbf{Fonte:}} Felipe Cordeiro Alves Dias
 \end{table}
 
-Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (intervalo antes da data em que os dados foram solicitados, por meio da \textit{Lei de Acesso a Informação} \footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a tabela \ref{tab:avlDataset}, alguns dos dos dados de movimentação referentes a novembro e dezembro estão ausentes, segundo a \textit{SPTrans}, essa ausência é justificada devido a períodos de indisponibilidade do sistema de monitoramento.
+Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (intervalo antes da data em que os dados foram solicitados, por meio da \textit{Lei de Acesso a Informação} \footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a Tab. \ref{tab:avlDataset}, alguns dos dos dados de movimentação referentes a novembro e dezembro estão ausentes, segundo a \textit{SPTrans}, essa ausência é justificada devido a períodos de indisponibilidade do sistema de monitoramento.
 
-Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na tabela \ref{tab:avlDataset}. Além dos períodos indisponíveis, encontramos arquivos com linhas contendo dados divergentes do meta dados fornecido pela SPTrans,  de acordo com a Tab. \ref{tab:avlDataset}, tais registros foram ignorados para os experimentos deste trabalho.
+Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na Tab. \ref{tab:avlDataset}. Além dos períodos indisponíveis, encontramos arquivos com linhas contendo dados divergentes do meta dados fornecido pela SPTrans,  de acordo com a Tab. \ref{tab:avlDataset}, tais registros foram ignorados para os experimentos deste trabalho.
 
 \begin{table}[!htb]
 \begin{threeparttable}
@@ -2107,7 +2117,7 @@ A Fig. \ref{fig:pizza_bus}, representa a distribuição dos dados enviados em ja
   %\source{Felipe Cordeiro Alves Dias, 2017}
 \end{figure}
 
-Finalmente, os mapas exibidos pelas figuras \ref {fig:buses_map} e \ref{fig:only_one_bus_map} ajudam a identificar a localização a partir da qual os dados estão sendo enviados, permitindo visualizar possíveis pontos de falhas durante a transmissão desses dados. O primeiro mapa, respectivamente, refere-se à rota de uma única linha de ônibus e o segundo de todas as rotas; em ambos os casos, referentes aos dados de janeiro. Além disso, na figura \ref {fig:buses_map}, é possível observar a segregação urbana da cidade, devido ao fato de algumas regiões terem uma maior densidade de dados enviados, o que também indica regiões de maior tráfego, nas quais eventos de exceção teriam maior impacto.
+Finalmente, os mapas exibidos pelas figuras \ref {fig:buses_map} e \ref{fig:only_one_bus_map} ajudam a identificar a localização a partir da qual os dados estão sendo enviados, permitindo visualizar possíveis pontos de falhas durante a transmissão desses dados. O primeiro mapa, respectivamente, refere-se à rota de uma única linha de ônibus e o segundo de todas as rotas; em ambos os casos, referentes aos dados de janeiro. Além disso, na Fig. \ref {fig:buses_map}, é possível observar a segregação urbana da cidade, devido ao fato de algumas regiões terem uma maior densidade de dados enviados, o que também indica regiões de maior tráfego, nas quais eventos de exceção teriam maior impacto.
 
 \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -2165,7 +2175,7 @@ Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{
 \item Remoção \nomenclature{URL}{\textit{Uniform Resource Locator}} \textit{URLs} e menções a outros \textit{tweets}.
 \item Remoção de acentos, \textit{emoticons} e pontuações substituídas por espaços vazios.
 %\item Correção erros de digitação por meio de uma função de mapeamento
-\item \textit{Stemming} --- realizado neste trabalho na fase de processamento mencionada na subseção \ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
+\item \textit{Stemming} --- realizado neste trabalho na fase de processamento mencionada na seção \ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
 \end{itemize}
 
 Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos meta dados dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
@@ -2191,7 +2201,7 @@ Em seguida, a resposta HTTP é processada para obter os valores da localização
 \section{Processamento de \textit{tweets}}
 \label{processing}
 
-Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase, os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do Português Brasileiro filtradas\footnote{\textit{Stopwords} do Português Brasileiro obtidas da \nomenclature{NLTK}{Natural Language Toolkit}{NLTK ---} \url{https://www.nltk.org}. Acessado em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  Português Brasileiro\footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acessado em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
+Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase, os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do português brasileiro filtradas\footnote{\textit{Stopwords} do português brasileiro obtidas da \nomenclature{NLTK}{Natural Language Toolkit}{NLTK ---} \url{https://www.nltk.org}. Acessado em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  português brasileiro\footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acessado em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
 
 \section{Classificação manual do Corpus \textit{Twitter}}
 \label{manualClassification}
@@ -2243,7 +2253,7 @@ Após o estudo do domínio do conhecimento, por meio da revisão sistemática pa
 \section{Modelo de classificação de \textit{tweets} relacionados a eventos de exceção}
 \label{model}
 
-O corpus obtido da fase de processamento de \textit {tweets} é representado por meio de um \textit{bag-of-words}, que contém vetores de \textit{features} criados usando a medida \textit{Term Frequency - Inverse Document Frequency}\nomenclature{TF-IDF}{\textit{Term Frequency - Inverse Document Frequency}} (TF-IDF). A bag-of-words é particionada aleatoriamente em conjuntos de treinamento (60\%) e teste (40\%), os quais são entradas para os algoritmos de classificação mencionados na subseção ~\ref{supervisionedLearning}.
+O corpus obtido da fase de processamento de \textit {tweets} é representado por meio de um \textit{bag-of-words}, que contém vetores de \textit{features} criados usando a medida \textit{Term Frequency - Inverse Document Frequency}\nomenclature{TF-IDF}{\textit{Term Frequency - Inverse Document Frequency}} (TF-IDF). A bag-of-words é particionada aleatoriamente em conjuntos de treinamento (60\%) e teste (40\%), os quais são entradas para os algoritmos de classificação mencionados na seção ~\ref{supervisionedLearning}.
 
 \section{Encontrando linhas de ônibus afetadas por eventos de exceção}
 
@@ -2253,7 +2263,7 @@ De acordo com a seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenad
 
 \section{Resultados}
 	
-A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acessado em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 414,637 palavras, com um vocabulário de 13,915 palavras. O comprimento máximo das sentenças do conjunto de dados é 19, sua respectiva variação é ilustrada pela Figura ~\ref{fig:corpus_metrics}.
+A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acessado em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 414,637 palavras, com um vocabulário de 13,915 palavras. O comprimento máximo das sentenças do conjunto de dados é 19, sua respectiva variação é ilustrada pela Fig. ~\ref{fig:corpus_metrics}.
  
 \begin{figure}[!htb]
 	\centering
@@ -2262,7 +2272,7 @@ A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponí
 	\label{fig:corpus_metrics}
 \end{figure}
 
-Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificados manualmente de acordo com os eventos de exceção identificados. Este conjunto de dados é composto pelas seguintes classes: Acidente, Irrelevante --- quando o \textit{tweet} não é um evento de exceção, Desastre Natural, Evento Social e Evento Urbano. A figura \ref{fig:tweets_distribution} ilustra a distribuição das classes de eventos de exceção em cada conta selecionada.
+Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificados manualmente de acordo com os eventos de exceção identificados. Este conjunto de dados é composto pelas seguintes classes: Acidente, Irrelevante --- quando o \textit{tweet} não é um evento de exceção, Desastre Natural, Evento Social e Evento Urbano. A Fig. \ref{fig:tweets_distribution} ilustra a distribuição das classes de eventos de exceção em cada conta selecionada.
 
 \begin{figure}[!htb]
 	\centering
@@ -2271,7 +2281,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
 	\label{fig:tweets_distribution}
 \end{figure}
 
-Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tabela ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura ~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice \ref{apendiceE}.
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção ~\ref{model}. De acordo com a Tab. ~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Fig. ~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice \ref{apendiceE}.
 
 \begin{table}[!htb]
 \centering
@@ -2279,7 +2289,7 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \label {tab:metrics}
 \begin{tabular}{c|c|c|c|c}
 \toprule
-\textbf{Algoritmo} & \textbf{Acurácia} & \textbf{Precisão} & \textbf{Revocação} & \textbf{\textit{f1-score}} \\
+\textbf{Algoritmo} & \textbf{ACC} & \textbf{PPV} & \textbf{TPR} & \textbf{\textit{f1-score}} \\
 \midrule
 \textit{Complement Naive Bayes} & 0,941 & 0,949 & 0,941 & 0,944 \\
 \hline
@@ -2304,7 +2314,7 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Multi-layer Perceptron}}
 		\includegraphics[width=1\linewidth]{images/confusion_matrix_mlp.png}
-	\label{fig:confusion_matrix_mlpc}
+	\label{fig:confusion_matrix_mlp}
 \end{figure}
 
 Dos 60.984 \textit{tweets} 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto encontrados 8.112 endereços, de acordo com a Tab. \ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe \textit{Irrelevant}). A quantidade de endereços extraídos por classe está descrita na Tab. \ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
@@ -2482,7 +2492,7 @@ Consideramos que uma linha de ônibus é afetada por um evento de exceção se u
 
 Este experimento apresenta uma nova metodologia para classificação de eventos de exceção e analisa seus respectivos impactos no sistema de transporte coletivo por ônibus da cidade de São Paulo. De acordo com os experimentos realizados, o algoritmo com maior  acurácia para classificação de \textit{tweets} em eventos de exceção foi \textit{Multi-layer Perceptron}. Também, mostramos que é possível extrair endereços de \textit{tweets} semi-estruturados usando apenas expressões regulares. A classificação desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
 
-Embora o método tenha sido validado usando perfis selecionados do Twitter escritos em português do Brasil, o mesmo pode ser generalizado para diferentes idiomas e cidades. A GTFS é um formato ubíquo para o transporte público e ferramentas como a NLTK suporta vários idiomas.
+Embora o método tenha sido validado usando perfis selecionados do Twitter escritos em português brasileiro, o mesmo pode ser generalizado para diferentes idiomas e cidades. A GTFS é um formato ubíquo para o transporte público e ferramentas como a NLTK suporta vários idiomas.
 
 %\subsection{Future work}
 %As future work, the methodology presented in this paper will be applied to the other accounts from the Corpus Twitter, described in the Section~\ref{corpusTwitter}. Besides, we will extract features from the dataset of bus movements, for each bus line affected by the exception events, also we will extract more exception events from another dataset related to reclamations made by bus users to enrich the impact analysis.
@@ -2585,7 +2595,7 @@ Embora o método tenha sido validado usando perfis selecionados do Twitter escri
 \label{dataCorr}
 %\todo[inline]{Escrever Correlação dos eventos de exceção com os dados AVL da SPTrans}
 
-Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na tabela \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos analisando a base histórica dos dados AVL da SPTrans.  Neste estudo consideramos os eventos de exceção geolocalizados do ano de 2017 do \textit{Corpus Twitter}, classificados manualmente. A distribuição desses eventos ao longo dos meses pode ser observada  na Fig. \ref{fig:geolocated_exception_events_distribution}, assim como de suas respectivas classes na Fig. \ref{fig:exception_events_classification_distribution}.
+Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos \textit{profiles} contidos na Tab. \ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos em relação as velocidades medianas dos ônibus, por meio da base histórica dos dados AVL da SPTrans.  Neste estudo consideramos os eventos de exceção geolocalizados do ano de 2017 do \textit{Corpus Twitter}, classificados manualmente. A distribuição desses eventos ao longo dos meses pode ser observada  na Fig. \ref{fig:geolocated_exception_events_distribution}, assim como de suas respectivas classes na Fig. \ref{fig:exception_events_classification_distribution}.
 
 %Dito isso, inicialmente pretendemos caracterizar os impactos em:
 
@@ -2607,7 +2617,7 @@ Dado que os eventos de exceção podem ser identificados utilizando \textit{twee
 	\label{fig:geolocated_exception_events_distribution}
 \end{figure}
 
-Conforme descrito no Cap. \ref{exp1} e ilustrado na Fig. \ref{fig:avl_tweets_correlation}, identificamos as linhas afetadas por eventos de exceção filtrando as paradas de ônibus (contidas na coleção \textit{stops} da GTFS da SPTrans) dentro de um raio de 1.000 metros das geolocalizações extraídas dos \textit{tweets}. 
+Conforme descrito no Cap. \ref{exp1} e ilustrado na Fig. \ref{fig:avl_tweets_correlation_pt}, identificamos as linhas afetadas por eventos de exceção filtrando as paradas de ônibus (contidas na coleção \textit{stops}  e \textit{shapes} da GTFS da SPTrans) dentro de um raio de 1.000 metros das geolocalizações extraídas dos \textit{tweets}. 
 
 A partir disso, selecionamos os dados de movimentação que serão analisados, por exemplo, se o evento de exceção aconteceu em 17/08/2017 (quinta-feira), todas as demais quinta-feiras do mês de agosto (3, 10, 24 e 31/08/2017) serão consideradas na análise. Isso, porque os dias da semana possuem padrões diferentes de movimentação (sazonalidade), por exemplo, nas sextas feiras ocorrem inúmeros eventos sociais que normalmente acarretam em um trânsito mais congestionado. Além da diferenciação dos dias da semana, os meses também possuem características distintas --- festas no final do ano, férias, início de períodos letivos, etc. ---, conforme Fig. \ref{fig:exception_events_classification_distribution}, devido a isso os dias selecionados são restritos ao mês de ocorrência do evento.
 
@@ -2621,19 +2631,22 @@ A partir disso, selecionamos os dados de movimentação que serão analisados, p
 \begin{figure}[!htb]
 	\centering
  	  \caption{Processo para correlação entre os dados AVL, GTFS e \textit{tweets} para análise do impacto dos eventos de exceção}
-		\includegraphics[width=0.7\linewidth]{images/avl_tweets_correlation.png}
-	\label{fig:avl_tweets_correlation}
+		\includegraphics[width=0.7\linewidth]{images/avl_tweets_correlation_pt.png}
+	\label{fig:avl_tweets_correlation_pt}
 \end{figure}
 
-Seleções de dias e meses à parte, também filtramos os dados relacionados as linhas impactadas a um raio de distância de 100 e 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. É importante observar que esse trabalho não considera início e término exato dos eventos de exceção, mas uma faixa de horário de uma hora a partir do horário contido no \textit{timestamp}  do \textit{tweet}.
+Seleções de dias e meses à parte, também filtramos os dados relacionados as linhas impactadas a um raio de distância de 100 e 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. É importante observar que esse trabalho não considera início e término exato dos eventos de exceção, mas uma faixa de horário de uma hora a partir do hora contida no \textit{timestamp}  do \textit{tweet}.
 
-Em seguida, agregamos os dados selecionados para analisarmos  de forma descritiva a velocidade instantânea de cada linha de ônibus, com isso extraímos dados sobre a velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. Após isso, comparamos a velocidade média da faixa de horário da ocorrência com a velocidade média dos dias que não fazem referência ao evento de exceção, para cada conjunto de linhas afetadas pelo evento de exceção e para cada linha.
+Em seguida, agregamos os dados selecionados para analisarmos  de forma descritiva a velocidade instantânea de cada linha de ônibus, com isso extraímos dados sobre a velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. Após isso, comparamos a velocidade média das medianas da faixa de horário da ocorrência com a velocidade média das medianas dos dias que não fazem referência ao evento de exceção, para cada conjunto de linhas afetadas pelo evento de exceção e para cada linha.
 
-Consideramos que a linha foi impactada se a média das velocidades médias dos dias analisados for maior ou igual a velocidade média do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%. 
+Consideramos que a linha foi impactada se a média das velocidades medianas dos dias analisados for maior ou igual a velocidade mediana do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%.
 
 \section*{Resultados}
 
-Utilizando a metodologia anteriormente descrita, podemos observar na Tab. \ref{tab:exceptEventVelocityImpAll} que os eventos de exceção relacionados a eventos sociais possuem em média 87,04\% de impacto na velocidade média nos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância e 100\% a um raio de 100 metros, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento, quantidade de avenidas com fluxo do trânsito modificado ou interrompido. 
+\subsection*{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade dos pontos de parada}
+\label{stopsAnalysis}
+
+Utilizando a metodologia anteriormente descrita, podemos observar na Tab. \ref{tab:exceptEventVelocityImpAllStop} que os eventos de exceção relacionados a eventos sociais possuem em média 87,04\% de impacto na velocidade mediana nos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância e 100\% a um raio de 100 metros, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento, quantidade de avenidas com fluxo do trânsito modificado ou interrompido. 
 
 Os eventos urbanos, por sua vez, impactam em 70,11\% a 1.000 metros e 98,86\% a 100 metros, mesmo sendo realizados com planejamento de rotas alternativas e sinalizações nas vias públicas. A terceira e quarta classe mais afetadas são as de acidentes e desastres naturais, respectivamente, 66,51\% e 59,77\% a 1.000 metros e 98,39\% e 99,80\% a 100 mestros, as quais normalmente resultam em bloqueios ou desvios em vias públicas utilizadas pelos ônibus. 
 
@@ -2644,8 +2657,8 @@ Os meses próximos a 100\% de impacto nas velocidades médias são justificados 
 
 \begin{table}[!htb]
 \centering
-\caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 1.000m e 100m de distância, respectivamente, nos meses do ano de 2017}
-\label {tab:exceptEventVelocityImpAll}
+\caption {Porcentagem de ônibus dos grupos de linhas afetadas por eventos de exceção, a 1.000m e 100m de distância, respectivamente, que tiveram a velocidade mediana reduzida nos meses do ano de 2017}
+\label{tab:exceptEventVelocityImpAllStop}
 \begin{tabular}{c|cc|cc|cc|cc}
 \toprule
 \textbf{Mês} & \multicolumn{2}{c}{\textit{\textbf{Accident}}} & \multicolumn{2}{c}{\textit{\textbf{Natural Disaster}}} & \multicolumn{2}{c}{\textit{\textbf{Social Event}}} &
@@ -2713,10 +2726,21 @@ Dezembro & - & - & - & - & - & - & - & -  \\
 \end{tabular}
 \end{table}
 
+\subsection*{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade das rotas das linhas}
+
+As análises dos dados da Tab. \ref{tab:exceptEventVelocityImpAllShapes} são análogas as da Tab. \ref{tab:exceptEventVelocityImpAllStop} da seção \ref{stopsAnalysis}, para o raio de 1.000m os eventos que mais reduzem as velocidades medianas são os relacionados a eventos sociais, urbanos, acidentes e desastres naturais, nesta ordem. Apesar disso, é importante observar que o percentual de redução da velocidade mediana é reduzido quando consideramos as latitudes e longitudes das rotas como referência para encontrar as linhas impactadas. 
+
+Quando as rotas são consideradas obtemos um conjunto maior de linhas impactadas, o que aumenta a margem de erro, adicionando ruído a análise realizada, diferentemente da análise que considera as latitudes e longitudes dos pontos de parada dos ônibus como referência para encontras as linhas afetadas pelos eventos de exceção. Outra diferença observada é em relação aos percentuais de redução de velocidades medianas para o raio de 100m. Nesta abordagem, as ordem dos eventos que mais impactam as velocidades medianas são os relacionados a acidentes, desastres naturais, eventos sociais e urbanos, respectivamente.
+
+Em relação as sazonalidades, os meses de abril e outubro foram mais significativos para a redução das velocidades medianas, no raio de de 1.000m devido as inúmeras manifestações\footnote{\url{https://g1.globo.com/politica/noticia/cidades-pelo-pais-tem-manifestacoes-a-favor-da-lava-jato-neste-domingo.ghtml}}\footnote{\url{https://g1.globo.com/resumo-do-dia/noticia/quarta-feira-15-de-marco-de-2017.ghtml}}\footnote{\url{https://www1.folha.uol.com.br/poder/2017/03/1866022-manifestacao-por-intervencao-militar-bloqueia-via-em-sp.shtml}}\footnote{\url{https://oglobo.globo.com/brasil/ato-de-artistas-no-rio-contra-temer-termina-com-bombas-de-efeito-moral-spray-de-pimenta-21987385}}\footnote{\url{https://pt.wikipedia.org/wiki/Greve\_geral\_no\_Brasil\_em\_2017}} que ocorreram no Brasil  
+
+Por fim, a quantidade de latitudes e longitudes relacionadas as paradas de ônibus é menor do que o que contém informações sobre as geolocalizações que formam as rotas. Consequetemente, de acordo com os experimentos, a abordagem que utiliza o primeiro conjunto consome menos recursos computacionais, com menor ruído (falsos positivos) e resultados semelhantes ao da segunda abordagem.
+
+
 \begin{table}[!htb]
 \centering
 \caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 1.000m e 100m de distância, respectivamente, nos meses do ano de 2017}
-\label {tab:exceptEventVelocityImpAll}
+\label{tab:exceptEventVelocityImpAllShapes}
 \begin{tabular}{c|cc|cc|cc|cc}
 \toprule
 \textbf{Mês} & \multicolumn{2}{c}{\textit{\textbf{Accident}}} & \multicolumn{2}{c}{\textit{\textbf{Natural Disaster}}} & \multicolumn{2}{c}{\textit{\textbf{Social Event}}} &
@@ -2915,7 +2939,7 @@ Em relação a publicações científicas, serão submetidos artigos com os resu
 
 \section{Trabalhos futuros}
 \todo[inline]{Escrever trabalhos futuros}
-As principais limitações deste projeto estão relacionadas ao processamento de \textit{tweets} em português brasileiro e oriundos das contas selecionadas e referenciadas na tabela \ref{tab:oficialProfiles}, o que pode tornar a solução não generalista. Dentre os riscos, apesar das análises preliminares realizadas para extração de endereços dos conteúdos dos \textit{tweets} por meio de Expressão Regular, é possível que sejam encontrados novos desafios que inviabilizem o uso dessa técnica.
+As principais limitações deste projeto estão relacionadas ao processamento de \textit{tweets} em português brasileiro e oriundos das contas selecionadas e referenciadas na Tab. \ref{tab:oficialProfiles}, o que pode tornar a solução não generalista. Dentre os riscos, apesar das análises preliminares realizadas para extração de endereços dos conteúdos dos \textit{tweets} por meio de Expressão Regular, é possível que sejam encontrados novos desafios que inviabilizem o uso dessa técnica.
 
 \section*{Acknowledgment}
 This research is part of the INCT of the Future Internet for Smart Cities funded by CNPq, proc. 465446/2014-0, CAPES proc.88887.136422/2017-00, and FAPESP, proc. 2014/50937-1.
