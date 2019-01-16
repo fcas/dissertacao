@@ -1438,7 +1438,7 @@ confidence(A \rightarrow B) = \dfrac{support(A \rightarrow B)}{support(A)} = \df
 lift(A \rightarrow B) = \dfrac{confidence(A \rightarrow B)}{support(B)} = \dfrac{P(B|A)}{P(B)}
 \end{equation}
 
-Algoritmos para mineração de dados, como o \textit{Apriori}, não tem tido seu potencial explorado no domínio de grandes volumes de dados relacionados ao transporte \cite{park2018apriori}. Neste trabalho, aplicamos o algoritmo \textit{Apriori} no conjunto de dados da \textit{SPTrans} para identificarmos as regras de associação existentes, detalhadas no Cap. \ref{dataSet}, com o objetivo de contribuirmos para a gestão do transporte público por ônibus da cidade de São Paulo.   
+Algoritmos para mineração de dados, como o \textit{Apriori}, não tem tido seu potencial explorado no domínio de grandes volumes de dados relacionados ao transporte \cite{park2018apriori}. Neste trabalho, aplicamos o algoritmo \textit{Apriori} no conjunto de dados da \textit{SPTrans} para identificarmos as regras de associação existentes, detalhadas no Cap. \ref{expApriori}, com o objetivo de contribuirmos para a gestão do transporte público por ônibus da cidade de São Paulo.   
 
 \chapter{Revisão Sistemática}
 \label{revisao}
@@ -1891,6 +1891,7 @@ Janeiro\tnote{c} & 1 - 31 & 744 & 102,44 \\
 \item \texttt{Movto\_201711011300\_201711011400.zip}
 \item \texttt{Movto\_201711011400\_201711011500.zip}
 \end{itemize}
+Justificativa ao recurso em primeira instância de acesso a informação: ``Conheço do recurso e nego provimento, informando que os registros solicitados não existem na nossa base e também não há informações de ``log'' que indiquem possíveis falhas ou indisponibilidade no sistema. Sendo assim, conforme já explicado anteriormente, não há condições técnicas de disponibilizar essas informações.'' --- resposta oficial da SPTrans, responsável: Paulo Cézar Shingai Diretor, Presidente da SPTrans.
 \item[b]Arquivos indisponíveis em dezembro, devido a falha na rede de transmissão de dados \nomenclature{GPRS}{\textit{General Packet Radio Services,}}conforme apresentado no sistema interno de registro de interrupções do sistema, Fig. \ref{fig:e_sic_33310} --- resposta oficial da SPTrans, responsável: Albino Silva da Rocha, Chefe de Gabinete da SPTrans: 
 \begin{itemize}
 \item \texttt{Movto\_201712150100\_201712150200.zip}
@@ -2813,8 +2814,8 @@ Dezembro & - & - & - & - & - & - & - & -  \\
 
 
 \chapter{Identificação de padrões de velocidade média dos dados AVL}
-
-Neste capítulo, é apresentado um processo para identificação de padrões de velocidade média dos dados AVL, por meio do algoritmo \textit{Apriori}. De acordo com \cite{xie2008optimization}, o algoritmo é ineficiente para grandes volumes de dados, devido ao fato da quantidade elevada de itens candidatos, processo explicado no Cap. \ref{apriori} e aos inúmeros acessos necessários ao banco de dados. O foco deste trabalho não é melhorar o desempenho do algoritmo \textit{Apriori} ou usar as melhorias existente na literatura \cite{xie2008optimization, zhang2014method}, pois não são significativas para as características dos dados AVL, com mais de um milhão de registros por hora.
+\label{expApriori}
+Neste capítulo, é apresentado um processo para identificação de padrões de velocidade média dos dados AVL, por meio do algoritmo \textit{Apriori}. De acordo com \cite{xie2008optimization}, o algoritmo é ineficiente para grandes volumes de dados, devido a quantidade elevada agregações necessárias para calcular as métricas explicadas no Cap. \ref{apriori} e aos inúmeros acessos ao banco de dados. O foco deste trabalho não é melhorar o desempenho do algoritmo \textit{Apriori} ou implementar as melhorias existentes na literatura \cite{xie2008optimization, zhang2014method}, embora tenhamos como objetivo encontrar os padrões de velocidades médias existentes nos mais de um milhão de registros por hora, volume característico dos dados AVL.
 
 Além da quantidade de registros total, o volume de dados para pequenos intervalos de tempo também é considerável, pois os módulos AVL enviam dados dos ônibus a todo instante. Dessa forma, para viabilizarmos o uso do algoritmo \textit{Apriori}, agrupamos os dados por intervalos de tempo de cinco minutos e calculamos a velocidade média para cada intervalo. Com isso, executamos esse processo para cada mês do conjunto de dados AVL para determinarmos as velocidades médias e identificarmos os padrões existentes nos intervalos definidos.
 
@@ -2824,9 +2825,9 @@ Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL co
 
 \section{Resultados}
 
-A Tab. \ref{tab:aprioriFull} é referente aos padrões encontrados com valores de $\textit{Lift} > 1$, métrica que indica correlações entre dois valores. Mais de um padrão de associações entre velocidade médias foi encontrado para a maioria dos meses, exceto para os meses de janeiro $\lbrace 11 \rightarrow 12 \rbrace$ (aceleração), julho $\lbrace 11 \rightarrow 12\rbrace$ (aceleração) e dezembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração), meses nos quais normalmente o transito é menos congestionado e mais estável, devido as férias escolares. Apesar disso, em setembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração) foi identificado apenas um padrão. Tais padrões indicam correlações de velocidades médias nesses meses a cada cinco minutos entre 11 e 12Km/h.
+A Tab. \ref{tab:aprioriFull} é referente aos padrões encontrados com valores de $\textit{Lift} > 1$, métrica que indica correlações entre dois valores. Mais de um padrão de associações entre velocidades médias foi encontrado para a maioria dos meses, exceto para os meses de janeiro $\lbrace 11 \rightarrow 12 \rbrace$ (aceleração), julho $\lbrace 11 \rightarrow 12\rbrace$ (aceleração) e dezembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração), meses nos quais normalmente o trânsito é menos congestionado e mais estável, devido as férias escolares. Apesar disso, em setembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração) foi identificado apenas um padrão. Tais padrões indicam correlações de velocidades médias nesses meses a cada cinco minutos entre 11 e 12Km/h.
 
-Por sua vez, os meses com menores velocidades médias no intervalo de cinco minutos foram fevereiro $\lbrace 7 \rightarrow 8\rbrace$, abril $\lbrace 7 \rightarrow 8 \rbrace$, maio $\lbrace7 \rightarrow 8\rbrace$, outubro $\lbrace8 \rightarrow 7\rbrace$ e novembro $\lbrace8 \rightarrow 7\rbrace$. Ou seja, nesses meses as correlações de velocidades médias no intervalo de estudo foram entre 7 e 8Km/h.
+Por sua vez, os meses com menores velocidades médias no intervalo de cinco minutos foram fevereiro $\lbrace 7 \rightarrow 8\rbrace$ (aceleração), abril $\lbrace 7 \rightarrow 8 \rbrace$ (aceleração), maio $\lbrace7 \rightarrow 8\rbrace$ (aceleração), outubro $\lbrace8 \rightarrow 7\rbrace$ (desaceleração) e novembro $\lbrace8 \rightarrow 7\rbrace$ (desaceleração). Ou seja, nesses meses as correlações de velocidades médias no intervalo de estudo foram entre 7 e 8Km/h.
 
 Referente ao demais meses, junho teve médias entre $\lbrace11 \rightarrow 12\rbrace$ e $\lbrace12 \rightarrow 13\rbrace$ (aceleração); agosto $\lbrace11 \rightarrow 12\rbrace$ (aceleração) e $\lbrace13 \rightarrow 12\rbrace$  (desaceleração); outubro $\lbrace11 \rightarrow 12\rbrace$ (aceleração) e $\lbrace13 \rightarrow 12\rbrace$ (desaceleração); novembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração). Tais padrões indicam correlações de velocidades médias a cada cinco minutos entre 11 e 13Km/h.
 
@@ -2838,47 +2839,42 @@ Os valores de \textit{Support} indicados na Tab. \ref{tab:aprioriFull} represent
 \caption {Análise \textit{Apriori}\tnote{a} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans}
 \label {tab:aprioriFull}
 \begin{tabular}{c|c|c|c|c}
-\hline
-\textbf{Month} & \textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
-\hline
-February & 7 $\rightarrow$ 8 & 0,101 & 0,496 & 3,586\\
-April & 7 $\rightarrow$ 8  & 0,108 & 0,456 & 3,188\\
-May & 7 $\rightarrow$ 8 & 0,108 & 0,570 & 4,375\\
-\hline
-\hline
-October & 8 $\rightarrow$ 7 & 0,100 & 0,595 & 3,433\\
-November & 8 $\rightarrow$ 7 & 0,104 & 0,446 & 3,369\\
-\hline
-\hline
-January & 11 $\rightarrow$ 12 & 0,137 & 0,476 & 1,729 \\
-June & 11 $\rightarrow$ 12 & 0,129 & 0,632 & 1,656\\
-July & 11 $\rightarrow$ 12 & 0,204 & 0,694 & 1,934\\
-August & 11 $\rightarrow$ 12 & 0,169 & 0,670 & 1,662\\
-October & 11 $\rightarrow$ 12 & 0,119 & 0,601 & 1,669\\
-\hline
-\hline
-February & 12 $\rightarrow$ 11 & 0,126 & 0,582 & 1,770\\
-March & 12 $\rightarrow$ 11 & 0,134 & 0,621 & 1,627\\
-April & 12 $\rightarrow$ 11 & 0,123 & 0,601 & 2,013\\
-May & 12 $\rightarrow$ 11 & 0,137 & 0,645 & 1,703\\
-September & 12 $\rightarrow$ 11 & 0,163 & 0,608 & 1,863\\
-November & 12 $\rightarrow$ 11 & 0,154 & 0,531 & 1,875\\
-December & 12 $\rightarrow$ 11 & 0,143 & 0,432 & 2,073\\
-\hline
-\hline
-February & 12 $\rightarrow$ 13 & 0,123 & 0,375 & 1,956\\
-March & 12 $\rightarrow$ 13 & 0,158 & 0,415 & 1,766\\
-June & 12 $\rightarrow$ 13 & 0,141 & 0,370 & 1,907\\
-\hline
-\hline
-April  & 13 $\rightarrow$ 12 & 0,109 & 0,367 & 2,280\\
-May & 13 $\rightarrow$ 12 & 0,161 & 0,425 & 1,942\\
-August & 13 $\rightarrow$ 12 & 0,147 & 0,366 & 1,830\\
-October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
-\hline
+\toprule
+\textbf{Mês} & \textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+Fevereiro & 7 $\rightarrow$ 8 & 0,101 & 0,496 & 3,586\\
+Abril & 7 $\rightarrow$ 8  & 0,108 & 0,456 & 3,188\\
+Maio & 7 $\rightarrow$ 8 & 0,108 & 0,570 & 4,375\\
+\midrule
+Outubro & 8 $\rightarrow$ 7 & 0,100 & 0,595 & 3,433\\
+Novembro & 8 $\rightarrow$ 7 & 0,104 & 0,446 & 3,369\\
+\midrule
+Janeiro & 11 $\rightarrow$ 12 & 0,137 & 0,476 & 1,729 \\
+Junho & 11 $\rightarrow$ 12 & 0,129 & 0,632 & 1,656\\
+Julho & 11 $\rightarrow$ 12 & 0,204 & 0,694 & 1,934\\
+Agosto & 11 $\rightarrow$ 12 & 0,169 & 0,670 & 1,662\\
+Outubro & 11 $\rightarrow$ 12 & 0,119 & 0,601 & 1,669\\
+\midrule
+Fevereiro & 12 $\rightarrow$ 11 & 0,126 & 0,582 & 1,770\\
+Março & 12 $\rightarrow$ 11 & 0,134 & 0,621 & 1,627\\
+Abril & 12 $\rightarrow$ 11 & 0,123 & 0,601 & 2,013\\
+Maio & 12 $\rightarrow$ 11 & 0,137 & 0,645 & 1,703\\
+Setembro & 12 $\rightarrow$ 11 & 0,163 & 0,608 & 1,863\\
+Novembro & 12 $\rightarrow$ 11 & 0,154 & 0,531 & 1,875\\
+Dezembro & 12 $\rightarrow$ 11 & 0,143 & 0,432 & 2,073\\
+\midrule
+Fevereiro & 12 $\rightarrow$ 13 & 0,123 & 0,375 & 1,956\\
+Março & 12 $\rightarrow$ 13 & 0,158 & 0,415 & 1,766\\
+Junho & 12 $\rightarrow$ 13 & 0,141 & 0,370 & 1,907\\
+\midrule
+Abril  & 13 $\rightarrow$ 12 & 0,109 & 0,367 & 2,280\\
+Maio & 13 $\rightarrow$ 12 & 0,161 & 0,425 & 1,942\\
+Agosto & 13 $\rightarrow$ 12 & 0,147 & 0,366 & 1,830\\
+Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
-            \item[a] Tabela completa no apêndice \ref{apendiceD}.
+            \item[a] Tabela completa no apêndice \ref{g1}.
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -2886,8 +2882,8 @@ October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 100m e 1.000m, respectivamente) dos meses do ano\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 100m\tnote{g} e 1.000m\tnote{h}, respectivamente) dos meses do ano de 2017}
+\label {tab:aprioriExceptFullStops}
 \begin{tabular}{c|c|c|c|c|c}
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
@@ -2917,14 +2913,63 @@ October & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regras experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras esperadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 3.545 eventos de exceção não atingiram linhas de ônibus no raio de 100m.
             \item[h] 447 eventos de exceção não atingiram linhas de ônibus no raio de 1.000m.
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
+
+\section*{Shapes}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados aos eventos de exceção (a distância de 100m\tnote{g} e 1.000m\tnote{h}, respectivamente) dos meses do ano de 2017}
+\label {tab:aprioriExceptFullShapes}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 2.367 & 3.390.690 & 3.164.726 & 171.860 & 54.104 \\
+\hline
+\textit{Natural Disaster} & 1.307 & 1.342.048 & 1.247.219 & 75.981 & 18.848 \\
+\hline
+\textit{Social Event} & 704 & 1.522.423 & 1.433.700 & 67.835 & 20.888 \\
+\hline
+\textit{Urban Event} & 825 & 1.602.343 & 1.499.305 & 79.155 & 23.883 \\
+\midrule
+{---} & 5.203 & 7.857.504 & 7.344.950 & 394.831 & 117.723 \\
+\bottomrule
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 3.035 & 2.772.368 & 2.259.806 & 365.234 & 147.328 \\
+\hline
+\textit{Natural Disaster} & 2017 & 1.876.843 & 1.545.172 & 239.897 & 91.774 \\
+\hline
+\textit{Social Event} & 764 & 683.037 & 588.385 & 63.549 & 31.103 \\
+\hline
+\textit{Urban Event} & 980 & 963.892 & 805.901 & 111.898 & 46.093 \\
+\midrule
+{---} & 6.796 & 6.296.140 & 5.199.264 & 780.578 & 316.298 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras esperadas ($Lift > 1$, $Support > 0,05$)
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 2.033 eventos de exceção não atingiram linhas de ônibus no raio de 100m.
+            \item[h] 440 eventos de exceção não atingiram linhas de ônibus no raio de 1.000m.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
 
 \chapter{Conclusão}
 \label{conclusion}
@@ -7025,41 +7070,44 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 %n_jobs : int or None, optional (default=None)
 %Number of CPU cores used when parallelizing over classes if multi_class=’ovr’”. This parameter is ignored when the solver is set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or not. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors. See Glossary for more details.
 
-\chapter{Análises \textit{Apriori}}
-\label{apendiceF}
+\chapter{Análise \textit{Apriori}}
+\label{apendiceG}
+
+\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans, referentes aos meses do ano de 2017.}
+\label{g1}
 
 \begin{table}[!htb]
 \centering
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Janeiro}
 \label {tab:aprioriJanuary}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,14 &  0,14 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,28 &  0,28 &  1\\
 \hline
-10 &  0,1424731182795699 &  0,1424731182795699 &  1,0\\
+12 &  0,27 &  0,27 &  1\\
 \hline
-11 &  0,28763440860215056 &  0,28763440860215056 &  1,0\\
+13 &  0,15 &  0,15 &  1\\
 \hline
-12 &  0,27553763440860213 &  0,27553763440860213 &  1,0\\
+2 &  0,12 &  0,12&  1\\
 \hline
-13 &  0,15591397849462366 &  0,15591397849462366 &  1,0\\
+4 &  0,10&  0,10 &  1\\
 \hline
-2 &  0,12634408602150538 &  0,12634408602150538 &  1,0\\
+5 &  0,11 &  0,11 &  1\\
 \hline
-4 &  0,10080645161290322 &  0,10080645161290322 &  1,0\\
+6 &  0,12 &  0,12 &  1\\
 \hline
-5 &  0,11693548387096774 &  0,11693548387096774 &  1,0\\
+7 &  0,19 &  0,19 &  1\\
 \hline
-6 &  0,12231182795698925 &  0,12231182795698925 &  1,0\\
+8 &  0,15 &  0,15&  1\\
 \hline
-7 &  0,19623655913978494 &  0,19623655913978494 &  1,0\\
+9 &  0,13 &  0,13 &  1\\
 \hline
-8 &  0,15591397849462366 &  0,15591397849462366 &  1,0\\
-\hline
-9 &  0,13172043010752688 &  0,13172043010752688 &  1,0\\
-\hline
-11 $\rightarrow$ 12 &  0,13709677419354838 &  0,47663551401869153 &  1,729838158194666\\
-\hline
+11 $\rightarrow$ 12 &  0,13 &  0,47&  1,72\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7068,11 +7116,36 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Fevereiro}
 \label {tab:aprioriFebruary}
 \begin{tabular}{c|c|c|c}
-\hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
-\hline
-10 &  0,17708333333333334 &  0,17708333333333334 &  1,0\\ \hline 11 &  0,21726190476190477 &  0,21726190476190477 &  1,0\\ \hline 12 &  0,3288690476190476 &  0,3288690476190476 &  1,0\\ \hline 13 &  0,19196428571428573 &  0,19196428571428573 &  1,0\\ \hline 14 &  0,10416666666666667 &  0,10416666666666667 &  1,0\\ \hline 2 &  0,12351190476190477 &  0,12351190476190477 &  1,0\\ \hline 5 &  0,12202380952380952 &  0,12202380952380952 &  1,0\\ \hline 6 &  0,10267857142857142 &  0,10267857142857142 &  1,0\\ \hline 7 &  0,20386904761904762 &  0,20386904761904762 &  1,0\\ \hline 8 &  0,13839285714285715 &  0,13839285714285715 &  1,0\\ \hline 9 &  0,1800595238095238 &  0,1800595238095238 &  1,0\\ \hline 12 $\rightarrow$ 11 &  0,12648809523809523 &  0,5821917808219178 &  1,7702845100105373\\ \hline 12 $\rightarrow$ 13 &  0,12351190476190477 &  0,3755656108597285 &  1,9564348100599809\\ \hline 7 $\rightarrow$ 8 &  0,10119047619047619 &  0,49635036496350365 &  3,5865316694137035\\
-\hline
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,17 &  0,17 &  1\\
+ \hline 
+ 11 &  0,21 &  0,21 &  1\\ 
+ \hline 
+ 12 &  0,32 &  0,32 &  1\\ 
+ \hline 
+ 13 &  0,19 &  0,19&  1\\ 
+ \hline 
+ 14 &  0,10 &  0,10 &  1\\ 
+ \hline 
+ 2 &  0,12 &  0,12 &  1\\ 
+ \hline 
+ 5 &  0,12 &  0,12 &  1\\ 
+ \hline 
+ 6 &  0,10 &  0,10 &  1\\ 
+ \hline 
+ 7 &  0,20 &  0,20 &  1\\ 
+ \hline 
+ 8 &  0,13 &  0,13 &  1\\ 
+ \hline 
+ 9 &  0,18 &  0,18 &  1\\
+  \hline 
+ 12 $\rightarrow$ 11 &  0,12 &  0,58 &  1,77\\ 
+ \hline 
+ 12 $\rightarrow$ 13 &  0,12 &  0,37 &  1,95\\ 
+ \hline 7 $\rightarrow$ 8 &  0,10 &  0,49 &  3,58\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7081,33 +7154,33 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Março}
 \label {tab:aprioriMarch}
 \begin{tabular}{c|c|c|c}
-\hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule 
+10 &  0,15 &  0,15 &  1\\ 
 \hline 
-10 &  0,1586021505376344 &  0,1586021505376344 &  1,0\\ 
+11 &  0,21 &  0,21 &  1\\ 
 \hline 
-11 &  0,2163978494623656 &  0,2163978494623656 &  1,0\\ 
+12 &  0,38 &  0,38 &  1\\ 
 \hline 
-12 &  0,3817204301075269 &  0,3817204301075269 &  1,0\\ 
+13 &  0,23 &  0,23 &  1\\ 
 \hline 
-13 &  0,23521505376344087 &  0,23521505376344087 &  1,0\\ 
+14 &  0,13 &  0,13 &  1\\ 
 \hline 
-14 &  0,13172043010752688 &  0,13172043010752688 &  1,0\\ 
+2 &  0,12 &  0,12 &  1\\ 
 \hline 
-2 &  0,125 &  0,125 &  1,0\\ 
+5 &  0,12 &  0,12 &  1\\ 
 \hline 
-5 &  0,12096774193548387 &  0,12096774193548387 &  1,0\\ 
+6 &  0,10 &  0,10 &  1\\ 
 \hline 
-6 &  0,10752688172043011 &  0,10752688172043011 &  1,0\\ 
+7 &  0,17 &  0,17 &  1\\ 
 \hline 
-7 &  0,17338709677419356 &  0,17338709677419356 &  1,0\\ 
+9 &  0,16 &  0,16 &  1\\ 
 \hline 
-9 &  0,16129032258064516 &  0,16129032258064516 &  1,0\\ 
+12 $\rightarrow$ 11 &  0,13 &  0,62 &  1,62\\ 
 \hline 
-12 $\rightarrow$ 11 &  0,13440860215053763 &  0,6211180124223602 &  1,6271542297261832\\ 
-\hline 
-12 $\rightarrow$ 13 &  0,1586021505376344 &  0,4154929577464789 &  1,7664386317907443\\
-\hline
+12 $\rightarrow$ 13 &  0,15 &  0,41 &  1,76\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7117,37 +7190,37 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Abril}
 \label {tab:aprioriApril}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule 
+10 &  0,125 &  0,12 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
-\hline 
-10 &  0,125 &  0,125 &  1,0\\
+11 &  0,20 &  0,20 &  1\\
 \hline
-11 &  0,20555555555555555 &  0,20555555555555555 &  1,0\\
+12 &  0,29 &  0,29 &  1\\
 \hline
-12 &  0,2986111111111111 &  0,2986111111111111 &  1,0\\
+13 &  0,16 &  0,16 &  1\\
 \hline
-13 &  0,16111111111111112 &  0,16111111111111112 &  1,0\\
+2 &  0,12 &  0,12 &  1\\
 \hline
-2 &  0,12638888888888888 &  0,12638888888888888 &  1,0\\
+4 &  0,12 &  0,12 &  1\\
 \hline
-4 &  0,12083333333333333 &  0,12083333333333333 &  1,0\\
+5 &  0,11 &  0,11 &  1\\
 \hline
-5 &  0,11944444444444445 &  0,11944444444444445 &  1,0\\
+6 &  0,10 &  0,10 &  1\\
 \hline
-6 &  0,10277777777777777 &  0,10277777777777777 &  1,0\\
+7 &  0,23 &  0,23 &  1\\
 \hline
-7 &  0,2375 &  0,2375 &  1,0\\
+8 &  0,14 &  0,14 &  1\\
 \hline
-8 &  0,14305555555555555 &  0,14305555555555555 &  1,0\\
+9 &  0,16 &  0,16 &  1\\
 \hline
-9 &  0,16111111111111112 &  0,16111111111111112 &  1,0\\
+12  $\rightarrow$ 11 &  0,12 &  0,60 &  2,01\\
 \hline
-12  $\rightarrow$ 11 &  0,12361111111111112 &  0,6013513513513514 &  2,013827781269642\\
+13  $\rightarrow$ 12 &  0,10 &  0,36&  2,28\\
 \hline
-13  $\rightarrow$ 12 &  0,10972222222222222 &  0,3674418604651163 &  2,280673616680032\\
-\hline
-7  $\rightarrow$ 8 &  0,10833333333333334 &  0,456140350877193 &  3,1885539090444563\\
-\hline
+7  $\rightarrow$ 8 &  0,10 &  0,45 &  3,18\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7156,37 +7229,37 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Maio}
 \label {tab:aprioriMay}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,11 &  0,11 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,21 &  0,21 &  1\\
 \hline
-10 &  0,11559139784946236 &  0,11559139784946236 &  1,0\\
+12 &  0,37 &  0,37 &  1\\
 \hline
-11 &  0,21236559139784947 &  0,21236559139784947 &  1,0\\
+13 &  0,21 &  0,21 &  1\\
 \hline
-12 &  0,3790322580645161 &  0,3790322580645161 &  1,0\\
+14 &  0,12 &  0,12 &  1\\
 \hline
-13 &  0,21908602150537634 &  0,21908602150537634 &  1,0\\
+2 &  0,12 &  0,12 &  1\\
 \hline
-14 &  0,12365591397849462 &  0,12365591397849462 &  1,0\\
+5 &  0,12 &  0,12 &  1\\
 \hline
-2 &  0,12365591397849462 &  0,12365591397849462 &  1,0\\
+6 &  0,11 &  0,11 &  1\\
 \hline
-5 &  0,125 &  0,125 &  1,0\\
+7 &  0,19 &  0,19 &  1\\
 \hline
-6 &  0,11290322580645161 &  0,11290322580645161 &  1,0\\
+8 &  0,13 &  0,13 &  1\\
 \hline
-7 &  0,19086021505376344 &  0,19086021505376344 &  1,0\\
+9 &  0,15 &  0,15 &  1\\
 \hline
-8 &  0,1303763440860215 &  0,1303763440860215 &  1,0\\
+12 $\rightarrow$ 11 &  0,13 &  0,64 &  1,70\\
 \hline
-9 &  0,15456989247311828 &  0,15456989247311828 &  1,0\\
+13 $\rightarrow$ 12 &  0,16 &  0,42 &  1,94\\
 \hline
-12 $\rightarrow$ 11 &  0,13709677419354838 &  0,6455696202531644 &  1,7032049555615403\\
-\hline
-13 $\rightarrow$ 12 &  0,16129032258064516 &  0,425531914893617 &  1,9423051820911108\\
-\hline
-7 $\rightarrow$ 8 &  0,10887096774193548 &  0,5704225352112676 &  4,3751996515173515\\
-\hline
+7 $\rightarrow$ 8 &  0,10 &  0,57 &  4,37\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7195,35 +7268,35 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Junho}
 \label {tab:aprioriJune}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,12 &  0,12 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,20 &  0,20 &  1\\
 \hline
-10 &  0,12361111111111112 &  0,12361111111111112 &  1,0\\
+12 &  0,38 &  0,38 &  1\\
 \hline
-11 &  0,20416666666666666 &  0,20416666666666666 &  1,0\\
+13 &  0,19 &  0,19 &  1\\
 \hline
-12 &  0,3819444444444444 &  0,3819444444444444 &  1,0\\
+14 &  0,12 &  0,12 &  1\\
 \hline
-13 &  0,19444444444444445 &  0,19444444444444445 &  1,0\\
+2 &  0,13 &  0,13 &  1\\
 \hline
-14 &  0,12638888888888888 &  0,12638888888888888 &  1,0\\
+5 &  0,12 &  0,12 &  1\\
 \hline
-2 &  0,13194444444444445 &  0,13194444444444445 &  1,0\\
+6 &  0,10 &  0,1 0&  1\\
 \hline
-5 &  0,125 &  0,125 &  1,0\\
+7 &  0,19 &  0,19 &  1\\
 \hline
-6 &  0,1 &  0,1 &  1,0\\
+8 &  0,12 &  0,12 &  1\\
 \hline
-7 &  0,19027777777777777 &  0,19027777777777777 &  1,0\\
+9 &  0,15 &  0,15 &  1\\
 \hline
-8 &  0,12361111111111112 &  0,12361111111111112 &  1,0\\
+11 $\rightarrow$ 12 &  0,12 &  0,63 &  1,65\\
 \hline
-9 &  0,1597222222222222 &  0,1597222222222222 &  1,0\\
-\hline
-11 $\rightarrow$ 12 &  0,12916666666666668 &  0,6326530612244898 &  1,656400742115028\\
-\hline
-12 $\rightarrow$ 13 &  0,14166666666666666 &  0,3709090909090909 &  1,9075324675324674\\
-\hline
+12 $\rightarrow$ 13 &  0,14 &  0,37 &  1,90\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7232,31 +7305,31 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Julho}
 \label {tab:aprioriJuly}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,13 &  0,13 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,29 &  0,29 &  1\\
 \hline
-10 &  0,135752688172043 &  0,135752688172043 &  1,0\\
+12 &  0,35 &  0,35 &  1\\
 \hline
-11 &  0,29435483870967744 &  0,29435483870967744 &  1,0\\
+13 &  0,11 &  0,11 &  1\\
 \hline
-12 &  0,3588709677419355 &  0,3588709677419355 &  1,0\\
+2 &  0,13 &  0,13 &  1\\
 \hline
-13 &  0,1196236559139785 &  0,1196236559139785 &  1,0\\
+5 &  0,12 &  0,12 &  1\\
 \hline
-2 &  0,13440860215053763 &  0,13440860215053763 &  1,0\\
+6 &  0,10 &  0,10 &  1\\
 \hline
-5 &  0,12903225806451613 &  0,12903225806451613 &  1,0\\
+7 &  0,19 &  0,19 &  1\\
 \hline
-6 &  0,10752688172043011 &  0,10752688172043011 &  1,0\\
+8 &  0,11 &  0,11 &  1\\
 \hline
-7 &  0,1935483870967742 &  0,1935483870967742 &  1,0\\
+9 &  0,17 &  0,17 &  1\\
 \hline
-8 &  0,11693548387096774 &  0,11693548387096774 &  1,0\\
-\hline
-9 &  0,17204301075268819 &  0,17204301075268819 &  1,0\\
-\hline
-11 $\rightarrow$ 12 &  0,20430107526881722 &  0,6940639269406392 &  1,934020830126725\\
-\hline
+11 $\rightarrow$ 12 &  0,20 &  0,69 &  1,93\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7265,35 +7338,35 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Agosto}
 \label {tab:aprioriAugust}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,12 &  0,12 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,25 &  0,25 &  1\\
 \hline
-10 &  0,12231182795698925 &  0,12231182795698925 &  1,0\\
+12 &  0,40 &  0,40 &  1\\
 \hline
-11 &  0,25268817204301075 &  0,25268817204301075 &  1,0\\
+13 &  0,20 &  0,20 &  1\\
 \hline
-12 &  0,4032258064516129 &  0,4032258064516129 &  1,0\\
+14 &  0,13 &  0,13 &  1\\
 \hline
-13 &  0,20026881720430106 &  0,20026881720430106 &  1,0\\
+2 &  0,12 &  0,12 &  1\\
 \hline
-14 &  0,13172043010752688 &  0,13172043010752688 &  1,0\\
+5 &  0,12 &  0,12 &  1\\
 \hline
-2 &  0,125 &  0,125 &  1,0\\
+6 &  0,10 &  0,10 &  1\\
 \hline
-5 &  0,125 &  0,125 &  1,0\\
+7 &  0,17 &  0,17 &  1\\
 \hline
-6 &  0,10483870967741936 &  0,10483870967741936 &  1,0\\
+8 &  0,10 &  0,10 &  1\\
 \hline
-7 &  0,1760752688172043 &  0,1760752688172043 &  1,0\\
+9 &  0,16 &  0,16 &  1\\
 \hline
-8 &  0,10618279569892473 &  0,10618279569892473 &  1,0\\
+11 $\rightarrow$ 12 &  0,16 &  0,67 &  1,66\\
 \hline
-9 &  0,16263440860215053 &  0,16263440860215053 &  1,0\\
-\hline
-11 $\rightarrow$ 12 &  0,1693548387096774 &  0,6702127659574467 &  1,662127659574468\\
-\hline
-13 $\rightarrow$ 12 &  0,1478494623655914 &  0,3666666666666667 &  1,8308724832214767\\
-\hline
+13 $\rightarrow$ 12 &  0,14 &  0,36 &  1,83\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7302,31 +7375,31 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Setembro}
 \label {tab:aprioriSeptember}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,14 &  0,14 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,26 &  0,26 &  1\\
 \hline
-10 &  0,1486111111111111 &  0,1486111111111111 &  1,0\\
+12 &  0,32 &  0,32 &  1\\
 \hline
-11 &  0,26944444444444443 &  0,26944444444444443 &  1,0\\
+13 &  0,19 &  0,19 &  1\\
 \hline
-12 &  0,3263888888888889 &  0,3263888888888889 &  1,0\\
+2 &  0,12 &  0,12 &  1\\
 \hline
-13 &  0,19305555555555556 &  0,19305555555555556 &  1,0\\
+5 &  0,11 &  0,11 &  1\\
 \hline
-2 &  0,12083333333333333 &  0,12083333333333333 &  1,0\\
+6 &  0,11 &  0,11 &  1\\
 \hline
-5 &  0,11944444444444445 &  0,11944444444444445 &  1,0\\
+7 &  0,2 &  0,2 &  1\\
 \hline
-6 &  0,11388888888888889 &  0,11388888888888889 &  1,0\\
+8 &  0,12 &  0,12 &  1\\
 \hline
-7 &  0,2 &  0,2 &  1,0\\
+9 &  0,17 &  0,17 &  1\\
 \hline
-8 &  0,12083333333333333 &  0,12083333333333333 &  1,0\\
-\hline
-9 &  0,17222222222222222 &  0,17222222222222222 &  1,0\\
-\hline
-12 $\rightarrow$ 11 &  0,1638888888888889 &  0,6082474226804124 &  1,8635665716165828\\
-\hline
+12 $\rightarrow$ 11 &  0,16 &  0,60 &  1,86\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7336,37 +7409,37 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Outubro}
 \label {tab:aprioriOctober}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,13 &  0,13 &  1\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,19 &  0,19 &  1\\
 \hline
-10 &  0,13440860215053763 &  0,13440860215053763 &  1,0\\
+12 &  0,36 &  0,36 &  1\\
 \hline
-11 &  0,1989247311827957 &  0,1989247311827957 &  1,0\\
+13 &  0,24 &  0,24 &  1\\
 \hline
-12 &  0,3602150537634409 &  0,3602150537634409 &  1,0\\
+14 &  0,11 &  0,11 &  1\\
 \hline
-13 &  0,24059139784946237 &  0,24059139784946237 &  1,0\\
+3 &  0,11 &  0,11 &  1\\
 \hline
-14 &  0,11559139784946236 &  0,11559139784946236 &  1,0\\
+5 &  0,10 &  0,10 &  1\\
 \hline
-3 &  0,1196236559139785 &  0,1196236559139785 &  1,0\\
+6 &  0,11 &  0,11 &  1\\
 \hline
-5 &  0,10483870967741936 &  0,10483870967741936 &  1,0\\
+7 &  0,16 &  0,16 &  1\\
 \hline
-6 &  0,1196236559139785 &  0,1196236559139785 &  1,0\\
+8 &  0,17 &  0,17 &  1\\
 \hline
-7 &  0,1693548387096774 &  0,1693548387096774 &  1,0\\
+9 &  0,15 &  0,15 &  1\\
 \hline
-8 &  0,17338709677419356 &  0,17338709677419356 &  1,0\\
+11 $\rightarrow$ 12 &  0,11 &  0,60 &  1,66\\
 \hline
-9 &  0,15456989247311828 &  0,15456989247311828 &  1,0\\
+13 $\rightarrow$ 12 &  0,15 &  0,41 &  1,73\\
 \hline
-11 $\rightarrow$ 12 &  0,1196236559139785 &  0,6013513513513514 &  1,6694231544977816\\
-\hline
-13 $\rightarrow$ 12 &  0,15053763440860216 &  0,417910447761194 &  1,7370132577336779\\
-\hline
-8 $\rightarrow$ 7 &  0,10080645161290322 &  0,5952380952380952 &  3,4330011074197118\\
-\hline
+8 $\rightarrow$ 7 &  0,10 &  0,59 &  3,43\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7376,33 +7449,33 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Novembro}
 \label {tab:aprioriNovember}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,11 &  0,11 &  1,0\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,29 &  0,29 &  1\\
 \hline
-10 &  0,11715481171548117 &  0,11715481171548117 &  1,0\\
+12 &  0,28 &  0,28 &  1\\
 \hline
-11 &  0,2914923291492329 &  0,2914923291492329 &  1,0\\
+13 &  0,13 &  0,13 &  1\\
 \hline
-12 &  0,28312412831241285 &  0,28312412831241285 &  1,0\\
+2 &  0,12 &  0,12 &  1\\
 \hline
-13 &  0,13389121338912133 &  0,13389121338912133 &  1,0\\
+5 &  0,12 &  0,12 &  1\\
 \hline
-2 &  0,12552301255230125 &  0,12552301255230125 &  1,0\\
+6 &  0,12 &  0,12 &  1\\
 \hline
-5 &  0,12831241283124128 &  0,12831241283124128 &  1,0\\
+7 &  0,23 &  0,23 &  1\\
 \hline
-6 &  0,12552301255230125 &  0,12552301255230125 &  1,0\\
+8 &  0,13 &  0,13 &  1\\
 \hline
-7 &  0,23430962343096234 &  0,23430962343096234 &  1,0\\
+9 &  0,14 &  0,14 &  1\\
 \hline
-8 &  0,13249651324965134 &  0,13249651324965134 &  1,0\\
+12 $\rightarrow$ 11 &  0,15 &  0,53 &  1,87\\
 \hline
-9 &  0,1492329149232915 &  0,1492329149232915 &  1,0\\
-\hline
-12 $\rightarrow$ 11 &  0,15481171548117154 &  0,5311004784688995 &  1,8758573549862114\\
-\hline
-8 $\rightarrow$ 7 &  0,10460251046025104 &  0,4464285714285714 &  3,3693609022556386\\
-\hline
+8 $\rightarrow$ 7 &  0,10 &  0,44 &  3,36\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -7412,56 +7485,64 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans --- Referente ao mês de Dezembro}
 \label {tab:aprioriDecember}
 \begin{tabular}{c|c|c|c}
+\toprule
+\textbf{Regra de associação} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+\midrule
+10 &  0,15 &  0,15 &  1,0\\
 \hline
-\textbf{Rule} & \textit{\textbf{Support}} & \textit{\textbf{Confidence}} & \textit{\textbf{Lift}} \\
+11 &  0,33 &  0,33 &  1\\
 \hline
-10 &  0,15311653116531165 &  0,15311653116531165 &  1,0\\
+12 &  0,20 &  0,20 &  1\\
 \hline
-11 &  0,3319783197831978 &  0,3319783197831978 &  1,0\\
+13 &  0,11 &  0,11 &  1\\
 \hline
-12 &  0,2086720867208672 &  0,2086720867208672 &  1,0\\
+2 &  0,12 &  0,12 &  1\\
 \hline
-13 &  0,11924119241192412 &  0,11924119241192412 &  1,0\\
+5 &  0,12 &  0,12 &  1\\
 \hline
-2 &  0,12601626016260162 &  0,12601626016260162 &  1,0\\
+6 &  0,15 &  0,15 &  1\\
 \hline
-5 &  0,12195121951219512 &  0,12195121951219512 &  1,0\\
+7 &  0,19 &  0,19 &  1\\
 \hline
-6 &  0,15040650406504066 &  0,15040650406504066 &  1,0\\
+8 &  0,14 &  0,14 &  1\\
 \hline
-7 &  0,1978319783197832 &  0,1978319783197832 &  1,0\\
+9 &  0,15 &  0,15 &  1\\
 \hline
-8 &  0,14363143631436315 &  0,14363143631436315 &  1,0\\
-\hline
-9 &  0,15311653116531165 &  0,15311653116531165 &  1,0\\
-\hline
-12 $\rightarrow$ 11 &  0,14363143631436315 &  0,4326530612244898 &  2,073363371322555\\
-\hline
+12 $\rightarrow$ 11 &  0,14 &  0,43 &  2,07\\
+\bottomrule
 \end{tabular}
 \end{table}
+
+\clearpage
+
+\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada), referentes aos meses do ano de 2017}
 
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de janeiro\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de janeiro\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 40 & 49.012 & 41.870 & 4.399 & 2.743 \\
-\textit{Natural Disaster} & 599 & 809.338 & 703.331 & 70.304 & 35.703 \\
-\textit{Social Event} & 7 & 13.863 & 11.022 & 2.259 & 582 \\
-\textit{Urban Event} & 1 & 2.907 & 2.412 & 424 & 71 \\
 \hline
+\textit{Natural Disaster} & 599 & 809.338 & 703.331 & 70.304 & 35.703 \\
+\hline
+\textit{Social Event} & 7 & 13.863 & 11.022 & 2.259 & 582 \\
+\hline
+\textit{Urban Event} & 1 & 2.907 & 2.412 & 424 & 71 \\
+\midrule
+--- & 647 & 875.120 & 758.635 & 77.386 & 39.099 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 23 eventos de exceção não atingiram linhas de ônibus. 
         \end{tablenotes}
 \end{threeparttable}
@@ -7470,25 +7551,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de fevereiro\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de fevereiro\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 46 & 49.452 & 39.294 & 8.213 & 1.945 \\
-\textit{Natural Disaster} & 318 & 336.685 & 278.368 & 47.390 & 10.927 \\
-\textit{Social Event} & 8 & 7.972 & 5.590 & 2.077 & 305 \\
-\textit{Urban Event} & 5 & 7.750 & 6.391 & 960 & 399 \\
 \hline
+\textit{Natural Disaster} & 318 & 336.685 & 278.368 & 47.390 & 10.927 \\
+\hline
+\textit{Social Event} & 8 & 7.972 & 5.590 & 2.077 & 305 \\
+\hline
+\textit{Urban Event} & 5 & 7.750 & 6.391 & 960 & 399 \\
+\midrule
+--- & 377 & 401.859 & 329.643 & 58.640 & 13.576\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 23 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7497,25 +7582,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de março\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de março\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 37 & 37.421 & 30.253 & 4.604 & 2.564 \\
 \hline
-\textit{Accident} & 37 & 37.421 & 30.253 & 46.04 & 2.564 \\
 \textit{Natural Disaster} & 184 & 279.140 & 243.777 & 22.276 & 13.087 \\
-\textit{Social Event} & 48 & 56.600 & 46.990 & 6.006 & 3.604 \\
-\textit{Urban Event} & 49 & 55.893 & 46.005 & 6.076 & 3.812 \\
 \hline
+\textit{Social Event} & 48 & 56.600 & 46.990 & 6.006 & 3.604 \\
+\hline
+\textit{Urban Event} & 49 & 55.893 & 46.005 & 6.076 & 3.812 \\
+\midrule
+--- & 318 & 429.054 & 367.025 & 38.962 & 23.967 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 9 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7524,25 +7613,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de abril\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de abril\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 29 & 21.105 & 16.955 & 3.105 & 1.045 \\
-\textit{Natural Disaster} & 100 & 143.394 & 122.541 & 15.743 & 5.110 \\
-\textit{Social Event} & 179 & 527.761 & 493.875 & 23.576 & 10.310 \\
-\textit{Urban Event} & 79 & 146.124 & 129.399 & 12.191 & 4.534 \\
 \hline
+\textit{Natural Disaster} & 100 & 143.394 & 122.541 & 15.743 & 5.110 \\
+\hline
+\textit{Social Event} & 179 & 527.761 & 493.875 & 23.576 & 10.310 \\
+\hline
+\textit{Urban Event} & 79 & 146.124 & 129.399 & 12.191 & 4.534 \\
+\midrule
+--- & 387 & 838.384 & 762.770 & 54.615 & 20.999 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 3 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7552,25 +7645,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de maio\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de maio\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 194 & 263.940 & 228.631 & 22.846 & 12.463 \\
-\textit{Natural Disaster} & 99 & 130.660 & 111.003 & 12.778 & 6.879 \\
-\textit{Social Event} & 80 & 87.786 & 70.995 & 12.082 & 4.709 \\
-\textit{Urban Event} & 52 & 108.674 & 98.464 & 7.283 & 2.927 \\
 \hline
+\textit{Natural Disaster} & 99 & 130.660 & 111.003 & 12.778 & 6.879 \\
+\hline
+\textit{Social Event} & 80 & 87.786 & 70.995 & 12.082 & 4.709 \\
+\hline
+\textit{Urban Event} & 52 & 108.674 & 98.464 & 7.283 & 2.927 \\
+\midrule
+--- & 425 & 591.060 & 509.093 & 54.989 & 26.978\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 27 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7579,25 +7676,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de junho\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de junho\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 496 & 595.019 & 498.826 & 66.882 & 29.311 \\
-\textit{Natural Disaster} & 100 & 138.667 & 118.128 & 15.067 & 5.472 \\
-\textit{Social Event} & 95 & 150.404 & 131.000 & 13.924 & 5.480 \\
-\textit{Urban Event} & 87 & 131.486 & 115.145 & 12.094 & 4.247 \\
 \hline
+\textit{Natural Disaster} & 100 & 138.667 & 118.128 & 15.067 & 5.472 \\
+\hline
+\textit{Social Event} & 95 & 150.404 & 131.000 & 13.924 & 5.480 \\
+\hline
+\textit{Urban Event} & 87 & 131.486 & 115.145 & 12.094 & 4.247 \\
+\midrule
+--- & 778 & 1.015.576 & 863.099 & 107.967 & 44.510 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 72 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7607,25 +7708,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de julho\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de julho\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 517 & 696.754 & 596.893 & 65.641 & 34.220 \\
-\textit{Natural Disaster} & 51 & 52.739 & 44.165 & 6.319 & 2.255 \\
-\textit{Social Event} & 60 & 97.610 & 87.833 & 6.184 & 3.593 \\
-\textit{Urban Event} & 134 & 138.378 & 116.202 & 14.998 & 7.178 \\
 \hline
+\textit{Natural Disaster} & 51 & 52.739 & 44.165 & 6.319 & 2.255 \\
+\hline
+\textit{Social Event} & 60 & 97.610 & 87.833 & 6.184 & 3.593 \\
+\hline
+\textit{Urban Event} & 134 & 138.378 & 116.202 & 14.998 & 7.178 \\
+\midrule
+--- & 762 & 985.481 & 845.093 & 93.142 & 47.246 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 68 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7635,25 +7740,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de agosto\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de agosto\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 462 &  667.882 & 585.663 & 62.135 & 30.084\\
-\textit{Natural Disaster} & 112 & 150.161 & 128.268  & 13.640 & 8.253\\
-\textit{Social Event} & 83 & 63.040 & 49.253 & 9.327 & 4.460	  \\
-\textit{Urban Event} & 189 & 286.852 & 249.817 & 24.670 & 12.365 \\
 \hline
+\textit{Natural Disaster} & 112 & 150.161 & 128.268  & 13.640 & 8.253\\
+\hline
+\textit{Social Event} & 83 & 63.040 & 49.253 & 9.327 & 4.460	  \\
+\hline
+\textit{Urban Event} & 189 & 286.852 & 249.817 & 24.670 & 12.365 \\
+\midrule
+--- & 846 & 1.167.935 & 1.013.001 & 109.772 & 55.162\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 58 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7662,25 +7771,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de setembro\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de setembro\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 454 & 454.837 & 379.438 & 53.504 & 21.895 \\
-\textit{Natural Disaster} & 62 & 78.835 & 66.581 & 8.047 & 4.207 \\
-\textit{Social Event} & 63 & 60.756 & 50.897 & 65.70 & 3.289 \\
-\textit{Urban Event} & 142 & 204.034 & 178.696 & 16.735 & 8.603 \\
 \hline
+\textit{Natural Disaster} & 62 & 78.835 & 66.581 & 8.047 & 4.207 \\
+\hline
+\textit{Social Event} & 63 & 60.756 & 50.897 & 6.570 & 3.289 \\
+\hline
+\textit{Urban Event} & 142 & 204.034 & 178.696 & 16.735 & 8.603 \\
+\midrule
+--- & 721 & 798.462 & 675.612 & 84.856 & 37.994 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 40 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7689,25 +7802,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de outubro\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de outubro\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 396 & 649.238 & 578.523 & 46.116 & 24.599 \\
-\textit{Natural Disaster} & 163 & 246.022 & 218.846 & 17.877 & 9.299 \\
-\textit{Social Event} & 68 & 68.507 & 57.616 & 7.069 & 3.822 \\
-\textit{Urban Event} & 90 & 140.985 & 125.946 & 9.175 & 5.864 \\
 \hline
+\textit{Natural Disaster} & 163 & 246.022 & 218.846 & 17.877 & 9.299 \\
+\hline
+\textit{Social Event} & 68 & 68.507 & 57.616 & 7.069 & 3.822 \\
+\hline
+\textit{Urban Event} & 90 & 140.985 & 125.946 & 9.175 & 5.864 \\
+\midrule
+--- & 717 & 1.104.752 & 980.931 & 80.237 & 43.584 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 71 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7716,25 +7833,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de novembro\tnote{g} de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de novembro\tnote{g} de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 350 & 477.061 & 412.095 & 47.137 & 17.829 \\
-\textit{Natural Disaster} & 228 & 258.774 & 218.115 & 29.844 & 10.815 \\
-\textit{Social Event} & 72 & 127.963 & 113.103 & 11.061 & 3.799 \\
-\textit{Urban Event} & 151 & 251.380 & 221.597 & 21.067 & 8.716 \\
 \hline
+\textit{Natural Disaster} & 228 & 258.774 & 218.115 & 29.844 & 10.815 \\
+\hline
+\textit{Social Event} & 72 & 127.963 & 113.103 & 11.061 & 3.799 \\
+\hline
+\textit{Urban Event} & 151 & 251.380 & 221.597 & 21.067 & 8.716 \\
+\midrule
+--- & 801 & 1.115.178 & 964.910 & 109.109 & 41.159 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 53 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7743,51 +7864,63 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m) aos eventos de exceção do mês de dezembro de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada) aos eventos de exceção do mês de dezembro de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 8 & 8.821 & 7.339 & 1.146 & 336 \\
-\textit{Natural Disaster} & - & - & - & - & - \\
-\textit{Social Event} & 1 & 543 & 372 & 89 & 82 \\
-\textit{Urban Event} & 1 & 6.577 & 6.402 & 130 & 45 \\
 \hline
+\textit{Natural Disaster} & - & - & - & - & - \\
+\hline
+\textit{Social Event} & 1 & 543 & 372 & 89 & 82 \\
+\hline
+\textit{Urban Event} & 1 & 6.577 & 6.402 & 130 & 45 \\
+\midrule
+--- & 9 & 15.941 & 14.113 & 1.365 & 463 \\ 
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
+\clearpage
+
+\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada), referentes aos meses do ano de 2017}
+
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de janeiro de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de janeiro de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 16 & 284 & 209 & 75 & 0 \\
-\textit{Natural 	Disaster} & 266 & 41.646 & 37.002 & 3.945 & 699 \\
-\textit{Social Event} & 4 & 111 & 84 & 27 & 0 \\
-\textit{Urban Event} & 1 & 5 & 1 & 4 & 0 \\
 \hline
+\textit{Natural 	Disaster} & 266 & 41.646 & 37.002 & 3.945 & 699 \\
+\hline
+\textit{Social Event} & 4 & 111 & 84 & 27 & 0 \\
+\hline
+\textit{Urban Event} & 1 & 5 & 1 & 4 & 0 \\
+\midrule
+--- & 287 & 42.046 & 37.296 & 4.051 & 699 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 383 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7796,25 +7929,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de fevereiro de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de fevereiro de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 23 & 663 & 477 & 182 & 4 \\
-\textit{Natural Disaster} & 151 & 12.595 & 10.346 & 2.091 & 158 \\
-\textit{Social Event} & 6 & 706 & 617 & 85 & 4 \\
-\textit{Urban Event} & 5 & 139 & 92 & 43 & 4 \\
 \hline
+\textit{Natural Disaster} & 151 & 12.595 & 10.346 & 2.091 & 158 \\
+\hline
+\textit{Social Event} & 6 & 706 & 617 & 85 & 4 \\
+\hline
+\textit{Urban Event} & 5 & 139 & 92 & 43 & 4 \\
+\midrule
+--- & 185 & 14.103 &11.502 & 2.402 & 170 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 215 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7823,25 +7960,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de março de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de março de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 22 & 2.368 & 2.044 & 271 & 53 \\
-\textit{Natural Disaster} & 90 & 11.188 & 9.664 & 1.378 & 146 \\
-\textit{Social Event} & 33 & 10.072 & 9.206 & 527 & 339 \\
-\textit{Urban Event} & 24 & 823 & 575 & 248 & 0 \\
 \hline
+\textit{Natural Disaster} & 90 & 11.188 & 9.664 & 1.378 & 146 \\
+\hline
+\textit{Social Event} & 33 & 10.072 & 9.206 & 527 & 339 \\
+\hline
+\textit{Urban Event} & 24 & 823 & 575 & 248 & 0 \\
+\midrule
+--- & 169 & 24.451 & 21.489 & 2.424 & 538\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 158 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7851,25 +7992,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de abril de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de abril de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 17 & 1.757 & 1.476 & 260 & 21 \\
-\textit{Natural Disaster} & 45 & 9.858 & 8.642 & 1.040 & 176 \\
-\textit{Social Event} & 100 & 3.068 & 2.139 & 907 & 22 \\
-\textit{Urban Event} & 57 & 3.577 & 2.894 & 666 & 17 \\
 \hline
+\textit{Natural Disaster} & 45 & 9.858 & 8.642 & 1.040 & 176 \\
+\hline
+\textit{Social Event} & 100 & 3.068 & 2.139 & 907 & 22 \\
+\hline
+\textit{Urban Event} & 57 & 3.577 & 2.894 & 666 & 17 \\
+\midrule
+--- & 219 & 18.260 & 15.151 & 2.873 & 236\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 171 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7878,25 +8023,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de maio de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de maio de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 117 & 18.064 & 15.179 & 2.523 & 362 \\
-\textit{Natural Disaster} & 34 & 5.338 & 3.908 & 1.330 & 100 \\
-\textit{Social Event} & 55 & 7.118 & 6.396 & 576 & 146 \\
-\textit{Urban Event} & 34 & 3.027 & 2.567 & 435 & 25 \\
 \hline
+\textit{Natural Disaster} & 34 & 5.338 & 3.908 & 1.330 & 100 \\
+\hline
+\textit{Social Event} & 55 & 7.118 & 6.396 & 576 & 146 \\
+\hline
+\textit{Urban Event} & 34 & 3.027 & 2.567 & 435 & 25 \\
+\midrule
+--- & 240 & 33.547 & 28.050 & 4.864 & 633 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 212 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7906,25 +8055,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de junho de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de junho de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 288 & 49.659 & 42.233 & 6.293 & 1.133 \\
-\textit{Natural Disaster} & 52 & 4.403 & 3.704 & 647 & 52 \\
-\textit{Social Event} & 62 & 2.366 & 1.775 & 585 & 6 \\
-\textit{Urban Event} & 51 & 7.729 & 6.617 & 949 & 163 \\
 \hline
+\textit{Natural Disaster} & 52 & 4.403 & 3.704 & 647 & 52 \\
+\hline
+\textit{Social Event} & 62 & 2.366 & 1.775 & 585 & 6 \\
+\hline
+\textit{Urban Event} & 51 & 7.729 & 6.617 & 949 & 163 \\
+\midrule
+--- & 453 & 64.157 & 54.329 & 8.474 & 1.354 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 397 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7934,25 +8087,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de julho de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de julho de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 282 & 60.501 & 53.828 & 5.382 & 1.291 \\
-\textit{Natural Disaster} & 24 & 3.681 & 3.104 & 521 & 56 \\
-\textit{Social Event} & 41 & 10.965 & 9.338 & 1.359 & 268 \\
-\textit{Urban Event} & 88 & 25.140 & 22.954 & 1.947 & 239 \\
 \hline
+\textit{Natural Disaster} & 24 & 3.681 & 3.104 & 521 & 56 \\
+\hline
+\textit{Social Event} & 41 & 10.965 & 9.338 & 1.359 & 268 \\
+\hline
+\textit{Urban Event} & 88 & 25.140 & 22.954 & 1.947 & 239 \\
+\midrule
+--- & 435 & 100.287 & 89.224 & 9.209 & 1.854\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 395 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7962,25 +8119,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de agosto de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de agosto de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 253 & 68.926 & 62.995 & 4.666 & 1.265 \\
-\textit{Natural Disaster} & 45 & 3.318 & 2.712 & 555 & 51 \\
-\textit{Social Event} & 63 & 10.380 & 8.835 & 1.288 & 257 \\
-\textit{Urban Event} & 111 & 22.585 & 19.837 & 2.262 & 486 \\
 \hline
+\textit{Natural Disaster} & 45 & 3.318 & 2.712 & 555 & 51 \\
+\hline
+\textit{Social Event} & 63 & 10.380 & 8.835 & 1.288 & 257 \\
+\hline
+\textit{Urban Event} & 111 & 22.585 & 19.837 & 2.262 & 486 \\
+\midrule
+--- & 472 & 105.209 & 94.379 & 8.771 & 2.059\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 432 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -7989,25 +8150,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de setembro de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de setembro de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 228 & 36.130 & 31.202 & 4.437 & 491 \\
-\textit{Natural Disaster} & 33 & 4.698 & 4.116 & 501 & 81 \\
-\textit{Social Event} & 44 & 4.066 & 3.440 & 591 & 35 \\
-\textit{Urban Event} & 85 & 10.793 & 9.123 & 1.074 & 596 \\
 \hline
+\textit{Natural Disaster} & 33 & 4.698 & 4.116 & 501 & 81 \\
+\hline
+\textit{Social Event} & 44 & 4.066 & 3.440 & 591 & 35 \\
+\hline
+\textit{Urban Event} & 85 & 10.793 & 9.123 & 1.074 & 596 \\
+\midrule
+--- & 390 & 55.687& 47.881 & 6.603 & 1.203 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 371 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -8016,25 +8181,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de outubro de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de outubro de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
-\hline
+\midrule
 \textit{Accident} & 221 & 41.610 & 36.983 & 3.793 & 834 \\
-\textit{Natural Disaster} & 79 & 9.356 & 8.132 & 1.064 & 160 \\
-\textit{Social Event} & 49 & 7.948 & 6.256 & 1.581 & 111 \\
-\textit{Urban Event} & 50 & 1.574 & 1.089 & 470 & 15 \\
 \hline
+\textit{Natural Disaster} & 79 & 9.356 & 8.132 & 1.064 & 160 \\
+\hline
+\textit{Social Event} & 49 & 7.948 & 6.256 & 1.581 & 111 \\
+\hline
+\textit{Urban Event} & 50 & 1.574 & 1.089 & 470 & 15 \\
+\midrule
+--- & 399 & 60.488 & 52.460 & 6.908 & 1.120 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 389 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -8043,25 +8212,29 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de novembro de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de novembro de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 208 & 31.596 & 28.664 & 2.670 & 262 \\
 \hline
-\textit{Accident} & 208 & 31596 & 28664 & 2670 & 262 \\
-\textit{Natural Disaster} & 93 & 9220 & 7876 & 1210 & 134 \\
-\textit{Social Event} & 49 & 5127 & 4317 & 719 & 91 \\
-\textit{Urban Event} & 89 & 18038 & 15450 & 2361 & 227 \\
+\textit{Natural Disaster} & 93 & 9.220 & 7.876 & 1.210 & 134 \\
 \hline
+\textit{Social Event} & 49 & 5.127 & 4.317 & 719 & 91 \\
+\hline
+\textit{Urban Event} & 89 & 18.038 & 15.450 & 2.361 & 227 \\
+\midrule
+--- & 439 & 63.981 & 56.307 & 6.960 & 714 \\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 415 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
@@ -8070,29 +8243,41 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \begin{table}[!htb]
 \centering
 \begin{threeparttable}
-\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m) aos eventos de exceção do mês de dezembro de 2017}
-\label {tab:aprioriFull}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de dezembro de 2017}
 \begin{tabular}{c|c|c|c|c|c}
-\hline
+\toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 2 & 3.505 & 3.203 & 252 & 50 \\
 \hline
-\textit{Accident} & 2 & 3505 & 3203 & 252 & 50 \\
-\textit{Natural Disaster} & - & - & - & - & - \\
-\textit{Social Event} & - & - & - & - & - \\
+\textit{Natural Disaster} & --- & --- & --- & --- & --- \\
+\hline
+\textit{Social Event} & --- & --- & --- & --- & --- \\
+\hline
 \textit{Urban Event} & 1 & 83 & 62 & 21 & 0 \\
-\hline
+\midrule
+--- & 3 & 3.588 & 3.265 & 273 & 50\\
+\bottomrule
 \end{tabular}
 \begin{tablenotes}
             \item[a] Classificação dos eventos de exceção.
             \item[b] Total de eventos de exceção.
             \item[c] Total de correlações de velocidade média.
-            \item[d] Regradas experadas ($Lift > 1$, $Support > 0,05$)
-            \item[e] Regras inesperadas ($Lift = 1$)
-            \item[f] Regras parcialmente inesperadas ($0 < Lift < 1$)
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
             \item[g] 7 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
+
+\clearpage
+
+\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota), referentes aos meses do ano de 2017}
+
+\clearpage
+
+\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de rota), referentes aos meses do ano de 2017}
 
 \end{apendicesenv}
 \end{document}
