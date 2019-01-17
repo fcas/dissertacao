@@ -2818,7 +2818,7 @@ Neste capítulo, é apresentado um processo para identificação de padrões de 
 
 Além da quantidade de registros total, o volume de dados para pequenos intervalos de tempo também é considerável, pois os módulos AVL enviam dados dos ônibus a todo instante. Dessa forma, para viabilizarmos o uso do algoritmo \textit{Apriori}, agrupamos os dados por intervalos de tempo de cinco minutos e calculamos a velocidade média para cada intervalo. Com isso, executamos esse processo para cada mês do conjunto de dados AVL para determinarmos as velocidades médias e identificarmos os padrões existentes nos intervalos definidos.
 
-Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL correlacionados aos eventos de exceção (\textit{Accident}, \textit{Urban Event}, \textit{Natural Disaster} e \textit{Social Event}), mencionados no Cap. \ref{dataCorr}.
+Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL correlacionados aos eventos de exceção (\textit{Accident}, \textit{Urban Event}, \textit{Natural Disaster} e \textit{Social Event}), os dados anuais foram sintetizados nas tabelas \ref{tab:aprioriExceptFullStops} e \ref{tab:aprioriExceptFullShapes} e os mensais nas seções \ref{g2}, \ref{g3}, \ref{g4} e \ref{g5}. As regras de associação encontradas nestes conjuntos de dados estão disponíveis em \citeauthor{fcas} (\citeyear{fcas}) (não inclusas no texto deste trabalho devido ao  grande volume de dados). 
 
 \section{Trabalhos relacionados}
 
@@ -2873,7 +2873,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-            \item[a] Tabela completa no apêndice \ref{g1}.
+            \item[a] Tabela completa na seção \ref{g1}.
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -2983,7 +2983,7 @@ Em relação a publicações científicas, serão submetidos artigos com os resu
 
 \section{Trabalhos publicados}
 
-DIAS, F. C. A. ; Daniel Cordeiro . Visualizing large datasets: A case study with data of the buses of São Paulo city. In: 1st Workshop on the Distributed Smart City (WDSC'2018), 2018, Salvador, BA. Proceedings of the 37th IEEE International Symposium on Reliable Distributed Systems, 2018. p. 10-13.
+DIAS, F. C. A.; Daniel Cordeiro. Visualizing large datasets: A case study with data of the buses of São Paulo city. In: 1st Workshop on the Distributed Smart City (WDSC'2018), 2018, Salvador, BA. Proceedings of the 37th IEEE International Symposium on Reliable Distributed Systems, 2018. p. 10-13.
 
 \section{Trabalhos submetidos}
 
@@ -7520,6 +7520,7 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \clearpage
 
 \section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de parada), referentes aos meses do ano de 2017}
+\label{g2}
 
 \begin{table}[!htb]
 \centering
@@ -7531,13 +7532,13 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \midrule
 \textit{Accident} & 40 & 49.012 & 41.870 & 4.399 & 2.743 \\
 \hline
-\textit{Natural Disaster} & 599 & 809.338 & 703.331 & 70.304 & 35.703 \\
+\textit{Natural Disaster} & 590 & 809.338 & 703.331 & 70.304 & 35.703 \\
 \hline
 \textit{Social Event} & 7 & 13.863 & 11.022 & 2.259 & 582 \\
 \hline
 \textit{Urban Event} & 1 & 2.907 & 2.412 & 424 & 71 \\
 \midrule
---- & 647 & 875.120 & 758.635 & 77.386 & 39.099 \\
+--- & 638 & 875.120 & 758.635 & 77.386 & 39.099 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7560,15 +7561,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 46 & 49.452 & 39.294 & 8.213 & 1.945 \\
+\textit{Accident} & 45 & 49.452 & 39.294 & 8.213 & 1.945 \\
 \hline
-\textit{Natural Disaster} & 318 & 336.685 & 278.368 & 47.390 & 10.927 \\
+\textit{Natural Disaster} & 316 & 336.685 & 278.368 & 47.390 & 10.927 \\
 \hline
 \textit{Social Event} & 8 & 7.972 & 5.590 & 2.077 & 305 \\
 \hline
 \textit{Urban Event} & 5 & 7.750 & 6.391 & 960 & 399 \\
 \midrule
---- & 377 & 401.859 & 329.643 & 58.640 & 13.576\\
+--- & 374 & 401.859 & 329.643 & 58.640 & 13.576 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7591,7 +7592,7 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 37 & 37.421 & 30.253 & 4.604 & 2.564 \\
+\textit{Accident} & 36 & 37.421 & 30.253 & 4.604 & 2.564 \\
 \hline
 \textit{Natural Disaster} & 184 & 279.140 & 243.777 & 22.276 & 13.087 \\
 \hline
@@ -7599,7 +7600,7 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \hline
 \textit{Urban Event} & 49 & 55.893 & 46.005 & 6.076 & 3.812 \\
 \midrule
---- & 318 & 429.054 & 367.025 & 38.962 & 23.967 \\
+--- & 317 & 429.054 & 367.025 & 38.962 & 23.067 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7624,13 +7625,13 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \midrule
 \textit{Accident} & 29 & 21.105 & 16.955 & 3.105 & 1.045 \\
 \hline
-\textit{Natural Disaster} & 100 & 143.394 & 122.541 & 15.743 & 5.110 \\
+\textit{Natural Disaster} & 98 & 143.394 & 122.541 & 15.743 & 5.110 \\
 \hline
 \textit{Social Event} & 179 & 527.761 & 493.875 & 23.576 & 10.310 \\
 \hline
 \textit{Urban Event} & 79 & 146.124 & 129.399 & 12.191 & 4.534 \\
 \midrule
---- & 387 & 838.384 & 762.770 & 54.615 & 20.999 \\
+--- & 385 & 838.384 & 762.770 & 54.615 & 20.999 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7660,9 +7661,9 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \hline
 \textit{Social Event} & 80 & 87.786 & 70.995 & 12.082 & 4.709 \\
 \hline
-\textit{Urban Event} & 52 & 108.674 & 98.464 & 7.283 & 2.927 \\
+\textit{Urban Event} & 51 & 108.674 & 98.464 & 7.283 & 2.927 \\
 \midrule
---- & 425 & 591.060 & 509.093 & 54.989 & 26.978\\
+--- & 424 & 591.060 & 509.093 & 54.989 & 26.978 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7685,15 +7686,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 496 & 595.019 & 498.826 & 66.882 & 29.311 \\
+\textit{Accident} & 493 & 595.019 & 498.826 & 66.882 & 29.311 \\
 \hline
-\textit{Natural Disaster} & 100 & 138.667 & 118.128 & 15.067 & 5.472 \\
+\textit{Natural Disaster} & 98 & 138.667 & 118.128 & 15.067 & 5.472 \\
 \hline
 \textit{Social Event} & 95 & 150.404 & 131.000 & 13.924 & 5.480 \\
 \hline
-\textit{Urban Event} & 87 & 131.486 & 115.145 & 12.094 & 4.247 \\
+\textit{Urban Event} & 86 & 131.486 & 115.145 & 12.094 & 4.247 \\
 \midrule
---- & 778 & 1.015.576 & 863.099 & 107.967 & 44.510 \\
+--- & 772 & 1.015.576 & 863.099 & 107.967 & 44.510 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7717,15 +7718,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 517 & 696.754 & 596.893 & 65.641 & 34.220 \\
+\textit{Accident} & 515 & 696.754 & 596.893 & 65.641 & 34.220 \\
 \hline
 \textit{Natural Disaster} & 51 & 52.739 & 44.165 & 6.319 & 2.255 \\
 \hline
-\textit{Social Event} & 60 & 97.610 & 87.833 & 6.184 & 3.593 \\
+\textit{Social Event} & 58 & 97.610 & 87.833 & 6.184 & 3.593 \\
 \hline
-\textit{Urban Event} & 134 & 138.378 & 116.202 & 14.998 & 7.178 \\
+\textit{Urban Event} & 133 & 138.378 & 116.202 & 14.998 & 7.178 \\
 \midrule
---- & 762 & 985.481 & 845.093 & 93.142 & 47.246 \\
+--- & 757 & 985.481 & 845.093 & 93.142 & 47.246 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7749,15 +7750,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 462 &  667.882 & 585.663 & 62.135 & 30.084\\
+\textit{Accident} & 459 & 677.882 & 585.663 & 62.135 & 30.084 \\
 \hline
-\textit{Natural Disaster} & 112 & 150.161 & 128.268  & 13.640 & 8.253\\
+\textit{Natural Disaster} & 112 & 150.161 & 128.268 & 13.640 & 8.253 \\
 \hline
-\textit{Social Event} & 83 & 63.040 & 49.253 & 9.327 & 4.460	  \\
+\textit{Social Event} & 83 & 63.040 & 49.253 & 9.327 & 4.460 \\
 \hline
-\textit{Urban Event} & 189 & 286.852 & 249.817 & 24.670 & 12.365 \\
+\textit{Urban Event} & 186 & 286.852 & 249.817 & 24.670 & 12.365 \\
 \midrule
---- & 846 & 1.167.935 & 1.013.001 & 109.772 & 55.162\\
+--- & 840 & 1.177.935 & 1.013.001 & 109.772 & 55.162 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7786,9 +7787,9 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \hline
 \textit{Social Event} & 63 & 60.756 & 50.897 & 6.570 & 3.289 \\
 \hline
-\textit{Urban Event} & 142 & 204.034 & 178.696 & 16.735 & 8.603 \\
+\textit{Urban Event} & 139 & 204.034 & 178.696 & 16.735 & 8.603 \\
 \midrule
---- & 721 & 798.462 & 675.612 & 84.856 & 37.994 \\
+--- & 718 & 798.462 & 675.612 & 84.856 & 37.994 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7811,15 +7812,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 396 & 649.238 & 578.523 & 46.116 & 24.599 \\
+\textit{Accident} & 391 & 649.238 & 578.523 & 46.116 & 24.599 \\
 \hline
-\textit{Natural Disaster} & 163 & 246.022 & 218.846 & 17.877 & 9.299 \\
+\textit{Natural Disaster} & 162 & 246.022 & 218.846 & 17.877 & 9.299 \\
 \hline
 \textit{Social Event} & 68 & 68.507 & 57.616 & 7.069 & 3.822 \\
 \hline
 \textit{Urban Event} & 90 & 140.985 & 125.946 & 9.175 & 5.864 \\
 \midrule
---- & 717 & 1.104.752 & 980.931 & 80.237 & 43.584 \\
+--- & 711 & 1.104.752 & 980.931 & 80.237 & 43.584 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7842,15 +7843,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 350 & 477.061 & 412.095 & 47.137 & 17.829 \\
+\textit{Accident} & 349 & 477.061 & 412.095 & 47.137 & 17.829 \\
 \hline
-\textit{Natural Disaster} & 228 & 258.774 & 218.115 & 29.844 & 10.815 \\
+\textit{Natural Disaster} & 223 & 258.774 & 218.115 & 29.844 & 10.815 \\
 \hline
 \textit{Social Event} & 72 & 127.963 & 113.103 & 11.061 & 3.799 \\
 \hline
-\textit{Urban Event} & 151 & 251.380 & 221.597 & 21.067 & 8.716 \\
+\textit{Urban Event} & 150 & 251.380 & 221.597 & 21.067 & 8.716 \\
 \midrule
---- & 801 & 1.115.178 & 964.910 & 109.109 & 41.159 \\
+--- & 794 & 1.115.178 & 964.910 & 109.109 & 41.159 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7881,7 +7882,7 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \hline
 \textit{Urban Event} & 1 & 6.577 & 6.402 & 130 & 45 \\
 \midrule
---- & 9 & 15.941 & 14.113 & 1.365 & 463 \\ 
+--- & 10 & 15.941 & 14.113 & 1.365 & 463 \\ 
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7898,6 +7899,7 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \clearpage
 
 \section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada), referentes aos meses do ano de 2017}
+\label{g3}
 
 \begin{table}[!htb]
 \centering
@@ -7907,15 +7909,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 16 & 284 & 209 & 75 & 0 \\
+\textit{Accident} & 11 & 284 & 209 & 75 & 0 \\
 \hline
-\textit{Natural 	Disaster} & 266 & 41.646 & 37.002 & 3.945 & 699 \\
+\textit{Natural Disaster} & 210 & 41.646 & 37.002 & 3.945 & 699 \\
 \hline
-\textit{Social Event} & 4 & 111 & 84 & 27 & 0 \\
+\textit{Social Event} & 1 & 111 & 84 & 27 & 0 \\
 \hline
 \textit{Urban Event} & 1 & 5 & 1 & 4 & 0 \\
 \midrule
---- & 287 & 42.046 & 37.296 & 4.051 & 699 \\
+--- & 223 & 42.046 & 37.296 & 4.051 & 699 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7938,15 +7940,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 23 & 663 & 477 & 182 & 4 \\
+\textit{Accident} & 14 & 663 & 477 & 182 & 4 \\
 \hline
-\textit{Natural Disaster} & 151 & 12.595 & 10.346 & 2.091 & 158 \\
+\textit{Natural Disaster} & 123 & 12.595 & 10.346 & 2.091 & 158 \\
 \hline
-\textit{Social Event} & 6 & 706 & 617 & 85 & 4 \\
+\textit{Social Event} & 5 & 706 & 617 & 85 & 4 \\
 \hline
-\textit{Urban Event} & 5 & 139 & 92 & 43 & 4 \\
+\textit{Urban Event} & 4 & 139 & 92 & 43 & 4 \\
 \midrule
---- & 185 & 14.103 &11.502 & 2.402 & 170 \\
+--- & 146 & 14.103 & 11.532 & 2.401 & 170 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7969,15 +7971,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 22 & 2.368 & 2.044 & 271 & 53 \\
+\textit{Accident} & 17 & 2.368 & 2.044 & 271 & 53 \\
 \hline
-\textit{Natural Disaster} & 90 & 11.188 & 9.664 & 1.378 & 146 \\
+\textit{Natural Disaster} & 76 & 11.188 & 9.664 & 1.378 & 146 \\
 \hline
-\textit{Social Event} & 33 & 10.072 & 9.206 & 527 & 339 \\
+\textit{Social Event} & 29 & 10.072 & 9.206 & 527 & 339 \\
 \hline
-\textit{Urban Event} & 24 & 823 & 575 & 248 & 0 \\
+\textit{Urban Event} & 22 & 823 & 575 & 248 & 0 \\
 \midrule
---- & 169 & 24.451 & 21.489 & 2.424 & 538\\
+--- & 144 & 24.451 & 21.489 & 2.424 & 538 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8001,15 +8003,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 17 & 1.757 & 1.476 & 260 & 21 \\
+\textit{Accident} & 16 & 1.757 & 1.476 & 260 & 21 \\
 \hline
-\textit{Natural Disaster} & 45 & 9.858 & 8.642 & 1.040 & 176 \\
+\textit{Natural Disaster} & 32 & 9.858 & 8.642 & 1.040 & 176 \\
 \hline
-\textit{Social Event} & 100 & 3.068 & 2.139 & 907 & 22 \\
+\textit{Social Event} & 73 & 3.068 & 2.139 & 907 & 22 \\
 \hline
-\textit{Urban Event} & 57 & 3.577 & 2.894 & 666 & 17 \\
+\textit{Urban Event} & 42 & 3.577 & 2.894 & 666 & 17 \\
 \midrule
---- & 219 & 18.260 & 15.151 & 2.873 & 236\\
+--- & 163 & 18.260 & 15.151 & 2.873 & 236 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8032,15 +8034,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 117 & 18.064 & 15.179 & 2.523 & 362 \\
+\textit{Accident} & 102 & 18.064 & 15.179 & 2.523 & 362 \\
 \hline
-\textit{Natural Disaster} & 34 & 5.338 & 3.908 & 1.330 & 100 \\
+\textit{Natural Disaster} & 28 & 5.338 & 3.908 & 1.330 & 100 \\
 \hline
-\textit{Social Event} & 55 & 7.118 & 6.396 & 576 & 146 \\
+\textit{Social Event} & 42 & 7.118 & 6.396 & 576 & 146 \\
 \hline
-\textit{Urban Event} & 34 & 3.027 & 2.567 & 435 & 25 \\
+\textit{Urban Event} & 29 & 3.027 & 2.567 & 435 & 25 \\
 \midrule
---- & 240 & 33.547 & 28.050 & 4.864 & 633 \\
+--- & 201 & 33.547 & 28.050 & 4.864 & 633 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8064,15 +8066,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 288 & 49.659 & 42.233 & 6.293 & 1.133 \\
+\textit{Accident} & 240 & 49.659 & 42.233 & 6.293 & 1.133 \\
 \hline
-\textit{Natural Disaster} & 52 & 4.403 & 3.704 & 647 & 52 \\
+\textit{Natural Disaster} & 39 & 4.403 & 3.704 & 647 & 52 \\
 \hline
-\textit{Social Event} & 62 & 2.366 & 1.775 & 585 & 6 \\
+\textit{Social Event} & 53 & 2.366 & 1.775 & 585 & 6 \\
 \hline
-\textit{Urban Event} & 51 & 7.729 & 6.617 & 949 & 163 \\
+\textit{Urban Event} & 46 & 7.729 & 6.617 & 949 & 163 \\
 \midrule
---- & 453 & 64.157 & 54.329 & 8.474 & 1.354 \\
+--- & 378 & 64.157 & 54.329 & 8.474 & 1.354 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8096,15 +8098,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 282 & 60.501 & 53.828 & 5.382 & 1.291 \\
+\textit{Accident} & 233 & 60.501 & 53.828 & 5.382 & 1.291 \\
 \hline
-\textit{Natural Disaster} & 24 & 3.681 & 3.104 & 521 & 56 \\
+\textit{Natural Disaster} & 20 & 3.681 & 3.104 & 521 & 56 \\
 \hline
-\textit{Social Event} & 41 & 10.965 & 9.338 & 1.359 & 268 \\
+\textit{Social Event} & 33 & 10.965 & 9.338 & 1.359 & 268 \\
 \hline
-\textit{Urban Event} & 88 & 25.140 & 22.954 & 1.947 & 239 \\
+\textit{Urban Event} & 73 & 25.140 & 22.954 & 1.947 & 239 \\
 \midrule
---- & 435 & 100.287 & 89.224 & 9.209 & 1.854\\
+--- & 359 & 100.287 & 89.224 & 9.209 & 1.854 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8128,15 +8130,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 253 & 68.926 & 62.995 & 4.666 & 1.265 \\
+\textit{Accident} & 211 & 68.926 & 62.995 & 4.666 & 1.265 \\
 \hline
-\textit{Natural Disaster} & 45 & 3.318 & 2.712 & 555 & 51 \\
+\textit{Natural Disaster} & 36 & 3.318 & 2.712 & 555 & 51 \\
 \hline
-\textit{Social Event} & 63 & 10.380 & 8.835 & 1.288 & 257 \\
+\textit{Social Event} & 57 & 10.380 & 8.835 & 1.288 & 257 \\
 \hline
-\textit{Urban Event} & 111 & 22.585 & 19.837 & 2.262 & 486 \\
+\textit{Urban Event} & 96 & 22.585 & 19.837 & 2.262 & 486 \\
 \midrule
---- & 472 & 105.209 & 94.379 & 8.771 & 2.059\\
+--- & 400 & 105.209 & 94.379 & 8.771 & 2.059 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8159,15 +8161,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 228 & 36.130 & 31.202 & 4.437 & 491 \\
+\textit{Accident} & 186 & 36.130 & 31.202 & 4.437 & 491 \\
 \hline
-\textit{Natural Disaster} & 33 & 4.698 & 4.116 & 501 & 81 \\
+\textit{Natural Disaster} & 30 & 4.698 & 4.116 & 501 & 81 \\
 \hline
-\textit{Social Event} & 44 & 4.066 & 3.440 & 591 & 35 \\
+\textit{Social Event} & 40 & 4.066 & 3.440 & 591 & 35 \\
 \hline
-\textit{Urban Event} & 85 & 10.793 & 9.123 & 1.074 & 596 \\
+\textit{Urban Event} & 74 & 10.793 & 9.123 & 1.074 & 596 \\
 \midrule
---- & 390 & 55.687& 47.881 & 6.603 & 1.203 \\
+--- & 330 & 55.687 & 47.881 & 6.603 & 1.203 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8190,15 +8192,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 221 & 41.610 & 36.983 & 3.793 & 834 \\
+\textit{Accident} & 189 & 41.610 & 36.983 & 3.793 & 834 \\
 \hline
-\textit{Natural Disaster} & 79 & 9.356 & 8.132 & 1.064 & 160 \\
+\textit{Natural Disaster} & 68 & 9.356 & 8.132 & 1.064 & 160 \\
 \hline
-\textit{Social Event} & 49 & 7.948 & 6.256 & 1.581 & 111 \\
+\textit{Social Event} & 43 & 7.948 & 6.256 & 1.581 & 111 \\
 \hline
-\textit{Urban Event} & 50 & 1.574 & 1.089 & 470 & 15 \\
+\textit{Urban Event} & 39 & 1.574 & 1.089 & 470 & 15 \\
 \midrule
---- & 399 & 60.488 & 52.460 & 6.908 & 1.120 \\
+--- & 339 & 60.488 & 52.460 & 6.908 & 1.120 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8221,15 +8223,15 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \toprule
 \textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
 \midrule
-\textit{Accident} & 208 & 31.596 & 28.664 & 2.670 & 262 \\
+\textit{Accident} & 164 & 31.596 & 28.664 & 2.670 & 262 \\
 \hline
-\textit{Natural Disaster} & 93 & 9.220 & 7.876 & 1.210 & 134 \\
+\textit{Natural Disaster} & 73 & 9.220 & 7.876 & 1.210 & 134 \\
 \hline
-\textit{Social Event} & 49 & 5.127 & 4.317 & 719 & 91 \\
+\textit{Social Event} & 44 & 5.127 & 4.317 & 719 & 91 \\
 \hline
-\textit{Urban Event} & 89 & 18.038 & 15.450 & 2.361 & 227 \\
+\textit{Urban Event} & 84 & 18.038 & 15.450 & 2.361 & 227 \\
 \midrule
---- & 439 & 63.981 & 56.307 & 6.960 & 714 \\
+--- & 365 & 63.981 & 56.307 & 6.960 & 714 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8278,10 +8280,765 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \clearpage
 
 \section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota), referentes aos meses do ano de 2017}
+\label{g4}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de janeiro\tnote{g} de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 40 & 40.098 & 32.671 & 5.171 & 2.256 \\
+\hline
+\textit{Natural Disaster} & 596 & 631.546 & 529.593 & 70.416 & 31.537 \\
+\hline
+\textit{Social Event} & 7 & 2.398 & 1.768 & 317 & 313 \\
+\hline
+\textit{Urban Event} & 1 & 191 & 77 & 106 & 8 \\
+\midrule
+--- & 644 & 674.233 & 564.109 & 76.010 & 34.114 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 23 eventos de exceção não atingiram linhas de ônibus. 
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de fevereiro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 46 & 32.868 & 25.572 & 5.878 & 1.418 \\
+\hline
+\textit{Natural Disaster} & 318 & 289.997 & 238.904 & 40.791 & 10.302 \\
+\hline
+\textit{Social Event} & 8 & 2.759 & 2.054 & 580 & 125 \\
+\hline
+\textit{Urban Event} & 5 & 6.441 & 5.869 & 419 & 153 \\
+\midrule
+--- & 377 & 332.065 & 272.399 & 47.668 & 11.998 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 23 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de março de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 37 & 27.961 & 23.214 & 2.762 & 1.985 \\
+\hline
+\textit{Natural Disaster} & 185 & 185.059 & 152.367 & 21.951 & 10.741 \\
+\hline
+\textit{Social Event} & 48 & 16.694 & 11.355 & 4.146 & 1.193 \\
+\hline
+\textit{Urban Event} & 49 & 34.905 & 27.571 & 5.005 & 2.329 \\
+\midrule
+--- & 319 & 264.619 & 214.507 & 33.864 & 16.248 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 8 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de abril de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 29 & 13.217 & 9.687 & 2.346 & 1.184 \\
+\hline
+\textit{Natural Disaster} & 100 & 109.838 & 95.618 & 10.437 & 3.783 \\
+\hline
+\textit{Social Event} & 178 & 327.216 & 299.992 & 14.896 & 12.328 \\
+\hline
+\textit{Urban Event} & 79 & 110.442 & 97.346 & 10.111 & 2.985 \\
+\midrule
+--- & 386 & 560.713 & 502.643 & 37.790 & 20.280 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 3 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de maio de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 194 & 152.861 & 118.989 & 23.569 & 10.303 \\
+\hline
+\textit{Natural Disaster} & 99 & 91.304 & 74.244 & 11.482 & 5.578 \\
+\hline
+\textit{Social Event} & 80 & 35.770 & 27.006 & 6.615 & 2.149 \\
+\hline
+\textit{Urban Event} & 52 & 56.085 & 47.649 & 5.676 & 2.760 \\
+\midrule
+--- & 425 & 336.020 & 267.888 & 47.342 & 20.790 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 27 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de junho de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 496 & 439.434 & 360.398 & 56.034 & 23.002 \\
+\hline
+\textit{Natural Disaster} & 99 & 81.202 & 64.798 & 11.847 & 4.557 \\
+\hline
+\textit{Social Event} & 95 & 74.447 & 61.934 & 8.605 & 3.908 \\
+\hline
+\textit{Urban Event} & 87 & 68.764 & 56.225 & 9.140 & 3.399 \\
+\midrule
+--- & 777 & 663.847 & 543.355 & 85.626 & 34.866 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 72 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de julho de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 519 & 515.974 & 422.331 & 64.621 & 29.022 \\
+\hline
+\textit{Natural Disaster} & 51 & 29.317 & 21.420 & 6.009 & 1.888 \\
+\hline
+\textit{Social Event} & 60 & 94.340 & 84.230 & 6.773 & 3.337 \\
+\hline
+\textit{Urban Event} & 134 & 67.178 & 52.091 & 11.023 & 4.064 \\
+\midrule
+--- & 764 & 706.809 & 580.072 & 88.426 & 38.311 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 64 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de agosto de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 461 & 425.118 & 346.818 & 53.965 & 24.335 \\
+\hline
+\textit{Natural Disaster} & 112 & 68.397 & 50.758 & 12.191 & 5.448 \\
+\hline
+\textit{Social Event} & 83 & 32.456 & 23.365 & 6.386 & 2.705 \\
+\hline
+\textit{Urban Event} & 189 & 186.185 & 153.052 & 21.457 & 11.676 \\
+\midrule
+--- & 845 & 712.156 & 573.993 & 93.999 & 44.164 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 58 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de setembro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 454 & 326.108 & 256.377 & 49.967 & 19.764 \\
+\hline
+\textit{Natural Disaster} & 62 & 46.819 & 37.428 & 5.974 & 3.417 \\
+\hline
+\textit{Social Event} & 63 & 16.752 & 11.645 & 3.603 & 1.504 \\
+\hline
+\textit{Urban Event} & 142 & 176.393 & 146.187 & 23.019 & 7.187 \\
+\midrule
+--- & 721 & 566.072 & 451.637 & 82.563 & 31.872 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 40 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de outubro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\midrule
+\textit{Accident} & 394 & 410.860 & 338.494 & 53.676 & 18.690 \\
+\hline
+\textit{Natural Disaster} & 163 & 136.971 & 110.728 & 19.514 & 6.729 \\
+\hline
+\textit{Social Event} & 68 & 30.715 & 24.936 & 4.199 & 1.580 \\
+\hline
+\textit{Urban Event} & 90 & 110.827 & 96.689 & 10.028 & 4.110 \\
+\midrule
+--- & 715 & 689.373 & 570.847 & 87.417 & 31.109 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 69 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de novembro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 350 & 382.405 & 320.812 & 46.428 & 15.165 \\
+\hline
+\textit{Natural Disaster} & 227 & 206.393 & 169.314 & 29.285 & 7.794 \\
+\hline
+\textit{Social Event} & 72 & 49.443 & 40.079 & 7.405 & 1.959 \\
+\hline
+\textit{Urban Event} & 151 & 141.936 & 118.720 & 15.840 & 7.376 \\
+\midrule
+--- & 800 & 780.177 & 648.925 & 98.958 & 32.294 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 53 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000m dos pontos de rota) aos eventos de exceção do mês de dezembro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 8 & 5.464 & 4.443 & 817 & 204 \\
+\hline
+\textit{Natural Disaster} & --- & --- & --- & --- & --- \\
+\hline
+\textit{Social Event} & 1 & 47 & 21 & 24 & 2 \\
+\hline
+\textit{Urban Event} & 1 & 4.545 & 4.425 & 74 & 46 \\
+\midrule
+--- & 10 & 10.056 & 8.889 & 915 & 252 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
 
 \clearpage
 
 \section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de rota), referentes aos meses do ano de 2017}
+\label{g5}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de rota) aos eventos de exceção do mês de janeiro\tnote{g} de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 23 & 6.231 & 5.490 & 572 & 169 \\
+\hline
+\textit{Natural Disaster} & 350 & 451.142 & 417.741 & 26.136 & 7.265 \\
+\hline
+\textit{Social Event} & 6 & 13.059 & 12.683 & 216 & 160 \\
+\hline
+\textit{Urban Event} & 1 & 2.517 & 2.133 & 357 & 27 \\
+\midrule
+--- & 380 & 472.949 & 438.047 & 27.281 & 7.621 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 249 eventos de exceção não atingiram linhas de ônibus. 
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de rota) aos eventos de exceção do mês de fevereiro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 23 & 22.804 & 21.824 & 874 & 106 \\
+\hline
+\textit{Natural Disaster} & 196 & 207.781 & 190.486 & 15.176 & 2.119 \\
+\hline
+\textit{Social Event} & 8 & 22.032 & 20.518 & 1.333 & 181 \\
+\hline
+\textit{Urban Event} & 4 & 6.190 & 5.741 & 157 & 292 \\
+\midrule
+--- & 231 & 258.807 & 238.569 & 17.540 & 2.698 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 148 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de março de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 27 & 42.787 & 40.376 & 1.738 & 673 \\
+\hline
+\textit{Natural Disaster} & 114 & 141.112 & 131.856 & 6.724 & 2.532 \\
+\hline
+\textit{Social Event} & 41 & 114.425 & 108.993 & 2.767 & 2.665 \\
+\hline
+\textit{Urban Event} & 35 & 79.297 & 72.860 & 5.213 & 1.224 \\
+\midrule
+--- & 217 & 377.621 & 354.085 & 16.442 & 7.094 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 95 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de abril de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 21 & 24.651 & 22.449 & 1.798 & 404 \\
+\hline
+\textit{Natural Disaster} & 56 & 68.582 & 62.947 & 5.049 & 586 \\
+\hline
+\textit{Social Event} & 134 & 259.328 & 243.509 & 13.394 & 2.425 \\
+\hline
+\textit{Urban Event} & 65 & 114.482 & 108.400 & 4.752 & 1.330 \\
+\midrule
+--- & 276 & 467.043 & 437.305 & 24.993 & 4.745 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 82 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de maio de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 158 & 306.781 & 288.104 & 13.584 & 5.093 \\
+\hline
+\textit{Natural Disaster} & 50 & 69.479 & 66.261 & 2.008 & 1.210 \\
+\hline
+\textit{Social Event} & 70 & 192.743 & 182.207 & 8.065 & 2.471 \\
+\hline
+\textit{Urban Event} & 43 & 115.899 & 107.702 & 6.851 & 1.346 \\
+\midrule
+--- & 321 & 684.902 & 644.274 & 30.508 & 10.120 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 119 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de junho de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 349 & 581.205 & 545.257 & 26.753 & 9.195 \\
+\hline
+\textit{Natural Disaster} & 59 & 67.471 & 64.213 & 2.805 & 453 \\
+\hline
+\textit{Social Event} & 88 & 190.986 & 183.260 & 6.111 & 1.615 \\
+\hline
+\textit{Urban Event} & 75 & 150.374 & 139.968 & 8.316 & 2.090 \\
+\midrule
+--- & 571 & 990.036 & 932.698 & 43.985 & 13.353 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 238 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de julho de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 364 & 598.814 & 558.198 & 31.089 & 9.527 \\
+\hline
+\textit{Natural Disaster} & 35 & 39.136 & 35.247 & 3.140 & 749 \\
+\hline
+\textit{Social Event} & 51 & 87.913 & 83.100 & 3.467 & 1.346 \\
+\hline
+\textit{Urban Event} & 111 & 249.116 & 234.973 & 10.472 & 3.671 \\
+\midrule
+--- & 561 & 974.979 & 911.518 & 48.168 & 15.293 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 216 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de agosto de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 343 & 545.707 & 511.619 & 22.799 & 11.289 \\
+\hline
+\textit{Natural Disaster} & 65 & 50.446 & 47.118 & 2.542 & 786 \\
+\hline
+\textit{Social Event} & 81 & 151.278 & 141.884 & 6.626 & 2.768 \\
+\hline
+\textit{Urban Event} & 154 & 296.634 & 280.586 & 10.950 & 5.098 \\
+\midrule
+--- & 643 & 1.044.065 & 981.207 & 42.917 & 19.941 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 227 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de setembro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 326 & 535.819 & 502.231 & 25.708 & 7.880 \\
+\hline
+\textit{Natural Disaster} & 41 & 45.235 & 42.651 & 1.499 & 1.085 \\
+\hline
+\textit{Social Event} & 56 & 162.314 & 152.317 & 7.528 & 2.469 \\
+\hline
+\textit{Urban Event} & 113 & 253.610 & 240.924 & 8.764 & 3.922 \\
+\midrule
+--- & 536 & 996.978 & 938.123 & 43.499 & 15.356 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 187 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de outubro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 293 & 367.280 & 335.395 & 26.808 & 5.077 \\
+\hline
+\textit{Natural Disaster} & 102 & 92.094 & 85.275 & 5.811 & 1.008 \\
+\hline
+\textit{Social Event} & 66 & 192.755 & 179.139 & 10.580 & 3.036 \\
+\hline
+\textit{Urban Event} & 67 & 105.158 & 92.625 & 11.499 & 1.034 \\
+\midrule
+--- & 528 & 757.287 & 692.434 & 54.698 & 10.155 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 225 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de novembro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 266 & 351.118 & 326.702 & 19.933 & 4.483 \\
+\hline
+\textit{Natural Disaster} & 116 & 109.570 & 103.424 & 5.091 & 1.055 \\
+\hline
+\textit{Social Event} & 64 & 135.590 & 126.090 & 7.748 & 1.752 \\
+\hline
+\textit{Urban Event} & 125 & 228.973 & 213.329 & 11.799 & 3.845 \\
+\midrule
+--- & 571 & 825.251 & 769.545 & 44.571 & 11.135 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 241 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\begin{threeparttable}
+\caption {Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100m dos pontos de parada) aos eventos de exceção do mês de dezembro de 2017}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{\textit{Event type}}\tnote{a} & \textbf{\textit{\# events}}\tnote{b} & \textit{\textbf{\# rules}}\tnote{c} & \textbf{\textit{Expected}}\tnote{d} & \textbf{\textit{Unexpected}}\tnote{e} & \textbf{\textit{P. unexpected}}\tnote{f}   \\
+\midrule
+\textit{Accident} & 3 & 7.493 & 7.081 & 204 & 208 \\
+\hline
+\textit{Natural Disaster} & --- & --- & --- & --- & --- \\
+\hline
+\textit{Social Event} & --- & --- & --- & --- & --- \\
+\hline
+\textit{Urban Event} & 1 & 93 & 64 & 25 & 4 \\
+\midrule
+--- & 4 & 7.586 & 7.145 & 229 & 212 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+            \item[a] Classificação dos eventos de exceção.
+            \item[b] Total de eventos de exceção.
+            \item[c] Total de correlações de velocidade média.
+            \item[d] Regras de associação esperadas($Lift > 1$, $Support > 0,05$).
+            \item[e] Regras de associação inesperadas ($Lift = 1$).
+            \item[f] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
+            \item[g] 6 eventos de exceção não atingiram linhas de ônibus.
+        \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+
 
 \end{apendicesenv}
 \end{document}
