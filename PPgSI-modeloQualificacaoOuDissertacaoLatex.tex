@@ -238,7 +238,7 @@
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 % ---
-
+\overfullrule=0pt
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
@@ -375,7 +375,7 @@ Dissertação apresentada à Escola de Artes, Ciências e Humanidades da Univers
 \makeatletter
 \hypersetup{
      	%pagebackref=true,
-     	pdfusetitle,
+     	%pdfusetitle,
      	pdfencoding=auto,
 		pdftitle={\@title}, 
 		pdfauthor={\@author},
@@ -829,21 +829,21 @@ Keywords: Smart Cities. Public Transportation. Intelligent Transport Systems. Ex
 \chapter{Introdução}
 \label{introducao}
 
-Neste capítulo, são apresentadas as seções
-referentes à motivação da proposta de pesquisa; sobre a definição do problema que pretendemos abordar; a respeito dos objetivos gerais e específicos; sobre as hipóteses a serem verificadas e sobre a organização dos capítulos desse documento.
+%Neste capítulo, são apresentadas as seções referentes à motivação da proposta de pesquisa; sobre a definição do problema que pretendemos abordar; a respeito dos objetivos gerais e específicos; sobre as hipóteses a serem verificadas e sobre a organização dos capítulos desse documento.
 
 \section{Motivação}
 \label{motivation}
 
 A cidade de São Paulo é o município mais populoso do Brasil, que passou por um rápido processo de urbanização e tem população atual estimada em 12.106.920 milhões de habitantes (com data de referência em 1º de julho de 2017)\footnote{\url{https://agenciadenoticias.ibge.gov.br/media/com\_mediaibge/arquivos/9bc1a0065c49fd6f81dc785b2b8d8c35.xlsx}. Acessado em 29 de outubro de 2017.}.
 Desse total de habitantes, 10\% vivem na área do \nomenclature{CE}{Centro Expandido}
-{Centro Expandido (CE)} e 90\% no \nomenclature{CP}{­ Cinturão Periférico}{Cinturão Periférico (CP)} \cite{SA201722}, o que caracteriza uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. 
+{Centro Expandido (CE)} e 90\% no \nomenclature{CP}{­Cinturão Periférico}
+{Cinturão Periférico (CP)}  \cite{SA201722}, o que caracteriza uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana.
 
 Um desses problemas é conhecido como o movimento pendular, no qual longas distâncias são percorridas diariamente pelos moradores do CP para acessar os locais de emprego, educação e serviços localizados em maioria no CE. Além disso, o movimento pendular torna o CP  uma região dormitória, com parte de seus respectivos moradores dependentes do Sistema de Transporte Público para acessar o CE.
 
-Devido aos problemas de mobilidade urbana existentes no Brasil, como os da cidade de São Paulo, a Lei Federal 12.587/2012\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2012/lei/l12587.htm}. Acessado em 29 de outubro de 2017.}, relacionada ao \nomenclature{PAC}{Programa de Aceleração do Crescimento}{Programa de Aceleração do Crescimento\footnote{\url{http://www.pac.gov.br}. Acessado em 29 de outubro de 2017.} (PAC),} obrigou os municípios a enviarem seus respectivos planos de mobilidade urbana até o final do ano de 2015, com o objetivo de promover o desenvolvimento sustentável com a mitigação dos custos ambientais e socioeconômicos dos deslocamentos de pessoas. Em resposta a essa lei, o \nomenclature{PlanMob/SP}{Plano de Mobilidade Urbana de São Paulo}{Plano de Mobilidade Urbana de São Paulo (\textit{PlanMob/SP 2015})} foi instituído pelo Decreto 56.834\footnote{\label{planmob}\url{http://www.prefeitura.sp.gov.br/cidade/secretarias/transportes/planmob}. Acessado em 29 de outubro de 2017.}, como instrumento de planejamento e gestão do Sistema Municipal de Mobilidade Urbana para os próximos 15 anos.
+Devido aos problemas de mobilidade urbana existentes no Brasil, como os da cidade de São Paulo, a Lei Federal 12.587/2012\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2012/lei/l12587.htm}. Acessado em 29 de outubro de 2017.}, relacionada ao \nomenclature{PAC}{Programa de Aceleração do Crescimento}{Programa de Aceleração do Crescimento\footnote{\url{http://www.pac.gov.br}. Acessado em 29 de outubro de 2017.} (PAC),} obrigou os municípios a enviarem seus respectivos planos de mobilidade urbana até o final do ano de 2015.  O objetivo dessa obrigatoriedade é o de promover o desenvolvimento sustentável com a mitigação dos custos ambientais e socioeconômicos dos deslocamentos de pessoas. Em resposta a essa lei, o \nomenclature{PlanMob/SP}{Plano de Mobilidade Urbana de São Paulo}{Plano de Mobilidade Urbana de São Paulo (\textit{PlanMob/SP 2015})} foi instituído pelo Decreto 56.834\footnote{\label{planmob}\url{http://www.prefeitura.sp.gov.br/cidade/secretarias/transportes/planmob}. Acessado em 29 de outubro de 2017.}, como instrumento de planejamento e gestão do Sistema Municipal de Mobilidade Urbana para os próximos 15 anos.
 
-No \textit{PlanMob/SP 2015}, a \nomenclature{SMT}{Secretaria Municipal de Transportes}{Secretaria Municipal de Transportes (SMT)} propõe criar uma central de monitoramento conhecida como \nomenclature{CIMU}{Central Integrada de Mobilidade Urbana}{Central Integrada de Mobilidade Urbana (CIMU),} que tem como objetivo integrar as áreas de trânsito e transporte subordinadas à SMT. Nessa proposta, observam-se os seguintes problemas que poderiam ser resolvidos em paralelo ao desenvolvimento do CIMU: (I) a CIMU não processa conteúdo de Redes Sociais, (II) não aborda melhoria dos sistemas computacionais já existentes e (III) será integrada com o defasado \nomenclature{SIM}{Sistema Integrado de Monitoramento e Transporte}{Sistema Integrado de Monitoramento e Transporte (SIM),} da \nomenclature{SPTrans}{São Paulo Transportes}{São Paulo Transportes (SPTrans),} responsável pelo monitoramento da infraestrutura de ônibus. 
+No \textit{PlanMob/SP 2015}, a \nomenclature{SMT}{Secretaria Municipal de Transportes}{Secretaria Municipal de Transportes (SMT)} propõe criar uma central de monitoramento conhecida como \nomenclature{CIMU}{Central Integrada de Mobilidade Urbana}{Central Integrada de Mobilidade Urbana (CIMU),} que tem como objetivo integrar as áreas de trânsito e transporte subordinadas à SMT. Nessa proposta, observam-se os outras questões que se abordadas trariam benefícios ao CIMU: (I) a CIMU não processa conteúdo de Redes Sociais, (II) não aborda melhoria dos sistemas computacionais já existentes e (III) será integrada com o defasado \cite{consulo2016evaluation} \nomenclature{SIM}{Sistema Integrado de Monitoramento e Transporte}{Sistema Integrado de Monitoramento e Transporte (SIM),} da \nomenclature{SPTrans}{São Paulo Transportes}{São Paulo Transportes (SPTrans),} responsável pelo monitoramento da infraestrutura de ônibus. 
 
 O SIM utiliza a tecnologia \nomenclature{AVL}{\textit{Automatic Vehicle Location}}{\textit{Automatic Vehicle Location} (AVL)} para localizar e rastrear os ônibus, fornecer informações em tempo real aos passageiros \nomenclature{RTPI}{\textit{Real Time Passenger Information}}{(\textit{Real Time Passenger Information} (RTPI)),} monitorar 1.353 rotas de ônibus\footnote{\label{gtfsSptrans}\url{http://www.sptrans.com.br/desenvolvedores}. Acessado em 29 de outubro de 2017.}, 10 corredores de ônibus\footnote{\url{http://www.sptrans.com.br/terminais/corredores.aspx}. Acessado em 29 de outubro de 2017.}, 28 terminais de ônibus\footnote{\url{http://www.sptrans.com.br/terminais}. Acessado em 29 de outubro de 2017.} e 19.933 mil paradas de ônibus\footref{gtfsSptrans} que serviram em 2016 a aproximadamente 8 milhões de passageiros por dia\footnote{\url{http://www.sptrans.com.br/indicadores}. Acessado em 29 de outubro de 2017.}. Apesar da importância do SIM, há inúmeras defasagens tecnológicas (que causam discrepância nas informações recebidas pelos usuários, dentre outros problemas) \cite{consulo2016evaluation}, que precisariam ser resolvidas antes de integrá-lo ao CIMU.
  
@@ -855,30 +855,30 @@ Por exemplo, os EUA têm o plano estratégico para 2015-2019 em ITS, abordando t
 
 O contraste entre os dois parágrafos anteriores talvez seja devido ao fato de a legislação brasileira e os planos para mobilidade urbana terem sido estabelecidos como consequência do crescimento urbano acelerado e sem planejamento. Ou seja, como solução paliativa para um problema urbano, o que difere dos planos em ITS mencionados, que têm como foco otimizar o transporte e criar padrões tecnológicos. 
 
-Apesar dessas diferenças políticas e sociais, o transporte público pode se beneficiar ao explorar ITS \cite{Nelson2013}, e ao integrar as Redes Sociais com o planejamento, gestão e as atividades operacionais dos transportes públicos, abordando seus respectivos fatores sócio-técnicos \cite{kuflik2017automating}. Por exemplo, um dos benefícios possíveis é o de se conseguir analisar o impacto dos eventos de exceção na operação do sistema de transporte público por ônibus na cidade de São Paulo, usando dados do SIM (AVL) e de Redes Sociais.
+Apesar dessas diferenças políticas e sociais, o transporte público pode se beneficiar ao explorar ITS \cite{Nelson2013} e ao integrar as Redes Sociais com o planejamento, gestão e as atividades operacionais dos transportes públicos, abordando seus respectivos fatores sócio-técnicos \cite{kuflik2017automating}. Por exemplo, um dos benefícios possíveis é o de se conseguir detectar o impacto dos eventos de exceção na operação do sistema de transporte público por ônibus na cidade de São Paulo, usando dados do SIM (AVL), da GTFS (\textit{Google Transit Feed Specification}) da SPTrans e de Redes Sociais.
 
 \section{Definição do problema}
 \label{problemDef}
 
-Eventos de exceção tais como acidentes, greves, falhas na operação do metrô, manifestações, enchentes, eventos sociais, dentre outras, podem  comprometer muitos trechos do sistema de transporte público e, dependendo da proporção do impacto causado pela exceção, inúmeras pessoas podem ser afetadas. Tais eventos de exceção e seus respectivos impactos possuem características que podem ser identificadas visando melhor gestão dessas  ocorrências. 
+Eventos de exceção tais como acidentes, greves, falhas na operação do metrô, manifestações, enchentes, eventos sociais, dentre outros, podem  comprometer muitos trechos do sistema de transporte público e, dependendo da proporção do impacto causado pela exceção, inúmeras pessoas podem ser afetadas. Tais eventos de exceção e seus respectivos impactos possuem características que podem ser identificadas visando melhor gestão dessas  ocorrências. 
 
-Com a identificação dessas características, é possível conhecer previamente quais seriam os impactos decorrentes de um determinado evento de exceção no funcionamento normal do transporte público. Tais características podem ser obtidas analisando o histórico do funcionamento do sistema de transportes, e utilizadas posteriormente em simulações de como o sistema responderia a determinados eventos de exceção.
+Com a identificação dessas características é possível conhecer previamente quais seriam os impactos decorrentes de um determinado evento de exceção no funcionamento normal do transporte público. Tais características podem ser obtidas analisando o histórico do funcionamento do sistema de transportes, e utilizadas posteriormente em simulações de como o sistema responderia a determinados eventos de exceção.
 
 Os dados históricos existentes para essa análise são os do SIM, obtidos utilizando AVL. No entanto, analisá-los envolve problemas como o (I) grande volume de dados, em virtude da frequência com que são enviados (II) e os referentes ao comprometimento da qualidade dos dados enviados, como consequência dos problemas e limitações do \textit{hardware} responsável pela transmissão; interferências e questões meteorológicas. 
 
-O uso de conteúdo de Redes Sociais pode ajudar a abordar os problemas anteriormente mencionados, o qual delimitaria o escopo da análise histórica para a identificação das características dos eventos de exceção e dos seus respectivos impactos. Usar o conteúdo de Redes Sociais envolve alguns desafios como o de (I) identificar eventos de exceção nas publicações, (II) geolocalizá-los, (III) determinar seus \textit{timestamps} (IV) correlacioná-las com a base histórica.  
+O uso de conteúdo de Redes Sociais pode ajudar a abordar os problemas anteriormente mencionados, o qual delimitaria o escopo da análise histórica para a identificação das características dos eventos de exceção e dos seus respectivos impactos. Usar o conteúdo de Redes Sociais envolve alguns desafios como o de (I) identificar eventos de exceção nas publicações, (II) geolocalizá-los, (III) determinar seus \textit{timestamps} e, (IV) correlacioná-las com a base histórica.  
 
 \section{Objetivos}
 \label{objetivos}
 O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Visando alcançar esse objetivo, serão coletados \textit{tweets} das contas oficiais das instituições governamentais responsáveis por reportar eventos de exceção na
-cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na tabela~\ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos dos módulos AVL do SIM. 
+cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na tabela~\ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos dos módulos AVL do SIM e os dados do sistema de transporte por ônibus da cidade de São Paulo, especificados de acordo com a GTFS. 
 
 Além disso, temos como objetivos específicos:
 
 \begin{itemize}
     \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados.
      \item Extrair os endereços dos eventos de exceção identificados e geolocalizá-los.
-		\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente. Com isso, a necessidade de entrega dos dados a sociedade, apontada por \cite{kuflik2017automating}, será atendida.
+		%\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente. Com isso, a necessidade de entrega dos dados a sociedade, apontada por \cite{kuflik2017automating}, será atendida.
 \item Criação de plataforma para exploração e visualização dos dados coletados e processados das fontes citadas na tabela~\ref{tab:oficialProfiles} e da SPTrans.
 \end{itemize}
 
@@ -927,57 +927,57 @@ Secretaria Municipal de Transportes de São Paulo & \textit{@smtsp\_} \\
 \section{Hipóteses}
 \label{hipoteses}
 
-Com base na Revisão Sistemática do capítulo~\ref{revisao}, os eventos de exceção presentes nos \textit{tweets} podem ser caracterizados, não exaustivamente, em:
+Com base na Revisão Sistemática apresentada no capítulo~\ref{revisao}, os eventos de exceção presentes nos \textit{tweets} podem ser caracterizados, não exaustivamente, em:
 
 \begin{enumerate}
-\item \textbf{Acidentes}.
+\item \textbf{Acidentes} \cite{Itoh2016}.
 \begin{enumerate}
-\item Acidentes nas estações de transporte \cite{Itoh2016}.
-\item Incêndio \cite{Itoh2016}.
+\item Acidentes nas estações de transporte;
+\item incêndio.
 \end{enumerate}
 
-\item \textbf{Espaço-temporais}.
+\item \textbf{Espaço-temporais}  \cite{Chen2016}.
 \begin{enumerate}
-\item Dia da semana \cite{Chen2016}.
-\item Hora do dia \cite{Chen2016}.
+\item Dia da semana;
+\item hora do dia.
 \end{enumerate}
 
-\item \textbf{Eventos sociais}.
+\item \textbf{Eventos sociais} \cite{Chen2016, Itoh2016, Lecue2014, Gal-Tzur2014}.
 \begin{enumerate}
-\item Feiras de rua \cite{Chen2016}.
-\item Festivais \cite{Chen2016}, \cite{Lecue2014}.
-\item Jogos esportivos \cite{Chen2016}, \cite{Gal-Tzur2014}.
-\item Passeatas e maratonas \cite{Chen2016}, \cite{Itoh2016}.
+\item Feiras de rua;
+\item festivais;
+\item jogos esportivos;
+\item passeatas e maratonas.
 \end{enumerate}
 
-\item \textbf{Eventos urbanos}.
+\item \textbf{Eventos urbanos}  \cite{Chen2016, Lecue2014}.
 \begin{enumerate}
-\item Relacionados ao tráfego \cite{Chen2016}; \cite{Lecue2014}.
+\item Relacionados ao tráfego.
 \end{enumerate}
 
-\item \textbf{Desastres naturais}.
+\item \textbf{Desastres naturais} \cite{Itoh2016}.
 \begin{enumerate}
-\item Tempestades \cite{Itoh2016}.
-\item Terremoto \cite{Itoh2016}.
-\item Tufões \cite{Itoh2016}.
+\item Tempestades.
+\item terremoto;
+\item tufões.
 \end{enumerate}
 
-\item \textbf{Metereológicas}.
+\item \textbf{Metereológicas} \cite{Chen2016}.
 \begin{enumerate}
-\item Dia claro, nublado, chuvoso, nevando, com neblina \cite{Chen2016}.
-\item Temperatura do ar \cite{Chen2016}.
+\item Dia claro, nublado, chuvoso, nevando, com neblina;
+\item temperatura do ar.
 \end{enumerate}
 
 \end{enumerate}
 
 Dito isso, espera-se que seja possível identificar tais características utilizando \nomenclature{NLP}{\textit{Natural Language Processing}}{Processamento de Linguagem Natural} (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
 
-Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Pois em uma análise preliminar observamos que o conteúdo das contas selecionadas, citadas na tabela~\ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
+Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Uma análise preliminar mostra que o conteúdo das contas selecionadas, citadas na tabela~\ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
 
 \section{Organização do documento}
 \label{docOrg}
 
-Neste documento, o capítulo~\ref{introducao} apresenta a introdução deste trabalho; o capítulo~\ref{fundamentacao} trata sobre as questões da fundamentação teórica;  capítulo~\ref{revisao} sobre a revisão sistemática realizada; o capítulo~\ref{dataSet} sobre a coleta e análise de dados abertos relacionados ao transporte público e eventos de exceção; os capítulos~\ref{dataViz},~\ref{exp1},~\ref{dataCorr} e~\ref{expApriori} discorrem sobre os experimentos realizados com os dados coletados; o capítulo~\ref{conclusion} apresenta a conclusão dos trabalhos desenvolvidos e os apêndices~\ref{apendiceA},~\ref{apendiceB},~\ref{apendiceC},~\ref{apendiceD},~\ref{apendiceE},~\ref{apendiceF} e~\ref{apendiceG} finalizam com os detalhes dos experimentos.
+O  documento inicia no capítulo~\ref{introducao} com a introdução de aspectos gerais do trabalho; o capítulo~\ref{fundamentacao} trata sobre conceitos fundamentais e necessários para melhor entedimento do conteúdo apresentado por essa dissertação; o  capítulo~\ref{revisao} apresenta a revisão sistemática realizada na literatura com o objetivo de encontrar trabalhos que utilizam \textit{tweets} para tratar problemas relacionados a Cidades Inteligentes; o capítulo~\ref{dataSet} descreve o processo de coleta dos dados abertos relacionados ao transporte público e a eventos de exceção; os capítulos~\ref{dataViz},~\ref{exp1},~\ref{dataCorr} e~\ref{expApriori} discorrem sobre os experimentos realizados para atingir os objetivos já detalhados; o capítulo~\ref{conclusion} apresenta a conclusão dos trabalhos desenvolvidos e os apêndices~\ref{apendiceA},~\ref{apendiceB},~\ref{apendiceC},~\ref{apendiceD},~\ref{apendiceE},~\ref{apendiceF} e~\ref{apendiceG} finalizam com os detalhes dos experimentos.
 
 %-------------------------------------------------------------------------
 % Comentário adicional do PPgSI - Informações sobre ``figura''
@@ -1201,7 +1201,7 @@ Por fim, no processo de extração de \textit{features}, usa uma função de map
 %Finalmente, o objetivo no processo de seleção de recursos é a redução ideal do espaço de \ textit {features} baseado em critérios de seleção, ou seja, para obter \ textit {m features} de um conjunto de \ textit {n features}, onde \ textit {m} $ \ le $ \ textit {n} (que pode ser obtido por algoritmos de busca seguindo os critérios de avaliação). Assim, com um subconjunto menor de \ textit {features}, é possível reduzir a dimensionalidade do espaço \ textit {features}, otimizar algoritmos de Machine Learning e entender melhor seus respectivos resultados, para melhorar a precisão dos algoritmos de classificação. , entre outros benefícios \ cite {motoda2002feature}.
 
 
-\section{Algoritmos de Aprendizado de Máquina}
+\section{Algoritmos de aprendizado de máquina}
 \label{classification}
 
 Os algoritmos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
@@ -1218,7 +1218,7 @@ No contexto desse trabalho, os dados de entrada são conhecidos e foram classifi
 \item Regressão Logística (\textit{Logistic Regression}).
 \end{itemize}
 
-\subsection{Algoritmos de Aprendizado Supervisionado}
+\subsection{Algoritmos de aprendizado supervisionado}
 \label{supervisionedLearning}
 
 De acordo com a figura~\ref{fig:arch_ml}, a aplicação de algoritmos de aprendizado supervisionado a um problema passa por algumas fases.
@@ -1318,7 +1318,7 @@ f_1 score = \frac{PPV * TPR}{PPV + TPR} = \frac{2VP}{2VP + FP + FN}
 
 \section{Term frequency–Inverse document frequency}
 
-TF-IDF é um algoritmo de ponderação de variáveis que combina as ponderações \emph{frequência do termo} \nomenclature{TF}{\textit{Term Frequency}}{(TF --- \textit{Term Frequency})} e \emph{inverso da frequência nos documentos} (\nomenclature{IDF}{nverse Document Frequency}{IDF --- \textit{Inverse Document Frequency}}) para calcular os pesos dos termos linguísticos (variáveis) em um determinado corpus. Em outras palavras, o peso da variável é proporcional a frequência com a qual aparece nos documentos, e inversamente proporcional a quantidade de documentos que contém o termo linguístico em questão \cite{wu2018improved, yahav2018comments}. 
+TF-IDF é um algoritmo de ponderação de variáveis que combina as ponderações \emph{frequência do termo} \nomenclature{TF}{\textit{Term Frequency}}{(TF --- \textit{Term Frequency})} e \emph{inverso da frequência nos documentos} (\nomenclature{IDF}{Inverse Document Frequency}{IDF --- \textit{Inverse Document Frequency}}) para calcular os pesos dos termos linguísticos (variáveis) em um determinado corpus. Em outras palavras, o peso da variável é proporcional a frequência com a qual aparece nos documentos, e inversamente proporcional a quantidade de documentos que contém o termo linguístico em questão \cite{wu2018improved, yahav2018comments}. 
 
 
 Dentre as variações de implementação da ponderação $W_{t,d}$ (TF-IDF) existentes, a abordagem tradicional considera uma coleção de termos $t \in T$ que aparecem em um conjunto de N documentos $d \in D$, posto isso, defini-se como o produto entre $tf_{i,j}$ e $idf_i$ --- onde $n_{i,j}$ é a frequência do termo $t_i$ no documento $d_j$, $\sum_k n_{k,j}$ o somatório da frequência de todos os termos do documento $d_j$ e $n$ o número de documentos onde $t_i$ aparece ($n + 1$, caso $n = 0$) --- conforme a seguinte equação \cite{wu2018improved}:
