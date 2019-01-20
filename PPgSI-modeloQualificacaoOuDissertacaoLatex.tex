@@ -773,6 +773,7 @@ Keywords: Smart Cities. Public Transportation. Intelligent Transport Systems. Ex
 %-------------------------------------------------------------------------
 
 % Definicao da lista de abreviaturas e siglas
+\pdfbookmark[0]{Lista de abreviaturas e siglas}{loabrv}
 \renewcommand{\nomname}{Lista de abreviaturas e siglas}
 \makenomenclature
 \printnomenclature[1in]
@@ -930,41 +931,41 @@ Secretaria Municipal de Transportes de São Paulo & \textit{@smtsp\_} \\
 Com base na Revisão Sistemática apresentada no Capítulo~\ref{revisao}, os eventos de exceção presentes nos \textit{tweets} podem ser caracterizados, não exaustivamente, em:
 
 \begin{enumerate}
-\item \textbf{Acidentes} \cite{Itoh2016}.
+\item \textbf{Acidentes} \cite{Itoh2016}:
 \begin{enumerate}
-\item Acidentes nas estações de transporte;
+\item acidentes nas estações transporte;
 \item incêndio.
 \end{enumerate}
 
-\item \textbf{Espaço-temporais}  \cite{Chen2016}.
+\item \textbf{Espaço-temporais}  \cite{Chen2016}:
 \begin{enumerate}
-\item Dia da semana;
+\item dia da semana;
 \item hora do dia.
 \end{enumerate}
 
-\item \textbf{Eventos sociais} \cite{Chen2016, Itoh2016, Lecue2014, Gal-Tzur2014}.
+\item \textbf{Eventos sociais} \cite{Chen2016, Lecue2014, Gal-Tzur2014, Itoh2016}:
 \begin{enumerate}
-\item Feiras de rua;
+\item feiras de rua;
 \item festivais;
 \item jogos esportivos;
 \item passeatas e maratonas.
 \end{enumerate}
 
-\item \textbf{Eventos urbanos}  \cite{Chen2016, Lecue2014}.
+\item \textbf{Eventos urbanos} \cite{Chen2016, Lecue2014}:
 \begin{enumerate}
-\item Relacionados ao tráfego.
+\item relacionados ao tráfego.
 \end{enumerate}
 
-\item \textbf{Desastres naturais} \cite{Itoh2016}.
+\item \textbf{Desastres naturais} \cite{Itoh2016}:
 \begin{enumerate}
-\item Tempestades.
+\item tempestades;
 \item terremoto;
 \item tufões.
 \end{enumerate}
 
-\item \textbf{Metereológicas} \cite{Chen2016}.
+\item \textbf{Metereológicos} \cite{Chen2016}:
 \begin{enumerate}
-\item Dia claro, nublado, chuvoso, nevando, com neblina;
+\item dia claro, nublado, chuvoso, nevando, com neblina;
 \item temperatura do ar.
 \end{enumerate}
 
@@ -1371,7 +1372,9 @@ Algoritmos para mineração de dados, como o \textit{Apriori}, não tem tido seu
 
 \chapter{Revisão Sistemática}
 \label{revisao}
-Este capítulo apresenta uma Revisão Sistemática (RS) com o objetivo de encontrar o estado da arte de trabalhos que visam melhorar sistemas de transporte público por meio do processamento de \textit{tweets}. Além disso, de uma forma mais ampla, busca-se também entender como os \textit{tweets} têm sido utilizados na caracterização de problemas urbanos. Sendo assim, o capítulo é iniciado com a seção sobre o planejamento da Revisão Sistemática; seguida das questões de pesquisa utilizadas na formulação do problema da RS; do processo de coleta dos estudos primários; da avaliação dos dados coletados; da análise e interpretação dos estudos selecionados, concluindo com as considerações finais.
+Conforme mencionado na Seção \ref{objetivos} o objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, por meio do cruzamento de dados AVL, da GTFS e \textit{tweets} das contas oficiais responsáveis por reportar esse tipo de evento. Devido a isso este capítulo apresenta uma \nomenclature{RS}{Revisão Sistemática}{Revisão Sistemática (RS)} com o objetivo de encontrar o estado da arte de trabalhos que visam melhorar sistemas de transporte público por meio do processamento de \textit{tweets} em conjunto com outras fontes de dados.
+
+Além disso, de uma forma mais ampla, busca-se também entender como os \textit{tweets} têm sido utilizados na caracterização de problemas urbanos. Sendo assim, o capítulo é iniciado com a seção sobre o planejamento da Revisão Sistemática; seguida das questões de pesquisa utilizadas na formulação do problema da RS; do processo de coleta dos estudos primários; da avaliação dos dados coletados; da análise e interpretação dos estudos selecionados, concluindo com as considerações finais.
 
 % \begin{CCSXML}
 % <ccs2012>
@@ -1404,9 +1407,9 @@ A quarta etapa da revisão é o processo de Análise e Interpretação, na qual 
 
 \subsection{Justificativa da Revisão Sistemática}
 \label{justificativa}
-Esta Revisão Sistemática se justifica por não terem sido encontradas revisões sistemáticas com o foco em questões urbanas e de transporte público, abordando unicamente o processamento de \textit{tweets}. Em \cite{Chaniotakis2016}, por exemplo, foi realizado um mapeamento de forma não sistemática dos trabalhos sobre o uso das mídias sociais em problemas relacionados ao transporte público; \cite{steiger2015advanced}, por outro lado, desenvolveram uma revisão sistemática sobre o uso do Twitter para questões espaço-temporais; e \cite{jungherr2016twitter} no contexto político.%
+Esta Revisão Sistemática se justifica por não terem sido encontradas revisões sistemáticas com o foco em questões urbanas e de transporte público, abordando unicamente o processamento de \textit{tweets}. Em \cite{Chaniotakis2016}, por exemplo, foi realizado um mapeamento de forma não sistemática dos trabalhos sobre o uso das mídias sociais em problemas relacionados ao transporte público; \cite{steiger2015advanced}, por outro lado, desenvolveram uma revisão sistemática sobre o uso do \textit{Twitter} para questões espaço-temporais; e \cite{jungherr2016twitter} no contexto político.%
 
-Devido a isso, a presente revisão sistemática se diferencia por ter como objetivo encontrar o estado da arte de trabalhos que visam melhorar sistemas de transporte público por meio do processamento de \textit{tweets}. Além disso, de uma forma mais ampla, busca-se também entender como os \textit{tweets} têm sido utilizados na caracterização  de problemas urbanos.
+Devido a isso, a presente revisão sistemática se diferencia por ter como objetivo encontrar o estado da arte de trabalhos que visam melhorar sistemas de transporte público por meio do processamento de \textit{tweets}, cruzando-os com outras fontes de dados. Além disso, de uma forma mais ampla, busca-se também entender como os \textit{tweets} têm sido utilizados na caracterização  de problemas urbanos.
 
 \section{Questões de Pesquisa}
 \label{questoes}
@@ -1428,15 +1431,15 @@ Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipó
 
 \item Quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}?
 \label{item:3} \newline \newline
-O propósito da QP3 é identificar quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}, principalmente no que se refere a análise de acurácia de classificação binária. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama de como garantir a confiabilidade ao utilizar dados oriundos de \textit{tweets}, dentre outros aspectos relacionados a testes estatísticos. \newline
+O propósito da QP3 é identificar quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}, principalmente no que se refere a validação do processo de aprendizado. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama de como validar tarefas de aprendizado que utilizam dados oriundos de \textit{tweets}. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): \textit{${F_1}$ score} é a principal técnica estatística utilizada para análise de acurácia de classificação binária.\newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): \textit{${F_1}$ score} é a principal técnica utilizada para validação de classificação binária.\newline
 
 \item Quais os paradigmas de processamento têm sido utilizados ao lidar com \textit{tweets}?
 \label{item:4} \newline \newline
 O propósito da QP4 é identificar os paradigmas utilizados para processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das técnicas de processamento utilizadas na análise de \textit{tweets}. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP4): o principal paradigma utilizado tem sido o processamento de \textit{tweets} em \textit{batch} (\textit{offline}), após um processo de armazenamento. Poucos são os estudos que constroem uma plataforma para processamento de dados em tempo real. \newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP4): o principal paradigma utilizado tem sido o processamento de \textit{tweets} em lote (\textit{batch} --- \textit{offline}), após um processo de armazenamento. Poucos são os estudos que constroem uma plataforma para processamento de dados em tempo real. \newline
 
 \item Quais são os eventos de exceção relacionados ao transporte público?
 \label{item:5} \newline \newline
@@ -1444,11 +1447,11 @@ O propósito da QP5 é identificar os eventos de exceção relacionados ao trans
 
 Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP5): há poucos ou nenhum estudo que, ao tratar de problemáticas relacionadas ao transporte público, realizam um levantamento dos eventos de exceção desse contexto.\newline
 
-\item Quais as técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}?
+\item Quais as técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}?
 \label{item:6} \newline \newline
-O propósito da QP6 é identificar as técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das principais técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets}. \newline
+O propósito da QP6 é identificar as técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das principais técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP6): a técnica \textit{Support Vector Machine} tem sido utilizada na maioria dos estudos que aplicam aos \textit{tweets} algum algoritmo de Aprendizado de Máquina.\newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP6): a técnica \textit{Support Vector Machine} tem sido utilizada na maioria dos estudos que aplicam aos \textit{tweets} algum algoritmo de aprendizado de máquina.\newline
 \end{enumerate}
 
 \section{Coleta de dados}
@@ -1474,8 +1477,9 @@ Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesq
 Elsevier & 81 & 72 & 9\\ 
 \hline
 Springer & 22 & 20 & 2\\ 
-\hline
-{-} & 229 & 200 & 29\\ 
+\midrule
+\midrule
+Total & 229 & 200 & 29\\ 
 \bottomrule
 \end{tabular}
 \source{Elaborado pelo autor}
@@ -1501,7 +1505,7 @@ Visando selecionar os artigos relevantes para esta Revisão Sistemática, os seg
 \item Trabalhos que estão fora do escopo da questão de pesquisa.
 \end{itemize}
 
-O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \citeauthor{fcas} (\citeyear{fcas}) (não incluso neste trabalho com o objetivo de não deixar o texto exaustivo), assim como seu respectivo protocolo (no qual contém o detalhamento dos critérios de inclusão e exclusão, dentre outros artefatos da condução). Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados.
+O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \citeauthor{fcas} (\citeyear{fcas}) (não incluso no apêndice deste trabalho devido ao grande volume de páginas de cada documento), assim como seu respectivo protocolo (no qual contém o detalhamento dos critérios de inclusão e exclusão, dentre outros artefatos da condução). Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados.
 
 Sendo assim, a Figura~\ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gerada com a biblioteca \textit{wordcloud} \cite{wordcloud}) sintetizando as palavras chaves dos estudos primários selecionados; e a Figura~\ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Figura~\ref{fig:porcentagem}.
 
@@ -1537,64 +1541,64 @@ Nesta seção é realizada a análise e interpretação dos estudos primários s
 Os tipos de problemas urbanos abordados utilizando o processamento de \textit{tweets} foram divididos nas seguintes categorias: 
 
 \begin{enumerate}
-\item \textit{\textbf{e-Participation}} (Interação entre  cidadãos  e órgãos civis) \cite{Mukherjee2015}, \cite{Soomro2016}.
-\item \textbf{Detecção de zoneamento urbano} \cite{Frias-Martinez2014}.
-\item \textbf{Identificação de pontos de interesse} \cite{Farseev2015}, \cite{Gutev2016}, \cite{Bendler2014}, \cite{Abbasi2015}, \cite{Gkiotsalitis2015}, \cite{Gkiotsalitis2016}, \cite{Hasan2014}, \cite{Maghrebi2015}, \cite{DiLorenzo2013}.
-\item \textbf{Mobilidade} \cite{Gutev2016}, \cite{Chen2016}, \cite{Yousaf2014}.
-\item \textbf{Padrões demográficos} \cite{Farseev2015}, \cite{Gutev2016}, \cite{Steiger2015Census}, \cite{Guo2016}.
-\item \textbf{Poluição} \cite{Zagal2016}.
-\item \textbf{Segurança Pública} \cite{Wen2016}, \cite{Mata2015}.
-\item \textbf{Turismo} \cite{Thomaz2016}, \cite{Abbasi2015}, \cite{Chua2016}, \cite{Sobolevsky2015}.
-\item \textbf{Tráfego} \cite{Anantharam2015}, \cite{Lecue2014}.
+\item \textit{\textbf{e-Participation}} (interação entre  cidadãos  e órgãos civis) \cite{Mukherjee2015, Soomro2016};
+\item \textbf{detecção de zoneamento urbano} \cite{Frias-Martinez2014};
+\item \textbf{identificação de pontos de interesse} \cite{Farseev2015, Gutev2016, Bendler2014, Abbasi2015, Gkiotsalitis2015, Gkiotsalitis2016, Hasan2014, Maghrebi2015, DiLorenzo2013};
+\item \textbf{mobilidade} \cite{Gutev2016, Chen2016, Yousaf2014};
+\item \textbf{padrões demográficos} \cite{Farseev2015, Gutev2016, Steiger2015Census, Guo2016};
+\item \textbf{poluição} \cite{Zagal2016};
+\item \textbf{segurança pública} \cite{Wen2016, Mata2015};
+\item \textbf{turismo} \cite{Thomaz2016, Abbasi2015, Chua2016, Sobolevsky2015};
+\item \textbf{tráfego} \cite{Anantharam2015, Lecue2014}.
 \end{enumerate}
 
-Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que \textit{tweets} podem ser utilizados para auxiliar na mitigação de inúmeros problemas urbanos. Apesar disso, \cite{Chaniotakis2015} observam que os \textit{tweets} contendo informações sobre geolocalização são normalmente publicados em áreas relacionadas ao lazer, além de haver correlação entre regiões urbanas com maior renda \textit{per capita} e o número de \textit{tweets} postados. Tal evidência pode conduzir viés nas análises por representar somente algumas classes econômicas da população. 
+Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que \textit{tweets} podem ser utilizados para auxiliar na mitigação de inúmeros problemas urbanos. Apesar disso, em \cite{Chaniotakis2015} os autores observam que os \textit{tweets} contendo informações sobre geolocalização são normalmente publicados em áreas relacionadas ao lazer, além de haver correlação entre regiões urbanas com maior renda \textit{per capita} e o número de \textit{tweets} postados. Tal evidência pode conduzir viés nas análises por representar somente algumas classes econômicas da população. 
 
 Considerando a observação anterior, um dos estudos analisados foi o realizado por \cite{Zagal2016}, na Cidade do México. Nesse estudo, foram mapeados os pontos da cidade referenciados em publicações relacionadas a doenças respiratórias e poluição, orientando tomadas de decisão no aspecto ambiental. 
 
 Além disso, há também exemplos de trabalhos relacionados a Segurança Pública, como o estudo de caso realizado por \cite{Wen2016}, no qual foi enriquecido um conjunto de dados com \textit{tweets} geolocalizados, visando analisar o impacto dos ataques terroristas (em Paris, em novembro de 2015) nos padrões de atividades urbanas (relacionadas ao uso de transporte público, serviços, realização de compras, e atividade noturna). Em um outro caso de aplicação, estimou-se por meio de \textit{tweets}, a probabilidade de ocorrência de crimes e ameaças nas ruas da Cidade do México, sugerindo rotas seguras aos pedestres \cite{Mata2015}.
 
-Também, foram encontrados na literatura estudos que utilizaram \textit{tweets} para inferir padrões demográficos. Por exemplo, em \cite{Farseev2015}; \cite{Gkiotsalitis2015}; \cite{Gkiotsalitis2016}, \textit{tweets} foram processados para analisar a distribuição etária e de gênero da população, assim como seus respectivos pontos de interesse \cite{Hasan2014} e \cite{Maghrebi2015} (como locais para entretenimento, residência, trabalho, recriação, compras, educação e serviços sociais). 
+Também, foram encontrados na literatura estudos que utilizaram \textit{tweets} para inferir padrões demográficos. Por exemplo, em \cite{Farseev2015, Gkiotsalitis2015, Gkiotsalitis2016}, os autores processaram \textit{tweets} para analisar a distribuição etária e de gênero da população, assim como seus respectivos pontos de interesse (como locais para entretenimento, residência, trabalho, recriação, compras, educação e serviços sociais) \cite{Hasan2014, Maghrebi2015}. 
 
-Tais pontos de interesse, podem ser utilizados em problemas relacionados ao transporte público \cite{Gutev2016} e também ao Turismo, como no estudo realizado por \cite{Abbasi2015} para identificar a locomoção de visitantes e residentes em pontos turísticos de Sydney; por \cite{Chua2016}, ao caracterizar aspectos espaciais, temporais e demográficos, dos turistas da cidade de Cilento, Itália; e por \cite{Thomaz2016} na cidade de Curitiba (Brasil), no contexto da Copa do Mundo de 2014.
+Tais pontos de interesse podem ser utilizados em problemas relacionados ao transporte público \cite{Gutev2016} e também ao turismo, como no estudo realizado por \cite{Abbasi2015} para identificar a locomoção de visitantes e residentes em pontos turísticos de Sydney; por \cite{Chua2016}, ao caracterizar aspectos espaciais, temporais e demográficos, dos turistas da cidade de Cilento, Itália; e por \cite{Thomaz2016} na cidade de Curitiba (Brasil), no contexto da Copa do Mundo de 2014.
 
-Nesse mesmo contexto, \cite{Guo2016} estudaram algumas questões demográficas via análise de sentimento, encontrando correlação positiva entre oportunidades de emprego e sentimentos positivos, e negativa entre felicidade e número de crianças na população da Grande Londres. Outro caso de uso, foi o desenvolvido em \cite{Steiger2015Census}, no qual \textit{tweets} foram processados para identificar diferentes tipos de atividades em Londres, correlacionando-as com informações censitárias; e em \cite{Sobolevsky2015} ao estudar a atratividade da Espanha a turistas.
+Nesse mesmo contexto, \cite{Guo2016} estudaram algumas questões demográficas por meio de análise de sentimento e encontraram correlação positiva entre oportunidades de emprego e sentimentos positivos, e negativa entre felicidade e número de crianças na população da Grande Londres. Outro caso de uso, foi o desenvolvido em \cite{Steiger2015Census}, no qual os autores usaram \textit{tweets} para identificar diferentes tipos de atividades em Londres, correlacionando-as com informações censitárias; e em \cite{Sobolevsky2015} ao estudar a atratividade da Espanha a turistas.
 
-Um dos problemas relacionados à identificação de pontos de interesse se refere as incertezas espaço-temporais e de determinação de tópicos, o qual foi abordado pelo trabalho realizado por \cite{Bendler2014}. Nele, os autores contribuíram com uma técnica para minimizar o problema ao processar \textit{tweets}; analisando a causalidade entre o tempo e local das postagens realizadas, reduzindo assim os índices de incerteza, no contexto da cidade de São Francisco, EUA. Outro problema, relaciona-se com a questão da privacidade, pois as localizações dos usuários podem ser inferidas mesmo quando não disponibilizadas. Nesse cenário, \cite{Wang2017} propõem um \nomenclature{PTCS}{Sistema de Calibração de Trajetórias Privadas}{Sistema de Calibração de Trajetórias Privadas (PTCS),} usando os mecanismos de Privacidade Diferencial e de \textit{k-anonymity}, com isso é possível extrair informações sobre trajetórias sem exposição de informações sensíveis, testado na extração de localizações por meio de \textit{tweets}. 
+Um dos problemas relacionados à identificação de pontos de interesse se refere as incertezas espaço-temporais e de determinação de tópicos, o qual foi abordado pelo trabalho realizado por \cite{Bendler2014}. Nele, os autores contribuíram com uma técnica para minimizar o problema ao processar \textit{tweets}; analisando a causalidade entre o tempo e local das postagens realizadas, reduzindo assim os índices de incerteza, no contexto da cidade de São Francisco, EUA. Outro problema, relaciona-se com a questão da privacidade, pois as localizações dos usuários podem ser inferidas mesmo quando não disponibilizadas. Nesse cenário, \cite{Wang2017} propõem um \nomenclature{PTCS}{Sistema de Calibração de Trajetórias Privadas}{Sistema de Calibração de Trajetórias Privadas (PTCS),} por meio de mecanismos de Privacidade Diferencial e de \textit{k-anonymity}, com isso é possível extrair informações sobre trajetórias sem exposição de informações sensíveis, testado na extração de localizações contidas em \textit{tweets}. 
 
-Outro contexto na literatura revisada está relacionado ao processamento dos eventos que acontecem na cidade (idealmente em tempo real, como sugerem \cite{Soomro2016}). Um dos estudos encontrados sobre esse assunto, foi o realizado por \cite{Anantharam2015}, no qual foi desenvolvida uma técnica para identificar os diferentes tipos de eventos do cotidiano urbano, rotulando-os sequencialmente, por meio da anotação de \textit{tweets} e extração de eventos, considerando aspectos espaciais, temporais e temáticos. Para isso, utilizou conhecimentos de domínio, tais como informações sobre os locais em uma cidade e possíveis termos para os eventos, identificando assim os relacionados ao tráfego da região da Baia de São Francisco, EUA. 
+Outro contexto na literatura revisada está relacionado ao processamento dos eventos que acontecem na cidade (idealmente em tempo real, como sugerem \cite{Soomro2016}). Um dos estudos encontrados sobre esse assunto, foi o realizado por \cite{Anantharam2015}, no qual os autores desenvolveram uma técnica para identificar os diferentes tipos de eventos do cotidiano urbano, rotulando-os sequencialmente, por meio da anotação de \textit{tweets} e extração de eventos, considerando aspectos espaciais, temporais e temáticos. Para isso, utilizaram-se dos conhecimentos de domínio, tais como informações sobre os locais em uma cidade e possíveis termos para os eventos, identificando assim os relacionados ao tráfego da região da Baia de São Francisco, EUA. 
 
 Sobre a mesma temática, \cite{DiLorenzo2013} desenvolveram uma ferramenta inteligente e interativa para exploração visual da dinâmica de eventos sociais ao longo das dimensões espacial, temporal e organizacional. O tráfego também foi objeto de estudo em \cite{Chen2016}, ao relacionar eventos do trânsito com a demanda por bicicletas; e em \cite{Lecue2014}, ao demonstrar uma plataforma para análise inteligente do tráfego (em tempo real), com base em fontes heterogêneas de dados (incluindo \textit{tweets} de agências oficiais de trânsito).
 
-Em uma abordagem mais genérica, \cite{Mukherjee2015} propuseram uma plataforma para processar (em \textit{near real time}) questões urgentes da cidade, oriundas de diversas fontes (incluindo o \textit{Twitter}), atuando como intermediadora entre cidadãos e agências civis. No que se refere a mobilidade urbana, mas não utilizando informações sobre pontos de interesse, \cite{Yousaf2014} inferiram a afinidade entre usuários por meio da análise de \textit{retweets}, possibilitando que rotas de corridas sejam compartilhadas entre pessoas com interesses em comum, tornando a viagem mais agradável.
+Em uma abordagem mais genérica, \cite{Mukherjee2015} propuseram uma plataforma para processar (em \textit{near real time}) questões urgentes da cidade, oriundas de diversas fontes (incluindo o \textit{Twitter}), atuando como intermediadora entre cidadãos e agências civis. No que se refere a mobilidade urbana, mas não ao uso de informações sobre pontos de interesse, \cite{Yousaf2014} inferiram a afinidade entre usuários por meio da análise de \textit{retweets}, possibilitando que rotas de corridas sejam compartilhadas entre pessoas com interesses em comum, tornando a viagem mais agradável.
 
-De forma inusitada, \cite{Frias-Martinez2014} utilizaram apenas \textit{tweets} geolocalizados para analisar suas respectivas distribuições no espaço urbano, visando identificar a caracterização do uso da terra, considerando os zoneamentos urbanos industriais, residenciais, comerciais e de lazer. O trabalho foi realizado no contexto da cidade de Manhattan (EUA), Londres (Reino Unido) e Madrid (Espanha).
+Por fim, em \cite{Frias-Martinez2014}, os autores utilizaram apenas \textit{tweets} geolocalizados para analisar suas respectivas distribuições no espaço urbano, com o objetivo de identificar a caracterização do uso da terra em zoneamentos urbanos industriais, residenciais, comerciais e de lazer. O trabalho foi realizado no contexto da cidade de Manhattan (EUA), Londres (Reino Unido) e Madrid (Espanha).
 
 \subsection{Casos de uso relacionados ao transporte público (QP2)}
-Nesta seção, são identificados os estudos primários que utilizam processamento de \textit{tweets} tendo como foco a mitigação dos problemas relacionados ao transporte público; enumerados a seguir:
+Nesta seção, são identificados os estudos primários que utilizam processamento de \textit{tweets} com foco na mitigação dos problemas relacionados ao transporte público; enumerados a seguir:
 \begin{enumerate}
-\item \textbf{Impacto de eventos no transporte público}.
+\item \textbf{Impacto de eventos no transporte público}:
 \begin{enumerate}
-\item Impacto dos ataques terroristas em Paris no uso do transporte público \cite{Wen2016}.
-\item Impacto de eventos relacionados ao tráfego na demanda por bicicletas, em Nova Iorque e Washington D.C, EUA \cite{Chen2016}.
-\item Impacto dos pontos de interesse na demanda por transporte público \cite{Maghrebi2015}.
-\item Impacto dos eventos anormais nas tomadas de decisão dos passageiros do Metrô de Tokyo \cite{Itoh2016}.
-\item Predição de fluxo de passageiros no Metrô de Nova Iorque \cite{Ni2016}.
+\item impacto dos ataques terroristas em Paris no uso do transporte público \cite{Wen2016};
+\item impacto de eventos relacionados ao tráfego na demanda por bicicletas, em Nova Iorque e Washington D.C, EUA \cite{Chen2016};
+\item impacto dos pontos de interesse na demanda por transporte público \cite{Maghrebi2015};
+\item impacto dos eventos anormais nas tomadas de decisão dos passageiros do Metrô de Tokyo \cite{Itoh2016};
+\item predição de fluxo de passageiros no Metrô de Nova Iorque \cite{Ni2016}.
 \end{enumerate}
 
-\item \textbf{Planejamento e gestão do transporte público}.
+\item \textbf{Planejamento e gestão do transporte público}:
 \begin{enumerate}
-\item Análise de sentimento relacionada ao acesso ao transporte público \cite{Guo2016}.
-\item Coleta de informações relacionadas ao transporte público \cite{Gal-Tzur2014}.
-\item Identificação de locais para estações de bicicletas, em St. Petersburg, Rússia \cite{Gutev2016}.
-\item Identificação da disposição dos usuários para realizar viagens de lazer \cite{Gkiotsalitis2016}.
-\item Plataforma para notificação de problemas relacionados ao transporte público de Bangalore, Índia \cite{Mukherjee2015}.
+\item análise de sentimento relacionada ao acesso ao transporte público \cite{Guo2016};
+\item coleta de informações relacionadas ao transporte público \cite{Gal-Tzur2014};
+\item identificação de locais para estações de bicicletas, em St. Petersburg, Rússia \cite{Gutev2016};
+\item identificação da disposição dos usuários para realizar viagens de lazer \cite{Gkiotsalitis2016};
+\item plataforma para notificação de problemas relacionados ao transporte público de Bangalore, Índia \cite{Mukherjee2015}.
 \end{enumerate} 
 \end{enumerate}
 
 Conforme os estudos primários analisados pela Revisão Sistemática, e enumerados nessa seção, é possível interpretar que os estudos estão classificados em análise de impacto de eventos, planejamento e gestão do transporte público. Por exemplo, \cite{Wen2016} utilizaram \textit{tweets} para analisar o impacto dos ataques terroristas em Paris (2015) nos padrões de mobilidade referentes ao uso de transporte público. Semelhantemente, \citeauthor{Itoh2016} (\citeyear{Itoh2016}) desenvolveram uma ferramenta para analisar e explorar visualmente, com base em \textit{tweets}, as tomadas de decisão dos passageiros do Metrô de Tokyo, ante a eventos anormais, tais como Tufões, Incêndios, Terremotos, dentre outros. Nesse mesmo contexto, \cite{Ni2016} propuseram uma técnica de predição de fluxo de passageiros no Metrô de Nova Iorque, identificando eventos com base nas \textit{hashtags} dos \textit{tweets}. Enquanto que em \cite{Chen2016}, analisaram a relação entre eventos do tráfego com a demanda por bicicletas.
 
-No que se refere aos estudos focados no planejamento e gestão do transporte público, \cite{Mukherjee2015} apresentam uma plataforma desenvolvida e utilizada pela Agência de Transporte Público de Bangalore, na Índia, a qual permite que usuários reportem questões relacionadas ao transporte  público, possibilitando a melhoria do planejamento de suas respectivas operações, assim como o serviço prestado para a população. Nessa mesma linha de estudo, em \cite{Gutev2016}, \textit{tweets} são utilizados para identificar a popularidade de determinados locais, pontos de interesse e distribuição etária, com o objetivo de determinar os melhores pontos para estações de bicicletas e incentivar assim o uso desse modal de transporte. Também relacionado aos pontos de interesse, \cite{Maghrebi2015} utilizaram \textit{tweets} para identificar padrões das atividades humanas (em diferentes horários do dia) e seus respectivos impactos na demanda por transporte público.
+No que se refere aos estudos focados no planejamento e gestão do transporte público, \cite{Mukherjee2015} apresentam uma plataforma desenvolvida e utilizada pela Agência de Transporte Público de Bangalore, na Índia, a qual permite que usuários reportem questões relacionadas ao transporte  público, o que possibilita a melhoria do planejamento de suas respectivas operações, assim como do serviço prestado para a população. Nessa mesma linha de estudo, em \cite{Gutev2016}, os autores usaram \textit{tweets} para identificar a popularidade de determinados locais, pontos de interesse e distribuição etária, com o objetivo de determinar os melhores pontos para estações de bicicletas e incentivar assim o uso desse modal de transporte. Também relacionado aos pontos de interesse, \cite{Maghrebi2015} utilizaram \textit{tweets} para identificar padrões das atividades humanas (em diferentes horários do dia) e seus respectivos impactos na demanda por transporte público.
 
 Em \cite{Gal-Tzur2014}, por sua vez, utilizaram uma abordagem hierárquica para classificar \textit{tweets} relacionados ao transporte. Com isso, demonstraram que é possível usar essas informações para fins de planejamento e gerenciamento do transporte. Tal técnica, foi aplicada em um estudo de caso associado a eventos esportivos, ocorridos no Reino Unido. A hierarquia é composta por três níveis, no primeiro, os \textit{tweets} são classificados entre os que expressam a necessidade de serviços de transporte, opiniões e incidentes; o segundo, identifica a categoria do transporte; e último, relaciona \textit{tweets} a tópicos. 
 
@@ -1604,35 +1608,35 @@ Outro estudo que contribui com o planejamento do transporte público, é o reali
 Nesta seção, são apresentadas as técnicas estatísticas utilizadas pelos estudos primários, no processamento de \textit{tweets}, enumeradas a seguir:
 
 \begin{enumerate}
-\item \textbf{Análise de métricas relacionadas a desempenho} (erro de reconstrução relativo, qualidade dos componentes descritivos recuperados e qualidade dos componentes comuns recuperados) \cite{Wen2016}.
-\item \textit{\textbf{Cosine similarity}} \cite{Yousaf2014}, \cite{Frias-Martinez2014}.
-\item \textbf{\textit{\bm{${F_1}$} score}} \cite{Anantharam2015}, \cite{Chen2016}.
-\item \textit{\textbf{Term frequency–inverse document frequency}} (TF-IDF) \cite{Mukherjee2015}.
-\item \textit{\textbf{Inverse coefficient of variation}} \cite{Bendler2014}.
-\item \textit{\textbf{Jackknife resampling}} \cite{Bendler2014}.
-\item \nomenclature{LISA}{\textit{Local Indicators of Spatial Association}}{\textit{\textbf{Local Indicators of Spatial Association}} (LISA)} \cite{Steiger2015Census}.
-\item \textit{\textbf{Local Moran's}} \cite{Steiger2015Census}.
-\item \textit{\textbf{Maximum likelihood estimation}} \cite{Mukherjee2015}.
-\item \nomenclature{SARIMA}{\textit{Seasonal Autoregressive Integrated Moving Average}}{\textit{\textbf{Seasonal Autoregressive Integrated Moving Average}} (SARIMA)} \cite{Ni2016}.
-\item \textit{\textbf{Optimization and Prediction with hybrid loss function}} \cite{Ni2016}.
+\item \textbf{Análise de métricas relacionadas a desempenho} (erro de reconstrução relativo, qualidade dos componentes descritivos recuperados e qualidade dos componentes comuns recuperados) \cite{Wen2016};
+\item \textbf{semelhança de cosseno} (Cosine similarity) \cite{Yousaf2014, Frias-Martinez2014};
+\item \textbf{\textit{\bm{${f_1}$} score}} \cite{Anantharam2015, Chen2016};
+\item \textbf{frequência do termo–inverso da frequência nos documentos} (TF-IDF --- \textit{\textbf{Term frequency–inverse document frequency}} \cite{Mukherjee2015};
+\item \textbf{coeficiente de variação inversa} \cite{Bendler2014};
+\item \textbf{método de reamostragem Jackknife} \cite{Bendler2014};
+\item \nomenclature{LISA}{\textit{Local Indicators of Spatial Association}}{\textbf{indicadores locais de associação espacial} (\textbf{LISA} --- \textit{\textbf{Local Indicators of Spatial Association}}))} \cite{Steiger2015Census};
+\item \textit{\textbf{local Moran's}} \cite{Steiger2015Census};
+\item \textbf{máxima verossimilhança} \cite{Mukherjee2015};
+\item \nomenclature{SARIMA}{\textit{Seasonal Autoregressive Integrated Moving Average}} \textbf{média móvel integrada autoregressiva sazonal} (\textbf{SARIMA} --- {\textit{\textbf{Seasonal Autoregressive Integrated Moving Average}})} \cite{Ni2016};
+\item \textbf{otimização e previsão com função de perda híbrida} \cite{Ni2016}.
 \end{enumerate}
  
-Em \cite{Ni2016}, os autores utilizaram a técnica \textit{Seasonal Autoregressive Integrated Moving Average} em conjunto com Regressão Linear, propondo uma abordagem baseada em otimização paramétrica e convexa, chamada \textit{Optimization and Prediction with hybrid loss function}, adequada para modelagem utilizando séries temporais. Com isso, tal técnica foi aplicada na predição de fluxo de passageiros com base em \textit{hashtags} de \textit{tweets}.  
+Em \cite{Ni2016}, os autores utilizaram a técnica SARIMA em conjunto com Regressão Linear, propondo uma abordagem baseada em otimização paramétrica e convexa, chamada \textit{otimização e previsão com função de perda híbrida}, adequada para modelagem utilizando séries temporais. Com isso, tal técnica foi aplicada na predição de fluxo de passageiros com base em \textit{hashtags} de \textit{tweets}.  
 
-Referente aos problemas relacionados a ambiguidade e identificação de contextos, \cite{Anantharam2015}; \cite{Chen2016} e \cite{Gal-Tzur2014} aplicaram a técnica \textit{${F_1}$ score} para analisar a acurácia do processamento de \textit{tweets}. Por outro lado, em \cite{Mukherjee2015}, utilizaram a técnica \textit{Maximum likelihood estimation} para determinar a probabilidade de ocorrência de um evento, assim como a confiabilidade da informação.
+Referente aos problemas relacionados a ambiguidade e identificação de contextos, \cite{Anantharam2015}; \cite{Chen2016, Gal-Tzur2014} aplicaram a técnica \textit{${F_1}$ score} validar o processo de classificação de \textit{tweets}. Por outro lado, \cite{Mukherjee2015} utilizaram a técnica de \textit{máxima verossimilhança} para determinar a probabilidade de ocorrência de um evento, assim como a confiabilidade da informação.
 
-No que se refere a agrupamento, \cite{Yousaf2014} agruparam usuários de acordo com a \textit{Cosine similarity}, unindo pessoas com interesses em comum nos mesmos grupos. \cite{Frias-Martinez2014}, por outro lado, usou a mesma técnica para agrupar \textit{tweets} de acordo com suas semelhanças quanto aos tipos de zoneamento urbano.
+No que se refere a agrupamento, \cite{Yousaf2014} agruparam usuários por meio de \textit{semelhança de cossenos}, unindo pessoas com interesses em comum nos mesmos grupos. \cite{Frias-Martinez2014}, por outro lado, usou a mesma técnica para agrupar \textit{tweets} de acordo com suas semelhanças quanto aos tipos de zoneamento urbano.
 
-De forma isolada, no trabalho realizado por \cite{Mukherjee2015}, utilizaram a técnica TF-IDF na fase de classificação para o definir o \textit{score} de categorias de eventos, escolhendo a mais relevante a ser buscada em um dicionário de categorias. Também isoladamente, \cite{Steiger2015Census} usaram a técnica LISA na identificação de \textit{clusters} espaciais e valores esporádicos espaciais, obtendo assim os locais com atividades sociais. Além disso, também utilizaram a técnica \textit{Local Moran's} para detectar diferentes padrões de atividade de acordo com o espaço geográfico.
+De forma isolada, no trabalho realizado por \cite{Mukherjee2015}, utilizaram a técnica TF-IDF na fase de classificação para o definir o \textit{score} de categorias de eventos, escolhendo a mais relevante a ser buscada em um dicionário de categorias. Também isoladamente, \cite{Steiger2015Census} usaram a técnica LISA na identificação de \textit{clusters} espaciais e valores esporádicos espaciais, obtendo assim os locais com atividades sociais. Além disso, os autores também utilizaram a técnica \textit{Local Moran's} para detectar diferentes padrões de atividade de acordo com o espaço geográfico.
 
-Por último, \cite{Bendler2014} inovaram ao utilizar a técnica \textit{Jackknife resampling} como inspiração para o desenvolvimento de uma abordagem que visa analisar a estabilidade estatística de um conjunto de categorias. Além disso, usaram também a análise \textit{Inverse Coefficient of variation} para verificar a dispersão negativa da distribuição de um conjunto de variáveis. 
+Por último, \cite{Bendler2014} inovaram ao utilizar o \textit{método de reamostragem Jackknife} como inspiração para o desenvolvimento de uma abordagem que visa analisar a estabilidade estatística de um conjunto de categorias. Além disso, usaram também a análise do \textit{coeficiente de variação inversa} para verificar a dispersão negativa da distribuição de um conjunto de variáveis. 
 
 \subsection{Paradigmas de processamento (QP4)}
 Nesta seção, encontram-se a seguir apenas os paradigmas de processamento extraídos dos estudos primários analisados: 
 \begin{enumerate}
-\item \textit{\textbf{Batch processing}} (offline) \cite{Anantharam2015}, \cite{Wen2016}, \cite{Farseev2015}, \cite{Gutev2016}, \cite{Mata2015}, \cite{Chen2016}, \cite{Abbasi2015}, \cite{Bendler2014}, \cite{Bendler2014}, \cite{Yousaf2014}, \cite{Frias-Martinez2014}, \cite{Steiger2015Census}, \cite{Gal-Tzur2014}, \cite{Gkiotsalitis2016}, \cite{DiLorenzo2013}, \cite{Itoh2016}, \cite{Chaniotakis2015}.
-\item \textit{\textbf{Near Real Time}} \cite{Mukherjee2015}.
-\item \textit{\textbf{Real Time}} \cite{Soomro2016}, \cite{Lecue2014}.
+\item \textbf{Processamento em lote} (\textit{\textbf{batch, offline processing}}) \cite{Anantharam2015, Wen2016, Farseev2015, Gutev2016, Mata2015, Chen2016, Abbasi2015, Bendler2014, Yousaf2014, Frias-Martinez2014, Steiger2015Census, Gal-Tzur2014, Gkiotsalitis2016, DiLorenzo2013, Itoh2016, Chaniotakis2015};
+\item \textbf{processamento em quase tempo real} (\textit{\textbf{Near real time}}) \cite{Mukherjee2015};
+\item \textbf{processamento em tempo real} (\textit{\textbf{Real time processing}}) \cite{Soomro2016, Lecue2014}.
 \end{enumerate}
 
 \subsection{Eventos de exceção relacionados ao transporte público (QP5)}
@@ -1641,77 +1645,77 @@ Nesta seção, encontram-se a seguir apenas os paradigmas de processamento extra
 Nesta seção, encontram-se a seguir os eventos de exceção relacionados ao transporte público, extraídos dos estudos primários:
 
 \begin{enumerate}
-\item \textbf{Acidentes}.
+\item \textbf{Acidentes} \cite{Itoh2016}:
 \begin{enumerate}
-\item Acidentes nas estações transporte \cite{Itoh2016}.
-\item Incêndio \cite{Itoh2016}.
+\item acidentes nas estações transporte;
+\item incêndio.
 \end{enumerate}
 
-\item \textbf{Espaço-temporais}.
+\item \textbf{Espaço-temporais}  \cite{Chen2016}:
 \begin{enumerate}
-\item Dia da semana \cite{Chen2016}.
-\item Hora do dia \cite{Chen2016}.
+\item dia da semana;
+\item hora do dia.
 \end{enumerate}
 
-\item \textbf{Eventos sociais}.
+\item \textbf{Eventos sociais} \cite{Chen2016, Lecue2014, Gal-Tzur2014, Itoh2016}:
 \begin{enumerate}
-\item Feiras de rua \cite{Chen2016}.
-\item Festivais \cite{Chen2016}, \cite{Lecue2014}.
-\item Jogos esportivos \cite{Chen2016}, \cite{Gal-Tzur2014}.
-\item Passeatas e maratonas \cite{Chen2016}, \cite{Itoh2016}.
+\item feiras de rua;
+\item festivais;
+\item jogos esportivos;
+\item passeatas e maratonas.
 \end{enumerate}
 
-\item \textbf{Eventos urbanos}.
+\item \textbf{Eventos urbanos} \cite{Chen2016, Lecue2014}:
 \begin{enumerate}
-\item Relacionados ao tráfego \cite{Chen2016}, \cite{Lecue2014}.
+\item relacionados ao tráfego.
 \end{enumerate}
 
-\item \textbf{Desastres naturais}.
+\item \textbf{Desastres naturais} \cite{Itoh2016}:
 \begin{enumerate}
-\item Tempestades \cite{Itoh2016}.
-\item Terremoto \cite{Itoh2016}.
-\item Tufões \cite{Itoh2016}.
+\item tempestades;
+\item terremoto;
+\item tufões.
 \end{enumerate}
 
-\item \textbf{Metereológicos}.
+\item \textbf{Metereológicos} \cite{Chen2016}:
 \begin{enumerate}
-\item Dia claro, nublado, chuvoso, nevando, com neblina \cite{Chen2016}.
-\item Temperatura do ar \cite{Chen2016}.
+\item dia claro, nublado, chuvoso, nevando, com neblina;
+\item temperatura do ar.
 \end{enumerate}
 
 \end{enumerate}
 
 \subsection{Técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets} (QP6)}
 \label{iaClassification}
-Nesta seção, são apresentadas as técnicas de Aprendizado de Máquina utilizadas para processamento de \textit{tweets}, extraídas dos estudos primários e enumeradas a seguir:
+Nesta seção, são apresentadas as técnicas de aprendizado de máquina utilizadas para processamento de \textit{tweets}, extraídas dos estudos primários e enumeradas a seguir:
 
 \begin{enumerate}
-\item \textit{\textbf{Bayes classification}} \cite{Mata2015}.
-\item \textit{\textbf{C5.0 algorithm}} \cite{Zagal2016}.
-\item \nomenclature{CRF}{\textit{Conditional Random Field}}{\textit{\textbf{Conditional Random Field (CRF) with Logistic Regression}}} \cite{Anantharam2015}.
+\item \textbf{Classificação \textit{bayesiana}} \cite{Mata2015};
+\item \textit{\textbf{algoritmo C5.0}} \cite{Zagal2016};
+\item \nomenclature{CRF}{\textit{Conditional Random Field}}{\textbf{campo aleatório condicional com Regressão Logística} (\textit{\textbf{Conditional Random Field (CRF) with Logistic Regression}})} \cite{Anantharam2015};
 %\item \textit{\textbf{Event extraction based on tweet hashtags}} \cite{Ni2016}.
-\item \nomenclature{LDA}{\textit{Latent Dirichlet Allocation}}{\textbf{\textit{Latent Dirichlet Allocation} (LDA)}} \cite{Farseev2015}, \cite{Abbasi2015}, \cite{Hasan2014}, \cite{DiLorenzo2013}, \cite{Ni2016} .
-\item \textit{\textbf{Linear Regression}} \cite{Gutev2016}, \cite{Bendler2014}, \cite{Ni2016}, \cite{Guo2016}.
-\item \textit{\textbf{Monte Carlo simulation}} \cite{Chen2016}.
-\item \textbf{\textit{PairFac}} (técnica inovadora que utiliza \textit{Tensor Factorization}) \cite{Wen2016}.
-\item \textit{\textbf{Random Forest classification}} \cite{Farseev2015}.
-\item \nomenclature{SVM}{\textit{Support Vector Machine}}{\textit{\textbf{Support Vector Machine}}} \cite{Mukherjee2015}, \cite{Gal-Tzur2014}.
-\item \textit{\textbf{Self-Organizing Maps}} \cite{Frias-Martinez2014}.
+\item \nomenclature{LDA}{\textit{Latent Dirichlet Allocation}} \textbf{alocação latente de Dirichlet}  {(\textbf{LDA} --- \textbf{\textit{Latent Dirichlet Allocation}}} \cite{Farseev2015, Abbasi2015, Hasan2014, DiLorenzo2013, Ni2016};
+\item \textbf{Regressão Linear} \cite{Gutev2016, Bendler2014, Ni2016, Guo2016};
+\item \textbf{simulação de Monte Carlo} \cite{Chen2016};
+\item \textbf{\textit{PairFac}} (técnica inovadora que utiliza fatorização tensorial (\textit{tensor factorization})) \cite{Wen2016};
+\item \textbf{Floresta Aleatória} \cite{Farseev2015};
+\item \nomenclature{SVM}{\textit{Support Vector Machine}} {\textbf{Máquina de Vetores de Suporte} (\textbf{SVM} --- \textit{\textbf{Support Vector Machine}}} \cite{Mukherjee2015}, \cite{Gal-Tzur2014};
+\item \textbf{mapas auto-organizados} (\textit{\textbf{Self-Organizing Maps}}) \cite{Frias-Martinez2014}.
 \end{enumerate}
 
-No contexto urbano, inúmeros eventos podem acontecer e impactar a população. O trabalho realizado por \cite{Wen2016}, desenvolveu uma técnica que utiliza a análise de tensores discriminantes para aprender e de forma automatizada descobrir os impactos de um determinado evento no cotidiano da cidade. Numa abordagem mais simples, \cite{Chen2016} utilizou \textit{Monte Carlo simulation} para treinar um modelo para predição de demanda por bicicletas, devido a dificuldade de encontrar exemplos suficientes para usar outras abordagens de treinamento. 
+No contexto urbano, inúmeros eventos podem acontecer e impactar a população. O trabalho realizado por \cite{Wen2016}, desenvolveu uma técnica que utiliza a análise de tensores discriminantes para aprender e de forma automatizada descobrir os impactos de um determinado evento no cotidiano da cidade. Numa abordagem mais simples, \cite{Chen2016} utilizou a técnica de \textit{simulação de Monte Carlo} para treinar um modelo para predição de demanda por bicicletas, devido a dificuldade de encontrar exemplos suficientes para usar outras abordagens de treinamento. 
 
-Especificamente sobre as técnicas de classificação, \cite{Mukherjee2015} utilizaram \textit{Support Vector Machine} para classificar os eventos recebidos de diversas fontes. Referente a essa abordagem, \cite{Gal-Tzur2014} analisaram inúmeras técnicas de Aprendizado de Máquina, obtendo a melhor performance com o SVM, além disso, observaram como principal vantagem a sua capacidade de adaptação ao gênero e tarefas subjacentes. 
+Especificamente sobre as técnicas de classificação, \cite{Mukherjee2015} utilizaram SVM para classificar os eventos recebidos de diversas fontes. Referente a essa abordagem, \cite{Gal-Tzur2014} analisaram inúmeras técnicas de aprendizado de máquina, obtendo a melhor performance com o SVM, além disso, observaram como principal vantagem a sua capacidade de adaptação ao gênero e tarefas subjacentes. 
 
-Apesar disso, \cite{Guo2016} utilizaram Processamento de Linguagem Natural (baseado em palavras chaves) para rotular sentimentos de \textit{tweets}, devido a facilidade de escalar essa técnica (para processamento de milhões de \textit{tweets}), em comparação a SVM. Outro caso de divergência é o do estudo realizado por \cite{Farseev2015}, no qual foi escolhido o modelo de classificação \textit{Random Forest}, devido ao fato de ser mais adequado para classificação em espaço dimensional elevado, em vez das técnicas SVM e \textit{Naive Bayes}, no que se refere a predição de idade e gênero usando \textit{tweets}.
+Apesar disso, \cite{Guo2016} utilizaram Processamento de Linguagem Natural (baseado em palavras chaves) para rotular sentimentos de \textit{tweets}, devido a facilidade de escalar essa técnica (para processamento de milhões de \textit{tweets}), em comparação a SVM. Outro caso de divergência é o do estudo realizado por \cite{Farseev2015}, no qual foi escolhido o algoritmo de \textit{Floresta Aleatória} para treinamento do modelo de classificação, devido ao fato de ser mais adequado para classificação em espaço dimensional elevado, em vez das técnicas SVM e \textit{Naive Bayes}, no que se refere a predição de idade e gênero usando \textit{tweets}.
 
-\citeauthor{Mata2015} (\citeyear{Mata2015}), por sua vez, aplicou a técnica \textit{Bayes Classification} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{C5.0 algorithm} devido ao melhor desempenho em relação a \textit{Bayes}, dependendo do tópico que está sendo classificado. 
+\citeauthor{Mata2015} (\citeyear{Mata2015}), por sua vez, aplicou a técnica de classificação \textit{bayesiana} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{algoritmo C5.0} devido ao melhor desempenho em relação a \textit{Bayes}, dependendo do tópico que está sendo classificado. 
 
 Para anotação de eventos, \cite{Anantharam2015} treinaram um modelo CRF (usando anotações baseadas em dicionários) para determinar os locais da cidade e os termos relacionados aos eventos expressos em \textit{tweets}. E, isoladamente \cite{Frias-Martinez2014} utilizaram a técnica \textit{Self-Organizing Maps}, tendo como entrada os valores de latitude e longitude de \textit{tweets}. Com isso, construíram um mapa segmentado em áreas urbanas, baseando-se nas regiões com diferentes concentrações de \textit{tweets}.
 
-Em relação a localidades, segundo \cite{Farseev2015}, a técnica LDA tem sido muito utilizada para identificação de pontos de interesses mencionados em \textit{tweets}, sendo adequada para grandes bases de dados e agrupamento de \textit{tweets} com tópicos similares, de acordo com \cite{Steiger2015Census}. \cite{Abbasi2015} exemplificou isso ao aplicar LDA para identificação de \textit{tweets} relacionados ao Turismo; \cite{Hasan2014}, para identificação de padrões de atividades humanas; e \cite{DiLorenzo2013}, para identificação de eventos sociais.
+Em relação a localidades, segundo \cite{Farseev2015}, a técnica LDA tem sido muito utilizada para identificação de pontos de interesses mencionados em \textit{tweets}, sendo adequada para grandes bases de dados e agrupamento de \textit{tweets} com tópicos similares, de acordo com \cite{Steiger2015Census}. \cite{Abbasi2015} exemplificou isso ao aplicar LDA para identificação de \textit{tweets} relacionados ao turismo; \cite{Hasan2014}, para identificação de padrões de atividades humanas; e \cite{DiLorenzo2013}, para identificação de eventos sociais.
 
-No entanto, \cite{Ni2016} em vez de usarem LDA, extraíram \textit{hashtags} de \textit{tweets} para um vetor, utilizando-o para medir as atividades sociais e identificar seus respectivos contextos. Segundo \cite{Ni2016}, isso se justifica devido ao fato de que há uma grande chance do alto volume de \textit{tweets} não indicar necessariamente eventos e atendimentos a eles. Além disso, afirmam que o método baseado em \textit{hashtag} é capaz de indicar sobre o que é o evento, mesmo não utilizando o Inglês formal.
+No entanto, \cite{Ni2016} em vez de usarem LDA, extraíram \textit{hashtags} de \textit{tweets} para um vetor, utilizando-o para medir as atividades sociais e identificar seus respectivos contextos. Segundo \cite{Ni2016}, isso se justifica devido ao fato de que há uma grande chance do alto volume de \textit{tweets} não indicar necessariamente eventos e atendimentos a eles. Além disso, afirmam que o método baseado em \textit{hashtag} é capaz de indicar sobre o que é o evento, mesmo não utilizando o inglês formal.
 
 Por sua vez, em \cite{Gutev2016}, os autores utilizaram \nomenclature{RL}{Regressão Linear}{Regressão Linear (RL)} para analisar a demanda por bicicletas de acordo com as localizações extraídas dos \textit{tweets}. Enquanto que \cite{Bendler2014} usaram RL para fornecer evidências de que as categorias dos pontos de interesse se relacionam com as variáveis referentes ao espectro espaço-temporal; e \cite{Guo2016} para analisar a correlação entre sentimentos positivos com as oportunidades de trabalho, com a quantidade de crianças, e com o acesso a transporte. 
 
@@ -1719,11 +1723,11 @@ Por sua vez, em \cite{Gutev2016}, os autores utilizaram \nomenclature{RL}{Regres
 \label{conclusao}
 Em uma análise quantitativa dos estudos primários selecionados, podemos concluir que a quantidade de artigos publicados sobre o uso de \textit{tweets} na caracterização de problemas urbanos e relacionados ao transporte público tem crescido consideravelmente, entre 2011 e 2016. Provavelmente, devido ao fato da popularização das Redes Sociais e grande quantidade de dados disponíveis para processamento.
 
-Tais estudos estão concentrados em maioria na identificação de pontos de interesse, utilizando-os em diferentes contextos, tais como o de turismo,mobilidade. Além disso, abordam também problemas relacionados ao transporte e desastres naturais, confirmando a primeira hipótese (HP1) dessa Revisão Sistemática. As temáticas não abordadas pela HP1 foram as relacionadas a \textit{e-Participation}, detecção de zoneamento urbano, padrões demográficos e segurança pública, demonstrando a variedade de problemas urbanos explorados com o processamento de \textit{tweets}.
+Tais estudos estão concentrados em maioria na identificação de pontos de interesse, utilizando-os em diferentes contextos, tais como o de turismo, mobilidade. Além disso, abordam também problemas relacionados ao transporte e desastres naturais, confirmando a primeira hipótese (HP1) dessa Revisão Sistemática. As temáticas não abordadas pela HP1 foram as relacionadas a \textit{e-Participation}, detecção de zoneamento urbano, padrões demográficos e segurança pública, demonstrando a variedade de problemas urbanos explorados com o processamento de \textit{tweets}.
 
-Referente a segunda hipótese, os estudos exploraram principalmente o impacto de eventos no transporte público, confirmando-a parcialmente. Isso, devido ao fato de um dos trabalhos explorar como os eventos relacionados ao tráfego impactam na demanda por bicicletas; não havendo nenhum outro sobre processamento de \textit{tweets} para mitigação dos problemas envolvendo Tráfego. Outra temática não mencionada pela HP2 e sobre a qual há uma quantidade considerável de estudos, foi a do uso de \textit{tweets} para o planejamento e gerenciamento do transporte público.
+Referente a segunda hipótese, os estudos exploraram principalmente o impacto de eventos no transporte público, confirmando-a parcialmente. Isso, devido ao fato de um dos trabalhos explorar como os eventos relacionados ao tráfego impactam na demanda por bicicletas; não havendo nenhum outro sobre processamento de \textit{tweets} para mitigação dos problemas envolvendo tráfego. Outra temática não mencionada pela HP2 e sobre a qual há uma quantidade considerável de estudos, foi a do uso de \textit{tweets} para o planejamento e gerenciamento do transporte público.
 
-Independentemente dos problemas abordados por meio do processamento de \textit{tweets}, dentre as 12 técnicas estatísticas elencadas, \textit{${F_1}$ score} foi a única referenciada como ferramenta para análise de acurácia de classificação binária, confirmando a terceira hipótese (HP3). Apesar disso, a HP3 não considerou outras técnicas importantes (com propósitos distintos), como a \textit{Linear Regression}, amplamente utilizada nos estudos analisados. Referente as técnicas de Aprendizado de Máquina, a mais utilizada foi a \textit{Latent Dirichlet Allocation} (LDA), seguida da \textit{Support Vector Machine} (SVM), confirmando parcialmente a sexta hipótese (HP6).
+Independentemente dos problemas abordados por meio do processamento de \textit{tweets}, dentre as 12 técnicas estatísticas elencadas, \textit{${f_1}$ score} foi a única referenciada como ferramenta para validação de classificação binária, confirmando a terceira hipótese (HP3). Apesar disso, a HP3 não considerou outras técnicas importantes (com propósitos distintos), como a de Regressão Linear, amplamente utilizada nos estudos analisados. Referente as técnicas de aprendizado de máquina, a mais utilizada foi a \textit{Latent Dirichlet Allocation} (LDA), seguida da \textit{Support Vector Machine} (SVM), confirmando parcialmente a sexta hipótese (HP6).
 
 Por fim, apenas quatro dos vinte e nove estudos analisados, cerca de 14\%, mencionaram \textit{features} relacionadas ao transporte público, confirmando assim a quinta hipótese (HP5). Assim como a quantidade de trabalhos que realizam processamento de \textit{tweets} em tempo real, sendo apenas dois do total analisado, cerca de 6\%, que utilizam esse paradigma de processamento, o que confirma a quarta hipótese (HP4). É importante ainda observar que, outros estudos que mencionaram processamento em tempo real, realizaram na verdade coleta de \textit{tweets} em tempo real, para análises a posteriori via processamento em \textit{batch} (offline), categoria na qual a maioria dos estudos foram enquadrados.
 
