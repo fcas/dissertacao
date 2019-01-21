@@ -1731,15 +1731,56 @@ Independentemente dos problemas abordados por meio do processamento de \textit{t
 
 Por fim, apenas quatro dos vinte e nove estudos analisados, cerca de 14\%, mencionaram \textit{features} relacionadas ao transporte público, confirmando assim a quinta hipótese (HP5). Assim como a quantidade de trabalhos que realizam processamento de \textit{tweets} em tempo real, sendo apenas dois do total analisado, cerca de 6\%, que utilizam esse paradigma de processamento, o que confirma a quarta hipótese (HP4). É importante ainda observar que, outros estudos que mencionaram processamento em tempo real, realizaram na verdade coleta de \textit{tweets} em tempo real, para análises a posteriori via processamento em \textit{batch} (offline), categoria na qual a maioria dos estudos foram enquadrados.
 
-\chapter{Coleta e análise de dados abertos relacionados ao transporte público e eventos de exceção}
+\chapter{Dados abertos relacionados ao transporte público e eventos de exceção}
 \label{dataSet}
 
-Nesta seção, são apresentados os processos de coleta e análise de dados abertos relacionados ao transporte público e eventos de exceção, utilizados nos experimentos deste trabalho; além das conceituações sobre a GTFS (\textit{General Transit Feed Specification}) e Redes Sociais.
+Neste capítulo são apresentados o \textit{corpus} da SPTrans e do \textit{Twitter}, compostos por dados abertos relacionados ao transporte público e eventos de exceção, respectivamente. Os dados da SPTrans são divididos em dados AVL (enviados pelos módulos AVL instalados nos ônibus) e da GTFS (padrão utilizado para especificar os dados estáticos relacionados a operação dos ônibus da cidade de São Paulo). Os dados do \textit{Twitter}, por sua vez, são compostos dos \textit{tweets} coletados dos perfis governamentais responsáveis por reportar eventos de exceção da cidade de São Paulo.
 
-\section{\textit{General Transit Feed Specification}}
+\section{\textit{Corpus} SPTrans}
+\label{CorpusSPTrans}
+
+Os dados AVL e da GTFS da SPTrans não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de \nomenclature{ETL}{\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}}{ETL (\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}).} 
+
+\subsection{Dados da \textit{General Transit Feed Specification} da SPTrans}
 \label{gtfs}
 
-A GTFS (\textit{General Transit Feed Specification})\footnote{\label{googleTransit}\url{https://developers.google.com/transit}. Acessado em 29 de outubro de 2017.}, como o próprio nome sugere, é uma especificação de um formato comum (o que permite interoperabilidade) para troca de informações estáticas sobre transporte público.  Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto (que seguem determinados requisitos semelhantes aos do formato \nomenclature{CSV}{\textit{Comma-separated values}}{\textit{CSV}\footref{googleTransit})}  compactados no formato \textit{Zip}\footnote{\url{https://support.pkware.com/display/PKZIP/APPNOTE}. Acessado em 29 de outubro de 2017.}, e detalhados na Tabela~\ref{tab:gtfsFiles}. Cada arquivo modela diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário.
+A GTFS (\textit{General Transit Feed Specification})\footnote{\label{googleTransit}\url{https://developers.google.com/transit}. Acessado em 29 de outubro de 2017.}, como o próprio nome sugere, é uma especificação de um formato comum (o que permite interoperabilidade) para troca de informações estáticas sobre transporte público.  Um \textit{feed} especificado na GTFS estática é composto por arquivos de texto (que seguem determinados requisitos semelhantes aos do formato \nomenclature{CSV}{\textit{Comma-separated values}}{\textit{CSV}\footref{googleTransit})}  compactados no formato \textit{Zip}\footnote{\url{https://support.pkware.com/display/PKZIP/APPNOTE}. Acessado em 29 de outubro de 2017.}, e detalhados na Tabela~\ref{tab:gtfsFiles}. Cada arquivo modela diferentes perspectivas do transporte público, tais como paradas, trajetos, viagens e outros dados relativos a horário. As descrições dos arquivos da GTFS da SPTrans estão detalhadas na Tabela~\ref{tab:gtfs}.
+
+
+\begin{table}[!htb]
+\centering
+\caption{Arquivos e número de registros especificados na GTFS pela SPTrans}
+	\label{tab:gtfs}
+\begin{tabular}{c|c}
+\toprule
+\textbf{Nome do arquivo} & \textbf{Número de registros} \\ 
+\midrule
+\textit{agency.txt} & 1 \\ 
+\hline
+\textit{calendar.txt} & 6 \\ 
+\hline
+\textit{fare\_attributes.txt} & 6 \\ 
+\hline
+\textit{fare\_rules.txt} & 5.400 \\
+\hline
+\textit{frequencies.txt} & 39.625 \\
+\hline
+\textit{routes.txt} & 291.634 \\
+\hline
+\textit{shapes.txt} & 800.767 \\
+\hline
+\textit{stop\_times.txt} & 95.134 \\  
+\hline
+\textit{stops.txt} & 19.933 \\ 
+\hline
+\textit{trips.txt} & 2.273 \\
+\midrule
+\midrule
+Total & 1.254.779 \\
+\bottomrule
+\end{tabular}
+\source{Elaborado pelo autor}
+\end{table}
 
 \begin{table}[!htb]
   \centering
@@ -1778,151 +1819,47 @@ fare\_attributes.txt & Opcional & Contém informações sobre tarifas dos trajet
 \bottomrule
   \end{tabular}
   \begin{tablenotes}
-            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice~\ref{apendiceC}, nas tabelas~\ref{tab:gtfsAgency},~\ref{tab:gtfsFeedInfo}.
+            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice~\ref{apendiceC}, nas tabelas ~\ref{tab:gtfsAgency} à~\ref{tab:gtfsFeedInfo}.
         \end{tablenotes}
 \end{threeparttable}
 \center{\textbf{Fonte:}} Google Transit (adaptada)\footref{googleTransit}
 \end{table}
 
-Além da GTFS estática existe a GTFS-\textit{realtime}\footref{googleTransit}, que é uma extensão da GTFS estática, assim, para usar \textit{feeds} em tempo real é necessário definir os arquivos estáticos da GTFS, que são utilizados na GTFS-\textit{realtime} para obter as informações do sistema de transporte público. A GTFS-\textit{realtime} é utilizada para transmissões em tempo real de três tipos de \textit{feeds}\footref{googleTransit}, enumerados e detalhados a seguir:
+Além da GTFS estática existe a GTFS-\textit{realtime}\footref{googleTransit}, que é uma extensão da GTFS estática, assim, para usar \textit{feeds} em tempo real é necessário definir os arquivos estáticos da GTFS, que são utilizados na GTFS-\textit{realtime} para obter as informações do sistema de transporte público. A GTFS-\textit{realtime} está fora do escopo desse trabalho.
 
-\begin{enumerate}
-\item Atualizações dos horários de parada.
-\begin{enumerate}
-\item Descritor de viagem: viagem programada (de acordo ou próxima a uma programação GTFS), adicionada (não programada e adicionada, por exemplo, para atender à demanda ou substituir um veículo quebrado), desprogramada (que está sendo feita e não está associada a uma programação, por exemplo, quando não há uma programação, e os ônibus rodam em um serviço de translado), cancelada (viagem programada, mas removida), substituição (substitui uma parte da programação estática).
-\item Indefinição: especifica o erro esperado no atraso real como um número inteiro, em segundos.
-\end{enumerate}
-\item Alertas de serviço.
-\begin{enumerate}
-\item Intervalo de tempo: o alerta será exibido eventualmente, no intervalo de tempo especificado.
-\item Seletor de entidade: agência (afeta toda a rede de transporte público), trajeto (afeta todo o trajeto), tipo de trajeto (afeta qualquer trajeto desse tipo, por exemplo, todos os ônibus), viagem (afeta uma viagem específica) e  parada (afeta uma parada específica).
-\item Causa: desconhecida, outra causa (não representada por nenhuma destas opções), problema técnico, greve, manifestação, acidente, feriado, tempo, manutenção, construção, atividade policial, emergência médica.
-\item Efeito: sem serviço, serviço reduzido, atrasos significativos (atrasos não significativos só devem ser fornecidos por Atualizações de viagem), desvio, serviço adicional, serviço modificado, parada deslocada, outro efeito (não representado por qualquer uma dessas opções), efeito desconhecido.
-\end{enumerate}
-\item Posições de veículos.
-\begin{enumerate}
-\item Posição: a posição contém os dados de localização na posição do veículo, com os campos obrigatórios latitude e longitude, e com os campos opcionais rumo (direção que o veículo está seguindo), odômetro (distância que o veículo percorreu) e velocidade (velocidade no momento medida pelo veículo, em metros por segundo).
-\item Nível de congestionamento: congestionamento desconhecido, fluxo estável, paradas frequentes, congestionamento e congestionamento grave.
-\item Status de parada do veículo: chegando em (o veículo está prestes a chegar na parada em questão), parado em (o veículo está parado na parada em questão), em direção a (a parada em questão é a próxima parada do veículo --- padrão). 
-\item Descritor do veículo: id único (sistema de identificação interna do veículo), etiqueta de identificação (visível ao usuário) e placa real do veículo.
-\end{enumerate}
-\end{enumerate}
+%\begin{enumerate}
+%\item Atualizações dos horários de parada.
+%\begin{enumerate}
+%\item Descritor de viagem: viagem programada (de acordo ou próxima a uma programação GTFS), adicionada (não programada e adicionada, por exemplo, para atender à demanda ou substituir um veículo quebrado), desprogramada (que está sendo feita e não está associada a uma programação, por exemplo, quando não há uma programação, e os ônibus rodam em um serviço de translado), cancelada (viagem programada, mas removida), substituição (substitui uma parte da programação estática).
+%\item Indefinição: especifica o erro esperado no atraso real como um número inteiro, em segundos.
+%\end{enumerate}
+%\item Alertas de serviço.
+%\begin{enumerate}
+%\item Intervalo de tempo: o alerta será exibido eventualmente, no intervalo de tempo especificado.
+%\item Seletor de entidade: agência (afeta toda a rede de transporte público), trajeto (afeta todo o trajeto), tipo de trajeto (afeta qualquer trajeto desse tipo, por exemplo, todos os ônibus), viagem (afeta uma viagem específica) e  parada (afeta uma parada específica).
+%\item Causa: desconhecida, outra causa (não representada por nenhuma destas opções), problema técnico, greve, manifestação, acidente, feriado, tempo, manutenção, construção, atividade policial, emergência médica.
+%\item Efeito: sem serviço, serviço reduzido, atrasos significativos (atrasos não significativos só devem ser fornecidos por Atualizações de viagem), desvio, serviço adicional, serviço modificado, parada deslocada, outro efeito (não representado por qualquer uma dessas opções), efeito desconhecido.
+%\end{enumerate}
+%\item Posições de veículos.
+%\begin{enumerate}
+%\item Posição: a posição contém os dados de localização na posição do veículo, com os campos obrigatórios latitude e longitude, e com os campos opcionais rumo (direção que o veículo está seguindo), odômetro (distância que o veículo percorreu) e velocidade (velocidade no momento medida pelo veículo, em metros por segundo).
+%\item Nível de congestionamento: congestionamento desconhecido, fluxo estável, paradas frequentes, congestionamento e congestionamento grave.
+%\item Status de parada do veículo: chegando em (o veículo está prestes a chegar na parada em questão), parado em (o veículo está parado na parada em questão), em direção a (a parada em questão é a próxima parada do veículo --- padrão). 
+%\item Descritor do veículo: id único (sistema de identificação interna do veículo), etiqueta de identificação (visível ao usuário) e placa real do veículo.
+%\end{enumerate}
+%\end{enumerate}
 
-No demais, os \textit{feeds} da GTFS-\textit{realtime} são atualizados frequentemente, serializados em \textit{Protocol Buffers}\footnote{\url{https://developers.google.com/protocol-buffers}. Acessado em 29 de outubro de 2017.} e transmitidos via protocolo \nomenclature{HTTP}{\textit{Hypertext Transfer Protocol}}{HTTP\footnote{\url{https://tools.ietf.org/html/rfc2616}. Acessado em 29 de outubro de 2017.}.} A estrutura dos dados é definida em um arquivo \textit{gtfs-realtime.proto}\footref{googleTransit}, usado para gerar o modelo de dados dos \textit{feeds} em diferentes linguagens de programação, tais como \textit{Java}, \textit{C++} ou \textit{Python}.
+%No demais, os \textit{feeds} da GTFS-\textit{realtime} são atualizados frequentemente, serializados em \textit{Protocol Buffers}\footnote{\url{https://developers.google.com/protocol-buffers}. Acessado em 29 de outubro de 2017.} e transmitidos via protocolo \nomenclature{HTTP}{\textit{Hypertext Transfer Protocol}}{HTTP\footnote{\url{https://tools.ietf.org/html/rfc2616}. Acessado em 29 de outubro de 2017.}.} A estrutura dos dados é definida em um arquivo \textit{gtfs-realtime.proto}\footref{googleTransit}, usado para gerar o modelo de dados dos \textit{feeds} em diferentes linguagens de programação, tais como \textit{Java}, \textit{C++} ou \textit{Python}.
 
+\clearpage
 
-\section{\textit{Corpus} SPTrans}
-\label{CorpusSPTrans}
+\subsubsection{Transformações nos dados da GTFS da SPTrans}
 
-O corpus SPTrans é composto por dados obtidos do SIM, transferidos via AVL, e por dados fornecidos pela SPTrans no padrão da GTFS, detalhados na Tabela~\ref{tab:gtfs}. Os dados de ambas as fontes não são triviais de serem processados (grande volume de dados, dados sem tipo explicitamente definido --- não tratados, dados separados em lotes de dados --- um arquivo para cada hora de movimentação dos ônibus, dados fora do formato convencional --- por exemplo, 24h em vez de 0h), devido a isso foram desenvolvidos \textit{scripts} para um processo de \nomenclature{ETL}{\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}}{ETL (\textit{Extract}, \textit{Tranform} \textit{and} \textit{Load}).} 
+Conceituações à parte, realizamos alguns processos de transformação nos dados da GTFS estática, antes de inserí-los no \textit{MongoDB}, para viabilizarmos a correlação com os dados AVL.  Dessa forma, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para o formato \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acessado em 29 de outubro de 2017.}. Além disso,  para fosse possível realizarmos consultas geoespaciais, foram criados \textit{índices geoespaciais}\footref{geoMongo} nas coleções que contém dados geolocalizados. Dessa forma, conseguimos usar consultas geoespaciais para identificarmos as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
 
-No caso dos dados no padrão da GTFS, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para  \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acessado em 29 de outubro de 2017.}. Além disso, visando viabilizar \textit{geospatial queries}, foram criados \textit{geospatial indexes}\footref{geoMongo} nas \textit{collections} contendo informações geolocalizadas, logo após serem criadas no \textit{MongoDB}. Dessa forma, conseguimos usar \textit{geospatial queries} para identificar as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
+\subsection{Dados AVL da SPTrans}
 
-\begin{table}[!htb]
-\centering
-\caption{Conjuntos e quantidades de dados especificados em GTFS pela SPTrans}
-	\label{tab:gtfs}
-\begin{tabular}{c|c}
-\toprule
-\textbf{Conjunto de dados} & \textbf {Quantidade de dados} \\ 
-\midrule
-\textit{agency.txt} & 1 \\ 
-\hline
-\textit{calendar.txt} & 6 \\ 
-\hline
-\textit{fare\_attributes.txt} & 6 \\ 
-\hline
-\textit{fare\_rules.txt} & 5.400 \\
-\hline
-\textit{frequencies.txt} & 39.625 \\
-\hline
-\textit{routes.txt} & 291.634 \\
-\hline
-\textit{shapes.txt} & 800.767 \\
-\hline
-\textit{stop\_times.txt} & 95.134 \\  
-\hline
-\textit{stops.txt} & 19.933 \\ 
-\hline
-\textit{trips.txt} & 2.273 \\
-\midrule
-\midrule
-Total & 1.254.779 \\
-\bottomrule
-\end{tabular}
-\source{Elaborado pelo autor}
-\end{table}
-
-Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (solicitados por meio da \textit{Lei de Acesso a Informação}\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). De acordo com a Tabela~\ref{tab:avlDataset}, alguns dos dos dados de movimentação referentes a novembro e dezembro estão ausentes, segundo a \textit{SPTrans}, essa ausência é justificada devido a períodos de indisponibilidade do sistema de monitoramento.
-
-Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho, para análises descritivas de grandes volumes de dados AVL, tais como: total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos; tais meta dados estão especificados na Tabela~\ref{tab:avlDataset}. Além dos períodos indisponíveis, encontramos arquivos com linhas contendo dados divergentes do meta dados fornecido pela SPTrans, contidos na Tabela~\ref{tab:avlMetaDataSPTrans}, tais registros foram ignorados para os experimentos deste trabalho.
-
-\begin{table}[!htb]
-\begin{threeparttable}
-\centering
-\caption{Descrição do conjunto de dados AVL}
-\label{tab:avlDataset}
-\begin{tabular}{ c | c | c | c }
-\toprule
-\textbf{Mês} & \textbf{Intervalo (dias)} & \textbf{Total de arquivos AVL} & \textbf{Espaço em disco (GB)} \\
-\midrule
-Janeiro\tnote{c} & 1 - 31 & 744 & 102,44 \\
-\hline
- Fevereiro & 1 - 28 & 672 & 93,21 \\
-\hline
- Março & 1 - 31 & 744 & 102,64 \\
-\hline
- Abril & 1 - 30 & 720 & 97,04 \\
-\hline
- Maio & 1 - 31 & 744 & 101,46 \\
-\hline
- Junho & 1 - 30 & 720 & 97,13 \\
-\hline
- Julho & 1 - 31 & 744 & 104,95 \\
-\hline
- Agosto & 1 - 31 & 744 & 108,38 \\
-\hline
- Setembro & 1 - 30 & 720 & 109,89 \\
-\hline
- Outubro & 1 - 31 & 744 & 110,92 \\
-\hline
- Novembro\tnote{a} & 1 - 30 & 717 & 108,16 \\
-\hline
- Dezembro\tnote{b} & 1 - 31 & 738 & 110,89 \\
-\midrule
-\midrule
-Total & --- & 8,751 & 1,247.09 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}
-\item[a]Arquivos indisponíveis em novembro: 
-\begin{itemize}
-\item \texttt{Movto\_201711011200\_201711011300.zip}
-\item \texttt{Movto\_201711011300\_201711011400.zip}
-\item \texttt{Movto\_201711011400\_201711011500.zip}
-\end{itemize}
-Justificativa ao recurso em primeira instância de acesso a informação: ``Conheço do recurso e nego provimento, informando que os registros solicitados não existem na nossa base e também não há informações de ``log'' que indiquem possíveis falhas ou indisponibilidade no sistema. Sendo assim, conforme já explicado anteriormente, não há condições técnicas de disponibilizar essas informações.'' --- resposta oficial da SPTrans, responsável: Paulo Cézar Shingai Diretor, Presidente da SPTrans.
-\item[b]Arquivos indisponíveis em dezembro, devido a falha na rede de transmissão de dados \nomenclature{GPRS}{\textit{General Packet Radio Services,}}conforme apresentado no sistema interno de registro de interrupções do sistema, Figura~\ref{fig:e_sic_33310} --- resposta oficial da SPTrans, responsável: Albino Silva da Rocha, Chefe de Gabinete da SPTrans: 
-\begin{itemize}
-\item \texttt{Movto\_201712150100\_201712150200.zip}
-\item \texttt{Movto\_201712150400\_201712150500.zip}
-\item \texttt{Movto\_201712150500\_201712150600.zip}
-\item \texttt{Movto\_201712150600\_201712150700.zip}
-\item \texttt{Movto\_201712150700\_201712150800.zip}
-\item \texttt{Movto\_201712150800\_201712150900.zip}
-\end{itemize}
-\item[c] Arquivos  \texttt{Movto\_201701111000\_201701111100} com 35 campos na linha 60.025 e \texttt{Movto\_201701110900\_201701111000} com 21 campos na linha 1.075.548, ambos deveriam conter 19 campos de acordo com os meta dados fornecidos pela SPTrans.
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
-	\centering
- 	  \caption{Evidência dos períodos de indisponibilidade de dados AVL referentes a Dezembro de 2017}
-		\includegraphics[width=0.5\linewidth]{images/33310_ANEXO_E_SIC_33310.png}
-	\label{fig:e_sic_33310}
-  \source{Resposta ao pedido de acesso a informação referente ao protocolo e-SIC 33310, 2017}
-\end{figure}
+O conjunto de dados AVL da SPTrans é composto por dados obtidos do SIM, transferidos pelos módulos AVL instalados nos ônibus da cidade de São Paulo. Os dados AVL utilizados nesta analise são referentes aos movimentos de ônibus ocorridos entre janeiro e dezembro de 2017 (solicitados por meio da \textit{Lei de Acesso a Informação}\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2011/lei/l12527.htm}. Acessado em 23 de junho de 2018.}). Os dados de movimentação referentes a 01/11, das 2 h às 5 h, e a 15/12, das 01 h às 09 h, não foram disponibilizados pela SPTrans,  devido a períodos de indisponibilidade do sistema de monitoramento (protocolo e-SIC 33310).
 
 \begin{table}[!htb]
 \centering
@@ -1991,25 +1928,99 @@ Prefixo do veículo \\
 \end{tabular}
 \end{table}
 
+\subsection{Identificação de incosistências e indisponibilidade na base de dados AVL da  SPTrans}
+
+Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho para análise do total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos. Tais meta dados estão especificados na Tabela~\ref{tab:avlDataset}. Além dos períodos indisponíveis, durante o processo de leitura encontramos arquivos com linhas divergentes do arquivo de meta dados fornecido pela SPTrans, contidos na Tabela~\ref{tab:avlMetaDataSPTrans}, tais registros foram ignorados para os experimentos deste trabalho.
+
+\begin{table}[!htb]
+\begin{threeparttable}
+\centering
+\caption{Descrição do conjunto de dados AVL}
+\label{tab:avlDataset}
+\begin{tabular}{ c | c | c | c }
+\toprule
+\textbf{Mês} & \textbf{Intervalo (dias)} & \textbf{Total de arquivos AVL} & \textbf{Espaço em disco (GB)} \\
+\midrule
+Janeiro\tnote{a} & 1 - 31 & 744 & 102,44 \\
+\hline
+ Fevereiro & 1 - 28 & 672 & 93,21 \\
+\hline
+ Março & 1 - 31 & 744 & 102,64 \\
+\hline
+ Abril & 1 - 30 & 720 & 97,04 \\
+\hline
+ Maio & 1 - 31 & 744 & 101,46 \\
+\hline
+ Junho & 1 - 30 & 720 & 97,13 \\
+\hline
+ Julho & 1 - 31 & 744 & 104,95 \\
+\hline
+ Agosto & 1 - 31 & 744 & 108,38 \\
+\hline
+ Setembro & 1 - 30 & 720 & 109,89 \\
+\hline
+ Outubro & 1 - 31 & 744 & 110,92 \\
+\hline
+ Novembro & 1 - 30 & 717 & 108,16 \\
+\hline
+ Dezembro & 1 - 31 & 738 & 110,89 \\
+\midrule
+\midrule
+Total & --- & 8.751 & 1.247,09 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+%\item[a]Arquivos indisponíveis em novembro: 
+%\begin{itemize}
+%\item \texttt{Movto\_201711011200\_201711011300.zip}
+%\item \texttt{Movto\_201711011300\_201711011400.zip}
+%\item \texttt{Movto\_201711011400\_201711011500.zip}
+%\end{itemize}
+%Justificativa ao recurso em primeira instância de acesso a informação: ``Conheço do recurso e nego provimento, informando que os registros solicitados não existem na nossa base e também não há informações de ``log'' que indiquem possíveis falhas ou indisponibilidade no sistema. Sendo assim, conforme já explicado anteriormente, não há condições técnicas de disponibilizar essas informações.'' --- resposta oficial da SPTrans, responsável: Paulo Cézar Shingai Diretor, Presidente da SPTrans.
+%\item[b]Arquivos indisponíveis em dezembro, devido a falha na rede de transmissão de dados \nomenclature{GPRS}{\textit{General Packet Radio Services,}}conforme apresentado no sistema interno de registro de interrupções do sistema, Figura~\ref{fig:e_sic_33310} --- resposta oficial da SPTrans, responsável: Albino Silva da Rocha, Chefe de Gabinete da SPTrans: 
+%\begin{itemize}
+%\item \texttt{Movto\_201712150100\_201712150200.zip}
+%\item \texttt{Movto\_201712150400\_201712150500.zip}
+%\item \texttt{Movto\_201712150500\_201712150600.zip}
+%\item \texttt{Movto\_201712150600\_201712150700.zip}
+%\item \texttt{Movto\_201712150700\_201712150800.zip}
+%\item \texttt{Movto\_201712150800\_201712150900.zip}
+%\end{itemize}
+\item[a] Arquivos  \texttt{Movto\_201701111000\_201701111100} com 35 campos na linha 60.025 e \texttt{Movto\_201701110900\_201701111000} com 21 campos na linha 1.075.548, o esperado são 19 campos de acordo com os meta dados fornecidos pela SPTrans.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+%\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+%	\centering
+% 	  \caption{Evidência dos períodos de indisponibilidade de dados AVL referentes a Dezembro de 2017}
+%		\includegraphics[width=0.5\linewidth]{images/33310_ANEXO_E_SIC_33310.png}
+%	\label{fig:e_sic_33310}
+%  \source{Resposta ao pedido de acesso a informação referente ao protocolo e-SIC 33310, 2017}
+%\end{figure}
+
 \clearpage
  
- \section{Redes Sociais}
-\label{sns}
+\section{\textit{Corpus Twitter}}
 
-As Redes Sociais podem ser definidas como redes que possuem muitos relacionamentos, com grandes componentes conectados, altos coeficientes de agrupamento e grau de reciprocidade. Tais características, por exemplo, podem ser encontradas na rede social \textit{Facebook}\footnote{\url{https://www.facebook.com}. Acessado em 29 de outubro de 2017.}. O \textit{Twitter}\footnote{\url{https://twitter.com}. Acessado em 29 de outubro de 2017.} além de possuir as características de rede social mencionadas anteriormente, pode ser caracterizado também como uma Rede de Informações. Nesse tipo de rede a interação dominante é a disseminação de informações entre os relacionamentos, com baixo índice de reciprocidade \cite{myers2014information}.
+%\section{Redes Sociais}
+%\label{sns}
+
+%As Redes Sociais podem ser definidas como redes que possuem muitos relacionamentos, com grandes componentes conectados, altos coeficientes de agrupamento e grau de reciprocidade. Tais características, por exemplo, podem ser encontradas na rede social \textit{Facebook}\footnote{\url{https://www.facebook.com}. Acessado em 29 de outubro de 2017.}. O \textit{Twitter}\footnote{\url{https://twitter.com}. Acessado em 29 de outubro de 2017.} além de possuir as características de rede social mencionadas anteriormente, pode ser caracterizado também como uma Rede de Informações. Nesse tipo de rede a interação dominante é a disseminação de informações entre os relacionamentos, com baixo índice de reciprocidade \cite{myers2014information}.
 
 No \textit{Twitter} as informações (\textit{tweets}) são publicadas contendo no máximo 280 caracteres; cada publicação pode receber \textit{retweets} (ser compartilhada por outros usuários), comentários (diretamente no \textit{tweet} --- \textit{replies} ---  ou de forma privada via caixa de mensagens) e \textit{likes} (indicador de quantos usuários gostaram da publicação). Além dessas funcionalidades, os \textit{tweets} podem conter menções a outros usuários (@nome do perfil) e rótulos (\#\textit{hashtag}) indicando assuntos, categorias, etc.
 
 Devido as características citadas nos parágrafos anteriores, o \textit{Twitter} tem sido uma rede social importante para compartilhamento de informações e acontecimentos do cotidiano. Tais acontecimentos podem ser classificados como eventos sociais, capazes de descrever desde eventos rotineiros (\textit{shows}, jogos esportivos, etc.) a situações de crise (eventos de exceção --- desastres naturais, mobilizações sociais, dentre outros) \cite{zhou2014event}, \cite{atefeh2015survey}.
  
-\section{\textit{Corpus Twitter}}
+Portanto, o \textit{Twitter} foi escolhido como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção devido ao fato de conter dados abertos sobre o cotidiano da cidade, disponibilizados em tempo real pelos cidadãos e órgãos públicos. Tais características, fazem dos \textit{tweets} uma rica fonte de dados, utilizada por inúmeros estudos que abordam problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Capítulo~\ref{revisao}.
 
-A Rede Social \textit{Twitter}, foi escolhida como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção. Isso devido ao fato de cada publicação ser limitada em 280 caracteres, o que reduz a complexidade de processamento do conteúdo publicado, e devido aos estudos existentes abordando problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Capítulo~\ref{revisao}.
+Neste trabalho, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos perfis contidos na Tabela~\ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas são considerados, descartando os relacionados às interações (\textit{retweets} e \textit{replies}) entre perfis governamentais e não governamentais. Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação, não utilizamos interações dos cidadãos com as publicações realizadas pelos perfis selecionados. Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
 
-Assim, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos perfis contidos na Tabela~\ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas serão considerados, descartando os relacionados às interações entre diferentes \textit{profiles} (\textit{retweets} e \textit{replies}). Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação (no contexto de \textit{e-participation}). Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
+Sobre a seleção dos perfis, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais perfis são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
 
-Sobre a seleção dos \textit{profiles}, todos foram selecionados manualmente de acordo com os órgãos responsáveis por notificar eventos de exceção. Tais \textit{profiles} são de caráter público, ou seja, o acesso aos \textit{tweets} não envolve questões de privacidade.
-Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frequência de requisições aos \textit{endpoints}. Por exemplo, no protótipo desenvolvido (na linguagem de programação Java), há um artefato que coleta (utilizando o \textit{plugin} \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acessado em 29 de outubro de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acessado em 29 de outubro de 2017.}.
+\subsection{Processo de coleta dos \textit{tweets}}
+
+Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limita a quantidade e frequência de requisições aos \textit{endpoints}. Devido a isso, o artefato de \textit{software} desenvolvido para coleta (na linguagem de programação Java), busca (utilizando o \textit{plugin} \textit{Twitter4J}\footnote{\url{twitter4j.org}. Acessado em 29 de outubro de 2017.}) os 3.200 \textit{tweets} mais recentes (se disponíveis) de cada conta, através do \textit{endpoint} \textit{statuses/user\_timeline}; o qual permite no máximo 180 requisições, em um intervalo de 15 minutos, com autenticação via conta de usuário\footnote{\url{https://dev.twitter.com}. Acessado em 29 de outubro de 2017.}.
 
 Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acessado em 29 de outubro de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acessado em 29 de outubro de 2017.} para exploração e visualização dos dados, processo explicado na Seção~\ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na Tabela~\ref{tab:tweetsCollected}.
 
@@ -2059,7 +2070,7 @@ Total & 60,984 & --- & --- \\
 \source{Elaborado pelo autor}
 \end{table}
 
-Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus respectivos dados de geolocalização. No entanto, por meio de uma análise manual percebemos dois problemas: (I) alguns endereços não foram extraídos; (II) apesar de o endereço ser extraído corretamente, encontramos geolocalizações fora do estado de São Paulo e do país. Assim, pretendemos melhorar o processo de extração dos endereços dos \textit{tweets} e o restringir a geolocalização para a região de São Paulo. 
+%Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus respectivos dados de geolocalização. No entanto, por meio de uma análise manual percebemos dois problemas: (I) alguns endereços não foram extraídos; (II) apesar de o endereço ser extraído corretamente, encontramos geolocalizações fora do estado de São Paulo e do país. Assim, pretendemos melhorar o processo de extração dos endereços dos \textit{tweets} e o restringir a geolocalização para a região de São Paulo. 
 
 \chapter{Exploração e visualização de grandes volumes de dados}
 \label{dataViz}
