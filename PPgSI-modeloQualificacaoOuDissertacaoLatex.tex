@@ -1226,7 +1226,7 @@ No contexto desse trabalho, os dados de entrada são conhecidos e foram classifi
 \subsection{Algoritmos de aprendizado supervisionado}
 \label{supervisionedLearning}
 
-De acordo com a Figura~\ref{fig:arch_ml}, a aplicação de algoritmos de aprendizado supervisionado a um problema passa por algumas fases. As primeiras fases se referem aos processos de identificação dos dados necessários e pré-processamento, descritas respectivamente no Capítulo~\ref{dataSet} e na Seção~\ref{preprocessing}, as demais fases, explicadas na Seção~\ref{model}, são relacionadas a definição do conjunto de treinamento; seleção dos algoritmos;  treinamento; validação com o conjunto de teste e escolha do classificador. É importante observar que não faz parte do escopo deste trabalho afinar os parâmetros dos algoritmos (hiperparâmetros) mencionados na Seção~\ref{classification} (fase \textit{parameter tuning}), devido a isso as parametrizações padrões são utilizadas e descritas no apêndice~\ref{apendiceF}. Nas seções seguintes apresentamos os algoritmos de aprendizado supervisionado utilizados no trabalho.
+De acordo com a Figura~\ref{fig:arch_ml}, a aplicação de algoritmos de aprendizado supervisionado a um problema passa por algumas fases. As primeiras fases se referem aos processos de identificação dos dados necessários e pré-processamento, descritas respectivamente no Capítulo~\ref{dataSet} e na Seção~\ref{preprocessing}, as demais fases, explicadas na Seção~\ref{model}, são relacionadas a definição do conjunto de treinamento; seleção dos algoritmos;  treinamento; validação com o conjunto de teste e escolha do classificador. É importante observar que não faz parte do escopo deste trabalho afinar os parâmetros dos algoritmos (hiperparâmetros) mencionados na Seção~\ref{classification} (fase \textit{parameter tuning}), devido a isso as parametrizações padrões são utilizadas e descritas no Apêndice~\ref{apendiceF}. Nas seções seguintes apresentamos os algoritmos de aprendizado supervisionado utilizados no trabalho.
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -1505,7 +1505,7 @@ Visando selecionar os artigos relevantes para esta Revisão Sistemática, os seg
 \item Trabalhos que estão fora do escopo da questão de pesquisa.
 \end{itemize}
 
-O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \citeauthor{fcas} (\citeyear{fcas}) (não incluso no apêndice deste trabalho devido ao grande volume de páginas de cada documento), assim como seu respectivo protocolo (no qual contém o detalhamento dos critérios de inclusão e exclusão, dentre outros artefatos da condução). Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados.
+O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \citeauthor{fcas} (\citeyear{fcas}) (não incluso no apêndice deste trabalho devido ao grande volume de páginas de cada documento), \todo{DC: se não vale a pena colocar nesse trabalho, vale a pena citar isso aqui? Ou é importante e deve ir pro apêndice, ou não cita e pronto.} assim como seu respectivo protocolo (no qual contém o detalhamento dos critérios de inclusão e exclusão, dentre outros artefatos da condução). Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados.
 
 Sendo assim, a Figura~\ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gerada com a biblioteca \textit{wordcloud} \cite{wordcloud}) sintetizando as palavras chaves dos estudos primários selecionados; e a Figura~\ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Figura~\ref{fig:porcentagem}.
 
@@ -2209,7 +2209,7 @@ O objetivo geral desse projeto de pesquisa é a caracterização de eventos de e
 \section{Pré-processamento}
 \label{preprocessing}
 
-Numa pré-análise do \textit{Corpus Twitter}, podemos averiguar que os \textit{tweets} publicados pelos perfis selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice~\ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintáxe e que normalmente dependem de análise contextual para que possam ser interpretados.
+Numa pré-análise do \textit{Corpus Twitter}, podemos averiguar que os \textit{tweets} publicados pelos perfis selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice~\ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintaxe e que normalmente dependem de análise contextual para que possam ser interpretados.
 
 Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{Middleton2014}, \cite{Kobdani2010}, \cite{Setiawan2017},  \cite{Zagal2016}), as seguintes etapas de pré-processamento são necessárias para remoção de ruído e redução da dimensão do espaço de \textit{features} e foram realizadas para o \textit{Corpus Twitter}:
 
@@ -2218,7 +2218,7 @@ Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{
 %\item \textit{\textbf{Tokenization}}: processamento realizado para obtenção das palavras  (\textit{tokens}) que compõem uma sentença, inclui a remoção de números, pontuações e caracteres que não pertencem ao alfabeto \cite{Setiawan2017}.  
 %\item \textbf{Remoção de} \textit{\textbf{stopwords}}: processamento para remoção do conjunto de \textit{tokens} de palavras sem significado ou importância \cite{Setiawan2017}, o que reduz a quantidade de ruído do conteúdo \textit{tweet} \cite{Steiger2015Census}.
 %\item \textit{\textbf{Stemming}}: processamento para encontrar a raiz de uma palavra, removendo sufixos e prefixos (no caso do Português Brasileiro) das palavras derivadas \cite{Setiawan2017}.
-\item Remoção \nomenclature{URL}{\textit{Uniform Resource Locator}} \textit{URLs} e menções a outros \textit{tweets}.
+\item Remoção de \nomenclature{URL}{\textit{Uniform Resource Locator}} \textit{URLs} e menções a outros \textit{tweets}.
 \item Remoção de acentos, \textit{emoticons} e pontuações substituídas por espaços vazios.
 %\item Correção erros de digitação por meio de uma função de mapeamento
 \item \textit{Stemming} --- realizado neste trabalho na fase de processamento mencionada na Seção~\ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
@@ -2247,12 +2247,12 @@ Em seguida, a resposta HTTP é processada para obter os valores da localização
 \section{Processamento de \textit{tweets}}
 \label{processing}
 
-Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase, os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do português brasileiro filtradas\footnote{\textit{Stopwords} do português brasileiro obtidas da \nomenclature{NLTK}{Natural Language Toolkit}{NLTK ---} \url{https://www.nltk.org}. Acessado em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  português brasileiro\footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acessado em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
+Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do português brasileiro filtradas\footnote{\textit{Stopwords} do português brasileiro obtidas da \nomenclature{NLTK}{Natural Language Toolkit}{NLTK ---} \url{https://www.nltk.org}. Acessado em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  português brasileiro\footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acessado em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
 
 \section{Classificação manual do Corpus \textit{Twitter}}
 \label{manualClassification}
 
-Encontrar eventos de exceção envolve a identificação de eventos relacionados a uma exceção, o que é possível por meio de classificação de \textit{tweets} (manualmente ou de forma autônoma). De acordo com a revisão sistemática realizado no Capítulo~\ref{revisao}, as seguintes classes podem ser usadas para classificar eventos de exceção:
+Encontrar eventos de exceção envolve a identificação de eventos relacionados a uma exceção, o que é possível por meio de classificação de \textit{tweets} (manualmente ou de forma autônoma). De acordo com a revisão sistemática apresentada no Capítulo~\ref{revisao}, as seguintes classes podem ser usadas para classificar eventos de exceção:
 
 \begin{enumerate}
 \item \textbf{Acidentes}.
@@ -2299,13 +2299,13 @@ Após o estudo do domínio do conhecimento, por meio da revisão sistemática pa
 \section{Modelo de classificação de \textit{tweets} relacionados a eventos de exceção}
 \label{model}
 
-O corpus obtido da fase de processamento de \textit {tweets} é representado por meio de um \textit{bag-of-words}, que contém vetores de \textit{features} criados usando a medida \textit{Term Frequency - Inverse Document Frequency}\nomenclature{TF-IDF}{\textit{Term Frequency - Inverse Document Frequency}} (TF-IDF). A bag-of-words é particionada aleatoriamente em conjuntos de treinamento (60\%) e teste (40\%), os quais são entradas para os algoritmos de classificação mencionados na Seção~\ref{supervisionedLearning}.
+O corpus obtido da fase de processamento de \textit {tweets} é representado por um \textit{bag-of-words} que contém vetores de \textit{features} criados usando a medida \textit{Term Frequency - Inverse Document Frequency}\nomenclature{TF-IDF}{\textit{Term Frequency - Inverse Document Frequency}} (TF-IDF). A bag-of-words é particionada aleatoriamente em conjuntos de treinamento (60\%) e teste (40\%), os quais são entradas para os algoritmos de classificação mencionados na Seção~\ref{supervisionedLearning}.
 
 \section{Encontrando linhas de ônibus afetadas por eventos de exceção}
 
 Para encontrar as linhas de ônibus afetadas por eventos de exceção, é necessário correlacionar latitude e longitude dos eventos de exceção com as \textit{stops} da GTFS da SPTrans. Como mencionado anteriormente, os dados referentes as \textit{stops} contém os locais individuais em que os veículos pegam ou deixam passageiros, incluindo coordenadas de latitude e longitude.
 
-De acordo com a Seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acessado em 18 de Maio de 2018.} para encontrar as \textit{stops} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{stop\_id} faz parte dos atributos contidos no arquivo de \textit{stops}, referindo-se a um código de parada de ônibus com o qual é possível correlacioná-lo com as bases \textit{stop\_times} e \textit{lines} (por meio do atributo \textit{trip\_id} existente em \textit{stops}) para obter mais detalhes sobre a direção da linha de ônibus, identificação, etc.
+De acordo com a Seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acessado em 18 de Maio de 2018.} \todo{DC: isso é um detalhe de implementação. A implementação já foi apresentada antes para que o leitor possa entender a importância disso? Talvez uma explicação detalhada de como os dados foram organizados e como tudo isso foi implementado coubesse no capítulo anterior (já que o título fala também da exploração)} para encontrar as \textit{stops} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{stop\_id} faz parte dos atributos contidos no arquivo de \textit{stops}, referindo-se a um código de parada de ônibus com o qual é possível correlacioná-lo com as bases \textit{stop\_times} e \textit{lines} (por meio do atributo \textit{trip\_id} existente em \textit{stops}) para obter mais detalhes sobre a direção da linha de ônibus, identificação, etc.
 
 \section{Resultados}
 	
@@ -2327,7 +2327,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
 	\label{fig:tweets_distribution}
 \end{figure}
 
-Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção~\ref{model}. De acordo com a Tabela~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no apêndice~\ref{apendiceE}.
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção~\ref{model}. De acordo com a Tabela~\ref{tab:metrics}\todo{DC: porquê os nomes dos algoritmos estão em inglês na tabela?}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no Apêndice~\ref{apendiceE}.
 
 \begin{table}[!htb]
 \centering
@@ -2363,7 +2363,7 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 	\label{fig:confusion_matrix_mlp}
 \end{figure}
 
-Dos 60.984 \textit{tweets} 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto encontrados 8.112 endereços, de acordo com a Tabela~\ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe \textit{Irrelevant}). A quantidade de endereços extraídos por classe está descrita na Tabela~\ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
+Dos 60.984 \textit{tweets}, 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto foram encontrados 8.112 endereços, como pode ser visto na Tabela~\ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} \todo{DC: esse tipo foi definido antes? em inglês mesmo?} --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe \textit{Irrelevant}\todo{O nome da classe foi apresentada em português anteriormente. Dê sempre preferência ao português}). A quantidade de endereços extraídos por classe está descrita na Tabela~\ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
 
 \begin{enumerate*}
 \item \textit{Tweets} apenas com o ponto de interesse, ou seja, não consta explicitamente o endereço.
@@ -2372,7 +2372,7 @@ Dos 60.984 \textit{tweets} 10.027 foram classificados manualmente em eventos de 
 \item \textit{Tweets} com endereços com palavras concatenadas (por exemplo \emph{avenidapaulista}).
 \end{enumerate*}
 
-Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers.google.com/maps/documentation/geocoding}. Acessado em 16 de setembro de 2018.} podem ser classificados em:
+Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers.google.com/maps/documentation/geocoding}. Acessado em 16 de setembro de 2018.} \todo{DC: não está claro quem definiu esses tipos. Você ou o GTFS? Explicitar} podem ser classificados em:
 \begin{enumerate*}
 \item \textit{ROOFTOP} --- Indica que o resultado retornado há informações de localização com precisão a nível do endereço de rua.
 \item \textit{RANGE\_INTERPOLATED} --- Indica que o resultado retornado reflete uma aproximação interpolada entre dois pontos precisos (como interseções). Geralmente, os resultados interpolados são retornados quando os códigos geográficos do \textit{rooftop} não estão disponíveis para um endereço de rua.
@@ -2416,7 +2416,7 @@ Total & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
 \end{table}
 
 
-A Figura~\ref{fig:address_analysis} ilustra os endereços\footnote{Lista completa está disponível em \url{https://docs.google.com/spreadsheets/d/1gn1cTDifUJEPdgcU67SC45GdYHRKmIHtAfJwRBm088s/edit?usp=sharing}. Acessado em 09 de setembro de 2018.} mais afetados por eventos de exceção e a Figura~\ref{fig:dispersion} parte da distribuição desses eventos na região central de São Paulo. É importante ressaltar que os eventos de exceção encontrados estão concentrados em endereços e regiões onde normalmente ocorrem em São Paulo, o que valida a metodologia desenvolvida.
+A Figura~\ref{fig:address_analysis} mostra os endereços\footnote{Lista completa está disponível em \url{https://docs.google.com/spreadsheets/d/1gn1cTDifUJEPdgcU67SC45GdYHRKmIHtAfJwRBm088s/edit?usp=sharing}. Acessado em 09 de setembro de 2018.} detectados que foram mais afetados por eventos de exceção e a Figura~\ref{fig:dispersion} mostra parte da distribuição desses eventos na região central da cidade de São Paulo. É importante ressaltar que os eventos de exceção encontrados estão concentrados em endereços e regiões onde normalmente ocorrem em São Paulo, \todo{DC: normalmente ocorrem o quê? Difícil sustentar isso sem uma referência} o que valida a metodologia desenvolvida. \todo{DC: você está indicando aqui que fez uma validação visual do método. Você pode ser questionado se o método foi mesmo cientificamente validado ou não. Ao invés disso, talvez o melhor fosse indicar um evento conhecido (com ref. para a notícia) e dizer que a metodologia foi capaz de detectar, e dizer que isso é um indício de que a metodologia é adequada}
 
 \begin{figure}[!htb]
 	\centering
@@ -2529,7 +2529,7 @@ Consideramos que uma linha de ônibus é afetada por um evento de exceção se u
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-            \item[a] Tabela completa no apêndice~\ref{apendiceD}.
+            \item[a] Tabela completa no Apêndice~\ref{apendiceD}.
         \end{tablenotes}
 \end{threeparttable}
 }
