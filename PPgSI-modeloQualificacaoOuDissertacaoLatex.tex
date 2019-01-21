@@ -1185,7 +1185,7 @@ O processamento automático de \textit{tweets} para identificação de eventos d
 
 Para esta pesquisa, utilizamos o processo de \textit{tokenização} implementado pela classe \textit{TweetTokenizer}\footnote {\url{https://www.nltk.org/api/nltk.tokenize}. Acesso em 15 de maio de 2018.} da NLTK (\textit{Natural Language Toolkit} --- biblioteca utilizada nos experimentos deste trabalho para NLP) para extrair os \textit{tokens} dos \textit{tweets} (\textit{features} utilizadas para treinar os modelos de classificações) e a classe \textit {RSLPStemmer}\footnote{\url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Acesso em 15 de maio de 2018.} para redução do espaço de \textit{features} (por meio de \textit{stemming}), além da remoção de palavras vazias (\textit{stopwords}\footnote{\url{http://www.nltk.org/howto/portuguese\_en}. Acesso em 15 de maio de 2018.}\footnote{Palavras com alta ou baixa frequência no corpus --- comuns ou raras --- ou removidas por meio de \textit{feature selection} --- \url{http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html}. Acesso em 03 de junho de 2018.}) --- palavras comuns do português brasileiro.
 
-\section{\textit{Feature Engineering}}
+ \section{\textit{Feature Engineering}}
 \label{featuresEng}
 
 %A fase de \textit{feature  extraction} depende do conhecimento do domínio do objeto de estudo, além de normalmente envolver inúmeras iterações para obter um conjunto plausível de \textit{features} \cite{Zhu2013}. Assim, inicialmente exploramos o domínio dos eventos de exceção relacionados ao transporte público (detalhados em~\ref{qp5}) com o auxílio da questão QP5 (em~\ref{questoes}) da revisão sistemática do Capítulo~\ref{revisao}. 
@@ -1479,7 +1479,7 @@ Elsevier & 81 & 72 & 9\\
 Springer & 22 & 20 & 2\\ 
 \midrule
 \midrule
-Total & 229 & 200 & 29\\ 
+\textbf{Total} & 229 & 200 & 29\\ 
 \bottomrule
 \end{tabular}
 \source{Elaborado pelo autor}
@@ -1774,7 +1774,7 @@ A GTFS (\textit{General Transit Feed Specification})\footnote{\label{googleTrans
 \textit{trips.txt} & 2.273 \\
 \midrule
 \midrule
-Total & 1.254.779 \\
+\textbf{Total} & 1.254.779 \\
 \bottomrule
 \end{tabular}
 \source{Elaborado pelo autor}
@@ -1964,7 +1964,7 @@ Janeiro\tnote{a} & 1 - 31 & 744 & 102,44 \\
  Dezembro & 1 - 31 & 738 & 110,89 \\
 \midrule
 \midrule
-Total & --- & 8.751 & 1.247,09 \\
+\textbf{Total} & --- & 8.751 & 1.247,09 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -2022,6 +2022,16 @@ Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limit
 
 Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em 29 de outubro de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em 29 de outubro de 2017.} para exploração e visualização dos dados, processo explicado na Seção~\ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na Tabela~\ref{tab:tweetsCollected}.
 
+\section{Correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Fluxograma da correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
+		\includegraphics[width=1\linewidth]{images/caracterization_flow.png}
+	\label{fig:caracterization_flow}
+  \source{Elaborado pelo autor}
+\end{figure}
+
 \begin{table}[!htb]
 \centering
 \caption{Intervalo de tempo e número de \textit{tweets} coletados}
@@ -2056,7 +2066,7 @@ Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe 
 \textit{@TurismoSaoPaulo} & 3,369 & 2012-06-12 & 2017-11-29 \\
 \midrule
 \midrule
-Total & 60,984 & --- & --- \\
+\textbf{Total} & 60,984 & --- & --- \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -2361,7 +2371,7 @@ Máquina de Vetores de Suporte & 0,833 & 0,694 & 0,833 & 0,757 \\
 	\label{fig:confusion_matrix_mlp}
 \end{figure}
 
-Dos 60.984 \textit{tweets}, 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto foram encontrados 8.112 endereços, como pode ser visto na Tabela~\ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} (explicado mais adiante) --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe \textit{Irrelevant}\todo{O nome da classe foi apresentada em português anteriormente. Dê sempre preferência ao português}). A quantidade de endereços extraídos por classe está descrita na Tabela~\ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
+Dos 60.984 \textit{tweets}, 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto foram encontrados 8.112 endereços, como pode ser visto na Tabela~\ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} (explicado mais adiante) --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe Irrelevante). A quantidade de endereços extraídos por classe está descrita na Tabela~\ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
 
 \begin{enumerate*}
 \item \textit{Tweets} apenas com o ponto de interesse, ou seja, não consta explicitamente o endereço.
@@ -2400,7 +2410,7 @@ Evento Social & 793 & 4 & 761 & 2 & 26 \\
 Evento Urbano & 1.002 & 4 & 942 & 10 & 46 \\
 \midrule
 \midrule
-Total & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
+\textbf{Total} & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -2768,7 +2778,7 @@ Novembro & 66,66 & 100 &
 Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \midrule
 \midrule
-Total & 66,51 & 98,39 & 59,77 & 99,80 & 87,04 & 100 & 70,11 & 98,86  \\
+\textbf{Total} & 66,51 & 98,39 & 59,77 & 99,80 & 87,04 & 100 & 70,11 & 98,86  \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2850,7 +2860,7 @@ Novembro & 54,32 & 66,66 &
 Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \midrule
 \midrule
-Total & 52,92 & 81,13 & 49,83 & 78,69 & 79,51 & 77,95 & 68,14 & 69,76  \\
+\textbf{Total} & 52,92 & 81,13 & 49,83 & 78,69 & 79,51 & 77,95 & 68,14 & 69,76  \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2862,7 +2872,7 @@ Neste capítulo, é apresentado um processo para identificação de padrões de 
 
 Além da quantidade de registros total, o volume de dados para pequenos intervalos de tempo também é considerável, pois os módulos AVL enviam dados dos ônibus a todo instante. Dessa forma, para viabilizarmos o uso do algoritmo \textit{Apriori}, agrupamos os dados por intervalos de tempo de cinco minutos e calculamos a velocidade média para cada intervalo. Com isso, executamos esse processo para cada mês do conjunto de dados AVL para determinarmos as velocidades médias e identificarmos os padrões existentes nos intervalos definidos.
 
-Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL correlacionados aos eventos de exceção (Acidente, \textit{Urban Event}, \textit{Natural Disaster} e \textit{Social Event}), os dados anuais foram sintetizados nas tabelas~\ref{tab:aprioriExceptFullStops} e~\ref{tab:aprioriExceptFullShapes} e os mensais nas seções~\ref{g2},~\ref{g3},~\ref{g4} e~\ref{g5}. As regras de associação encontradas nestes conjuntos de dados estão disponíveis em \citeauthor{fcas} (\citeyear{fcas}) (não inclusas no texto deste trabalho devido ao  grande volume de dados). 
+Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL correlacionados aos eventos de exceção (Acidente, Desastre Natural, Evento Social e Evento Urbano), os dados anuais foram sintetizados nas tabelas~\ref{tab:aprioriExceptFullStops} e~\ref{tab:aprioriExceptFullShapes} e os mensais nas seções~\ref{g2},~\ref{g3},~\ref{g4} e~\ref{g5}. As regras de associação encontradas nestes conjuntos de dados estão disponíveis em \citeauthor{fcas} (\citeyear{fcas}) (não inclusas no texto deste trabalho devido ao  grande volume de dados). 
 
 \section{Trabalhos relacionados}
 
@@ -3005,7 +3015,7 @@ Acidente & 1.677 & 315.063 & 278.493 & 30.804 & 5.766 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 596 & 93.513 & 81.261 & 10.480 & 1.772 \\
 \midrule
-{---} & 3.691 & 585.804 & 511.363 & 63.811 & 10.603 \\
+\textbf{Total} & 3.691 & 585.804 & 511.363 & 63.811 & 10.603 \\
 \bottomrule
 \toprule
 \begin{tabular}{@{}c@{}}\textbf{Classe}\\ \textbf{do evento}\end{tabular} & \begin{tabular}{@{}c@{}}\textbf{Total de}\\ \textbf{eventos}\tnote{a}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Total de Regras }\\ \textbf{de Associação}\tnote{b}\end{tabular}  & \textbf{Esperadas}\tnote{c} & \begin{tabular}{@{}c@{}}\textbf{Não}\\ \textbf{esperadas}\tnote{d}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Parcialmente}\\ \textbf{inesperadas}\tnote{e}\end{tabular} \\
@@ -3018,7 +3028,7 @@ Acidente & 3.029 & 3.980.542 & 3.415.780 & 385.728 & 179.034 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 980 & 1.481.040 & 1.296.476 & 125.803 & 58.761 \\
 \midrule
-{---} & 6.789 & 9.348.802 & 8.083.925 & 871.040 & 393.837 \\
+\textbf{Total} & 6.789 & 9.348.802 & 8.083.925 & 871.040 & 393.837 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -3055,7 +3065,7 @@ Acidente & 2.367 & 3.390.690 & 3.164.726 & 171.860 & 54.104 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 825 & 1.602.343 & 1.499.305 & 79.155 & 23.883 \\
 \midrule
-\midrule Total & 5.203 & 7.857.504 & 7.344.950 & 394.831 & 117.723 \\
+\midrule \textbf{Total} & 5.203 & 7.857.504 & 7.344.950 & 394.831 & 117.723 \\
 \bottomrule
 \toprule
 \begin{tabular}{@{}c@{}}\textbf{Classe}\\ \textbf{do evento}\end{tabular} & \begin{tabular}{@{}c@{}}\textbf{Total de}\\ \textbf{eventos}\tnote{a}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Total de Regras }\\ \textbf{de Associação}\tnote{b}\end{tabular}  & \textbf{Esperadas}\tnote{c} & \begin{tabular}{@{}c@{}}\textbf{Não}\\ \textbf{esperadas}\tnote{d}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Parcialmente}\\ \textbf{inesperadas}\tnote{e}\end{tabular} \\
@@ -3068,7 +3078,7 @@ Acidente & 3.035 & 2.772.368 & 2.259.806 & 365.234 & 147.328 \\
 \hline
 \begin{tabular}{@{}c@{}} Evento\\ Urbano\end{tabular}  & 980 & 963.892 & 805.901 & 111.898 & 46.093 \\
 \midrule
-\midrule Total & 6.796 & 6.296.140 & 5.199.264 & 780.578 & 316.298 \\
+\midrule \textbf{Total} & 6.796 & 6.296.140 & 5.199.264 & 780.578 & 316.298 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -6813,7 +6823,7 @@ Acidente & 40 & 49.012 & 41.870 & 4.399 & 2.743 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 2.907 & 2.412 & 424 & 71 \\
 \midrule \midrule
-Total & 638 & 875.120 & 758.635 & 77.386 & 39.099 \\
+\textbf{Total} & 638 & 875.120 & 758.635 & 77.386 & 39.099 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -6843,7 +6853,7 @@ Acidente & 45 & 49.452 & 39.294 & 8.213 & 1.945 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 5 & 7.750 & 6.391 & 960 & 399 \\
 \midrule \midrule
-Total  & 374 & 401.859 & 329.643 & 58.640 & 13.576 \\
+\textbf{Total} & 374 & 401.859 & 329.643 & 58.640 & 13.576 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -6873,7 +6883,7 @@ Acidente & 36 & 37.421 & 30.253 & 4.604 & 2.564 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 49 & 55.893 & 46.005 & 6.076 & 3.812 \\
 \midrule \midrule
-Total  & 317 & 429.054 & 367.025 & 38.962 & 23.067 \\
+\textbf{Total} & 317 & 429.054 & 367.025 & 38.962 & 23.067 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -6903,7 +6913,7 @@ Acidente & 29 & 21.105 & 16.955 & 3.105 & 1.045 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 79 & 146.124 & 129.399 & 12.191 & 4.534 \\
 \midrule \midrule
-Total & 385 & 838.384 & 762.770 & 54.615 & 20.999 \\
+\textbf{Total} & 385 & 838.384 & 762.770 & 54.615 & 20.999 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -6934,7 +6944,7 @@ Acidente & 194 & 263.940 & 228.631 & 22.846 & 12.463 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 51 & 108.674 & 98.464 & 7.283 & 2.927 \\
 \midrule \midrule
-Total & 424 & 591.060 & 509.093 & 54.989 & 26.978 \\
+\textbf{Total} & 424 & 591.060 & 509.093 & 54.989 & 26.978 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -6964,7 +6974,7 @@ Acidente & 493 & 595.019 & 498.826 & 66.882 & 29.311 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 86 & 131.486 & 115.145 & 12.094 & 4.247 \\
 \midrule \midrule
-Total & 772 & 1.015.576 & 863.099 & 107.967 & 44.510 \\
+\textbf{Total} & 772 & 1.015.576 & 863.099 & 107.967 & 44.510 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -6995,7 +7005,7 @@ Acidente & 515 & 696.754 & 596.893 & 65.641 & 34.220 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 133 & 138.378 & 116.202 & 14.998 & 7.178 \\
 \midrule \midrule
-Total  & 757 & 985.481 & 845.093 & 93.142 & 47.246 \\
+\textbf{Total} & 757 & 985.481 & 845.093 & 93.142 & 47.246 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7026,7 +7036,7 @@ Acidente & 459 & 677.882 & 585.663 & 62.135 & 30.084 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 186 & 286.852 & 249.817 & 24.670 & 12.365 \\
 \midrule \midrule
-Total & 840 & 1.177.935 & 1.013.001 & 109.772 & 55.162 \\
+\textbf{Total} & 840 & 1.177.935 & 1.013.001 & 109.772 & 55.162 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7056,7 +7066,7 @@ Acidente & 454 & 454.837 & 379.438 & 53.504 & 21.895 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 139 & 204.034 & 178.696 & 16.735 & 8.603 \\
 \midrule \midrule
-Total & 718 & 798.462 & 675.612 & 84.856 & 37.994 \\
+\textbf{Total} & 718 & 798.462 & 675.612 & 84.856 & 37.994 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7086,7 +7096,7 @@ Acidente & 391 & 649.238 & 578.523 & 46.116 & 24.599 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 90 & 140.985 & 125.946 & 9.175 & 5.864 \\
 \midrule \midrule
-Total & 711 & 1.104.752 & 980.931 & 80.237 & 43.584 \\
+\textbf{Total} & 711 & 1.104.752 & 980.931 & 80.237 & 43.584 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7116,7 +7126,7 @@ Acidente & 349 & 477.061 & 412.095 & 47.137 & 17.829 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 150 & 251.380 & 221.597 & 21.067 & 8.716 \\
 \midrule \midrule
-Total  & 794 & 1.115.178 & 964.910 & 109.109 & 41.159 \\
+\textbf{Total} & 794 & 1.115.178 & 964.910 & 109.109 & 41.159 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7146,7 +7156,7 @@ Acidente & 8 & 8.821 & 7.339 & 1.146 & 336 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 6.577 & 6.402 & 130 & 45 \\
 \midrule \midrule
-Total  & 10 & 15.941 & 14.113 & 1.365 & 463 \\ 
+\textbf{Total} & 10 & 15.941 & 14.113 & 1.365 & 463 \\ 
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7180,7 +7190,7 @@ Acidente & 11 & 284 & 209 & 75 & 0 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 5 & 1 & 4 & 0 \\
 \midrule \midrule
-Total  & 223 & 42.046 & 37.296 & 4.051 & 699 \\
+\textbf{Total} & 223 & 42.046 & 37.296 & 4.051 & 699 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7210,7 +7220,7 @@ Acidente & 14 & 663 & 477 & 182 & 4 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 4 & 139 & 92 & 43 & 4 \\
 \midrule \midrule
-Total & 146 & 14.103 & 11.532 & 2.401 & 170 \\
+\textbf{Total} & 146 & 14.103 & 11.532 & 2.401 & 170 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7240,7 +7250,7 @@ Acidente & 17 & 2.368 & 2.044 & 271 & 53 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 22 & 823 & 575 & 248 & 0 \\
 \midrule \midrule
-Total  & 144 & 24.451 & 21.489 & 2.424 & 538 \\
+\textbf{Total} & 144 & 24.451 & 21.489 & 2.424 & 538 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7271,7 +7281,7 @@ Acidente & 16 & 1.757 & 1.476 & 260 & 21 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 42 & 3.577 & 2.894 & 666 & 17 \\
 \midrule \midrule
-Total  & 163 & 18.260 & 15.151 & 2.873 & 236 \\
+\textbf{Total} & 163 & 18.260 & 15.151 & 2.873 & 236 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7301,7 +7311,7 @@ Acidente & 102 & 18.064 & 15.179 & 2.523 & 362 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 29 & 3.027 & 2.567 & 435 & 25 \\
 \midrule \midrule
-Total & 201 & 33.547 & 28.050 & 4.864 & 633 \\
+\textbf{Total} & 201 & 33.547 & 28.050 & 4.864 & 633 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7332,7 +7342,7 @@ Acidente & 240 & 49.659 & 42.233 & 6.293 & 1.133 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 46 & 7.729 & 6.617 & 949 & 163 \\
 \midrule \midrule
-Total  & 378 & 64.157 & 54.329 & 8.474 & 1.354 \\
+\textbf{Total} & 378 & 64.157 & 54.329 & 8.474 & 1.354 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7363,7 +7373,7 @@ Acidente & 233 & 60.501 & 53.828 & 5.382 & 1.291 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 73 & 25.140 & 22.954 & 1.947 & 239 \\
 \midrule \midrule
-Total  & 359 & 100.287 & 89.224 & 9.209 & 1.854 \\
+\textbf{Total} & 359 & 100.287 & 89.224 & 9.209 & 1.854 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7394,7 +7404,7 @@ Acidente & 211 & 68.926 & 62.995 & 4.666 & 1.265 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 96 & 22.585 & 19.837 & 2.262 & 486 \\
 \midrule \midrule
-Total  & 400 & 105.209 & 94.379 & 8.771 & 2.059 \\
+\textbf{Total} & 400 & 105.209 & 94.379 & 8.771 & 2.059 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7424,7 +7434,7 @@ Acidente & 186 & 36.130 & 31.202 & 4.437 & 491 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 74 & 10.793 & 9.123 & 1.074 & 596 \\
 \midrule \midrule
-Total  & 330 & 55.687 & 47.881 & 6.603 & 1.203 \\
+\textbf{Total} & 330 & 55.687 & 47.881 & 6.603 & 1.203 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7454,7 +7464,7 @@ Acidente & 189 & 41.610 & 36.983 & 3.793 & 834 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 39 & 1.574 & 1.089 & 470 & 15 \\
 \midrule \midrule
-Total  & 339 & 60.488 & 52.460 & 6.908 & 1.120 \\
+\textbf{Total} & 339 & 60.488 & 52.460 & 6.908 & 1.120 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7484,7 +7494,7 @@ Acidente & 164 & 31.596 & 28.664 & 2.670 & 262 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 84 & 18.038 & 15.450 & 2.361 & 227 \\
 \midrule \midrule
-Total  & 365 & 63.981 & 56.307 & 6.960 & 714 \\
+\textbf{Total} & 365 & 63.981 & 56.307 & 6.960 & 714 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7514,7 +7524,7 @@ Acidente & 2 & 3.505 & 3.203 & 252 & 50 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 83 & 62 & 21 & 0 \\
 \midrule \midrule
-Total  & 3 & 3.588 & 3.265 & 273 & 50\\
+\textbf{Total} & 3 & 3.588 & 3.265 & 273 & 50\\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7550,7 +7560,7 @@ Acidente & 40 & 40.098 & 32.671 & 5.171 & 2.256 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 191 & 77 & 106 & 8 \\
 \midrule \midrule
-Total & 644 & 674.233 & 564.109 & 76.010 & 34.114 \\
+\textbf{Total} & 644 & 674.233 & 564.109 & 76.010 & 34.114 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7580,7 +7590,7 @@ Acidente & 46 & 32.868 & 25.572 & 5.878 & 1.418 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 5 & 6.441 & 5.869 & 419 & 153 \\
 \midrule \midrule
-Total  & 377 & 332.065 & 272.399 & 47.668 & 11.998 \\
+\textbf{Total} & 377 & 332.065 & 272.399 & 47.668 & 11.998 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7610,7 +7620,7 @@ Acidente & 37 & 27.961 & 23.214 & 2.762 & 1.985 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 49 & 34.905 & 27.571 & 5.005 & 2.329 \\
 \midrule \midrule
-Total & 319 & 264.619 & 214.507 & 33.864 & 16.248 \\
+\textbf{Total} & 319 & 264.619 & 214.507 & 33.864 & 16.248 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7641,7 +7651,7 @@ Acidente & 29 & 13.217 & 9.687 & 2.346 & 1.184 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 79 & 110.442 & 97.346 & 10.111 & 2.985 \\
 \midrule \midrule
-Total  & 386 & 560.713 & 502.643 & 37.790 & 20.280 \\
+\textbf{Total} & 386 & 560.713 & 502.643 & 37.790 & 20.280 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7671,7 +7681,7 @@ Acidente & 194 & 152.861 & 118.989 & 23.569 & 10.303 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 52 & 56.085 & 47.649 & 5.676 & 2.760 \\
 \midrule \midrule
-Total  & 425 & 336.020 & 267.888 & 47.342 & 20.790 \\
+\textbf{Total} & 425 & 336.020 & 267.888 & 47.342 & 20.790 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7702,7 +7712,7 @@ Acidente & 496 & 439.434 & 360.398 & 56.034 & 23.002 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 87 & 68.764 & 56.225 & 9.140 & 3.399 \\
 \midrule \midrule
-Total  & 777 & 663.847 & 543.355 & 85.626 & 34.866 \\
+\textbf{Total} & 777 & 663.847 & 543.355 & 85.626 & 34.866 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7733,7 +7743,7 @@ Acidente & 519 & 515.974 & 422.331 & 64.621 & 29.022 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 134 & 67.178 & 52.091 & 11.023 & 4.064 \\
 \midrule \midrule
-Total  & 764 & 706.809 & 580.072 & 88.426 & 38.311 \\
+\textbf{Total} & 764 & 706.809 & 580.072 & 88.426 & 38.311 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7764,7 +7774,7 @@ Acidente & 461 & 425.118 & 346.818 & 53.965 & 24.335 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 189 & 186.185 & 153.052 & 21.457 & 11.676 \\
 \midrule \midrule
-Total & 845 & 712.156 & 573.993 & 93.999 & 44.164 \\
+\textbf{Total} & 845 & 712.156 & 573.993 & 93.999 & 44.164 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7794,7 +7804,7 @@ Acidente & 454 & 326.108 & 256.377 & 49.967 & 19.764 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 142 & 176.393 & 146.187 & 23.019 & 7.187 \\
 \midrule \midrule
-Total & 721 & 566.072 & 451.637 & 82.563 & 31.872 \\
+\textbf{Total} & 721 & 566.072 & 451.637 & 82.563 & 31.872 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7825,7 +7835,7 @@ Acidente & 394 & 410.860 & 338.494 & 53.676 & 18.690 \\
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 90 & 110.827 & 96.689 & 10.028 & 4.110 \\
 \midrule 
 \midrule
-Total & 715 & 689.373 & 570.847 & 87.417 & 31.109 \\
+\textbf{Total} & 715 & 689.373 & 570.847 & 87.417 & 31.109 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7855,7 +7865,7 @@ Acidente & 350 & 382.405 & 320.812 & 46.428 & 15.165 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 151 & 141.936 & 118.720 & 15.840 & 7.376 \\
 \midrule \midrule
-Total & 800 & 780.177 & 648.925 & 98.958 & 32.294 \\
+\textbf{Total} & 800 & 780.177 & 648.925 & 98.958 & 32.294 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7885,7 +7895,7 @@ Acidente & 8 & 5.464 & 4.443 & 817 & 204 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 4.545 & 4.425 & 74 & 46 \\
 \midrule \midrule
-Total & 10 & 10.056 & 8.889 & 915 & 252 \\
+\textbf{Total} & 10 & 10.056 & 8.889 & 915 & 252 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7919,7 +7929,7 @@ Acidente & 23 & 6.231 & 5.490 & 572 & 169 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 2.517 & 2.133 & 357 & 27 \\
 \midrule \midrule
-Total  & 380 & 472.949 & 438.047 & 27.281 & 7.621 \\
+\textbf{Total} & 380 & 472.949 & 438.047 & 27.281 & 7.621 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7949,7 +7959,7 @@ Acidente & 23 & 22.804 & 21.824 & 874 & 106 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 4 & 6.190 & 5.741 & 157 & 292 \\
 \midrule \midrule
-Total  & 231 & 258.807 & 238.569 & 17.540 & 2.698 \\
+\textbf{Total} & 231 & 258.807 & 238.569 & 17.540 & 2.698 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -7979,7 +7989,7 @@ Acidente & 27 & 42.787 & 40.376 & 1.738 & 673 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 35 & 79.297 & 72.860 & 5.213 & 1.224 \\
 \midrule \midrule
-Total & 217 & 377.621 & 354.085 & 16.442 & 7.094 \\
+\textbf{Total} & 217 & 377.621 & 354.085 & 16.442 & 7.094 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8010,7 +8020,7 @@ Acidente & 21 & 24.651 & 22.449 & 1.798 & 404 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 65 & 114.482 & 108.400 & 4.752 & 1.330 \\
 \midrule \midrule
-Total & 276 & 467.043 & 437.305 & 24.993 & 4.745 \\
+\textbf{Total} & 276 & 467.043 & 437.305 & 24.993 & 4.745 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8040,7 +8050,7 @@ Acidente & 158 & 306.781 & 288.104 & 13.584 & 5.093 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 43 & 115.899 & 107.702 & 6.851 & 1.346 \\
 \midrule \midrule
-Total  & 321 & 684.902 & 644.274 & 30.508 & 10.120 \\
+\textbf{Total} & 321 & 684.902 & 644.274 & 30.508 & 10.120 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8071,7 +8081,7 @@ Acidente & 349 & 581.205 & 545.257 & 26.753 & 9.195 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 75 & 150.374 & 139.968 & 8.316 & 2.090 \\
 \midrule \midrule
-Total  & 571 & 990.036 & 932.698 & 43.985 & 13.353 \\
+\textbf{Total} & 571 & 990.036 & 932.698 & 43.985 & 13.353 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8102,7 +8112,7 @@ Acidente & 364 & 598.814 & 558.198 & 31.089 & 9.527 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 111 & 249.116 & 234.973 & 10.472 & 3.671 \\
 \midrule \midrule
-Total  & 561 & 974.979 & 911.518 & 48.168 & 15.293 \\
+\textbf{Total} & 561 & 974.979 & 911.518 & 48.168 & 15.293 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8133,7 +8143,7 @@ Acidente & 343 & 545.707 & 511.619 & 22.799 & 11.289 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 154 & 296.634 & 280.586 & 10.950 & 5.098 \\
 \midrule \midrule
-Total & 643 & 1.044.065 & 981.207 & 42.917 & 19.941 \\
+\textbf{Total} & 643 & 1.044.065 & 981.207 & 42.917 & 19.941 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8163,7 +8173,7 @@ Acidente & 326 & 535.819 & 502.231 & 25.708 & 7.880 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 113 & 253.610 & 240.924 & 8.764 & 3.922 \\
 \midrule \midrule
-Total & 536 & 996.978 & 938.123 & 43.499 & 15.356 \\
+\textbf{Total} & 536 & 996.978 & 938.123 & 43.499 & 15.356 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8193,7 +8203,7 @@ Acidente & 293 & 367.280 & 335.395 & 26.808 & 5.077 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 67 & 105.158 & 92.625 & 11.499 & 1.034 \\
 \midrule \midrule
-Total & 528 & 757.287 & 692.434 & 54.698 & 10.155 \\
+\textbf{Total} & 528 & 757.287 & 692.434 & 54.698 & 10.155 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8223,7 +8233,7 @@ Acidente & 266 & 351.118 & 326.702 & 19.933 & 4.483 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 125 & 228.973 & 213.329 & 11.799 & 3.845 \\
 \midrule \midrule
-Total  & 571 & 825.251 & 769.545 & 44.571 & 11.135 \\
+\textbf{Total} & 571 & 825.251 & 769.545 & 44.571 & 11.135 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -8253,7 +8263,7 @@ Acidente & 3 & 7.493 & 7.081 & 204 & 208 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 1 & 93 & 64 & 25 & 4 \\
 \midrule \midrule
-Total  & 4 & 7.586 & 7.145 & 229 & 212 \\
+\textbf{Total} & 4 & 7.586 & 7.145 & 229 & 212 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
