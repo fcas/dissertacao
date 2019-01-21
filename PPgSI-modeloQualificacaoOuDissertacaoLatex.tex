@@ -2325,7 +2325,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
 	\label{fig:tweets_distribution}
 \end{figure}
 
-Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção~\ref{model}. De acordo com a Tabela~\ref{tab:metrics}\todo{DC: porquê os nomes dos algoritmos estão em inglês na tabela?}, o modelo que usa o algoritmo \textit{Multi-layer Perceptron} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo de \textit{Multi-layer Perceptron} é ilustrada pela Figura~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no Apêndice~\ref{apendiceE}.
+Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção~\ref{model}. De acordo com a Tabela~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Perceptron Multicamadas} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo \textit{Perceptron Multicamadas} é ilustrada pela Figura~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no Apêndice~\ref{apendiceE}.
 
 \begin{table}[!htb]
 \centering
@@ -2335,33 +2335,33 @@ Esse conjunto de dados rotulado foi usado para treinar modelos de classificaçã
 \toprule
 \textbf{Algoritmo} & \textbf{ACC} & \textbf{PPV} & \textbf{TPR} & \textbf{\textit{f1-score}} \\
 \midrule
-\textit{Complement Naive Bayes} & 0,941 & 0,949 & 0,941 & 0,944 \\
+\textit{Naive Bayes} Complementar & 0,941 & 0,949 & 0,941 & 0,944 \\
 \hline
-\textit{Decision Tree} & 0,965 & 0,965 & 0,965 & 0,965 \\
+Árvore de Decisão & 0,965 & 0,965 & 0,965 & 0,965 \\
 \hline
-\textit{K-Nearest Neighbors} & 0,970 & 0,971 & 0,970 & 0,970 \\
+K-ésimo Vizinho mais Próximo & 0,970 & 0,971 & 0,970 & 0,970 \\
 \hline
-\textit{Logistic Regression} & 0,969 & 0,968 & 0,969 & 0,968 \\
+Regressão Logística & 0,969 & 0,968 & 0,969 & 0,968 \\
 \hline
-\textit{Multi-layer Perceptron} & \textit{0,973} & \textit{0,972} & \textit{0,973} & \textit{0,972} \\
+Perceptron multicamadas & \textit{0,973} & \textit{0,972} & \textit{0,973} & \textit{0,972} \\
 \hline
-\textit{Multinomial Naive Bayes} & 0,953 & 0,952 & 0,953 & 0,949 \\
+\textit{Naive Bayes} Multinomial & 0,953 & 0,952 & 0,953 & 0,949 \\
 \hline
-\textit{Random Forest} & 0,970 & 0,970 & 0,970 & 0,970 \\
+Floresta Aleatória & 0,970 & 0,970 & 0,970 & 0,970 \\
 \hline
-\textit{Support Vector Machine} & 0,833 & 0,694 & 0,833 & 0,757 \\
+Máquina de Vetores de Suporte & 0,833 & 0,694 & 0,833 & 0,757 \\
 \bottomrule
 \end{tabular}\end{table}
 
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Multi-layer Perceptron}}
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Perceptron Multicamadas}
 		\includegraphics[width=1\linewidth]{images/confusion_matrix_mlp_pt.png}
 	\label{fig:confusion_matrix_mlp}
 \end{figure}
 
-Dos 60.984 \textit{tweets}, 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto foram encontrados 8.112 endereços, como pode ser visto na Tabela~\ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} \todo{DC: esse tipo foi definido antes? em inglês mesmo?} --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe \textit{Irrelevant}\todo{O nome da classe foi apresentada em português anteriormente. Dê sempre preferência ao português}). A quantidade de endereços extraídos por classe está descrita na Tabela~\ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
+Dos 60.984 \textit{tweets}, 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto foram encontrados 8.112 endereços, como pode ser visto na Tabela~\ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} (explicado mais adiante) --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe \textit{Irrelevant}\todo{O nome da classe foi apresentada em português anteriormente. Dê sempre preferência ao português}). A quantidade de endereços extraídos por classe está descrita na Tabela~\ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
 
 \begin{enumerate*}
 \item \textit{Tweets} apenas com o ponto de interesse, ou seja, não consta explicitamente o endereço.
@@ -2370,7 +2370,7 @@ Dos 60.984 \textit{tweets}, 10.027 foram classificados manualmente em eventos de
 \item \textit{Tweets} com endereços com palavras concatenadas (por exemplo \emph{avenidapaulista}).
 \end{enumerate*}
 
-Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers.google.com/maps/documentation/geocoding}. Acesso em 16 de setembro de 2018.} \todo{DC: não está claro quem definiu esses tipos. Você ou o GTFS? Explicitar} podem ser classificados em:
+Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers.google.com/maps/documentation/geocoding}. Acesso em 16 de setembro de 2018.} são classificados pela \textit{Google Geocoding API} em:
 \begin{enumerate*}
 \item \textit{ROOFTOP} --- Indica que o resultado retornado há informações de localização com precisão a nível do endereço de rua.
 \item \textit{RANGE\_INTERPOLATED} --- Indica que o resultado retornado reflete uma aproximação interpolada entre dois pontos precisos (como interseções). Geralmente, os resultados interpolados são retornados quando os códigos geográficos do \textit{rooftop} não estão disponíveis para um endereço de rua.
@@ -6139,7 +6139,7 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Complement Naive Bayes}}
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Naive Bayes} Complementar}
 		\includegraphics[width=1\linewidth]{images/confusion_matrix_cnb_pt.png}
 	\label{fig:confusion_matrix_gnb}
 \end{figure}
@@ -6153,7 +6153,7 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Multinomial Naive Bayes}}
+ 	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Naive Bayes} Multinomial}
 		\includegraphics[width=1\linewidth]{images/confusion_matrix_mnb_pt.png}
 	\label{fig:confusion_matrix_mnb}
 \end{figure}
@@ -6281,7 +6281,7 @@ outros \textit{kernels}.
 Parâmetro responsável por definir se uma segunda normalização dos pesos é executada ou não. Disponível somente na implementação \textit{ComplementNB}.
 \end{itemize}
 
-\section{Redes Neurais}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\#sklearn.neural_network.MLPClassifier}. Acesso em 08 de outubro de 2018.}
+\section{Perceptron Multicamadas}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\#sklearn.neural_network.MLPClassifier}. Acesso em 08 de outubro de 2018.}
 
 \begin{itemize}
 \item\textit{hidden\_layer\_sizes} --- $tuple$, $length = n\_layers - 2$,  opcional($default = (100,)$) --- Parâmetro responsável por definir o $ith$ elemento que representa o número de neurônios na $ith$ camada oculta.
