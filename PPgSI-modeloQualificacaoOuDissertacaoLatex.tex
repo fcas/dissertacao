@@ -1863,7 +1863,7 @@ O conjunto de dados AVL da SPTrans é composto por dados obtidos do SIM, transfe
 
 \begin{table}[!htb]
 \centering
-\caption{Meta dados dos dados AVL da SPTrans}
+\caption{Metadados dos dados AVL da SPTrans}
 \label{tab:avlMetaDataSPTrans}
 \begin{tabular}{c|c}
 \toprule
@@ -1930,7 +1930,7 @@ Prefixo do veículo \\
 
 \subsection{Identificação de incosistências e indisponibilidade na base de dados AVL da  SPTrans}
 
-Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho para análise do total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos. Tais meta dados estão especificados na Tabela~\ref{tab:avlDataset}. Além dos períodos indisponíveis, durante o processo de leitura encontramos arquivos com linhas divergentes do arquivo de meta dados fornecido pela SPTrans, contidos na Tabela~\ref{tab:avlMetaDataSPTrans}, tais registros foram ignorados para os experimentos deste trabalho.
+Os períodos indisponíveis foram identificados por meio de um \textit{script}\footnote{\url{https://github.com/fcas/mobility-analysis/blob/master/scripts/data_set_analyser.py}. Acessado em setembro de 2018.} desenvolvido por este trabalho para análise do total de arquivos e espaço em disco, por período. O funcionamento do \textit{script} consiste em gerar os respectivos nomes dos arquivos de movimentação que deveriam existir em determinado período, confrontando-os com os existentes na base obtida, além de sumarizar o espaço em disco e total de arquivos. Tais metadados estão especificados na Tabela~\ref{tab:avlDataset}. Além dos períodos indisponíveis, durante o processo de leitura encontramos arquivos com linhas divergentes do arquivo de metadados fornecido pela SPTrans, contidos na Tabela~\ref{tab:avlMetaDataSPTrans}, tais registros foram ignorados para os experimentos deste trabalho.
 
 \begin{table}[!htb]
 \begin{threeparttable}
@@ -1986,7 +1986,7 @@ Total & --- & 8.751 & 1.247,09 \\
 %\item \texttt{Movto\_201712150700\_201712150800.zip}
 %\item \texttt{Movto\_201712150800\_201712150900.zip}
 %\end{itemize}
-\item[a] Arquivos  \texttt{Movto\_201701111000\_201701111100} com 35 campos na linha 60.025 e \texttt{Movto\_201701110900\_201701111000} com 21 campos na linha 1.075.548, o esperado são 19 campos de acordo com os meta dados fornecidos pela SPTrans.
+\item[a] Arquivos  \texttt{Movto\_201701111000\_201701111100} com 35 campos na linha 60.025 e \texttt{Movto\_201701110900\_201701111000} com 21 campos na linha 1.075.548, o esperado são 19 campos de acordo com os metadados fornecidos pela SPTrans.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -2188,7 +2188,8 @@ Este capítulo apresentou um estudo de caso relacionado à visualização de gra
 \chapter{Uma metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
 \label{exp1}
 
-Neste capítulo é apresentada uma metodologia baseada em \textit{tweets} para identificar linhas de ônibus impactadas por eventos de exceção. De acordo com a Figura~\ref{fig:tweet_based_methodology}, a metodologia, explicada em detalhes na seções seguintes, é composta por:
+O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, conforme mencionado na Seção \ref{objetivos}. Portanto, para alcançarmos o objetivo proposto precisamos de uma metodologia capaz de encontrar as linhas de ônibus que são impactadas por eventos de exceção, para então explorarmos as características desse impacto. Sendo assim, apresentamos neste capítulo uma metodologia baseada em \textit{tweets} para identificar linhas de ônibus impactadas por eventos de exceção. De acordo com a Figura~\ref{fig:tweet_based_methodology}, a metodologia, explicada em detalhes nas seções seguintes, é composta por:
+
 \begin{enumerate*}
 \item Uma base de dados de \textit{tweets} --- \textit{Copus Twitter}.
 \item Pré-processamento dos \textit{tweets} existentes no conjunto de dados.
@@ -2208,7 +2209,7 @@ Neste capítulo é apresentada uma metodologia baseada em \textit{tweets} para i
 \section{Pré-processamento}
 \label{preprocessing}
 
-Numa pré-análise do \textit{Corpus Twitter}, podemos afirmar que os \textit{tweets} publicados pelos perfis selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice~\ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintaxe e que normalmente dependem de análise contextual para que possam ser interpretados.
+Numa pré-análise do \textit{Corpus Twitter}, podemos averiguar que os \textit{tweets} publicados pelos perfis selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice~\ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintáxe e que normalmente dependem de análise contextual para que possam ser interpretados.
 
 Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{Middleton2014}, \cite{Kobdani2010}, \cite{Setiawan2017},  \cite{Zagal2016}), as seguintes etapas de pré-processamento são necessárias para remoção de ruído e redução da dimensão do espaço de \textit{features} e foram realizadas para o \textit{Corpus Twitter}:
 
@@ -2223,13 +2224,13 @@ Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{
 \item \textit{Stemming} --- realizado neste trabalho na fase de processamento mencionada na Seção~\ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
 \end{itemize}
 
-Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos meta dados dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
+Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos metadados dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
 
-Uma atenção especial foi dada às \textit{hashtags}, que são relevantes para a classificação de eventos de exceção, mas adicionam ruído à fase de extração de endereços. Para mitigar o problema, \textit{hashtags} são identificados e substituídos por espaços vazios no processo de extração de endereço. Além disso, é importante notar que as \textit{hashtags} não são removias dos \textit{tweets} originais.
+Uma atenção especial foi dada às \textit{hashtags}, que são relevantes para a classificação de eventos de exceção, mas adicionam ruído à fase de extração de endereços. Para mitigar o problema, \textit{hashtags} são identificadas e substituídas por espaços vazios no processo de extração de endereço. Além disso, é importante notar que as \textit{hashtags} não são removias dos \textit{tweets} originais.
 
 \section{Extração de endereço e geolocalização}
 
-Analisando o conteúdo dos \textit{tweets} das contas selecionadas, é possível observar que os textos publicados seguem um determinado padrão e, portanto, são na verdade semi-estruturados. Ante a isso, usamos a seguinte expressão regular para extrair os endereços presentes no conteúdo dos \textit{tweets}:
+Analisando o conteúdo dos \textit{tweets} das contas selecionadas, é possível observar que os textos publicados seguem um determinado padrão e, portanto, são semi-estruturados. Ante a isso, usamos a seguinte expressão regular para extrair os endereços presentes no conteúdo dos \textit{tweets}:
 %
 \begin{equation}
 ER = \lbrace L_1 | S_1 | L_2 | S_2 | \dots | L_n | S_n \rbrace \lbrace [a-z\grave{A}-\ddot{y}\_] + \rbrace
