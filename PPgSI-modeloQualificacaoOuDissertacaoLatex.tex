@@ -2879,9 +2879,9 @@ Por sua vez, os meses com menores velocidades médias no intervalo de cinco minu
 
 Referente ao demais meses, junho teve médias entre $\lbrace11 \rightarrow 12\rbrace$ e $\lbrace12 \rightarrow 13\rbrace$ (aceleração); agosto $\lbrace11 \rightarrow 12\rbrace$ (aceleração) e $\lbrace13 \rightarrow 12\rbrace$  (desaceleração); outubro $\lbrace11 \rightarrow 12\rbrace$ (aceleração) e $\lbrace13 \rightarrow 12\rbrace$ (desaceleração); novembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração). Tais padrões indicam correlações de velocidades médias a cada cinco minutos entre 11 e 13Km/h.
 
-Os valores de \textit{Support} indicados na Tabela~\ref{tab:aprioriFull} representam uma baixa frequência dos padrões encontrados, apesar das correlações existentes entre eles. Com os eventos de exceção em consideração, encontramos 585.804 regras de associação --- correlacionando com os eventos de exceção a 100 metros de distância dos pontos de parada de ônibus --- e 9.348.802 --- correlacionando com os eventos de exceção a 1.000 metros de distância dos pontos de parada de ônibus --- detalhadas na Tabela~\ref{tab:aprioriExceptFullStops} e distribuídas graficamente (as regras de associação inesperadas) na Figura~\ref{fig:apriori_analysis_stops}. 
+Os valores de \textit{Support} indicados na Tabela~\ref{tab:aprioriFull} representam uma baixa frequência dos padrões encontrados, apesar das correlações existentes entre eles. Com os eventos de exceção em consideração, encontramos 585.804 regras de associação --- correlacionando com os eventos de exceção a 100 metros de distância dos pontos de parada de ônibus --- e 9.348.802 --- correlacionando com os eventos de exceção a 1.000 metros de distância dos pontos de parada de ônibus --- detalhadas na Tabela~\ref{tab:aprioriExceptFullStops} e distribuídas graficamente (as regras de associação inesperadas) nas figuras~\ref{fig:apriori_analysis_stops_accidents},~\ref{fig:apriori_analysis_stops_natural_disasters},~\ref{fig:apriori_analysis_stops_social_events} e~\ref{fig:apriori_analysis_stops_urban_events}. 
 
-Analogamente, encontramos 7.857.504 regras de associação --- correlacionando com os eventos de exceção a 100 metros de distância dos pontos de parada de ônibus --- e 6.296.140 --- correlacionando com os eventos de exceção a 1.000 metros de distância dos pontos de parada de ônibus --- detalhadas na Tabela~\ref{tab:aprioriExceptFullShapes} e distribuídas graficamente (as regras de associação inesperadas)  na Figura~\ref{fig:apriori_analysis_shapes}. A quantidade de regras de associação inesperadas em relação a sazonalidade é equivalente as análises realizadas no Capítulo~\ref{dataCorr}.
+Analogamente, encontramos 7.857.504 regras de associação --- correlacionando com os eventos de exceção a 100 metros de distância dos pontos de parada de ônibus --- e 6.296.140 --- correlacionando com os eventos de exceção a 1.000 metros de distância dos pontos de parada de ônibus --- detalhadas na Tabela~\ref{tab:aprioriExceptFullShapes} e distribuídas graficamente (as regras de associação inesperadas)  nas figuras~\ref{fig:apriori_analysis_shapes_accidents},~\ref{fig:apriori_analysis_shapes_natural_disasters},~\ref{fig:apriori_analysis_shapes_social_events} e~\ref{fig:apriori_analysis_shapes_urban_events}. A quantidade de regras de associação inesperadas em relação a sazonalidade é equivalente as análises realizadas no Capítulo~\ref{dataCorr}.
 
 \begin{table}[!htb]
 \centering
@@ -2931,17 +2931,61 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
-		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops.png}
-	\label{fig:apriori_analysis_stops}
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_accidents.png}
+	\label{fig:apriori_analysis_stops_accidents}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
-		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes.png}
-	\label{fig:apriori_analysis_shapes}
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_natural_disasters.png}
+	\label{fig:apriori_analysis_stops_natural_disasters}
 \end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_social_events.png}
+	\label{fig:apriori_analysis_stops_social_events}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos urbanos a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_urban_events.png}
+	\label{fig:apriori_analysis_stops_urban_events}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_accidents.png}
+	\label{fig:apriori_analysis_shapes_accidents}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_natural_disasters.png}
+	\label{fig:apriori_analysis_shapes_natural_disasters}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_social_events.png}
+	\label{fig:apriori_analysis_shapes_social_events}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+ 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_urban_events.png}
+	\label{fig:apriori_analysis_shapes_urban_events}
+\end{figure}
+
+
 
 \begin{table}[!htb]
 \centering
