@@ -1505,9 +1505,7 @@ Visando selecionar os artigos relevantes para esta Revisão Sistemática, os seg
 \item Trabalhos que estão fora do escopo da questão de pesquisa.
 \end{itemize}
 
-O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados, e está disponível em \citeauthor{fcas} (\citeyear{fcas}) (não incluso no apêndice deste trabalho devido ao grande volume de páginas de cada documento), \todo{DC: se não vale a pena colocar nesse trabalho, vale a pena citar isso aqui? Ou é importante e deve ir pro apêndice, ou não cita e pronto.} assim como seu respectivo protocolo (no qual contém o detalhamento dos critérios de inclusão e exclusão, dentre outros artefatos da condução). Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados.
-
-Sendo assim, a Figura~\ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gerada com a biblioteca \textit{wordcloud} \cite{wordcloud}) sintetizando as palavras chaves dos estudos primários selecionados; e a Figura~\ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Figura~\ref{fig:porcentagem}.
+O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados. Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados. Sendo assim, a Figura~\ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gerada com a biblioteca \textit{wordcloud} \cite{wordcloud}) sintetizando as palavras chaves dos estudos primários selecionados; e a Figura~\ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Figura~\ref{fig:porcentagem}.
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -2247,7 +2245,7 @@ Em seguida, a resposta HTTP é processada para obter os valores da localização
 \section{Processamento de \textit{tweets}}
 \label{processing}
 
-Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do português brasileiro filtradas\footnote{\textit{Stopwords} do português brasileiro obtidas da \nomenclature{NLTK}{Natural Language Toolkit}{NLTK ---} \url{https://www.nltk.org}. Acessado em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  português brasileiro\footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acesso em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
+Nesta fase, os \textit {tweets} são preparados para serem usados para treinar um modelo de classificação de eventos de exceção; neste momento, todos os \textit {tweets} já foram pré-processados. Conforme mencionado na seção anterior, nesta fase os \textit{tokens} dos endereços extraídos armazenados são removidos para redução de ruído e as \textit{stopwords} do português brasileiro filtradas\footnote{\textit{Stopwords} do português brasileiro obtidas da \nomenclature{NLTK}{Natural Language Toolkit}{NLTK ---} \url{https://www.nltk.org}. Acesso em 19 de Abril de 2018.} e todos os demais \textit{tokens}  processados por um \textit{stemmer} para o  português brasileiro\footnote{RSLP Stemmer --- \url {http://www.nltk.org/\_modules/nltk/stem/rslp.html}. Acesso em 19 de Abril de 2018.} para reduzir a dimensão do espaço de \textit{features}.
 
 \section{Classificação manual do Corpus \textit{Twitter}}
 \label{manualClassification}
