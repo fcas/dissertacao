@@ -2183,7 +2183,7 @@ Este capítulo apresentou um estudo de caso relacionado à visualização de gra
 %Como trabalho futuro, pretendemos implementar o fluxo de dados mencionado na Figura~\ref{fig:viz_arch}, em um cenário de exploração e visualização de dados \textit{near real time}.
 
 
-\chapter{Uma metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
+\chapter{Identificação de linhas de ônibus impactadas por eventos de exceção}
 \label{exp1}
 
 O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo, conforme mencionado na Seção \ref{objetivos}. Portanto, para alcançarmos o objetivo proposto precisamos de uma metodologia capaz de encontrar as linhas de ônibus que são impactadas por eventos de exceção, para então explorarmos as características desse impacto. Sendo assim, apresentamos neste capítulo uma metodologia baseada em \textit{tweets} para identificar linhas de ônibus impactadas por eventos de exceção. De acordo com a Figura~\ref{fig:tweet_based_methodology}, a metodologia, explicada em detalhes nas seções seguintes, é composta por:
@@ -2199,7 +2199,7 @@ O objetivo geral desse projeto de pesquisa é a caracterização de eventos de e
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
+ 	  \caption{Fluxograma da metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
 		\includegraphics[width=0.7\linewidth]{images/tweet_based_methodology_pt.png}
 	\label{fig:tweet_based_methodology}
 \end{figure}
@@ -2212,14 +2212,14 @@ Numa pré-análise do \textit{Corpus Twitter}, podemos averiguar que os \textit{
 Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{Middleton2014}, \cite{Kobdani2010}, \cite{Setiawan2017},  \cite{Zagal2016}), as seguintes etapas de pré-processamento são necessárias para remoção de ruído e redução da dimensão do espaço de \textit{features} e foram realizadas para o \textit{Corpus Twitter}:
 
 \begin{itemize}
-\item \textit{Case folding}: processamento de normalização de todas as letras do texto (de a-z) para minúsculas.
+\item \textit{Case folding}: processamento de normalização de todas as letras do texto (de A-Z) para minúsculas.
 %\item \textit{\textbf{Tokenization}}: processamento realizado para obtenção das palavras  (\textit{tokens}) que compõem uma sentença, inclui a remoção de números, pontuações e caracteres que não pertencem ao alfabeto \cite{Setiawan2017}.  
 %\item \textbf{Remoção de} \textit{\textbf{stopwords}}: processamento para remoção do conjunto de \textit{tokens} de palavras sem significado ou importância \cite{Setiawan2017}, o que reduz a quantidade de ruído do conteúdo \textit{tweet} \cite{Steiger2015Census}.
 %\item \textit{\textbf{Stemming}}: processamento para encontrar a raiz de uma palavra, removendo sufixos e prefixos (no caso do Português Brasileiro) das palavras derivadas \cite{Setiawan2017}.
 \item Remoção de \nomenclature{URL}{\textit{Uniform Resource Locator}} \textit{URLs} e menções a outros \textit{tweets}.
 \item Remoção de acentos, \textit{emoticons} e pontuações substituídas por espaços vazios.
 %\item Correção erros de digitação por meio de uma função de mapeamento
-\item \textit{Stemming} --- realizado neste trabalho na fase de processamento mencionada na Seção~\ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
+\item \textit{Stemming} (conceito explicado na Seção \ref{nlp})  --- realizado neste trabalho na fase de processamento mencionada na Seção~\ref{processing}, com o objetivo de não afetar o processo de extração de endereços. 
 \end{itemize}
 
 Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos metadados dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
@@ -2382,7 +2382,7 @@ Neste estudo de caso, desconsideramos os endereços com classificação \textit{
 
 \begin{table}[!htb]
 \centering
-\caption {Quantidade de eventos extraídos por classe}
+\caption {Quantidade\tnote{f} de endereços extraídos por classe}
 \label {tab:qtdExtractedAddresses}
 \begin{threeparttable}
 \begin{tabular}{c|c|c|c|c|c}
@@ -2409,6 +2409,7 @@ Total & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
 \item[c] Total de endereços extraídos com o tipo de localidade \textit{GEOMETRIC\_CENTER}
 \item[d] Total de endereços extraídos com o tipo de localidade \textit{RANGE\_INTERPOLATED}
 \item[e] Total de endereços extraídos com o tipo de localidade \textit{ROOFTOP}
+\item[f] Total considerando endereços repetidos, a repetição é importante para identificarmos os endereços mais impactados por eventos de exceção.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
