@@ -923,7 +923,7 @@ Secretaria Municipal de Transportes de São Paulo & \textit{@smtsp\_} \\
             \item[b] \nomenclature{CCOI}{Centro de Controle Integrado 24 Horas da Cidade de São Paulo}{Centro de Controle Integrado 24 Horas da Cidade de São Paulo.}
         \end{tablenotes}
 \end{threeparttable}
-\source{Elaborado pelo autor}
+\source{Felipe Cordeiro Alves Dias (2019)}
 \end{table}
 
 \section{Hipóteses}
@@ -1251,13 +1251,13 @@ Florestas aleatórias ou florestas de decisão aleatórias são um método de ap
 
 O processo que utiliza \textit{boosting} ajusta (\textit{fit}) o algoritmo a todos os dados de entrada, em seguida encontra o conjunto de pontos classificados erroneamente e ajusta outro algoritmo (escolhido por meio de voto ponderado) aos pontos classificados incorretamente. Tal processo é repetido recursivamente com conjuntos de dados menores até que o erro fique abaixo de um determinado limiar.  Por sua vez, o processo que utiliza \textit{bagging} ajusta um algoritmo selecionando aleatoriamente do conjunto de dados original vários conjuntos de instâncias para treinamento \textit{com substituição} (um elemento pode aparecer várias vezes na amostra), ajustando em seguida um algoritmo simples (escolhidos por meio de votação majoritária) a cada uma dessas amostras \cite{mcdonald2014steering, dogru2018traffic}.
 
-Em resumo, o algoritmo de florestas aleatórias constroí um conjunto de árvores de decisão e as une para obter predições mais precisas e estáveis. Diferentemente das árvores de decisão, o algoritimo RF previne sobreajuste por meio da criação aleatória de conjuntos de dados menores, o que implica também em árvores de menor altura. Há também a possibilidade de redução de desempenho, dependendo da quantidade de árvores criadas durante o processo de aprendizado \cite{dogru2018traffic}.
+Em resumo, o algoritmo de florestas aleatórias constroí um conjunto de árvores de decisão e as une para obter predições mais precisas e estáveis. Diferentemente das árvores de decisão, o algoritmo RF previne sobreajuste por meio da criação aleatória de conjuntos de dados menores, o que implica também em árvores de menor altura. Há também a possibilidade de redução de desempenho, dependendo da quantidade de árvores criadas durante o processo de aprendizado \cite{dogru2018traffic}.
 
 \subsubsection{K-ésimo Vizinho mais Próximo} 
 
-O algoritimo \textit{K-ésimo Vizinho mais Próximo} (k-NN ---  \textit{k-Nearest Neighbors}) é uma abordagem para classificação e regressão não-paramétrica, na  qual o processo de aprendizado é caracterizado por encontrar um grupo de $k$ amostras que estão mais próximas de amostras desconhecidas, por exemplo, com base em funções de distância. A partir dessas $k$ amostras, as classes das amostras desconhecidas são determinadas com base nas classes mais próximas de um conjunto de pontos previamente rotulados \cite{singh2016review, thanh2018comparison}. 
+O algoritmo \textit{K-ésimo Vizinho mais Próximo} (k-NN ---  \textit{k-Nearest Neighbors}) é uma abordagem para classificação e regressão não-paramétrica, na  qual o processo de aprendizado é caracterizado por encontrar um grupo de $k$ amostras que estão mais próximas de amostras desconhecidas, por exemplo, com base em funções de distância. A partir dessas $k$ amostras, as classes das amostras desconhecidas são determinadas com base nas classes mais próximas de um conjunto de pontos previamente rotulados \cite{singh2016review, thanh2018comparison}. 
 
-Devido a característica de determinar os rótulos desconhecidos com base nos $k$ mais próximos, o k-NN é considerado um método de aprendizado ``preguiçoso'' (\textit{lazy learning}), com alto custo computacional durante a fase de classificação  e baixo na fase de treinamento. Além disso, a eficiência do algoritimo depende da escolha de um bom valor para o $k$, é afetado por ruídos, variáveis irrelevantes e pelo tamanho do conjunto de dados que precisa ser revisatado \cite{singh2016review, kibanov2018adaptive}. 
+Devido a característica de determinar os rótulos desconhecidos com base nos $k$ mais próximos, o k-NN é considerado um método de aprendizado ``preguiçoso'' (\textit{lazy learning}), com alto custo computacional durante a fase de classificação  e baixo na fase de treinamento. Além disso, a eficiência do algoritmo depende da escolha de um bom valor para o $k$, é afetado por ruídos, variáveis irrelevantes e pelo tamanho do conjunto de dados que precisa ser revisatado \cite{singh2016review, kibanov2018adaptive}. 
 
 \subsubsection{Máquina de Vetores de Suporte}
 
@@ -1339,10 +1339,10 @@ W_{t,d} = tf_{t,d} * idf_t
 
 No contexto deste trabalho, entendemos documentos como as classes dos eventos de exceção. A \emph{frequência dos termos} (TF --- $tf_{t,d}$) é determinada por classe e a \emph{frequência do termo - inverso da frequência nos documentos} (IDF --- $idf_t $) como o inverso dos eventos de exceção, sendo $N$ o tamanho do conjunto dos eventos de exceção, sob o qual $df_t$ é definido. Os eventos de exceção são classificados em suas respectivas classes por meio dos modelos de aprendizado supervisionado, elencados na Seção~\ref{supervisionedLearning}. 
 
-\section{Algorítimo \textit{Apriori}}
+\section{Algoritmo \textit{Apriori}}
 \label{apriori}
 
-O algorítimo \textit{Apriori}\footnote{Utilizamos para este trabalho a implementação do algoritimo \textit{Apriori} feita pela biblioteca \textit{Apyori}  \url{https://pypi.org/project/apyori}. Acesso em 08 de janeiro de 2019} normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como a de \textit{suporte} (\textit{support}) --- indicador da frequência de determinados registros no conjunto de dados; \textit{confiança} (\textit{confidence}) --- frequência com que determinadas regras de associações entre registros são encontradas encontradas como verdadeiras e \textit{lift} --- probabilidade de ocorrência de um consequente B no conjunto de dados \todo{DC: seria bom que essas definições fossem relembradas no Cap. 7} ($lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros). Todas as métricas mencionadas anteriormente são detalhadas nas equações~\ref{eqSupportA},~\ref{eqSupportB},~\ref{eqSupports},~\ref{eqConfidence} e~\ref{eqLift} a seguir  \cite{park2018apriori}:
+O algoritmo \textit{Apriori}\footnote{Utilizamos para este trabalho a implementação do algoritmo \textit{Apriori} feita pela biblioteca \textit{Apyori}  \url{https://pypi.org/project/apyori}. Acesso em 08 de janeiro de 2019} normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como a de \textit{suporte} (\textit{support}) --- indicador da frequência de determinados registros no conjunto de dados; \textit{confiança} (\textit{confidence}) --- frequência com que determinadas regras de associações entre registros são encontradas encontradas como verdadeiras e \textit{lift} --- probabilidade de ocorrência de um consequente B no conjunto de dados \todo{DC: seria bom que essas definições fossem relembradas no Cap. 7} ($lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros). Todas as métricas mencionadas anteriormente são detalhadas nas equações~\ref{eqSupportA},~\ref{eqSupportB},~\ref{eqSupports},~\ref{eqConfidence} e~\ref{eqLift} a seguir  \cite{park2018apriori}:
 
 \begin{equation}
 \label{eqSupportA}
@@ -1821,7 +1821,7 @@ fare\_attributes.txt & Opcional & Contém informações sobre tarifas dos trajet
             \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice~\ref{apendiceC}, nas tabelas ~\ref{tab:gtfsAgency} à~\ref{tab:gtfsFeedInfo}.
         \end{tablenotes}
 \end{threeparttable}
-\center{Fonte:} Google Transit (adaptada)\footref{googleTransit}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 \end{table}
 
 Além da GTFS estática existe a GTFS-\textit{realtime}\footref{googleTransit}, que é uma extensão da GTFS estática, assim, para usar \textit{feeds} em tempo real é necessário definir os arquivos estáticos da GTFS, que são utilizados na GTFS-\textit{realtime} para obter as informações do sistema de transporte público. A GTFS-\textit{realtime} está fora do escopo desse trabalho.
@@ -1925,7 +1925,7 @@ Código interno utilizado para  identificar
 Prefixo do veículo \\
 \bottomrule
 \end{tabular}
-\source{SPTrans (2019)}
+\source{\citeauthor{metadadosSptrans} (\citeyear{metadadosSptrans})}
 \end{table}
 
 \subsection{Identificação de incosistências e indisponibilidade na base de dados AVL da  SPTrans}
@@ -2741,6 +2741,8 @@ Após isso, comparamos por meio da Equação \ref{eqVeloc} se a velocidade media
 
 \subsection{Resultados}
 
+As seções seguintes são sobre os experimentos relacionados a análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade dos pontos de parada e de rotas.
+
 \subsubsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade dos pontos de parada}
 \label{stopsAnalysis}
 
@@ -2927,11 +2929,11 @@ Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL co
 
 \subsection{Trabalhos relacionados}
 
-No trabalho realizado em \cite{zhao2019recognizing}, foram utilizados o algoritimo \textit{Apriori} e a análise de \textit{cluster} para encontrar padrões relacionados a transferência (entre metrô e ônibus), por meio dos dados dos cartões inteligentes usados no transporte público da China. Esse estudo constatou que 85\% dos resultados de reconhecimento de transferência são bastante estáveis durante toda a semana, e o tempo médio de transferência entre o metrô e o ônibus é inferior a 20 minutos. O método proposto neste estudo pode ser usado para identificar os pontos de transferência mais movimentados e obter tempos médios de transferência, o que facilita uma rede de transporte público mais inteligente e eficiente.
+No trabalho realizado em \cite{zhao2019recognizing}, foram utilizados o algoritmo \textit{Apriori} e a análise de \textit{cluster} para encontrar padrões relacionados a transferência (entre metrô e ônibus), por meio dos dados dos cartões inteligentes usados no transporte público da China. Esse estudo constatou que 85\% dos resultados de reconhecimento de transferência são bastante estáveis durante toda a semana, e o tempo médio de transferência entre o metrô e o ônibus é inferior a 20 minutos. O método proposto neste estudo pode ser usado para identificar os pontos de transferência mais movimentados e obter tempos médios de transferência, o que facilita uma rede de transporte público mais inteligente e eficiente.
 
-Ainda relacionado a mobilidade urbana, o trabalho realizado em \cite{zeng2017visual} buscou compreender, por meio do algoritimo \textit{Apriori}, os padrões existentes nos conjuntos de dados relacionados a movimentação diária no transporte público de Singapura e no \textit{MIT Reality Mining} \todo{DC: é MIT Reality Mining \textbf{Data}, como abaixo?} (dados sobre comunicação, proximidade, localização, etc. coletados entre Setembro de 2004 e Junho de 2005, dos celulares de voluntários do projeto \textit{MIT Reality Mining Data}). O sistema desenvolvido é capaz de identificar e apresentar visualmente padrões de movimentação humana, em relação ao espaço e ao tempo. Analogamente, o estudo realizado em \cite{yu2018discovering}, é capaz de indentificar padrões de rotas de táxi, na cidade de Pequim, China.
+Ainda relacionado a mobilidade urbana, o trabalho realizado em \cite{zeng2017visual} buscou compreender, por meio do algoritmo \textit{Apriori}, os padrões existentes nos conjuntos de dados relacionados a movimentação diária no transporte público de Singapura e no \textit{MIT Reality Mining} \todo{DC: é MIT Reality Mining \textbf{Data}, como abaixo?} (dados sobre comunicação, proximidade, localização, etc. coletados entre Setembro de 2004 e Junho de 2005, dos celulares de voluntários do projeto \textit{MIT Reality Mining Data}). O sistema desenvolvido é capaz de identificar e apresentar visualmente padrões de movimentação humana, em relação ao espaço e ao tempo. Analogamente, o estudo realizado em \cite{yu2018discovering}, é capaz de indentificar padrões de rotas de táxi, na cidade de Pequim, China.
 
-Por fim, no trabalho realizado por \cite{cruz2018detecccao}, foi proposta uma metodologia para identificar e classificar as anomalias no comportamento do trânsito, por meio de agregações espaço-temporais usando o algoritimo \textit{Apriori}, aplicadas aos dados de transporte rodoviário  da cidade do Rio de Janeiro. A metodologia proposta foi capaz identificar características das principais anomalias e classificá-las como esperadas ou inesperadas. A proposta desse experimento se diferencia das demais por encontrar os padrões de velocidade média existentes nos dados do transporte público por ônibus da cidade de São Paulo, considerando ainda a correlação com eventos de exceção extraídos de Redes Sociais.
+Por fim, no trabalho realizado por \cite{cruz2018detecccao}, foi proposta uma metodologia para identificar e classificar as anomalias no comportamento do trânsito, por meio de agregações espaço-temporais usando o algoritmo \textit{Apriori}, aplicadas aos dados de transporte rodoviário  da cidade do Rio de Janeiro. A metodologia proposta foi capaz identificar características das principais anomalias e classificá-las como esperadas ou inesperadas. A proposta desse experimento se diferencia das demais por encontrar os padrões de velocidade média existentes nos dados do transporte público por ônibus da cidade de São Paulo, considerando ainda a correlação com eventos de exceção extraídos de Redes Sociais.
 
 \subsection{Resultados}
 
@@ -3568,8 +3570,8 @@ VL & Vila \\
 ZIG-ZAG & Zigue-zague \\
 
 \end{longtable}
-
-\center{\textbf{Fonte:}} MS/SAS/DRAC/CGSI - Coordenação Geral dos Sistemas de Informação (adaptada)\footnote{\url{http://www.pmf.sc.gov.br/arquivos/arquivos/pdf/04_01_2010_10.27.25.2b615e6755138defe1bdb00f1c86031f.PDF}. Acesso em 29 de outubro de 2017.}
+\vspace{-\baselineskip}
+\source{\citeauthor{CGSI2017} (\citeyear{CGSI2017})}
 
 \clearpage
 
@@ -3626,7 +3628,7 @@ Neste apêndice, estão detalahdos todos os campos da GTFS para melhor entendime
 \end{tabular}
 \end{table}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footnote{\label{gtfsFields}\url{https://developers.google.com/transit}. Acesso em 29 de outubro de 2017.}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \clearpage
 
@@ -3677,7 +3679,7 @@ Quando uma parada tem uma estação principal, considera-se que a parada esteja 
 0 (ou vazio) - a parada herdará o valor para \textit{wheelchair\_boarding} da estação principal, se especificado; 1 - existem vias de acesso na parte externa da estação para a parada/plataforma específic; 2 - não há vias de acesso na parte externa da estação para a parada/plataforma específica \\
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields} 
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \newpage
 
@@ -3720,7 +3722,7 @@ Quando uma parada tem uma estação principal, considera-se que a parada esteja 
 \textit{route\_text\_color} & Opcional & Usado para especificar uma cor legível para usar em desenho de texto contra um plano de fundo de \textit{route\_color}. \\
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \newpage
 
@@ -3763,7 +3765,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 \textit{wheelchair\_accessible} & Opcional & 0 (ou vazio) - indica que não há informações sobre acessibilidade para a viagem; 1 - indica que o veículo que está sendo usado nesta viagem específica pode acomodar, pelo menos, um passageiro em cadeira de rodas; 2 - indica que não é possível acomodar passageiros em cadeiras de rodas nesta viagem \\
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \newpage
 
@@ -3805,7 +3807,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 \textit{shape\_dist\_traveled} & Opcional & Quando usado no arquivo \textit{stop\_times.txt}, o campo \textit{shape\_dist\_traveled} posiciona uma parada como uma distância a partir do primeiro ponto de forma. O campo \textit{shape\_dist\_traveled} representa uma distância real percorrida ao longo do trajeto em unidades como, por exemplo, pés ou quilômetros. Essas informações permitem que o planejador da viagem determine o quanto da forma deve ser desenhado ao exibir parte de uma viagem no mapa. Os valores usados para \textit{shape\_dist\_traveled} devem aumentar juntamente com \textit{stop\_sequence}. As unidades usadas para \textit{shape\_dist\_traveled} no arquivo \textit{stop\_times.txt} devem corresponder às unidades usadas para este campo no arquivo \textit{shapes.txt}. \\
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \newpage
 
@@ -3850,7 +3852,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \newpage
 
@@ -3868,7 +3870,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 \end{tabular}
 \end{table}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \clearpage
 
@@ -3892,7 +3894,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 \end{tabular}
 \end{table}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \clearpage
 
@@ -3914,7 +3916,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 \end{tabular}
 \end{table}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \clearpage
 
@@ -3936,7 +3938,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 \end{tabular}
 \end{table}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \clearpage
 
@@ -3965,7 +3967,7 @@ Um valor de \textit{trip\_short\_name}, se possível, deve identificar, com excl
 \hline 
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \clearpage
 
@@ -3999,7 +4001,7 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \hline 
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \clearpage
 
@@ -4034,7 +4036,7 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 
 \end{longtable}
 \vspace{-\baselineskip}
-\center{\textbf{Fonte:}} Google Transit (adaptada)\footref{gtfsFields}
+\source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
 
 \chapter{Linhas de ônibus impactadas por eventos de exceção}
 \label{apendiceD}
