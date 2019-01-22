@@ -2022,16 +2022,6 @@ Apesar do acesso facilitado aos \textit{tweets}, a API do \textit{Twitter} limit
 
 Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe do modelo da aplicação: \textit{TweetInfo}, que contém as informações respectivas ao \textit{id}, texto da publicação, \textit{timestamp}, endereço extraído, latitude e longitude. Em seguida, o modelo é persistido no banco de dados não relacional \textit{MongoDB}\footnote{\url{https://www.mongodb.com}. Acesso em 29 de outubro de 2017.} e também no banco de dados de séries temporais \textit{Druid}\footnote{\url{http://druid.io}. Acesso em 29 de outubro de 2017.} para exploração e visualização dos dados, processo explicado na Seção~\ref{dataViz}. Os detalhes sobre o intervalo de tempo e o número de \textit{tweets} coletados constam na Tabela~\ref{tab:tweetsCollected}.
 
-\section{Correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
-
-\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
-	\centering
- 	  \caption{Fluxograma da correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
-		\includegraphics[width=1\linewidth]{images/caracterization_flow.png}
-	\label{fig:caracterization_flow}
-  \source{Elaborado pelo autor}
-\end{figure}
-
 \begin{table}[!htb]
 \centering
 \caption{Intervalo de tempo e número de \textit{tweets} coletados}
@@ -2077,6 +2067,28 @@ Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe 
 \end{threeparttable}
 \source{Elaborado pelo autor}
 \end{table}
+
+\clearpage
+
+\section{Correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
+\label{corrAll}
+
+Conforme mencionado anteriormente, após os processos de coleta e transformação os \textit{tweets} e dados da GTFS são inseridos no banco de dados não relacional \textit{MongoDB}. Após essas fases, os dados são correlacionados com o auxílio de \textit{data frames} (estrutura de dados tabular da biblioteca \textit{Pandas}\footnote{\url{https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.html}. Acesso em 21 de janeiro de 2019.}), implementados em\textit{scripts} na linguagem de programação \textit{Python}.
+
+Na Figura \ref{fig:caracterization_flow}, temos o processo de extração e geolocalização dos endereços contidos nos \textit{tweets}, explicado no Capítulo \ref{exp1}. O final desse processo gera um conjunto de arquivos (no formato \textit{CSV}) contendo os eventos de exceção, endereços e geolocalizações extraídas.  Em seguida, correlacionamos esses dados com a GTFS da SPTrans para então indentificarmos as linhas de ônibus impactadas pelos eventos de exceção, por meio de consultas geoespaciais. Tais consultas utilizam os dados de latitudde e longitude dos endereços dos eventos de exceção, além das coordenadas espaciais existentes nos arquivos \textit{shapes} e \textit{stops} da GTFS.
+
+Uma vez que sabemos quais linhas de ônibus foram impactadas pelos eventos de exceção, utilizamos os códigos dessas linhas de ônibus e as datas (devido a sazonalidade) dos eventos para filtrar o conjunto de dados AVL que será caracterizado. Em seguida, extraímos análises descritivas das velocidades instantâneas dos ônibus, armazenadas também em arquivos no formato \textit{CSV}. Com as descrições das velocidades instantâneas conseguimos analisar se estão dentro dos padrões esperados, além de podermos extrair regras de associação. No Capítulo \ref{dataCorr} descrevemos os experimentos realizar para caracterizar os impactos dos eventos de exceção.
+
+Por fim, é importante mencionarmos que para viabilizarmos o processamento dos dados AVL mantivemos os arquivos no formato compactado, assim como foram fornecidos pela SPTrans. Durante o processamento realizamos a leitura dos dados em memória, convertendo \textit{bytes} para \textit{string}. Uma vez em memória, dividimos e paralelizamos o processamento dos \textit{data frames} de acordo com a quantidade de núcleos existentes na máquina. Com isso, aproveitamos melhor os recursos de \textit{hardware} e disponibilizamos \textit{scripts} que podem ser facilmente integrados a estrutura de processamento de dados da SPTrans.
+
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Fluxograma da correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
+		\includegraphics[width=1\linewidth]{images/caracterization_flow.png}
+	\label{fig:caracterization_flow}
+  \source{Elaborado pelo autor}
+\end{figure}
+
 
 %Além dos \textit{tweets} coletados, foram extraídos 625 endereços e seus respectivos dados de geolocalização. No entanto, por meio de uma análise manual percebemos dois problemas: (I) alguns endereços não foram extraídos; (II) apesar de o endereço ser extraído corretamente, encontramos geolocalizações fora do estado de São Paulo e do país. Assim, pretendemos melhorar o processo de extração dos endereços dos \textit{tweets} e o restringir a geolocalização para a região de São Paulo. 
 
@@ -2313,7 +2325,7 @@ O corpus obtido da fase de processamento de \textit {tweets} é representado por
 
 Para encontrar as linhas de ônibus afetadas por eventos de exceção, é necessário correlacionar latitude e longitude dos eventos de exceção com as \textit{stops} da GTFS da SPTrans. Como mencionado anteriormente, os dados referentes as \textit{stops} contém os locais individuais em que os veículos pegam ou deixam passageiros, incluindo coordenadas de latitude e longitude.
 
-De acordo com a Seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acesso em 18 de Maio de 2018.} \todo{DC: isso é um detalhe de implementação. A implementação já foi apresentada antes para que o leitor possa entender a importância disso? Talvez uma explicação detalhada de como os dados foram organizados e como tudo isso foi implementado coubesse no capítulo anterior (já que o título fala também da exploração)} para encontrar as \textit{stops} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{stop\_id} faz parte dos atributos contidos no arquivo de \textit{stops}, referindo-se a um código de parada de ônibus com o qual é possível correlacioná-lo com as bases \textit{stop\_times} e \textit{lines} (por meio do atributo \textit{trip\_id} existente em \textit{stops}) para obter mais detalhes sobre a direção da linha de ônibus, identificação, etc.
+De acordo com a Seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenadas em pares no formato \textit{legacy} e em coleções com índices geoespaciais. Assim, é possível usar a função \textit{\$near} do MongoDB\footnote {\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Acesso em 18 de Maio de 2018.} para encontrar as \textit{stops} próximas às coordenadas do evento de exceção. Como consequência da GTFS, o \textit{stop\_id} faz parte dos atributos contidos no arquivo de \textit{stops}, referindo-se a um código de parada de ônibus com o qual é possível correlacioná-lo com as bases \textit{stop\_times} e \textit{lines} (por meio do atributo \textit{trip\_id} existente em \textit{stops}) para obter mais detalhes sobre a direção da linha de ônibus, identificação, etc.
 
 \section{Resultados}
 	
