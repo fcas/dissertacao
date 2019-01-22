@@ -102,6 +102,8 @@
 \usepackage{bm}
 \usepackage{nomencl}
 
+\newcolumntype{M}{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{1.5cm}}
+
 \usepackage{bera}% optional: just to have a nice mono-spaced font
 \usepackage{listings}
 \lstset{%
@@ -978,7 +980,7 @@ Após a identificação dos eventos de exceção, temos como hipótese que seja 
 \section{Organização do documento}
 \label{docOrg}
 
-O  documento inicia no Capítulo~\ref{introducao} com a introdução de aspectos gerais do trabalho; o Capítulo~\ref{fundamentacao} trata sobre os conceitos fundamentais e necessários para melhor entedimento do conteúdo apresentado por essa dissertação; o  Capítulo~\ref{revisao} apresenta a revisão sistemática realizada na literatura com o objetivo de encontrar trabalhos que utilizam \textit{tweets} para tratar problemas relacionados a Cidades Inteligentes; o Capítulo~\ref{dataSet} descreve o processo de coleta dos dados abertos relacionados ao transporte público e a eventos de exceção; os capítulos~\ref{dataViz},~\ref{exp1},~\ref{dataCorr} e~\ref{expApriori} discorrem sobre os experimentos realizados para atingir os objetivos já detalhados; o Capítulo~\ref{conclusion} apresenta a conclusão dos trabalhos desenvolvidos e os apêndices~\ref{apendiceA},~\ref{apendiceB},~\ref{apendiceC},~\ref{apendiceD},~\ref{apendiceE},~\ref{apendiceF} e~\ref{apendiceG} finalizam com os detalhes dos experimentos.
+O  documento inicia no Capítulo~\ref{introducao} com a introdução de aspectos gerais do trabalho; o Capítulo~\ref{fundamentacao} trata sobre os conceitos fundamentais e necessários para melhor entedimento do conteúdo apresentado por essa dissertação; o  Capítulo~\ref{revisao} apresenta a revisão sistemática realizada na literatura com o objetivo de encontrar trabalhos que utilizam \textit{tweets} para tratar problemas relacionados a Cidades Inteligentes; o Capítulo~\ref{dataSet} descreve o processo de coleta dos dados abertos relacionados ao transporte público e a eventos de exceção; os capítulos~\ref{dataViz},~\ref{exp1} e~\ref{dataCorr} discorrem sobre os experimentos realizados para atingir os objetivos já detalhados; o Capítulo~\ref{conclusion} apresenta a conclusão dos trabalhos desenvolvidos e os apêndices~\ref{apendiceA},~\ref{apendiceB},~\ref{apendiceC},~\ref{apendiceD},~\ref{apendiceE},~\ref{apendiceF} e~\ref{apendiceG} finalizam com os detalhes dos experimentos.
 
 %-------------------------------------------------------------------------
 % Comentário adicional do PPgSI - Informações sobre ``figura''
@@ -1368,7 +1370,7 @@ confidence(A \rightarrow B) = \dfrac{support(A \rightarrow B)}{support(A)} = \df
 lift(A \rightarrow B) = \dfrac{confidence(A \rightarrow B)}{support(B)} = \dfrac{P(B|A)}{P(B)}
 \end{equation}
 
-Algoritmos para mineração de dados, como o \textit{Apriori}, não tem tido seu potencial explorado no domínio de grandes volumes de dados relacionados ao transporte \cite{park2018apriori}. Neste trabalho, aplicamos o algoritmo \textit{Apriori} no conjunto de dados da \textit{SPTrans} para identificarmos as regras de associação existentes, detalhadas no Capítulo~\ref{expApriori}, com o objetivo de contribuirmos para a gestão do transporte público por ônibus da cidade de São Paulo.   
+Algoritmos para mineração de dados, como o \textit{Apriori}, não tem tido seu potencial explorado no domínio de grandes volumes de dados relacionados ao transporte \cite{park2018apriori}. Neste trabalho, aplicamos o algoritmo \textit{Apriori} no conjunto de dados da \textit{SPTrans} para identificarmos as regras de associação existentes, detalhadas na Seção~\ref{expApriori}, com o objetivo de contribuirmos para a gestão do transporte público por ônibus da cidade de São Paulo.   
 
 \chapter{Revisão Sistemática}
 \label{revisao}
@@ -2659,8 +2661,12 @@ Embora o método tenha sido validado usando perfis selecionados do Twitter escri
 % \source{Felipe Cordeiro Alves Dias, 2017}
 %\end{table}%
 
-\chapter{Correlação dos eventos de exceção com os dados AVL da SPTrans}
+\chapter{Caracterização do impacto dos eventos de exceção}
 \label{dataCorr}
+
+As seções deste capítulo são referentes aos experimentos para caracterização dos impactos em relação as velocidades medianas dos ônibus e identificação dos padrões de velocidade média dos dados AVL. Decidimos por realizar os experimentos com velocidade mediana e média para analisarmos se há divergências entre os dois estudos, devido a possíveis discrepâncias nos valores das velocidades instantâneas, seja por questões climáticas ou limitações dos módulos AVL.
+
+\section{Caracterização dos impactos em relação as velocidades medianas dos ônibus}
 %\todo[inline]{Escrever Correlação dos eventos de exceção com os dados AVL da SPTrans}
 
 Dado que os eventos de exceção podem ser identificados utilizando \textit{tweets} dos perfis contidos na Tabela~\ref{tab:oficialProfiles}, há também a possibilidade de caracterizarmos seus respectivos impactos em relação as velocidades medianas dos ônibus, por meio da base histórica dos dados AVL da SPTrans.  Neste estudo consideramos os eventos de exceção geolocalizados do ano de 2017 do \textit{Corpus Twitter}, classificados manualmente. A distribuição desses eventos ao longo dos meses pode ser observada  na Figura~\ref{fig:geolocated_exception_events_distribution}, assim como de suas respectivas classes na Figura~\ref{fig:exception_events_classification_distribution}.
@@ -2718,9 +2724,9 @@ Após isso, comparamos por meio da Equação \ref{eqVeloc} se a velocidade media
   \end{cases}
 \end{equation}
 
-\section{Resultados}
+\subsection{Resultados}
 
-\subsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade dos pontos de parada}
+\subsubsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade dos pontos de parada}
 \label{stopsAnalysis}
 
 Utilizando a metodologia anteriormente descrita, podemos observar na Tabela~\ref{tab:exceptEventVelocityImpAllStop} que os eventos de exceção relacionados a eventos sociais possuem em média 87,04\% de impacto na mediana das velocidades dos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância e 100\% a um raio de 100 metros, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento, quantidade de avenidas com fluxo do trânsito modificado ou interrompido.
@@ -2735,10 +2741,13 @@ Os valores dos meses das tabelas \ref{tab:exceptEventVelocityImpAllStop} e \ref{
 \centering
 \caption {Porcentagem de ônibus dos grupos de linhas afetadas por eventos de exceção, a 1.000~m e 100~m de distância, respectivamente, que tiveram a velocidade mediana reduzida nos meses do ano de 2017}
 \label{tab:exceptEventVelocityImpAllStop}
+\resizebox{16cm}{!}{
 \begin{tabular}{c|cc|cc|cc|cc}
 \toprule
 \textbf{Mês} & \multicolumn{2}{c}{\textbf{Acidente}} & \multicolumn{2}{c}{\textbf{Desastre Natural}} & \multicolumn{2}{c}{\textbf{Evento Social}} &
 \multicolumn{2}{c}{\textbf{Evento Urbano}}\\
+\cmidrule(l){2-3} \cmidrule(l){4-5} \cmidrule(l){6-7} \cmidrule(l){8-9}
+ & 1.000 m & 100 m & 1.000 m & 100 m & 1.000 m & 100 m & 1.000 m & 100 m \\
 \midrule
 Janeiro & 83,33 &  100 & 
 64,23 &  98,00 & 
@@ -2801,11 +2810,12 @@ Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \textbf{Total} & 66,51 & 98,39 & 59,77 & 99,80 & 87,04 & 100 & 70,11 & 98,86  \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
-\subsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade das rotas das linhas}
+\subsubsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade das rotas das linhas}
 
-Referente aos dados da Tabela~\ref{tab:exceptEventVelocityImpAllShapes}, para o raio de 1.000~m os eventos que mais reduzem as velocidades medianas são os relacionados a eventos sociais, urbanos, acidentes e desastres naturais, nesta ordem. Apesar disso, é importante observar que o percentual de redução da velocidade mediana, comparado com os da Tabela \ref{tab:exceptEventVelocityImpAllSto}, é reduzido quando consideramos as latitudes e longitudes das rotas como referência para encontrar as linhas impactadas. 
+Referente aos dados da Tabela~\ref{tab:exceptEventVelocityImpAllShapes}, para o raio de 1.000~m os eventos que mais reduzem as velocidades medianas são os relacionados a eventos sociais, urbanos, acidentes e desastres naturais, nesta ordem. Apesar disso, é importante observar que o percentual de redução da velocidade mediana, comparado com os da Tabela \ref{tab:exceptEventVelocityImpAllStop}, é reduzido quando consideramos as latitudes e longitudes das rotas como referência para encontrar as linhas impactadas. 
 
 O conjunto de pontos de latitudade e longitude utilizados para desenhar as rotas dos ônibus é muito maior do que o que contém as coordenadas espaciais dos pontos de parada, de acordo com a Tabela \ref{tab:gtfs} são 800.767 pontos contra 19.933, respectivamente. Sendo assim, quando as coordenadas das rotas são consideradas como referência para encontrar as linhas afetadas pelos eventos de exceção, obtemos um conjunto maior de linhas impactadas, o que aumenta a margem de erro e o custo computacional. Outra diferença observada é em relação aos percentuais de redução de velocidades medianas para o raio de 100~m. Nesta abordagem, as ordens dos eventos que mais impactam as velocidades medianas são os relacionados a acidentes, desastres naturais, eventos sociais e urbanos, respectivamente.
 
@@ -2817,10 +2827,14 @@ Por fim, a abordagem que utiliza as coordenadas espaciais dos pontos de parada d
 \centering
 \caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 1.000~m e 100~m de distância, respectivamente, nos meses do ano de 2017}
 \label{tab:exceptEventVelocityImpAllShapes}
+\resizebox{16cm}{!}{
 \begin{tabular}{c|cc|cc|cc|cc}
 \toprule
-\textbf{Mês} & \multicolumn{2}{c}{\textbf{Acidente}} & \multicolumn{2}{c}{\textbf{Desastre Natural}} & \multicolumn{2}{c}{\textbf{Evento Social}} &
+\newline \textbf{Mês} & \multicolumn{2}{c}{\textbf{Acidente}} &
+\multicolumn{2}{c}{\textbf{Desastre Natural}} & \multicolumn{2}{c}{\textbf{Evento Social}} &
 \multicolumn{2}{c}{\textbf{Evento Urbano}}\\
+\cmidrule(l){2-3} \cmidrule(l){4-5} \cmidrule(l){6-7} \cmidrule(l){8-9}
+ & 1.000 m & 100 m & 1.000 m & 100 m & 1.000 m & 100 m & 1.000 m & 100 m \\
 \midrule
 Janeiro & 66,66 &  100 & 
  47,68 &  78,49 & 
@@ -2883,10 +2897,10 @@ Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \textbf{Total} & 52,92 & 81,13 & 49,83 & 78,69 & 79,51 & 77,95 & 68,14 & 69,76  \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
-
-\chapter{Identificação de padrões de velocidade média dos dados AVL}
+\section{Identificação de padrões de velocidade média dos dados AVL}
 \label{expApriori}
 Neste capítulo, é apresentado um processo para identificação de padrões de velocidade média dos dados AVL, por meio do algoritmo \textit{Apriori}. De acordo com \cite{xie2008optimization}, o algoritmo é ineficiente para grandes volumes de dados, devido a quantidade elevada agregações necessárias para calcular as métricas explicadas no Capítulo~\ref{apriori} e aos inúmeros acessos ao banco de dados. O foco deste trabalho não é melhorar o desempenho do algoritmo \textit{Apriori} ou implementar as melhorias existentes na literatura \cite{xie2008optimization, zhang2014method}, embora tenhamos como objetivo encontrar os padrões de velocidades médias existentes nos mais de um milhão de registros por hora, volume característico dos dados AVL.
 
@@ -2894,7 +2908,7 @@ Além da quantidade de registros total, o volume de dados para pequenos interval
 
 Analogamente, o mesmo procedimento foi aplicado para os conjutos de dados AVL correlacionados aos eventos de exceção (Acidente, Desastre Natural, Evento Social e Evento Urbano), os dados anuais foram sintetizados nas tabelas~\ref{tab:aprioriExceptFullStops} e~\ref{tab:aprioriExceptFullShapes} e os mensais nas seções~\ref{g2},~\ref{g3},~\ref{g4} e~\ref{g5}. As regras de associação encontradas nestes conjuntos de dados estão disponíveis em \citeauthor{fcas} (\citeyear{fcas}) (não inclusas no texto deste trabalho devido ao  grande volume de dados). 
 
-\section{Trabalhos relacionados}
+\subsection{Trabalhos relacionados}
 
 No trabalho realizado em \cite{zhao2019recognizing}, foram utilizados o algoritimo \textit{Apriori} e a análise de \textit{cluster} para encontrar padrões relacionados a transferência (entre metrô e ônibus), por meio dos dados dos cartões inteligentes usados no transporte público da China. Nesse estudo, encontraram que 85\% dos resultados de reconhecimento de transferência são bastante estáveis durante toda a semana, e o tempo médio de transferência entre o metrô e o ônibus é inferior a 20 minutos. O método proposto neste estudo pode ser usado para identificar os pontos de transferência mais movimentados e obter tempos médios de transferência, o que facilita uma rede de transporte público mais inteligente e eficiente.
 
@@ -2902,7 +2916,7 @@ Ainda relacionado a mobilidade urbana, o trabalho realizado em \cite{zeng2017vis
 
 Por fim, no trabalho realizado pro \cite{cruz2018detecccao},  propos uma metodologia para identificar e classificar as anomalias no comportamento do trânsito, por meio de agregações espaço-temporais usando o algoritimo \textit{Apriori}, aplicadas aos dados de transporte rodoviário  da cidade do Rio de Janeiro. A metodologia proposta foi capaz identificar características das principais anomalias e classificá-las como esperadas ou inesperadas. A proposta desse experimento se diferencia das demais por encontrar os padrões de velocidade média existentes nos dados do transporte público por ônibus da cidade de São Paulo, considerando ainda a correlação com eventos de exceção extraídos de Redes Sociais.
 
-\section{Resultados}
+\subsection{Resultados}
 
 A Tabela~\ref{tab:aprioriFull} é referente aos padrões encontrados com valores de $\textit{Lift} > 1$, métrica que indica correlações entre dois valores. Mais de um padrão de associações entre velocidades médias foi encontrado para a maioria dos meses, exceto para os meses de janeiro $\lbrace 11 \rightarrow 12 \rbrace$ (aceleração), julho $\lbrace 11 \rightarrow 12\rbrace$ (aceleração) e dezembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração), meses nos quais normalmente o trânsito é menos congestionado e mais estável, devido as férias escolares. Apesar disso, em setembro $\lbrace12 \rightarrow 11\rbrace$ (desaceleração) foi identificado apenas um padrão. Tais padrões indicam correlações de velocidades médias nesses meses a cada cinco minutos entre 11 e 12Km/h.
 
@@ -3112,6 +3126,8 @@ Acidente & 3.035 & 2.772.368 & 2.259.806 & 365.234 & 147.328 \\
         \end{tablenotes}
 \end{threeparttable}
 \end{table}
+
+
 
 
 \chapter{Conclusão}
