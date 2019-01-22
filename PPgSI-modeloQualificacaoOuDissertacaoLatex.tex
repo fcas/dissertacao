@@ -1853,7 +1853,7 @@ Além da GTFS estática existe a GTFS-\textit{realtime}\footref{googleTransit}, 
 
 \subsubsection{Transformações nos dados da GTFS da SPTrans}
 
-Conceituações à parte, realizamos alguns processos de transformação nos dados da GTFS estática, antes de inserí-los no \textit{MongoDB}, para viabilizarmos a correlação com os dados AVL.  Dessa forma, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para o formato \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em 29 de outubro de 2017.}. Além disso,  para fosse possível realizarmos consultas geoespaciais, foram criados \textit{índices geoespaciais}\footref{geoMongo} nas coleções que contém dados geolocalizados. Dessa forma, conseguimos usar consultas geoespaciais para identificarmos as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
+Apesar da padronização da GTFS, precisamos realizar alguns processos de transformação nos dados da GTFS estática, antes de inserí-los no \textit{MongoDB}, para viabilizarmos a correlação com os dados AVL.  Dessa forma, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para o formato \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em 29 de outubro de 2017.}. Além disso,  para fosse possível realizarmos consultas geoespaciais, foram criados \textit{índices geoespaciais}\footref{geoMongo} nas coleções que contém dados geolocalizados. Dessa forma, conseguimos usar consultas geoespaciais para identificarmos as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
 
 \subsection{Dados AVL da SPTrans}
 
@@ -2685,9 +2685,9 @@ Dado que os eventos de exceção podem ser identificados utilizando \textit{twee
 	\label{fig:geolocated_exception_events_distribution}
 \end{figure}
 
-Conforme descrito no Capítulo~\ref{exp1} e ilustrado na Figura~\ref{fig:avl_tweets_correlation_pt}, identificamos as linhas afetadas por eventos de exceção filtrando as paradas de ônibus (contidas na coleção \textit{stops}  e \textit{shapes} da GTFS da SPTrans) dentro de um raio de 1.000 metros das geolocalizações extraídas dos \textit{tweets}. \todo{DC: e a análise de 100~m?}
+Conforme descrito no Capítulo~\ref{exp1} e ilustrado na Figura~\ref{fig:avl_tweets_correlation_pt}, identificamos as linhas afetadas por eventos de exceção filtrando as paradas de ônibus (contidas na coleção \textit{stops}  e \textit{shapes} da GTFS da SPTrans) dentro de um raio de 1.000 metros das geolocalizações extraídas dos \textit{tweets}. No processo de caracterização do impacto consideramos as distâncias de 100 m e 1.000 m, pois o impacto pode ser diferente de acordo com a proximidade ao evento. No entanto, para encontrarmos um número significativo de linhas impactadas consideramos apenas a distância de 1.000 m.
 
-A partir disso, selecionamos os dados de movimentação que serão analisados. Por exemplo, se o evento de exceção aconteceu em 17/08/2017 (quinta-feira), todas as demais quinta-feiras do mês de agosto (3, 10, 24 e 31/08/2017) serão consideradas na análise. Isso porque os dias da semana possuem padrões diferentes de movimentação (sazonalidade), por exemplo, nas sextas feiras ocorrem inúmeros eventos sociais que normalmente acarretam em um trânsito mais congestionado. Além da diferenciação dos dias da semana, os meses também possuem características distintas --- festas no final do ano, férias, início de períodos letivos, etc. --- conforme Figura~\ref{fig:exception_events_classification_distribution}, devido a isso os dias selecionados são restritos ao mês de ocorrência do evento. \todo{DC: a explicação não está clara. Você usa como exemplo uma quinta, quando o melhor seria descrever de forma mais algorítmica como a análise foi feita. Depois a restrição do mês também não fica muito clara, deixando o parágrafo todo bem confuso.}
+A partir disso, selecionamos os dados de movimentação que serão analisados. Considerando a sazonalidade dos dias da semana, selecionamos para análise apenas os dias da semana pertencentes ao mês de ocorrência do evento e com nomes iguais ao nome do dia da semana no qual o evento de exceção aconteceu. Isso porque os dias da semana possuem padrões diferentes de movimentação, por exemplo, nas sextas feiras ocorrem inúmeros eventos sociais que normalmente acarretam em um trânsito mais congestionado. Os dias da semana são restritos ao mês de ocorrência do evento devido ao fato de que os meses também são afetados pela sazonalidade --- festas no final do ano, férias, início de períodos letivos, etc. --- conforme Figura~\ref{fig:exception_events_classification_distribution}.
 
 \begin{figure}[!htb]
 	\centering
@@ -2703,28 +2703,33 @@ A partir disso, selecionamos os dados de movimentação que serão analisados. P
 	\label{fig:avl_tweets_correlation_pt}
 \end{figure}
 
-Seleções de dias e meses à parte, \todo{Informal, parece que você está excluindo seleções de dias da análise} também filtramos os dados relacionados às linhas impactadas a um raio de distância de 100 e de 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. É importante observar que esse trabalho não considera o início e término exato dos eventos de exceção, mas uma faixa de horário de uma hora a partir do hora contida no \textit{timestamp}  do \textit{tweet}.
+Além dos filtros referentes a sazonalidades dos dias da semana e meses, também filtramos os dados relacionados às linhas impactadas a um raio de distância de 100 e de 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17 e 18h. É importante observar que esse trabalho não considera o início e término exato dos eventos de exceção, mas uma faixa de horário de uma hora a partir do hora contida no \textit{timestamp}  do \textit{tweet}.
 
-Em seguida, agregamos os dados selecionados para analisarmos  de forma descritiva a velocidade instantânea de cada linha de ônibus. Com isso, extraímos dados sobre a velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados iguais e diferentes de zero. \todo{dado $\ne$ 0 é estranho, dizer o que é o dado (vel.)} Após isso, comparamos a velocidade média das medianas da faixa de horário da ocorrência com a velocidade média das medianas dos dias que não fazem referência ao evento de exceção, para cada conjunto de linhas afetadas pelo evento de exceção e para cada linha. \todo{DC: não seria melhor descrever isso em forma de algoritmo? Da forma que está parece impreciso e confuso, por exemplo, o que significa ``comparamos a vel. média das medianas de faixa de horário da ocorrência com dias que não fazem referência ao evento''?}
+Em seguida, agregamos os dados selecionados para analisarmos  de forma descritiva a velocidade instantânea de cada linha de ônibus. Com isso, extraímos dados sobre a velocidade máxima, mínima, média, mediana, variância, desvio padrão e porcentagem de dados com velocidades iguais e diferentes de zero. 
 
-Consideramos que a linha foi impactada se a média das velocidades medianas dos dias analisados for maior ou igual a velocidade mediana do dia referente ao evento de exceção. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%.
+Após isso, comparamos por meio da Equação \ref{eqVeloc} se a velocidade mediana do dia do evento de exceção é uma velocidade esperada, com base nas velocidades medianas do demais dias da semana.  Consideramos que a linha foi impactada se o valor retornado da função abaixo for 1 e, 0 caso contrário. Com base nisso, consideramos que o conjunto de linhas foi impactado se a quantidade de linhas impactadas for maior ou igual a 50\%.
 
-\todo[inline]{DC: Pq as seções abaixo não estão enumeradas?}
+\begin{equation}
+\label{eqVeloc}
+ f(n) =
+  \begin{cases}
+    0      & \quad \text{se }  vel.~mediana~do~dia~do~evento > \frac{vel.~mediana~dos~dias~da~semana}{total~de~vel.~medianas}\\
+    1 & \quad \text{se } vel.~mediana~do~dia~do~evento \leq \frac{vel.~mediana~dos~dias~da~semana}{total~de~vel.~medianas}
+  \end{cases}
+\end{equation}
 
-\section*{Resultados}
+\section{Resultados}
 
-\subsection*{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade dos pontos de parada}
+\subsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade dos pontos de parada}
 \label{stopsAnalysis}
 
-Utilizando a metodologia anteriormente descrita, podemos observar na Tabela~\ref{tab:exceptEventVelocityImpAllStop} que os eventos de exceção relacionados a eventos sociais possuem em média 87,04\% de impacto na velocidade mediana \todo{DC: ``velocidade mediana'' me parece confuso num trecho onde estamos falando de médias e medianas. Não é melhor falar em ``mediana das velocidades''?} nos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância e 100\% a um raio de 100 metros, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento, quantidade de avenidas com fluxo do trânsito modificado ou interrompido.
+Utilizando a metodologia anteriormente descrita, podemos observar na Tabela~\ref{tab:exceptEventVelocityImpAllStop} que os eventos de exceção relacionados a eventos sociais possuem em média 87,04\% de impacto na mediana das velocidades dos grupos de linhas de ônibus afetadas a um raio de 1.000 metros de distância e 100\% a um raio de 100 metros, isso provavelmente devido ao grande número de pessoas envolvidas neste tipo de evento, quantidade de avenidas com fluxo do trânsito modificado ou interrompido.
 
-Os eventos urbanos, por sua vez, impactam \todo{DC: impactam o quê? Sempre dizer.} em 70,11\% a 1.000 metros e 98,86\% a 100 metros, mesmo sendo realizados com planejamento de rotas alternativas e sinalizações nas vias públicas. A terceira e quarta classe mais afetadas são as de acidentes e desastres naturais, respectivamente, 66,51\% e 59,77\% a 1.000 metros e 98,39\% e 99,80\% a 100 metros, as quais normalmente resultam em bloqueios ou desvios em vias públicas utilizadas pelos ônibus.
-
+Os eventos urbanos, por sua vez, impactam em 70,11\% na mediana das velocidades dos grupos de linhas de ônibus afetadas a 1.000 metros e 98,86\% a 100 metros, mesmo sendo realizados com planejamento de rotas alternativas e sinalizações nas vias públicas. A terceira e quarta classe mais afetadas são as de acidentes e desastres naturais, respectivamente, 66,51\% e 59,77\% a 1.000 metros e 98,39\% e 99,80\% a 100 metros, as quais normalmente resultam em bloqueios ou desvios em vias públicas utilizadas pelos ônibus.
 
 Além disso, janeiro, fevereiro e março foram os três meses mais afetados por eventos de exceção relacionados a destrases naturais, período de grandes volumes de preciptação de chuva em São Paulo, no qual normalmente ocorre deslizamentos de terra, quedas de árvores e inundações.  Em relação aos eventos sociais, o ano de 2017 foi marcado com inúmeras manifestações políticas, neste contexto, o mês de maio foi o mais impactado por esse tipo de evento de exceção, principalmente devido aos protestos contra o governo Temer\footnote{{http://www1.folha.uol.com.br/poder/2017/05/1884977-manifestacao-anti-temer-reune-centenas-de-pessoas-na-av-paulista.shtml}. Acesso em 02 de dezembro de 2018}. Os eventos relacionados a acidentes normalmente ocorrem em maior concentração nos períodos de festas e feriados, o que pode ser observado nos meses de janeiro e abril (único mês de 2017 com dois feriados prolongados), com média de impacto de 83,33\% e 87,50\% nas velocidades médias, respectivamente.  Os impactos relacionados a eventos urbanos ocorrem normalmente durante todos os meses, devido a isso são mais uniformes.
 
-Os meses próximos a 100\% de impacto nas velocidades médias \todo{DC: quais meses são esses?} são justificados \todo{DC: meses são justificados, frase estranha?} devido ao pouco volume de eventos para uma determinada classe em um determinados mês, conforme mostra a Figura~\ref{fig:exception_events_classification_distribution}, \todo{DC: não entendi o que vem daqui pra frente. Ao que esse ``o que'' se refere? Pq o dado estar próximo ao evento é ruim?} o que também acontece para cenários com dados geolocalizados muito próximos aos eventos de exceção. Analogamente, os meses e classes sem dados de impacto são meses com pouco dados para a classe em questão.
-
+Os valores dos meses das tabelas \ref{tab:exceptEventVelocityImpAllStop} e \ref{tab:exceptEventVelocityImpAllShapes} iguais a 100\% de impacto nas velocidades medianas são justificados devido ao pouco volume de eventos para uma determinada classe em um determinado mês, conforme mostra a Figura~\ref{fig:exception_events_classification_distribution}. Analogamente, os meses e classes sem dados de impacto são meses com pouco dados para a classe em questão.
 
 \begin{table}[!htb]
 \centering
@@ -2798,15 +2803,15 @@ Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \end{tabular}
 \end{table}
 
-\subsection*{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade das rotas das linhas}
+\subsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade das rotas das linhas}
 
-As análises dos dados da Tabela~\ref{tab:exceptEventVelocityImpAllShapes} são análogas \todo{DC: a análise é análoga? Não entendi. Falar que algo é análogo a outra coisa normalmente é tricky} as da Tabela~\ref{tab:exceptEventVelocityImpAllStop} da Seção~\ref{stopsAnalysis}, para o raio de 1.000~m os eventos que mais reduzem as velocidades medianas são os relacionados a eventos sociais, urbanos, acidentes e desastres naturais, nesta ordem. Apesar disso, é importante observar que o percentual de redução da velocidade mediana é reduzido quando consideramos as latitudes e longitudes das rotas como referência \todo{DC: me parece importante explicar melhor o que significa esse negócio de usar as rotas como referência} para encontrar as linhas impactadas.
+Referente aos dados da Tabela~\ref{tab:exceptEventVelocityImpAllShapes}, para o raio de 1.000~m os eventos que mais reduzem as velocidades medianas são os relacionados a eventos sociais, urbanos, acidentes e desastres naturais, nesta ordem. Apesar disso, é importante observar que o percentual de redução da velocidade mediana, comparado com os da Tabela \ref{tab:exceptEventVelocityImpAllSto}, é reduzido quando consideramos as latitudes e longitudes das rotas como referência para encontrar as linhas impactadas. 
 
-Quando as rotas são consideradas, obtemos um conjunto maior de linhas impactadas, o que aumenta a margem de erro, adicionando ruído a análise realizada, diferentemente da análise que considera as latitudes e longitudes dos pontos de parada dos ônibus como referência para encontras as linhas afetadas pelos eventos de exceção.\todo{DC: frase anterior muito longa e confusa} Outra diferença observada é em relação aos percentuais de redução de velocidades medianas para o raio de 100~m. Nesta abordagem, as ordem dos eventos que mais impactam as velocidades medianas são os relacionados a acidentes, desastres naturais, eventos sociais e urbanos, respectivamente.
+O conjunto de pontos de latitudade e longitude utilizados para desenhar as rotas dos ônibus é muito maior do que o que contém as coordenadas espaciais dos pontos de parada, de acordo com a Tabela \ref{tab:gtfs} são 800.767 pontos contra 19.933, respectivamente. Sendo assim, quando as coordenadas das rotas são consideradas como referência para encontrar as linhas afetadas pelos eventos de exceção, obtemos um conjunto maior de linhas impactadas, o que aumenta a margem de erro e o custo computacional. Outra diferença observada é em relação aos percentuais de redução de velocidades medianas para o raio de 100~m. Nesta abordagem, as ordens dos eventos que mais impactam as velocidades medianas são os relacionados a acidentes, desastres naturais, eventos sociais e urbanos, respectivamente.
 
 Em relação as sazonalidades, os meses de  março, abril, maio e outubro foram mais significativos para a redução das velocidades medianas, no raio de de 1.000~m devido as inúmeras manifestações\footnote{\url{https://g1.globo.com/politica/noticia/cidades-pelo-pais-tem-manifestacoes-a-favor-da-lava-jato-neste-domingo.ghtml}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://g1.globo.com/resumo-do-dia/noticia/quarta-feira-15-de-marco-de-2017.ghtml}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://www1.folha.uol.com.br/poder/2017/03/1866022-manifestacao-por-intervencao-militar-bloqueia-via-em-sp.shtml}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://oglobo.globo.com/brasil/ato-de-artistas-no-rio-contra-temer-termina-com-bombas-de-efeito-moral-spray-de-pimenta-21987385}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://pt.wikipedia.org/wiki/Greve\_geral\_no\_Brasil\_em\_2017}. Acesso em 14 de janeiro de 2019.} que ocorreram no Brasil. Sobre os desastres naturais, os impactos foram relevantes para os meses de janeiro a março, a distância de 100~m, conforme esperado devido ao período de chuvas.
 
-Por fim, a quantidade de latitudes e longitudes relacionadas às paradas de ônibus é menor do que o que contém informações sobre as geolocalizações que formam as rotas.\todo{DC: não entendi a frase anterior; dizer o que são ``geolocalizações que formam rotas?''} Consequentemente, de acordo com os experimentos, a abordagem que utiliza o primeiro conjunto consome menos recursos computacionais, com menor ruído (falsos positivos) e resultados semelhantes aos da segunda abordagem. \todo{DC: explicitar as abordagens, não só chamar de primeira e segunda}
+Por fim, a abordagem que utiliza as coordenadas espaciais dos pontos de parada de ônibus como referência pode ser mais adequada do que a que usa os pontos de rota. Isso, devido aos resultados semelhantes obtidos, menor custo computacional e margem de erro.  
 
 \begin{table}[!htb]
 \centering
@@ -3164,6 +3169,8 @@ Como trabalho futuro, pretendemos implementar o fluxo de processamento de dados 
 \chapter{Exemplos de \textit{tweets}}
 \label{apendiceA}
 
+Neste apêndice, listamos como exemplos alguns \textit{tweets} das contas selecionadas.
+
 \begin{lstlisting}[language=json,title=Exemplos de \textit{tweets} dos perfis selecionados citados na Tabela~\ref{tab:oficialProfiles}, label=tweetsSample]
 {
     "tweet_id" : 895060642952077314,
@@ -3232,6 +3239,8 @@ Como trabalho futuro, pretendemos implementar o fluxo de processamento de dados 
 
 \chapter{Logradouros utilizados}
 \label{apendiceB}
+
+Neste apêndice, listamos os logradouros utilizados como referência no processo de extração dos endereços dos \textit{tweets}.
 
 \begin{longtable}{c|c}
 \caption{Tabela de logradouros com abreviaturas}
@@ -3535,6 +3544,7 @@ ZIG-ZAG & Zigue-zague \\
 \chapter{Detalhamento dos campos da GTFS}
 \label{apendiceC}
 
+Neste apêndice, estão detalahdos todos os campos da GTFS para melhor entendimento da especificação.
 
 %---------------------------------------------------------------------
 % INDICE REMISSIVO
@@ -3980,6 +3990,8 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 
 \chapter{Linhas de ônibus impactadas por eventos de exceção}
 \label{apendiceD}
+
+Neste apêndice, listamos todas as linhas de ônibus que foram impactadas pelos eventos de exceção indentificados nos experimentos desse trabalho.
 
 \footnotesize
 \begin{longtable}{c|c|p{7cm}}
@@ -6155,6 +6167,8 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \chapter{Matrizes de confusão}
 \label{apendiceE}
 
+Neste apêndice, constam as matrizes de confusão resultantes dos treinamentos dos modelos para classificação de \textit{tweets} em eventos de exceção.
+
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Árvore de Decisão}
@@ -6200,9 +6214,11 @@ O valor de \textit{min\_transfer\_time} deve ser inserido em segundos e deve ser
 \chapter{Parametrizações dos algoritmos}
 \label{apendiceF}
 
-\section{Árvore de Decisão}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html}. Acesso em 08 de outubro de 2018.}
+Neste apêndice estão descritas as parametrizações padrões de cada algoritmo de aprendizado de máquina não supervisionado, utilizados nos experimentos desse trabalho.
 
-\todo[inline]{DC: esse footnote ficou estranho no texto do apêndice. Via de regra, cada apêndice deve ter pelo menos um parágrafo o descrevendo.}
+\section{Árvore de Decisão}
+
+Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Árvore de Decisão\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html}. Acesso em 08 de outubro de 2018.}.
 
 \begin{itemize}
 \item \textit{criterion} --- $string$, opcional ($default=$\textit{``gini''}) --- Parâmetro responsável por definir a função que mede a qualidade da divisão da árvore de decisão. Os valores suportados são $gini$ para a \textit{impureza Gini} e $entropy$ para o \textit{ganho de informação}.
@@ -6220,7 +6236,9 @@ Os melhores (\textit{best}) nós são os definidos como redução relativa a imp
 \item \textit{presort} --- $bool$, opcional ($default=False$) --- Se o valor desse parâmetro é igual a $true$ é realizada uma pré-ordenação dos dados, o que acelera encontrar as melhores divisões das árvores de decisão no processo de ajuste. Ao habilitar esse parâmetro, a velocidade do processo de treinamento de um grande volume de dados  é reduzida. Por outro lado, habilitar esse parâmetro em alguns casos pode acelerar o processo de treinamento, como quando há pequenos conjuntos de dados, ou, restrição quanto a profundidade da árvore de decisão.
 \end{itemize}
 
-\section{Floresta Aleatória}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}. Acesso em 08 de outubro de 2018.}
+\section{Floresta Aleatória}
+
+Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Floresta Aleatória\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}. Acesso em 08 de outubro de 2018.}.
 
 \begin{itemize}
 \item \textit{n\_estimators} --- $integer$, opcional ($default=100$) --- Parâmetro responsável pelo número de árvores na floresta.
@@ -6245,7 +6263,9 @@ quando definido como $True$ reutiliza a solução da chamada anterior no process
 \item \textit{presort} --- $bool$, opcional ($default=False$) --- Se o valor desse parâmetro é igual a $true$ é realizada uma pré-ordenação dos dados, o que acelera encontrar as melhores divisões das árvores de decisão no processo de ajuste. Ao habilitar esse parâmetro, a velocidade do processo de treinamento de um grande volume de dados  é reduzida. Por outro lado, habilitar esse parâmetro em alguns casos pode acelerar o processo de treinamento, como quando há pequenos conjuntos de dados, ou, restrição quanto a profundidade da árvore de decisão.
 \end{itemize}
 
-\section{K-ésimo Vizinho mais Próximo}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acesso em 08 de outubro de 2018.}
+\section{K-ésimo Vizinho mais Próximo}
+
+Abaixo são descritos os parâmetros padrões utilizados para o algoritmo K-ésimo Vizinho mais Próximo\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acesso em 08 de outubro de 2018.}.
 
 \begin{itemize}
 
@@ -6264,7 +6284,10 @@ quando definido como $True$ reutiliza a solução da chamada anterior no process
 \item \textit{n\_jobs} --- $int$ ou $None$, opcional ($default = None$) --- Parâmetro responsável por definir o número de $jobs$ a serem executados em paralelo durante os processos de \textit{fit} e \textit{predict}. $None$ define 1 \textit{job} a menos que esteja em um contexto \textit{joblib.parallel\_backend}; -1 define que todos os processadores sejam usados.
 \end{itemize}
 
-\section{Máquina de Vetores de Suporte}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html\#sklearn.svm.SVC}. Acesso em 08 de outubro de 2018.}
+\section{Máquina de Vetores de Suporte}
+
+Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Máquina de Vetores de Suporte
+\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html\#sklearn.svm.SVC}. Acesso em 08 de outubro de 2018.}.
 
 \begin{itemize}
 \item \textit{C} --- $float$, opcional ($default=1.0$)
@@ -6299,7 +6322,9 @@ outros \textit{kernels}.
 
 \end{itemize}
 
-\section{Naive Bayes}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html\#sklearn.naive_bayes.MultinomialNB} e \url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.ComplementNB.html\#sklearn.naive_bayes.ComplementNB} . Acesso em 08 de outubro de 2018.}
+\section{Naive Bayes}
+
+Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Naive Bayes\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html\#sklearn.naive_bayes.MultinomialNB} e \url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.ComplementNB.html\#sklearn.naive_bayes.ComplementNB} . Acesso em 08 de outubro de 2018.}.
 
 \begin{itemize}
 \item \textit{alpha} --- $float$, opcional ($default=1.0$) --- Parâmetro de suavização (0 para não suavização) aditivo (Laplace / Lidstone).
@@ -6309,7 +6334,9 @@ outros \textit{kernels}.
 Parâmetro responsável por definir se uma segunda normalização dos pesos é executada ou não. Disponível somente na implementação \textit{ComplementNB}.
 \end{itemize}
 
-\section{Perceptron Multicamadas}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\#sklearn.neural_network.MLPClassifier}. Acesso em 08 de outubro de 2018.}
+\section{Perceptron Multicamadas}
+
+Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Perceptron Multicamadas\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\#sklearn.neural_network.MLPClassifier}. Acesso em 08 de outubro de 2018.}.
 
 \begin{itemize}
 \item\textit{hidden\_layer\_sizes} --- $tuple$, $length = n\_layers - 2$,  opcional($default = (100,)$) --- Parâmetro responsável por definir o $ith$ elemento que representa o número de neurônios na $ith$ camada oculta.
@@ -6336,7 +6363,10 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 \item \textit{n\_iter\_no\_change} --- $int$, opcional ($default=10$) --- Parâmetro responsável por definir o número máximo de \textit{epochs} para não atender a melhoria definida pelo parâmetro \textit{tol}. Usado somente quando $solver=adam$.
 \end{itemize}
 
-\section{Regressão Logística}\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}. Acesso em 08 de outubro de 2018.}
+\section{Regressão Logística}
+
+Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Regressão Logística\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}. Acesso em 08 de outubro de 2018.}.
+
 \begin{itemize}
 \item \textit{penalty} --- $str$, $l1’$ ou $l2$, opcional ($default=l2$) --- Usado para especificar a norma usada na penalização. Os solucionadores "newton-cg", "sag" e "lbfgs" apoiam apenas as penalidades l2.
 \item \textit{dual} --- $bool$, opcional ($default=False$) --- Parâmetro responsável por definir formulação \textit{dual} ou \textit{primal}. Formulação \textit{dual} é apenas implementada para penalidade $l2$ com o $liblinear solver$. Preferível $dual=False$ quando $n\_samples > n\_features$.
@@ -6379,6 +6409,8 @@ Parâmetro responsável por definir se uma segunda normalização dos pesos é e
 
 \chapter{Análise \textit{Apriori}}
 \label{apendiceG}
+
+Neste apêndice, detalhamos as regras de associação encontradas na base de dados AVL, por meio do algoritmo \textit{Apriori}.
 
 \section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans, referentes aos meses do ano de 2017.}
 \label{g1}
