@@ -609,11 +609,11 @@
 % Configuracoes do TOC
 % -----
 % nivel de profundidade (implementa o quinto nivel - subsubsubsection)
-\setsecnumdepth{subsection}
-\settocdepth{subsection}
+\setsecnumdepth{subsubsection}
+\settocdepth{subsubsection}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
-\maxsecnumdepth{subsection}
+\maxsecnumdepth{subsubsection}
 
 % redefine os comandos *paragraph* para *subsubsubsection* ****
 \newcommand{\subsubsubsection}{\paragraph}

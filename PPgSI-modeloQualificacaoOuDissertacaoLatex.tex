@@ -102,7 +102,7 @@
 \usepackage{bm}
 \usepackage{nomencl}
 
-\newcolumntype{M}{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{1.5cm}}
+\renewcommand{\theenumi}{\Alph{enumi}}
 
 \usepackage{bera}% optional: just to have a nice mono-spaced font
 \usepackage{listings}
@@ -241,6 +241,8 @@
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 % ---
 \overfullrule=0pt
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
@@ -833,9 +835,6 @@ Keywords: Smart Cities. Public Transportation. Intelligent Transport Systems. Ex
 \label{introducao}
 
 %Neste Capítulo, são apresentadas as seções referentes à motivação da proposta de pesquisa; sobre a definição do problema que pretendemos abordar; a respeito dos objetivos gerais e específicos; sobre as hipóteses a serem verificadas e sobre a organização dos capítulos desse documento.
-
-\section{Motivação}
-\label{motivation}
 
 A cidade de São Paulo é o município mais populoso do Brasil, que passou por um rápido processo de urbanização e tem população atual estimada em 12.106.920 milhões de habitantes (com data de referência em 1º de julho de 2017)\footnote{\url{https://agenciadenoticias.ibge.gov.br/media/com\_mediaibge/arquivos/9bc1a0065c49fd6f81dc785b2b8d8c35.xlsx}. Acesso em 29 de outubro de 2017.}.
 Desse total de habitantes, 10\% vivem na área do \nomenclature{CE}{Centro Expandido}
@@ -3181,7 +3180,7 @@ Como trabalho futuro, pretendemos implementar o fluxo de processamento de dados 
 \begin{apendicesenv}
 
 % Imprime uma página indicando o início dos apêndices
-\partapendices
+%\partapendices
 \chapter{Exemplos de \textit{tweets}}
 \label{apendiceA}
 
