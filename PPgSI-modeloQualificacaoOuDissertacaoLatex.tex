@@ -104,6 +104,13 @@
 
 \renewcommand{\theenumi}{\Alph{enumi}}
 
+\usepackage{booktabs}
+\usepackage[flushleft]{threeparttable}
+
+\makeatletter 
+\g@addto@macro\TPT@defaults{\footnotesize} 
+\makeatother
+
 \usepackage{bera}% optional: just to have a nice mono-spaced font
 \usepackage{listings}
 \lstset{%
@@ -318,7 +325,7 @@
 % Nome completo.
 % Sem ponto final.
 %-------------------------------------------------------------------------
-\orientador{Prof. Dr. Daniel de  Angelis Cordeiro}
+\orientador{\newline  Prof. Dr. Daniel de  Angelis Cordeiro}
 
 %-------------------------------------------------------------------------
 % Comentário adicional do PPgSI - Informações sobre o ``Coorientador'':
@@ -353,7 +360,7 @@ Versão original \newline \newline \newline
 %-------------------------------------------------------------------------
 Dissertação apresentada à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo para obtenção do título de Mestre em Ciências pelo Programa de Pós-graduação em Sistemas de Informação. 
 %
-\newline \newline Área de concentração: Metodologia e Técnicas da Computação
+\newline \newline Área de concentração: \newline Metodologia e Técnicas da Computação
 %-------------------------------------------------------------------------
 % Comentário adicional do PPgSI - Informações sobre o texto da ``Versão 
 % corrigida'':
@@ -561,37 +568,37 @@ Dissertação apresentada à Escola de Artes, Ciências e Humanidades da Univers
 % Não abreviar os nomes das instituições.
 %
 %-------------------------------------------------------------------------
-%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-%\vspace*{0.2cm} 
-%\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
-%\\ \vspace*{0.2cm} 
-%Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 
-%\\ \vspace*{0.2cm}
-%Presidente 
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\vspace*{0.2cm} 
+\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+\\ \vspace*{0.2cm} 
+Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 
+\\ \vspace*{0.2cm}
+Presidente 
 
-%\vspace*{2cm}
+\vspace*{2cm}
 
-%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-%\vspace*{0.2cm} 
-%\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
-%\\ \vspace*{0.2cm} 
-%Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\vspace*{0.2cm} 
+\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+\\ \vspace*{0.2cm} 
+Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-%\vspace*{2cm}
+\vspace*{2cm}
 
-%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-%\vspace*{0.2cm} 
-%\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
-%\\ \vspace*{0.2cm} 
-%Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\vspace*{0.2cm} 
+\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+\\ \vspace*{0.2cm} 
+Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-%\vspace*{2cm}
+\vspace*{2cm}
 
-%\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-%\vspace*{0.2cm} 
-%\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
-%\\ \vspace*{0.2cm} 
-%Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\vspace*{0.2cm} 
+\\ \textbf{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_} 
+\\ \vspace*{0.2cm} 
+Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 \end{center}
   
@@ -689,7 +696,7 @@ DIAS, Felipe Cordeiro Alves. \textbf{Caracterização de eventos de exceção e 
 
 A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações atuais para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas computacionais existentes --- como as necessárias ao Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM às Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção, dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município e GTFS da (\textit{General Transit Feed Specification}) da SPTrans. Visando alcançar o objetivo proposto, classificamos manualmente 60.984 \textit{tweets} e treinamos diferentes modelos por meio de algoritmos de aprendizado de máquina supervisionado para identificar eventos de exceção. Além disso, propomos uma nova metodologia para extrair e geolocalizar os endereços dos eventos de exceção, por meio de Processamento de Linguagem Natural e Expressão Regular. Com isso, demonstramos que é possível correlacionar os dados desses eventos com os dados históricos do SIM e da GTFS, para caracterizar como o transporte público por ônibus da cidade de São Paulo é impactado nesses cenários. Adicionalmente, propomos uma arquitetura distribuída para exploração e visualização de grandes volumes de dados relacionados a transporte público.
 
-Palavras-chaves: Cidades Inteligentes. Transporte Público. Sistemas de Transporte Inteligentes. Eventos de exceção.
+Palavras-chaves: Cidades inteligentes. Transporte público. Sistemas de transporte inteligentes. Eventos de exceção.
 \end{resumo}
 
 % resumo em inglês
@@ -720,13 +727,14 @@ Palavras-chaves: Cidades Inteligentes. Transporte Público. Sistemas de Transpor
 % [Não usar essas informações de ``referência'' para Qualificação]
 %
 %-------------------------------------------------------------------------
+
 \begin{flushleft}
 DIAS, Felipe Cordeiro Alves. \textbf{Characterization of exception events and their respective impacts on the public transport system by bus of the city of São Paulo}. \imprimirdata. \pageref{LastPage} p. Dissertation (Master of Science) - School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, 2019. 
 \end{flushleft}
 
 The city of São Paulo is the most populous municipality in Brazil, characterized by an urban segregation responsible for numerous problems related to urban mobility. The current actions to solve the problems of urban mobility have little deepening in technological issues and improvements of existing computer systems --- such as those required for the Integrated Monitoring and Transport System (in the Portuguese acronym: SIM), used for the management and monitoring of public transport by buses of the city of São Paulo. One of the possible improvements is integrating the SIM with Social Networks. With this perspective of integration, this work aims to use tweets and data from SIM in the characterization of exception events and their respective impacts on the public transport system by buses of the city of São Paulo. In order to achieve this objective, this work proposes to use tweets published by governmental institutions responsible for reporting exception events, data from SIM' Automatic Vehicle Location (AVL) modules, responsible for the tracking and locating of urban buses and data from SPTrans' GTFS (General Transit Feed Specification). In order to reach the proposed goal, we manually classified 60,984 tweets and trained different models through supervised machine learning algorithms to identify exception events. In addition, we propose a new methodology to extract and geolocalize the addresses of the exception events, through Natural Language Processing and Regular Expression. Using that approaches, we show that it is possible to correlate the data of these events with the historical data of the SIM and GTFS, to characterize how the public transport by bus of the city of São Paulo is impacted in these scenarios. Additionally, we propose a distributed architecture for exploration and visualization of large volumes of data related to public transport.
 
-Keywords: Smart Cities. Public Transportation. Intelligent Transport Systems. Exception events.
+Keywords: Smart cities. Public transportation. Intelligent transport Systems. Exception events.
 %\end{otherlanguage*}
 \end{resumo}
 
@@ -923,7 +931,7 @@ Secretaria Municipal de Transportes de São Paulo & \textit{@smtsp\_} \\
             \item[b] \nomenclature{CCOI}{Centro de Controle Integrado 24 Horas da Cidade de São Paulo}{Centro de Controle Integrado 24 Horas da Cidade de São Paulo.}
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \section{Hipóteses}
@@ -1459,7 +1467,7 @@ Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipó
 \label{coleta}
 Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em 29 de outubro de 2017.}. Constam na Tabela~\ref{tab:tableNumberOfArticles} as bases pesquisadas no ano de 2017, quantidades de artigos coletados, descartados no processo de filtragem (Figura~\ref{fig:filter}, descrito na Seção~\ref{avaliacao}) e selecionados. Com base na QP1, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline
 
-\textbf{\textit{String} de busca:} twitter urban planning city (analytics OR patterns OR tweets OR social OR media) AND (public transport) \newline
+\textbf{\textit{String} de busca:} twitter urban planning city (analytics OR patterns OR tweets OR social OR media) AND (public transport). \newline
 
 \textbf{Palavras-chave:} twitter, urban, planning, city, analytics, patterns, tweets, social, media e public transport.
 
@@ -1483,7 +1491,7 @@ Springer & 22 & 20 & 2\\
 \textbf{Total} & 229 & 200 & 29\\ 
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -1491,7 +1499,7 @@ Springer & 22 & 20 & 2\\
  	  \caption{Processo de Filtragem}
 		\includegraphics[width=0.5\linewidth]{images/metodologia_metodologia.png}
 	\label{fig:filter}
-  \source{Felipe Cordeiro Alves Dias (2019)}
+  \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \section{Avaliação de Dados}
@@ -1513,7 +1521,7 @@ O processo de condução da Revisão Sistemática foi realizado utilizando os cr
  	  \caption{Quantidade de artigos publicados por ano}
 		\includegraphics[width=0.8\linewidth]{images/g1.png}
 	\label{fig:qtd}
-  \source{Felipe Cordeiro Alves Dias (2019)}
+  \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -1521,7 +1529,7 @@ O processo de condução da Revisão Sistemática foi realizado utilizando os cr
  	  \caption{Porcentagem dos artigos publicados por ano}
 		\includegraphics[width=0.8\linewidth]{images/g2.png}
 	\label{fig:porcentagem}
-  \source{Felipe Cordeiro Alves Dias (2019)}
+  \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -1529,7 +1537,7 @@ O processo de condução da Revisão Sistemática foi realizado utilizando os cr
  	  \caption{Nuvem de palavras das palavras chaves dos artigos selecionados}
 		\includegraphics[width=0.8\linewidth]{images/world_cloud_metodologia.png}
 	\label{fig:w_cloud}
-  \source{Felipe Cordeiro Alves Dias (2019)}
+  \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \section{Análise e Interpretação}
@@ -1778,7 +1786,7 @@ A GTFS (\textit{General Transit Feed Specification})\footnote{\label{googleTrans
 \textbf{Total} & 1.254.779 \\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -1969,7 +1977,6 @@ Janeiro\tnote{a} & 1 - 31 & 744 & 102,44 \\
 \textbf{Total} & --- & 8.751 & 1.247,09 \\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
 \begin{tablenotes}
 %\item[a]Arquivos indisponíveis em novembro: 
 %\begin{itemize}
@@ -1990,6 +1997,7 @@ Janeiro\tnote{a} & 1 - 31 & 744 & 102,44 \\
 \item[a] Arquivos  \texttt{Movto\_201701111000\_201701111100} com 35 campos na linha 60.025 e \texttt{Movto\_201701110900\_201701111000} com 21 campos na linha 1.075.548, o esperado são 19 campos de acordo com os metadados fornecidos pela SPTrans.
 \end{tablenotes}
 \end{threeparttable}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 %\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -2068,7 +2076,7 @@ Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe 
             \item[c] \textit{Timestamp} mais recente.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \clearpage
@@ -2089,7 +2097,7 @@ Por fim, é importante mencionarmos que para viabilizarmos o processamento dos d
  	  \caption{Fluxograma da correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
 		\includegraphics[width=1\linewidth]{images/caracterization_flow.png}
 	\label{fig:caracterization_flow}
-  \source{Felipe Cordeiro Alves Dias (2019)}
+  \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 
@@ -2146,7 +2154,7 @@ A Figura~\ref{fig:viz_arch} mostra a arquitetura utilizada no estudo de caso des
  	  \caption{Arquitetura usada no estudo de caso para visualização e exploração dos dados AVL da SPTrans}
 		\includegraphics[width=1\linewidth]{images/viz_arch_pt.png}
 	\label{fig:viz_arch}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 O fluxo de processamento em lote é executado a partir dos dados extraídos do sistema de monitoramento da \textit{SPTrans}, os quais são ingeridos nos \textit{historical nodes} 
@@ -2171,7 +2179,7 @@ A Figura~\ref{fig:analysis_by_bus_lines} ilustra uma série temporal referente �
  	  \caption{Quantidade de dados enviados por dia  por ônibus (selecionados aleatoriamente) em janeiro de 2017}
 		\includegraphics[width=1\linewidth]{images/analysis_by_bus_lines_pt.png}
 	\label{fig:analysis_by_bus_lines}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 A Figura~\ref{fig:pizza_bus}, representa a distribuição da quantidade de dados enviados em janeiro, a partir de uma amostra aleatória de linhas ônibus. Nessa figura é possível analisar que a distribuição da quantidade de dados enviados não é normalizada, ou seja, existem ônibus que normalmente enviam mais dados do que os demais. Há muitas razões possíveis para isso, por exemplo: viagens de ônibus mais longas que outras, regiões com diferenças climáticas; módulos AVL desatualizados; maior quantidade de ônibus em uma determinada linha, etc.
@@ -2181,7 +2189,7 @@ A Figura~\ref{fig:pizza_bus}, representa a distribuição da quantidade de dados
  	  \caption{Distribuição da quantidade de dados enviados por ônibus (selecionados aleatoriamente) em janeiro de 2017}
 		\includegraphics[width=1\linewidth]{images/pizza_bus.png}
 	\label{fig:pizza_bus}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 Finalmente, os mapas exibidos pelas figuras~\ref {fig:buses_map} e~\ref{fig:only_one_bus_map} ajudam a identificar a localização a partir da qual os dados estão sendo enviados, permitindo visualizar possíveis pontos de falhas durante a transmissão desses dados. O primeiro mapa, respectivamente, refere-se à rota de uma única linha de ônibus e o segundo de todas as rotas; em ambos os casos, referentes aos dados de janeiro. Além disso, na Figura~\ref {fig:buses_map}, é possível observar a segregação urbana da cidade, devido ao fato de algumas regiões terem uma maior densidade de dados enviados, o que também indica regiões de maior tráfego, nas quais eventos de exceção teriam maior impacto.
@@ -2191,7 +2199,7 @@ Finalmente, os mapas exibidos pelas figuras~\ref {fig:buses_map} e~\ref{fig:only
  	  \caption{Localizações enviadas em Janeiro de 2017 de uma linha de ônibus selecionada aleatoriamente}
 		\includegraphics[width=0.95\linewidth]{images/only_one_bus_map.png}
 	\label{fig:only_one_bus_map}
- \source{Felipe Cordeiro Alves Dias (2019)}
+ \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
@@ -2199,7 +2207,7 @@ Finalmente, os mapas exibidos pelas figuras~\ref {fig:buses_map} e~\ref{fig:only
  	  \caption{Localizações dos ônibus referente a movimentação de Janeiro de 2017}
 		\includegraphics[width=0.95\linewidth]{images/buses_map.png}
 	\label{fig:buses_map}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \section{Consideração sobre a arquitetura utilizada para exploração e visualização dos dados AVL da SPTrans}
@@ -2228,7 +2236,7 @@ O objetivo geral desse projeto de pesquisa é a caracterização de eventos de e
  	  \caption{Fluxograma da metodologia baseada em \textit{tweets} para encontrar linhas de ônibus impactadas por eventos de exceção na cidade de São Paulo}
 		\includegraphics[width=0.7\linewidth]{images/tweet_based_methodology_pt.png}
 	\label{fig:tweet_based_methodology}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \section{Pré-processamento}
@@ -2339,9 +2347,9 @@ A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponí
 \begin{figure}[!htb]
 	\centering
  	  \caption{Histograma da variação dos tamanhos das sentenças dos \textit{tweets} existentes no \textit{Corpus Twitter}}
-		\includegraphics[width=1\linewidth]{images/corpus_metrics_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/corpus_metrics_pt.png}
 	\label{fig:corpus_metrics}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificados manualmente de acordo com os eventos de exceção identificados. Este conjunto de dados é composto pelas seguintes classes: Acidente, Irrelevante --- quando o \textit{tweet} não é um evento de exceção, Desastre Natural, Evento Social e Evento Urbano. A Figura~\ref{fig:tweets_distribution} ilustra a distribuição das classes de eventos de exceção em cada conta selecionada.
@@ -2351,7 +2359,7 @@ Todos os \textit{tweets} existentes no \textit{Corpus Twitter} foram classificad
  	  \caption{Distribuição das classes dos eventos de exceção do Corpus Twitter}
 		\includegraphics[width=1\linewidth]{images/tweets_distribution_pt.png}
 	\label{fig:tweets_distribution}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 Esse conjunto de dados rotulado foi usado para treinar modelos de classificação de eventos de exceção, com base em uma \textit{bag-of-words}, descrita na Seção~\ref{model}. De acordo com a Tabela~\ref{tab:metrics}, o modelo que usa o algoritmo \textit{Perceptron Multicamadas} obteve maior acurácia para a tarefa de classificar os \textit{tweets} em eventos de exceção. A matriz de confusão relacionada ao algoritmo \textit{Perceptron Multicamadas} é ilustrada pela Figura~\ref{fig:confusion_matrix_mlp}, as matrizes de confusão dos demais algoritmos podem ser consultadas no Apêndice~\ref{apendiceE}.
@@ -2381,16 +2389,16 @@ Floresta Aleatória & 0,970 & 0,970 & 0,970 & 0,970 \\
 Máquina de Vetores de Suporte & 0,833 & 0,694 & 0,833 & 0,757 \\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Perceptron Multicamadas}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_mlp_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/confusion_matrix_mlp_pt.png}
 	\label{fig:confusion_matrix_mlp}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 Dos 60.984 \textit{tweets}, 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto foram encontrados 8.112 endereços, como pode ser visto na Tabela~\ref{tab:qtdExtractedAddresses} --- desconsiderando o tipo de localidade \textit{APPROXIMATE} (explicado mais adiante) --- (o que representa 80,90\% do total dos \textit{tweets} classificados como eventos de exceção, sem considerar a classe Irrelevante). A quantidade de endereços extraídos por classe está descrita na Tabela~\ref{tab:qtdExtractedAddresses}, as razões para \textit {tweets} sem endereço extraído são:
@@ -2444,7 +2452,7 @@ Evento Urbano & 1.002 & 4 & 942 & 10 & 46 \\
 \item[f] Total considerando endereços repetidos, a repetição é importante para identificarmos os endereços mais impactados por eventos de exceção.
 \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -2455,7 +2463,7 @@ A Figura~\ref{fig:address_analysis} mostra os endereços\footnote{Lista completa
  	  \caption{Endereços mais impactados por eventos de exceção}
 		\includegraphics[width=1\linewidth]{images/address_analysis_pt.png}
 	\label{fig:address_analysis}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -2463,7 +2471,7 @@ A Figura~\ref{fig:address_analysis} mostra os endereços\footnote{Lista completa
  	  \caption{Distribuição dos eventos de exceção na região central de São Paulo}
 		\includegraphics[width=1\linewidth]{images/exception_events_sp.png}
 	\label{fig:dispersion}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 Consideramos que uma linha de ônibus é afetada por um evento de exceção se uma \textit{stop} estiver dentro de um raio de 1000 metros de distância do evento. Utilizando este critério, o total de 992 linhas de ônibus foram afetadas por eventos de exceção durante este período, sendo ``33389'' o código da linha de ônibus mais impactada. Essa linha específica foi impactada por 1.301 eventos de exceção. A Tabela~\ref{tab:impacted_bus_code_lines} lista as linhas de ônibus que foram impactadas por mais de 600 eventos de exceção.
@@ -2567,7 +2575,7 @@ Consideramos que uma linha de ônibus é afetada por um evento de exceção se u
         \end{tablenotes}
 \end{threeparttable}
 }
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \section{Considerações finais sobre a metodologia desenvolvida}
@@ -2701,7 +2709,7 @@ Dado que os eventos de exceção podem ser identificados utilizando \textit{twee
  	  \caption{Distribuição do número de eventos de exceção geolocalizados}
 		\includegraphics[width=1\linewidth]{images/geolocated_exception_events_distribution_pt.png}
 	\label{fig:geolocated_exception_events_distribution}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 Conforme descrito no Capítulo~\ref{exp1} e ilustrado na Figura~\ref{fig:avl_tweets_correlation_pt}, identificamos as linhas afetadas por eventos de exceção filtrando as paradas de ônibus (contidas na coleção \textit{stops}  e \textit{shapes} da GTFS da SPTrans) dentro de um raio de 1.000 metros das geolocalizações extraídas dos \textit{tweets}. No processo de caracterização do impacto consideramos as distâncias de 100 m e 1.000 m, pois o impacto pode ser diferente de acordo com a proximidade ao evento. No entanto, para encontrarmos um número significativo de linhas impactadas consideramos apenas a distância de 1.000 m.
@@ -2713,7 +2721,7 @@ A partir disso, selecionamos os dados de movimentação que serão analisados. C
  	  \caption{Distribuição das classes de eventos de exceção geolocalizados ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/exception_events_classification_distribution_pt.png}
 	\label{fig:exception_events_classification_distribution}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -2721,7 +2729,7 @@ A partir disso, selecionamos os dados de movimentação que serão analisados. C
  	  \caption{Processo para correlação entre os dados AVL, GTFS e \textit{tweets} para análise do impacto dos eventos de exceção}
 		\includegraphics[width=0.7\linewidth]{images/avl_tweets_correlation_pt.png}
 	\label{fig:avl_tweets_correlation_pt}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 Além dos filtros referentes a sazonalidades dos dias da semana e meses, também filtramos os dados relacionados às linhas impactadas a um raio de distância de 100 e de 1.000 metros do evento de exceção em questão, além de considerarmos a mesma faixa de horário do \textit{tweet}. Por exemplo, se o horário do \textit{tweet} é às 17h15min, consideramos os dados AVL com horário entre 17h e 18h. É importante observar que esse trabalho não considera o início e término exato dos eventos de exceção, mas uma faixa de horário de uma hora a partir do hora contida no \textit{timestamp}  do \textit{tweet}.
@@ -2828,7 +2836,7 @@ Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \bottomrule
 \end{tabular}
 }
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \subsubsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade das rotas das linhas}
@@ -2916,7 +2924,7 @@ Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \bottomrule
 \end{tabular}
 }
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \section{Identificação de padrões de velocidade média dos dados AVL}
@@ -2993,7 +3001,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
             \item[a] Tabela completa na Seção~\ref{g1}.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{figure}[!htb]
@@ -3001,7 +3009,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_accidents.png}
 	\label{fig:apriori_analysis_stops_accidents}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -3009,7 +3017,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_natural_disasters.png}
 	\label{fig:apriori_analysis_stops_natural_disasters}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -3017,7 +3025,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_social_events.png}
 	\label{fig:apriori_analysis_stops_social_events}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -3025,7 +3033,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos urbanos a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_stops_urban_events.png}
 	\label{fig:apriori_analysis_stops_urban_events}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -3033,7 +3041,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_accidents.png}
 	\label{fig:apriori_analysis_shapes_accidents}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -3041,7 +3049,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_natural_disasters.png}
 	\label{fig:apriori_analysis_shapes_natural_disasters}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -3049,7 +3057,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_social_events.png}
 	\label{fig:apriori_analysis_shapes_social_events}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -3057,7 +3065,7 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
  	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
 		\includegraphics[width=1\linewidth]{images/apriori_analysis_shapes_urban_events.png}
 	\label{fig:apriori_analysis_shapes_urban_events}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 
@@ -3105,7 +3113,7 @@ Acidente & 3.029 & 3.980.542 & 3.415.780 & 385.728 & 179.034 \\
             \item[g] 447 eventos de exceção não atingiram linhas de ônibus no raio de 1.000~m.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -3156,7 +3164,7 @@ Acidente & 3.035 & 2.772.368 & 2.259.806 & 365.234 & 147.328 \\
             \item[g] 440 eventos de exceção não atingiram linhas de ônibus no raio de 1.000~m.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \clearpage
@@ -6227,49 +6235,49 @@ Neste apêndice, constam as matrizes de confusão resultantes dos treinamentos d
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Árvore de Decisão}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_dt_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/confusion_matrix_dt_pt.png}
 	\label{fig:confusion_matrix_dt}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Naive Bayes} Complementar}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_cnb_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/confusion_matrix_cnb_pt.png}
 	\label{fig:confusion_matrix_gnb}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Florestas Aleatórias}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_rf_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/confusion_matrix_rf_pt.png}
 	\label{fig:confusion_matrix_rf}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo \textit{Naive Bayes} Multinomial}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_mnb_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/confusion_matrix_mnb_pt.png}
 	\label{fig:confusion_matrix_mnb}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Regressão Logística}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_lr_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/confusion_matrix_lr_pt.png}
 	\label{fig:confusion_matrix_rl}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
  	  \caption{Matriz de confusão relacionada a classificação dos \textit{tweets} em eventos de exceção por meio do algoritmo Máquina de Vetores de Suporte}
-		\includegraphics[width=1\linewidth]{images/confusion_matrix_svm_pt.png}
+		\includegraphics[width=0.8\linewidth]{images/confusion_matrix_svm_pt.png}
 	\label{fig:confusion_matrix_svm}
-	\source{Felipe Cordeiro Alves Dias (2019)}
+	\source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
 \chapter{Parametrizações dos algoritmos}
@@ -6277,7 +6285,7 @@ Neste apêndice, constam as matrizes de confusão resultantes dos treinamentos d
 
 Neste apêndice estão descritas as parametrizações padrões de cada algoritmo de aprendizado de máquina não supervisionado, utilizados nos experimentos desse trabalho.
 
-\section{Árvore de Decisão}
+\section*{Árvore de Decisão}
 
 Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Árvore de Decisão\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html}. Acesso em 08 de outubro de 2018.}.
 
@@ -6297,7 +6305,7 @@ Os melhores (\textit{best}) nós são os definidos como redução relativa a imp
 \item \textit{presort} --- $bool$, opcional ($default=False$) --- Se o valor desse parâmetro é igual a $true$ é realizada uma pré-ordenação dos dados, o que acelera encontrar as melhores divisões das árvores de decisão no processo de ajuste. Ao habilitar esse parâmetro, a velocidade do processo de treinamento de um grande volume de dados  é reduzida. Por outro lado, habilitar esse parâmetro em alguns casos pode acelerar o processo de treinamento, como quando há pequenos conjuntos de dados, ou, restrição quanto a profundidade da árvore de decisão.
 \end{itemize}
 
-\section{Floresta Aleatória}
+\section*{Floresta Aleatória}
 
 Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Floresta Aleatória\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}. Acesso em 08 de outubro de 2018.}.
 
@@ -6324,7 +6332,7 @@ quando definido como $True$ reutiliza a solução da chamada anterior no process
 \item \textit{presort} --- $bool$, opcional ($default=False$) --- Se o valor desse parâmetro é igual a $true$ é realizada uma pré-ordenação dos dados, o que acelera encontrar as melhores divisões das árvores de decisão no processo de ajuste. Ao habilitar esse parâmetro, a velocidade do processo de treinamento de um grande volume de dados  é reduzida. Por outro lado, habilitar esse parâmetro em alguns casos pode acelerar o processo de treinamento, como quando há pequenos conjuntos de dados, ou, restrição quanto a profundidade da árvore de decisão.
 \end{itemize}
 
-\section{K-ésimo Vizinho mais Próximo}
+\section*{K-ésimo Vizinho mais Próximo}
 
 Abaixo são descritos os parâmetros padrões utilizados para o algoritmo K-ésimo Vizinho mais Próximo\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}. Acesso em 08 de outubro de 2018.}.
 
@@ -6345,7 +6353,7 @@ Abaixo são descritos os parâmetros padrões utilizados para o algoritmo K-ési
 \item \textit{n\_jobs} --- $int$ ou $None$, opcional ($default = None$) --- Parâmetro responsável por definir o número de $jobs$ a serem executados em paralelo durante os processos de \textit{fit} e \textit{predict}. $None$ define 1 \textit{job} a menos que esteja em um contexto \textit{joblib.parallel\_backend}; -1 define que todos os processadores sejam usados.
 \end{itemize}
 
-\section{Máquina de Vetores de Suporte}
+\section*{Máquina de Vetores de Suporte}
 
 Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Máquina de Vetores de Suporte
 \footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html\#sklearn.svm.SVC}. Acesso em 08 de outubro de 2018.}.
@@ -6383,7 +6391,7 @@ outros \textit{kernels}.
 
 \end{itemize}
 
-\section{Naive Bayes}
+\section*{Naive Bayes}
 
 Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Naive Bayes\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html\#sklearn.naive_bayes.MultinomialNB} e \url{http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.ComplementNB.html\#sklearn.naive_bayes.ComplementNB} . Acesso em 08 de outubro de 2018.}.
 
@@ -6395,7 +6403,7 @@ Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Naive 
 Parâmetro responsável por definir se uma segunda normalização dos pesos é executada ou não. Disponível somente na implementação \textit{ComplementNB}.
 \end{itemize}
 
-\section{Perceptron Multicamadas}
+\section*{Perceptron Multicamadas}
 
 Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Perceptron Multicamadas\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\#sklearn.neural_network.MLPClassifier}. Acesso em 08 de outubro de 2018.}.
 
@@ -6424,7 +6432,7 @@ Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Percep
 \item \textit{n\_iter\_no\_change} --- $int$, opcional ($default=10$) --- Parâmetro responsável por definir o número máximo de \textit{epochs} para não atender a melhoria definida pelo parâmetro \textit{tol}. Usado somente quando $solver=adam$.
 \end{itemize}
 
-\section{Regressão Logística}
+\section*{Regressão Logística}
 
 Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Regressão Logística\footnote{Descrições das parametrização adaptadas com base em:\url{http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}. Acesso em 08 de outubro de 2018.}.
 
@@ -6473,7 +6481,7 @@ Abaixo são descritos os parâmetros padrões utilizados para o algoritmo Regres
 
 Neste apêndice, detalhamos as regras de associação encontradas na base de dados AVL, por meio do algoritmo \textit{Apriori}.
 
-\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans, referentes aos meses do ano de 2017.}
+\section*{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans, referentes aos meses do ano de 2017.}
 \label{g1}
 
 \begin{table}[!htb]
@@ -6509,7 +6517,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 11 $\rightarrow$ 12 &  0,13 &  0,47&  1,72\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6548,7 +6556,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
  \hline 7 $\rightarrow$ 8 &  0,10 &  0,49 &  3,58\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6584,7 +6592,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 12 $\rightarrow$ 13 &  0,15 &  0,41 &  1,76\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -6625,7 +6633,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 7  $\rightarrow$ 8 &  0,10 &  0,45 &  3,18\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6665,7 +6673,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 7 $\rightarrow$ 8 &  0,10 &  0,57 &  4,37\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6703,7 +6711,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 12 $\rightarrow$ 13 &  0,14 &  0,37 &  1,90\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6737,7 +6745,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 11 $\rightarrow$ 12 &  0,20 &  0,69 &  1,93\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6775,7 +6783,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 13 $\rightarrow$ 12 &  0,14 &  0,36 &  1,83\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6809,7 +6817,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 12 $\rightarrow$ 11 &  0,16 &  0,60 &  1,86\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -6850,7 +6858,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 8 $\rightarrow$ 7 &  0,10 &  0,59 &  3,43\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -6887,7 +6895,7 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 8 $\rightarrow$ 7 &  0,10 &  0,44 &  3,36\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -6922,12 +6930,12 @@ Neste apêndice, detalhamos as regras de associação encontradas na base de dad
 12 $\rightarrow$ 11 &  0,14 &  0,43 &  2,07\\
 \bottomrule
 \end{tabular}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \clearpage
 
-\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000~m dos pontos de parada), referentes aos meses do ano de 2017}
+\section*{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000~m dos pontos de parada), referentes aos meses do ano de 2017}
 \label{g2}
 
 \begin{table}[!htb]
@@ -6958,7 +6966,7 @@ Acidente & 40 & 49.012 & 41.870 & 4.399 & 2.743 \\
             \item[f] 23 eventos de exceção não atingiram linhas de ônibus. 
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -6989,7 +6997,7 @@ Acidente & 45 & 49.452 & 39.294 & 8.213 & 1.945 \\
             \item[f] 23 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7020,7 +7028,7 @@ Acidente & 36 & 37.421 & 30.253 & 4.604 & 2.564 \\
             \item[f] 9 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7051,7 +7059,7 @@ Acidente & 29 & 21.105 & 16.955 & 3.105 & 1.045 \\
             \item[f] 3 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7083,7 +7091,7 @@ Acidente & 194 & 263.940 & 228.631 & 22.846 & 12.463 \\
             \item[f] 27 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7114,7 +7122,7 @@ Acidente & 493 & 595.019 & 498.826 & 66.882 & 29.311 \\
             \item[f] 72 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7146,7 +7154,7 @@ Acidente & 515 & 696.754 & 596.893 & 65.641 & 34.220 \\
             \item[f] 68 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7178,7 +7186,7 @@ Acidente & 459 & 677.882 & 585.663 & 62.135 & 30.084 \\
             \item[f] 58 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7209,7 +7217,7 @@ Acidente & 454 & 454.837 & 379.438 & 53.504 & 21.895 \\
             \item[f] 40 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7240,7 +7248,7 @@ Acidente & 391 & 649.238 & 578.523 & 46.116 & 24.599 \\
             \item[f] 71 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7271,7 +7279,7 @@ Acidente & 349 & 477.061 & 412.095 & 47.137 & 17.829 \\
             \item[f] 53 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7301,12 +7309,12 @@ Acidente & 8 & 8.821 & 7.339 & 1.146 & 336 \\
             \item[e] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \clearpage
 
-\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100~m dos pontos de parada), referentes aos meses do ano de 2017}
+\section*{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100~m dos pontos de parada), referentes aos meses do ano de 2017}
 \label{g3}
 
 \begin{table}[!htb]
@@ -7337,7 +7345,7 @@ Acidente & 11 & 284 & 209 & 75 & 0 \\
             \item[f] 383 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7368,7 +7376,7 @@ Acidente & 14 & 663 & 477 & 182 & 4 \\
             \item[f] 215 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7399,7 +7407,7 @@ Acidente & 17 & 2.368 & 2.044 & 271 & 53 \\
             \item[f] 158 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7431,7 +7439,7 @@ Acidente & 16 & 1.757 & 1.476 & 260 & 21 \\
             \item[f] 171 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7462,7 +7470,7 @@ Acidente & 102 & 18.064 & 15.179 & 2.523 & 362 \\
             \item[f] 212 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7494,7 +7502,7 @@ Acidente & 240 & 49.659 & 42.233 & 6.293 & 1.133 \\
             \item[f] 397 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7526,7 +7534,7 @@ Acidente & 233 & 60.501 & 53.828 & 5.382 & 1.291 \\
             \item[f] 395 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7558,7 +7566,7 @@ Acidente & 211 & 68.926 & 62.995 & 4.666 & 1.265 \\
             \item[f] 432 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7589,7 +7597,7 @@ Acidente & 186 & 36.130 & 31.202 & 4.437 & 491 \\
             \item[f] 371 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7620,7 +7628,7 @@ Acidente & 189 & 41.610 & 36.983 & 3.793 & 834 \\
             \item[f] 389 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7651,7 +7659,7 @@ Acidente & 164 & 31.596 & 28.664 & 2.670 & 262 \\
             \item[f] 415 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7682,12 +7690,12 @@ Acidente & 2 & 3.505 & 3.203 & 252 & 50 \\
             \item[f] 7 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \clearpage
 
-\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000~m dos pontos de rota), referentes aos meses do ano de 2017}
+\section*{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 1.000~m dos pontos de rota), referentes aos meses do ano de 2017}
 \label{g4}
 
 
@@ -7719,7 +7727,7 @@ Acidente & 40 & 40.098 & 32.671 & 5.171 & 2.256 \\
             \item[f] 23 eventos de exceção não atingiram linhas de ônibus. 
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7750,7 +7758,7 @@ Acidente & 46 & 32.868 & 25.572 & 5.878 & 1.418 \\
             \item[f] 23 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7781,7 +7789,7 @@ Acidente & 37 & 27.961 & 23.214 & 2.762 & 1.985 \\
             \item[f] 8 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7813,7 +7821,7 @@ Acidente & 29 & 13.217 & 9.687 & 2.346 & 1.184 \\
             \item[f] 3 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7844,7 +7852,7 @@ Acidente & 194 & 152.861 & 118.989 & 23.569 & 10.303 \\
             \item[f] 27 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7876,7 +7884,7 @@ Acidente & 496 & 439.434 & 360.398 & 56.034 & 23.002 \\
             \item[f] 72 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7908,7 +7916,7 @@ Acidente & 519 & 515.974 & 422.331 & 64.621 & 29.022 \\
             \item[f] 64 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -7940,7 +7948,7 @@ Acidente & 461 & 425.118 & 346.818 & 53.965 & 24.335 \\
             \item[f] 58 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -7971,7 +7979,7 @@ Acidente & 454 & 326.108 & 256.377 & 49.967 & 19.764 \\
             \item[f] 40 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8003,7 +8011,7 @@ Acidente & 394 & 410.860 & 338.494 & 53.676 & 18.690 \\
             \item[f] 69 eventos de exceção não atingiram linhas de ônibus.
 \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8034,7 +8042,7 @@ Acidente & 350 & 382.405 & 320.812 & 46.428 & 15.165 \\
             \item[f] 53 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8064,12 +8072,12 @@ Acidente & 8 & 5.464 & 4.443 & 817 & 204 \\
             \item[e] Regras de associação parcialmente inesperadas ($0 < Lift < 1$).
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \clearpage
 
-\section{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100~m dos pontos de rota), referentes aos meses do ano de 2017}
+\section*{Análise \textit{Apriori} aplicada as velocidades médias (intervalos de 5 minutos) ao conjunto de dados AVL da SPTrans correlacionados (a distância de 100~m dos pontos de rota), referentes aos meses do ano de 2017}
 \label{g5}
 
 \begin{table}[!htb]
@@ -8100,7 +8108,7 @@ Acidente & 23 & 6.231 & 5.490 & 572 & 169 \\
             \item[f] 249 eventos de exceção não atingiram linhas de ônibus. 
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8131,7 +8139,7 @@ Acidente & 23 & 22.804 & 21.824 & 874 & 106 \\
             \item[f] 148 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8162,7 +8170,7 @@ Acidente & 27 & 42.787 & 40.376 & 1.738 & 673 \\
             \item[f] 95 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -8194,7 +8202,7 @@ Acidente & 21 & 24.651 & 22.449 & 1.798 & 404 \\
             \item[f] 82 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8225,7 +8233,7 @@ Acidente & 158 & 306.781 & 288.104 & 13.584 & 5.093 \\
             \item[f] 119 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -8257,7 +8265,7 @@ Acidente & 349 & 581.205 & 545.257 & 26.753 & 9.195 \\
             \item[f] 238 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -8289,7 +8297,7 @@ Acidente & 364 & 598.814 & 558.198 & 31.089 & 9.527 \\
             \item[f] 216 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 
@@ -8321,7 +8329,7 @@ Acidente & 343 & 545.707 & 511.619 & 22.799 & 11.289 \\
             \item[f] 227 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8352,7 +8360,7 @@ Acidente & 326 & 535.819 & 502.231 & 25.708 & 7.880 \\
             \item[f] 187 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8383,7 +8391,7 @@ Acidente & 293 & 367.280 & 335.395 & 26.808 & 5.077 \\
             \item[f] 225 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8414,7 +8422,7 @@ Acidente & 266 & 351.118 & 326.702 & 19.933 & 4.483 \\
             \item[f] 241 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \begin{table}[!htb]
@@ -8445,7 +8453,7 @@ Acidente & 3 & 7.493 & 7.081 & 204 & 208 \\
             \item[f] 6 eventos de exceção não atingiram linhas de ônibus.
         \end{tablenotes}
 \end{threeparttable}
-\source{Felipe Cordeiro Alves Dias (2019)}
+\source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
 \end{apendicesenv}
