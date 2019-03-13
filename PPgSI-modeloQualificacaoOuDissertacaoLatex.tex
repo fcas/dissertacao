@@ -694,7 +694,7 @@ Código de Financiamento 001, FAPESP proc. 14/50937-1 e FAPESP proc.
 DIAS, Felipe Cordeiro Alves. \textbf{Caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo}. \imprimirdata. \pageref{LastPage} f. Dissertação (Mestrado em Ciências) - Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, 2019.
 \end{flushleft}
 
-A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações atuais para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas computacionais existentes --- como as necessárias ao Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM às Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção, dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município e GTFS da (\textit{General Transit Feed Specification}) da SPTrans. Visando alcançar o objetivo proposto, classificamos manualmente 60.984 \textit{tweets} e treinamos diferentes modelos por meio de algoritmos de aprendizado de máquina supervisionado para identificar eventos de exceção. Além disso, propomos uma nova metodologia para extrair e geolocalizar os endereços dos eventos de exceção, por meio de Processamento de Linguagem Natural e Expressão Regular. Com isso, demonstramos que é possível correlacionar os dados desses eventos com os dados históricos do SIM e da GTFS, para caracterizar como o transporte público por ônibus da cidade de São Paulo é impactado nesses cenários. Adicionalmente, propomos uma arquitetura distribuída para exploração e visualização de grandes volumes de dados relacionados a transporte público.
+A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações atuais para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas computacionais existentes --- como as necessárias ao Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM às Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção, dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município e GTFS  (\textit{General Transit Feed Specification}) da SPTrans. Visando alcançar o objetivo proposto, classificamos manualmente 60.984 \textit{tweets} e treinamos diferentes modelos por meio de algoritmos de aprendizado de máquina supervisionado para identificar eventos de exceção. Além disso, propomos uma nova metodologia para extrair e geolocalizar os endereços dos eventos de exceção, por meio de Processamento de Linguagem Natural e Expressão Regular. Com isso, demonstramos que é possível correlacionar os dados desses eventos com os dados históricos do SIM e da GTFS, para caracterizar como o transporte público por ônibus da cidade de São Paulo é impactado nesses cenários. Adicionalmente, propomos uma arquitetura distribuída para exploração e visualização de grandes volumes de dados relacionados a transporte público.
 
 Palavras-chaves: Cidades inteligentes. Transporte público. Sistemas de transporte inteligentes. Eventos de exceção.
 \end{resumo}
@@ -1083,7 +1083,7 @@ Os dados AVL que usamos neste trabalho têm como fonte de origem os inúmeros m�
 
 É importante notar que o termo \textit{intelligent}, contido em ITS, normalmente é utilizado em abordagens de cidades inteligentes orientadas à tecnologia, ou seja, que se preocupam principalmente no uso em si de determinada tecnologia, não necessariamente no uso como consequência de uma demanda dos cidadãos. Nos contextos de cidades inteligentes com um viés humano, utiliza-se o termo \textit{smart}, devido a isso \textit{Smart Transportation / Mobility} é conceitualmente diferente de \textit{Intelligent Transportation Systems} \cite{albino2015smart}. 
 
-Na ausência de um problema real apontado pela população, é possível que o sistema seja implantado apenas para gerenciamento de frota, o que não tem impacto significativo no cotidiano das pessoas, como menor tempo de viagem. Dessa forma, os estudos realizados neste trabalho utilizam dados de um sistema ITS (no caso, o SIM) para caracterizar os impactos de eventos de exceção no transporte público por ônibus da cidade de São Paulo. Portanto, tais experimentos têm aplicabilidade em cidades inteligentes, mais especificamente em transportes inteligentes \textit{Smart Transportation}. A seguir, detalhamos algumas das categorias de ITS:
+Na ausência de um problema real apontado pela população, é possível que o sistema seja implantado apenas para gerenciamento de frota, o que não tem impacto significativo no cotidiano das pessoas, como menor tempo de viagem. Dessa forma, os estudos realizados neste trabalho utilizam dados de um sistema ITS (no caso, o SIM) para caracterizar os impactos de eventos de exceção no transporte público por ônibus da cidade de São Paulo. Portanto, tais experimentos têm aplicabilidade em cidades inteligentes, mais especificamente em transportes inteligentes (\textit{Smart Transportation}). A seguir, detalhamos algumas das categorias de ITS:
 
 \begin{enumerate}
 \item \textbf{Sistemas Avançados de Gerenciamento de Tráfego} \nomenclature{ATMS}{\textit{Advanced Traffic Management System}}{(\textbf{ATMS --- \textit{Advanced Traffic Management System}})} --- são sistemas utilizados para melhorar a qualidade do serviço de tráfego e redução de atrasos \cite{figueiredo2001towards}, por meio de:
@@ -1097,7 +1097,7 @@ Na ausência de um problema real apontado pela população, é possível que o s
 \begin{enumerate}
 \item Identificação Automática de Veículos (\textit{Automatic Vehicles Identification});
 \item Classificação Automática de Veículos (\textit{Automatic Vehicles Classification});
-\item Automatic Vehicles Location (\textit{Automatic Vehicles Location});
+\item Localização Automática de Veículos (\textit{Automatic Vehicles Location});
 \item Detecção de Movimento Pedestre (\textit{Pedestrian Movement Detection});
 \item Computadores de Bordo (\textit{Board Computers});
 \item Transmissões de Tráfego em Tempo Real (\textit{Real Time Traffic Transmissions}).
@@ -1307,7 +1307,7 @@ Como a LR retorna a probabilidade de uma variável pertencer a determinada class
 \subsection{Validação dos modelos de aprendizado supervisionado}
 \label{modelValidation}
 
-A validação dos modelos para tarefas de classificação pode ser realizada por meio de \textit{validação cruzada}\footnote{\url{https://scikit-learn.org/stable/modules/cross\_validation.html\#cross-validation}} (nos experimentos desse trabalho utilizamos 10 \textit{folds} --- subconjuntos do conjunto de dados de treinamento --- para validar a generalização dos modelos) e métricas tais como: \textit{acurácia} \nomenclature{ACC}{\textit{Accuracy}}{(ACC --- \textit{Accuracy}, Eq.~\ref{acc}), \textit{precisão} \nomenclature{PPV}{\textit{Positive Predictive Value}}{PPV --- \textit{Positive Predictive Value}, Eq.~\ref{prec})}, \textit{revocação} \nomenclature{TPR}{\textit{\textit{True Positive Rate}}}{(TPR --- \textit{True Positive Rate}, Eq.~\ref{rec}) e $f_1 score$ (Eq.~\ref{f1}), que tem como entrada o número de casos reais positivos (P), negativos (N), verdadeiro positivo (VP), verdadeiro negativo (VN), falso positivo (FP) e falso negativo (FN):
+A validação dos modelos para tarefas de classificação pode ser realizada por meio de \textit{validação cruzada}\footnote{\url{https://scikit-learn.org/stable/modules/cross\_validation.html\#cross-validation}} (nos experimentos desse trabalho utilizamos 10 \textit{folds} --- subconjuntos do conjunto de dados de treinamento --- para validar a generalização dos modelos) e métricas tais como: \textit{acurácia} \nomenclature{ACC}{\textit{Accuracy}}{(ACC --- \textit{Accuracy}, Equação~\ref{acc}), \textit{precisão} \nomenclature{PPV}{\textit{Positive Predictive Value}}{PPV --- \textit{Positive Predictive Value}, Equação~\ref{prec})}, \textit{revocação} \nomenclature{TPR}{\textit{\textit{True Positive Rate}}}{(TPR --- \textit{True Positive Rate}, Equação~\ref{rec}) e $f_1 score$ (Equação~\ref{f1}), que tem como entrada o número de casos reais positivos (P), negativos (N), verdadeiro positivo (VP), verdadeiro negativo (VN), falso positivo (FP) e falso negativo (FN):
 
 \begin{equation}
 \label{acc}
@@ -1826,7 +1826,7 @@ fare\_attributes.txt & Opcional & Contém informações sobre tarifas dos trajet
 \bottomrule
   \end{tabular}
   \begin{tablenotes}
-            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no apêndice~\ref{apendiceC}, nas tabelas ~\ref{tab:gtfsAgency} à~\ref{tab:gtfsFeedInfo}.
+            \item[a] Os campos contidos em cada arquivo da especificação GTFS estão descritos no Apêndice~\ref{apendiceC}, nas tabelas ~\ref{tab:gtfsAgency} à~\ref{tab:gtfsFeedInfo}.
         \end{tablenotes}
 \end{threeparttable}
 \source{\citeauthor{googleTransit} (\citeyear{googleTransit})}
@@ -1862,7 +1862,7 @@ Além da GTFS estática existe a GTFS-\textit{realtime}\footref{googleTransit}, 
 
 \subsubsection{Transformações nos dados da GTFS da SPTrans}
 
-Apesar da padronização da GTFS, precisamos realizar alguns processos de transformação nos dados da GTFS estática, antes de inserí-los no \textit{MongoDB}, para viabilizarmos a correlação com os dados AVL.  Dessa forma, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para o formato \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em 29 de outubro de 2017.}. Além disso,  para fosse possível realizarmos consultas geoespaciais, foram criados \textit{índices geoespaciais}\footref{geoMongo} nas coleções que contém dados geolocalizados. Dessa forma, conseguimos usar consultas geoespaciais para identificarmos as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
+Apesar da padronização da GTFS, precisamos realizar alguns processos de transformação nos dados da GTFS estática, antes de inserí-los no \textit{MongoDB}, para viabilizarmos a correlação com os dados AVL.  Dessa forma, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para o formato \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em 29 de outubro de 2017.}. Além disso,  para que fosse possível realizarmos consultas geoespaciais, foram criados \textit{índices geoespaciais}\footref{geoMongo} nas coleções que contém dados geolocalizados. Dessa forma, conseguimos usar consultas geoespaciais para identificarmos as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
 
 \subsection{Dados AVL da SPTrans}
 
@@ -2084,11 +2084,11 @@ Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe 
 \section{Correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
 \label{corrAll}
 
-Conforme mencionado anteriormente, após os processos de coleta e transformação os \textit{tweets} e dados da GTFS são inseridos no banco de dados não relacional \textit{MongoDB}. Após essas fases, os dados são correlacionados com o auxílio de \textit{data frames} (estrutura de dados tabular da biblioteca \textit{Pandas}\footnote{\url{https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.html}. Acesso em 21 de janeiro de 2019.}), implementados em\textit{scripts} na linguagem de programação \textit{Python}.
+Conforme mencionado anteriormente, após os processos de coleta e transformação os \textit{tweets} e dados da GTFS são inseridos no banco de dados não relacional \textit{MongoDB}. Após essas fases, os dados são correlacionados com o auxílio de \textit{data frames} (estrutura de dados tabular da biblioteca \textit{Pandas}\footnote{\url{https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.html}. Acesso em 21 de janeiro de 2019.}), implementados em \textit{scripts} na linguagem de programação \textit{Python}.
 
 Na Figura \ref{fig:caracterization_flow}, temos o processo de extração e geolocalização dos endereços contidos nos \textit{tweets}, explicado no Capítulo \ref{exp1}. O final desse processo gera um conjunto de arquivos (no formato \textit{CSV}) contendo os eventos de exceção, endereços e geolocalizações extraídas.  Em seguida, correlacionamos esses dados com a GTFS da SPTrans para então identificarmos as linhas de ônibus impactadas pelos eventos de exceção, por meio de consultas geoespaciais. Tais consultas utilizam os dados de latitude e longitude dos endereços dos eventos de exceção, além das coordenadas espaciais existentes nos arquivos \textit{shapes} e \textit{stops} da GTFS.
 
-Uma vez que sabemos quais linhas de ônibus foram impactadas pelos eventos de exceção, utilizamos os códigos dessas linhas de ônibus e as datas (devido a sazonalidade) dos eventos para filtrar o conjunto de dados AVL que será caracterizado. Em seguida, extraímos análises descritivas das velocidades instantâneas dos ônibus, armazenadas também em arquivos no formato \textit{CSV}. Com as descrições das velocidades instantâneas conseguimos analisar se estão dentro dos padrões esperados, além de podermos extrair regras de associação. No Capítulo \ref{dataCorr} descrevemos os experimentos realizar para caracterizar os impactos dos eventos de exceção.
+Uma vez que sabemos quais linhas de ônibus foram impactadas pelos eventos de exceção, utilizamos os códigos dessas linhas de ônibus e as datas (devido a sazonalidade) dos eventos para filtrar o conjunto de dados AVL que será caracterizado. Em seguida, extraímos análises descritivas das velocidades instantâneas dos ônibus, armazenadas também em arquivos no formato \textit{CSV}. Com as descrições das velocidades instantâneas conseguimos analisar se estão dentro dos padrões esperados, além de podermos extrair regras de associação. No Capítulo \ref{dataCorr} descrevemos os experimentos realizados para caracterizar os impactos dos eventos de exceção.
 
 Por fim, é importante mencionarmos que para viabilizarmos o processamento dos dados AVL mantivemos os arquivos no formato compactado, assim como foram fornecidos pela SPTrans. Durante o processamento realizamos a leitura dos dados em memória, convertendo \textit{bytes} para \textit{string}. Uma vez em memória, dividimos e paralelizamos o processamento dos \textit{data frames} de acordo com a quantidade de núcleos existentes na máquina. Com isso, aproveitamos melhor os recursos de \textit{hardware} e disponibilizamos \textit{scripts} que podem ser facilmente integrados a estrutura de processamento de dados da SPTrans.
 
@@ -2113,7 +2113,7 @@ Dessa forma, apresentamos uma arquitetura para visualizar e explorar grandes vol
 \section{Trabalhos relacionados}
 \label{related_work_data_viz}
 
-Em \cite{chen2015survey} são mencionados conceitos básicos e fluxos de visualização de dados de tráfego (dos dados brutos, pré-processamento ao mapeamento visual, construído com símbolos visuais), além de uma visão geral das técnicas e métodos de processamento de dados relacionados para processar e descrever propriedades temporais, espaciais, numéricas e categóricas de dados de tráfego.
+Em \cite{chen2015survey} são mencionados conceitos básicos e fluxos de visualização de dados de tráfego (dos dados brutos, pré-processamento ao mapeamento visual, construído com símbolos visuais), além de uma visão geral das técnicas e métodos de processamento de dados para descrever propriedades temporais, espaciais, numéricas e categóricas de dados de tráfego.
 
 Analogamente, em \cite{andrienko2017visual} é descrita uma tipologia de dados de tráfego, capaz de abordar suas respectivas propriedades, problemas e transformações relevantes para a análise. Além disso, são apresentadas abordagens analíticas visuais para analisar dados de tráfego de veículos, pedestres, passageiros dentro de sistemas de transporte, etc.
 
@@ -2128,7 +2128,7 @@ O Druid é um banco de dados para análises exploratórias em tempo real (latên
 
 \subsection{Real-time nodes}
 
-\textit {Real-time nodes} são responsáveis por ingerir, indexar e consultar fluxos de eventos. Periodicamente, cada nó agenda uma tarefa em segundo plano para procurar todos os índices localmente persistentes, mesclando-os para construir \emph{blocos imutáveis de dados com todos os eventos ingeridos em um período de tempo}, conhecidos como \emph{segmentos imutáveis}, os quais podem posteriormente serem carregados para uma camada de de sistema de arquivos (\textit{deep storage}\footnote{\url{http://druid.io/docs/latest/dependencies/deep-storage.html}. Acesso em 21 de janeiro de 2019.}) \cite{yang2014druid}.
+\textit {Real-time nodes} são responsáveis por ingerir, indexar e consultar fluxos de eventos. Periodicamente, cada nó agenda uma tarefa em segundo plano para procurar todos os índices localmente persistidos, mesclando-os para construir \emph{blocos imutáveis de dados com todos os eventos ingeridos em um período de tempo}, conhecidos como \emph{segmentos imutáveis}, os quais podem posteriormente serem carregados para uma camada de sistema de arquivos (\textit{deep storage}\footnote{\url{http://druid.io/docs/latest/dependencies/deep-storage.html}. Acesso em 21 de janeiro de 2019.}) \cite{yang2014druid}.
 
 Durante os processos mencionados anteriormente não há perda de dados. Além disso, a imutabilidade dos blocos permite a consistência de leitura e um modelo de paralelização simples: \textit{historical nodes} podem simultaneamente examinar e agregar blocos imutáveis de forma não bloqueante \cite{yang2014druid}.
 
@@ -2204,7 +2204,7 @@ Finalmente, os mapas exibidos pelas figuras~\ref {fig:buses_map} e~\ref{fig:only
 
 \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
- 	  \caption{Localizações dos ônibus referente a movimentação de Janeiro de 2017}
+ 	  \caption{Localizações dos ônibus referentes as movimentações de Janeiro de 2017}
 		\includegraphics[width=0.95\linewidth]{images/buses_map.png}
 	\label{fig:buses_map}
 	\source{Felipe Cordeiro Alves Dias, 2019}
@@ -2242,7 +2242,7 @@ O objetivo geral desse projeto de pesquisa é a caracterização de eventos de e
 \section{Pré-processamento}
 \label{preprocessing}
 
-Numa pré-análise do \textit{Corpus Twitter}, podemos averiguar que os \textit{tweets} publicados pelos perfis selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no apêndice~\ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintaxe e que normalmente dependem de análise contextual para que possam ser interpretados.
+Numa pré-análise do \textit{Corpus Twitter}, podemos averiguar que os \textit{tweets} publicados pelos perfis selecionados evitam o uso de gírias, abreviações, erros de digitação; conforme consta nos \textit{tweets} de exemplo contidos no trecho de código em \textit{json}, no Apêndice~\ref{tweetsSample}.  Isso diferencia tais \textit{tweets} dos \textit{tweets} publicados por usuários comuns do \textit{Twitter}, que contém erros gramaticais, de sintaxe e que normalmente dependem de análise contextual para que possam ser interpretados.
 
 Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{Middleton2014}, \cite{Kobdani2010}, \cite{Setiawan2017},  \cite{Zagal2016}), as seguintes etapas de pré-processamento são necessárias para remoção de ruído e redução da dimensão do espaço de \textit{features} e foram realizadas para o \textit{Corpus Twitter}:
 
@@ -2259,7 +2259,7 @@ Apesar disso, com base na literatura analisada (\cite{Steiger2015Census}, \cite{
 
 Além disso, é importante observar que (I) as informações referentes a data e hora mencionadas no conteúdo dos \textit{tweets} (\textit{stopwords} específicas do domínio) são removidas do texto original. As informações de data e hora consideradas para os eventos de exceção são as contidas nos metadados dos \textit{tweets}, posto que ao analisarmos os \textit{tweets} verificamos que as informações de data e hora contidas no texto normalmente são referentes a eventos futuros, os quais não são considerados por este trabalho; (II) os \textit{retweets} não estão presentes no \textit{Corpus Twitter}; (III) no pré-processamento não há transformação do conteúdo dos \textit{tweets}, embora trabalhos como os relacionados a identificação de sentimentos usem esse meio para transformar \textit{emoticons} nos sentimentos que eles representam \cite{Zagal2016}; (IV) as \textit {hashtags} não são removidas dos \textit{tweets} originais, pois são importantes para a classificação dos eventos de exceção.
 
-Uma atenção especial foi dada às \textit{hashtags}, que são relevantes para a classificação de eventos de exceção, mas adicionam ruído à fase de extração de endereços. Para mitigar o problema, \textit{hashtags} são identificadas e substituídas por espaços vazios no processo de extração de endereço. Além disso, é importante notar que as \textit{hashtags} não são removias dos \textit{tweets} originais.
+Uma atenção especial foi dada às \textit{hashtags}, que são relevantes para a classificação de eventos de exceção, mas adicionam ruído à fase de extração de endereços. Para mitigar o problema, \textit{hashtags} são identificadas e substituídas por espaços vazios no processo de extração de endereço. Além disso, é importante notar que as \textit{hashtags} não são removidas dos \textit{tweets} originais.
 
 \section{Extração de endereço e geolocalização}
 
@@ -2764,7 +2764,7 @@ Os valores dos meses das tabelas \ref{tab:exceptEventVelocityImpAllStop} e \ref{
 
 \begin{table}[!htb]
 \centering
-\caption {Porcentagem de ônibus dos grupos de linhas afetadas por eventos de exceção, a 1.000~m e 100~m de distância, respectivamente, que tiveram a velocidade mediana reduzida nos meses do ano de 2017}
+\caption {Porcentagem de ônibus dos grupos de linhas afetadas por eventos de exceção, a 1.000~m e 100~m de distância a partir dos pontos de parada, respectivamente, que tiveram a velocidade mediana reduzida nos meses do ano de 2017}
 \label{tab:exceptEventVelocityImpAllStop}
 \resizebox{16cm}{!}{
 \begin{tabular}{c|cc|cc|cc|cc}
@@ -2851,7 +2851,7 @@ Por fim, a abordagem que utiliza as coordenadas espaciais dos pontos de parada d
 
 \begin{table}[!htb]
 \centering
-\caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 1.000~m e 100~m de distância, respectivamente, nos meses do ano de 2017}
+\caption {Porcentagem de impacto na velocidade média dos grupos de linhas afetadas por eventos de exceção a 1.000~m e 100~m de distância dos pontos de rota, respectivamente, nos meses do ano de 2017}
 \label{tab:exceptEventVelocityImpAllShapes}
 \resizebox{16cm}{!}{
 \begin{tabular}{c|cc|cc|cc|cc}
@@ -2933,7 +2933,7 @@ Neste capítulo, é apresentado um processo para identificação de padrões de 
 
 Além da quantidade de registros total, o volume de dados para pequenos intervalos de tempo também é considerável, pois os módulos AVL enviam dados dos ônibus a todo instante. Para viabilizarmos o uso do algoritmo \textit{Apriori}, agrupamos os dados por intervalos de tempo de cinco minutos e calculamos a velocidade média para cada intervalo. Executamos esse processo para cada mês do conjunto de dados AVL para determinarmos as velocidades médias e identificarmos os padrões existentes nos intervalos definidos.
 
-Analogamente, o mesmo procedimento foi aplicado para os conjuntos de dados AVL correlacionados aos eventos de exceção (Acidente, Desastre Natural, Evento Social e Evento Urbano), os dados anuais foram sintetizados nas tabelas~\ref{tab:aprioriExceptFullStops} e~\ref{tab:aprioriExceptFullShapes} e os mensais são apresentados nas seções~\ref{g2},~\ref{g3},~\ref{g4} e~\ref{g5}. As regras de associação encontradas nestes conjuntos de dados estão disponíveis em \citeauthor{fcas} (\citeyear{fcas}) (não inclusas no texto deste trabalho devido ao  grande volume de dados). 
+Analogamente, o mesmo procedimento foi aplicado para os conjuntos de dados AVL correlacionados aos eventos de exceção (Acidente, Desastre Natural, Evento Social e Evento Urbano), os dados anuais foram sintetizados nas tabelas~\ref{tab:aprioriExceptFullStops} e~\ref{tab:aprioriExceptFullShapes} e os mensais são apresentados no Apêndice~\ref{apendiceG}. As regras de associação encontradas nestes conjuntos de dados estão disponíveis em \citeauthor{fcas} (\citeyear{fcas}) (não inclusas no texto deste trabalho devido ao  grande volume de dados). 
 
 \subsection{Trabalhos relacionados}
 
@@ -4059,7 +4059,7 @@ Neste apêndice, listamos todas as linhas de ônibus que foram impactadas pelos 
 \footnotesize
 \begin{longtable}{c|c|p{7cm}}
 \caption{Linhas de ônibus impactadas por eventos de exceção}
-\label{tab:logradouros}\\
+\label{tab:allImpactedBus}\\
 
 \hline \multicolumn{1}{c |}{\textbf{Código da linha}} & \multicolumn{1}{c |}{\textbf{Total de eventos de exceção}} & \multicolumn{1}{c}{\textbf{Letreiro}} \\ \hline 
 \endfirsthead
