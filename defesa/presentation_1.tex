@@ -86,6 +86,28 @@
 \usepackage{adjustbox}
 \usepackage{graphicx}
 \usepackage{multicol}
+\usepackage{subfig}
+
+%gets rid of bottom navigation bars
+%\setbeamertemplate{footline}[frame number]{}
+
+%gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%gets rid of footer
+%will override 'frame number' instruction above
+%comment out to revert to previous/default definitions
+%\setbeamertemplate{footline}{}
+
+%\addtobeamertemplate{navigation symbols}{}{%
+%    \usebeamerfont{footline}%
+%    \usebeamercolor[fg]{footline}%
+%    \hspace{1em}%
+%    \insertframenumber/\inserttotalframenumber
+%}
+%
+%\setbeamercolor{footline}{fg=blue}
+%\setbeamerfont{footline}{series=\bfseries}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -120,7 +142,7 @@ Universidade de São Paulo \\ % Your institution for the title page
 \begin{frame}
 \frametitle{Motivação}
 \begin{itemize}
-\item Segregação urbana: dentre os mais de 12 milhões de habitantes da cidade de São Paulo, 10\% estão localizados no Centro Expandido (CE) e 90\% no Cinturão Periférico (CP).
+\item Segregação urbana: dentre os mais de 12 milhões de habitantes da cidade de São Paulo, \alert{10\% estão localizados no Centro Expandido (CE)} e \alert{90\% no Cinturão Periférico (CP)}.
 \begin{itemize}
 \item Problemas relacionados a mobilidade urbana.
 \end{itemize}
@@ -129,8 +151,8 @@ Universidade de São Paulo \\ % Your institution for the title page
 \begin{itemize}
 \item Legislação federal e municipal sobre mobilidade urbana.
 \begin{itemize}
-\item Lei Federal 12.587/2012: para desenvolvimento sustentável com a mitigação dos custos ambientais e socioeconômicos dos deslocamentos de pessoas.
-\item Decreto 56.834: institui o \textit{PlanMob/SP 2015} como instrumento de planejamento e gestão do Sistema Municipal de Mobilidade Urbana para os próximos 15 anos.
+\item Lei Federal 12.587/2012: \alert{para desenvolvimento sustentável com a mitigação dos custos ambientais e socioeconômicos dos deslocamentos de pessoas}.
+\item Decreto 56.834: institui o \textit{PlanMob/SP 2015} \alert{como instrumento de planejamento e gestão do Sistema Municipal de Mobilidade Urbana para os próximos 15 anos}.
 \end{itemize}
 \end{itemize}
 
@@ -142,28 +164,29 @@ Universidade de São Paulo \\ % Your institution for the title page
 \begin{itemize}
 \item \textit{PlanMob/SP 2015}
 \begin{itemize}
-\item Criação da Central Integrada de Mobilidade Urbana (CIMU): com o objetivo de integrar as áreas de trânsito e transporte subordinadas à Secretaria Municipal de Transportes (SMT).
-\item A CIMU não processa conteúdo de Redes Sociais;
-\item não aborda melhorias dos sistemas já existentes;
-\item será integrada com o defasado SIM.
+\item Criação da Central Integrada de Mobilidade Urbana (CIMU): com o objetivo de \alert{integrar as áreas de mobilidade urbana subordinadas à Secretaria Municipal de Transportes (SMT)}.
+\item \alert{A CIMU não processa conteúdo de Redes Sociais};
+\item \alert{não aborda melhorias dos sistemas já existentes};
+\item \alert{será integrada com o defasado SIM}.
 \end{itemize}
 \end{itemize}
 
 \begin{itemize}
-\item Sistema Integrado de Monitoramento e Transporte (SIM): localização e rastreio dos ônibus, fornece informações em tempo real aos passageiros, monitora 1.353 rotas de ônibus, 10 corredores de ônibus, 28 terminais de ônibus e 19.933 mil paradas de ônibus que serviram em 2016 a aproximadamente 8 milhões de passageiros por dia. \item Apesar da importância do SIM, há inúmeras defasagens tecnológicas (que causam discrepância nas informações recebidas pelos usuários, dentre outros problemas).
+\item Sistema Integrado de Monitoramento e Transporte (SIM).
+\item Sistemas de Transporte Inteligente (ITS --- \textit{Intelligent Transport System}).
+%: localização e rastreio dos ônibus, fornece informações em tempo real aos passageiros, monitora 1.353 rotas de ônibus, 10 corredores de ônibus, 28 terminais de ônibus e 19.933 mil paradas de ônibus que serviram em 2016 a aproximadamente 8 milhões de passageiros por dia. \item Apesar da importância do SIM, há inúmeras defasagens tecnológicas (que causam discrepância nas informações recebidas pelos usuários, dentre outros problemas).
 \end{itemize}
 \end{frame}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Motivação}
 \begin{itemize}
-\item Sistemas de Transporte Inteligente (ITS --- \textit{Intelligent Transport System}).
-\item A lei de mobilidade urbana (12.587/2012) e o \textit{PlanMob/SP 2015} não mencionam explicitamente ITS e TIC.
+\item A lei de mobilidade urbana (12.587/2012) e o \textit{PlanMob/SP 2015} \alert{não mencionam explicitamente ITS e TIC}.
 \end{itemize}
 \begin{itemize}
-\item O transporte público pode se beneficiar ao explorar ITS, e ao integrar as Redes Sociais com o planejamento, gestão e as atividades operacionais dos transportes públicos, abordando seus respectivos fatores sócio-técnicos.
+\item O transporte público \alert{pode se beneficiar ao integrar as Redes Sociais com o planejamento, gestão e as atividades operacionais dos transportes públicos}, abordando seus respectivos fatores sócio-técnicos, como:
 \begin{itemize}
-\item Analisar o impacto dos eventos de exceção na operação do sistema de transporte público por ônibus na cidade de São Paulo.
+\item \alert{Analisar o impacto dos eventos de exceção na operação do sistema de transporte público por ônibus na cidade de São Paulo}.
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -171,31 +194,31 @@ Universidade de São Paulo \\ % Your institution for the title page
 \subsection{Definição do problema}
 \begin{frame}
 \frametitle{Definição do problema}
-\begin{itemize}
-\item Eventos de exceção: acidentes, greves, falhas na operação do metrô, manifestações, enchentes, eventos sociais, dentre outros.
-\end{itemize}
+%\begin{itemize}
+%\item Eventos de exceção: acidentes, greves, falhas na operação do metrô, manifestações, enchentes, eventos sociais, dentre outros.
+%\end{itemize}
 
 \begin{itemize}
-\item Identificação de características dos eventos de exceção.
+\item \alert{Problemas que envolvem a caracterização dos impactos dos eventos de exceção}:
 \begin{itemize}
-\item Dados históricos do SIM.
+\item Corpus SPTrans.
 \begin{itemize}
 \item Processamento de grandes volumes de dados;
+\item identificação de padrões;
 \item qualidade dos dados comprometida.
 \end{itemize}
-\item Twitter.
+\item Corpus Twitter.
 \begin{itemize}
 \item Identificação dos eventos de exceção nas publicações; 
-\item geolocalizá-los; 
-\item extração e identificação de \textit{timestamps};
-\item correlacioná-los com a base histórica.
+\item extração de endereços e geolocalização; 
+\item correlação de eventos de exceção com a base histórica.
 \end{itemize}
 \end{itemize}
 \end{itemize}
 
-\begin{itemize}
-\item Uso de tais características para análise, aprendizado e simulação de como os eventos de exceção impactam o transporte público por ônibus.
-\end{itemize}
+%\begin{itemize}
+%\item Uso de tais características para classificação de eventos de exceção.
+%\end{itemize}
 
 \end{frame}
 %------------------------------------------------
@@ -207,7 +230,7 @@ Caracterização de eventos de exceção e de seus respectivos impactos no siste
 \end{block}
 \begin{block}{Específicos}
 \begin{itemize}
-    \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados.
+    \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados (\alert{classificação automatizada}).
      \item Extrair os endereços dos eventos de exceção identificados e geolocalizá-los.
 		%\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente.
 \item Criação de plataforma para exploração e visualização dos dados coletados e processados do Twitter e da SPTrans.
@@ -237,17 +260,17 @@ Caracterização de eventos de exceção e de seus respectivos impactos no siste
 \subsection{Cidades Inteligentes}
 \begin{frame}
 \frametitle{Cidades Inteligentes}
-\begin{block}{Cidades Inteligentes (SC --- \textit{Smart Cities})}
+\begin{block}{Definição}
 São cidades sustentáveis e socialmente inclusivas, que utilizam Tecnologias da Informação e Comunicação (TICs) para gerir eficientemente seus respectivos recursos naturais.
 \begin{itemize}
-\item Método com viés tecnológico (\textit{TDM --- Technology Driven Method); top-down}; de fornecimento.
-\item Método com viés humano (\textit{HDM --- Human Driven Method; bottom-up}); de demanda.
+\item Método com viés tecnológico.
+\item Método com viés humano.
 \end{itemize}
 \end{block}
 
-\begin{block}{Cidade}
-Complexo e dinâmico sistema sócio-técnico. Composto por sistemas urbanos, com espaços físicos para a vida cotidiana e com sistemas de infraestrutura.
-\end{block}
+%\begin{block}{Cidade}
+%Complexo e dinâmico sistema sócio-técnico. Composto por sistemas urbanos, com espaços físicos para a vida cotidiana e com sistemas de infraestrutura.
+%\end{block}
 \end{frame}
 %------------------------------------------------
 \begin{frame}
@@ -278,46 +301,46 @@ Complexo e dinâmico sistema sócio-técnico. Composto por sistemas urbanos, com
 \subsection{Sistemas de Transporte Inteligente}
 \begin{frame}
 \frametitle{Sistemas de Transporte Inteligente}
-\begin{block}{Sistemas de Transporte Inteligentes (ITS --- \textit{Intelligent Transportation Systems})}
+\begin{block}{Definição}
 Tem como fim utilizar TICs para resolver problemas relacionados ao transporte, tais como congestionamento, segurança, eficiência e conservação ambiental. 
 \end{block}
 \begin{itemize}
-\item \textbf{Operação de Veículos Comerciais} (CVO --- \textbf{\textit{Commercial Vehicles Operation})} --- são sistemas utilizados para a segurança de veículos comerciais e frotas, por meio de tecnologias relacionadas a gerenciamento de tráfego, controle e gerenciamento de veículos e informações aos viajantes, tais como:
-\begin{itemize}
+%\item \textbf{Operação de Veículos Comerciais} (CVO --- \textbf{\textit{Commercial Vehicles Operation})} --- são sistemas utilizados para a segurança de veículos comerciais e frotas, por meio de tecnologias relacionadas a gerenciamento de tráfego, controle e gerenciamento de veículos e informações aos viajantes, tais como:
+%\begin{itemize}
 \item Localização de Veículos Autônomos (\textit{Automatic Vehicles Location}).
-\end{itemize}
+%\end{itemize}
 \end{itemize}
 \end{frame}
 %------------------------------------------------
-\subsection{Conceitos relacionados ao transporte público}
-\begin{frame}
-\frametitle{Conceitos relacionados ao transporte público}
-\begin{itemize}
-\item Acessibilidade.
-\item Acessibilidade universal.
-\item Mobilidade.
-\item Mobilidade urbana.
-\begin{itemize}
-\item Transporte público coletivo;
-\item  transporte de alta capacidade;
-\item  acessibilidade universal nos passeios e edificações;
-\item prioridade ao transporte coletivo no sistema viário;
-\item terminais de transporte intermodais;
-\item rede de transporte coletivo por ônibus (com acessibilidade universal);
-\item rede cicloviária;
-\item bicicletários e paraciclos;
-\item  legibilidade dos sistemas de orientação;
-\item comunicação eficaz com os usuários;
-\item modicidade tarifária;
-\item  logística eficiente no transporte de carga, dentre outros itens.
-\end{itemize} 
-\end{itemize}
-\end{frame}
+%\subsection{Conceitos relacionados ao transporte público}
+%\begin{frame}
+%\frametitle{Conceitos relacionados ao transporte público}
+%\begin{itemize}
+%\item Acessibilidade.
+%\item Acessibilidade universal.
+%\item Mobilidade.
+%\item Mobilidade urbana.
+%\begin{itemize}
+%\item Transporte público coletivo;
+%\item  transporte de alta capacidade;
+%\item  acessibilidade universal nos passeios e edificações;
+%\item prioridade ao transporte coletivo no sistema viário;
+%\item terminais de transporte intermodais;
+%\item rede de transporte coletivo por ônibus (com acessibilidade universal);
+%\item rede cicloviária;
+%\item bicicletários e paraciclos;
+%\item  legibilidade dos sistemas de orientação;
+%\item comunicação eficaz com os usuários;
+%\item modicidade tarifária;
+%\item  logística eficiente no transporte de carga, dentre outros itens.
+%\end{itemize} 
+%\end{itemize}
+%\end{frame}
 %------------------------------------------------
 \subsection{General Transit Feed Specification}
 \begin{frame}
 \frametitle{General Transit Feed Specification}
-\begin{block}{\textit{GTFS --- General Transit Feed Specification}}
+\begin{block}{Definição}
 É uma especificação de um formato comum para troca de informações estáticas sobre transporte público.
 \begin{itemize}
 \item \textit{agency.txt}: agências de transporte público como fonte de dados.
@@ -344,30 +367,31 @@ Tem como fim utilizar TICs para resolver problemas relacionados ao transporte, t
 \subsection{Processamento de Linguagem Natural}
 \begin{frame}
 \frametitle{Processamento de Linguagem Natural}
-\begin{block}{{Processamento de Linguagem Natural}}
-Explora como computadores podem ser utilizados para entender e manipular texto ou fala em linguagem natural, o que envolve conhecimento interdisciplinar principalmente entre as áreas de ciência da computação, linguística e estatística.
+\begin{block}{Definição}
+Explora como computadores podem ser utilizados para entender e manipular texto ou fala em linguagem natural, o que envolve conhecimento interdisciplinar.
+% principalmente entre as áreas de ciência da computação, linguística e estatística.
 \end{block}
 \begin{multicols}{2}
 \begin{itemize}
 \item Problemas de baixo nível (comuns a NLP).
-\begin{itemize}
-\item Desambiguação do limite da sentença;
-\item \textit{Tokenização};
-\item Marcação de parte da fala;
-\item dentre outros.
-\end{itemize}
+%\begin{itemize}
+%\item Desambiguação do limite da sentença;
+%\item \textit{Tokenização};
+%\item Marcação de parte da fala;
+%\item dentre outros.
+%\end{itemize}
 \end{itemize}
 
 \columnbreak
 
 \begin{itemize}
 \item Problemas de alto nível (específicos e com base nos problema de baixo nível).
-\begin{itemize}
-\item Identificação e recuperação de erros ortográficos  e gramaticais;
-\item Identificaçãode entidade nomeada;
-\item Desambiguação do sentido da palavra;
-\item dentre outros.
-\end{itemize}
+%\begin{itemize}
+%\item Identificação e recuperação de erros ortográficos  e gramaticais;
+%\item Identificação de entidade nomeada;
+%\item Desambiguação do sentido da palavra;
+%\item dentre outros.
+%\end{itemize}
 \end{itemize}
 \end{multicols}
 \end{frame}
@@ -375,8 +399,8 @@ Explora como computadores podem ser utilizados para entender e manipular texto o
 \subsection{Feature Engineering}
 \begin{frame}
 \frametitle{Feature Engineering}
-\begin{block}{Feature Engineering}
-Processo iterativo de construção, extração e seleção de características (features), o qual depende do conhecimento de domínio e de suas respectivas métricas.
+\begin{block}{Definição}
+Processo iterativo de construção, extração e seleção de variáveis (features), o qual depende do conhecimento de domínio e de suas respectivas métricas.
 \end{block}
 \begin{itemize}
 \item Variáveis (\textit{features}) binárias, categóricas ou contínuas.
@@ -400,20 +424,22 @@ Processo iterativo de construção, extração e seleção de características (
 %------------------------------------------------
 \subsection{TF-IDF}
 \begin{frame}{TF-IDF}
-TF-IDF é um algoritmo de ponderação de variáveis que combina as ponderações \emph{frequência do termo} (TF --- \textit{Term Frequency}) e \emph{inverso da frequência nos documentos} (IDF --- \textit{Inverse Document Frequency}) para calcular os pesos dos termos linguísticos (variáveis) em um determinado corpus. Em outras palavras, o peso da variável é proporcional a frequência com a qual aparece nos documentos, e inversamente proporcional a quantidade de documentos que contém o termo linguístico em questão.
+\begin{block}{Definição}
+TF-IDF é um algoritmo de ponderação de variáveis que combina as ponderações \emph{frequência do termo} (TF --- \textit{Term Frequency}) e \emph{inverso da frequência nos documentos} (IDF --- \textit{Inverse Document Frequency}) para calcular os pesos dos termos linguísticos (variáveis) em um determinado corpus.
+\end{block}
 \end{frame}
 %------------------------------------------------
 \subsection{Algoritimo Apriori}
 \begin{frame}
 \frametitle {Algoritimo Apriori}
-O algoritmo \textit{Apriori} normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como:
+%O algoritmo \textit{Apriori} normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como:
 \begin{itemize}
-\item \textit{Suporte} (\textit{support}): indicador da frequência de determinados registros no conjunto de dados.
-\item \textit{Confiança} (\textit{confidence}): frequência com que determinadas regras de associações entre registros são encontradas como verdadeiras.
-\item  \textit{Lift}: probabilidade de ocorrência de um consequente B no conjunto de dados ($lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros).
+\item \alert{\textit{Suporte} (\textit{support})}: indicador da frequência de determinados registros no conjunto de dados.
+\item \alert{\textit{Confiança} (\textit{confidence})}: frequência com que determinadas regras de associações entre registros são encontradas como verdadeiras.
+\item  \alert{\textit{Lift}}: probabilidade de ocorrência de um consequente B no conjunto de dados ($lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros).
 \end{itemize}
 
-A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivamente.
+\alert{A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivamente}.
  
 \end{frame}
 %------------------------------------------------
@@ -443,23 +469,23 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 \frametitle{Revisão Sistemática}
 \begin{block}{Casos de uso relacionados ao transporte público (QP2)}
 \begin{itemize}
-\item Impacto de eventos no transporte público.
+\item Impacto de eventos no transporte público relacionados:
 \begin{itemize}
-\item Impacto dos ataques terroristas em Paris no uso do transporte público.
-\item Impacto de eventos relacionados ao tráfego na demanda por bicicletas, em Nova Iorque e Washington D.C, EUA.
-\item Impacto dos pontos de interesse na demanda por transporte público.
-\item Impacto dos eventos anormais nas tomadas de decisão dos passageiros do Metrô de Tóquio.
-\item Predição de fluxo de passageiros no Metrô de Nova Iorque.
+\item \alert{Aos ataques terroristas em Paris no uso do transporte público}.
+\item \alert{Ao tráfego na demanda por bicicletas, em Nova Iorque e Washington D.C}.
+\item \alert{Aos pontos de interesse na demanda por transporte público}.
+\item \alert{Aos eventos anormais nas tomadas de decisão dos passageiros do Metrô de Tóquio}.
+\item \alert{A predição de fluxo de passageiros no Metrô de Nova Iorque}.
 \end{itemize}
 
 \item Planejamento e gestão do transporte público.
-\begin{itemize}
-\item Análise de sentimento relacionada ao acesso ao transporte público.
-\item Coleta de informações relacionadas ao transporte público.
-\item Identificação de locais para estações de bicicletas, em St. Petersburg, Rússia.
-\item Identificação da disposição dos usuários para realizar viagens de lazer.
-\item Plataforma para notificação de problemas relacionados ao transporte público de Bangalore, Índia.
-\end{itemize}
+%\begin{itemize}
+%\item Análise de sentimento relacionada ao acesso ao transporte público.
+%\item Coleta de informações relacionadas ao transporte público.
+%\item Identificação de locais para estações de bicicletas, em St. Petersburg, Rússia.
+%\item Identificação da disposição dos usuários para realizar viagens de lazer.
+%\item Plataforma para notificação de problemas relacionados ao transporte público de Bangalore, Índia.
+%\end{itemize}
 \end{itemize}
 \end{block}
 
@@ -469,18 +495,18 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 \frametitle{Revisão Sistemática}
 \begin{block}{Técnicas estatísticas utilizadas no processamento de \textit{tweets} (QP3)}
 \begin{itemize}
-\item Análise de métricas relacionadas a desempenho.
+\item \alert{Análise de métricas relacionadas a desempenho}.
 \item Semelhança de cosseno.
-\item \textit{${F_1}$ score}.
-\item Frequência do termo–inverso da frequência nos documentos (TF-IDF).
+\item \alert{\textit{${F_1}$ score}}.
+\item \alert{Frequência do termo–inverso da frequência nos documentos (TF-IDF)}.
 \item Coeficiente de variação inversa.
 \item Método de reamostragem Jackknife.
 %\item \textit{Linear Regression}.
-\item \textit{Indicadores locais de associação espacial} (LISA).
-\item \textit{Local Moran's}.
-\item \textit{Máxima verossimilhança}.
-\item \textit{Média móvel integrada autoregressiva sazonal} (SARIMA).
-\item \textit{Otimização e previsão com função de perda híbrida}.
+\item Indicadores locais de associação espacial (LISA).
+\item Local Moran's.
+\item Máxima verossimilhança.
+\item Média móvel integrada autoregressiva sazonal (SARIMA).
+\item Otimização e previsão com função de perda híbrida.
 \end{itemize}
 \end{block}
 \end{frame}
@@ -497,13 +523,13 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 
 \begin{block}{Eventos de exceção relacionados ao transporte público (QP5)}
 \begin{itemize}
-\item Acidentes.
+\item \alert{Acidentes}.
 \begin{itemize}
 \item Acidentes nas estações transporte.
 \item Incêndio.
 \end{itemize}
 
-\item Espaço-temporais.
+\item \alert{Espaço-temporais}.
 \begin{itemize}
 \item Dia da semana.
 \item Hora do dia.
@@ -518,7 +544,7 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 \frametitle{Revisão Sistemática}
 \begin{block}{Eventos de exceção relacionados ao transporte público (QP5)}
 \begin{itemize}
-\item Eventos sociais.
+\item \alert{Eventos sociais}.
 \begin{itemize}
 \item Feiras de rua.
 \item Festivais.
@@ -526,19 +552,19 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 \item Passeatas e maratonas.
 \end{itemize}
 
-\item Eventos urbanos.
+\item \alert{Eventos urbanos}.
 \begin{itemize}
 \item Relacionados ao tráfego.
 \end{itemize}
 
-\item Desastres naturais.
+\item \alert{Desastres naturais}.
 \begin{itemize}
 \item Tempestades.
 \item Terremoto.
 \item Tufões.
 \end{itemize}
 
-\item Metereológicas.
+\item \alert{Metereológicas}.
 \begin{itemize}
 \item Dia claro, nublado, chuvoso, nevando, com neblina.
 \item Temperatura do ar.
@@ -552,7 +578,7 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 \frametitle{Revisão Sistemática}
 \begin{block}{Técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets} (QP6)}
 \begin{itemize}
-\item Classificação \textit{bayesiana}.
+\item \alert{Classificação \textit{bayesiana}}.
 \item Algoritmo C5.0.
 \item Campo aleatório condicional com Regressão Logística.
 %\item \textit{Event extraction based on tweet hashtags}.
@@ -560,8 +586,8 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 \item Regressão Linear.
 \item Simulação Monte Carlo.
 \item Técnica inovadora que utiliza fatorização tensorial   (\textit{PairFac}).
-\item Floresta Aleatória.
-\item Máquina de Vetores de Suporte.
+\item \alert{Floresta Aleatória}.
+\item \alert{Máquina de Vetores de Suporte}.
 \item Mapas auto-organizados.
 \end{itemize}
 
@@ -606,7 +632,7 @@ A notação $A \rightarrow B$ se refere a antecedente e consequente, respectivam
 \textit{trips.txt} & 2.273 \\
 \midrule
 \midrule
-\textbf{Total} & 1.254.779 \\
+\textbf{\alert{Total}} & \alert{1.254.779} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -648,7 +674,7 @@ Janeiro\tnote{a} & 1 - 31 & 744 & 102,44 \\
  Dezembro & 1 - 31 & 738 & 110,89 \\
 \midrule
 \midrule
-\textbf{Total} & --- & 8.751 & 1.247,09 \\
+\textbf{\alert{Total}} & --- & \alert{8.751} & \alert{1.247,09} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -712,7 +738,7 @@ Janeiro\tnote{a} & 1 - 31 & 744 & 102,44 \\
 \textit{@TurismoSaoPaulo} & 3.369 & 2012-06-12 & 2017-11-29 \\
 \midrule
 \midrule
-\textbf{Total} & 60.984 & --- & --- \\
+\textbf{\alert{Total}} & \alert{60.984} & --- & --- \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -734,7 +760,7 @@ Pré-processamento
 \item Remoção de \textit{URLs} e menções a outros \textit{tweets}.
 \item Remoção de acentos, \textit{emoticons} e pontuações substituídas por espaços vazios.
 %\item Correção erros de digitação por meio de uma função de mapeamento
-\item \textit{Stemming} --- realizado neste trabalho na fase de processamento, com o objetivo de não afetar o processo de extração de endereços. 
+\item \textit{Stemming}. 
 \end{itemize}
 
 \end{frame}
@@ -767,54 +793,55 @@ Pré-processamento
 %\end{itemize}
 %\end{frame}
 %------------------------------------------------
-\begin{frame}{Exploração e visualização de grandes volumes de dados}
-\begin{block}{Trabalhos relacionados}
-\begin{itemize}
-\item Apresentação de conceitos básicos e fluxos de visualização de dados de tráfego (dos dados brutos, pré-processamento ao mapeamento visual, construído com símbolos visuais). Técnicas e métodos de processamento de dados para descrever propriedades temporais, espaciais, numéricas e categóricas de dados de tráfego.
-\item Descrição de uma tipologia de dados de tráfego, capaz de abordar suas respectivas propriedades, problemas e transformações relevantes para a análise. Abordagens analíticas visuais para analisar dados de tráfego de veículos, pedestres, passageiros dentro de sistemas de transporte, etc.
-\item Apresentação de um novo algoritmo para mapeamento de medições coletivas para monitorar as infraestruturas de transporte terrestre e, aliviar o impacto de imprecisões do GPS para monitoramento contínuo de infraestruturas de transporte por meio de \textit{smart phones}.
-\end{itemize}
-\end{block}
+%\begin{frame}{Exploração e visualização de grandes volumes de dados}
+%\begin{block}{Trabalhos relacionados}
+%\begin{itemize}
+%\item Apresentação de conceitos básicos e fluxos de visualização de dados de tráfego (dos dados brutos, pré-processamento ao mapeamento visual, construído com símbolos visuais). Técnicas e métodos de processamento de dados para descrever propriedades temporais, espaciais, numéricas e categóricas de dados de tráfego.
+%\item Descrição de uma tipologia de dados de tráfego, capaz de abordar suas respectivas propriedades, problemas e transformações relevantes para a análise. Abordagens analíticas visuais para analisar dados de tráfego de veículos, pedestres, passageiros dentro de sistemas de transporte, etc.
+%\item Apresentação de um novo algoritmo para mapeamento de medições coletivas para monitorar as infraestruturas de transporte terrestre e, aliviar o impacto de imprecisões do GPS para monitoramento contínuo de infraestruturas de transporte por meio de \textit{smart phones}.
+%\end{itemize}
+%\end{block}
+%\end{frame}
+%------------------------------------------------
+%\begin{frame}{Exploração e visualização de grandes volumes de dados}
+%\begin{block}{Definição}
+%São cidades sustentáveis e socialmente inclusivas, que utilizam Tecnologias da Informação e Comunicação (TICs) para gerir eficientemente seus respectivos recursos naturais.
+%\end{block}
+%\begin{block}{Desafios}
+%    \begin{itemize}
+%        \item \alert{Conectividade:} Infraestrutura de redes, interoperabilidade, escalabilidade, tolerância a falhas, etc.
+%        \item \alert{Data:} Capacidade de armazenamento e localização dos dados, extração, processamento, análise, exploração e visualização; correlação de dados de fontes heterogêneas, processamento em tempo real, etc.
+%    \end{itemize}
+%\end{block}
+%\end{frame}
+\subsection{Arquitetura proposta}
+\begin{frame}
+\frametitle{Arquitetura proposta}
+%\begin{block}{Apache Superset}
+%Aplicação web para exploração e visualização de dados.
+%\end{block}
+%\begin{block}{Apache Kafka}
+%Aplicação para processamento de fluxos de dados em quase tempo real.
+%\end{block}
+\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Arquitetura utilizada no estudo de caso}
+		\includegraphics[width=1\linewidth]{viz_arch_pt.png}
+	\label{fig:viz_arch}
+%  \source{Felipe Cordeiro Alves Dias, 2017}
+\end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Exploração e visualização de grandes volumes de dados}
-\begin{block}{Definição}
-São cidades sustentáveis e socialmente inclusivas, que utilizam Tecnologias da Informação e Comunicação (TICs) para gerir eficientemente seus respectivos recursos naturais.
-\end{block}
-\begin{block}{Desafios}
-    \begin{itemize}
-        \item \alert{Conectividade:} Infraestrutura de redes, interoperabilidade, escalabilidade, tolerância a falhas, etc.
-        \item \alert{Data:} Capacidade de armazenamento e localização dos dados, extração, processamento, análise, exploração e visualização; correlação de dados de fontes heterogêneas, processamento em tempo real, etc.
-    \end{itemize}
-\end{block}
-\end{frame}
-\subsection{Arquitetura proposta}
 \begin{frame}
 \frametitle{Arquitetura proposta}
 \begin{block}{Druid}
 \begin{itemize}
     \item O Druid é um banco de dados para análises exploratórias em tempo real (latências abaixo de sub-segundos) em grandes conjuntos de dados.
-    \item Arquitetura distribuída composta por um cluster com diferentes tipos de nós (real- time, historical, broker e coordinator nodes).
+    \item Arquitetura distribuída composta por um cluster com diferentes tipos de nós (real-time, historical, broker e coordinator nodes).
     \item Nós independentementes uns dos outros e possuem interação mínima entre eles. 
-    \item Dependências externas: (I) Apache Zookeeper1, responsável pela coordenação do cluster e (II) um sistema de gerenciamento de banco de dados relacional (RDBMS — Relational Data- base Management Systems), para armazenar parâmetros operacionais adicionais e configurações.
+%    \item Dependências externas: (I) Apache Zookeeper, responsável pela coordenação do cluster e (II) um sistema de gerenciamento de banco de dados relacional (RDBMS — Relational Data- base Management Systems), para armazenar parâmetros operacionais adicionais e configurações.
 \end{itemize}
 \end{block}
-\end{frame}
-\begin{frame}
-\frametitle{Arquitetura proposta}
-\begin{block}{Apache Superset}
-Aplicação web para exploração e visualização de dados.
-\end{block}
-\begin{block}{Apache Kafka}
-Aplicação para processamento de fluxos de dados em quase tempo real.
-\end{block}
-\begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
-	\centering
- 	  \caption{Arquitetura utilizada no estudo de caso}
-		\includegraphics[width=0.9\linewidth]{viz_arch_en.png}
-	\label{fig:viz_arch}
-%  \source{Felipe Cordeiro Alves Dias, 2017}
-\end{figure}
 \end{frame}
 %------------------------------------------------
 \begin{frame}
@@ -823,18 +850,19 @@ Aplicação para processamento de fluxos de dados em quase tempo real.
 \alert{Real-time nodes}
 \begin{itemize}
 \item Ingerir, indexar e consultar fluxos de eventos. 
-\item Periodicamente, cada nó agenda uma tarefa em segundo plano para procurar todos os índices localmente persistidos, mesclando-os para construir blocos imutáveis de dados com todos os eventos ingeridos em um período de tempo.
-\item Segmentos imutáveis: podem posteriormente serem carregados para uma camada de sistema de arquivos (deep storage).
-\item Não há perda de dados e a imutabilidade dos blocos permite a consistência de leitura e um modelo de paralelização simples: \textit{historical nodes} podem simultaneamente examinar e agregar blocos imutáveis de forma não bloqueante.
+\item Índices localmente persistidos são mesclados em \alert{blocos imutáveis} de dados com todos os eventos ingeridos em um período de tempo.
+%\item Segmentos imutáveis: podem posteriormente serem carregados para uma camada de sistema de arquivos (deep storage).
+\item \alert{Não há perda de dados e a imutabilidade dos blocos permite a consistência de leitura e um modelo de paralelização simples}: \textit{historical nodes} podem simultaneamente examinar e agregar blocos imutáveis de forma não bloqueante.
 \end{itemize}
 \end{frame}
 \begin{frame}
 \frametitle{Arquitetura proposta}
-\framesubtitle{Historical, broker and coordinator nodes}
+\framesubtitle{Historical, broker e coordinator nodes}
 \begin{itemize}
-    \item \alert{Historical nodes}: Os historical nodes são responsáveis por carregar, descartar e servir segmentos imutáveis por meio de uma arquitetura shared-nothing (sem um único ponto de contenção entre os nós).
-    \item\alert{Broker nodes}: Os broker nodes são responsáveis por receber consultas e mesclar resultados parciais dos historicals e real-time nodes antes de retornar um resultado final consolidado para o cliente.
-    \item \alert{Coordinator nodes}: Os coordinator nodes são responsáveis pelo gerenciamento e distribuição dos dados nos historical nodes, exigindo destes o carregamento, descarte e replicação dos dados.
+    \item \alert{Historical nodes}: são responsáveis por carregar, descartar e servir segmentos imutáveis.
+%     por meio de uma arquitetura shared-nothing (sem um único ponto de contenção entre os nós).
+    \item\alert{Broker nodes}: são responsáveis por receber consultas e mesclar resultados parciais dos historicals e real-time nodes antes de retornar um resultado final consolidado para o cliente.
+    \item \alert{Coordinator nodes}: são responsáveis pelo gerenciamento e distribuição dos dados nos historical nodes, exigindo destes o carregamento, descarte e replicação dos dados.
 \end{itemize}
 \end{frame}
 %------------------------------------------------
@@ -883,7 +911,7 @@ Aplicação para processamento de fluxos de dados em quase tempo real.
 %------------------------------------------------
 \begin{frame}{Consideração sobre a arquitetura utilizada para exploração e visualização dos dados AVL da SPTrans}
 \begin{itemize}
-    \item Eestudo de caso relacionado à visualização de grandes conjuntos de dados, utilizando dados dos ônibus da cidade de São Paulo. 
+    \item Estudo de caso relacionado à visualização de grandes conjuntos de dados, utilizando dados dos ônibus da cidade de São Paulo. 
     \item Mostramos que é possível encontrar padrões complexos e incomuns e possíveis eventos de exceção em grandes conjuntos de dados por meio da visualização. 
     \item O Druid e o Apache Superset demonstraram suporte a agregação, exploração e visualização de grandes conjuntos de dados.
 \end{itemize}
@@ -905,23 +933,27 @@ Aplicação para processamento de fluxos de dados em quase tempo real.
 \end{figure}
 Expressão regular para extração de endereços:
 \begin{equation}
-ER = \lbrace L_1 | S_1 | L_2 | S_2 | \dots | L_n | S_n \rbrace \lbrace [a-z\grave{A}-\ddot{y}\_] + \rbrace
+\resizebox{.9 \textwidth}{!} 
+{
+$ER = \lbrace L_1 | S_1 | L_2 | S_2 | \dots | L_n | S_n \rbrace \lbrace [a-z\grave{A}-\ddot{y}\_] + \rbrace$
+}
 \end{equation}
 Geolocalização dos endereços usando a API do Google Geocoding.
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados da classificação, manual, pré-processamento, processamento dos tweets e extração de endereços}
+\begin{frame}{Resultados da classificação, manual, pré-processamento, processamento dos \textit{tweets} e extração de endereços}
 \begin{itemize}
-    \item No final do pré-processamento e processamento dos tweets, o corpus obteve 414,637 palavras, com um vocabulário de 13,915 palavras. O comprimento máximo das sentenças do conjunto de dados é 19.
-    \item 60.984 \textit{tweets} classificados manualmente.
-    \item Dos 60.984 tweets, 10.027 foram classificados manualmente em eventos de exceção e desse subconjunto foram encontrados 8.112 endereços. Desconsiderando o tipo de localidade APPROXIMATE (explicado mais adiante) --- (o que representa 80,90\% do total dos tweets classificados como eventos de exceção, sem considerar a classe Irrelevante).
+    \item Pré-processamento e processamento dos tweets: Corpus com \alert{414.637 palavras}, vocabulário com \alert{13.915 palavras}, comprimento máximo das sentenças do conjunto de dados com \alert{19 caracteres}.
+    \item \alert{60.984} \textit{tweets} classificados manualmente.
+    \item \alert{10.027} \textit{tweets} classificados manualmente em eventos de exceção e desse subconjunto foram encontrados \alert{8.112 endereços}. 
+%    Desconsiderando o tipo de localidade APPROXIMATE (explicado mais adiante) --- (o que representa 80,90\% do total dos tweets classificados como eventos de exceção, sem considerar a classe Irrelevante).
 \end{itemize}
 \end{frame}
 %------------------------------------------------
 \begin{frame}{Resultado da distribuição das classes dos eventos de exceção do Corpus Twitter}
 \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
-		\includegraphics[width=1\linewidth]{tweets_distribution_pt.png}
+		\includegraphics[width=1\linewidth]{tweets_distribution_pt_.png}
 	\label{fig:pizza_bus}
   %\source{Felipe Cordeiro Alves Dias, 2017}
 \end{figure}
@@ -944,7 +976,7 @@ K-ésimo Vizinho mais Próximo & 0,970 & 0,971 & 0,970 & 0,970 \\
 \hline
 Regressão Logística & 0,969 & 0,968 & 0,969 & 0,968 \\
 \hline
-Perceptron multicamadas & \textit{0,973} & \textit{0,972} & \textit{0,973} & \textit{0,972} \\
+\alert{Perceptron multicamadas} & \textit{\alert{0,973}} & \textit{\alert{0,972}} & \textit{\alert{0,973}} & \textit{\alert{0,972}} \\
 \hline
 \textit{Naive Bayes} Multinomial & 0,953 & 0,952 & 0,953 & 0,949 \\
 \hline
@@ -957,62 +989,62 @@ Máquina de Vetores de Suporte & 0,833 & 0,694 & 0,833 & 0,757 \\
 \end{table}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados da matriz de confusão do modelo Perceptron multicamadas}
+\begin{frame}{Resultados da MC do modelo Perceptron multicamadas}
 \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
-		\includegraphics[width=0.7\linewidth]{confusion_matrix_mlp_pt.png}
+		\includegraphics[width=0.66\linewidth]{confusion_matrix_mlp_pt.png}
 	\label{fig:pizza_bus}
   %\source{Felipe Cordeiro Alves Dias, 2017}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados da distribuição de endereços extraídos por classe}
-\begin{table}[!htb]
-\centering
-\caption {Quantidade\tnote{f} de endereços extraídos por classe}
-\label {tab:qtdExtractedAddresses}
-\begin{adjustbox}{max height=10mm, width=4in}
-\begin{threeparttable}
-\begin{tabular}{c|c|c|c|c|c}
-\toprule
-\textbf{Classe} & \textbf{\#endereços extraídos\tnote{a}} & \textbf{\textit{\#APP\tnote{b}}} & \textbf{\textit{\#GEO\tnote{c}}} & \textbf{\textit{\#RANGE\tnote{d}}} & \textbf{\textit{\#ROOF\tnote{e}}} \\
-\midrule
-Acidente & 3.439 & 7 & 805 & 1.130 & 1.497 \\
-\hline
-Irrelevante & 451 & 13 & 292 & 6 & 140 \\
-\hline
-Desastre Natural & 2.464 & 9 & 340 & 719 & 1.396 \\
-\hline
-Evento Social & 793 & 4 & 761 & 2 & 26 \\
-\hline
-Evento Urbano & 1.002 & 4 & 942 & 10 & 46 \\
-\midrule
-\midrule
-\textbf{Total} & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}
-\item[a] Total de endereços extraídos
-\item[b] Total de endereços extraídos com o tipo de localidade \textit{APPROXIMATE}
-\item[c] Total de endereços extraídos com o tipo de localidade \textit{GEOMETRIC\_CENTER}
-\item[d] Total de endereços extraídos com o tipo de localidade \textit{RANGE\_INTERPOLATED}
-\item[e] Total de endereços extraídos com o tipo de localidade \textit{ROOFTOP}
-\item[f] Total considerando endereços repetidos, a repetição é importante para identificarmos os endereços mais impactados por eventos de exceção.
-\end{tablenotes}
-\end{threeparttable}
-\end{adjustbox}
-\end{table}
-\end{frame}
+%\begin{frame}{Resultados da distribuição de endereços extraídos por classe}
+%\begin{table}[!htb]
+%\centering
+%\caption {Quantidade\tnote{f} de endereços extraídos por classe}
+%\label {tab:qtdExtractedAddresses}
+%\begin{adjustbox}{max height=10mm, width=4in}
+%\begin{threeparttable}
+%\begin{tabular}{c|c|c|c|c|c}
+%\toprule
+%\textbf{Classe} & \textbf{\#endereços extraídos\tnote{a}} & \textbf{\textit{\#APP\tnote{b}}} & \textbf{\textit{\#GEO\tnote{c}}} & \textbf{\textit{\#RANGE\tnote{d}}} & \textbf{\textit{\#ROOF\tnote{e}}} \\
+%\midrule
+%Acidente & 3.439 & 7 & 805 & 1.130 & 1.497 \\
+%\hline
+%Irrelevante & 451 & 13 & 292 & 6 & 140 \\
+%\hline
+%Desastre Natural & 2.464 & 9 & 340 & 719 & 1.396 \\
+%\hline
+%Evento Social & 793 & 4 & 761 & 2 & 26 \\
+%\hline
+%Evento Urbano & 1.002 & 4 & 942 & 10 & 46 \\
+%\midrule
+%\midrule
+%\textbf{Total} & 8.149 & 37 & 3.140 & 1.867 & 3.105 \\
+%\bottomrule
+%\end{tabular}
+%\begin{tablenotes}
+%\item[a] Total de endereços extraídos
+%\item[b] Total de endereços extraídos com o tipo de localidade \textit{APPROXIMATE}
+%\item[c] Total de endereços extraídos com o tipo de localidade \textit{GEOMETRIC\_CENTER}
+%\item[d] Total de endereços extraídos com o tipo de localidade \textit{RANGE\_INTERPOLATED}
+%\item[e] Total de endereços extraídos com o tipo de localidade \textit{ROOFTOP}
+%\item[f] Total considerando endereços repetidos, a repetição é importante para identificarmos os endereços mais impactados por eventos de exceção.
+%\end{tablenotes}
+%\end{threeparttable}
+%\end{adjustbox}
+%\end{table}
+%\end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados da distribuição de endereços extraídos por classe}
-Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers.google.com/maps/documentation/geocoding}. Acesso em 16 de setembro de 2018.} são classificados pela \textit{Google Geocoding API} em:
-\begin{enumerate}
-\item \textit{ROOFTOP} --- Indica que o resultado retornado há informações de localização com precisão a nível do endereço de rua.
-\item \textit{RANGE\_INTERPOLATED} --- Indica que o resultado retornado reflete uma aproximação interpolada entre dois pontos precisos (como interseções). Geralmente, os resultados interpolados são retornados quando os códigos geográficos do \textit{rooftop} não estão disponíveis para um endereço de rua.
-\item \textit{GEOMETRIC\_CENTER} --- Indica que o resultado retornado é o centro geométrico de um resultado.
-\item \textit{APPROXIMATE} --- Indica que o resultado retornado é aproximado.
-\end{enumerate}
-\end{frame}
+%\begin{frame}{Resultados da distribuição de endereços extraídos por classe}
+%Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers.google.com/maps/documentation/geocoding}. Acesso em 16 de setembro de 2018.} são classificados pela \textit{Google Geocoding API} em:
+%\begin{enumerate}
+%\item \textit{ROOFTOP} --- Indica que o resultado retornado há informações de localização com precisão a nível do endereço de rua.
+%\item \textit{RANGE\_INTERPOLATED} --- Indica que o resultado retornado reflete uma aproximação interpolada entre dois pontos precisos (como interseções). Geralmente, os resultados interpolados são retornados quando os códigos geográficos do \textit{rooftop} não estão disponíveis para um endereço de rua.
+%\item \textit{GEOMETRIC\_CENTER} --- Indica que o resultado retornado é o centro geométrico de um resultado.
+%\item \textit{APPROXIMATE} --- Indica que o resultado retornado é aproximado.
+%\end{enumerate}
+%\end{frame}
 %------------------------------------------------
 \begin{frame}{Resultados da distribuição de endereços extraídos por classe}
 \begin{enumerate}
@@ -1026,13 +1058,13 @@ Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers
 \begin{frame}{Resultado da análise visual da distribuição dos eventos de exceção na região central de São Paulo}
 \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
-		\includegraphics[width=1\linewidth]{exception_events_sp.png}
+		\includegraphics[width=0.85\linewidth]{exception_events_sp.png}
 	\label{fig:pizza_bus}
   %\source{Felipe Cordeiro Alves Dias, 2017}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultado dos endereços mais impactados por eventos de exceção}
+\begin{frame}{Resultado dos endereços mais impactados}
     \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
 		\includegraphics[width=1\linewidth]{address_analysis_pt.png}
@@ -1065,64 +1097,64 @@ Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers
 \hline
 
     33112 & 933   & TERM. PQ. D. PEDRO II / JD. SÃO SAVÉRIO  \\
-\hline
-
-    33111 & 857   & TERM. AMARAL GURGEL / JD. DA SAÚDE  \\
-\hline
-
-    35229 & 841   & TURISMO / CIRCULAR  \\
-\hline
-
-    33443 & 816   & ANA ROSA / METRÔ SANTANA  \\
-\hline
-
-    32897 & 805   & LUZ / TERM. A. E. CARVALHO  \\
-\hline
-
-    35072 & 767   & METRÔ BARRA FUNDA / CONEXÃO PETRÔNIO PORTELA  \\
-\hline
-
-    32772 & 759   & TERM. PRINC. ISABEL / TERM. STO. AMARO  \\
-\hline
-
-    33253 & 754   & METRÔ BELÉM / JD. BONFIGLIOLI  \\
-\hline
-
-    33391 & 748   & METRÔ JABAQUARA / METRÔ SANTANA  \\
-\hline
-
-    32813 & 746   & PÇA. DA SÉ / CHÁC. SANTANA  \\
-\hline
-
-    32829 & 746   & TERM. BANDEIRA / TERM. CAPELINHA  \\
-\hline
-
-    34048 & 719   & LGO. SÃO FRANCISCO / JD. SELMA  \\
-\hline
-
-    33486 & 715   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS  \\
-\hline
-
-    33236 & 708   & TERM. BANDEIRA / JD. JAQUELINE  \\
-\hline
-
-    33336 & 697   & PINHEIROS / IMIRIM  \\
-\hline
-
-    32816 & 693   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO  \\
-\hline
-
-    33534 & 690   & CARDOSO DE ALMEIDA / MACHADO DE ASSIS  \\
-\hline
-
-    32838 & 647   & PÇA. DA SÉ / PQ. RES. COCAIA  \\
-\hline
-
-    33398 & 639   & CID. UNIVERSITÁRIA / METRÔ SANTANA  \\
+%\hline
+%
+%    33111 & 857   & TERM. AMARAL GURGEL / JD. DA SAÚDE  \\
+%\hline
+%
+%    35229 & 841   & TURISMO / CIRCULAR  \\
+%\hline
+%
+%    33443 & 816   & ANA ROSA / METRÔ SANTANA  \\
+%\hline
+%
+%    32897 & 805   & LUZ / TERM. A. E. CARVALHO  \\
+%\hline
+%
+%    35072 & 767   & METRÔ BARRA FUNDA / CONEXÃO PETRÔNIO PORTELA  \\
+%\hline
+%
+%    32772 & 759   & TERM. PRINC. ISABEL / TERM. STO. AMARO  \\
+%\hline
+%
+%    33253 & 754   & METRÔ BELÉM / JD. BONFIGLIOLI  \\
+%\hline
+%
+%    33391 & 748   & METRÔ JABAQUARA / METRÔ SANTANA  \\
+%\hline
+%
+%    32813 & 746   & PÇA. DA SÉ / CHÁC. SANTANA  \\
+%\hline
+%
+%    32829 & 746   & TERM. BANDEIRA / TERM. CAPELINHA  \\
+%\hline
+%
+%    34048 & 719   & LGO. SÃO FRANCISCO / JD. SELMA  \\
+%\hline
+%
+%    33486 & 715   & TERM. PQ. D. PEDRO II / TERM. SÃO MATEUS  \\
+%\hline
+%
+%    33236 & 708   & TERM. BANDEIRA / JD. JAQUELINE  \\
+%\hline
+%
+%    33336 & 697   & PINHEIROS / IMIRIM  \\
+%\hline
+%
+%    32816 & 693   & TERM. PQ. D. PEDRO II / TERM. STO. AMARO  \\
+%\hline
+%
+%    33534 & 690   & CARDOSO DE ALMEIDA / MACHADO DE ASSIS  \\
+%\hline
+%
+%    32838 & 647   & PÇA. DA SÉ / PQ. RES. COCAIA  \\
+%\hline
+%
+%    33398 & 639   & CID. UNIVERSITÁRIA / METRÔ SANTANA  \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-            \item[a] Tabela completa no Apêndice~\ref{apendiceD}.
+            \item[a] Tabela completa no Apêndice D.
         \end{tablenotes}
 \end{threeparttable}
 \end{adjustbox}
@@ -1132,10 +1164,10 @@ Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers
 \begin{frame}{Considerações finais sobre a metodologia desenvolvida}
 \begin{itemize}
     \item Uma nova metodologia para classificação de eventos de exceção e analisa seus respectivos impactos no sistema de transporte coletivo por ônibus da cidade de São Paulo.
-    \item O algoritmo com maior  acurácia para classificação de \textit{tweets} em eventos de exceção foi \textit{Multi-layer Perceptron}.
+    \item O algoritmo \alert{\textit{Multi-layer Perceptron}} obteve \alert{0,973 de acurácia} para classificação de \textit{tweets} em eventos de exceção.
     \item É possível extrair endereços de \textit{tweets} semi-estruturados usando apenas expressões regulares.
-    \item A classificação desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
-    \item Metodologia aplicável em diferentes idiomas e cidades (a GTFS é um formato ubíquo para o transporte público e ferramentas como a NLTK suporta vários idiomas.).
+    \item A \alert{classificação automatizada} desses eventos é o primeiro passo para entender melhor como os eventos de exceção afetam a rede de transporte público.
+    \item Metodologia aplicável em \alert{diferentes idiomas e cidades} (\alert{a GTFS é um formato ubíquo para o transporte público e ferramentas como a NLTK suporta vários idiomas}).
 \end{itemize}
 \end{frame}
 %------------------------------------------------
@@ -1145,11 +1177,11 @@ Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers
 \Huge{\centerline{dos eventos de exceção}}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Distribuição do número de eventos de exceção geolocalizados}
+\begin{frame}{Distribuição do número de eventos de exceção geolocalizados ao longo dos meses dos anos 12/15/16 e 17}
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Distribuição do número de eventos de exceção geolocalizados}
-		\includegraphics[width=0.8\linewidth]{geolocated_exception_events_distribution_pt.png}
+ 	  %\caption{Distribuição do número de eventos de exceção geolocalizados}
+		\includegraphics[width=1\linewidth]{geolocated_exception_events_distribution_pt_.png}
 	\label{fig:geolocated_exception_events_distribution}
 \end{figure}
 \end{frame}
@@ -1157,8 +1189,8 @@ Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers
 \begin{frame}{Distribuição das classes de eventos de exceção geolocalizados ao longo dos meses do ano de 2017}
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Distribuição das classes de eventos de exceção geolocalizados ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{exception_events_classification_distribution_pt.png}
+ 	  %\caption{Distribuição das classes de eventos de exceção geolocalizados ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{exception_events_classification_distribution_pt_.png}
 	\label{fig:exception_events_classification_distribution}
 \end{figure}
 \end{frame}
@@ -1175,11 +1207,14 @@ Os \textit{tipos de localidades}\footnote{Disponível em \url{https://developers
 \begin{frame}{Equação utilizada para identificar velocidade mediana esperada}
     \begin{equation}
 \label{eqVeloc}
+\resizebox{.9 \textwidth}{!} 
+{$
  f(n) =
   \begin{cases}
     0      & \quad \text{se  vel.~mediana~do~dia~do~evento} > \frac{\text{vel.~mediana~dos~dias~da~semana}}{\text{total~de~vel.~medianas}}\\
     1 & \quad \text{se vel.~mediana~do~dia~do~evento} \leq \frac{\text{vel.~mediana~dos~dias~da~semana}}{\text{total~de~vel.~medianas}}
-  \end{cases}
+  \end{cases}$
+  }
 \end{equation}
 \end{frame}
 %------------------------------------------------
@@ -1254,7 +1289,7 @@ Novembro & 66,66 & 100 &
 Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \midrule
 \midrule
-\textbf{Total} & 66,51 & 98,39 & 59,77 & 99,80 & 87,04 & 100 & 70,11 & 98,86  \\
+\textbf{\alert{Total}} & \alert{66,51} & \alert{98,39} & \alert{59,77} & \alert{99,80} & \alert{87,04} & \alert{100} & \alert{70,11} & \alert{98,86}  \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -1333,7 +1368,7 @@ Novembro & 54,32 & 66,66 &
 Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \midrule
 \midrule
-\textbf{Total} & 52,92 & 81,13 & 49,83 & 78,69 & 79,51 & 77,95 & 68,14 & 69,76  \\
+\textbf{\alert{Total}} & \alert{52,92} & \alert{81,13} & \alert{49,83} & \alert{78,69} & \alert{79,51} & \alert{77,95} & \alert{68,14} & \alert{69,76}  \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -1342,16 +1377,16 @@ Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 %------------------------------------------------
 \begin{frame}{Trabalhos relacionados a identificação de padrões de velocidade média dos dados AVL}
 \begin{itemize}
-    \item Algoritmo Apriori e a análise de cluster para encontrar padrões relacionados a transferência (entre metrô e ônibus), por meio dos dados dos cartões inteligentes usados no transporte público da China.
-    \item Algoritmo Apriori utilizado para identificar os padrões existentes nos conjuntos de dados relacionados a movimentação diária no transporte público de Singapura e no MIT Reality Mining Data. O sistema desenvolvido é capaz de identificar e apresentar visualmente padrões de movimentação humana, em relação ao espaço e ao tempo. 
-    \item Algoritmo Apriori utilizado para identificar padrões de rotas de táxi, na cidade de Pequim, China.
-    \item Algoritmo Apriori utilizado para identificar e classificar as anomalias no comportamento do trânsito, por meio de agregações espaço-temporais usando o algoritmo Apriori, aplicadas aos dados de transporte rodoviário da cidade do Rio de Janeiro.
+    \item Identificar \alert{padrões relacionados a transferência (entre metrô e ônibus)}, por meio dos dados dos cartões inteligentes usados no transporte público da China.
+    \item Identificar e apresentar visualmente \alert{padrões de movimentação humana}, no transporte público de Singapura. 
+    \item Identificar \alert{padrões de rotas de táxi}, na cidade de Pequim, China.
+    \item Identificar \alert{anomalias no comportamento do transporte público rodoviário da cidade do Rio de Janeiro}.
 \end{itemize}
 \end{frame}
 %------------------------------------------------
 \begin{frame}{Identificação de padrões de velocidade média dos dados AVL}
 \begin{block}{}
-        A proposta desse experimento se diferencia das demais por encontrar os padrões de velocidade média existentes nos dados do transporte público por ônibus da cidade de São Paulo, considerando ainda a correlação com eventos de exceção extraídos de Redes Sociais.
+        A proposta desse trabalho se diferencia das demais por encontrar os padrões de velocidade média existentes nos dados do transporte público por ônibus da cidade de São Paulo, considerando ainda a correlação com eventos de exceção extraídos de Redes Sociais.
 \end{block}
 \end{frame}
 %------------------------------------------------
@@ -1430,74 +1465,90 @@ Outubro & 13 $\rightarrow$ 12 & 0,150 & 0,417 & 1,737\\
 \end{table}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de parada)}
+\begin{frame}
+\Huge{\centerline{Resultados das velocidades}}
+\Huge{\centerline{médias inesperadas correlacionadas}}
+\Huge{\centerline{aos eventos de exceção}}
+\Huge{\centerline{Ref. aos \alert{pontos de parada}}}
+\Huge{\centerline{Ao longo dos meses do ano de 2017}}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Velocidades inesperadas relacionadas a acidentes}
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_stops_accidents.png}
+ 	  %\caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_stops_accidents_.png}
 	\label{fig:apriori_analysis_stops_accidents}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de parada)}
+\begin{frame}{Velocidades inesperadas relacionadas aos desastres naturais}
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_stops_natural_disasters.png}
+ 	  %\caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_stops_natural_disasters_.png}
 	\label{fig:apriori_analysis_stops_natural_disasters}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de parada)}
+\begin{frame}{Velocidades inesperadas relacionadas aos eventos sociais}
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_stops_social_events.png}
+ 	  %\caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_stops_social_events_.png}
 	\label{fig:apriori_analysis_stops_social_events}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de parada)}
+\begin{frame}{Velocidades inesperadas relacionadas aos eventos urbanos}
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos urbanos a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_stops_urban_events.png}
+ 	  %\caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos urbanos a 100~m e 1.000~m dos pontos de parada, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_stops_urban_events_.png}
 	\label{fig:apriori_analysis_stops_urban_events}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de rota)}
+\begin{frame}
+\Huge{\centerline{Resultados das velocidades}}
+\Huge{\centerline{médias inesperadas correlacionadas}}
+\Huge{\centerline{aos eventos de exceção}}
+\Huge{\centerline{Ref. aos \alert{pontos de rota}}}
+\Huge{\centerline{Ao longo dos meses do ano de 2017}}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Velocidades inesperadas relacionadas a acidentes}
     \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_shapes_accidents.png}
+ 	  %\caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a acidentes a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_shapes_accidents_.png}
 	\label{fig:apriori_analysis_shapes_accidents}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de rota)}
+\begin{frame}{Velocidades inesperadas relacionadas aos desastres naturais}
     \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_shapes_natural_disasters.png}
+ 	  %\caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a desastres naturais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_shapes_natural_disasters_.png}
 	\label{fig:apriori_analysis_shapes_natural_disasters}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de rota)}
+\begin{frame}{Velocidades inesperadas relacionadas aos eventos sociais}
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_shapes_social_events.png}
+ 	 % \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_shapes_social_events_.png}
 	\label{fig:apriori_analysis_shapes_social_events}
 \end{figure}
 \end{frame}
 %------------------------------------------------
-\begin{frame}{Resultados das velocidades médias inesperadas correlacionadas aos eventos de exceção (ref. aos pontos de rota)}
+\begin{frame}{Velocidades inesperadas relacionadas aos eventos urbanos}
     \begin{figure}[!htb]
 	\centering
- 	  \caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
-		\includegraphics[width=0.8\linewidth]{apriori_analysis_shapes_urban_events.png}
+ 	  %\caption{Velocidades inesperadas dos ônibus impactados por eventos de exceção relacionados a eventos sociais a 100~m e 1.000~m dos pontos de rota, ao longo dos meses do ano de 2017}
+		\includegraphics[width=1\linewidth]{apriori_analysis_shapes_urban_events_.png}
 	\label{fig:apriori_analysis_shapes_urban_events}
 \end{figure}
 \end{frame}
@@ -1521,7 +1572,7 @@ Acidente & 1.677 & 315.063 & 278.493 & 30.804 & 5.766 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 596 & 93.513 & 81.261 & 10.480 & 1.772 \\
 \midrule
-\textbf{Total} & 3.691 & 585.804 & 511.363 & 63.811 & 10.603 \\
+\textbf{\alert{Total}} & \alert{3.691} & \alert{585.804} & \alert{511.363} & \alert{63.811} & \alert{10.603} \\
 \bottomrule
 \toprule
 \begin{tabular}{@{}c@{}}\textbf{Classe}\\ \textbf{do evento}\end{tabular} & \begin{tabular}{@{}c@{}}\textbf{Total de}\\ \textbf{eventos}\tnote{a}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Total de Regras }\\ \textbf{de Associação}\tnote{b}\end{tabular}  & \textbf{Esperadas}\tnote{c} & \begin{tabular}{@{}c@{}}\textbf{Não}\\ \textbf{esperadas}\tnote{d}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Parcialmente}\\ \textbf{inesperadas}\tnote{e}\end{tabular} \\
@@ -1534,7 +1585,7 @@ Acidente & 3.029 & 3.980.542 & 3.415.780 & 385.728 & 179.034 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 980 & 1.481.040 & 1.296.476 & 125.803 & 58.761 \\
 \midrule
-\textbf{Total} & 6.789 & 9.348.802 & 8.083.925 & 871.040 & 393.837 \\
+\textbf{\alert{Total}} & \alert{6.789} & \alert{9.348.802} & \alert{8.083.925} & \alert{871.040} & \alert{393.837} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -1575,7 +1626,7 @@ Acidente & 2.367 & 3.390.690 & 3.164.726 & 171.860 & 54.104 \\
 \hline
 \begin{tabular}{@{}c@{}}Evento\\ Urbano\end{tabular}  & 825 & 1.602.343 & 1.499.305 & 79.155 & 23.883 \\
 \midrule
-\midrule \textbf{Total} & 5.203 & 7.857.504 & 7.344.950 & 394.831 & 117.723 \\
+\midrule \textbf{\alert{Total}} & \alert{5.203} & \alert{7.857.504} & \alert{7.344.950} & \alert{394.831} & \alert{117.723} \\
 \bottomrule
 \toprule
 \begin{tabular}{@{}c@{}}\textbf{Classe}\\ \textbf{do evento}\end{tabular} & \begin{tabular}{@{}c@{}}\textbf{Total de}\\ \textbf{eventos}\tnote{a}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Total de Regras }\\ \textbf{de Associação}\tnote{b}\end{tabular}  & \textbf{Esperadas}\tnote{c} & \begin{tabular}{@{}c@{}}\textbf{Não}\\ \textbf{esperadas}\tnote{d}\end{tabular}  & \begin{tabular}{@{}c@{}}\textbf{Parcialmente}\\ \textbf{inesperadas}\tnote{e}\end{tabular} \\
@@ -1588,7 +1639,7 @@ Acidente & 3.035 & 2.772.368 & 2.259.806 & 365.234 & 147.328 \\
 \hline
 \begin{tabular}{@{}c@{}} Evento\\ Urbano\end{tabular}  & 980 & 963.892 & 805.901 & 111.898 & 46.093 \\
 \midrule
-\midrule \textbf{Total} & 6.796 & 6.296.140 & 5.199.264 & 780.578 & 316.298 \\
+\midrule \textbf{\alert{Total}} & \alert{6.796} & \alert{6.296.140} & \alert{5.199.264} & \alert{780.578} & \alert{316.298} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -1607,9 +1658,15 @@ Acidente & 3.035 & 2.772.368 & 2.259.806 & 365.234 & 147.328 \\
 %------------------------------------------------
 \subsection{Considerações sobre a caracterização dos impactos dos eventos de exceção}\begin{frame}{Considerações sobre a caracterização dos impactos dos eventos de exceção}
 \begin{itemize}
-\item De acordo com experimentos realizados é possível caracterizar padrões inesperados e reduções de velocidades relacionadas aos eventos de exceção. 
-\item Tais padrões foram validados de acordo com os períodos de sazonalidade e dos eventos de exceção identificados nos \textit{tweets}. 
-\item Além disso, encontramos notícias veiculadas na mídia correlacionadas aos padrões identificados, o que também valida as caracterizações realizadas.
+\item De acordo com os estudos realizados \alert{é possível caracterizar padrões inesperados e reduções de velocidades relacionadas aos eventos de exceção}. 
+\item Tais padrões foram validados de acordo com os \alert{períodos de sazonalidade e dos eventos de exceção identificados nos \textit{tweets}}. 
+\item \alert{Notícias veiculadas na mídia} correlacionadas aos padrões identificados:
+\begin{itemize}
+\item \alert{Greve geral, manifestações}.
+\item \alert{Ataques aos ônibus de São Paulo}.
+\item \alert{Ataques aos ônibus do Ceará}.
+\end{itemize}
+
 \end{itemize}
 \end{frame}
 %------------------------------------------------
@@ -1623,9 +1680,9 @@ Acidente & 3.035 & 2.772.368 & 2.259.806 & 365.234 & 147.328 \\
 %------------------------------------------------
 \begin{frame}{Conclusão e contribuições}
 \begin{itemize}
-\item Uma nova metodologia desenvolvida para extração e geolocalização automática de endereços a partir de mensagens postadas no Twitter, adequada para as contas governamentais responsáveis pelas notificações de eventos de exceção da Cidade de São Paulo.
-\item  Modelos de classificação automatizada de eventos de exceção,  treinados com 60.984 \textit{tweets} classificados manualmente.
-\item Resultados satisfatórios referentes a caracterização dos impactos desses eventos nas velocidades dos ônibus. Entendemos que a abordagem que utiliza as coordenadas espaciais dos pontos de parada de ônibus como referência pode ser mais adequada do que a que usa os pontos de rota. Isso, devido aos resultados semelhantes obtidos, menor custo computacional e margem de erro. 
+\item Uma nova metodologia desenvolvida para \alert{extração e geolocalização automática de endereços a partir de mensagens postadas no Twitter}, adequada para as \alert{contas governamentais responsáveis pelas notificações de eventos de exceção da Cidade de São Paulo}.
+\item  Modelos de \alert{classificação automatizada de eventos de exceção,  treinados com 60.984 \textit{tweets} classificados manualmente}.
+\item A abordagem que utiliza as coordenadas espaciais dos \alert{pontos de parada de ônibus como referência} mostrou-se mais adequada do que a que usa os pontos de rota. Devido aos resultados semelhantes obtidos, \alert{menor custo computacional e margem de erro}.
 \end{itemize}
 \end{frame}
 %------------------------------------------------
@@ -1640,11 +1697,24 @@ DIAS, F.C.A; CORDEIRO, D. \textit{Characterization of exception events and their
 \end{frame}
 %------------------------------------------------
 \begin{frame}{Trabalhos futuros}
+
+\begin{block}{Publicações}
+\begin{itemize}
+\item Uso dos \textit{tweets} na caracterização dos impactos dos eventos de exceção.
+\item Identificação de padrões inesperados nas velocidades correlacionados aos eventos de exceção, por meio do Algoritmo \textit{Apriori}.
+\item Revisão Sistemática.
+\end{itemize}
+\end{block}
+
 \begin{itemize}
 \item Implementar o fluxo de processamento de dados em \textit{streaming}, em um cenário de exploração e visualização de dados quase em tempo real.
-\item Estabelecer uma cooperação entre a Acadêmia e a SPTrans para aplicação cotidiana dos experimentos realizados por esse trabalho e outros relacionados a análise de grandes volumes de dados de transportes públicos.
-\item Aplicar os experimentos realizados por este trabalho a publicações de usuários que representam a sociedade civil.
+\item Estabelecer uma cooperação entre a Acadêmia e a SPTrans para aplicação cotidiana dos estudos realizados por esse trabalho e outros relacionados a análise de grandes volumes de dados de transportes públicos.
+\item Aplicar os estudos realizados por este trabalho a publicações de usuários que representam a sociedade civil.
 \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}
+\titlepage % Print the title page as the first slide
 \end{frame}
 %------------------------------------------------
 \end{document}
