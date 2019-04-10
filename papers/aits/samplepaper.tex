@@ -50,109 +50,113 @@
 
 \begin{document}
 %
-\title{Contribution Title\thanks{Supported by organization x.}}
+\title{A platform to analyse impacts of the exception events on the bus velocity of São Paulo\thanks{This research is part of the INCT of the Future Internet for Smart Cities funded by CNPq, proc. 465446/2014-0, CAPES proc.88887.136422/2017-00, and FAPESP, proc. 2014/50937-1.}}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{First Author\inst{1}\orcidID{0000-1111-2222-3333} \and
-Second Author\inst{2,3}\orcidID{1111-2222-3333-4444} \and
-Third Author\inst{3}\orcidID{2222--3333-4444-5555}}
+%\author{Felipe Cordeiro Alves Dias\inst{1}\orcidID{0000-0003-4648-1498} \and
+%Daniel Cordeiro\inst{1}\orcidID{0000-0003-4971-7355} \and
+%Rodolfo da Silva Simões\inst{1}\orcidID{2222--3333-4444-5555}}
+
+%\author{Felipe Cordeiro Alves Dias\inst{University of São Paulo}\orcidID{0000-0003-4648-1498} \and
+%Daniel Cordeiro\inst{University of São Paulo}\orcidID{0000-0003-4971-7355} \and
+%Rodolfo Simoes\inst{University of São Paulo}\orcidID{2222--3333-4444-5555}}
 %
-\authorrunning{F. Author et al.}
+%\authorrunning{F.C.A Dias et al.}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-\institute{Princeton University, Princeton NJ 08544, USA \and
-Springer Heidelberg, Tiergartenstr. 17, 69121 Heidelberg, Germany
-\email{lncs@springer.com}\\
-\url{http://www.springer.com/gp/computer-science/lncs} \and
-ABC Institute, Rupert-Karls-University Heidelberg, Heidelberg, Germany\\
-\email{\{abc,lncs\}@uni-heidelberg.de}}
+%\institute{University of São Paulo \\
+%School of Arts, Sciences and Humanities \\ 
+%\email{\{felipecavazotto, daniel.cordeiro, simoesrodolfo\}@usp.br}}
 %
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-The abstract should briefly summarize the contents of the paper in
-150--250 words.
+%The abstract should briefly summarize the contents of the paper in
+%150--250 words.
 
-\keywords{First keyword  \and Second keyword \and Another keyword.}
+This work uses supervised learning to classify tweets in exception events, which are correlated with real data sources (AVL and GTFS) to understand the impacts of these events in the buses velocity of São Paulo.
+
+\keywords{Smart cities \and social networks \and public transportation.}
+
 \end{abstract}
 %
 %
 %
-\section{First Section}
-\subsection{A Subsection Sample}
-Please note that the first paragraph of a section or subsection is
-not indented. The first paragraph that follows a table, figure,
-equation etc. does not need an indent, either.
-
-Subsequent paragraphs, however, are indented.
-
-\subsubsection{Sample Heading (Third Level)} Only two levels of
-headings should be numbered. Lower level headings remain unnumbered;
-they are formatted as run-in headings.
+%\section{First Section}
+%\subsection{A Subsection Sample}
+%Please note that the first paragraph of a section or subsection is
+%not indented. The first paragraph that follows a table, figure,
+%equation etc. does not need an indent, either.
+%
+%Subsequent paragraphs, however, are indented.
+%
+%\subsubsection{Sample Heading (Third Level)} Only two levels of
+%headings should be numbered. Lower level headings remain unnumbered;
+%they are formatted as run-in headings.
 
 %\paragraph{Sample Heading (Fourth Level)}
 %The contribution should contain no more than four levels of
 %headings. Table~\ref{tab1} gives a summary of all heading levels.
 
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab1}
-\begin{tabular}{|l|l|l|}
-\hline
-Heading level &  Example & Font size and style\\
-\hline
-Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-\hline
-\end{tabular}
-\end{table}
+%\begin{table}
+%\caption{Table captions should be placed above the
+%tables.}\label{tab1}
+%\begin{tabular}{|l|l|l|}
+%\hline
+%Heading level &  Example & Font size and style\\
+%\hline
+%Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
+%1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
+%2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
+%3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
+%4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
+%\hline
+%\end{tabular}
+%\end{table}
 
 
-\noindent Displayed equations are centered and set on a separate
-line.
-\begin{equation}
-x + y = z
-\end{equation}
-Please try to avoid rasterized images for line-art diagrams and
-schemas. Whenever possible, use vector graphics instead (see
-Fig.~\ref{fig1}).
+%\noindent Displayed equations are centered and set on a separate
+%line.
+%\begin{equation}
+%x + y = z
+%\end{equation}
+%Please try to avoid rasterized images for line-art diagrams and
+%schemas. Whenever possible, use vector graphics instead (see
+%Fig.~\ref{fig1}).
 
-\begin{figure}
-\includegraphics[width=\textwidth]{fig1.eps}
-\caption{A figure caption is always placed below the illustration.
-Please note that short captions are centered, while long ones are
-justified by the macro package automatically.} \label{fig1}
-\end{figure}
-
-\begin{theorem}
-This is a sample theorem. The run-in heading is set in bold, while
-the following text appears in italics. Definitions, lemmas,
-propositions, and corollaries are styled the same way.
-\end{theorem}
+%\begin{figure}
+%\includegraphics[width=\textwidth]{fig1.eps}
+%\caption{A figure caption is always placed below the illustration.
+%Please note that short captions are centered, while long ones are
+%justified by the macro package automatically.} \label{fig1}
+%\end{figure}
+%
+%\begin{theorem}
+%This is a sample theorem. The run-in heading is set in bold, while
+%the following text appears in italics. Definitions, lemmas,
+%propositions, and corollaries are styled the same way.
+%\end{theorem}
 %
 % the environments 'definition', 'lemma', 'proposition', 'corollary',
 % 'remark', and 'example' are defined in the LLNCS documentclass as well.
 %
-\begin{proof}
-Proofs, examples, and remarks have the initial word in italics,
-while the following text appears in normal font.
-\end{proof}
-For citations of references, we prefer the use of square brackets
-and consecutive numbers. Citations using labels or the author/year
-convention are also acceptable. The following bibliography provides
-a sample reference list with entries for journal
-articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-and a homepage~\cite{ref_url1}. Multiple citations are grouped
-\cite{ref_article1,ref_lncs1,ref_book1},
-\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+%\begin{proof}
+%Proofs, examples, and remarks have the initial word in italics,
+%while the following text appears in normal font.
+%\end{proof}
+%For citations of references, we prefer the use of square brackets
+%and consecutive numbers. Citations using labels or the author/year
+%convention are also acceptable. The following bibliography provides
+%a sample reference list with entries for journal
+%articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
+%book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
+%and a homepage~\cite{ref_url1}. Multiple citations are grouped
+%\cite{ref_article1,ref_lncs1,ref_book1},
+%\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
 %
 % ---- Bibliography ----
 %
@@ -169,15 +173,15 @@ In São Paulo 10\% of population lives in the Expanded Center area and 90\% in t
 %, affecting socioeconomically the citizens who need to get around by public transport to specific regions of the cities to carry out work activities, study, leisure, among others. 
 Exception events are events that happen sporadically or suddenly such as manifestation, sporting events, floods, tree falls, fires, accidents, etc.
 
-All exception events previously mentioned are reported by citizens and authorities in Social Networks, which can be used by Smart City systems. As an example, the public transport can benefit by integrating Social Networks content with the planning, management and operational activities of public transport, addressing their respective sociotechnical factors~\cite{kuflik2017automating}. In this work we aims to use \textit{tweets} to identify the bus lines impacted by exception events, in respect to velocity.
+All exception events previously mentioned are reported by citizens and authorities in Social Networks, which can be used by Smart City systems. As an example, the public transport can benefit by integrating Social Networks content with the planning, management and operational activities of public transport, addressing their respective sociotechnical factors~\cite{kuflik2017automating}. In this work we aims to use supervised learning techniques to classify tweets (from selected accounts) in exception events, which are correlated with real data sources (AVL and GTFS) to understand the impacts of these events in the buses velocity of the city of São Paulo.
 
-The new methodology developed allows to detect messages that refer to exception events published on social networks and automatically detect which lines will be affected and estimate how the velocity those lines will be affected. To achieve this objective we (I) trained a model to classify exception events reported by the selected profiles, (II) developed a process to addresses extraction and geolocalization based on \textit{tweets}, which are (III) correlated with SPTrans's (responsible for the bus lines of the municipality of São Paulo) GTFS (commonly used to describe public transport data) data to find bus lines impacted by exception events in the São Paulo city and with (IV) AVL data to velocity impact characterization. Using this methodology we characterized 60,984 events and found 10,027 exception events that impacted 1,073 bus lines. Besides, we found that social events have an average of 87,04\% impact on the average speedy of bus lines affected by a radius of 1,000m; urban events 70,11\%; accidents 66,51\% and natural disasters 59,77\%.
+The platform allows to detect messages that refer to exception events published on social networks and automatically detect which lines will be affected and estimate how the velocity those lines will be affected. To achieve this objective we (I) trained several models to classify exception events reported by the selected profiles, (II) developed a process to addresses extraction and geolocalization based on \textit{tweets}, which are (III) correlated with SPTrans's (responsible for the bus lines of the municipality of São Paulo) GTFS (commonly used to describe public transport data) data to find bus lines impacted by exception events in the São Paulo city and with (IV) AVL data to velocity impact characterization. Using this methodology we characterized 60,984 events and found 10,027 exception events that impacted 1,073 bus lines. Besides, we found that social events have an average of 87,04\% impact on the average speedy of bus lines affected by a radius of 1,000m; urban events 70,11\%; accidents 66,51\% and natural disasters 59,77\%.
 
 \section{Related Work}
 
 %According to a literature review, we found works that use \textit{tweets} processing to mitigation of problems related to public transportation. The reviewed studies can be classified in \emph{event impact analysis}, \emph{planning} and \emph{management of public transportation}. For example, \cite{Wen2016} used \textit{tweets} to analyze the impact of the terrorist attacks in Paris (2015) on mobility patterns regarding the use of public transport. Similarly, \cite{Itoh2016} developed a tool based on \textit{tweets} to visualize and explore the decisions of passengers of the Tokyo Metro before abnormal events such as typhoons, fires, earthquakes, etc. In this same context, \cite{Ni2016} proposed a technique to predict passenger flow in the New York Metro and identify events based on \textit{hashtags}. Whereas in \cite{Chen2016} the relationship between traffic events and the demand for bicycles was analyzed.
 %
-Several works studies how to use \textit{tweets} processing for analyzing problems related to public transport. These studies can be classified into \emph{event impact analysis}, \emph{planning} and \emph{management of public transport}. For example, \cite{Wen2016} used \textit{tweets} to analyze the impact of the terrorist attacks in Paris (2015) on mobility patterns regarding the use of public transport. Similarly, \cite{Itoh2016} developed a tool based on \textit{tweets} to visualize and explore the decisions of passengers of the Tokyo Metro before abnormal events such as typhoons, fires, earthquakes, etc. In this same context, \cite{Ni2016} proposed a technique to predict passenger flow in the New York Metro and identify events based on \textit{hashtags}. \cite{Chen2016} studied the relationship between traffic events and the demand for bicycles.
+Several works studies how to use \textit{tweets} processing for analyzing problems related to public transport. These studies can be classified into \emph{event impact analysis}, \emph{planning} and \emph{management of public transport}. For example, \cite{Wen2016} used \textit{tweets} to analyze the impact of the terrorist attacks in Paris (2015) on mobility patterns regarding the use of public transport. Similarly, \cite{Itoh2016} developed a tool based on \textit{tweets} to visualize and explore the decisions of passengers of the Tokyo Metro in abnormal events such as typhoons, fires, earthquakes, etc. In this same context, \cite{Ni2016} proposed a technique to predict passenger flow in the New York Metro and identify events based on \textit{hashtags}. \cite{Chen2016} studied the relationship between traffic events and the demand for bicycles.
 
 In respect to public transport planning and management, \cite{Mukherjee2015} presents a platform developed and used by the Bangalore Public Transport Agency, which allows report issues related to public transport, improving the operation planning and the service provided to the population. Analogously, \cite{Gutev2016} used \textit{tweets} to identify the popularity of points of interest and age distribution, in order to determine the best points for bicycle stations and thus encourage the use of this mode of transport. Also related to the points of interest, \cite{Maghrebi2015} used \textit{tweets} to identify human activities patterns and their respective impacts on the demand for public transport.
 
@@ -185,19 +189,21 @@ In \cite{Gal-Tzur2014} a hierarchical approach was created to classify \textit{t
 
 Another study that contributes to the planning of public transport is the one carried out in \cite {Gkiotsalitis2015, Gkiotsalitis2016}, in which \textit{tweets} were processed to identify user disposition to trips related to leisure, suggesting to them activities with less time of travel and probability of delays. Another relevant point considered was the level of access to public transport, which, when high, positively impacts people's happiness and correlates with positive feelings, according to the analysis of feelings carried out by \cite{Guo2016}, using \textit{tweets} published in Greater London.
 
-Neither of the presented works tackle the identification of different types of exception events from \textit{tweets} published by an authority to characterize the velocity impact on bus of São Paulo. In this work we propose a new method, explained ahead, for deal with this problem.
+Neither of the presented works tackle the identification of different types of exception events from \textit{tweets} published by an authority to characterize the velocity impact on buses of São Paulo. In this work we propose a new method, explained ahead, for deal with this problem.
 %that deal with: 
 %(I) training a model to classify exception events published by authority profiles, (II) address extraction from semi-structured \textit{tweets} (since \textit{tweets} from authorities uses a formal language with specific patterns \cite{Gal-Tzur2014}) using a \textit{Regex} pattern; (III) finding bus lines and addresses impacted by exception events in the São Paulo city through \textit{tweets} and GTFS data and (IV) impact characterization. 
 The cited works are connected to our on aspects related to \textit{tweets} processing for analysis of the impact of events on public transport, planning and management.
 
-\section{Social Networks}
+\section{Basic concepts}
+
+\subsection{Social Networks}
 \label{sns}
 
 Social Networks (SN) can be defined as networks that have many relationships, with large connected components, clustering coefficients and degree of reciprocity. Such features, e.g, are found on \textit{Facebook}\footnote{\url{https://www.facebook.com}. Accessed in December 09, 2018.}. Another SN is  \textit {Twitter}\footnote{\url{https://twitter.com}. Access in December 09, 2018.}, which besides having the social networking features mentioned can also be characterized as an Information Network. In this type of network the dominant interaction is the dissemination of information between relationships, with low reciprocity index \cite{myers2014information}.
 
 On \textit{Twitter} the information (\textit{tweets}) is published containing a maximum of 280 characters; each publication can receive \textit {retweets} (to be shared by other users), comments (directly in the \textit{tweet} --- \textit {replies} --- or privately via the message box) and \textit{likes} (indicator of how many users liked the post), in addition to these features, \textit{tweets} may contain mentions to other users (@\textit{profile}) and labels (\#\textit{hashtag}) indicating subjects, categories, etc. Due to the characteristics mentioned previously, the \textit {Twitter} has been an important social network for sharing information and everyday events. Such events can be classified as social events, capable of describing from routine events to crisis situations (natural disasters, social mobilizations, among others) \cite{zhou2014event, atefeh2015survey}.
 
-\section{Smart Cities and Public Transport}
+\subsection{Smart Cities and Public Transport}
 \label{smartCities}
 
 The concept of Smart Cities (SC) has been defined mainly as sustainable and socially inclusive cities~\cite{Wang2017}, which use Information and Communication Technologies (ICTs) to efficiently manage natural resources, energy, transportation, waste, etc.~\cite{Ahvenniemi2017}. ICTs permeates urban systems and physical spaces, which has been accentuated by the increasing number of sensors and devices connected to the Internet of Things (IoT); voluntary data and existing content on SN about daily events. Such heterogeneous sources generate large amounts of data, used to develop SC services \cite{Finger2017, Ang2017}.
@@ -226,7 +232,7 @@ In the public transport context, the GTFS\footnote{\label{googleTransit}Google T
 
 %In addition to the static GTFS exists the realtime GTFS, which is a static GTFS extension. To use real-time feeds it is necessary to define the static files of GTFS, which are used in GTFS realtime to obtain the information of the public transport system. GTFS realtime is not part of the scope of this article, but the specification can be found in Google Transit. 
 
-\section{Natural Language Processing}
+\subsection{Natural Language Processing}
 \label{nlp}
 
 Automatic exception event \textit{tweets} classification involves Natural Language Processing (NLP), which explores how computers can be used to understand and manipulate text or speech in natural language \cite{liu2017roadmap}. Before the NLP processing, the \textit{tweets} were preprocessed --- removing \textit{URLs}, \textit{datetime}, mentions to other \textit{tweets}, emoticons, punctuations --- to remove noise and to reduce the dimension of feature space.
@@ -259,7 +265,8 @@ After the preprocessing phase we applied NLP techniques to \textit{tweets}, such
 %\end {enumerate*}
 %\end {enumerate*}
 
-\section{Classification model}
+\section{Study}
+\subsection{Classification model}
 \label{featuresEng}
 
 Finding exception events involves the identification of events related to an exception, which is possible through classification. The following classes are often used to classify exception events (that normally occurs in a city) \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014}:
@@ -291,16 +298,18 @@ As mentioned in Section~\ref{nlp}, we used a preprocessing phase to feature extr
 
 %Finally, the objective in the process of feature selection is the optimal reduction of the space of \textit {features} based on selection criteria, that is, to obtain \textit {m features} from a set of \textit{n features}, where \textit {m} $ \le $ \textit {n} (which can be achieved by search algorithms following evaluation criteria). Thus, with a smaller subset of \textit {features}, it is possible to reduce the dimensionality of the \textit {features} space, to optimize Machine Learning algorithms and to better understand their respective results, to improve the accuracy of the classification algorithms, among other benefits \cite{motoda2002feature}.
 
-\section {Machine Learning Algorithms}
+\subsection {Machine Learning Algorithms}
 \label{machinelearning}
 Machine Learning algorithms can be (I) supervised, in which relations with known results are created based on the input characteristics; (II) unsupervised, in which the input characteristics are known, but not the results; (III) semi-supervised, in which some of the relationships between input data and results can be defined.
 
 In this work we used supervised learning, since we know how the input data can be classified, being the following algorithms\footnote{We used the algorithms implemented by Sci-Kit Learn, with the standard hyper-parameters. It is not the focus of this work hyper-parameters tuning.} normally applied to classify textual data sets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}. The validation of the models to classification tasks can be realized through 10-fold cross-validation\footnote{\url{https://scikit-learn.org/stable/modules/cross_validation.html\#cross-validation}. Accessed in December 26, 2018.} (to validate the generalization of a model) and metrics that has as inputs the number of real positive (P), negative (N) cases in the result of classification, true positive (TP), true negative (TN), false positive (FP) and false negative (FN) classifications, such as:
 
+\noindent
 \begin{equation*}
 Accuracy = \frac{TP + TN}{P + N} = \frac{TP + TN}{TP + TN + FP + FN}; Precision = \frac{TP}{TP + FP}
 \end{equation*}
 
+\noindent
 \begin{equation*}
 Recall = \frac{TP}{TP + FN}; F_1 score = \frac{Precision * Recall}{Precision + Recall} = \frac{2TP}{2TP + FP + FN}
 \end{equation*}
@@ -430,7 +439,8 @@ January & 744 & 102,44 \\
     \end{minipage} 
 \end{table}
 
-\section{Addresses and geolocalization extraction}
+\section{Analysis}
+\subsection{Addresses and geolocalization extraction}
 
 Analyzing the content of \textit{tweets} from the selected accounts, it is possible to observe that the texts published normally follows a given template and, therefore, are actually semi-structured. So, we used this regular expression to extract addresses from \textit{tweets}: $ER = \lbrace L_1 | S_1 | L_2 | S_2 | \dots | L_n | S_n \rbrace \lbrace [a-z\grave{A}-\ddot{y}\_] + \rbrace$.
 That expression is divided in two sets, in the first ($\lbrace L_1 | S_1 | L_2 | S_2 | \dots | L_n | S_n \rbrace $), (L --- in Portuguese: \textit{logradouro}, meaning public spaces such as avenue, etc.) and (S --- public spaces acronyms) are concatenated to specify a filter and identify \textit{strings} initialized with public spaces or its respective acronyms. The second set ($\lbrace [a-z\grave{A}-\ddot{y}\_] + \rbrace $), represents a filter to identify a set of words after L or S, candidates to compose the wanted addresses.
@@ -445,7 +455,7 @@ The HTTP response from this API is processed to get the values from location (wh
 
 In order to find the bus lines affected by exception events, it is necessary to correlate the coordinates of exception events with the existing coordinates in the shapes data set --- a set of latitude and longitude used for drawing bus lines on a map to represent its respective paths --- existing in SPTrans' GTFS. According to Section~\ref{dataSet}, all coordinates are stored in legacy pairs and in collections with geospatial indexes. Thus, it is possible to use the \texttt{\$near} function from MongoDB\footnote{\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Accessed in December 18, 2018.} to find shapes close to the exception event coordinates. The GTFS defines that the \textit{shape\_id} (i.e. bus code line) is part of attributes contained in the shape file, which is used as parameter to correlate the bus code line with others GTFS files with details about the bus direction, identification, etc.
 
-\section{Velocity impact analysis}
+\subsection{Velocity impact analysis}
 
 After we found the bus lines impacted by exception events, we select the movement data that will be analyzed, e.g. if the exception event happened on 08/17/2017 (Thursday), every other Thursday in the month of August (3, 10, 24 and 08/31/2017) will be considered in the analysis, this because the days of the week have different patterns of movement (seasonality), e.g. on Fridays many social events occur that usually lead to a more congested traffic. Besides, the months also have different characteristics --- holidays at the end of the year, vacations, beginning of school periods, etc. ---, as Fig. \ref{fig:exception_events_classification_distribution}, because of this the selected days are restricted to the month of occurrence of the event.
 
@@ -742,14 +752,14 @@ The months close to 100\% of impact at average speeds are justified because of t
 %\end{threeparttable}
 %\end{table}
 
-\section{Conclusions}
+\section{Conclusions and future works}
 
-This work presents a new methodology for exception events classification and analyze their respective impacts on velocity of the public transport system by bus of the São Paulo city. Using \textit{tweets} from selected public service providers, we found that Multi-layer Perceptron was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of bus, using the methodology developed we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
+This work presents a new methodology for exception events classification and analyze their respective impacts on velocity of the public transport system by bus of the São Paulo city. Using \textit{tweets} from selected public service providers, we found that Multi-layer Perceptron was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of buses, using the methodology developed we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
 
 Although validated using selected Twitter profiles written in Brazilian Portuguese language, this method can be generalized for different languages and cities. GTFS is a ubiquitous format for public transport and tools like NLTK supports several languages.
 
-\subsection{Future work}
-As future work, the methodology presented in this paper will be applied to the other accounts from the Corpus Twitter, described in the Section~\ref{dataSet}. Besides, we will extract features from the data set of bus movements, for each bus line affected by the exception events, also we will extract more exception events from another data set related to claims made by bus users to enrich the impact analysis.
+\textbf{Future work}
+
 
 \section*{Acknowledgment}
 This research is part of the INCT of the Future Internet for Smart Cities funded by CNPq proc. 465446/2014-0, Coordenação de Aperfeiçoamento de Pessoal de Nível Superior -- Brasil (CAPES) -- Finance Code 001, FAPESP proc. 14/50937-1, and FAPESP proc. 15/24485-9.
