@@ -443,7 +443,7 @@ According to the Figure \ref{fig:caracterization_flow_en} the platform is compos
 \begin{figure}[!htb]
 	\centering
  	  \caption{Platform Architecture}
-		\includegraphics[width=0.5\linewidth]{caracterization_flow_en.png}
+		\includegraphics[width=0.7\linewidth]{caracterization_flow_en.png}
 	\label{fig:caracterization_flow_en}
 \end{figure}
 
@@ -454,18 +454,22 @@ Before the Natural Language Processing (NLP), the \textit{tweets} were preproces
 %, involving interdisciplinary knowledge mainly among the areas of Computer Science, Linguistics and Statistics. 
 %The problems related to NLP can be divided into low and high level problems.
 
-After the preprocessing phase we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words, i.e. tokens (features used to train the classification model), in a \textit{tweet}, removing numbers and characters that do not belong to the alphabet (\textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in December 09, 2018.}); (II) morphological decomposition to get a given word into its inflected form using lemmatization (word lemma identification) or stemming (identification of the root of the word using heuristics to determine the location of its flexion --- \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in December 09, 2018.}); process used to features space reduction, besides of Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in December 19, 2018.} (common words without meaning) \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}.
+After the preprocessing phase we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words, i.e. tokens (features used to train the classification model), in a \textit{tweet}, removing numbers and characters that do not belong to the alphabet (\textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in December 09, 2018.}); (II) morphological decomposition to get a given word into its inflected form using lemmatization (word lemma identification) or stemming (identification of the root of the word using heuristics to determine the location of its flexion --- \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in December 09, 2018.}); process used to features space reduction, besides of Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in December 19, 2018.} (common words without meaning) \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. This procedure reduced the number of tweets, from 60,984 to 59,834. Then, are processed to be represented by a bag-of-words, which contains feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure that be used by classification models.
 
 \subsubsection{Classification model}
 \label{featuresEng}
 
-Finding exception events involves the identification of events related to an exception, which is possible through classification. Based on \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we can use the following classes of exception events to classify the \textit{tweets}: (I) Accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using the these classes, 60,984 \textit{tweets} from selected accounts were manually classified. This labeled data was transformed to a binary representation of features, which was used to train models to classify \textit{tweets} in exception events. 
+
+ %The bag-of-words is randomly partitioned into training (60\%) and test (40\%) sets, that are inputs to the classification algorithms.
+
+
+Finding exception events involves the identification of events related to an exception, which is possible through classification. Based on \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we can use the following classes of exception events to classify the \textit{tweets}: (I) Accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using the these classes, 59,834 \textit{tweets} were manually classified. This labeled data was transformed to a binary representation of features (TF-IDF), which was used to train models to classify \textit{tweets} in exception events. 
 
 %The process of constructing these features is known as \textit{feature engineering}, that is iterative between the phases of feature extraction, feature construction, and feature selection. Before this iteration, the data can be preprocessed using standardization, normalization, noise removal, dimensionality reduction, discretization, expansion, etc; it is important to note that information can be lost when performing these transformations \cite{guyon2006introduction}.
 
 %As mentioned in Section~\ref{nlp}, we used a preprocessing phase to feature extraction through a NLP function. The feature construction and selection phases are not used because these processes do not apply to the methodology of this work. 
 
-After the preprocessing the \textit{tweets} are processed to be represented by a bag-of-words, which contains feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. The bag-of-words is randomly partitioned into training (60\%) and test (40\%) sets, that are inputs to the classification algorithms.
+
 
 
 %, however, are mentioned to a better understanding.
@@ -477,7 +481,8 @@ After the preprocessing the \textit{tweets} are processed to be represented by a
 %Finally, the objective in the process of feature selection is the optimal reduction of the space of \textit {features} based on selection criteria, that is, to obtain \textit {m features} from a set of \textit{n features}, where \textit {m} $ \le $ \textit {n} (which can be achieved by search algorithms following evaluation criteria). Thus, with a smaller subset of \textit {features}, it is possible to reduce the dimensionality of the \textit {features} space, to optimize Machine Learning algorithms and to better understand their respective results, to improve the accuracy of the classification algorithms, among other benefits \cite{motoda2002feature}.
 
 %Machine Learning algorithms can be (I) supervised, in which relations with known results are created based on the input characteristics; (II) unsupervised, in which the input characteristics are known, but not the results; (III) semi-supervised, in which some of the relationships between input data and results can be defined.
-In this work we used supervised learning, since we know how the input data can be classified, being the following algorithms\footnote{We used the algorithms implemented by \textit{Sci-Kit Learn}, with the standard hyper-parameters. It is not the focus of this work hyper-parameters tuning.} normally applied to classify textual data sets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}. The validation of the models to classification tasks was realized through 10-fold cross-validation\footnote{\url{https://scikit-learn.org/stable/modules/cross_validation.html\#cross-validation}. Accessed in December 26, 2018.} (to validate the generalization of a model), accuracy, precision, recall and $f_1$ score.
+
+In this work we used supervised learning, since we know how the input data can be classified, being the following algorithms\footnote{We used the algorithms implemented by \textit{Sci-Kit Learn}, with the standard hyper-parameters. It is not the focus of this work hyper-parameters tuning.} normally applied to classify textual data sets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}. 
 %\noindent
 %\begin{equation*}
 %Accuracy = \frac{TP + TN}{P + N} = \frac{TP + TN}{TP + TN + FP + FN}; Precision = \frac{TP}{TP + FP}
@@ -514,24 +519,21 @@ Next, we aggregated the selected data to descriptively analyze the instantaneous
 
 \section{Results}
 
-The methodology was applied to the \textit{Corpus Twitter}\footnote{Data set publicly available at: \url{https://github.com/fcas/mobility-analysis/blob/master/datasets/tweets.zip}. Accessed in December 14, 2018.}, which contains 60,984 \textit{tweets}. At the end of \textit{tweets} preprocessing and processing, the corpus got 414,637 words, with a vocabulary size of 13,915 words. All \textit{tweets} were manually classified according to identified exception events. This data set is composed of the following labels: Accident, Irrelevant --- to non exception events, Natural Disaster, Social Event and Urban Event.
-%that distribution is illustrated in the Figure \ref{fig:pizza_events}.
- 
-%\begin{figure}[!htb]
-%	\centering
-% 	  \caption{Sentence length histogram of \textit{Corpus Tweets}}
-%		\includegraphics[width=0.7\linewidth]{corpus_metrics.png}
-%	\label{fig:corpus_metrics}
-%\end{figure}
+\subsubsection{Classification models}
 
-%\begin{figure}[!htb]
-%	\centering
-% 	  \caption{Exception events distribution according to event type}
-%\includegraphics[width=1\linewidth]{tweets_distribution.png}
-%	\label{fig:pizza_events}
-%\end{figure}
 
-This labeled data set was used to train exception events classification models, based on a \textit{bag-of-words}, described in Section~\ref{featuresEng}. According to Table~\ref{tab:metrics}, the model using the Multi-layer Perceptron algorithm obtained greater accuracy for the classification task. 
+\label{Experiments_Corpus_Twitter}
+The methodology was applied to the \textit{Corpus Twitter}\footnote{Data set publicly available at: \url{https://github.com/fcas/mobility-analysis/blob/master/datasets/tweets.zip}. Accessed in December 14, 2018.}, which contains 60,984 \textit{tweets}. At the end of \textit{tweets} preprocessing and processing, we have 59,834 examples, the corpus got 414,637 words, with a vocabulary size of 13,915 words. All \textit{tweets} were manually classified according to identified exception events. The distribution of the examples for each class follows, $7,07\%$ Accident, $83,24\%$ Irrelevant --- to non exception events, $4,52\%$ Natural Disaster, $2,35\%$ Social Event and $2,81\%$ Urban Event. This labeled data set was used to train exception events classification models, based on a \textit{bag-of-words}, described in Section~\ref{featuresEng}. To represent the original distribution of the data, we use the stratified 10-fold cross-validation approach\footnote{\url{https://scikit-learn.org/0.16/modules/generated/sklearn.cross_validation.StratifiedKFold.html}. Accessed in December 26, 2018.}. In which, in each training and test configuration, we apply the tf-idf method only in the training data to then perform the fit of the classification methods.
+
+TODO: Explicar que utilizou várias configurações de hiperparâmetros para os métodos, mas apresenta-se na Tabela apenas os melhores resultados.
+
+For the evaluation of the statistical methods, we considered the accuracy metric, and the micro and macro approaches for precision, recall and f1-score metrics. However, we present in the Table~\ref{tab:metrics} only accuracy and values of precision, recall and f1-score for macro approach, the values for the micro approach directly reflect to the same values of the metric accuracy.
+
+
+
+
+
+ According to Table~\ref{tab:metrics}, the model using the Multi-layer Perceptron algorithm obtained greater accuracy for the classification task. 
 
 %The confusion matrix related to the Multi-layer Perceptron algorithm is illustrated by Figure ~\ref{fig:confusion_matrix_mlpc}.
 
