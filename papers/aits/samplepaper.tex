@@ -50,7 +50,7 @@
 \begin{document}
 %
 %\title{A platform to analyse impacts of the exception events on the bus velocity of São Paulo\thanks{This research is part of the INCT of the Future Internet for Smart Cities funded by CNPq, proc. 465446/2014-0, CAPES proc.88887.136422/2017-00, and FAPESP, proc. 2014/50937-1.}}
-\title{A platform to analyse impacts of the exception events on the bus velocity of São Paulo}
+\title{A framework to analyse impacts of the exception events on the bus velocity of São Paulo}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
@@ -81,7 +81,7 @@
 %The abstract should briefly summarize the contents of the paper in
 %150--250 words.
 
-This work presents a platform to understand the impacts of exception events in the buses velocity of São Paulo, through modules able to identify exception events and correlate them with real heterogeneous data related to public transportation.
+This work presents a framework to understand the impacts of exception events in the buses velocity of São Paulo, through modules able to identify exception events and correlate them with real heterogeneous data related to public transportation.
 
 \keywords{Smart cities \and social networks \and public transportation.}
 
@@ -174,7 +174,7 @@ This work presents a platform to understand the impacts of exception events in t
 
 %In São Paulo 10\% of population lives in the Expanded Center area and 90\% in the Peripheral Belt~\cite{SA201722}, which characterizes an urban segregation responsible for numerous problems related to urban mobility. Especially in segregated cities, 
 
-Exception events happen sporadically or suddenly and are capable of generating significant delays or even unavailability of the operation of public transport. This type of events are reported by citizens and authorities in Social Networks, which can be used by Smart City systems. As an example, the public transport can benefit by integrating Social Networks content with the planning, management and operational activities of public transport, addressing their respective sociotechnical factors~\cite{kuflik2017automating}. In this work we present a new platform validated with real and heterogeneous data sources (\textit{tweets}, AVL --- Automatic Vehicle Location and GTFS\footnote{\label{googleTransit}Google Transit: \url{https://developers.google.com/transit}. Accessed in April 14, 2019.} --- Google Transit Feed Specification data) to understand automatically exception events impacts in the São Paulo' buses velocity.
+Exception events happen sporadically or suddenly and are capable of generating significant delays or even unavailability of the operation of public transport. This type of events are reported by citizens and authorities in Social Networks, which can be used by Smart City systems. As an example, the public transport can benefit by integrating Social Networks content with the planning, management and operational activities of public transport, addressing their respective sociotechnical factors~\cite{kuflik2017automating}. In this work we present a new framework validated with real and heterogeneous data sources (\textit{tweets}, AVL --- Automatic Vehicle Location and GTFS\footnote{\label{googleTransit}Google Transit: \url{https://developers.google.com/transit}. Accessed in April 14, 2019.} --- Google Transit Feed Specification data) to understand automatically exception events impacts in the São Paulo' buses velocity.
 %, affecting socioeconomically the citizens who need to get around by public transport to specific regions of the cities to carry out work activities, study, leisure, among others. 
 %Exception events are .
 
@@ -186,13 +186,13 @@ Exception events happen sporadically or suddenly and are capable of generating s
 %
 Several works studies how to use \textit{tweets} processing for analyzing problems related to public transport. These studies can be classified into \emph{event impact analysis}, \emph{planning} and \emph{management of public transport}. For example, \cite{Wen2016} used \textit{tweets} to analyze the impact of the terrorist attacks in Paris (2015) on mobility patterns regarding the use of public transport. Similarly, \cite{Itoh2016} developed a tool based on \textit{tweets} to visualize and explore the decisions of passengers of the Tokyo Metro in abnormal events such as typhoons, fires, earthquakes, etc. In this same context, \cite{Ni2016} proposed a technique to predict passenger flow in the New York Metro and identified events based on \textit{hashtags}. \cite{Chen2016} studied the relationship between traffic events and the demand for bicycles.
 
-With respect to public transport planning and management, \cite{Mukherjee2015} presents a platform developed and used by the Bangalore Public Transport Agency, which allowed issues related to public transport to be reported, improving the operation planning and the service provided to the population. Analogously, \cite{Gutev2016} used \textit{tweets} to identify the popularity of points of interest and age distribution in order to determine the best points for bicycle stations and, thus, encourage the use of this mode of transport. Also related to the points of interest, \cite{Maghrebi2015} used \textit{tweets} to identify human activities patterns and their respective impacts on the demand for public transport.
+With respect to public transport planning and management, \cite{Mukherjee2015} presents a framework developed and used by the Bangalore Public Transport Agency, which allowed issues related to public transport to be reported, improving the operation planning and the service provided to the population. Analogously, \cite{Gutev2016} used \textit{tweets} to identify the popularity of points of interest and age distribution in order to determine the best points for bicycle stations and, thus, encourage the use of this mode of transport. Also related to the points of interest, \cite{Maghrebi2015} used \textit{tweets} to identify human activities patterns and their respective impacts on the demand for public transport.
 
 In \cite{Gal-Tzur2014} a hierarchical approach was created to classify \textit{tweets} related to transport. They have demonstrated that it is possible to use this information for transportation planning and management purposes. This technique was applied in a case study associated with sporting events in the United Kingdom. The hierarchy is composed of three levels (I) \textit{tweets} classified among those that express the need for transport services, opinions and incidents; (II) identification of the transport category and (III) topics.
 
 Another study that contributes to the planning of public transport is the one carried out in \cite {Gkiotsalitis2015, Gkiotsalitis2016}, in which \textit{tweets} were processed to identify user disposition to trips related to leisure, suggesting to them activities with less time of travel and probability of delays. Another relevant point considered was the level of access to public transport, which, when high, positively impacts people's happiness and correlates with positive feelings, according to the analysis of feelings carried out by \cite{Guo2016}, using \textit{tweets} published in Greater London.
 
-Neither of the presented works tackle the identification of different types of exception events from \textit{tweets} published by an authority to characterize the velocity impact on buses of São Paulo. In this work we propose a new platform, explained ahead, for deal with this problem.
+Neither of the presented works tackle the identification of different types of exception events from \textit{tweets} published by an authority to characterize the velocity impact on buses of São Paulo. In this work we propose a new framework, explained ahead, for deal with this problem.
 %that deal with: 
 %(I) training a model to classify exception events published by authority profiles, (II) address extraction from semi-structured \textit{tweets} (since \textit{tweets} from authorities uses a formal language with specific patterns \cite{Gal-Tzur2014}) using a \textit{Regex} pattern; (III) finding bus lines and addresses impacted by exception events in the São Paulo city through \textit{tweets} and GTFS data and (IV) impact characterization. 
 The cited works are connected to our on aspects related to \textit{tweets} processing for analysis of the impact of events on public transport, planning and management.
@@ -438,15 +438,15 @@ January & 744 & 102,44 \\
 %\end {enumerate*}
 %\end {enumerate*}
 
-\section{Platform to identify impacts on buses speeds in the city of São Paulo}
+\section{Framework to identify impacts on buses speeds in the city of São Paulo}
 
 \subsubsection{Architecture}
 
-According to Figure~\ref{fig:caracterization_flow_en} the platform is composed by a (1) \textit{tweets} processing streaming module (which can be replaced by any real time processing software), where the \textit{tweets} are collected, preprocessed and processed; (2) classification models; (3) address extraction and geolocalization module and (4, 5 and 6) correlation data modules (the process responsible for finding abnormal association rules in the velocity dataset, showed in 6 note of Figure \ref{fig:caracterization_flow_en}, is beyond the scope of this article). The modules from architecture are explained in details ahead.
+According to Figure~\ref{fig:caracterization_flow_en} the framework is composed by a (1) \textit{tweets} processing streaming module (which can be replaced by any real time processing software), where the \textit{tweets} are collected, preprocessed and processed; (2) classification models; (3) address extraction and geolocalization module and (4, 5 and 6) correlation data modules (the process responsible for finding abnormal association rules in the velocity dataset, showed in 6 note of Figure \ref{fig:caracterization_flow_en}, is beyond the scope of this article). The modules from architecture are explained in details ahead.
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Platform Architecture}
+ 	  \caption{Framework Architecture}
 		\includegraphics[width=0.7\linewidth]{caracterization_flow_en.png}
 	\label{fig:caracterization_flow_en}
 \end{figure}
@@ -817,7 +817,7 @@ The months close to 100\% of impact at average speeds are justified because of t
 
 \section{Conclusions and future works}
 
-This work presents a new platform validated with real and heterogeneous data sources to understand automatically exception events impacts in the São Paulo' buses velocity. Using \textit{tweets} from selected public service providers, we found that Multi-layer Perceptron was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of buses, using the developed platform we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
+This work presents a new framework validated with real and heterogeneous data sources to understand automatically exception events impacts in the São Paulo' buses velocity. Using \textit{tweets} from selected public service providers, we found that Multi-layer Perceptron was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of buses, using the developed framework we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
 
 Although validated using selected Twitter profiles written in Brazilian Portuguese language, this method can be generalized for different languages and cities. GTFS is a ubiquitous format for public transport and tools like NLTK supports several languages.
 
