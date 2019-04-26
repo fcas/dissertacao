@@ -304,7 +304,7 @@ The cited works are connected to our on aspects related to \textit{tweets} proce
 }
 \end {table}
 
-\textbf{\textit{{Corpus} SPTrans}}. The SPTrans (São Paulo Transportation Company)\footnote{\url{http://www.sptrans.com.br}. Acessed in April 14, 2019.} corpus has data specified in GTFS, detailed in Table~\ref{tab:gtfs}, and data of geolocation of all the buses of São Paulo, referring to the year of 2017\footnote{The data was obtained using the Brazilian Law of Access to Information: \url{http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm} (in Portuguese). Accessed in April 14, 2019.}. In respect to AVL data set, it is important to note inconsistencies in the two AVL files of January 11, according to SPTrans meta data each file must have 19 fields, however, the file with data from 09h to 10h has 21 fields in line 1,075,548 and the file with data from 10h to 11h has 35 fields in line 60,025. The gaps mentioned before were ignored in processing, the original data was converted from \textit{string} to its respective type (\textit{long}, \textit {double}, \textit{int} or \textit{string}), time values were standardized using \textit{POSIX timestamps}, and data referring to latitude and longitude were converted to \textit {legacy coordinate pairs}\footnote {\label{geoMongo}\url {https://docs.mongodb.com/manual/geospatial-queries}. Accessed in April 14, 2019.}. In order to enable \textit{geospatial queries}, \textit{geospatial indexes}\footref{geoMongo} were created in the \textit{MongoDB} collections containing geolocalized information.
+\textbf{\textit{{Corpus} SPTrans}}. The SPTrans (São Paulo Transportation Company)\footnote{\url{http://www.sptrans.com.br}. Acessed in April 14, 2019.} corpus has data specified in GTFS, detailed in Table~\ref{tab:gtfs}, and data of geolocation of all the buses of São Paulo, in Table~\ref{tab:avlDataset}\footnote{November missing data: 01/11 --- from 12h to 15h. December missing data: 15/12 --- from 01h to 09h.}, referring to the year of 2017\footnote{The data was obtained using the Brazilian Law of Access to Information: \url{http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm} (in Portuguese). Accessed in April 14, 2019.}. In respect to AVL data set, it is important to note inconsistencies in the two AVL files of January 11, according to SPTrans meta data each file must have 19 fields, however, the file with data from 09h to 10h has 21 fields in line 1,075,548 and the file with data from 10h to 11h has 35 fields in line 60,025. The gaps mentioned before were ignored in processing, the original data was converted from \textit{string} to its respective type (\textit{long}, \textit {double}, \textit{int} or \textit{string}), time values were standardized using \textit{POSIX timestamps}, and data referring to latitude and longitude were converted to \textit {legacy coordinate pairs}\footnote {\label{geoMongo}\url {https://docs.mongodb.com/manual/geospatial-queries}. Accessed in April 14, 2019.}. In order to enable \textit{geospatial queries}, \textit{geospatial indexes}\footref{geoMongo} were created in the \textit{MongoDB} collections containing geolocalized information.
 
 \begin{table}[!htb]
     \begin{minipage}[t]{.45\linewidth}
@@ -342,7 +342,7 @@ The cited works are connected to our on aspects related to \textit{tweets} proce
 \quad
     \begin{minipage}[t]{.45\linewidth}
       \centering
-        \caption{SPTrans'AVL data set description}
+        \caption{SPTrans'AVL data set}
         \label{tab:avlDataset}
 \begin{tabular}{ c | c | c}
 \toprule
@@ -368,9 +368,9 @@ January & 744 & 102,44 \\
 \hline
  October & 744 & 110,92 \\
 \hline
- November\footnote{Missing data: 01/11 --- from 12h to 15h.} & 717 & 108,16 \\
+ November & 717 & 108,16 \\
 \hline
- December\footnote{Missing data: 15/12 --- from 01h to 09h.} & 738 & 110,89 \\
+ December & 738 & 110,89 \\
 \midrule
 \textbf{Total} & 8,751 & 1,247,09 \\
 \bottomrule
@@ -440,7 +440,7 @@ January & 744 & 102,44 \\
 
 \section{Framework to identify impacts on buses speeds in the city of São Paulo}
 
-\subsubsection{Architecture}
+\subsubsection{Framework}
 
 According to Figure~\ref{fig:caracterization_flow_en} the framework contains a (1) \textit{tweets} processing streaming module (which can be replaced by any real time processing software), where the \textit{tweets} are collected, preprocessed and processed; (2) classification models; (3) address extraction and geolocalization module and (4, 5 and 6) correlation data modules (the process responsible for finding abnormal association rules in the velocity dataset, showed in 6 note of Figure \ref{fig:caracterization_flow_en}, is beyond the scope of this article). These modules are explained in details ahead.
 
@@ -458,8 +458,7 @@ Before the Natural Language Processing (NLP) phase, the \textit{tweets} were pre
 %, involving interdisciplinary knowledge mainly among the areas of Computer Science, Linguistics and Statistics. 
 %The problems related to NLP can be divided into low and high level problems.
 
-After the preprocessing phase, we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words (tokens) of a sentence (features used to train the classification model), removing numbers and characters that do not belong to the alphabet (through \textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in April 14, 2019.}), (II) morphological decomposition to get a given word into its inflected form using stemming (through \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in April 14, 2019.}) and (III) Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in April 14, 2019.} \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. These procedures reduced the number of tweets from 60,984 to 59,834, resulting in a corpus with 414,637 words and with a vocabulary of 13,915 words. This corpus was processed to be represented by a bag-of-words, which is composed by feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. These feature vectors have high dimensionality
-$(13,272)$, so we use the Singular Value Decomposition (SVD) technique for dimensionality reduction. In which, through the cross-validation approach we find that $90\%$ of the variance of the data is explained with $3,000$ components.  Therefore, we used these feature vectors $(53,849 $ x $3,000)$ by classification models.
+After the preprocessing phase, we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words (tokens) of a sentence (features used to train the classification model), removing numbers and characters that do not belong to the alphabet (through \textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in April 14, 2019.}), (II) morphological decomposition to get a given word into its inflected form using stemming (through \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in April 14, 2019.}) and (III) Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in April 14, 2019.} \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. These procedures reduced the number of tweets from 60,984 to 59,834, resulting in a corpus with 414,637 words and with a vocabulary of 13,915 words. This corpus was processed to be represented by a bag-of-words, which is composed by feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. These feature vectors have high dimensionality $(13,272)$ and we used the Singular Value Decomposition (SVD) technique for dimensionality reduction, through the cross-validation approach found that $90\%$ of the variance of the data is explained with $3,000$ components. Therefore, we used these feature vectors $(53,849$x$3,000)$ by classification models.
 
 \subsubsection{Classification model}
 \label{featuresEng}
@@ -468,7 +467,7 @@ $(13,272)$, so we use the Singular Value Decomposition (SVD) technique for dimen
  %The bag-of-words is randomly partitioned into training (60\%) and test (40\%) sets, that are inputs to the classification algorithms.
 
 
-Finding exception events involves the identification of events related to an exception (sporadically or suddenly events), which is possible through classification. Based on \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we can use the following classes of exception events to classify the \textit{tweets}: (I) Accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using these classes, the \textit{tweets} were manually classified, then were used to train models to classify them in exception events. In this work, we used supervised learning, since we know how the input data can be classified, being the following algorithms normally applied to classify textual data sets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}, more details of the experimental setup in Section~\ref{sec:experimentalAnalyses}.
+Finding exception events involves the identification of events related to an exception (sporadically or suddenly events), which is possible through classification. Based on \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we can use the following exception classes to \textit{tweets}: (I) Accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using these classes, the \textit{tweets} were manually classified and used to train models to classify them in exception events. In this work, we used supervised learning, since we know how the input data can be classified, being the following algorithms normally applied to classify textual data sets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}, more details of the experimental setup in Section~\ref{sec:experimentalAnalyses}.
 
 
 
@@ -531,11 +530,11 @@ Next, we aggregated the selected data to descriptively analyze the instantaneous
 
 
 \label{Experiments_Corpus_Twitter}
-Methodology employed in the classification experiments of the \textit{Corpus Twitter}\footnote{Data set publicly available at: \url{https://drive.google.com/open?id=1s_HmLHQFFMVrPhYcrAI1XF7rrGbcJohT}. Accessed in April 14, 2019.}, this labeled data set was used to train exception events classification models, based on a \textit{bag-of-words}, as described in Section~\ref{featuresEng}. %*** REPETIDO which contains 60,984 \textit{tweets}. at the end of \textit{tweets} preprocessing and processing, we have 59,834 labeled examples, %*** ALTEREI PARA SEÇÃO QUE INFORMA O PRE-PROCESSAMENTO*** the corpus got 414,637 words, with a vocabulary size of 13,915 words. % *** REPETIDO All \textit{tweets} were manually classified according to identified exception events.
-The distribution of the examples for each class follows, $7,07\%$ Accident, $83,24\%$ Irrelevant---to non exception events, $4,52\%$ Natural Disaster, $2,35\%$ Social Event and $2,81\%$ Urban Event. To maintain the original distribution of the data, we use the stratified 10-fold cross-validation approach\footnote{\url{https://scikit-learn.org/0.16/modules/generated/sklearn.cross_validation.StratifiedKFold.html}. Accessed in April 14, 2019.}. In which, in each training and test configuration, we computing the tf-idf in the training data and after that perform dimensionality reduction with SVD technique and finally, used these data to the training of the classification methods. For the test data, we only perform the transformations (tf-idf and SVD) and the predicts of the classifications methods.
+The \textit{Corpus Twitter}\footnote{Data set publicly available at: \url{https://drive.google.com/open?id=1s_HmLHQFFMVrPhYcrAI1XF7rrGbcJohT}. Accessed in April 14, 2019.} was the labeled data set used to train exception events classification models, based on a \textit{bag-of-words}, as described in Section~\ref{featuresEng}. %*** REPETIDO which contains 60,984 \textit{tweets}. at the end of \textit{tweets} preprocessing and processing, we have 59,834 labeled examples, %*** ALTEREI PARA SEÇÃO QUE INFORMA O PRE-PROCESSAMENTO*** the corpus got 414,637 words, with a vocabulary size of 13,915 words. % *** REPETIDO All \textit{tweets} were manually classified according to identified exception events.
+The distribution of the examples for each class follows, $7,07\%$ accident, $83,24\%$ irrelevant---to non exception events, $4,52\%$ natural disaster, $2,35\%$ social event and $2,81\%$ urban event, to maintain this distribution we used the stratified 10-fold cross-validation approach\footnote{\url{https://scikit-learn.org/0.16/modules/generated/sklearn.cross_validation.StratifiedKFold.html}. Accessed in April 14, 2019.}. In this technique, for each training and test configuration, the tf-idf is computed in the training data, then the dimension is reduced through SVD technique and its result used to train the classification methods. For the test data, we only transformed (using tf-idf and SVD) the data to be used in the prediction of the classifications methods.
 
 
-In the experiments, we consider the grid search approach, strategy used to choose a set of optimal hyperparameters for a learning algorithm \cite{james2013introduction}. In the Table~\ref{tab:metrics}, we present only the best results achieved for each method. For the evaluation of the statistical methods, we considered the accuracy metric and macro approach for precision, recall and f1-score metrics.
+In the experiments, we considered the grid search approach, strategy used to choose a set of optimal hyper-parameters for a learning algorithm \cite{james2013introduction}. In the Table~\ref{tab:metrics}, we present only the best results achieved for each method. For the evaluation of the statistical methods, we considered the accuracy metric and macro approach for precision, recall and f1-score metrics.
 
 	
 %The confusion matrix related to the Multi-layer Perceptron algorithm is illustrated by Figure ~\ref{fig:confusion_matrix_mlpc}.
@@ -578,7 +577,7 @@ In the experiments, we consider the grid search approach, strategy used to choos
 
 According to Table~\ref{tab:metrics}, the model using the Multi-layer Perceptron algorithm obtained greater accuracy for the classification task. 
 
-
+\subsubsection{Addresses and geolocalization extraction}
 Of the 60,984 \textit{tweets} 10,027 were classified into exception events and from that subset we found 7,710 addresses
 %, according to Tab. \ref{tab:qtdExtractedAddresses} --- disregarding the APPROXIMATE locale type\footnote{The locale type explanations can be accessed at \url{https://developers.google.com/maps/documentation/geocoding}. Accessed on December 14, 2018.} --- 
 (which represents 76.89\% of the total of \textit{tweets} classified as exception events. The reasons for \textit {tweets} without address extracted are:
@@ -648,7 +647,8 @@ Figure~\ref{fig:address_analysis} illustrates the addresses\footnote{Complete li
 \end{minipage}
 \end{figure}
 
-We considered that a bus line is affected by an exception event if a coordinate from \textit{shape} is within a radius of 1,000m away from the event. Using this criterion, the total of 1,073 bus lines were affected by exception events during this period, with line ``33121'' (TERM. PRINC. ISABEL / TERM. STO. AMARO) being the most impacted bus line code. This particular line was impacted by 1,623 exception events and the full table publicly available in \footnote{Complete table is available at \url{https://docs.google.com/spreadsheets/d/1jIqUuIJg7FhXD5C8MFF8stbvOD3uiUgMfN2bOltT7zE/edit?usp=sharing}. Accessed in April 14, 2019.}.
+\subsubsection{Exception event impact analysis}
+We considered that a bus line is affected by an exception event if a coordinate from \textit{shape} is within a radius of 1,000m away from the event. Using this criterion, the total of 1,073 bus lines were affected by exception events during this period, with line ``33121'' (TERM. PRINC. ISABEL / TERM. STO. AMARO) being the most impacted bus line code. This particular line was impacted by 1,623 exception events\footnote{The full table is publicly available at \url{https://docs.google.com/spreadsheets/d/1jIqUuIJg7FhXD5C8MFF8stbvOD3uiUgMfN2bOltT7zE/edit?usp=sharing}. Accessed in April 14, 2019.}.
 
 %\begin {table} [!htb]
 %\centering
