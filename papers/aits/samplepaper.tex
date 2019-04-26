@@ -458,7 +458,8 @@ Before the Natural Language Processing (NLP) phase, the \textit{tweets} were pre
 %, involving interdisciplinary knowledge mainly among the areas of Computer Science, Linguistics and Statistics. 
 %The problems related to NLP can be divided into low and high level problems.
 
-After the preprocessing phase, we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words (tokens) of a sentence (features used to train the classification model), removing numbers and characters that do not belong to the alphabet (through \textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in April 14, 2019.}), (II) morphological decomposition to get a given word into its inflected form using stemming (through \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in April 14, 2019.}) and (III) Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in April 14, 2019.} \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. These procedures reduced the number of tweets from 60,984 to 59,834, resulting in a corpus with 414,637 words and with a vocabulary of 13,915 words. This corpus was processed to be represented by a bag-of-words, which is composed by feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. These feature vectors are used by classification models.
+After the preprocessing phase, we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words (tokens) of a sentence (features used to train the classification model), removing numbers and characters that do not belong to the alphabet (through \textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in April 14, 2019.}), (II) morphological decomposition to get a given word into its inflected form using stemming (through \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in April 14, 2019.}) and (III) Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in April 14, 2019.} \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. These procedures reduced the number of tweets from 60,984 to 59,834, resulting in a corpus with 414,637 words and with a vocabulary of 13,915 words. This corpus was processed to be represented by a bag-of-words, which is composed by feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. These feature vectors have high dimensionality
+$(13,272)$, so we use the Singular Value Decomposition (SVD) technique for dimensionality reduction. In which, through the cross-validation approach we find that $90\%$ of the variance of the data is explained with $3,000$ components.  Therefore, we used these feature vectors $(53,849 $ x $3,000)$ by classification models.
 
 \subsubsection{Classification model}
 \label{featuresEng}
@@ -467,7 +468,10 @@ After the preprocessing phase, we applied NLP techniques to \textit{tweets}, suc
  %The bag-of-words is randomly partitioned into training (60\%) and test (40\%) sets, that are inputs to the classification algorithms.
 
 
-Finding exception events involves the identification of events related to an exception (sporadically or suddenly events), which is possible through classification. Based on \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we can use the following classes of exception events to classify the \textit{tweets}: (I) Accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using these classes, the \textit{tweets} were manually classified, then were used to train models to classify them in exception events.
+Finding exception events involves the identification of events related to an exception (sporadically or suddenly events), which is possible through classification. Based on \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we can use the following classes of exception events to classify the \textit{tweets}: (I) Accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using these classes, the \textit{tweets} were manually classified, then were used to train models to classify them in exception events. In this work, we used supervised learning, since we know how the input data can be classified, being the following algorithms normally applied to classify textual data sets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}, more details of the experimental setup in Section~\ref{sec:experimentalAnalyses}.
+
+
+
 % ****REPETIDO PARAGRAFO ANTERIOR***This labeled data was transformed to a binary representation of features (TF-IDF), which was used to train models to classify \textit{tweets} in exception events. 
 
 %The process of constructing these features is known as \textit{feature engineering}, that is iterative between the phases of feature extraction, feature construction, and feature selection. Before this iteration, the data can be preprocessed using standardization, normalization, noise removal, dimensionality reduction, discretization, expansion, etc; it is important to note that information can be lost when performing these transformations \cite{guyon2006introduction}.
@@ -487,7 +491,6 @@ Finding exception events involves the identification of events related to an exc
 
 %Machine Learning algorithms can be (I) supervised, in which relations with known results are created based on the input characteristics; (II) unsupervised, in which the input characteristics are known, but not the results; (III) semi-supervised, in which some of the relationships between input data and results can be defined.
 
-In this work we used supervised learning, since we know how the input data can be classified, being the following algorithms normally applied to classify textual data sets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}, more details of the experimental setup in Section~\ref{sec:experimentalAnalyses}.
 %\noindent
 %\begin{equation*}
 %Accuracy = \frac{TP + TN}{P + N} = \frac{TP + TN}{TP + TN + FP + FN}; Precision = \frac{TP}{TP + FP}
@@ -528,17 +531,13 @@ Next, we aggregated the selected data to descriptively analyze the instantaneous
 
 
 \label{Experiments_Corpus_Twitter}
-Methodology employed in the classification experiments of the \textit{Corpus Twitter}\footnote{Data set publicly available at: \url{https://drive.google.com/open?id=1s_HmLHQFFMVrPhYcrAI1XF7rrGbcJohT}. Accessed in April 14, 2019.}, this labeled data set was used to train exception events classification models, based on a \textit{bag-of-words}, described in Section~\ref{featuresEng}. %*** REPETIDO which contains 60,984 \textit{tweets}. at the end of \textit{tweets} preprocessing and processing, we have 59,834 labeled examples, %*** ALTEREI PARA SEÇÃO QUE INFORMA O PRE-PROCESSAMENTO*** the corpus got 414,637 words, with a vocabulary size of 13,915 words. % *** REPETIDO All \textit{tweets} were manually classified according to identified exception events.
-The distribution of the examples for each class follows, $7,07\%$ Accident, $83,24\%$ Irrelevant---to non exception events, $4,52\%$ Natural Disaster, $2,35\%$ Social Event and $2,81\%$ Urban Event. To represent the original distribution of the data, we use the stratified 10-fold cross-validation approach\footnote{\url{https://scikit-learn.org/0.16/modules/generated/sklearn.cross_validation.StratifiedKFold.html}. Accessed in April 14, 2019.}. In which, in each training and test configuration, we computing the tf-idf in the training data to then perform the training of the classification methods.
-
-In the experiments, we consider the grid search approach, strategy used to choose a set of optimal hyperparameters for a learning algorithm \cite{james2013introduction}. In the Table~\ref{tab:metrics}, we present only the best results achieved for each method. For the evaluation of the statistical methods, we considered the accuracy metric and macro approach for precision, recall and f1-score metrics. The values for the micro approach directly reflect to the same values of the metric accuracy.
+Methodology employed in the classification experiments of the \textit{Corpus Twitter}\footnote{Data set publicly available at: \url{https://drive.google.com/open?id=1s_HmLHQFFMVrPhYcrAI1XF7rrGbcJohT}. Accessed in April 14, 2019.}, this labeled data set was used to train exception events classification models, based on a \textit{bag-of-words}, as described in Section~\ref{featuresEng}. %*** REPETIDO which contains 60,984 \textit{tweets}. at the end of \textit{tweets} preprocessing and processing, we have 59,834 labeled examples, %*** ALTEREI PARA SEÇÃO QUE INFORMA O PRE-PROCESSAMENTO*** the corpus got 414,637 words, with a vocabulary size of 13,915 words. % *** REPETIDO All \textit{tweets} were manually classified according to identified exception events.
+The distribution of the examples for each class follows, $7,07\%$ Accident, $83,24\%$ Irrelevant---to non exception events, $4,52\%$ Natural Disaster, $2,35\%$ Social Event and $2,81\%$ Urban Event. To maintain the original distribution of the data, we use the stratified 10-fold cross-validation approach\footnote{\url{https://scikit-learn.org/0.16/modules/generated/sklearn.cross_validation.StratifiedKFold.html}. Accessed in April 14, 2019.}. In which, in each training and test configuration, we computing the tf-idf in the training data and after that perform dimensionality reduction with SVD technique and finally, used these data to the training of the classification methods. For the test data, we only perform the transformations (tf-idf and SVD) and the predicts of the classifications methods.
 
 
+In the experiments, we consider the grid search approach, strategy used to choose a set of optimal hyperparameters for a learning algorithm \cite{james2013introduction}. In the Table~\ref{tab:metrics}, we present only the best results achieved for each method. For the evaluation of the statistical methods, we considered the accuracy metric and macro approach for precision, recall and f1-score metrics.
 
-
-
- According to Table~\ref{tab:metrics}, the model using the Multi-layer Perceptron algorithm obtained greater accuracy for the classification task. 
-
+	
 %The confusion matrix related to the Multi-layer Perceptron algorithm is illustrated by Figure ~\ref{fig:confusion_matrix_mlpc}.
 
 \begin{table}[!htb]
@@ -576,6 +575,9 @@ In the experiments, we consider the grid search approach, strategy used to choos
 %		\includegraphics[width=1\linewidth]{confusion_matrix_mlp.png}
 %	\label{fig:confusion_matrix_mlpc}
 %\end{figure}
+
+According to Table~\ref{tab:metrics}, the model using the Multi-layer Perceptron algorithm obtained greater accuracy for the classification task. 
+
 
 Of the 60,984 \textit{tweets} 10,027 were classified into exception events and from that subset we found 7,710 addresses
 %, according to Tab. \ref{tab:qtdExtractedAddresses} --- disregarding the APPROXIMATE locale type\footnote{The locale type explanations can be accessed at \url{https://developers.google.com/maps/documentation/geocoding}. Accessed on December 14, 2018.} --- 
