@@ -694,7 +694,7 @@ Código de Financiamento 001, FAPESP proc. 14/50937-1 e FAPESP proc.
 DIAS, Felipe Cordeiro Alves. \textbf{Caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo}. \imprimirdata. \pageref{LastPage} f. Dissertação (Mestrado em Ciências) - Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, 2019.
 \end{flushleft}
 
-A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações atuais para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas computacionais existentes --- como as necessárias ao Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM às Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção, dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município e GTFS  (\textit{General Transit Feed Specification}) da SPTrans. Visando alcançar o objetivo proposto, classificamos manualmente 60.984 \textit{tweets} e treinamos diferentes modelos por meio de algoritmos de aprendizado de máquina supervisionado para identificar eventos de exceção. Além disso, propomos uma nova metodologia para extrair e geolocalizar os endereços dos eventos de exceção, por meio de Processamento de Linguagem Natural e Expressão Regular. Com isso, demonstramos que é possível correlacionar os dados desses eventos com os dados históricos do SIM e da GTFS, para caracterizar como o transporte público por ônibus da cidade de São Paulo é impactado nesses cenários. Adicionalmente, propomos uma arquitetura distribuída para exploração e visualização de grandes volumes de dados relacionados a transporte público.
+A cidade de São Paulo é o município mais populoso do Brasil, caracterizado por uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana. As ações atuais para resolver os problemas de mobilidade urbana têm pouco aprofundamento em questões tecnológicas e melhorias dos sistemas computacionais existentes --- como as necessárias ao Sistema Integrado de Monitoramento e Transporte (SIM), utilizado para gestão e monitoramento do transporte público por ônibus de São Paulo. Uma das possíveis melhorias é integrar o SIM às Redes Sociais. Com essa perspectiva de integração, esse trabalho tem como objetivo utilizar \textit{tweets} e dados do SIM na caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Para alcançar tal objetivo, esse trabalho propõe utilizar \textit{tweets} publicados por instituições governamentais responsáveis por reportar eventos de exceção, dados dos módulos AVL (\textit{Automatic Vehicle Location}) do SIM, responsáveis por rastrear e localizar os ônibus do município e GTFS  (\textit{General Transit Feed Specification}) da SPTrans. Visando alcançar o objetivo proposto, classificamos manualmente 60.984 \textit{tweets} e treinamos diferentes modelos por meio de algoritmos de aprendizado de máquina supervisionado para identificar eventos de exceção. Além disso, propomos uma nova metodologia para extrair e geolocalizar os endereços dos eventos de exceção, por meio de Processamento de Língua Natural e Expressão Regular. Com isso, demonstramos que é possível correlacionar os dados desses eventos com os dados históricos do SIM e da GTFS, para caracterizar como o transporte público por ônibus da cidade de São Paulo é impactado nesses cenários. Adicionalmente, propomos uma arquitetura distribuída para exploração e visualização de grandes volumes de dados relacionados a transporte público.
 
 Palavras-chaves: Cidades inteligentes. Transporte público. Sistemas de transporte inteligentes. Eventos de exceção.
 \end{resumo}
@@ -844,7 +844,7 @@ Keywords: Smart cities. Public transportation. Intelligent transport Systems. Ex
 
 %Neste Capítulo, são apresentadas as seções referentes à motivação da proposta de pesquisa; sobre a definição do problema que pretendemos abordar; a respeito dos objetivos gerais e específicos; sobre as hipóteses a serem verificadas e sobre a organização dos capítulos desse documento.
 
-A cidade de São Paulo é o município mais populoso do Brasil, que passou por um rápido processo de urbanização e tem população atual estimada em 12.106.920 milhões de habitantes (com data de referência em 1º de julho de 2017)\footnote{\url{https://agenciadenoticias.ibge.gov.br/media/com\_mediaibge/arquivos/9bc1a0065c49fd6f81dc785b2b8d8c35.xlsx}. Acesso em 29 de outubro de 2017.}.
+A cidade de São Paulo é o município mais populoso do Brasil, que passou por um rápido processo de urbanização e tem população atual estimada em 12.106.920 habitantes (com data de referência em 1º de julho de 2017)\footnote{\url{https://agenciadenoticias.ibge.gov.br/media/com\_mediaibge/arquivos/9bc1a0065c49fd6f81dc785b2b8d8c35.xlsx}. Acesso em 29 de outubro de 2017.}.
 Desse total de habitantes, 10\% vivem na área do \nomenclature{CE}{Centro Expandido}
 {Centro Expandido (CE)} e 90\% no \nomenclature{CP}{­Cinturão Periférico}
 {Cinturão Periférico (CP)}  \cite{SA201722}, o que caracteriza uma segregação urbana responsável por inúmeros problemas relacionados a mobilidade urbana.
@@ -853,7 +853,7 @@ Um desses problemas é conhecido como o movimento pendular, no qual longas dist�
 
 Devido aos problemas de mobilidade urbana existentes no Brasil, como os da cidade de São Paulo, a Lei Federal 12.587/2012\footnote{\url{http://www.planalto.gov.br/ccivil\_03/\_ato2011-2014/2012/lei/l12587.htm}. Acesso em 29 de outubro de 2017.}, relacionada ao \nomenclature{PAC}{Programa de Aceleração do Crescimento}{Programa de Aceleração do Crescimento\footnote{\url{http://www.pac.gov.br}. Acesso em 29 de outubro de 2017.} (PAC),} obrigou os municípios a enviarem seus respectivos planos de mobilidade urbana até o final do ano de 2015.  O objetivo dessa obrigatoriedade é o de promover o desenvolvimento sustentável com a mitigação dos custos ambientais e socioeconômicos dos deslocamentos de pessoas. Em resposta a essa lei, o \nomenclature{PlanMob/SP}{Plano de Mobilidade Urbana de São Paulo}{Plano de Mobilidade Urbana de São Paulo (\textit{PlanMob/SP 2015})} foi instituído pelo Decreto 56.834\footnote{\label{planmob}\url{http://www.prefeitura.sp.gov.br/cidade/secretarias/transportes/planmob}. Acesso em 29 de outubro de 2017.}, como instrumento de planejamento e gestão do Sistema Municipal de Mobilidade Urbana para os próximos 15 anos.
 
-No \textit{PlanMob/SP 2015}, a \nomenclature{SMT}{Secretaria Municipal de Transportes}{Secretaria Municipal de Transportes (SMT)} propõe criar uma central de monitoramento conhecida como \nomenclature{CIMU}{Central Integrada de Mobilidade Urbana}{Central Integrada de Mobilidade Urbana (CIMU),} que tem como objetivo integrar as áreas de trânsito e transporte subordinadas à SMT. Nessa proposta, observam-se os outras questões que se abordadas trariam benefícios ao CIMU: (I) a CIMU não processa conteúdo de Redes Sociais, (II) não aborda melhoria dos sistemas computacionais já existentes e (III) será integrada com o defasado \cite{consulo2016evaluation} \nomenclature{SIM}{Sistema Integrado de Monitoramento e Transporte}{Sistema Integrado de Monitoramento e Transporte (SIM),} da \nomenclature{SPTrans}{São Paulo Transportes}{São Paulo Transportes (SPTrans),} responsável pelo monitoramento da infraestrutura de ônibus. 
+No \textit{PlanMob/SP 2015}, a \nomenclature{SMT}{Secretaria Municipal de Transportes}{Secretaria Municipal de Transportes (SMT)} propõe criar uma central de monitoramento conhecida como \nomenclature{CIMU}{Central Integrada de Mobilidade Urbana}{Central Integrada de Mobilidade Urbana (CIMU),} que tem como objetivo integrar as áreas de trânsito e transporte subordinadas à SMT. No PlanMob/SP 2015, observa-se outras questões que se abordadas trariam benefícios ao CIMU: (I) a CIMU não processa conteúdo de Redes Sociais, (II) não aborda melhoria dos sistemas computacionais já existentes e (III) será integrada com o defasado \cite{consulo2016evaluation} \nomenclature{SIM}{Sistema Integrado de Monitoramento e Transporte}{Sistema Integrado de Monitoramento e Transporte (SIM),} da \nomenclature{SPTrans}{São Paulo Transportes}{São Paulo Transportes (SPTrans),} responsável pelo monitoramento da infraestrutura de ônibus. 
 
 O SIM utiliza a tecnologia \nomenclature{AVL}{\textit{Automatic Vehicle Location}}{\textit{Automatic Vehicle Location} (AVL)} para localizar e rastrear os ônibus, fornecer informações em tempo real aos passageiros \nomenclature{RTPI}{\textit{Real Time Passenger Information}}{(\textit{Real Time Passenger Information} (RTPI)),} monitorar 1.353 rotas de ônibus\footnote{\label{gtfsSptrans}\url{http://www.sptrans.com.br/desenvolvedores}. Acesso em 29 de outubro de 2017.}, 10 corredores de ônibus\footnote{\url{http://www.sptrans.com.br/terminais/corredores.aspx}. Acesso em 29 de outubro de 2017.}, 28 terminais de ônibus\footnote{\url{http://www.sptrans.com.br/terminais}. Acesso em 29 de outubro de 2017.} e 19.933 mil paradas de ônibus\footref{gtfsSptrans} que serviram em 2016 a aproximadamente 8 milhões de passageiros por dia\footnote{\url{http://www.sptrans.com.br/indicadores}. Acesso em 29 de outubro de 2017.}. Apesar da importância do SIM, há inúmeras defasagens tecnológicas (que causam discrepância nas informações recebidas pelos usuários, dentre outros problemas) \cite{consulo2016evaluation}, que precisariam ser resolvidas antes de integrá-lo ao CIMU.
  
@@ -874,18 +874,19 @@ Eventos de exceção tais como acidentes, greves, falhas na operação do metrô
 
 Com a identificação dessas características é possível conhecer previamente quais seriam os impactos decorrentes de um determinado evento de exceção no funcionamento normal do transporte público. Tais características podem ser obtidas analisando o histórico do funcionamento do sistema de transportes, e utilizadas posteriormente em simulações de como o sistema responderia a determinados eventos de exceção.
 
-Os dados históricos existentes para essa análise são os do SIM, obtidos utilizando AVL. No entanto, analisá-los envolve problemas como o (I) grande volume de dados, em virtude da frequência com que são enviados (II) e os referentes ao comprometimento da qualidade dos dados enviados, como consequência dos problemas e limitações do \textit{hardware} responsável pela transmissão; interferências e questões meteorológicas. 
+Os dados históricos existentes para essa análise são os do SIM, obtidos utilizando AVL. No entanto, analisá-los envolve problemas como o (I) grande volume de dados, em virtude da frequência com que são enviados; e (II) os referentes ao comprometimento da qualidade dos dados enviados, como consequência dos problemas e limitações do \textit{hardware} responsável pela transmissão; interferências e questões meteorológicas. 
 
-O uso de conteúdo de Redes Sociais pode ajudar a abordar os problemas anteriormente mencionados, o qual delimitaria o escopo da análise histórica para a identificação das características dos eventos de exceção e dos seus respectivos impactos. Usar o conteúdo de Redes Sociais envolve alguns desafios como o de (I) identificar eventos de exceção nas publicações, (II) geolocalizá-los, (III) determinar seus \textit{timestamps} e, (IV) correlacioná-las com a base histórica.  
+O uso de conteúdo de Redes Sociais pode ajudar a abordar os problemas anteriormente mencionados, o qual delimitaria o escopo da análise histórica para a identificação das características dos eventos de exceção e dos seus respectivos impactos. Usar o conteúdo de Redes Sociais envolve alguns desafios como o de (I) identificar eventos de exceção nas publicações, (II) geolocalizá-los, (III) determinar seus \textit{timestamps}, e (IV) correlacioná-las com a base histórica.  
 
 \section{Objetivos}
 \label{objetivos}
 O objetivo geral desse projeto de pesquisa é a caracterização de eventos de exceção e de seus respectivos impactos no sistema de transporte público por ônibus da cidade de São Paulo. Visando alcançar esse objetivo, serão coletados \textit{tweets} das contas oficiais das instituições governamentais responsáveis por reportar eventos de exceção na
-cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na Tabela~\ref{tab:oficialProfiles}. Também, serão utilizados os dados históricos dos módulos AVL do SIM e os dados do sistema de transporte por ônibus da cidade de São Paulo, especificados de acordo com a GTFS. 
+cidade de São Paulo. Todas as contas selecionadas do \textit{Twitter} estão listadas na Tabela~\ref{tab:oficialProfiles}. Também serão utilizados os dados históricos dos módulos AVL do SIM e os dados do sistema de transporte por ônibus da cidade de São Paulo, especificados de acordo com a GTFS. 
 
 Além disso, temos como objetivos específicos:
 
 \begin{itemize}
+\item Classificação manual dos \textit{tweets} coletados.
     \item Identificar os eventos de exceção, quando existentes, dos \textit{tweets} coletados.
      \item Extrair os endereços dos eventos de exceção identificados e geolocalizá-los.
 		%\item Construir uma base de dados pública com os dados processados, disponibilizada via API (para consumo e contribuição da comunidade de software), mantendo o modelo de dados consistente. Com isso, a necessidade de entrega dos dados a sociedade, apontada por \cite{kuflik2017automating}, será atendida.
@@ -980,14 +981,14 @@ Com base na Revisão Sistemática apresentada no Capítulo~\ref{revisao}, os eve
 
 \end{enumerate}
 
-Dito isso, espera-se que seja possível identificar tais características utilizando \nomenclature{NLP}{\textit{Natural Language Processing}}{Processamento de Linguagem Natural} (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
+Dito isso, espera-se que seja possível identificar tais características utilizando \nomenclature{NLP}{\textit{Natural Language Processing}}{Processamento de Língua Natural} (NLP --- \textit{Natural Language Processing}) em conjunto com dicionários auxiliares para o contexto dos eventos de exceção mencionados.
 
-Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Uma análise preliminar mostra que o conteúdo das contas selecionadas, citadas na Tabela~\ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}; o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
+Após a identificação dos eventos de exceção, temos como hipótese que seja possível extrair, com confiabilidade, os endereços dos \textit{tweets} utilizando a técnica de Expressão Regular. Uma análise preliminar mostra que o conteúdo das contas selecionadas, citadas na Tabela~\ref{tab:oficialProfiles}, utilizam padrões de formatação para os endereços publicados. Com isso, podemos afirmar que esses \textit{tweets} apresentam a característica de serem semi-estruturados, diferentemente dos \textit{tweets} não estruturados publicados pelos usuários comuns do \textit{Twitter}, o que consequentemente simplifica o processamento necessário para geolocalizar os eventos de exceção.
 
 \section{Organização do documento}
 \label{docOrg}
 
-O  documento inicia no Capítulo~\ref{introducao} com a introdução de aspectos gerais do trabalho; o Capítulo~\ref{fundamentacao} trata sobre os conceitos fundamentais e necessários para melhor entendimento do conteúdo apresentado por essa dissertação; o  Capítulo~\ref{revisao} apresenta a revisão sistemática realizada na literatura com o objetivo de encontrar trabalhos que utilizam \textit{tweets} para tratar problemas relacionados a Cidades Inteligentes; o Capítulo~\ref{dataSet} descreve o processo de coleta dos dados abertos relacionados ao transporte público e a eventos de exceção; os capítulos~\ref{dataViz},~\ref{exp1} e~\ref{dataCorr} discorrem sobre os experimentos realizados para atingir os objetivos já detalhados; o Capítulo~\ref{conclusion} apresenta a conclusão dos trabalhos desenvolvidos e os apêndices~\ref{apendiceA},~\ref{apendiceB},~\ref{apendiceC},~\ref{apendiceD},~\ref{apendiceE},~\ref{apendiceF} e~\ref{apendiceG} finalizam com os detalhes dos experimentos.
+O  documento inicia no Capítulo~\ref{introducao} com a introdução de aspectos gerais do trabalho; o Capítulo~\ref{fundamentacao} trata sobre os conceitos fundamentais e necessários para melhor entendimento do conteúdo apresentado por essa dissertação; o  Capítulo~\ref{revisao} apresenta a revisão sistemática realizada na literatura com o objetivo de encontrar trabalhos que utilizam \textit{tweets} para tratar problemas relacionados a Cidades Inteligentes; o Capítulo~\ref{dataSet} descreve o processo de coleta dos dados relacionados ao transporte público e a eventos de exceção; os capítulos~\ref{dataViz},~\ref{exp1} e~\ref{dataCorr} discorrem sobre os experimentos realizados para atingir os objetivos já detalhados; o Capítulo~\ref{conclusion} apresenta a conclusão dos trabalhos desenvolvidos e os apêndices~\ref{apendiceA},~\ref{apendiceB},~\ref{apendiceC},~\ref{apendiceD},~\ref{apendiceE},~\ref{apendiceF} e~\ref{apendiceG} finalizam com os detalhes dos experimentos.
 
 %-------------------------------------------------------------------------
 % Comentário adicional do PPgSI - Informações sobre ``figura''
@@ -1049,20 +1050,75 @@ O  documento inicia no Capítulo~\ref{introducao} com a introdução de aspectos
 
 \chapter{Fundamentação Teórica}
 \label{fundamentacao}
-Neste capítulo são apresentados fundamentos teóricos sobre os conceitos Cidades Inteligentes, Sistemas de Transporte Inteligentes, relacionados ao transporte público, Processamento de Linguagem Natural, \textit{Feature Engineering}, Aprendizado de Máquina, a \textit{Term frequency–Inverse document frequency} e ao algoritmo \textit{Apriori}.
+Neste capítulo são apresentados fundamentos teóricos sobre os conceitos relacionados ao transporte público, Cidades Inteligentes, Sistemas de Transporte Inteligentes, Processamento de Língua Natural e dos algoritmos utilizados.
+
+\section{Conceitos relacionados ao transporte público}
+\label{mobility}
+
+Esta seção define os conceitos relacionados ao transporte público, de acordo com a perspectiva do Plano de Mobilidade Urbana do Município de São Paulo --- PlanMob/SP 2015\footref{planmob}. Tais conceitos são importantes para entendermos a capacidade de impacto dos eventos de exceção (evidenciada nos experimentos desse trabalho) na acessibilidade, mobilidade, nas viagens e nos diferentes modais de transporte, principalmente em cidades com segregação urbana, como a de São Paulo. Por exemplo, os eventos de exceção podem dificultar ou mesmo restringir a acessibilidade (e acessibilidade universal) a determinadas regiões da cidade, como em caso de inundações, capazes de danificar infraestruturas de acesso ao espaço urbano.  Além disso, tais eventos podem afetar a mobilidade quando impactam no aumento da quantidade de viagens (por meio de diferentes modais ou não) necessárias para chegar a um destino, devido as possíveis mudanças de rotas ocasionadas por esses cenários atípicos.  
+
+\subsection{Acessibilidade}
+A acessibilidade pode ser considerada como um atributo do espaço urbano, a qual é diretamente proporcional à abrangência e adequação das infraestruturas de acesso ao espaço urbano. As regiões da cidade têm diferentes padrões de infraestrutura de transporte e deslocamento, portanto, são diferenciadas no aspecto de acessibilidade. Além disso, a acessibilidade atua como instrumento de acesso as oportunidades socioeconômicas da cidade. Observa-se que a acessibilidade não é entendida como um atributo econômico relacionado ao valor das tarifas do transporte, ou, as condições de uso (como o congestionamento viário).
+
+Uma qualidade específica do espaço urbano é a acessibilidade universal, a qual o caracteriza como acessível a \nomenclature{PcD}{Pessoas com Deficiência}{pessoas com deficiência (PcD).} A acessibilidade universal é garantida ao eliminar as barreiras físicas que impedem a participação plena e efetiva das PcD ao espaço urbano.
+
+\subsection{Mobilidade}
+
+A mobilidade, por sua vez, não é entendida como atributo do espaço urbano, mas do indivíduo, o qual está relacionado a sua capacidade de se deslocar pelo território da cidade e a sua respectiva renda (dimensão econômica); ou seja, pessoas ou famílias de maior renda tendem a ter maior número de viagens. Além disso, observa-se que a restrição da mobilidade devido a má qualidade das infraestruturas urbanas é considerada como falta de acessibilidade ao espaço e não como perda de mobilidade do indivíduo.
+
+A condição de mobilidade pode ser calculada pelo indicador conhecido como taxa ou índice de mobilidade, determinado pelo quociente entre o total de viagens realizadas e o total da população residente em uma região. Tal indicador pode ser especializado de acordo o tipo de mobilidade, por exemplo, ao considerar apenas as viagens motorizadas, obtém-se o índice de mobilidade motorizada; e ser caracterizado como crescente ou decrescente de acordo com fatores socioeconômicos.
+
+Além da mobilidade como atributo do indivíduo, existe a mobilidade como atributo da cidade, conhecida como mobilidade urbana. A mobilidade urbana considera um conjunto de fatores de uma aglomeração urbana que tornam a mobilidade mais qualificada e eficiente, tais como: \begin{enumerate*}
+\item Transporte público coletivo;
+\item  transporte de alta capacidade;
+\item  acessibilidade universal nos passeios e edificações;
+\item prioridade ao transporte coletivo no sistema viário;
+\item terminais de transporte intermodais;
+\item rede de transporte coletivo por ônibus (com acessibilidade universal);
+\item rede cicloviária;
+\item bicicletários e paraciclos;
+\item  legibilidade dos sistemas de orientação;
+\item comunicação eficaz com os usuários;
+\item modicidade tarifária;
+\item  logística eficiente no transporte de carga, dentre outros itens.
+\end{enumerate*} 
+
+\subsection{Viagem e modais de transporte}
+
+A mobilidade permite que a pessoas realizem viagens por meio de inúmeros modais de transporte. O conceito de viagem no setor de transportes é definido como o deslocamento de uma pessoa entre dois pontos de interesse (origem e destino), com um motivo definido e por meio de um modal de transporte. A saber, os modais de transporte considerados no \textit{PlanMob/SP 2015} estão enumerados a seguir:
+
+\begin{enumerate*}
+\item A pé.
+\begin{enumerate*}
+\item Independentemente do deslocamento percorrido caso o motivo seja escola ou trabalho;
+\item  superior a 500 metros de deslocamento.
+\end{enumerate*}
+\item Coletivos.
+\begin{enumerate*}
+\item Metrô;
+\item ônibus;
+\item ônibus fretado;
+\item ônibus escolar e lotação;
+\item trem.
+\end{enumerate*}
+\item Individuais.
+\begin{enumerate*}
+\item Automóveis (bicicleta, carro particular, caminhão, moto e táxi).
+\end{enumerate*}
+\end{enumerate*}
 
 \section{Cidades Inteligentes}
 \label{smartCities}
 
-Os problemas abordados por este trabalho, definidos na Seção \ref{problemDef}, estão situados no contexto de Cidades Inteligentes. Embora não haja consenso, nesta dissertação, definimos o conceito de Cidades Inteligentes (SC --- \textit{Smart Cities}) como cidades sustentáveis e socialmente inclusivas \cite{Wang2017}, que utilizam Tecnologias da Informação e Comunicação (TICs) para gerir eficientemente seus respectivos recursos naturais, de energia, transporte, lixo, dentre outros \cite{Ahvenniemi2017}. As SC podem ter viés tecnológico (\nomenclature{TDM}{\textit{Technology Driven Method}}{\textit{TDM --- Technology Driven Method}, top-down}; de fornecimento) ou humano (\nomenclature{HDM}{\textit{Human Driven Method}}{\textit{HDM --- Human Driven Method},} bottom-up, de demanda) \cite{Kummitha2017}. 
+Os problemas abordados por este trabalho, definidos na Seção \ref{problemDef}, estão situados no contexto de Cidades Inteligentes. Embora não haja consenso \cite{Kummitha2017, Ahvenniemi2017, Finger2017, Ang2017, Xiao2017, Wang2017}, nesta dissertação, adotamos o conceito de Cidades Inteligentes (SC --- \textit{Smart Cities}) como cidades sustentáveis e socialmente inclusivas, que utilizam Tecnologias da Informação e Comunicação (TICs) para gerir eficientemente seus respectivos recursos naturais, de energia, transporte, lixo, dentre outros. As SC podem ter viés tecnológico (\nomenclature{TDM}{\textit{Technology Driven Method}}{\textit{TDM --- Technology Driven Method}, top-down}; de fornecimento) ou humano (\nomenclature{HDM}{\textit{Human Driven Method}}{\textit{HDM --- Human Driven Method},} bottom-up, de demanda). 
 
-O aspecto humano das Cidades Inteligentes começou a ser explorado recentemente, após críticas referentes aos poucos indicadores humanos existentes para SC \cite{Ahvenniemi2017} \cite{Finger2017}. A abordagem humana das SC foca questões sociais e qualidade de vida, tais como governança participativa, segurança, cultura, lazer, sustentabilidade, desenvolvimento de capital humano, dentre outras  \cite{Ahvenniemi2017}. Na perspectiva tecnológica de SC, argumenta-se que apenas o uso de TICs seja capaz viabilizar o desenvolvimento de capital humano e de soluções para os problemas da cidade \cite{Kummitha2017}.
+O aspecto humano das Cidades Inteligentes começou a ser explorado recentemente, após críticas referentes aos poucos indicadores humanos existentes para SC. A abordagem humana das SC foca questões sociais e qualidade de vida, tais como governança participativa, segurança, cultura, lazer, sustentabilidade, desenvolvimento de capital humano, dentre outras. Na perspectiva tecnológica de SC, argumenta-se que apenas o uso de TICs seja capaz viabilizar o desenvolvimento de capital humano e de soluções para os problemas da cidade.
 
-Independentemente dos vieses humano e tecnológico, a cidade pode ser conceituada como um complexo e dinâmico sistema sócio-técnico. Ou seja, uma cidade (região metropolitana) é composta por sistemas urbanos, com espaços físicos para a vida cotidiana e com sistemas de infraestrutura (para transporte, energia, água e tratamento de água, moradia, telecomunicações e áreas verdes). Os sistemas urbanos por natureza nunca estão em equilíbrio, possuem subsistemas imprevisíveis \cite{Finger2017}.
+Independentemente dos vieses humano e tecnológico, a cidade pode ser conceituada como um complexo e dinâmico sistema sócio-técnico. Ou seja, uma cidade (região metropolitana) é composta por sistemas urbanos, com espaços físicos para a vida cotidiana e com sistemas de infraestrutura (para transporte, energia, água e tratamento de água, moradia, telecomunicações e áreas verdes). Os sistemas urbanos por natureza nunca estão em equilíbrio, possuem subsistemas imprevisíveis.
 
-Apesar disso, as TICs permeiam os sistemas urbanos e espaços físicos, o que tem sido acentuado com o crescente número de sensores e dispositivos conectados à Internet (\textit{IoT --- Internet of Things}), como os dispositivos móveis que permitem que pessoas enviem dados voluntários e publiquem conteúdo em Redes Sociais sobre os acontecimentos da cidade. Tais fontes heterogêneas geram grandes volumes de dados, utilizados para enriquecer sistemas já existentes e na composição de novos serviços de Cidades Inteligentes \cite{Finger2017} \cite{Ang2017}, como os elucidados na revisão sistemática apresentada no Capítulo \ref{revisao}.
+Apesar disso, as TICs permeiam os sistemas urbanos e espaços físicos, o que tem sido acentuado com o crescente número de sensores e dispositivos conectados à Internet (\textit{IoT --- Internet of Things}), como os dispositivos móveis que permitem que pessoas enviem dados voluntários e publiquem conteúdo em Redes Sociais sobre os acontecimentos da cidade. Tais fontes heterogêneas geram grandes volumes de dados, utilizados para enriquecer sistemas já existentes e na composição de novos serviços de Cidades Inteligentes, como os elucidados na revisão sistemática apresentada no Capítulo \ref{revisao}.
 
-O desenvolvimento de serviços de SC envolve desafios relacionados a conectividade (infraestrutura de rede, interoperabilidade e padrões, consumo de energia e escalabilidade) e aos dados (capacidade e local de armazenamento, extração, tratamento, processamento, análise, integração e agregação dos dados) \cite{Ang2017}, \cite{Xiao2017}. Além disso, a análise de dados pode tanger problemas referentes a correlação e inferência de dados de diferentes domínios, aprendizado de máquina, processamento em tempo real e propostas de novo uso para dados provenientes de infraestruturas já existentes \cite{Ang2017}.
+O desenvolvimento de serviços de SC envolve desafios relacionados a conectividade (infraestrutura de rede, interoperabilidade e padrões, consumo de energia e escalabilidade) e aos dados (capacidade e local de armazenamento, extração, tratamento, processamento, análise, integração e agregação dos dados). Além disso, a análise de dados pode tanger problemas referentes a integração e inferência de dados de diferentes domínios, aprendizado de máquina, processamento em tempo real e propostas de novo uso para dados provenientes de infraestruturas já existentes.
 
 Por fim, a seguir estão elencadas algumas frentes de estudo e de desenvolvimento de serviços de SC que ilustram iniciativas em Cidades Inteligentes:
 
@@ -1079,7 +1135,7 @@ Por fim, a seguir estão elencadas algumas frentes de estudo e de desenvolviment
 \section{Sistemas de Transporte Inteligentes}
 \label{its}
 
-Os dados AVL que usamos neste trabalho têm como fonte de origem os inúmeros módulos instalados na frota de ônibus da SPTrans, esses equipamentos fazem parte de um sistema de localização automática de veículos, tecnologia conhecida como \textit{Automatic Vehicles Location}, definida mais adiante. A tecnologia AVL pertence a um conjunto de tecnologias desenvolvidas para transportes, conhecidas como Sistemas de Transporte Inteligentes (ITS --- \textit{Intelligent Transportation Systems}). Tais tecnologias são uma das mais antigas presentes em Cidades Inteligentes \cite{menouar2017uav}, que têm como fim utilizar TICs para resolver problemas relacionados ao transporte, tais como congestionamento, segurança, eficiência e conservação ambiental \cite{figueiredo2001towards}. 
+Os dados AVL (\textit{Automatic Vehicles Location}) que usamos neste trabalho têm como fonte de origem os inúmeros módulos instalados na frota de ônibus da SPTrans. Esses equipamentos fazem parte de um sistema de localização automática de veículos, tecnologia conhecida como \textit{Automatic Vehicles Location}, definida mais adiante. A tecnologia AVL pertence a um conjunto de tecnologias desenvolvidas para transportes, conhecidas como Sistemas de Transporte Inteligentes (ITS --- \textit{Intelligent Transportation Systems}). Tais tecnologias são uma das mais antigas presentes em Cidades Inteligentes \cite{menouar2017uav}, que têm como fim utilizar TICs para resolver problemas relacionados ao transporte, tais como congestionamento, segurança, eficiência e conservação ambiental \cite{figueiredo2001towards}. 
 
 É importante notar que o termo \textit{intelligent}, contido em ITS, normalmente é utilizado em abordagens de cidades inteligentes orientadas à tecnologia, ou seja, que se preocupam principalmente no uso em si de determinada tecnologia, não necessariamente no uso como consequência de uma demanda dos cidadãos. Nos contextos de cidades inteligentes com um viés humano, utiliza-se o termo \textit{smart}, devido a isso \textit{Smart Transportation / Mobility} é conceitualmente diferente de \textit{Intelligent Transportation Systems} \cite{albino2015smart}. 
 
@@ -1106,89 +1162,31 @@ Na ausência de um problema real apontado pela população, é possível que o s
 \item \textbf{Sistemas Avançados de Controle de Veículos} \nomenclature{AVCS}{\textit{Advanced Vehicles Control Systems}}{(\textbf{AVCS --- \textit{Advanced Vehicles Control Systems}})} --- são sistemas compostos por sensores, computadores e sistemas de controle para auxiliar e alertar motoristas, com o objetivo de melhorar a segurança e reduzir congestionamentos \cite{figueiredo2001towards}.
 \end{enumerate}
 
-As categorias mencionadas anteriormente representam parte da primeira geração de tecnologias em ITS. A próxima geração, ainda em desenvolvimento, tem como foco veículos autônomos e conectados, capazes de trocarem informações entre si em tempo real para melhorar a segurança dos condutores \cite{menouar2017uav}. As categorias dessas tecnologias mais recentes não são listadas por estarem fora do escopo desse trabalho, as da primeira geração de ITS foram listadas para melhor contextualização dos dados AVL utilizados nos experimentos apresentados mais adiante. 
+As categorias mencionadas anteriormente representam parte da primeira geração de tecnologias em ITS. A próxima geração, ainda em desenvolvimento, tem como foco veículos autônomos e conectados, capazes de trocarem informações entre si em tempo real para melhorar a segurança dos condutores \cite{menouar2017uav}. As categorias dessas tecnologias mais recentes não são listadas por estarem fora do escopo desse trabalho. As da primeira geração de ITS foram listadas para melhor contextualização dos dados AVL utilizados nos experimentos apresentados mais adiante. 
 
-\section{Conceitos relacionados ao transporte público}
-\label{mobility}
-
-Esta seção define os conceitos relacionados ao transporte público, de acordo com a perspectiva do Plano de Mobilidade Urbana do Município de São Paulo --- PlanMob/SP 2015\footref{planmob}. Tais conceitos são importantes para entendermos a capacidade de impacto dos eventos de exceção (evidenciada nos experimentos desse trabalho) na acessibilidade, mobilidade, nas viagens e nos diferentes modais de transporte, principalmente em cidades com segregação urbana, como a de São Paulo. 
-
-Por exemplo, os eventos de exceção podem dificultar ou mesmo restringir a acessibilidade (e acessibilidade universal) a determinadas regiões da cidade, como em caso de inundações, capazes de danificar infraestruturas de acesso ao espaço urbano.  Além disso, tais eventos podem afetar a mobilidade quando impactam no aumento da quantidade de viagens (por meio de diferentes modais ou não) necessárias para chegar a um destino, devido as possíveis mudanças de rotas ocasionadas por esses cenários atípicos.  
-
-\subsection{Acessibilidade}
-A acessibilidade pode ser considerada como um atributo do espaço urbano, a qual é diretamente proporcional a abrangência e adequação das infraestruturas de acesso ao espaço urbano. As regiões da cidade têm diferentes padrões de infraestrutura de transporte e deslocamento, portanto, são diferenciadas no aspecto de acessibilidade. Além disso, a acessibilidade atua como instrumento de acesso as oportunidades socioeconômicas da cidade. Observa-se que a acessibilidade não é entendida como um atributo econômico relacionado ao valor das tarifas do transporte, ou, as condições de uso (como o congestionamento viário).
-
-Uma qualidade específica do espaço urbano é a acessibilidade universal, a qual o caracteriza como acessível a \nomenclature{PcD}{Pessoas com Deficiência}{pessoas com deficiência (PcD).} A acessibilidade universal é garantida ao eliminar as barreiras físicas que impedem a participação plena e efetiva das PcD ao espaço urbano.
-
-\subsection{Mobilidade}
-
-A mobilidade pode ser entendida como um atributo do indivíduo, o qual está relacionado a sua capacidade de se deslocar pelo território da cidade e a sua respectiva renda (dimensão econômica); ou seja, pessoas ou famílias de maior renda tendem a ter maior número de viagens. Além disso, observa-se que a restrição da mobilidade devido a má qualidade das infraestruturas urbanas é considerada como falta de acessibilidade ao espaço e não como perda de mobilidade do indivíduo.
-
-A condição de mobilidade pode ser calculada pelo indicador conhecido como taxa ou índice de mobilidade, determinado pelo quociente entre o total de viagens realizadas e o total da população residente em uma região. Tal indicador pode ser especializado de acordo o tipo de mobilidade, por exemplo, ao considerar apenas as viagens motorizadas, obtém-se o índice de mobilidade motorizada; e ser caracterizado como crescente ou decrescente de acordo com fatores socioeconômicos.
-
-Além da mobilidade como atributo do indivíduo, existe a mobilidade como atributo da cidade, conhecida como mobilidade urbana. A mobilidade urbana considera um conjunto de fatores de uma aglomeração urbana que tornam a mobilidade mais qualificada e eficiente, tais como: \begin{enumerate}
-\item Transporte público coletivo;
-\item  transporte de alta capacidade;
-\item  acessibilidade universal nos passeios e edificações;
-\item prioridade ao transporte coletivo no sistema viário;
-\item terminais de transporte intermodais;
-\item rede de transporte coletivo por ônibus (com acessibilidade universal);
-\item rede cicloviária;
-\item bicicletários e paraciclos;
-\item  legibilidade dos sistemas de orientação;
-\item comunicação eficaz com os usuários;
-\item modicidade tarifária;
-\item  logística eficiente no transporte de carga, dentre outros itens.
-\end{enumerate} 
-
-\subsection{Viagem e modais de transporte}
-
-O conceito de viagem no setor de transportes é definido como o deslocamento de uma pessoa entre dois pontos de interesse (origem e destino), com um motivo definido e por meio de um modal de transporte.  A saber, os modais de transporte considerados no \textit{PlanMob/SP 2015} estão enumerados a seguir:
-
-\begin{enumerate}
-\item A pé.
-\begin{enumerate}
-\item Independentemente do deslocamento percorrido caso o motivo seja escola ou trabalho;
-\item  superior a 500 metros de deslocamento.
-\end{enumerate}
-\item Coletivos.
-\begin{enumerate}
-\item Metrô;
-\item ônibus;
-\item ônibus fretado;
-\item ônibus escolar e lotação;
-\item trem.
-\end{enumerate}
-\item Individuais.
-\begin{enumerate}
-\item Automóveis (bicicleta, carro particular, caminhão, moto e táxi).
-\end{enumerate}
-\end{enumerate}
-
-
-\section{Processamento de Linguagem Natural}
+\section{Processamento de Língua Natural}
 \label{nlp}
 
-O processamento automático de \textit{tweets} para identificação de eventos de exceção envolve o Processamento de Linguagem Natural (NLP --- \textit{Natural Language Processing}), que explora como computadores podem ser utilizados para entender e manipular texto ou fala em linguagem natural \cite{liu2017roadmap}, o que envolve conhecimento interdisciplinar principalmente entre as áreas de ciência da computação, linguística e estatística. A seguir são detalhados alguns dos problemas relacionadas a NLP, divididos em baixo e alto nível \cite{nadkarni2011natural}:
+O processamento automático de \textit{tweets} para identificação de eventos de exceção envolve o Processamento de Língua Natural (NLP --- \textit{Natural Language Processing}), que explora como computadores podem ser utilizados para entender e manipular texto ou fala em língua natural \cite{liu2017roadmap}, o que envolve conhecimento interdisciplinar principalmente entre as áreas de ciência da computação, linguística e estatística. A seguir são detalhados alguns dos problemas relacionadas a NLP, divididos em baixo e alto nível:
 
 \begin{enumerate}
-\item Baixo nível (problemas comuns a NLP) \cite{nadkarni2011natural}. 
+\item Baixo nível (problemas comuns a NLP) \cite{nadkarni2011natural, Setiawan2017, roy2017understanding, Korenius, collobert2011natural}. 
 \begin{enumerate}
-\item \textbf{Desambiguação do limite de sentença} \nomenclature{SBD}{\textit{Sentence Boundary Disambiguation}}{(\textbf{SBD --- \textit{Sentence Boundary Disambiguation})}:} processamento para identificação do início e fim de uma sentença \cite{nadkarni2011natural}. 
-\item \textbf{\textit{Tokenização}} (\textit{\textbf{Tokenization}}): processamento realizado para obtenção das palavras  (\textit{tokens}) que compõem uma sentença, inclui a remoção de números, pontuações e caracteres que não pertencem ao alfabeto \cite{Setiawan2017}.
-\item \textbf{Marcação de parte da fala} (\textbf{\textit{part-of-speech tagging}}): processamento para identificação das classificações gramaticais (verbo, sujeito, adjetivo, etc.) das palavras em uma  sentença, considerando seus respectivos significados e contexto no qual estão inseridas \cite{roy2017understanding}.
-\item \textbf{Decomposição morfológica}: processamento para decomposição morfológica de uma determinada palavra para a sua forma inflexionada, usando \textit{lematização} (\textit{lemmatization} --- identificação do lema da palavra) ou  extração da raiz da palavra usando heurísticas para determinar a localização de sua respectiva flexão (processo de \textit{stemming} --- sem tradução direta para o português brasileiro) \cite{Setiawan2017}, \cite{nadkarni2011natural}, \cite{Korenius}.
-\item \textbf{Análise \textit{superficial} da fala} (\textbf{\textit{Shallow parsing} (\textit{chunking})}) --- conceitos sem tradução direta para o português brasileiro): processamento para identificação de segmentos de uma sentença, tais como frases verbais, nominais, etc., com base nos \textit{tokens} que constituem a \textit{part-of-speech} \cite{collobert2011natural}, \cite{nadkarni2011natural}. O termo superficial se refere a análise superficial de como as classes gramaticais são combinada entre si. 
+\item \textbf{Desambiguação do limite de sentença} \nomenclature{SBD}{\textit{Sentence Boundary Disambiguation}}{(\textbf{SBD --- \textit{Sentence Boundary Disambiguation})}:} processamento para identificação do início e fim de uma sentença. 
+\item \textbf{\textit{Tokenização}} (\textit{\textbf{Tokenization}}): processamento realizado para obtenção das palavras  (\textit{tokens}) que compõem uma sentença, inclui a remoção de números, pontuações e caracteres que não pertencem ao alfabeto.
+\item \textbf{Marcação de parte da fala} (\textbf{\textit{part-of-speech tagging}}): processamento para identificação das classificações gramaticais (verbo, sujeito, adjetivo, etc.) das palavras em uma  sentença, considerando seus respectivos significados e contexto no qual estão inseridas.
+\item \textbf{Decomposição morfológica}: processamento para decomposição morfológica de uma determinada palavra para a sua forma inflexionada, usando \textit{lematização} (\textit{lemmatization} --- identificação do lema da palavra) ou  extração da raiz da palavra usando heurísticas para determinar a localização de sua respectiva flexão (processo de \textit{stemming} --- sem tradução direta para o português brasileiro).
+\item \textbf{Análise \textit{superficial} da fala} (\textbf{\textit{Shallow parsing} (\textit{chunking})}) --- conceitos sem tradução direta para o português brasileiro): processamento para identificação de segmentos de uma sentença, tais como frases verbais, nominais, etc., com base nos \textit{tokens} que constituem a \textit{part-of-speech}. O termo superficial se refere a análise superficial de como as classes gramaticais são combinada entre si. 
 \end{enumerate}
 \item Alto nível (aplicação de NLP a problemas específicos, com base nos problema de baixo nível) \cite{nadkarni2011natural}.
 \begin{enumerate}
-\item \textbf{Identificação e recuperação de erros ortográficos e gramaticais}: processamento iterativo para identificação e correção de erros gramaticais e de digitação. \cite{nadkarni2011natural}.
-\item\nomenclature{NER}{\textit{Named Entity Recognition}}\textbf{Reconhecimento de entidade nomeada} {(\textbf{NER --- \textit{Named Entity Recognition})}:} processamento para identificação e categorização de palavras ou frases específicas (entidades) \cite{nadkarni2011natural}.
-\item\nomenclature{WSD}{\textit{Word Sense Disambiguation}} {\textbf{Desambiguação do sentido da palavra} \textbf{(WSD --- \textit{Word Sense Disambiguation})}:} processamento para identificação do sentido de uma palavra numa sentença \cite{nadkarni2011natural}. 
-\item \textbf{Negação e identificação de incerteza}: processamento para inferir se uma entidade está presente ou não numa sentença, assim como quantificar a quantidade de incerteza da inferência realizada \cite{nadkarni2011natural}.
-\item \textbf{\textit{Extração de relacionamentos}}: processamento para identificar relacionamentos entre entidades e eventos \cite{nadkarni2011natural}.
-\item \textbf{Extração de relacionamento / inferência temporal}: processamento para inferência de expressões e relacionamentos temporais \cite{nadkarni2011natural}.
-\item \textbf{Extração de informação}: processamento para extração e transformação para uma forma estruturada de informações específicas a um problema \cite{nadkarni2011natural}.
+\item \textbf{Identificação e recuperação de erros ortográficos e gramaticais}: processamento iterativo para identificação e correção de erros gramaticais e de digitação.
+\item\nomenclature{NER}{\textit{Named Entity Recognition}}\textbf{Reconhecimento de entidade nomeada} {(\textbf{NER --- \textit{Named Entity Recognition})}:} processamento para identificação e categorização de palavras ou frases específicas (entidades).
+\item\nomenclature{WSD}{\textit{Word Sense Disambiguation}} {\textbf{Desambiguação do sentido da palavra} \textbf{(WSD --- \textit{Word Sense Disambiguation})}:} processamento para identificação do sentido de uma palavra numa sentença. 
+\item \textbf{Negação e identificação de incerteza}: processamento para inferir se uma entidade está presente ou não numa sentença, assim como quantificar a quantidade de incerteza da inferência realizada.
+\item \textbf{\textit{Extração de relacionamentos}}: processamento para identificar relacionamentos entre entidades e eventos.
+\item \textbf{Extração de relacionamento / inferência temporal}: processamento para inferência de expressões e relacionamentos temporais.
+\item \textbf{Extração de informação}: processamento para extração e transformação para uma forma estruturada de informações específicas a um problema.
 \end{enumerate}
 \end{enumerate}
 
@@ -1210,7 +1208,7 @@ No experimento abordado no Capítulo~\ref{exp1} usamos uma fase de pré-processa
 
 Sendo assim, na fase de \textit{feature construction}, é realizado um processo para descobrir informações ausentes sobre as relações entre as \textit{features} e para aumentar o espaço de \textit{features}, inferindo ou criando novas \textit{features} com o objetivo de melhorar a precisão dos algoritmos de classificação, entender os dados e obter dados ocultos, etc. \cite{motoda2002feature}. Neste estágio, de um conjunto de \textit{n features} $ A_1, A_2, ..., A_n $, é possível construir \textit{features} adicionais $ A_ {n + 1}, A_ {n + 2}, ... , A_ {n + m} $, por meio de heurísticas, operadores lógicos, algoritmos, etc. \cite{motoda2002feature}.
 
-Por fim, no processo de extração de \textit{features}, usa uma função de mapeamento para extrair um conjunto mínimo de novas \textit{features} com base nas \textit{features} originais e em métricas de desempenho, diferentemente da análise das relações entre \textit{features} na fase de \textit{feature construction} \cite{motoda2002feature}. Assim, com um conjunto inicial de \textit{n features} $ A_1, A_2, ..., A_n $ é possível extrair novas \textit{features} $ B_1, B_2, ..., B_m (m < n), B_i = F_i (A_1, A_2, ..., A_n) $, onde $ F_i $ é a função de mapeamento \cite {motoda2002feature}. Analogamente, no processamento de \textit{tweets} realizado no Capítulo~\ref{exp1}, o espaço de \textit{features} é composto inicialmente por cada palavra extraída do processo de \textit{Tokenization}, o qual posteriormente é reduzido pelas funções responsáveis pelos processos de \textit{stemming} e remoção de \textit{stopwords}.
+Por fim, usa-se no processo de extração de \textit{features} uma função de mapeamento para extrair um conjunto mínimo de novas \textit{features} com base nas \textit{features} originais e em métricas de desempenho, diferentemente da análise das relações entre \textit{features} na fase de \textit{feature construction} \cite{motoda2002feature}. Assim, com um conjunto inicial de \textit{n features} $ A_1, A_2, ..., A_n $ é possível extrair novas \textit{features} $ B_1, B_2, ..., B_m (m < n), B_i = F_i (A_1, A_2, ..., A_n) $, onde $ F_i $ é a função de mapeamento \cite {motoda2002feature}. Analogamente, no processamento de \textit{tweets} realizado no Capítulo~\ref{exp1}, o espaço de \textit{features} é composto inicialmente por cada palavra extraída do processo de \textit{Tokenization}, o qual posteriormente é reduzido pelas funções responsáveis pelos processos de \textit{stemming} e remoção de \textit{stopwords}.
 
 %Finalmente, o objetivo no processo de seleção de recursos é a redução ideal do espaço de \ textit {features} baseado em critérios de seleção, ou seja, para obter \ textit {m features} de um conjunto de \ textit {n features}, onde \ textit {m} $ \ le $ \ textit {n} (que pode ser obtido por algoritmos de busca seguindo os critérios de avaliação). Assim, com um subconjunto menor de \ textit {features}, é possível reduzir a dimensionalidade do espaço \ textit {features}, otimizar algoritmos de Machine Learning e entender melhor seus respectivos resultados, para melhorar a precisão dos algoritmos de classificação. , entre outros benefícios \ cite {motoda2002feature}.
 
@@ -1220,7 +1218,7 @@ Por fim, no processo de extração de \textit{features}, usa uma função de map
 
 O processo de classificação automatizada dos \textit{tweets} em eventos de exceção envolve o treinamento de algoritmos de aprendizado de máquina, além dos processos já mencionados de NLP e \textit{feature extraction}. Os algoritmos de Aprendizado de Máquina podem ser (I) supervisionados, nos quais relações com resultados conhecidos são criadas com base nas características de entrada; (II) não-supervisionado, nos quais são conhecidas as características de entrada, mas não os resultados; (III) semi-supervisionados, nos quais podem ser definidas algumas das relações entre dados de entrada e resultados; (IV) por reforço, nos quais são estabelecidas ações com o foco em maximizar determinado ganho.
 
-No contexto desse trabalho, os dados de entrada são conhecidos e foram classificados manualmente. Devido a isso usamos aprendizado de máquina supervisionado para o desenvolvimento do modelo de classificação, abordagem a qual também possui melhor desempenho para a tarefa de classificação textual \cite{dwivedi2016automatic}.  Com base nisso, realizamos uma revisão não sistemática e, de acordo com a literatura, os seguintes algoritmos são os mais utilizados para aprendizado supervisionado \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}:
+No contexto desse trabalho, os dados de entrada são conhecidos e foram classificados manualmente. Devido a isso usamos aprendizado de máquina supervisionado para o desenvolvimento do modelo de classificação, abordagem a qual também possui melhor desempenho para a tarefa de classificação textual \cite{dwivedi2016automatic}.  Com base nisso, realizamos uma revisão não sistemática e, de acordo com a literatura, os seguintes algoritmos são os mais utilizados para aprendizado supervisionado, relacionado a aplicações para classificação \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}:
 
 \begin{itemize}
 \item Árvore de Decisão (\textit{Decision Tree}).
@@ -1247,62 +1245,62 @@ De acordo com a Figura~\ref{fig:arch_ml}, a aplicação de algoritmos de aprendi
 
 \subsubsection{Árvore de Decisão}
 
-As Árvores de Decisão podem ser utilizadas principalmente para problemas relacionados à classificação de instâncias --- quando as variáveis alvo são categóricas --- e à regressão --- quando as variáveis alvo são contínuas, além disso o algoritmo em si não tem premissas sobre os dados de entrada, ou seja, é não paramétrico. Os nós internos da árvore representam as variáveis de entrada e os nós-folha as classes (variáveis alvo ou de saída) que podem ser utilizadas para classificação. As arestas, por sua vez, determinam as conjunções utilizadas para as ligações entre os diferentes nós, formando assim os caminhos possíveis entre a raiz e os nós-folha \cite{kotsiantis2007supervised}.
+As Árvores de Decisão podem ser utilizadas principalmente para problemas relacionados à classificação de instâncias --- quando as variáveis alvo são categóricas --- e à regressão --- quando as variáveis alvo são contínuas. Além disso o algoritmo em si não tem premissas sobre os dados de entrada, ou seja, é não paramétrico. Os nós internos da árvore representam as variáveis de entrada e os nós-folha as classes (variáveis alvo ou de saída) que podem ser utilizadas para classificação. As arestas, por sua vez, determinam as conjunções utilizadas para as ligações entre os diferentes nós, formando assim os caminhos possíveis entre a raiz e os nós-folha.
 
-O uso de uma árvore de decisão envolve o processo de construção de uma árvore de decisão binária ótima, que é conhecido como um problema NP-completo. Devido a isso, existem inúmeras heurísticas eficientes para construir árvores de decisão quase ótimas, tais como a de ganho de informação, índice de gini, redução de variância, etc \cite{kotsiantis2007supervised}. 
+O uso de uma árvore de decisão envolve o processo de construção de uma árvore de decisão binária ótima, que é conhecido como um problema NP-completo. Devido a isso, existem inúmeras heurísticas eficientes para construir árvores de decisão quase ótimas, tais como a de ganho de informação, índice de gini, redução de variância, etc. 
 
 Algumas das vantagens da árvore de decisão estão relacionadas a fácil interpretação do aprendizado (\textit{white box}), devido ao fato de ser possível visualizar e interpretar a árvore de decisão e bom desempenho com grandes volumes de dados; dentre as desvantagens, estão o alto custo computacional para grandes quantidades de variáveis e possibilidade de sobreajuste quando a árvore atinge sua altura máxima \cite{kotsiantis2007supervised, dwivedi2016automatic}.
 
 \subsubsection{Floresta Aleatória}
 
-Florestas aleatórias ou florestas de decisão aleatórias são um método de aprendizado conjunto (\textit{ensemble}) utilizados principalmente  para classificação e regressão. O conceito geral de classificação em conjunto é o de combinar classificadores fracos, por meio de árvores de decisão, para formar um classificador com melhores métricas de desempenho. Duas abordagens comuns para a classificação em conjunto são a de \textit{boosting} e \textit{bagging}, que podem ser implementadas como árvores impulsionadas (\textit{Boosted Trees}) e florestas aleatórias (RF --- \textit{Random Forests}), respectivamente \cite{mcdonald2014steering}.
+Florestas aleatórias ou florestas de decisão aleatórias são um método de aprendizado conjunto (\textit{ensemble}) utilizados principalmente  para classificação e regressão. O conceito geral de classificação em conjunto é o de combinar classificadores fracos, por meio de árvores de decisão, para formar um classificador com melhores métricas de desempenho. Duas abordagens comuns para a classificação em conjunto são a de \textit{boosting} e \textit{bagging}, que podem ser implementadas como árvores impulsionadas (\textit{Boosted Trees}) e florestas aleatórias (RF --- \textit{Random Forests}), respectivamente.
 
-O processo que utiliza \textit{boosting} ajusta (\textit{fit}) o algoritmo a todos os dados de entrada, em seguida encontra o conjunto de pontos classificados erroneamente e ajusta outro algoritmo (escolhido por meio de voto ponderado) aos pontos classificados incorretamente. Tal processo é repetido recursivamente com conjuntos de dados menores até que o erro fique abaixo de um determinado limiar.  Por sua vez, o processo que utiliza \textit{bagging} ajusta um algoritmo selecionando aleatoriamente do conjunto de dados original vários conjuntos de instâncias para treinamento \textit{com substituição} (um elemento pode aparecer várias vezes na amostra), ajustando em seguida um algoritmo simples (escolhidos por meio de votação majoritária) a cada uma dessas amostras \cite{mcdonald2014steering, dogru2018traffic}.
+O processo que utiliza \textit{boosting} ajusta (\textit{fit}) o algoritmo a todos os dados de entrada, em seguida encontra o conjunto de pontos classificados erroneamente e ajusta outro algoritmo (escolhido por meio de voto ponderado) aos pontos classificados incorretamente. Tal processo é repetido recursivamente com conjuntos de dados menores até que o erro fique abaixo de um determinado limiar.  Por sua vez, o processo que utiliza \textit{bagging} ajusta um algoritmo selecionando aleatoriamente do conjunto de dados original vários conjuntos de instâncias para treinamento \textit{com substituição} (um elemento pode aparecer várias vezes na amostra), ajustando em seguida um algoritmo simples (escolhidos por meio de votação majoritária) a cada uma dessas amostras.
 
-Em resumo, o algoritmo de florestas aleatórias constrói um conjunto de árvores de decisão e as une para obter predições mais precisas e estáveis. Diferentemente das árvores de decisão, o algoritmo RF previne sobreajuste por meio da criação aleatória de conjuntos de dados menores, o que implica também em árvores de menor altura. Há também a possibilidade de redução de desempenho, dependendo da quantidade de árvores criadas durante o processo de aprendizado \cite{dogru2018traffic}.
+Em resumo, o algoritmo de florestas aleatórias constrói um conjunto de árvores de decisão e as une para obter predições mais precisas e estáveis. Diferentemente das árvores de decisão, o algoritmo RF previne sobreajuste por meio da criação aleatória de conjuntos de dados menores, o que implica também em árvores de menor altura. Há também a possibilidade de redução de desempenho, dependendo da quantidade de árvores criadas durante o processo de aprendizado \cite{mcdonald2014steering, dogru2018traffic}.
 
 \subsubsection{K-ésimo Vizinho mais Próximo} 
 
-O algoritmo \textit{K-ésimo Vizinho mais Próximo} (k-NN ---  \textit{k-Nearest Neighbors}) é uma abordagem para classificação e regressão não-paramétrica, na  qual o processo de aprendizado é caracterizado por encontrar um grupo de $k$ amostras que estão mais próximas de amostras desconhecidas, por exemplo, com base em funções de distância. A partir dessas $k$ amostras, as classes das amostras desconhecidas são determinadas com base nas classes mais próximas de um conjunto de pontos previamente rotulados \cite{singh2016review, thanh2018comparison}. 
+O algoritmo \textit{K-ésimo Vizinho mais Próximo} (k-NN ---  \textit{k-Nearest Neighbors}) é uma abordagem para classificação e regressão não-paramétrica, na  qual o processo de aprendizado é caracterizado por encontrar um grupo de $k$ amostras que estão mais próximas de amostras desconhecidas, por exemplo, com base em funções de distância. A partir dessas $k$ amostras, as classes das amostras desconhecidas são determinadas com base nas classes mais próximas de um conjunto de pontos previamente rotulados. 
 
-Devido a característica de determinar os rótulos desconhecidos com base nos $k$ mais próximos, o k-NN é considerado um método de aprendizado ``preguiçoso'' (\textit{lazy learning}), com alto custo computacional durante a fase de classificação  e baixo na fase de treinamento. Além disso, a eficiência do algoritmo depende da escolha de um bom valor para o $k$, é afetado por ruídos, variáveis irrelevantes e pelo tamanho do conjunto de dados que precisa ser revisitado \cite{singh2016review, kibanov2018adaptive}. 
+Devido a característica de determinar os rótulos desconhecidos com base nos $k$ mais próximos, o k-NN é considerado um método de aprendizado ``preguiçoso'' (\textit{lazy learning}), com alto custo computacional durante a fase de classificação  e baixo na fase de treinamento. Além disso, a eficiência do algoritmo depende da escolha de um bom valor para o $k$, é afetado por ruídos, variáveis irrelevantes e pelo tamanho do conjunto de dados que precisa ser revisitado \cite{singh2016review, kibanov2018adaptive, thanh2018comparison}. 
 
 \subsubsection{Máquina de Vetores de Suporte}
 
-O algoritmo \textit{Máquina de Vetores de Suporte} (SVM --- \textit{Support Vector Machines}) é uma abordagem de aprendizado para tarefas de classificação e regressão, que funciona em torno do conceito de ``margem'' --- de cada lado de um hiperplano responsável por separar duas classes de dados. Dessa forma, o algoritmo tem como objetivo maximizar a margem entre o hiperplano de separação e as instâncias de ambos os lados \cite{kotsiantis2006machine, singh2016review}. 
+O algoritmo \textit{Máquina de Vetores de Suporte} (SVM --- \textit{Support Vector Machines}) é uma abordagem de aprendizado para tarefas de classificação e regressão, que funciona em torno do conceito de ``margem'' --- de cada lado de um hiperplano responsável por separar duas classes de dados. Dessa forma, o algoritmo tem como objetivo maximizar a margem entre o hiperplano de separação e as instâncias de ambos os lados. 
 
-Ao contrário do k-NN, a precisão e o desempenho do SVM são independentes do tamanho do conjunto de dados, mas dependentes do número de ciclos de treinamento. Sua complexidade não é afetada pelo tamanho do conjunto de dados de treinamento (o número de vetores de suporte selecionados pelo SVM é geralmente pequeno) \cite{kotsiantis2006machine, singh2016review}.
+Ao contrário do k-NN, a precisão e o desempenho do SVM são independentes do tamanho do conjunto de dados, mas dependentes do número de ciclos de treinamento. Sua complexidade não é afetada pelo tamanho do conjunto de dados de treinamento (o número de vetores de suporte selecionados pelo SVM é geralmente pequeno).
 
-O SVM é muito utilizado em problemas de classificação de texto, que normalmente possuem altos espaços dimensionais e tem boa capacidade de generalização. No entanto, a velocidade de treinamento é menor em relação ao k-NNN e seu desempenho depende dos hiperparâmetros escolhidos \cite{kotsiantis2006machine, singh2016review}.
+O SVM é muito utilizado em problemas de classificação de texto, que normalmente possuem altos espaços dimensionais e tem boa capacidade de generalização. No entanto, a velocidade de treinamento é menor em relação ao k-NNN e seu desempenho depende dos hiperparâmetros escolhidos.
 
-Dependendo do conjunto de dados, o SVM pode não conseguir localizar um hiperplano de separação devido a instâncias atribuídas incorretamente. O problema pode ser resolvido usando uma margem flexível que aceita algumas classificações erradas das instâncias de treinamento \cite{kotsiantis2006machine}.
+Dependendo do conjunto de dados, o SVM pode não conseguir localizar um hiperplano de separação devido a instâncias atribuídas incorretamente. O problema pode ser resolvido usando uma margem flexível que aceita algumas classificações erradas das instâncias de treinamento \cite{kotsiantis2006machine, singh2016review}.
 
 \subsubsection{Naive Bayes}
 
 Uma Rede Bayesiana (\nomenclature{BN}{\textit{Bayesian Network}}{BN --- \textit{Bayesian Network}}) é um modelo gráfico para relações de probabilidade entre um conjunto de variáveis. A estrutura de rede bayesiana $S$ é um grafo acíclico direcionado (\nomenclature{DAG}{\textit{Directed Acyclic Graph}}{DAG --- \textit{Directed Acyclic Graph}}) e os nós em $S$ possuem uma correspondência um-para-um com o conjunto de variáveis $X$. As arestas, por sua vez, representam as influências casuais entre as variáveis,
- quando não existem arestas entre dois nós, não significa que eles sejam completamente independentes, pois podem ser conectados através de outros nós. Tais nós podem, no entanto, tornar-se dependentes ou independentes, dependendo da evidência que é definida em outros nós. Além disso, um nó é condicionalmente independente de seus não descendentes \cite{kotsiantis2006machine}.
+ quando não existem arestas entre dois nós, não significa que eles sejam completamente independentes, pois podem ser conectados através de outros nós. Tais nós podem, no entanto, tornar-se dependentes ou independentes, dependendo da evidência que é definida em outros nós. Além disso, um nó é condicionalmente independente de seus não descendentes.
  
-Redes Naive Bayesianas (\nomenclature{NB}{\textit{Naive Bayesian}}{NB --- \textit{Naive Bayesian}}) são redes bayesianas muito simples que são compostas de DAGs com apenas um pai (representando o nó não observado) e vários filhos (correspondentes a nós observados) com uma forte suposição de independência entre os nós descendentes no contexto de seu pai \cite{kotsiantis2006machine}.  A suposição de independência entre nós descendentes comumente está errada e, por essa razão, os classificadores bayesianos geralmente são menos precisos do que outros algoritmos de aprendizado mais sofisticados (como o de Redes Neurais). Apesar disso, há evidências de que em determinados cenários a abordagem NB possui acurácia melhor do que algoritmos do estado da arte \cite{kotsiantis2006machine}.
+Redes Naive Bayesianas (\nomenclature{NB}{\textit{Naive Bayesian}}{NB --- \textit{Naive Bayesian}}) são redes bayesianas muito simples que são compostas de DAGs com apenas um pai (representando o nó não observado) e vários filhos (correspondentes a nós observados) com uma forte suposição de independência entre os nós descendentes no contexto de seu pai \cite{kotsiantis2006machine}.  A suposição de independência entre nós descendentes comumente está errada e, por essa razão, os classificadores bayesianos geralmente são menos precisos do que outros algoritmos de aprendizado mais sofisticados (como o de Redes Neurais). Apesar disso, há evidências de que em determinados cenários a abordagem NB possui acurácia melhor do que algoritmos do estado da arte.
 
 A principal vantagem do NB é seu curto tempo computacional para treinamento, além disso, ao contrário das Redes Neurais ou SVM, não há hiperparâmetros a serem definidos, o que o torna mais simples de ser aplicado a uma grande variedade de tarefas. Apesar disso, o NB não é aplicável quando há necessidade de se considerar interações entre as variáveis \cite{kotsiantis2006machine, singh2016review}.
 
 \subsubsection{Redes Neurais}
 
-O aprendizado por meio de Redes de Neurais depende de três aspectos fundamentais: dados de entrada e função de ativação do neurônio; arquitetura da rede e o peso de cada conexão. Dado que os dois primeiros aspectos são fixos, o comportamento da rede é definido pelos valores  dos pesos. A função de ativação mais simples é popularmente conhecida como perceptron \cite{kotsiantis2006machine}.
+O aprendizado por meio de Redes de Neurais depende de três aspectos fundamentais: dados de entrada e função de ativação do neurônio; arquitetura da rede e o peso de cada conexão. Dado que os dois primeiros aspectos são fixos, o comportamento da rede é definido pelos valores  dos pesos. A função de ativação mais simples é popularmente conhecida como perceptron.
 
-O conceito de perceptron mapeia um conjunto de entrada de $x_1$ a $x_n$ para um valor de saída $f(x)$ (0 ou 1 de acordo com um limiar determinado), considerando $w_1$ a $w_n$ como pesos; abordagem a qual pode ser usada para aprender um aproximador de função não linear para classificação ou regressão. Perceptrons somente podem classificar conjuntos de instâncias linearmente separáveis, ou seja, se uma linha reta ou plano puder ser desenhado para separar as instâncias de entrada em suas categorias corretas, as instâncias de entrada serão linearmente separáveis e o perceptron encontrará a solução. Se as instâncias não forem linearmente separáveis, o aprendizado nunca chegará a um ponto em que todas as instâncias sejam classificadas corretamente, nesse contexto, as Redes Neurais Artificiais \nomenclature{ANN}{\textit{Artificial Neural Networks}}(ANN --- \textit{Artificial Neural Networks}) foram criadas para tentar resolver esse problema \cite{kotsiantis2006machine, singh2016review}. 
+O conceito de perceptron mapeia um conjunto de entrada de $x_1$ a $x_n$ para um valor de saída $f(x)$ (0 ou 1 de acordo com um limiar determinado), considerando $w_1$ a $w_n$ como pesos; abordagem a qual pode ser usada para aprender um aproximador de função não linear para classificação ou regressão. Perceptrons somente podem classificar conjuntos de instâncias linearmente separáveis, ou seja, se uma linha reta ou plano puder ser desenhado para separar as instâncias de entrada em suas categorias corretas, as instâncias de entrada serão linearmente separáveis e o perceptron encontrará a solução. Se as instâncias não forem linearmente separáveis, o aprendizado nunca chegará a um ponto em que todas as instâncias sejam classificadas corretamente, nesse contexto, as Redes Neurais Artificiais \nomenclature{ANN}{\textit{Artificial Neural Networks}}(ANN --- \textit{Artificial Neural Networks}) foram criadas para tentar resolver esse problema. 
 
-Dessa forma, os perceptrons podem ser utilizados para formar uma rede neural com multicamadas \nomenclature{MLP}{\textit{Multi-layer Perceptron}}(MLP --- \textit{Multi-layer Perceptron}), que consiste em um grande número de unidades (neurônios) unidos em um padrão de conexões. Unidades nessa rede são geralmente segregadas em três classes: unidades de entrada, que recebem informações a serem processadas; unidades de saída, onde os resultados do processamento são encontrados; e unidades centrais conhecidas como unidades ocultas. \textit{Feed-forward} ANN, como a MLP, permitem que os sinais percorram somente um caminho, da entrada à saída  \cite{kotsiantis2006machine}.
+Dessa forma, os perceptrons podem ser utilizados para formar uma rede neural com multicamadas \nomenclature{MLP}{\textit{Multi-layer Perceptron}}(MLP --- \textit{Multi-layer Perceptron}), que consiste em um grande número de unidades (neurônios) unidos em um padrão de conexões. Unidades nessa rede são geralmente segregadas em três classes: unidades de entrada, que recebem informações a serem processadas; unidades de saída, onde os resultados do processamento são encontrados; e unidades centrais conhecidas como unidades ocultas. \textit{Feed-forward} ANN, como a MLP, permitem que os sinais percorram somente um caminho, da entrada à saída.
 
-Geralmente, determinar corretamente o tamanho da camada oculta é um problema porque uma subestimativa do número de neurônios pode levar a capacidades de aproximação e generalização ruins, enquanto nós excessivos podem resultar em superajuste e eventualmente tornar a busca pelo ótimo global mais difícil  \cite{kotsiantis2006machine}.
+Geralmente, determinar corretamente o tamanho da camada oculta é um problema porque uma subestimativa do número de neurônios pode levar a capacidades de aproximação e generalização ruins, enquanto nós excessivos podem resultar em superajuste e eventualmente tornar a busca pelo ótimo global mais difícil.
 
 A ANN depende de três aspectos fundamentais, funções de entrada e ativação da unidade, arquitetura de rede e o peso de cada conexão de entrada. Dentre os inúmeros  algoritmos com os quais uma rede pode ser treinada, o algoritmo de aprendizado mais conhecido e amplamente utilizado para estimar os valores dos pesos é o algoritmo \nomenclature{BP}{\textit{Back Propagation }}(BP --- \textit{Back Propagation}). No entanto, o BP tende a ser mais lento de treinar do que outros, o que pode ser problemático em redes muito grandes e com uma alta quantidade de dados. Além disso, outra desvantagem das ANN é o fato de ser difícil entender o aprendizado obtido pela rede \cite{kotsiantis2006machine, singh2016review}.
 
 \subsubsection{Regressão Logística}
 
-A Regressão Logística  \nomenclature{LR}{\textit{Logistic Regression}}(LR --- \textit{Logistic Regression}) é um método estatístico no qual uma curva logística é ajustada ao conjunto de dados, com o objetivo de predizer presença ou ausência de determinada característica. A LR é semelhante a um modelo de regressão linear, mas é mais adequada para modelos em que a variável dependente é dicotômica, apesar disso, essa metodologia também pode ser utilizada para predições de múltiplas classes \cite{schein2007active, kurt2008comparing, singh2016review}. 
+A Regressão Logística  \nomenclature{LR}{\textit{Logistic Regression}}(LR --- \textit{Logistic Regression}) é um método estatístico no qual uma curva logística é ajustada ao conjunto de dados, com o objetivo de predizer presença ou ausência de determinada característica. A LR é semelhante a um modelo de regressão linear, mas é mais adequada para modelos em que a variável dependente é dicotômica, apesar disso, essa metodologia também pode ser utilizada para predições de múltiplas classes. 
 
-Como a LR retorna a probabilidade de uma variável pertencer a determinada classe, os limites de classificação podem ser facilmente ajustados, no entanto, requer um tamanho de amostra grande para alcançar resultados estáveis, além de não lidar adequadamente com problemas não-lineares \cite{khemphila2010comparing, singh2016review}.
+Como a LR retorna a probabilidade de uma variável pertencer a determinada classe, os limites de classificação podem ser facilmente ajustados, no entanto, requer um tamanho de amostra grande para alcançar resultados estáveis, além de não lidar adequadamente com problemas não-lineares \cite{schein2007active, khemphila2010comparing, singh2016review}.
 
 \subsection{Validação dos modelos de aprendizado supervisionado}
 \label{modelValidation}
@@ -1326,20 +1324,20 @@ TPR = \frac{VP}{P} = \frac{VP}{VP + FN}
 
 \begin{equation}
 \label{f1}
-f_1 score = \frac{PPV * TPR}{PPV + TPR} = \frac{2VP}{2VP + FP + FN}
+f_1 score = \frac{2PPV * TPR}{PPV + TPR} = \frac{2VP}{2VP + FP + FN}
 \end{equation}
 
 \section{Term frequency–Inverse document frequency}
 
-Além dos processos de NLP para redução do espaço de \textit{features} mencionados anteriormente, podemos utilizar abordagens, como a TF-IDF, que levam em consideração a frequência dos termos (\textit{tokens}) existentes em um conjunto de documentos. TF-IDF é um algoritmo de ponderação de variáveis que combina as ponderações \emph{frequência do termo} \nomenclature{TF}{\textit{Term Frequency}}{(TF --- \textit{Term Frequency})} e \emph{inverso da frequência nos documentos} (\nomenclature{IDF}{Inverse Document Frequency}{IDF --- \textit{Inverse Document Frequency}}) para calcular os pesos dos termos linguísticos (variáveis) em um determinado corpus. Em outras palavras, o peso da variável é proporcional a frequência com a qual aparece nos documentos, e inversamente proporcional a quantidade de documentos que contém o termo linguístico em questão \cite{wu2018improved, yahav2018comments}. 
+Além dos processos de NLP para redução do espaço de \textit{features} mencionados anteriormente, podemos utilizar abordagens, como a TF-IDF, que levam em consideração a frequência dos termos (\textit{tokens}) existentes em um conjunto de documentos. TF-IDF é um algoritmo de ponderação de variáveis que combina as ponderações \emph{frequência do termo} \nomenclature{TF}{\textit{Term Frequency}}{(TF --- \textit{Term Frequency})} e \emph{inverso da frequência nos documentos} (\nomenclature{IDF}{Inverse Document Frequency}{IDF --- \textit{Inverse Document Frequency}}) para calcular os pesos dos termos linguísticos (variáveis) em um determinado corpus. Em outras palavras, o peso da variável é proporcional à frequência com a qual aparece nos documentos, e inversamente proporcional  quantidade de documentos que contém o termo linguístico em questão. 
 
-Dentre as variações de implementação da ponderação $W_{t,d}$ (TF-IDF) existentes, a abordagem tradicional considera uma coleção de termos $t \in T$ que aparecem em um conjunto de N documentos $d \in D$, posto isso, defini-se como o produto entre $tf_{i,j}$ e $idf_i$ --- onde $n_{i,j}$ é a frequência do termo $t_i$ no documento $d_j$, $\sum_k n_{k,j}$ o somatório da frequência de todos os termos do documento $d_j$ e $n$ o número de documentos onde $t_i$ aparece ($n + 1$, caso $n = 0$) --- conforme a s seguinte equações \cite{wu2018improved}:
+Dentre as variações de implementação da ponderação $W_{t,d}$ existentes, a abordagem tradicional considera uma coleção de termos $t \in T$ que aparecem em um conjunto de N documentos $d \in D$, posto isso, define-se como o produto entre $tf_{i,j}$ e $idf_i$ --- onde $n_{i,j}$ é a frequência do termo $t_i$ no documento $d_j$, $\sum_k n_{k,j}$ o somatório da frequência de todos os termos do documento $d_j$ e $n_i$ o número de documentos onde $t_i$ aparece ($n + 1$, caso $n = 0$) --- conforme a s seguinte equações \cite{wu2018improved, yahav2018comments}:
 
 \begin{equation}
 tf_{i,j} = \frac{n_{i,j}}{\sum_k n_{k,j}}
 \end{equation}
 \begin{equation}
-idf_i = \log \frac{N}{n + 1}
+idf_i = \log \frac{N}{n_i + 1}
 \end{equation}
 \begin{equation}
 W_{t,d} = tf_{t,d} * idf_t
@@ -1350,7 +1348,7 @@ No contexto deste trabalho, entendemos documentos como as classes dos eventos de
 \section{Algoritmo \textit{Apriori}}
 \label{apriori}
 
-O algoritmo \textit{Apriori}\footnote{Utilizamos para este trabalho a implementação do algoritmo \textit{Apriori} feita pela biblioteca \textit{Apyori}  \url{https://pypi.org/project/apyori}}. Acesso em 08 de janeiro de 2019} normalmente é utilizado em mineração de texto para identificar relações entre conjuntos de itens e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como a de \textit{suporte} (\textit{support}) --- indicador da frequência de determinados registros no conjunto de dados; \textit{confiança} (\textit{confidence}) --- frequência com que determinadas regras de associações entre registros são encontradas como verdadeiras e \textit{lift} --- probabilidade de ocorrência de um consequente B no conjunto de dados ($lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros). É importante observar que a notação $A \rightarrow B$ se refere a antecedente e consequente, respectivamente. Todas as métricas mencionadas anteriormente são detalhadas nas equações~\ref{eqSupportA},~\ref{eqSupportB},~\ref{eqSupports},~\ref{eqConfidence} e~\ref{eqLift} a seguir  \cite{park2018apriori}:
+O algoritmo \textit{Apriori}\footnote{Utilizamos para este trabalho a implementação do algoritmo \textit{Apriori} feita pela biblioteca \textit{Apyori} \url{https://pypi.org/project/apyori}. Acesso em 08 de janeiro de 2019} normalmente é utilizado em mineração de texto para identificar relações entre \textit{conjuntos de itens} ($s_i$) e padrões, por meio de comparações de conjuntos de itens frequentes, para assim determinar regras de associação com base em métricas, tais como a de \textit{suporte} (\textit{support}) --- indicador da frequência de determinados registros no conjunto de dados; \textit{confiança} (\textit{confidence}) --- frequência com que determinadas regras de associações entre registros são encontradas como verdadeiras e \textit{lift} --- probabilidade de ocorrência de um consequente B no conjunto de dados ($lift > 1$ indica que a regra de associação em questão pode ser utilizada para predição de um consequente B em conjuntos de dados futuros). É importante observar que a notação $A \rightarrow B$ se refere a antecedente e consequente, respectivamente, e $n$ ao total de conjuntos de itens existentes. Todas as métricas mencionadas anteriormente são detalhadas nas equações~\ref{eqSupportA},~\ref{eqSupportB},~\ref{eqSupports},~\ref{eqConfidence} e~\ref{eqLift} a seguir  \cite{park2018apriori}:
 
 \begin{equation}
 \label{eqSupportA}
@@ -1438,34 +1436,34 @@ O propósito da QP2 é identificar se \textit{tweets} têm sido utilizados para 
 
 Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP2): \textit{tweets} têm sido utilizados principalmente para questões relacionadas ao congestionamento, não tendo como foco o transporte público.\newline
 
-\item Quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}?
-\label{item:3} \newline \newline
-O propósito da QP3 é identificar quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}, principalmente no que se refere a validação do processo de aprendizado. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama de como validar tarefas de aprendizado que utilizam dados oriundos de \textit{tweets}. \newline
+%\item Quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}?
+%\label{item:3} \newline \newline
+%O propósito da QP3 é identificar quais as técnicas estatísticas utilizadas no processamento de \textit{tweets}, principalmente no que se refere a validação do processo de aprendizado. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama de como validar tarefas de aprendizado que utilizam dados oriundos de \textit{tweets}. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): \textit{${F_1}$ score} é a principal técnica utilizada para validação de classificação binária.\newline
+%Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): \textit{${F_1}$ score} é a principal técnica utilizada para validação de classificação binária.\newline
 
 \item Quais os paradigmas de processamento têm sido utilizados ao lidar com \textit{tweets}?
 \label{item:4} \newline \newline
-O propósito da QP4 é identificar os paradigmas utilizados para processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das técnicas de processamento utilizadas na análise de \textit{tweets}. \newline
+O propósito da QP3 é identificar os paradigmas utilizados para processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das técnicas de processamento utilizadas na análise de \textit{tweets}. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP4): o principal paradigma utilizado tem sido o processamento de \textit{tweets} em lote (\textit{batch} --- \textit{offline}), após um processo de armazenamento. Poucos são os estudos que constroem uma plataforma para processamento de dados em tempo real. \newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP3): o principal paradigma utilizado tem sido o processamento de \textit{tweets} em lote (\textit{batch} --- \textit{offline}), após um processo de armazenamento. Poucos são os estudos que constroem uma plataforma para processamento de dados em tempo real. \newline
 
 \item Quais são os eventos de exceção relacionados ao transporte público?
 \label{item:5} \newline \newline
-O propósito da QP5 é identificar os eventos de exceção relacionados ao transporte público. A resposta a essa questão de pesquisa ajudará especialistas no levantamento de eventos de exceção relacionados ao transporte público, os quais podem ser utilizados em algoritmos de classificação.\newline
+O propósito da QP4 é identificar os eventos de exceção relacionados ao transporte público. A resposta a essa questão de pesquisa ajudará especialistas no levantamento de eventos de exceção relacionados ao transporte público, os quais podem ser utilizados em algoritmos de classificação.\newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP5): há poucos ou nenhum estudo que, ao tratar de problemáticas relacionadas ao transporte público, realizam um levantamento dos eventos de exceção desse contexto.\newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP4): há poucos ou nenhum estudo que, ao tratar de problemáticas relacionadas ao transporte público, realizam um levantamento dos eventos de exceção desse contexto.\newline
 
 \item Quais as técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}?
 \label{item:6} \newline \newline
-O propósito da QP6 é identificar as técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das principais técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}. \newline
+O propósito da QP5 é identificar as técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}. A resposta a essa questão de pesquisa ajudará especialistas a terem um panorama das principais técnicas de aprendizado de máquina utilizadas no processamento de \textit{tweets}. \newline
 
-Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP6): a técnica \textit{Support Vector Machine} tem sido utilizada na maioria dos estudos que aplicam aos \textit{tweets} algum algoritmo de aprendizado de máquina.\newline
+Uma análise preliminar dos estudos primários permite elaborar a seguinte Hipótese de Pesquisa (HP5): a técnica \textit{Support Vector Machine} tem sido utilizada na maioria dos estudos que aplicam aos \textit{tweets} algum algoritmo de aprendizado de máquina.\newline
 \end{enumerate}
 
 \section{Coleta de dados}
 \label{coleta}
-Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em 29 de outubro de 2017.}. Constam na Tabela~\ref{tab:tableNumberOfArticles} as bases pesquisadas no ano de 2017, quantidades de artigos coletados, descartados no processo de filtragem (Figura~\ref{fig:filter}, descrito na Seção~\ref{avaliacao}) e selecionados. Com base na QP1, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline
+Nesta Revisão Sistemática, os artigos foram coletados em quatro fontes de pesquisa, por meio da plataforma de indexação de trabalhos acadêmicos \textit{Google Scholar}\footnote{\url{https://scholar.google.com}. Acesso em 29 de outubro de 2017.}. Constam na Tabela~\ref{tab:tableNumberOfArticles} as bases pesquisadas no ano de 2017, quantidades de artigos coletados, descartados no processo de filtragem (Figura~\ref{fig:filter}, descrito na Seção~\ref{avaliacao}) e selecionados. Com base nas questões de pesquisa, a seguinte \textit{string} de busca foi construída; restrita aos trabalhos publicados entre 2011 e 2016, escritos no idioma Inglês (devido ao fato das publicações relevantes, na área de Computação, estarem disponíveis nesse idioma): \newline
 
 \textbf{\textit{String} de busca:} twitter urban planning city (analytics OR patterns OR tweets OR social OR media) AND (public transport). \newline
 
@@ -1514,7 +1512,7 @@ Visando selecionar os artigos relevantes para esta Revisão Sistemática, os seg
 \item Trabalhos que estão fora do escopo da questão de pesquisa.
 \end{itemize}
 
-O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados. Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados. Sendo assim, a Figura~\ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gerada com a biblioteca \textit{wordcloud} \cite{wordcloud}) sintetizando as palavras chaves dos estudos primários selecionados; e a Figura~\ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016, assim como sua respectiva porcentagem, ilustrada na Figura~\ref{fig:porcentagem}.
+O processo de condução da Revisão Sistemática foi realizado utilizando os critérios acima mencionados. Após o processo de condução, alguns dos metadados dos artigos selecionados foram sintetizados. Sendo assim, a Figura~\ref{fig:w_cloud} apresenta uma nuvem de \textit{tags} (gerada com a biblioteca \textit{wordcloud} \cite{wordcloud}) sintetizando as palavras chaves dos estudos primários selecionados; e a Figura~\ref{fig:qtd} a quantidade de artigos publicados por ano, sendo possível analisar por meio dela a distribuição dos artigos entre 2011 e 2016.
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -1524,13 +1522,13 @@ O processo de condução da Revisão Sistemática foi realizado utilizando os cr
   \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
-\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
-	\centering
- 	  \caption{Porcentagem dos artigos publicados por ano}
-		\includegraphics[width=0.8\linewidth]{images/g2.png}
-	\label{fig:porcentagem}
-  \source{Felipe Cordeiro Alves Dias, 2019}
-\end{figure}
+%\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+%	\centering
+% 	  \caption{Porcentagem dos artigos publicados por ano}
+%		\includegraphics[width=0.8\linewidth]{images/g2.png}
+%	\label{fig:porcentagem}
+%  \source{Felipe Cordeiro Alves Dias, 2019}
+%\end{figure}
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -1611,34 +1609,34 @@ Em \cite{Gal-Tzur2014}, por sua vez, utilizaram uma abordagem hierárquica para 
 
 Outro estudo que contribui com o planejamento do transporte público, é o realizado em (\citeauthor{Gkiotsalitis2015}, \citeyear{Gkiotsalitis2015}, \citeyear{Gkiotsalitis2016}), no qual \textit{tweets} foram processados para identificar a disposição dos usuários para realizar viagens relacionadas ao lazer (pontos de interesse), sugerindo a eles atividades com menor tempo de percurso e probabilidade de atrasos. Além do tempo de percurso, outro ponto relevante considerado foi o de bom nível de acesso ao transporte público, o qual quando existente impacta positivamente na felicidade das pessoas e se correlaciona com sentimentos positivos, segundo a análise de sentimentos realizada por \cite{Guo2016}, utilizando \textit{tweets} publicados na Grande Londres.
 
-\subsection{Técnicas estatísticas utilizadas no processamento de \textit{tweets} (QP3)}
-Nesta seção, são apresentadas as técnicas estatísticas utilizadas pelos estudos primários, no processamento de \textit{tweets}, enumeradas a seguir:
-
-\begin{enumerate}
-\item \textbf{Análise de métricas relacionadas a desempenho} (erro de reconstrução relativo, qualidade dos componentes descritivos recuperados e qualidade dos componentes comuns recuperados) \cite{Wen2016};
-\item \textbf{semelhança de cosseno} (Cosine similarity) \cite{Yousaf2014, Frias-Martinez2014};
-\item \textbf{\textit{\bm{${f_1}$} score}} \cite{Anantharam2015, Chen2016};
-\item \textbf{frequência do termo–inverso da frequência nos documentos} (TF-IDF --- \textit{\textbf{Term frequency–inverse document frequency}} \cite{Mukherjee2015};
-\item \textbf{coeficiente de variação inversa} \cite{Bendler2014};
-\item \textbf{método de reamostragem Jackknife} \cite{Bendler2014};
-\item \nomenclature{LISA}{\textit{Local Indicators of Spatial Association}}{\textbf{indicadores locais de associação espacial} (\textbf{LISA} --- \textit{\textbf{Local Indicators of Spatial Association}}))} \cite{Steiger2015Census};
-\item \textit{\textbf{local Moran's}} \cite{Steiger2015Census};
-\item \textbf{máxima verossimilhança} \cite{Mukherjee2015};
-\item \nomenclature{SARIMA}{\textit{Seasonal Autoregressive Integrated Moving Average}} \textbf{média móvel integrada autoregressiva sazonal} (\textbf{SARIMA} --- {\textit{\textbf{Seasonal Autoregressive Integrated Moving Average}})} \cite{Ni2016};
-\item \textbf{otimização e previsão com função de perda híbrida} \cite{Ni2016}.
-\end{enumerate}
- 
-Em \cite{Ni2016}, os autores utilizaram a técnica SARIMA em conjunto com Regressão Linear, propondo uma abordagem baseada em otimização paramétrica e convexa, chamada \textit{otimização e previsão com função de perda híbrida}, adequada para modelagem utilizando séries temporais. Com isso, tal técnica foi aplicada na predição de fluxo de passageiros com base em \textit{hashtags} de \textit{tweets}.  
-
-Referente aos problemas relacionados a ambiguidade e identificação de contextos, \cite{Anantharam2015}; \cite{Chen2016, Gal-Tzur2014} aplicaram a técnica \textit{${F_1}$ score} validar o processo de classificação de \textit{tweets}. Por outro lado, \cite{Mukherjee2015} utilizaram a técnica de \textit{máxima verossimilhança} para determinar a probabilidade de ocorrência de um evento, assim como a confiabilidade da informação.
-
-No que se refere a agrupamento, \cite{Yousaf2014} agruparam usuários por meio de \textit{semelhança de cossenos}, unindo pessoas com interesses em comum nos mesmos grupos. \cite{Frias-Martinez2014}, por outro lado, usou a mesma técnica para agrupar \textit{tweets} de acordo com suas semelhanças quanto aos tipos de zoneamento urbano.
-
-De forma isolada, no trabalho realizado por \cite{Mukherjee2015}, utilizaram a técnica TF-IDF na fase de classificação para o definir o \textit{score} de categorias de eventos, escolhendo a mais relevante a ser buscada em um dicionário de categorias. Também isoladamente, \cite{Steiger2015Census} usaram a técnica LISA na identificação de \textit{clusters} espaciais e valores esporádicos espaciais, obtendo assim os locais com atividades sociais. Além disso, os autores também utilizaram a técnica \textit{Local Moran's} para detectar diferentes padrões de atividade de acordo com o espaço geográfico.
-
-Por último, \cite{Bendler2014} inovaram ao utilizar o \textit{método de reamostragem Jackknife} como inspiração para o desenvolvimento de uma abordagem que visa analisar a estabilidade estatística de um conjunto de categorias. Além disso, usaram também a análise do \textit{coeficiente de variação inversa} para verificar a dispersão negativa da distribuição de um conjunto de variáveis. 
-
-\subsection{Paradigmas de processamento (QP4)}
+%\subsection{Técnicas estatísticas utilizadas no processamento de \textit{tweets} (QP3)}
+%Nesta seção, são apresentadas as técnicas estatísticas utilizadas pelos estudos primários, no processamento de \textit{tweets}, enumeradas a seguir:
+%
+%\begin{enumerate}
+%\item \textbf{Análise de métricas relacionadas a desempenho} (erro de reconstrução relativo, qualidade dos componentes descritivos recuperados e qualidade dos componentes comuns recuperados) \cite{Wen2016};
+%\item \textbf{semelhança de cosseno} (Cosine similarity) \cite{Yousaf2014, Frias-Martinez2014};
+%\item \textbf{\textit{\bm{${f_1}$} score}} \cite{Anantharam2015, Chen2016};
+%\item \textbf{frequência do termo–inverso da frequência nos documentos} (TF-IDF --- \textit{\textbf{Term frequency–inverse document frequency}} \cite{Mukherjee2015};
+%\item \textbf{coeficiente de variação inversa} \cite{Bendler2014};
+%\item \textbf{método de reamostragem Jackknife} \cite{Bendler2014};
+%\item \nomenclature{LISA}{\textit{Local Indicators of Spatial Association}}{\textbf{indicadores locais de associação espacial} (\textbf{LISA} --- \textit{\textbf{Local Indicators of Spatial Association}}))} \cite{Steiger2015Census};
+%\item \textit{\textbf{local Moran's}} \cite{Steiger2015Census};
+%\item \textbf{máxima verossimilhança} \cite{Mukherjee2015};
+%\item \nomenclature{SARIMA}{\textit{Seasonal Autoregressive Integrated Moving Average}} \textbf{média móvel integrada autoregressiva sazonal} (\textbf{SARIMA} --- {\textit{\textbf{Seasonal Autoregressive Integrated Moving Average}})} \cite{Ni2016};
+%\item \textbf{otimização e previsão com função de perda híbrida} \cite{Ni2016}.
+%\end{enumerate}
+% 
+%Em \cite{Ni2016}, os autores utilizaram a técnica SARIMA em conjunto com Regressão Linear, propondo uma abordagem baseada em otimização paramétrica e convexa, chamada \textit{otimização e previsão com função de perda híbrida}, adequada para modelagem utilizando séries temporais. Com isso, tal técnica foi aplicada na predição de fluxo de passageiros com base em \textit{hashtags} de \textit{tweets}.  
+%
+%Referente aos problemas relacionados a ambiguidade e identificação de contextos, \cite{Anantharam2015}; \cite{Chen2016, Gal-Tzur2014} aplicaram a técnica \textit{${F_1}$ score} validar o processo de classificação de \textit{tweets}. Por outro lado, \cite{Mukherjee2015} utilizaram a técnica de \textit{máxima verossimilhança} para determinar a probabilidade de ocorrência de um evento, assim como a confiabilidade da informação.
+%
+%No que se refere a agrupamento, \cite{Yousaf2014} agruparam usuários por meio de \textit{semelhança de cossenos}, unindo pessoas com interesses em comum nos mesmos grupos. \cite{Frias-Martinez2014}, por outro lado, usou a mesma técnica para agrupar \textit{tweets} de acordo com suas semelhanças quanto aos tipos de zoneamento urbano.
+%
+%De forma isolada, no trabalho realizado por \cite{Mukherjee2015}, utilizaram a técnica TF-IDF na fase de classificação para o definir o \textit{score} de categorias de eventos, escolhendo a mais relevante a ser buscada em um dicionário de categorias. Também isoladamente, \cite{Steiger2015Census} usaram a técnica LISA na identificação de \textit{clusters} espaciais e valores esporádicos espaciais, obtendo assim os locais com atividades sociais. Além disso, os autores também utilizaram a técnica \textit{Local Moran's} para detectar diferentes padrões de atividade de acordo com o espaço geográfico.
+%
+%Por último, \cite{Bendler2014} inovaram ao utilizar o \textit{método de reamostragem Jackknife} como inspiração para o desenvolvimento de uma abordagem que visa analisar a estabilidade estatística de um conjunto de categorias. Além disso, usaram também a análise do \textit{coeficiente de variação inversa} para verificar a dispersão negativa da distribuição de um conjunto de variáveis. 
+%
+\subsection{Paradigmas de processamento (QP3)}
 Nesta seção, encontram-se a seguir apenas os paradigmas de processamento extraídos dos estudos primários analisados: 
 \begin{enumerate}
 \item \textbf{Processamento em lote} (\textit{\textbf{batch, offline processing}}) \cite{Anantharam2015, Wen2016, Farseev2015, Gutev2016, Mata2015, Chen2016, Abbasi2015, Bendler2014, Yousaf2014, Frias-Martinez2014, Steiger2015Census, Gal-Tzur2014, Gkiotsalitis2016, DiLorenzo2013, Itoh2016, Chaniotakis2015};
@@ -1646,10 +1644,10 @@ Nesta seção, encontram-se a seguir apenas os paradigmas de processamento extra
 \item \textbf{processamento em tempo real} (\textit{\textbf{Real time processing}}) \cite{Soomro2016, Lecue2014}.
 \end{enumerate}
 
-\subsection{Eventos de exceção relacionados ao transporte público (QP5)}
+\subsection{Eventos de exceção relacionados ao transporte público (QP4)}
 \label{qp5}
 
-Nesta seção, encontram-se a seguir os eventos de exceção relacionados ao transporte público, extraídos dos estudos primários:
+Nesta seção, encontram-se a seguir os eventos de exceção que podem ser relacionados ao transporte público, extraídos dos estudos primários:
 
 \begin{enumerate}
 \item \textbf{Acidentes} \cite{Itoh2016}:
@@ -1692,7 +1690,7 @@ Nesta seção, encontram-se a seguir os eventos de exceção relacionados ao tra
 
 \end{enumerate}
 
-\subsection{Técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets} (QP6)}
+\subsection{Técnicas de Aprendizado de Máquina utilizadas no processamento de \textit{tweets} (QP5)}
 \label{iaClassification}
 Nesta seção, são apresentadas as técnicas de aprendizado de máquina utilizadas para processamento de \textit{tweets}, extraídas dos estudos primários e enumeradas a seguir:
 
@@ -1714,7 +1712,7 @@ No contexto urbano, inúmeros eventos podem acontecer e impactar a população. 
 
 Especificamente sobre as técnicas de classificação, \cite{Mukherjee2015} utilizaram SVM para classificar os eventos recebidos de diversas fontes. Referente a essa abordagem, \cite{Gal-Tzur2014} analisaram inúmeras técnicas de aprendizado de máquina, obtendo a melhor performance com o SVM, além disso, observaram como principal vantagem a sua capacidade de adaptação ao gênero e tarefas subjacentes. 
 
-Apesar disso, \cite{Guo2016} utilizaram Processamento de Linguagem Natural (baseado em palavras chaves) para rotular sentimentos de \textit{tweets}, devido a facilidade de escalar essa técnica (para processamento de milhões de \textit{tweets}), em comparação a SVM. Outro caso de divergência é o do estudo realizado por \cite{Farseev2015}, no qual foi escolhido o algoritmo de \textit{Floresta Aleatória} para treinamento do modelo de classificação, devido ao fato de ser mais adequado para classificação em espaço dimensional elevado, em vez das técnicas SVM e \textit{Naive Bayes}, no que se refere a predição de idade e gênero usando \textit{tweets}.
+Apesar disso, \cite{Guo2016} utilizaram Processamento de Língua Natural (baseado em palavras chaves) para rotular sentimentos de \textit{tweets}, devido a facilidade de escalar essa técnica (para processamento de milhões de \textit{tweets}), em comparação a SVM. Outro caso de divergência é o do estudo realizado por \cite{Farseev2015}, no qual foi escolhido o algoritmo de \textit{Floresta Aleatória} para treinamento do modelo de classificação, devido ao fato de ser mais adequado para classificação em espaço dimensional elevado, em vez das técnicas SVM e \textit{Naive Bayes}, no que se refere a predição de idade e gênero usando \textit{tweets}.
 
 \citeauthor{Mata2015} (\citeyear{Mata2015}), por sua vez, aplicou a técnica de classificação \textit{bayesiana} em \textit{tweets}, visando obter probabilidades relacionadas a crimes e ameaças em uma determinada localização. Por outro lado, \cite{Zagal2016} usaram o \textit{algoritmo C5.0} devido ao melhor desempenho em relação ao \textit{Bayes}, dependendo do tópico que está sendo classificado. 
 
@@ -1732,16 +1730,14 @@ Em uma análise quantitativa dos estudos primários selecionados, podemos conclu
 
 Tais estudos estão concentrados em maioria na identificação de pontos de interesse, utilizando-os em diferentes contextos, tais como o de turismo, mobilidade. Além disso, abordam também problemas relacionados ao transporte e desastres naturais, confirmando a primeira hipótese (HP1) dessa Revisão Sistemática. As temáticas não abordadas pela HP1 foram as relacionadas a \textit{e-Participation}, detecção de zoneamento urbano, padrões demográficos e segurança pública, demonstrando a variedade de problemas urbanos explorados com o processamento de \textit{tweets}.
 
-Referente a segunda hipótese, os estudos exploraram principalmente o impacto de eventos no transporte público, confirmando-a parcialmente. Isso, devido ao fato de um dos trabalhos explorar como os eventos relacionados ao tráfego impactam na demanda por bicicletas; não havendo nenhum outro sobre processamento de \textit{tweets} para mitigação dos problemas envolvendo tráfego. Outra temática não mencionada pela HP2 e sobre a qual há uma quantidade considerável de estudos, foi a do uso de \textit{tweets} para o planejamento e gerenciamento do transporte público.
+Referente a segunda hipótese, os estudos exploraram principalmente o impacto de eventos no transporte público, confirmando-a parcialmente. Isso, devido ao fato de um dos trabalhos explorar como os eventos relacionados ao tráfego impactam na demanda por bicicletas; não havendo nenhum outro sobre processamento de \textit{tweets} para mitigação dos problemas envolvendo tráfego. Outra temática não mencionada pela HP2 e sobre a qual há uma quantidade considerável de estudos, foi a do uso de \textit{tweets} para o planejamento e gerenciamento do transporte público. Sobre as técnicas de aprendizado de máquina, a mais utilizada foi a \textit{Latent Dirichlet Allocation} (LDA), seguida da \textit{Support Vector Machine} (SVM), confirmando parcialmente a quinta hipótese (HP5).
 
-Independentemente dos problemas abordados por meio do processamento de \textit{tweets}, dentre as 12 técnicas estatísticas elencadas, \textit{${f_1}$ score} foi a única referenciada como ferramenta para validação de classificação binária, confirmando a terceira hipótese (HP3). Apesar disso, a HP3 não considerou outras técnicas importantes (com propósitos distintos), como a de Regressão Linear, amplamente utilizada nos estudos analisados. Referente as técnicas de aprendizado de máquina, a mais utilizada foi a \textit{Latent Dirichlet Allocation} (LDA), seguida da \textit{Support Vector Machine} (SVM), confirmando parcialmente a sexta hipótese (HP6).
+Por fim, apenas quatro dos vinte e nove estudos analisados, cerca de 14\%, mencionaram \textit{features} relacionadas ao transporte público, confirmando assim a quarta hipótese (HP4). Assim como a quantidade de trabalhos que realizam processamento de \textit{tweets} em tempo real, sendo apenas dois do total analisado, cerca de 6\%, que utilizam esse paradigma de processamento, o que confirma a terceira hipótese (HP3). É importante ainda observar que, outros estudos que mencionaram processamento em tempo real, realizaram na verdade coleta de \textit{tweets} em tempo real, para análises a posteriori via processamento em \textit{batch} (offline), categoria na qual a maioria dos estudos foram enquadrados.
 
-Por fim, apenas quatro dos vinte e nove estudos analisados, cerca de 14\%, mencionaram \textit{features} relacionadas ao transporte público, confirmando assim a quinta hipótese (HP5). Assim como a quantidade de trabalhos que realizam processamento de \textit{tweets} em tempo real, sendo apenas dois do total analisado, cerca de 6\%, que utilizam esse paradigma de processamento, o que confirma a quarta hipótese (HP4). É importante ainda observar que, outros estudos que mencionaram processamento em tempo real, realizaram na verdade coleta de \textit{tweets} em tempo real, para análises a posteriori via processamento em \textit{batch} (offline), categoria na qual a maioria dos estudos foram enquadrados.
-
-\chapter{Dados abertos relacionados ao transporte público e eventos de exceção}
+\chapter{Dados relacionados ao transporte público e eventos de exceção}
 \label{dataSet}
 
-Neste capítulo são apresentados o \textit{corpus} da SPTrans e do \textit{Twitter}, compostos por dados abertos relacionados ao transporte público e eventos de exceção, respectivamente. Os dados da SPTrans são divididos em dados AVL (enviados pelos módulos AVL instalados nos ônibus --- mais de um milhão de registros por hora, volume característico dos dados AVL) e da GTFS (padrão utilizado para especificar os dados estáticos relacionados a operação dos ônibus da cidade de São Paulo). Os dados do \textit{Twitter}, por sua vez, são compostos dos \textit{tweets} coletados dos perfis governamentais responsáveis por reportar eventos de exceção da cidade de São Paulo.
+Neste capítulo são apresentados o \textit{corpus} da SPTrans e do \textit{Twitter}, compostos por dados públicos relacionados ao transporte público e eventos de exceção, respectivamente. Os dados da SPTrans são divididos em dados AVL (enviados pelos módulos AVL instalados nos ônibus --- mais de um milhão de registros por hora, volume característico dos dados AVL) e da GTFS (padrão utilizado para especificar os dados estáticos relacionados a operação dos ônibus da cidade de São Paulo). Os dados do \textit{Twitter}, por sua vez, são compostos dos \textit{tweets} coletados dos perfis governamentais responsáveis por reportar eventos de exceção da cidade de São Paulo.
 
 \section{\textit{Corpus} SPTrans}
 \label{CorpusSPTrans}
@@ -1862,7 +1858,7 @@ Além da GTFS estática existe a GTFS-\textit{realtime}\footref{googleTransit}, 
 
 \subsubsection{Transformações nos dados da GTFS da SPTrans}
 
-Apesar da padronização da GTFS, precisamos realizar alguns processos de transformação nos dados da GTFS estática, antes de inserí-los no \textit{MongoDB}, para viabilizarmos a correlação com os dados AVL.  Dessa forma, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para o formato \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em 29 de outubro de 2017.}. Além disso,  para que fosse possível realizarmos consultas geoespaciais, foram criados \textit{índices geoespaciais}\footref{geoMongo} nas coleções que contém dados geolocalizados. Dessa forma, conseguimos usar consultas geoespaciais para identificarmos as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
+Apesar da padronização da GTFS, precisamos realizar alguns processos de transformação nos dados da GTFS estática, antes de inserí-los no \textit{MongoDB}, para viabilizarmos a integração com os dados AVL.  Dessa forma, convertemos os dados originais de \textit{string} para os seus respectivos tipos (\textit{long}, \textit{double}, \textit{int} ou \textit{string}) e padronizamos os valores referentes a hora para \textit{POSIX timestamp}, e os referentes a latitude e longitude para o formato \textit{legacy coordinate pairs}\footnote{\label{geoMongo}\url{https://docs.mongodb.com/manual/geospatial-queries}. Acesso em 29 de outubro de 2017.}. Além disso,  para que fosse possível realizarmos consultas geoespaciais, foram criados \textit{índices geoespaciais}\footref{geoMongo} nas coleções que contém dados geolocalizados. Dessa forma, conseguimos usar consultas geoespaciais para identificarmos as linhas afetadas por um determinado evento de exceção, dentro de um raio ajustável, por exemplo.
 
 \subsection{Dados AVL da SPTrans}
 
@@ -2021,7 +2017,7 @@ No \textit{Twitter} as informações (\textit{tweets}) são publicadas contendo 
 
 Devido as características citadas nos parágrafos anteriores, o \textit{Twitter} tem sido uma rede social importante para compartilhamento de informações e acontecimentos do cotidiano. Tais acontecimentos podem ser classificados como eventos sociais, capazes de descrever desde eventos rotineiros (\textit{shows}, jogos esportivos, etc.) a situações de crise (eventos de exceção --- desastres naturais, mobilizações sociais, dentre outros) \cite{zhou2014event}, \cite{atefeh2015survey}.
  
-Portanto, o \textit{Twitter} foi escolhido como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção devido ao fato de conter dados abertos sobre o cotidiano da cidade, disponibilizados em tempo real pelos cidadãos e órgãos públicos. Tais características, fazem dos \textit{tweets} uma rica fonte de dados, utilizada por inúmeros estudos que abordam problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Capítulo~\ref{revisao}.
+Portanto, o \textit{Twitter} foi escolhido como fonte de dados para a construção do conjunto de dados relacionados aos eventos de exceção devido ao fato de conter dados públicos sobre o cotidiano da cidade, disponibilizados em tempo real pelos cidadãos e órgãos públicos. Tais características, fazem dos \textit{tweets} uma rica fonte de dados, utilizada por inúmeros estudos que abordam problemas urbanos e de mobilidade urbana, conforme os analisados na revisão sistemática do Capítulo~\ref{revisao}.
 
 Neste trabalho, o conjunto de dados utilizado para a identificação dos eventos de exceção é composto por \textit{tweets}, em português brasileiro, dos perfis contidos na Tabela~\ref{tab:oficialProfiles}. É importante observar que, para esse projeto de pesquisa, apenas os \textit{tweets} publicados pelas contas selecionadas são considerados, descartando os relacionados às interações (\textit{retweets} e \textit{replies}) entre perfis governamentais e não governamentais. Ou seja, os dados utilizados estão relacionados ao canal unidirecional de comunicação, não utilizamos interações dos cidadãos com as publicações realizadas pelos perfis selecionados. Com essa restrição, evitamos problemas referentes a confiabilidade dos dados, o que nos permite focarmos na caracterização dos eventos de exceção e de seus respectivos impactos.
 
@@ -2081,7 +2077,7 @@ Durante a coleta dos \textit{tweets}, eles são mapeados para a seguinte classe 
 
 \clearpage
 
-\section{Correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
+\section{Integração entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
 \label{corrAll}
 
 Conforme mencionado anteriormente, após os processos de coleta e transformação os \textit{tweets} e dados da GTFS são inseridos no banco de dados não relacional \textit{MongoDB}. Após essas fases, os dados são correlacionados com o auxílio de \textit{data frames} (estrutura de dados tabular da biblioteca \textit{Pandas}\footnote{\url{https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.html}. Acesso em 21 de janeiro de 2019.}), implementados em \textit{scripts} na linguagem de programação \textit{Python}.
@@ -2094,7 +2090,7 @@ Por fim, é importante mencionarmos que para viabilizarmos o processamento dos d
 
 \begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
- 	  \caption{Fluxograma da correlação entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
+ 	  \caption{Fluxograma da integração entre os \textit{tweets}, dados AVL e GTFS da SPTrans}
 		\includegraphics[width=1\linewidth]{images/caracterization_flow.png}
 	\label{fig:caracterization_flow}
   \source{Felipe Cordeiro Alves Dias, 2019}
@@ -2106,7 +2102,7 @@ Por fim, é importante mencionarmos que para viabilizarmos o processamento dos d
 \chapter{Exploração e visualização de grandes volumes de dados}
 \label{dataViz}
 
-Grandes volumes de dados como os relacionados ao transporte público possuem padrões complexos e demandam um sistema distribuído, apresentado neste capítulo, capaz de suportar atividades analíticas, como visualização e exploração de dados. Tais análises, são importantes para melhorar o gerenciamento, operação e planejamento do transporte público.
+Grandes volumes de dados como os relacionados ao transporte público possuem padrões complexos e demandam um sistema distribuído, apresentado neste capítulo, capaz de suportar atividades analíticas, como visualização e exploração de dados. Tais análises são importantes para melhorar o gerenciamento, operação e planejamento do transporte público.
 
 Dessa forma, apresentamos uma arquitetura para visualizar e explorar grandes volumes de dados (objetivo específico, apresentado na Seção \ref{objetivos}), validada com o Corpus SPTrans.  No demais, mencionamos na Seção~\ref{related_work_data_viz} alguns trabalhos referentes a visualização de dados, encontrados por meio de uma revisão não sistemática da literatura; na~\ref{druid} é descrita a arquitetura do banco de dados \textit{Druid}, principal componente da arquitetura proposta; na~\ref{arch_viz} a arquitetura em questão para processamento e exploração dos dados AVL; na~\ref{viz_case} os resultados obtidos no estudo de caso e, por fim, na~\ref{viz_case_cons} as considerações finais.
 
@@ -2192,7 +2188,7 @@ A Figura~\ref{fig:pizza_bus}, representa a distribuição da quantidade de dados
 \source{Felipe Cordeiro Alves Dias, 2019}
 \end{figure}
 
-Finalmente, os mapas exibidos pelas figuras~\ref {fig:buses_map} e~\ref{fig:only_one_bus_map} ajudam a identificar a localização a partir da qual os dados estão sendo enviados, permitindo visualizar possíveis pontos de falhas durante a transmissão desses dados. O primeiro mapa, respectivamente, refere-se à rota de uma única linha de ônibus e o segundo de todas as rotas; em ambos os casos, referentes aos dados de janeiro. Além disso, na Figura~\ref {fig:buses_map}, é possível observar a segregação urbana da cidade, devido ao fato de algumas regiões terem uma maior densidade de dados enviados, o que também indica regiões de maior tráfego, nas quais eventos de exceção teriam maior impacto.
+Finalmente, os mapas exibidos pelas figuras~\ref {fig:buses_map} e~\ref{fig:only_one_bus_map} ajudam a identificar a localização a partir da qual os dados estão sendo enviados, permitindo visualizar possíveis pontos de falhas durante a transmissão desses dados. O primeiro mapa refere-se à rota de uma única linha de ônibus e o segundo de todas as rotas; em ambos os casos, referentes aos dados de janeiro. Além disso, na Figura~\ref {fig:buses_map}, é possível observar a segregação urbana da cidade, devido ao fato de algumas regiões terem uma maior densidade de dados enviados, o que também indica regiões de maior tráfego, nas quais eventos de exceção teriam maior impacto.
 
 \begin{figure}[!htb]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
 	\centering
@@ -2285,49 +2281,17 @@ Nesta fase, os \textit {tweets} são preparados para serem usados para treinar u
 \section{Classificação manual do Corpus \textit{Twitter}}
 \label{manualClassification}
 
-Encontrar eventos de exceção envolve a identificação de eventos relacionados a uma exceção, o que é possível por meio de classificação de \textit{tweets} (manualmente ou de forma autônoma). De acordo com a revisão sistemática apresentada no Capítulo~\ref{revisao}, as seguintes classes podem ser usadas para classificar eventos de exceção:
+Encontrar eventos de exceção envolve a identificação de eventos relacionados a uma exceção, o que é possível por meio de classificação de \textit{tweets} (manualmente ou de forma autônoma). De acordo com a revisão sistemática apresentada no Capítulo~\ref{revisao}, podemos classificar os \textit{tweets} coletados nas seguintes classes:
 
 \begin{enumerate}
 \item \textbf{Acidentes}.
-\begin{enumerate}
-\item Acidentes nas estações transporte \cite{Itoh2016}.
-\item Incêndio \cite{Itoh2016}.
-\end{enumerate}
-
-\item \textbf{Espaço-temporais}.
-\begin{enumerate}
-\item Dia da semana \cite{Chen2016}.
-\item Hora do dia \cite{Chen2016}.
-\end{enumerate}
-
 \item \textbf{Eventos sociais}.
-\begin{enumerate}
-\item Feiras de rua \cite{Chen2016}.
-\item Festivais \cite{Chen2016}, \cite{Lecue2014}.
-\item Jogos esportivos \cite{Chen2016}, \cite{Gal-Tzur2014}.
-\item Passeatas e maratonas \cite{Chen2016}, \cite{Itoh2016}.
-\end{enumerate}
-
 \item \textbf{Eventos urbanos}.
-\begin{enumerate}
-\item Relacionados ao tráfego \cite{Chen2016}, \cite{Lecue2014}.
-\end{enumerate}
-
 \item \textbf{Desastres naturais}.
-\begin{enumerate}
-\item Tempestades \cite{Itoh2016}.
-\item Terremoto \cite{Itoh2016}.
-\item Tufões \cite{Itoh2016}.
+\item \textbf{Irrelevantes} (não relacionados a eventos de exceção).
 \end{enumerate}
 
-\item \textbf{Meteorológicos}.
-\begin{enumerate}
-\item Dia claro, nublado, chuvoso, nevando, com neblina \cite{Chen2016}.
-\item Temperatura do ar \cite{Chen2016}.
-\end{enumerate}
-\end{enumerate}
-
-Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, o Corpus Twitter, contendo 60.984, foi classificado manualmente de acordo com suas respectivas classes. Tal conjunto foi usado para treinar o modelo de classificação de \textit{tweets} em classes de eventos de exceção. 
+Após o estudo do domínio do conhecimento, por meio da revisão sistemática para coletar as classes de exceção, o Corpus Twitter, contendo 60.984 \textit{tweets}, foi classificado manualmente de acordo com suas respectivas classes. Tal conjunto foi usado para treinar o modelo de classificação de \textit{tweets} em classes de eventos de exceção. 
 
 \section{Modelo de classificação de \textit{tweets} relacionados a eventos de exceção}
 \label{model}
@@ -2342,7 +2306,7 @@ De acordo com a Seção~\ref{CorpusSPTrans}, todas as coordenadas são armazenad
 
 \section{Resultados}
 	
-A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acesso em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 414,637 palavras, com um vocabulário de 13,915 palavras. O comprimento máximo das sentenças do conjunto de dados é 19, sua respectiva variação é ilustrada pela Figura~\ref{fig:corpus_metrics}.
+A metodologia foi aplicada ao Corpus Twitter\footnote{Conjunto de dados disponível em: \url{https://drive.google.com/drive/folders/16NIevLsBR0A45UHdPDvv2lZZx6gF4R0p?usp=sharing}. Acesso em 8 de Setembro de 2018.}. No final do pré-processamento e processamento dos \textit{tweets}, o corpus obteve 414,637 palavras, com um vocabulário de 13,915 palavras. O comprimento máximo das sentenças do conjunto de dados é 19 caracteres, sua respectiva variação é ilustrada pela Figura~\ref{fig:corpus_metrics}.
  
 \begin{figure}[!htb]
 	\centering
@@ -2726,7 +2690,7 @@ A partir disso, selecionamos os dados de movimentação que serão analisados. C
 
 \begin{figure}[!htb]
 	\centering
- 	  \caption{Processo para correlação entre os dados AVL, GTFS e \textit{tweets} para análise do impacto dos eventos de exceção}
+ 	  \caption{Processo para integração entre os dados AVL, GTFS e \textit{tweets} para análise do impacto dos eventos de exceção}
 		\includegraphics[width=0.7\linewidth]{images/avl_tweets_correlation_pt.png}
 	\label{fig:avl_tweets_correlation_pt}
 	\source{Felipe Cordeiro Alves Dias, 2019}
@@ -2839,15 +2803,15 @@ Dezembro & --- & --- & --- & --- & --- & --- & --- & ---  \\
 \source{Felipe Cordeiro Alves Dias, 2019}
 \end{table}
 
-\subsubsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e lagitudade das rotas das linhas}
+\subsubsection{Análise da redução da velocidade mediana dos ônibus a partir das informações de latitude e longitude das rotas das linhas}
 
 Referente aos dados da Tabela~\ref{tab:exceptEventVelocityImpAllShapes}, para o raio de 1.000~m os eventos que mais reduzem as velocidades medianas são os relacionados a eventos sociais, urbanos, acidentes e desastres naturais, nesta ordem. Apesar disso, é importante observar que o percentual de redução da velocidade mediana, comparado com os da Tabela \ref{tab:exceptEventVelocityImpAllStop}, é reduzido quando consideramos as latitudes e longitudes das rotas como referência para encontrar as linhas impactadas. 
 
-O conjunto de pontos de latitude e longitude utilizados para desenhar as rotas dos ônibus é muito maior do que o que contém as coordenadas espaciais dos pontos de parada, de acordo com a Tabela \ref{tab:gtfs} são 800.767 pontos contra 19.933, respectivamente. Sendo assim, quando as coordenadas das rotas são consideradas como referência para encontrar as linhas afetadas pelos eventos de exceção, obtemos um conjunto maior de linhas impactadas, o que aumenta a margem de erro e o custo computacional. Outra diferença observada é em relação aos percentuais de redução de velocidades medianas para o raio de 100~m. Nesta abordagem, as ordens dos eventos que mais impactam as velocidades medianas são os relacionados a acidentes, desastres naturais, eventos sociais e urbanos, respectivamente.
+O conjunto de pontos de latitude e longitude utilizados para desenhar as rotas dos ônibus é muito maior do que o que contém as coordenadas espaciais dos pontos de parada, de acordo com a Tabela \ref{tab:gtfs} são 800.767 pontos contra 19.933, respectivamente. Sendo assim, quando as coordenadas das rotas são consideradas como referência para encontrar as linhas afetadas pelos eventos de exceção, obtemos um conjunto maior de linhas impactadas, o que aumenta o custo computacional. Outra diferença observada é em relação aos percentuais de redução de velocidades medianas para o raio de 100~m. Nesta abordagem, as ordens dos eventos que mais impactam as velocidades medianas são os relacionados a acidentes, desastres naturais, eventos sociais e urbanos, respectivamente.
 
 Em relação às sazonalidades, os meses de  março, abril, maio e outubro foram mais significativos para a redução das velocidades medianas, no raio de de 1.000~m devido as inúmeras manifestações\footnote{\url{https://g1.globo.com/politica/noticia/cidades-pelo-pais-tem-manifestacoes-a-favor-da-lava-jato-neste-domingo.ghtml}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://g1.globo.com/resumo-do-dia/noticia/quarta-feira-15-de-marco-de-2017.ghtml}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://www1.folha.uol.com.br/poder/2017/03/1866022-manifestacao-por-intervencao-militar-bloqueia-via-em-sp.shtml}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://oglobo.globo.com/brasil/ato-de-artistas-no-rio-contra-temer-termina-com-bombas-de-efeito-moral-spray-de-pimenta-21987385}. Acesso em 14 de janeiro de 2019.}\footnote{\url{https://pt.wikipedia.org/wiki/Greve\_geral\_no\_Brasil\_em\_2017}. Acesso em 14 de janeiro de 2019.} que ocorreram no Brasil. Sobre os desastres naturais, os impactos foram relevantes para os meses de janeiro a março, a distância de 100~m, conforme esperado devido ao período de chuvas.
 
-Por fim, a abordagem que utiliza as coordenadas espaciais dos pontos de parada de ônibus como referência pode ser mais adequada do que a que usa os pontos de rota. Isso, devido aos resultados semelhantes obtidos, menor custo computacional e margem de erro.
+Por fim, a abordagem que utiliza as coordenadas espaciais dos pontos de parada de ônibus como referência pode ser mais adequada do que a que usa os pontos de rota. Isso, devido aos resultados semelhantes obtidos, menor custo computacional.
 
 \begin{table}[!htb]
 \centering
@@ -2941,7 +2905,7 @@ No trabalho realizado em \cite{zhao2019recognizing}, foram utilizados o algoritm
 
 Ainda relacionado a mobilidade urbana, o trabalho realizado em \cite{zeng2017visual} buscou compreender, por meio do algoritmo \textit{Apriori}, os padrões existentes nos conjuntos de dados relacionados a movimentação diária no transporte público de Singapura e no \textit{MIT Reality Mining Data} (dados sobre comunicação, proximidade, localização, etc. coletados entre Setembro de 2004 e Junho de 2005, dos celulares de voluntários do projeto \textit{MIT Reality Mining Data}). O sistema desenvolvido é capaz de identificar e apresentar visualmente padrões de movimentação humana, em relação ao espaço e ao tempo. Analogamente, o estudo realizado em \cite{yu2018discovering}, é capaz de identificar padrões de rotas de táxi, na cidade de Pequim, China.
 
-Por fim, no trabalho realizado por \cite{cruz2018detecccao}, foi proposta uma metodologia para identificar e classificar as anomalias no comportamento do trânsito, por meio de agregações espaço-temporais usando o algoritmo \textit{Apriori}, aplicadas aos dados de transporte rodoviário  da cidade do Rio de Janeiro. A metodologia proposta foi capaz identificar características das principais anomalias e classificá-las como esperadas ou inesperadas. A proposta desse experimento se diferencia das demais por encontrar os padrões de velocidade média existentes nos dados do transporte público por ônibus da cidade de São Paulo, considerando ainda a correlação com eventos de exceção extraídos de Redes Sociais.
+Por fim, no trabalho realizado por \cite{cruz2018detecccao}, foi proposta uma metodologia para identificar e classificar as anomalias no comportamento do trânsito, por meio de agregações espaço-temporais usando o algoritmo \textit{Apriori}, aplicadas aos dados de transporte rodoviário  da cidade do Rio de Janeiro. A metodologia proposta foi capaz identificar características das principais anomalias e classificá-las como esperadas ou inesperadas. A proposta desse experimento se diferencia das demais por encontrar os padrões de velocidade média existentes nos dados do transporte público por ônibus da cidade de São Paulo, considerando ainda a integração com eventos de exceção extraídos de Redes Sociais.
 
 \subsection{Resultados}
 
@@ -3185,7 +3149,7 @@ Uma nova metodologia para extração e geolocalização dos endereços contidos 
 
 Mostramos que a metodologia desenvolvida para extração e geolocalização automática de endereços a partir de mensagens postadas no Twitter é adequada para as contas governamentais responsáveis pelas notificações de eventos de exceção da Cidade de São Paulo. Os modelos utilizados para classificação dos 60.984 \textit{tweets} disponibilizados por essas contas em eventos de exceção também obtiveram bom desempenho. %Demonstramos que essa metodologia pode ser utilizada para classificar automaticamente os eventos cotidianos da cidade. 
 
-Por fim, obtemos resultados satisfatórios referentes a caracterização dos impactos desses eventos nas velocidades dos ônibus. Entendemos que a abordagem que utiliza as coordenadas espaciais dos pontos de parada de ônibus como referência pode ser mais adequada do que a que usa os pontos de rota. Isso, devido aos resultados semelhantes obtidos, menor custo computacional e margem de erro. 
+Por fim, obtemos resultados satisfatórios referentes a caracterização dos impactos desses eventos nas velocidades dos ônibus. Entendemos que a abordagem que utiliza as coordenadas espaciais dos pontos de parada de ônibus como referência pode ser mais adequada do que a que usa os pontos de rota. Isso, devido aos resultados semelhantes obtidos, menor custo computacional. 
 
 \section{Trabalhos publicados}
 
