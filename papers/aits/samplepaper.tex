@@ -440,7 +440,7 @@ January & 744 & 102,44 \\
 
 \section{Framework to identify impacts on buses speeds in the city of São Paulo}
 
-\subsubsection{Framework}
+\paragraph{\textbf{Framework}}
 
 The architecture proposed for the identification framework is depicted in Figure ~\ref{fig:caracterization_flow_en}. It consists of (1) a \textit{tweets} processing streaming module (which can be replaced by any real time processing software), where the \textit{tweets} are collected, preprocessed and processed; (2) classification models; (3) address extraction and geolocation module and (4, 5 and 6\footnote{Finding abnormal association rules in the velocity dataset (step 6 in Fig.~\ref{fig:caracterization_flow_en}) is still a work in progress.}) correlation data modules. These modules are explained in details below.
 
@@ -451,7 +451,7 @@ The architecture proposed for the identification framework is depicted in Figure
 	\label{fig:caracterization_flow_en}
 \end{figure}
 
-\subsubsection{Natural Language Processing}
+\paragraph{\textbf{Natural Language Processing}}
 \label{nlp}
 
 Before the Natural Language Processing (NLP) phase, the \textit{tweets} were preprocessed---removing \textit{URLs}, \textit{datetime}, mentions to other \textit{tweets}, emoticons, punctuations---in order to reduce the dimension of the feature space. A particular attention was paid to \textit{hashtags}, which are relevant to exception events classification, but adds noise to the address extraction phase --- all \textit{hashtags} were identified and replaced by empty spaces in the address extraction process, after classification.
@@ -460,7 +460,7 @@ Before the Natural Language Processing (NLP) phase, the \textit{tweets} were pre
 
 After the preprocessing phase, we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words (tokens) of a sentence (features used to train the classification model), removing numbers and characters that do not belong to the alphabet (through \textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in April 14, 2019.}), (II) morphological decomposition to get a given word into its inflected form using stemming (through \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in April 14, 2019.}) and (III) Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in April 14, 2019.} \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. These procedures reduced the number of tweets from 60,984 to 59,834, resulting in a corpus with 414,637 words and with a vocabulary of 13,915 words. This corpus was processed to be represented by a bag-of-words, which is composed by feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. These feature vectors have high dimensionality $(13,272)$ and we used the Singular Value Decomposition (SVD) technique for dimensionality reduction. A cross-validation approach found that 90\% of the data variance is explained with $3,000$ components. Therefore, we used these feature vectors $(53,849 \times 3,000)$ by classification models. \todo{DC: última frase estranha. Pq falar das feature vectors novamente? O que exatamente é $(53,849 \times 3,000)$, é a dimensionalidade do vetor?}
 
-\subsubsection{Classification model}
+\paragraph{\textbf{Classification model}}
 \label{featuresEng}
 
 
@@ -500,7 +500,7 @@ Finding exception events involves the identification of events related to an exc
 %Recall = \frac{TP}{TP + FN}; F_1 score = \frac{Precision * Recall}{Precision + Recall} = \frac{2TP}{2TP + FP + FN}
 %\end{equation*}
 
-\subsubsection{Addresses and geolocation extraction}
+\paragraph{\textbf{Addresses and geolocation extraction}}
 
 Analyzing the content of \textit{tweets} from the selected accounts, it is possible to observe that the texts published normally follows a given template and, therefore, are actually semi-structured. We used a regular expression to extract addresses from \textit{tweets}: $ER = \lbrace L_1 | S_1 | L_2 | S_2 | \dots | L_n | S_n \rbrace \lbrace [a-z\grave{A}-\ddot{y}\_] + \rbrace$.
 That expression is divided in two sets, in the first ($\lbrace L_1 | S_1 | L_2 | S_2 | \dots | L_n | S_n \rbrace $), (L---in Portuguese: \textit{logradouro}, meaning public spaces such as avenue, etc.) and (S---public spaces acronyms) are concatenated to specify a filter and identify \textit{strings} initialized with public spaces or its respective acronyms. The second set ($\lbrace [a-z\grave{A}-\ddot{y}\_] + \rbrace $), represents a filter to identify a set of words after L or S, candidates to compose the wanted addresses.
@@ -511,11 +511,11 @@ The HTTP response from this API is processed to get the values from location (wh
 
 %It is important to observe that the tokens from extracted address (not formatted address) are corpus-specific stop words in case of high frequency of exception events located at this address, \todo{DC: não entendi lhufas :) Se for de um evento com uma alta frequência (freq. de quê? postagens? mas isso acontece?), então o endereço é uma stop word, mas daí ele é relevante como feature?} due the fact that in this scenario they are handled as relevant features to the classification model. Therefore, the extracted address tokens are stored to be removed in \textit{tweets} processing phase.
 
-\subsubsection{Finding bus lines affected by exception events}
+\paragraph{\textbf{Finding bus lines affected by exception events}}
 
 In order to find the bus lines affected by exception events, it is necessary to correlate the coordinates of exception events with the existing coordinates in the shapes dataset---a set of latitude and longitude used for drawing bus lines on a map to represent its respective paths---existing in SPTrans' GTFS. All coordinates are stored in MongoDB using legacy pairs and in collections with geospatial indexes. We use the \texttt{\$near} function provided by MongoDB\footnote{\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Accessed in April 14, 2019.} to find shapes close to the exception event coordinates. The GTFS defines that the \textit{shape\_id} (i.e. bus code line) is part of attributes contained in the shape file, which is used as parameter to correlate the bus code line with others GTFS files with details about the bus direction, identification, etc.
 
-\subsubsection{Velocity impact analysis}
+\paragraph{\textbf{Velocity impact analysis}}
 
 After we found the bus lines impacted by exception events, we select the movement data that will be analyzed, e.g. if the exception event happened on 08/17/2017 (Thursday), every other Thursday in the month of August (3, 10, 24 and 08/31/2017) will be considered in the analysis. Our preliminary analysis of the data showed that each day of the week and month may show different patterns of movements (seasonality)---see Figure~\ref{fig:exception_events_classification_distribution}. For instance, Fridays are well-known for their congested traffics, while December (the beginning of the Brazilian summer and a period of many holidays) is well-known for having a more fluid traffic flow. Because of this seasonality, velocities are analyzed regarding the day of the week in the same month.
 
@@ -526,8 +526,7 @@ Next, we aggregated the selected data to descriptively analyze the instantaneous
 
 \section{Experimental Analyses}\label{sec:experimentalAnalyses}
 
-\subsubsection{Classification models}
-
+\paragraph{\textbf{Classification models}}
 
 \label{Experiments_Corpus_Twitter}
 The \textit{Corpus Twitter}\footnote{Dataset publicly available at: \url{https://drive.google.com/open?id=1s_HmLHQFFMVrPhYcrAI1XF7rrGbcJohT}. Accessed in April 14, 2019.} was the labeled dataset used to train exception events classification models, based on a \textit{bag-of-words}, as described in Section~\ref{featuresEng}. %*** REPETIDO which contains 60,984 \textit{tweets}. at the end of \textit{tweets} preprocessing and processing, we have 59,834 labeled examples, %*** ALTEREI PARA SEÇÃO QUE INFORMA O PRE-PROCESSAMENTO*** the corpus got 414,637 words, with a vocabulary size of 13,915 words. % *** REPETIDO All \textit{tweets} were manually classified according to identified exception events.
@@ -577,7 +576,7 @@ In the experiments, we considered the grid search approach, strategy used to cho
 
 According to Table~\ref{tab:metrics}, the model using the Multi-layer Perceptron algorithm obtained greater accuracy for the classification task. 
 
-\subsubsection{Addresses and geolocation extraction}
+\paragraph{\textbf{Addresses and geolocation extraction}}
 Of the 60,984 \textit{tweets} 10,027 were classified into exception events and from that subset we found 7,710 addresses
 %, according to Tab. \ref{tab:qtdExtractedAddresses} --- disregarding the APPROXIMATE locale type\footnote{The locale type explanations can be accessed at \url{https://developers.google.com/maps/documentation/geocoding}. Accessed on December 14, 2018.} --- 
 (which represents 76.89\% of the total of \textit{tweets} classified as exception events. The reasons for \textit {tweets} without address extracted are:
@@ -647,7 +646,7 @@ Figure~\ref{fig:address_analysis} shows most affected addresses\footnote{Complet
 \end{minipage}
 \end{figure}
 
-\subsubsection{Exception event impact analysis}
+\paragraph{\textbf{Exception event impact analysis}}
 We considered that a bus line is affected by an exception event if a coordinate from \textit{shape} is within a radius of 1,000m away from the event. Using this criterion, the total of 1,073 bus lines were affected by exception events during this period, with line ``33121 -- TERM. PRINC. ISABEL / TERM. STO. AMARO'' being the most impacted bus line. This particular line was impacted by 1,623 exception events\footnote{The full table is publicly available at \url{https://docs.google.com/spreadsheets/d/1jIqUuIJg7FhXD5C8MFF8stbvOD3uiUgMfN2bOltT7zE/edit?usp=sharing}. Accessed in April 14, 2019.}.
 
 %\begin {table} [!htb]
