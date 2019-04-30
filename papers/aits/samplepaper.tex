@@ -50,7 +50,7 @@
 \begin{document}
 %
 %\title{A platform to analyse impacts of the exception events on the bus velocity of São Paulo\thanks{This research is part of the INCT of the Future Internet for Smart Cities funded by CNPq, proc. 465446/2014-0, CAPES proc.88887.136422/2017-00, and FAPESP, proc. 2014/50937-1.}}
-\title{A framework to analyse impacts of the exception events on the bus velocity of São Paulo}
+\title{A framework to analyse impacts of the exception events on the buses velocity of São Paulo}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
@@ -510,13 +510,13 @@ The HTTP response from this API is processed to get the values from location (wh
 
 %It is important to observe that the tokens from extracted address (not formatted address) are corpus-specific stop words in case of high frequency of exception events located at this address, \todo{DC: não entendi lhufas :) Se for de um evento com uma alta frequência (freq. de quê? postagens? mas isso acontece?), então o endereço é uma stop word, mas daí ele é relevante como feature?} due the fact that in this scenario they are handled as relevant features to the classification model. Therefore, the extracted address tokens are stored to be removed in \textit{tweets} processing phase.
 
-\paragraph{\textbf{Finding bus lines affected by exception events}}
+\paragraph{\textbf{Finding buses lines affected by exception events}}
 
-In order to find the bus lines affected by exception events, it is necessary to match the coordinates of exception events with the existing coordinates in the shapes dataset---a set of latitude and longitude used for drawing bus lines on a map to represent its respective paths---existing in SPTrans' GTFS. All coordinates are stored in MongoDB using legacy pairs and in collections with geospatial indexes. We use the \texttt{\$near} function provided by MongoDB\footnote{\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Accessed in April 14, 2019.} to find shapes close to the exception event coordinates. The GTFS defines that the \textit{shape\_id} (i.e. bus code line) is part of attributes contained in the shape file, which is used as key to integrate with others GTFS files (enriching the information about a bus code line).
+In order to find the buses lines affected by exception events, it is necessary to match the coordinates of exception events with the existing coordinates in the shapes dataset---a set of latitude and longitude used for drawing buses lines on a map to represent its respective paths---existing in SPTrans' GTFS. All coordinates are stored in MongoDB using legacy pairs and in collections with geospatial indexes. We use the \texttt{\$near} function provided by MongoDB\footnote{\url{https://docs.mongodb.com/manual/reference/operator/query/near}. Accessed in April 14, 2019.} to find shapes close to the exception event coordinates. The GTFS defines that the \textit{shape\_id} (i.e. bus code line) is part of attributes contained in the shape file, which is used as key to integrate with others GTFS files (enriching the information about a bus code line).
 
 \paragraph{\textbf{Velocity impact analysis}}
 
-After we found the bus lines impacted by exception events, we select the movement data that will be analyzed, e.g. if the exception event happened on 08/17/2017 (Thursday), every other Thursday in the month of August (3, 10, 24 and 08/31/2017) will be considered in the analysis. Our preliminary analysis of the data showed that each day of the week and month may show different patterns of movements (seasonality)---see Figure~\ref{fig:exception_events_classification_distribution}. For instance, Fridays are well-known for their congested traffics, while December (the beginning of the Brazilian summer and a period of many holidays) is well-known for having a more fluid traffic flow. Because of this seasonality, velocities are analyzed regarding the day of the week in the same month.
+After we found the buses lines impacted by exception events, we select the movement data that will be analyzed, e.g. if the exception event happened on 08/17/2017 (Thursday), every other Thursday in the month of August (3, 10, 24 and 08/31/2017) will be considered in the analysis. Our preliminary analysis of the data showed that each day of the week and month may show different patterns of movements (seasonality)---see Figure~\ref{fig:exception_events_classification_distribution}. For instance, Fridays are well-known for their congested traffics, while December (the beginning of the Brazilian summer and a period of many holidays) is well-known for having a more fluid traffic flow. Because of this seasonality, velocities are analyzed regarding the day of the week in the same month.
 
 We also filtered the data related to the impacted lines within a radius of 100 and 1,000m of the exception event in question, in addition to considering the same time range as the \textit{tweet} time\footnote{It is important to note that this work does not consider the exact start and end of the exception events, but a time range of one hour from the time in the \textit{tweet} \textit{timestamp}.}. So, if the \textit {tweet} time is at 5:15 p.m., we considered the AVL data between 5:00 p.m. and 6:00 p.m.
 
@@ -648,7 +648,7 @@ Figure~\ref{fig:address_analysis} shows most affected addresses\footnote{Complet
 \end{figure}
 
 \paragraph{\textbf{Exception event impact analysis}}
-We considered that a bus line is affected by an exception event if a coordinate from \textit{shape} is within a radius of 1,000m away from the event. Using this criterion, the total of 1,073 bus lines were affected by exception events during this period, with line ``33121 -- TERM. PRINC. ISABEL / TERM. STO. AMARO'' being the most impacted bus line. This particular line was impacted by 1,623 exception events\footnote{The full table is publicly available at \url{https://docs.google.com/spreadsheets/d/1jIqUuIJg7FhXD5C8MFF8stbvOD3uiUgMfN2bOltT7zE/edit?usp=sharing}. Accessed in April 14, 2019.}.
+We considered that a bus line is affected by an exception event if a coordinate from \textit{shape} is within a radius of 1,000m away from the event. Using this criterion, the total of 1,073 buses lines were affected by exception events during this period, with line ``33121 -- TERM. PRINC. ISABEL / TERM. STO. AMARO'' being the most impacted bus line. This particular line was impacted by 1,623 exception events\footnote{The full table is publicly available at \url{https://docs.google.com/spreadsheets/d/1jIqUuIJg7FhXD5C8MFF8stbvOD3uiUgMfN2bOltT7zE/edit?usp=sharing}. Accessed in April 14, 2019.}.
 
 %\begin {table} [!htb]
 %\centering
