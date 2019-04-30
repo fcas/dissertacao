@@ -458,7 +458,10 @@ Before the Natural Language Processing (NLP) phase, the \textit{tweets} were pre
 %, involving interdisciplinary knowledge mainly among the areas of Computer Science, Linguistics and Statistics. 
 %The problems related to NLP can be divided into low and high level problems.
 
-After the preprocessing phase, we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words (tokens) of a sentence (features used to train the classification model), removing numbers and characters that do not belong to the alphabet (through \textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in April 14, 2019.}), (II) morphological decomposition to get a given word into its inflected form using stemming (through \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in April 14, 2019.}) and (III) Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in April 14, 2019.} \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. These procedures reduced the number of tweets from 60,984 to 59,834, resulting in a corpus with 414,637 words and with a vocabulary of 13,915 words. This corpus was processed to be represented by a bag-of-words, which is composed by feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. These feature vectors have high dimensionality $(13,272)$ and we used the Singular Value Decomposition (SVD) technique for dimensionality reduction. A cross-validation approach found that 90\% of the data variance is explained with $3,000$ components. Therefore, we used these feature vectors $(53,849 \times 3,000)$ by classification models. \todo{DC: última frase estranha. Pq falar das feature vectors novamente? O que exatamente é $(53,849 \times 3,000)$, é a dimensionalidade do vetor?}
+After the preprocessing phase, we applied NLP techniques to \textit{tweets}, such as (I) \textit{Tokenization} --- process to obtain the words (tokens) of a sentence (features used to train the classification model), removing numbers and characters that do not belong to the alphabet (through \textit{TweetTokenizer}\footnote{NLTK module used to the tokenization process. \url{https://www.nltk.org/api/nltk.tokenize}. Accessed in April 14, 2019.}), (II) morphological decomposition to get a given word into its inflected form using stemming (through \textit{RSLPStemmer}\footnote{NLTK module used to the stemming process. \url{https://www.nltk.org/\_modules/nltk/stem/rslp}. Accessed in April 14, 2019.}) and (III) Brazilian Portuguese \textit{stopwords} remotion\footnote{Brazilian Portuguese \textit{stopwords} were obtained from NLTK --- \url{https://www.nltk.org}. Accessed in April 14, 2019.} \cite{Setiawan2017, nadkarni2011natural, Korenius, roy2017understanding, collobert2011natural}. These procedures reduced the number of tweets from 60,984 to 59,834, resulting in a corpus with 414,637 words and with a vocabulary of 13,915 words. This corpus was processed to be represented by a bag-of-words, which is composed by feature vectors created using the \textit{Term Frequency - Inverse Document Frequency} (TF-IDF) measure. These feature vectors are used by classification models.
+
+
+
 
 \paragraph{\textbf{Classification model}}
 \label{featuresEng}
@@ -530,10 +533,11 @@ Next, we aggregated the selected data to descriptively analyze the instantaneous
 
 \label{Experiments_Corpus_Twitter}
 The \textit{Corpus Twitter}\footnote{Dataset publicly available at: \url{https://drive.google.com/open?id=1s_HmLHQFFMVrPhYcrAI1XF7rrGbcJohT}. Accessed in April 14, 2019.} was the labeled dataset used to train exception events classification models, based on a \textit{bag-of-words}, as described in Section~\ref{featuresEng}. %*** REPETIDO which contains 60,984 \textit{tweets}. at the end of \textit{tweets} preprocessing and processing, we have 59,834 labeled examples, %*** ALTEREI PARA SEÇÃO QUE INFORMA O PRE-PROCESSAMENTO*** the corpus got 414,637 words, with a vocabulary size of 13,915 words. % *** REPETIDO All \textit{tweets} were manually classified according to identified exception events.
-The distribution of the examples for each class follows, $7,07\%$ accident, $83,24\%$ irrelevant---to non exception events, $4,52\%$ natural disaster, $2,35\%$ social event and $2,81\%$ urban event, to maintain this distribution we used the stratified 10-fold cross-validation approach\footnote{\url{https://scikit-learn.org/0.16/modules/generated/sklearn.cross_validation.StratifiedKFold.html}. Accessed in April 14, 2019.}. In this technique, for each training and test configuration, the TF-IDF is computed in the training data, then the dimension is reduced through SVD technique and its result used to train the classification methods. For the test data, we only transformed (using TF-IDF and SVD) the data to be used in the prediction of the classifications methods.
+The distribution of the examples for each class follows, $7,07\%$ accident, $83,24\%$ irrelevant---to non exception events, $4,52\%$ natural disaster, $2,35\%$ social event and $2,81\%$ urban event, to maintain this distribution we used the stratified 10-fold cross-validation approach\footnote{\url{https://scikit-learn.org/0.16/modules/generated/sklearn.cross_validation.StratifiedKFold.html}. Accessed in April 14, 2019.}. In this technique, for each training and test configuration, the TF-IDF is computed in the training data, then is used to train the classification methods. For the test data, we only transformed  the data (using calculated TF-IDF) to be used in the prediction of the classification methods.
 
 
-In the experiments, we considered the grid search approach, strategy used to choose a set of optimal hyper-parameters for a learning algorithm \cite{james2013introduction}. In the Table~\ref{tab:metrics}, we present only the best results achieved for each method. For the evaluation of the statistical methods, we considered the accuracy metric and macro approach for precision, recall and f1-score metrics.
+
+In the experiments, we considered the grid search approach, strategy used to choose a set of optimal hyper-parameters for a learning algorithm \cite{james2013introduction}.  Furthermore, given the high dimensionality of the features vectors, we consider also experiments with dimensionality reduction, where we used the Singular Value Decomposition (SVD) technique (more details in: \cite{zhang2011comparative}). A cross-validation approach found that 90\% of the data variance is explained with $3,000$ components. In the Table~\ref{tab:metrics}, we present only the best results achieved for each method. For the evaluation of the statistical methods, we considered the accuracy metric and macro approach for precision, recall and f1-score metrics.
 
 	
 %The confusion matrix related to the Multi-layer Perceptron algorithm is illustrated by Figure ~\ref{fig:confusion_matrix_mlpc}.
@@ -551,11 +555,11 @@ In the experiments, we considered the grid search approach, strategy used to cho
 \hline
 \textit{Decision Tree} & 0,966 & 0,904 & 0,885 & 0,894 \\
 \hline
-\textit{K-Nearest Neighbors} & 0,970 & 0,971 & 0,970 & 0,970 \\
+\textit{K-Nearest Neighbors} & 0,956 & 0,869 & 0,856 & 0,862 \\
 \hline
-\textit{Logistic Regression} & 0,968 & 0,919 & 0,877 & 0,896 \\
+\textit{Logistic Regression} & 0,977 & 0,942 & 0,924 & 0,933 \\
 \hline
-\textit{Multi-layer Perceptron} & 0,97 & 0,918 & 0,889 & 0,902 \\
+\textit{Multi-layer Perceptron} & 0,974 & 0,92 & 0,918 & 0,919 \\
 \hline
 \textit{Multinomial Naive Bayes} & 0,951 & 0,867 & 0,812 & 0,832 \\
 \hline
@@ -574,7 +578,8 @@ In the experiments, we considered the grid search approach, strategy used to cho
 %	\label{fig:confusion_matrix_mlpc}
 %\end{figure}
 
-According to Table~\ref{tab:metrics}, the model using the Multi-layer Perceptron algorithm obtained greater accuracy for the classification task. 
+According to Table~\ref{tab:metrics}, the models using the Logistic Regression, Multi-layer Perceptron and Random Forest algorithms obtained satisfactory performance for the classification task. The better results for Logistic Regression and Multi-layer Perceptron models was achieved with SVD technique, in other methods the approach not improved results.
+ 
 
 \paragraph{\textbf{Addresses and geolocation extraction}}
 Of the 60,984 \textit{tweets} 10,027 were classified into exception events and from that subset we found 7,710 addresses
@@ -819,7 +824,7 @@ Table~\ref{tab:exceptEventVelocityImpAll} summarizes the impact on the average s
 
 \section{Conclusions and future works}
 
-This work presents a new framework validated with real and heterogeneous data sources to understand automatically exception events impacts in the São Paulo' buses velocity. Using \textit{tweets} from selected public service providers, we found that Multi-layer Perceptron was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of buses, using the developed framework we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
+This work presents a new framework validated with real and heterogeneous data sources to understand automatically exception events impacts in the São Paulo' buses velocity. Using \textit{tweets} from selected public service providers, we found that Logistic Regression was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of buses, using the developed framework we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
 
 Although validated using selected Twitter profiles written in Brazilian Portuguese language, this method can be generalized for different languages and cities. GTFS is a ubiquitous format for public transport and tools like NLTK supports several languages.
 
