@@ -470,7 +470,7 @@ After the preprocessing phase, we applied NLP techniques to \textit{tweets}, suc
  %The bag-of-words is randomly partitioned into training (60\%) and test (40\%) sets, that are inputs to the classification algorithms.
 
 
-Finding exception events involves the identification of events related to an exception (sporadic or sudden event), which is possible through classification. Based on previous studies on exception events \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we have chose to use the following exception classes to \textit{tweets}: (I) accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using these classes, the \textit{tweets} were manually classified and used to train models to classify them in exception events. In this work, we used supervised learning, since we know how the input data can be classified, being the following algorithms normally applied to classify textual datasets: (Complement and Multinomial) Naive Bayes, Decision Tree, K-Nearest Neighbors, Logistic Regression, Multi-layer Perceptron, Random Forest and Support Vector Machine \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}, more details of the experimental setup in Section~\ref{sec:experimentalAnalyses}.
+Finding exception events involves the identification of events related to an exception (sporadic or sudden event), which is possible through classification. Based on previous studies on exception events \cite{Itoh2016, Chen2016, Lecue2014, Gal-Tzur2014} we have chose to use the following exception classes to \textit{tweets}: (I) accidents, (II) social events, (III) urban events, (IV) natural disasters and (V) irrelevant. Using these classes, the \textit{tweets} were manually classified and used to train models to classify them in exception events. In this work, we used supervised learning, since we know how the input data can be classified, being the following algorithms normally applied to classify textual datasets: (Complement and Multinomial) Naive Bayes (NB), Decision Tree (DT), K-Nearest Neighbors (KNN), Logistic Regression (LR), Multi-layer Perceptron (MLP), Random Forest (RF) and Support Vector Machine (SVM) \cite{kotsiantis2007supervised, dwivedi2016automatic, narayanan2017survey}, more details of the experimental setup in Section~\ref{sec:experimentalAnalyses}.
 
 
 
@@ -565,7 +565,7 @@ In the experiments, we considered the grid search approach, strategy used to cho
 \hline
 \textit{Random Forest} & 0,971 & 0,926 & 0,893 & 0,908 \\
 \hline
-\textit{Support Vector Machine} & 0,969 & 0,920 & 0,884 & 0,901 \\
+\textit{Support Vector Machine} & 0,978 & 0,937 & 0,936 & 0,936 \\
 \bottomrule
 \end{tabular}
 }
@@ -578,7 +578,7 @@ In the experiments, we considered the grid search approach, strategy used to cho
 %	\label{fig:confusion_matrix_mlpc}
 %\end{figure}
 
-According to Table~\ref{tab:metrics}, the models using the Logistic Regression, Multi-layer Perceptron and Random Forest algorithms obtained satisfactory performance for the classification task. The better results for Logistic Regression and Multi-layer Perceptron models was achieved with SVD technique, in other methods the approach not improved results.
+According to Table~\ref{tab:metrics}, the models using the LR, SVM, MLP and RF algorithms obtained satisfactory performance for the classification task. The better results for LR, SVM and MLP models was achieved with SVD technique, in other methods the approach not improved results.
  
 
 \paragraph{\textbf{Addresses and geolocation extraction}}
@@ -824,7 +824,7 @@ Table~\ref{tab:exceptEventVelocityImpAll} summarizes the impact on the average s
 
 \section{Conclusions and future works}
 
-This work presents a new framework validated with real and heterogeneous data sources to understand automatically exception events impacts in the São Paulo' buses velocity. Using \textit{tweets} from selected public service providers, we found that Logistic Regression was the best algorithm for classifying \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of buses, using the developed framework we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
+This work presents a new framework validated with real and heterogeneous data sources to understand automatically exception events impacts in the São Paulo' buses velocity. Using \textit{tweets} from selected public service providers, we achieved satisfactory performance in the experiments to classify \textit{tweets} in exception events. We also showed that it is possible to extract addresses from semi-structured \textit{tweets} using only regular expressions. Classifying these events are the first step to better understand how these exceptional events impact the velocity of buses, using the developed framework we found that social events reduces the velocity of 87,04\% of a group impacted, urban event 70,11\%, accident 66,51\% and natural disaster 59,77\% from a distance of 1,000m.
 
 Although validated using selected Twitter profiles written in Brazilian Portuguese language, this method can be generalized for different languages and cities. GTFS is a ubiquitous format for public transport and tools like NLTK supports several languages.
 
